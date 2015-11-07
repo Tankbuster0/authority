@@ -15,6 +15,7 @@ _cgroup = createGroup _centre;
 	_lp set [2,0];// fix for locationpositions returning altitude zero ASL.
 	_logic = _cgroup createUnit ["logic", _lp, [],0, "NONE"];
 	_logic setVariable ["target_taken", -1, true];
+	/*
 	sleep 0.1;
 	mname = format ["m%1", _foreachindex];
 	_marker = createMarker [mname, _lp];
@@ -23,6 +24,7 @@ _cgroup = createGroup _centre;
 	//_marker setMarkerSize [_xmin,_xmin];
 	_marker setMarkerSize (size _x);
 	_marker setMarkerType "hd_objective";
+	*/
 	diag_log format ["*** location %1, size %3 taken var = %2", text _x,(_logic getvariable "target_taken"), size _x];
 }foreach possibleprimaries;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];

@@ -7,12 +7,14 @@ class Mission
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
 		"A3_Supplies_F_Heli_CargoNets",
-		"A3_Modules_F"
+		"A3_Modules_F",
+		"A3_Modules_F_ObjectModifiers"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
+		"A3_Modules_F_ObjectModifiers",
 		"A3_Supplies_F_Heli_CargoNets",
 		"a3_map_altis"
 	};
@@ -37,7 +39,7 @@ class Mission
 	};
 	class Groups
 	{
-		items=1;
+		items=2;
 		class Item0
 		{
 			side="WEST";
@@ -138,6 +140,40 @@ class Mission
 				};
 			};
 		};
+		class Item1
+		{
+			side="LOGIC";
+			class Vehicles
+			{
+				items=1;
+				class Item0
+				{
+					position[]={8447.2891,105.14618,25127.785};
+					class args
+					{
+						items=2;
+						class Item0
+						{
+							value="2000";
+							parentCls="ModuleSimulationManager_F";
+							typeName="radius";
+						};
+						class Item1
+						{
+							value="1";
+							parentCls="ModuleSimulationManager_F";
+							typeName="excludeAir";
+						};
+					};
+					id=8;
+					side="LOGIC";
+					vehicle="ModuleSimulationManager_F";
+					leader=1;
+					lock="UNLOCKED";
+					skill=0.60000002;
+				};
+			};
+		};
 	};
 	class Vehicles
 	{
@@ -145,7 +181,7 @@ class Mission
 		class Item0
 		{
 			position[]={15165.114,17.875761,17336.82};
-			id=8;
+			id=9;
 			side="EMPTY";
 			vehicle="B_CargoNet_01_ammo_F";
 			skill=0.60000002;
@@ -323,6 +359,25 @@ class Mission
 			position[]={12346.468,24.37937,15664.801};
 			name="4-5";
 			type="Empty";
+		};
+	};
+	class Sensors
+	{
+		items=1;
+		class Item0
+		{
+			position[]={21028.406,22.754089,7287.7808};
+			a=500;
+			b=500;
+			angle=-54.962299;
+			activationBy="EAST";
+			interruptable=1;
+			age="UNKNOWN";
+			text="GEN_infantry";
+			name="trg1";
+			class Effects
+			{
+			};
 		};
 	};
 };
