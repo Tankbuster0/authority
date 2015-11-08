@@ -15,12 +15,12 @@ for "_count" from 1 to 3 do
 	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
 	nul = [_grpname, _pt_pos, 800] call BIS_fnc_taskpatrol;
 	sleep 1;
-	//_mypos = [_pt_pos, 5, 100, 4,0,30,0] call bis_fnc_findSafePos;
-	//_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "OIA_MotInf_AT")] call BIS_fnc_spawnGroup;
-	//nul = [_grpname, _pt_pos, 800] call BIS_fnc_taskpatrol;
-	//sleep 1;
 	_mypos = [_pt_pos, 5, 100, 4,0,30,0] call bis_fnc_findSafePos;
-	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Armoured" >> "OIA_MechInfSquad")] call BIS_fnc_spawnGroup;
+	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "OIA_MotInf_AT")] call BIS_fnc_spawnGroup;
+	nul = [_grpname, _pt_pos, 800] call BIS_fnc_taskpatrol;
+	sleep 1;
+	_mypos = [_pt_pos, 5, 100, 4,0,30,0] call bis_fnc_findSafePos;
+	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Armored" >> "OIA_TankPlatoon")] call BIS_fnc_spawnGroup;
 	sleep 1;
 	};
 diag_log str _pt_pos;
