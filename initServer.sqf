@@ -21,7 +21,7 @@ _handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 
 waitUntil {scriptDone _handle1};
 
-[] execVM "server\getnextprimary.sqf";
+[] execVM "server\missionsetup.sqf";
 
 initserverfinished = true;
 
