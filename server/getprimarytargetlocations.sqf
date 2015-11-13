@@ -49,8 +49,8 @@ fnc_getcitylimits =
 
 // ===== end functions
 {
-diag_log "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
-diag_log format ["location = %1", text _x];
+//diag_log "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+//diag_log format ["location = %1", text _x];
 _pos = locationPosition _x;
 _data1 = [_pos, true] call fnc_getcitylimits;
 _deltahousecount = _data1 select 1;
@@ -79,7 +79,7 @@ _shifts = [/*[0,50],*/[-50,50],[-50,0],[-50,-50],[0,-50],[50,-50],[50,0], [50,50
 		_bestpos = _newpos;
 		};
 	}foreach _shifts;
-diag_log format ["%3 _bestpos %1, hcount %2", _bestpos, _besthousecount, text _x];
+//diag_log format ["%3 _bestpos %1, hcount %2", _bestpos, _besthousecount, text _x];
 _mname2 = format ["smn%1", _foreachindex];
 _mkr2 = createMarker [_mname2, _bestpos];
 _mkr2 setMarkerShape "ELLIPSE";

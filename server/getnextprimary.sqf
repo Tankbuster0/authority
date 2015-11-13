@@ -11,7 +11,7 @@ if (primarytargetcounter == 1) then
 		if ((["airfield", text _x] call BIS_fnc_instring) or (["airbase", text _x] call BIS_fnc_instring)) then
 			{ _foundairfields pushback _x}
 		} foreach _locs;
-	diag_log format ["***foundairfields %1 is typename %1",_foundairfields, typeName _foundairfields];
+	//diag_log format ["***foundairfields %1 is typename %1",_foundairfields, typeName _foundairfields];
 	//{diag_log format ["%1 is %2 from start", text _x, ((locationPosition _x) distance (markerpos "respawn_west"))]; }foreach _foundairfields;
 	_currentprimarytarget = _foundairfields select 0;
 	};
