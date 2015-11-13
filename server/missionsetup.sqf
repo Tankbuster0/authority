@@ -1,6 +1,7 @@
 #define filename "missionsetup.sqf"
 _thisscript = "missionsetup.sqf";
 //by tankbuster
+private ["_foundairfields","_mapsize","_mapcentre","_locs","_airfield","_drypos","_1pos","_y","_postest"];
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
 // find all airfields
 	_foundairfields = [];
@@ -14,11 +15,11 @@ diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
 	diag_log format ["***foundairfields %1 is typename %1",_foundairfields, typeName _foundairfields];
 
 _airfield = _foundairfields call bis_fnc_selectRandom;
-diag_log format [" airfield chosen is %1 at %2", text _airfield, locationPosition _airfield]
+diag_log format [" ***airfield chosen is %1 at %2", text _airfield, locationPosition _airfield];
 _drypos =[];
 _1pos = locationPosition _airfield;
 //drypos finder by cool=azroul13
-For "_i" from 0 to 1000 step 100 do
+For "_i" from 0 to 2000 step 100 do
 {
 	For "_y" from 0 to 360 step 45 do
 	{
@@ -27,10 +28,11 @@ For "_i" from 0 to 1000 step 100 do
              {
                  _drypos = _postest;
              };
-        };
+    };
        If (!(_drypos isequalto [])) exitwith {};
 };
-
-"respawn_west" setmarkerpos _drypos;
+_newdrypos = [_drypos,1,20, 5, 0, 20, 0] call bis_fnc_findSafePos;
+diag_log format ["drypos = %1, newdrypos = %2", _drypos, _newdrypos];
+"respawn_west" setmarkerpos _newdrypos;
 
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
