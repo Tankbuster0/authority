@@ -13,10 +13,6 @@ mapcentre = [mapsize / 2, mapsize /2, 0];// <-- is a posatl
 
 primarytargetcounter = 1;
 
-
-routenumber = 1 + ( floor (random 4));
-diag_log format ["***route chosen = %1", routenumber];
-"respawn_west" setmarkerpos (getmarkerpos format["%1-0", routenumber]);
 _handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 
 waitUntil {scriptDone _handle1};
