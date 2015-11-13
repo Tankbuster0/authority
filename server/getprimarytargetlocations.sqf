@@ -55,6 +55,7 @@ _pos = locationPosition _x;
 _data1 = [_pos, true] call fnc_getcitylimits;
 _deltahousecount = _data1 select 1;
 _rrad = (_data1 select 0);
+/*
 _mname1 = format ["mn%1", _foreachindex];
 _mkr = createMarker [_mname1, _pos];
 _mkr setMarkerShape "ELLIPSE";
@@ -62,7 +63,7 @@ _mkr setMarkerType "Empty";
 _mkr setMarkerSize [_rrad,_rrad];
 _mkr setMarkerText (str _rrad);
 _mkr setMarkerBrush "Horizontal";
-diag_log format ["marker %1 drawn for %2 at %3 with houses %4", _rrad, text _x, _pos, _deltahousecount];
+diag_log format ["marker %1 drawn for %2 at %3 with houses %4", _rrad, text _x, _pos, _deltahousecount]; */
 // so we have a good marker set for the town..
 // lets see if moving it a little might help?
 _newpos = [];_bestpos = _pos;_besthousecount = _deltahousecount;
