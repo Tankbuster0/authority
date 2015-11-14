@@ -90,7 +90,7 @@ _mkr2 setMarkerText (str _rrad);
 _mkr2 setMarkerBrush "Vertical";
 */
 // create a game logic at each town position and store variables on it.
-_logicgroup = createGroup _logiccentre;
+_logicgroup = createGroup logiccenter;
 _logic = _logicgroup createUnit ["Logic", _bestpos, [], 0, "NONE"];
 _logic setVariable ["targetname", (text _x)];
 _logic setVariable ["targetradius", _rrad];
