@@ -80,6 +80,7 @@ _shifts = [/*[0,50],*/[-50,50],[-50,0],[-50,-50],[0,-50],[50,-50],[50,0], [50,50
 		};
 	}foreach _shifts;
 //diag_log format ["%3 _bestpos %1, hcount %2", _bestpos, _besthousecount, text _x];
+/*
 _mname2 = format ["smn%1", _foreachindex];
 _mkr2 = createMarker [_mname2, _bestpos];
 _mkr2 setMarkerShape "ELLIPSE";
@@ -87,5 +88,12 @@ _mkr2 setMarkerType "Empty";
 _mkr2 setMarkerSize [_rrad,_rrad];
 _mkr2 setMarkerText (str _rrad);
 _mkr2 setMarkerBrush "Vertical";
+*/
+// create a game logic at each town position and store variables on it.
+_logicgroup = createGroup _logiccentre;
+_logic = _logicgroup createUnit ["Logic", _bestpos, [], 0, "NONE"];
+_logic setVariable ["targetname", (text _x)];
+_logic setVariable ["targetradius", _rrad];
+_logic setvariable ["targetstatus", -1];
 } foreach _possibleprimaries;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
