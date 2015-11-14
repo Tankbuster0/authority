@@ -6,7 +6,7 @@ private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
 	_foundairfields = [];
-	_locs = nearestLocations [markerPos "respawn_west" ,["NameVillage", "NameLocal"], 10000];
+	_locs = nearestLocations [markerPos "respawn_west" ,["NameVillage", "NameLocal"], 2000];
 		{
 		if ((["airfield", text _x] call BIS_fnc_instring) or (["airbase", text _x] call BIS_fnc_instring)) then
 			{ _foundairfields pushback _x}

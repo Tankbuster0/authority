@@ -18,6 +18,7 @@ _airfield = _foundairfields call bis_fnc_selectRandom;
 diag_log format [" ***airfield chosen is %1 at %2", text _airfield, locationPosition _airfield];
 _drypos =[];
 _1pos = locationPosition _airfield;
+
 //drypos finder by cool=azroul13
 For "_i" from 0 to 2000 step 100 do
 {

@@ -21,7 +21,7 @@ waitUntil {scriptDone _handle1};
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
 
-
+_handle3 = [] execVM "server\getnextprimary.sqf";
 initserverfinished = true;
 publicVariable "initserverfinished";
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
