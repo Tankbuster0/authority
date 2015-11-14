@@ -7,4 +7,7 @@ scriptname "initPlayerLocal.sqf";
 
 
 waitUntil {initserverfinished};
-{_x setpos (getmarkerpos "respawn_west")} foreach playableunits;
+hint "Moving you to respawn!";
+sleep 1;
+player setpos (getMarkerPos "respawn_west");
+//{_x setpos (getmarkerpos "respawn_west")} foreach playableunits;
