@@ -95,5 +95,6 @@ _logic = _logicgroup createUnit ["Logic", _bestpos, [], 0, "NONE"];
 _logic setVariable ["targetname", (text _x)];
 _logic setVariable ["targetradius", _rrad];
 _logic setvariable ["targetstatus", -1];
+_logic setVariable ["targettype", 1];
 } foreach _possibleprimaries;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
