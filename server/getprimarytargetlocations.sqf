@@ -3,7 +3,7 @@ _thisscript = "getprimarytargetlocations.sqf";
 //by tankbuster
 //execvd'd by initserver
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
-private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2"];
+private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance"];
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
 _possibleprimaries = nearestLocations [_mapcentre, ["NameCityCapital", "NameCity", "NameVillage"], _mapsize /2];
@@ -15,7 +15,7 @@ fnc_getcitylimits =
 // if 2nd param is true, script will concentrate more on actual houses
 // returns the radius of the city limits and the house count within that
 	{
-	private ["_locpos","_countonlyhouses","_oldringshousecount","_rads","_houses","_dummyhouses","_ringhousecount","_allhousecount", "_finalhousecount", "_myradius", "_rings", "_foundhouses", "_myhouse", "_excludedbuildings", "_exitit", "_previousringhousecount", "_excludedcount",  "_previousringhousecount", "_excludedcount"];
+	private ["_locpos","_countonlyhouses","_oldringshousecount","_rads","_houses","_dummyhouses","_ringhousecount","_allhousecount", "_finalhousecount", "_myradius", "_rings", "_foundhouses", "_myhouse", "_excludedbuildings", "_exitit", "_previousringhousecount", "_excludedcount",  "_previousringhousecount", "_excludedcount", "_possiblebases", "_skiparray"];
 	params ["_locpos", "_countonlyhouses"];
 	_locpos set [2,0];
 	_ringhousecount = 0;_oldringshousecount = 0;_previousringhousecount = 0;_rads = 300;_finalhousecount = 0; _excludedcount = 0;
@@ -97,4 +97,23 @@ _logic setVariable ["targetradius", _rrad];
 _logic setvariable ["targetstatus", -1];
 _logic setVariable ["targettype", 1];
 } foreach _possibleprimaries;
+// find all the military bases by finding all the big towers. As some of the bases have more than tower in them,
+// remove those that have other towers nearby
+_possiblebases = []; _skiparray = [];
+_dummybases = _mapcentre nearObjects ["Cargo_Tower_base_F", _mapsize /2];
+_basecount = count _dummybases;
+for "_z" from 0 to (_basecount -1) do
+	{
+	_mytower = _dummybases select _z;
+	if !(_mytower in _skiparray) then
+		{
+		_possiblebases pushback _mytower;
+		_neighbours = _mytower nearObjects ["Cargo_Tower_base_F", 250];
+		if ((count _neighbours) > 0) then
+			{
+			{_skiparray pushback _x} forEach _neighbours;
+			};
+		};
+	};
+diag_log format ["possible bases count %1", count _possiblebases];
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
