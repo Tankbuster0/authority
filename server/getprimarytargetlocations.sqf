@@ -115,5 +115,12 @@ for "_z" from 0 to (_basecount -1) do
 			};
 		};
 	};
+{
+_logic = _logicgroup createUnit ["Logic", getpos _x, [], 0, "NONE"];
+_logic setVariable ["targetname", ("Military base")];
+_logic setVariable ["targetradius", 250];
+_logic setvariable ["targetstatus", -1];
+_logic setVariable ["targettype", 3];
+} foreach _possiblebases;
 diag_log format ["possible bases count %1", count _possiblebases];
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
