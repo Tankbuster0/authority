@@ -58,3 +58,36 @@ class CfgTaskEnhancements
    share        = 1;            //0: do not count assigned players (default), 1: count how many players have the task assigned
    propagate    = 1;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
 };
+class Params
+{
+	class line1 {
+		title = "---------------------- Mission Values ----------------------";
+		values[] = {-99999};
+		default = -99999;
+		texts[] = {""};
+	};
+		class line2 {
+		title = "---------------------- Primary Missions Values ----------------------";
+		values[] = {-99999};
+		default = -99999;
+		texts[] = {""};
+	};
+			class militarybasesincluded {
+			title = "Island military bases are primaries too?";
+			values[] = {0,1};
+			default = 1;
+			texts[] = {"No", "Yes"};
+		};
+			class primarytargetchoosing {
+			title = "Next primary target is chosen...";
+			values[] = {0,1,2,3};
+			default = 3;
+			texts[] = {"Random", "Preset Route", "Random", "but nearby town"};
+		};
+			class allowcapturefail {
+			title = "Failing to capture town possible?";
+			values[] = {0,1};
+			default = 0;
+			texts[] = {"No" "Yes"};
+		};
+};
