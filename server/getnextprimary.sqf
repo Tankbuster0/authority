@@ -14,6 +14,12 @@ if (primarytargetcounter == 1) then
 	//diag_log format ["***foundairfields %1 is typename %1",_foundairfields, typeName _foundairfields];
 	//{diag_log format ["%1 is %2 from start", text _x, ((locationPosition _x) distance (markerpos "respawn_west"))]; }foreach _foundairfields;
 	_currentprimarytarget = _foundairfields select 0;
+	_logicgroup = createGroup logiccenter;
+	_logic = _logicgroup createUnit ["Logic", (locationPosition _currentprimarytarget), [], 0, "NONE"];
+	_logic setVariable ["targetname", "Airfield"];
+	_logic setVariable ["targetradius", 300];
+	_logic setvariable ["targetstatus", 3];// current pt
+	_logic setVariable ["targettype", 2];// type airfield
 	};
 
 diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
