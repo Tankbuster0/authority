@@ -88,6 +88,6 @@ class Params
 			title = "Failing to capture town possible?";
 			values[] = {0,1};
 			default = 0;
-			texts[] = {"No" "Yes"};
+			texts[] = {"No", "Yes"};
 		};
 };

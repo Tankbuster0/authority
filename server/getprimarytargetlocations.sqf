@@ -3,11 +3,12 @@ _thisscript = "getprimarytargetlocations.sqf";
 //by tankbuster
 //execvd'd by initserver
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
-private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance"];
+private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance", "_logicgroup"];
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
 _possibleprimaries = nearestLocations [_mapcentre, ["NameCityCapital", "NameCity", "NameVillage"], _mapsize /2];
 diag_log format ["Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
+_possibleprimariescount = count _possibleprimaries;
 _betterhousecount = []; _betterpos = [];
 // ======functions
 fnc_getcitylimits =
@@ -96,6 +97,8 @@ _logic setVariable ["targetname", (text _x)];
 _logic setVariable ["targetradius", _rrad];
 _logic setvariable ["targetstatus", -1];
 _logic setVariable ["targettype", 1];
+missionsetupprogress = (_foreachindex / _possibleprimariescount);
+publicVariable "missionsetupprogress";
 } foreach _possibleprimaries;
 // find all the military bases by finding all the big towers. As some of the bases have more than tower in them,
 // remove those that have other towers nearby

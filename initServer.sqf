@@ -2,6 +2,7 @@
 _thisscript = "initserver.sqf";
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
 initserverfinished = false; publicVariable "initserverfinished";
+missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 1;
 opforcenter = createCenter opfor;
 independentcenter = createCenter independent;
