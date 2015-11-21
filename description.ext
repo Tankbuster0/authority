@@ -2,6 +2,7 @@
 #define filename "description.ext"
 onLoadMission = "Authority";
 onLoadMissionTime = 1;
+loadscreen = "logo.paa";
 author = "Tankbuster";
 joinUnassigned = 0;
 saving = 0;
