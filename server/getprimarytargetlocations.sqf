@@ -91,7 +91,7 @@ _mkr2 setMarkerText (str _rrad);
 _mkr2 setMarkerBrush "Vertical";
 */
 // create a game logic at each town position and store variables on it.
-if (!(surfaceIsWater _bestpos) or (!(text _x isEqualTo "Sagonisi"))) then
+if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	{
 	_logicgroup = createGroup logiccenter;
 	_logic = _logicgroup createUnit ["Logic", _bestpos, [], 0, "NONE"];
@@ -122,7 +122,7 @@ for "_z" from 0 to (_basecount -1) do
 		};
 	};
 {
-if (!(surfaceIsWater _bestpos) or (!(text _x isEqualTo "Sagonisi"))) then
+if (!(surfaceIsWater _bestpos) ) then
 	{
 	_logic = _logicgroup createUnit ["Logic", getpos _x, [], 0, "NONE"];
 	_logic setVariable ["targetname", ("Military base")];
