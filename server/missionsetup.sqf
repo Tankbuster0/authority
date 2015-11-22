@@ -12,10 +12,10 @@ diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
 		if ((["airfield", text _x] call BIS_fnc_instring) or (["airbase", text _x] call BIS_fnc_instring)) then
 			{ _foundairfields pushback _x}
 		} foreach _locs;
-	diag_log format ["***foundairfields %1 is typename %1",_foundairfields, typeName _foundairfields];
+	//diag_log format ["***foundairfields %1 is typename %1",_foundairfields, typeName _foundairfields];
 
 _airfield = _foundairfields call bis_fnc_selectRandom;
-diag_log format [" ***airfield chosen is %1 at %2", text _airfield, locationPosition _airfield];
+//diag_log format [" ***airfield chosen is %1 at %2", text _airfield, locationPosition _airfield];
 _drypos =[];
 _1pos = locationPosition _airfield;
 
