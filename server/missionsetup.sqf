@@ -34,5 +34,5 @@ For "_i" from 0 to 2000 step 100 do
 };
 _newdrypos = [_drypos,20,50, 5, 0, 10, 1] call bis_fnc_findSafePos;
 "respawn_west" setmarkerpos _newdrypos;
-
+ammobox setpos _newdrypos;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];

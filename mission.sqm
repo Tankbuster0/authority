@@ -186,6 +186,7 @@ class Mission
 			vehicle="B_CargoNet_01_ammo_F";
 			skill=0.60000002;
 			text="ammobox";
+			init="0 = [""AmmoboxInit"",[this,true]] spawn BIS_fnc_arsenal;";
 		};
 	};
 	class Markers

@@ -83,7 +83,7 @@ class Params
 			title = "Next primary target is chosen...";
 			values[] = {0,1,2,3};
 			default = 3;
-			texts[] = {"Random", "Preset Route", "Random", "but nearby town"};
+			texts[] = {"Random", "Preset Route", "Random, but nearby town"};
 		};
 			class allowcapturefail {
 			title = "Failing to capture town possible?";
