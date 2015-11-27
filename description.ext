@@ -91,4 +91,10 @@ class Params
 			default = 0;
 			texts[] = {"No", "Yes"};
 		};
+			class insurgencymapmarkers {
+			title = "Use Insurgency style map markers";
+			values[] = {0,1};
+			default = 0;
+			texts[] = {"No", "Yes"};
+		};
 };
