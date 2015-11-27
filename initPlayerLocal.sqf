@@ -5,7 +5,10 @@ scriptname "initPlayerLocal.sqf";
     [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 }] call BIS_fnc_addScriptedEventHandler;
 //^^ when player closes VA, save their loadout to server
-
+[ player, "respawn", {
+	diag_log "***respawn EH fired¬!!!!";
+}] call BIS_fnc_addScriptedEventHandler;
+//^^ when player respawns, give them their last saved loadout
 
 sleep 1;
 
@@ -19,3 +22,5 @@ waitUntil {initserverfinished};
 endLoadingScreen;
 hint "Moving you to respawn!";
 player setpos (getMarkerPos "respawn_west");
+player addEventHandler ["respawn", {if !(player in BIS_revive_units) then  {[_this] execVM "client\playerrespawned.sqf"}}];
+//^^ when player respawns, give them their last saved loadout
