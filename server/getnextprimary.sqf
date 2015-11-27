@@ -22,7 +22,7 @@ if (primarytargetcounter == 1) then
 	_logic setVariable ["targettype", 2];// type airfield
 	};
 
-diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
+//diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
 nul = [_currentprimarytarget] execVM "server\spawnprimarytargetunits.sqf";
 
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
