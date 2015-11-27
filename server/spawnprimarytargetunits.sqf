@@ -44,5 +44,4 @@ _trg setTriggerArea [250,250,0,false];
 _trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
 _trg setTriggerStatements ["this", "hint 'town cleared'", ""];
 
-diag_log str _pt_pos;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
