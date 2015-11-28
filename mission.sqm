@@ -186,7 +186,7 @@ class Mission
 			vehicle="B_CargoNet_01_ammo_F";
 			skill=0.60000002;
 			text="ammobox";
-			init="0 = [""AmmoboxInit"",[this,true]] spawn BIS_fnc_arsenal;";
+			init="clearMagazineCargoGlobal this;clearWeaponCargoGlobal this;clearItemCargoGlobal this;clearBackpackCargoGlobal this;this allowDamage false; this enableSimulation false;this addaction [""==Virtual Arsenal=="", ""server\b_virtual_arsenal.sqf""];";
 		};
 	};
 	class Markers
