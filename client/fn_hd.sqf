@@ -1,6 +1,15 @@
 #define filename "hd.sqf"
 _thisscript = "hd.sqf";
 //by tankbuster
+params ["_unit", "_dummy", "_damage", "_shooter", "_ammo" ];
+
+// system to save units loadout just before he is incapacitated so it can be given back to him after revive
+// called by handledamage eh on player
+
+if ((_damage > 0.9) and (time > (_unit getVariable "last_inventory_saved"))) then
+	{
+		_nul = [player, [uiNamespace, "reviveloadout"]] call bis_fnc_saveInventory;
+		_unit setVariable ["last_inventory_saved", time +2];
+	};
 
 
-hint "function works, dude!";

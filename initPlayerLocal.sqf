@@ -18,6 +18,7 @@ while {missionsetupprogress < 0.95} do
 		progressLoadingScreen missionsetupprogress;
 	};
 waitUntil {initserverfinished};
+player setVariable ["last_inventory_saved", -1];
 endLoadingScreen;
 hint "Moving you to respawn!";
 player setpos (getMarkerPos "respawn_west");
@@ -27,13 +28,14 @@ player setpos (getMarkerPos "respawn_west");
 	if ( isNull _revivor ) then {
 		_nul = [] spawn {
 			sleep playerRespawnTime;
-			hint "You respawned";
 			_nul = execVM "client\playerrespawned.sqf";
 		};
 	}else{
-		hint format[ "You were revived by %1", name _revivor ];
+		//hint format[ "You were revived by %1", name _revivor ];
+		_nul = execVM "client\playerrevived.sqf";
 	};
 }] call BIS_fnc_addScriptedEventHandler;
 player addEventHandler ["Respawn", {
 deleteVehicle (_this select 1);
 }];
+player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// think this one is NOT respawn persistent. might need to readd it after respawn.
