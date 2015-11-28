@@ -34,4 +34,6 @@ player setpos (getMarkerPos "respawn_west");
 		hint format[ "You were revived by %1", name _revivor ];
 	};
 }] call BIS_fnc_addScriptedEventHandler;
-
+player addEventHandler ["Respawn", {
+deleteVehicle (_this select 1);
+}];
