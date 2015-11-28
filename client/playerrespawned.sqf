@@ -10,7 +10,5 @@ sleep 1;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
 
 player addEventHandler ["Respawn", {
-waitUntil {alive (_this select 0)};
-sleep 1;
 deleteVehicle (_this select 1);
 }];
