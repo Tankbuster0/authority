@@ -41,7 +41,17 @@ taskManagement_propagate = 1;
 taskManagement_drawDist = 2000;
 
 enableTeamSwitch = 0;
-
+class cfgFunctions
+{
+	class tky
+	{
+		class auth
+		{
+			file = "client";
+			class hd {};
+		};
+	};
+};
 //class CfgRemoteExecCommands {};
 
 //params
