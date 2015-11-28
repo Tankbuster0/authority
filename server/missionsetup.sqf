@@ -33,6 +33,7 @@ For "_i" from 0 to 2000 step 100 do
        If (!(_drypos isequalto [])) exitwith {};
 };
 _newdrypos = [_drypos,20,50, 5, 0, 10, 1] call bis_fnc_findSafePos;
+_newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
 ammobox setpos _newdrypos;
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
