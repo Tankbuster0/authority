@@ -20,7 +20,6 @@ while {missionsetupprogress < 0.95} do
 waitUntil {initserverfinished};
 player setVariable ["last_inventory_saved", -1];
 endLoadingScreen;
-hint "Moving you to respawn!";
 player setpos (getMarkerPos "respawn_west");
 //larrows EH to better handle revive and respawn.
 [ missionNamespace, "reviveRevived", {
