@@ -11,7 +11,6 @@ scriptname "initPlayerLocal.sqf";
 //^^ when player respawns, give them their last saved loadout
 
 sleep 1;
-
 startLoadingScreen ["Authority mission is setting up. Please wait."];
 while {missionsetupprogress < 0.95} do
 	{
@@ -22,5 +21,17 @@ waitUntil {initserverfinished};
 endLoadingScreen;
 hint "Moving you to respawn!";
 player setpos (getMarkerPos "respawn_west");
-player addEventHandler ["respawn", {if !(player in BIS_revive_units) then  {[_this] execVM "client\playerrespawned.sqf"}}];
-//^^ when player respawns, give them their last saved loadout
+//larrows EH to better handle revive and respawn.
+[ missionNamespace, "reviveRevived", {
+	params[ "_unit", "_revivor" ];
+	if ( isNull _revivor ) then {
+		_nul = [] spawn {
+			sleep playerRespawnTime;
+			hint "You respawned";
+			_nul = execVM "client\playerrespawned.sqf";
+		};
+	}else{
+		hint format[ "You were revived by %1", name _revivor ];
+	};
+}] call BIS_fnc_addScriptedEventHandler;
+
