@@ -8,3 +8,9 @@ sleep 1;
 } foreach allDeadMen;
 // delete all west deadmen. cant find a better way to delete corpse of a respawned player
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
+
+player addEventHandler ["Respawn", {
+waitUntil {alive (_this select 0)};
+sleep 1;
+deleteVehicle (_this select 1);
+}];
