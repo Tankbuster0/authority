@@ -3,3 +3,4 @@ _thisscript = "hd.sqf";
 //by tankbuster
 
 
+hint "function works, dude!";
