@@ -20,7 +20,8 @@ while {missionsetupprogress < 0.95} do
 waitUntil {initserverfinished};
 player setVariable ["last_inventory_saved", -1];
 endLoadingScreen;
-player setpos (getMarkerPos "respawn_west");
+//player setpos (getMarkerPos "respawn_west");
+player setpos ([(getmarkerpos "respawn_west"), (3+ (random 3)), random 360] call bis_fnc_relPos);
 //larrows EH to better handle revive and respawn.
 [ missionNamespace, "reviveRevived", {
 	params[ "_unit", "_revivor" ];
