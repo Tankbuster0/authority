@@ -2,7 +2,7 @@
 _thisscript = "getnextprimary.sqf";
 //by tankbuster
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
-private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript"];
+private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic"];
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
 	_foundairfields = [];
@@ -20,9 +20,17 @@ if (primarytargetcounter == 1) then
 	_logic setVariable ["targetradius", 300];
 	_logic setvariable ["targetstatus", 3];// current pt
 	_logic setVariable ["targettype", 2];// type airfield
+	}else{
+	// 2nd, 3rd , 4th tergets, etc
 	};
 
 //diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
-nul = [_currentprimarytarget] execVM "server\spawnprimarytargetunits.sqf";
+nul = [_logic] execVM "server\spawnprimarytargetunits.sqf";
+// create a marker
+//_marker1 = createMarker ["markerbane", ]
+
+
+// task stuff
+//[west, ["task1"], ["Clear the target of all enemy forces", "clear", ]] call bis_fnc_taskCreate;
 
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
