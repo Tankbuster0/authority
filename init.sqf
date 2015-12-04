@@ -7,10 +7,10 @@ if (worldName == "Altis") then
 	_location setText "Feres airfield";
 	_location = createLocation ["NameLocal", [23145,18443.621,3.1900], 100, 100];
 	_location setText "Almyra airfield";
-	_location = createLocation ["NameLocal", [9118.67,21513.1,15.8545], 100,100];
+	_location = createLocation ["NameLocal", [9155.25,21538.2,16.0988], 100,100];
 	_location setText "Abdera airfield";
 	};
-
-
+[9155.25,21538.2,16.0988]
+[9155.25,21538.2,0.00143051]
 
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
