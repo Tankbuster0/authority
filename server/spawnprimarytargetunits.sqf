@@ -5,9 +5,10 @@ private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir"
 _currentprimarytarget = _this select 0;
 diag_log format ["***Primary Target starts text %1, actual %2, typename %3", text _currentprimarytarget, _currentprimarytarget, typeName _currentprimarytarget];
 _loc_pos = locationPosition _currentprimarytarget;
-_mylogic = (_locpos nearEntities ["Logic", 500]) select 0;
+_mylogic = (_loc_pos nearEntities ["Logic", 500]) select 0;
 _pt_pos = getpos _mylogic;
 _pt_radius = _mylogic getVariable "targetradius";
+diag_log format ["locpos %1 mylogic %2, ptpos %3, ptradius %4", _loc_pos, _mylogic, _pt_pos, _pt_radius];
 for "_count" from 1 to 3 do
 	{
 	_grpname = format ["grp%1", _count];
