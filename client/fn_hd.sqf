@@ -2,7 +2,6 @@
 _thisscript = "hd.sqf";
 //by tankbuster
 params ["_unit", "_dummy", "_damage", "_shooter", "_ammo" ];
-diag_log "loadout saved for revive";
 // system to save units loadout just before he is incapacitated so it can be given back to him after revive
 // called by handledamage eh on player
 
