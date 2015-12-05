@@ -38,7 +38,7 @@ _marker1 setMarkerSize [cpt_radius,cpt_radius];//replace this with dymanic radiu
 
 // make trigger that senses when town is empty of enemies
 _trg = createTrigger ["EmptyDetector", cpt_position];
-_trg setTriggerArea [(cpt_radius + 100),(cpt_radius + 100),0,false];
+_trg setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 _trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
 _trg setTriggerStatements ["this", "execVM 'server\primarytargetcleared.sqf'", ""];
 
