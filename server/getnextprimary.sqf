@@ -40,7 +40,7 @@ _marker1 setMarkerSize [cpt_radius,cpt_radius];//replace this with dymanic radiu
 _trg = createTrigger ["EmptyDetector", cpt_position];
 _trg setTriggerArea [(cpt_radius + 100),(cpt_radius + 100),0,false];
 _trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
-_trg setTriggerStatements ["this", "execVM '\server\primarytargetcleared.sqf'", ""];
+_trg setTriggerStatements ["this", "execVM 'server\primarytargetcleared.sqf'", ""];
 
 // task stuff
 //[west, ["task1"], ["Clear the target of all enemy forces", "clear", ]] call bis_fnc_taskCreate;
