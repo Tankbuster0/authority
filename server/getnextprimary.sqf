@@ -11,15 +11,17 @@ if (primarytargetcounter == 1) then
 		if ((["airfield", text _x] call BIS_fnc_instring) or (["airbase", text _x] call BIS_fnc_instring)) then
 			{ _foundairfields pushback _x}
 		} foreach _locs;
-
+	cpt_radius = 300;
+	cpt_status = 3;// current pt
+	cpt_type =2;//type airfield
 	_currentprimarytarget = _foundairfields select 0;
 	cpt_position = locationPosition _currentprimarytarget;
 	_logicgroup = createGroup logiccenter;
 	_logic = _logicgroup createUnit ["Logic", cpt_position, [], 0, "NONE"];
 	_logic setVariable ["targetname", "Airfield"];
-	_logic setVariable ["targetradius", 300];
-	_logic setvariable ["targetstatus", 3];// current pt
-	_logic setVariable ["targettype", 2];// type airfield
+	_logic setVariable ["targetradius", cpt_radius];
+	_logic setvariable ["targetstatus", cpt_status];// current pt
+	_logic setVariable ["targettype", cpt_type];// type airfield
 	}else{
 	// 2nd, 3rd , 4th tergets, etc
 	_npt = [cpt_position] execVM "\server\choosenextprimary.sqf";
@@ -32,11 +34,11 @@ nul = [_logic] execVM "server\spawnprimarytargetunits.sqf";
 _marker1 = createMarker ["markerbane", _logic];
 _marker1 setMarkerShape "ELLIPSE";
 _marker1 setMarkerType "Flag";
-_marker1 setMarkerSize [300,300];//replace this with dymanic radius
+_marker1 setMarkerSize [cpt_radius,cpt_radius];//replace this with dymanic radius
 
 // make trigger that senses when town is empty of enemies
 _trg = createTrigger ["EmptyDetector", cpt_position];
-_trg setTriggerArea [250,250,0,false];
+_trg setTriggerArea [(cpt_radius + 100),(cpt_radius + 100),0,false];
 _trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
 _trg setTriggerStatements ["this", "diag_log '***town cleared'", ""];
 
