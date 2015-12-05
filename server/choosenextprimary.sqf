@@ -1,6 +1,7 @@
 #define filename "choosenextprimarytarget"
 _thisscript = "choosenextprimarytarget.sqf";
 // by tankbuster
+// takes a position and returns a logic
 private ["_thisscript", "_pos", "_nearlogics", "_tstatus", "_ttype", "_removeflag"];
 diag_log format ["*** %1 starts %2, %3", _thisscript, diag_tickTime, time];
 _pos = _this select 0;

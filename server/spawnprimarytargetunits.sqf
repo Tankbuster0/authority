@@ -42,10 +42,6 @@ for "_count" from 1 to 3 do
 
 
 	};
-// make trigger that senses when town is empty of enemies
-_trg = createTrigger ["EmptyDetector", _pt_pos];
-_trg setTriggerArea [250,250,0,false];
-_trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
-_trg setTriggerStatements ["this", "diag_log '***town cleared'", ""];
+
 
 diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
