@@ -97,7 +97,7 @@ if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	_logic = _logicgroup createUnit ["Logic", _bestpos, [], 0, "NONE"];
 	_logic setVariable ["targetname", (text _x)];
 	_logic setVariable ["targetradius", _rrad];
-	_logic setvariable ["targetstatus", -1];
+	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 1];
 };
 missionsetupprogress = (_foreachindex / _possibleprimariescount);
@@ -127,7 +127,7 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic = _logicgroup createUnit ["Logic", getpos _x, [], 0, "NONE"];
 	_logic setVariable ["targetname", ("Military base")];
 	_logic setVariable ["targetradius", 250];
-	_logic setvariable ["targetstatus", -1];
+	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
 	};
 } foreach _possiblebases;
