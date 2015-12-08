@@ -31,10 +31,11 @@ if (primarytargetcounter == 1) then
 //diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
 nul = [_logic] execVM "server\spawnprimarytargetunits.sqf";
 // create a marker
-_marker1 = createMarker ["markerbane", _logic];
-_marker1 setMarkerShape "ELLIPSE";
-_marker1 setMarkerType "Flag";
-_marker1 setMarkerSize [cpt_radius,cpt_radius];//replace this with dymanic radius
+cpt_marker = createMarker ["markerbane", _logic];
+cpt_marker setMarkerShape "ELLIPSE";
+cpt_marker setMarkerType "Flag";
+cpt_marker setMarkerSize [cpt_radius,cpt_radius];
+cpt_marker setMarkerColor "ColorRed";
 
 // make trigger that senses when town is empty of enemies
 _trg = createTrigger ["EmptyDetector", cpt_position];
