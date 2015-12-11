@@ -25,7 +25,7 @@ if (primarytargetcounter == 1) then
 	}else{
 	// 2nd, 3rd , 4th tergets, etc
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";
-	diag_log format ["***next primary chosen %1", _npt];
+	diag_log format ["***next primary chosen %1", cpt_position];
 	};
 
 //diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
