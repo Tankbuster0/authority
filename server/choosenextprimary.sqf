@@ -10,10 +10,11 @@ if (isNil "militarybasesincluded") then {
 	sleep 1;
 	publicVariable "militarybasesincluded";
 };
-_nearlogics = nearestObjects [_pos, ["Logic"], 4000];
+_nearlogics = nearestObjects [_pos, ["Logic"], 3000];
 {
 	_tstatus = _x getVariable "targetstatus";
 	_ttype = _x getVariable "targettype";
+	dialog format ["logic %1, pos %2, status %3, type %4", _x, position _x, _tstatus, _ttype];
 	_removeflag = false;
 	if (_tstatus < 2) then {
 		_removeflag = true;
@@ -29,6 +30,6 @@ _nearlogics = nearestObjects [_pos, ["Logic"], 4000];
 } forEach _nearlogics;
 _nearlogics = _nearlogics select [0, 2];
 _nextpt = _nearlogics call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
-diag_log format ["Next primary chosen is %1 at %2", _nextpt, _nearlogics];
+diag_log format ["Next primary chosen is %1 at %2", _nextpt, getpos _nextpt];
 diag_log format ["*** %1 ends %2, %3", _thisscript, diag_tickTime, time];
 _nextpt

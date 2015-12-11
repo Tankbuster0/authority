@@ -24,7 +24,7 @@ if (primarytargetcounter == 1) then
 	_logic setVariable ["targettype", cpt_type];// type airfield
 	}else{
 	// 2nd, 3rd , 4th tergets, etc
-	_npt = [cpt_position] execVM "\server\choosenextprimary.sqf";
+	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";
 	diag_log format ["***next primary chosen %1", _npt];
 	};
 
