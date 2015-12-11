@@ -14,7 +14,7 @@ _nearlogics = nearestObjects [_pos, ["Logic"], 3000];
 {
 	_tstatus = _x getVariable "targetstatus";
 	_ttype = _x getVariable "targettype";
-	dialog format ["logic %1, pos %2, status %3, type %4", _x, position _x, _tstatus, _ttype];
+	diag_log format ["logic %1, pos %2, status %3, type %4", _x, position _x, _tstatus, _ttype];
 	_removeflag = false;
 	if (_tstatus < 2) then {
 		_removeflag = true;
