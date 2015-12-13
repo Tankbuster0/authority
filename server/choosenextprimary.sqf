@@ -1,10 +1,11 @@
-#define filename "choosenextprimarytarget"
-_thisscript = "choosenextprimarytarget.sqf";
+#define filename "choosenextprimary"
+_thisscript = "choosenextprimary.sqf";
 // by tankbuster
 // takes a position and returns a logic
 private ["_thisscript", "_pos", "_nearlogics", "_tstatus", "_ttype", "_removeflag"];
 diag_log format ["*** %1 starts %2, %3", _thisscript, diag_tickTime, time];
 _pos = _this select 0;
+diag_log format ["choosenextprimary recieves %1", _pos];
 if (isNil "militarybasesincluded") then {
 	militarybasesincluded = 1;
 	sleep 1;
