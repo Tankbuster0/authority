@@ -2,8 +2,8 @@
 _thisscript = "spawnprimarytargetunits.sqf";
 //by tankbuster
 private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir","_mypos2"];
-_currentprimarytarget = _this select 0;
-diag_log format ["***Primary Target starts actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
+_currentprimarytarget = _this select 0;// recieves a logic
+diag_log format ["***doprimary.sqf @ 6 Primary units spawn actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
 _loc_pos = getpos _currentprimarytarget;
 _mylogic = (_loc_pos nearEntities ["Logic", 500]) select 0;
 _pt_pos = getpos _mylogic;

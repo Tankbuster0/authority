@@ -30,7 +30,7 @@ _nearlogics = nearestObjects [_pos, ["Logic"], 3000];
 	};
 } forEach _nearlogics;
 _nearlogics = _nearlogics select [0, 2];
-_nextpt = _nearlogics call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
-diag_log format ["Next primary chosen is %1 at %2", _nextpt, getpos _nextpt];
+nextpt = [_nearlogics] call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
+diag_log format ["*** choosenextprimary @ 34 Next primary chosen is %1 at %2", nextpt, getpos nextpt];
 diag_log format ["*** %1 ends %2, %3", _thisscript, diag_tickTime, time];
-_nextpt
+nextpt

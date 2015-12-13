@@ -2,7 +2,7 @@
 _thisscript = "doprimary.sqf";
 //by tankbuster
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
-private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic"];
+private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic", "_npt"];
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
 	_foundairfields = [];
@@ -23,12 +23,16 @@ if (primarytargetcounter == 1) then
 	_logic setvariable ["targetstatus", cpt_status];// current pt
 	_logic setVariable ["targettype", cpt_type];// type airfield
 	}else{
-	// 2nd, 3rd , 4th tergets, etc
+	// 2nd, 3rd , 4th targets, etc
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";
-	diag_log format ["***next primary chosen %1", cpt_position];
+	waitUntil {scriptDone _npt};
+
+	diag_log format ["*** doprimary @ 28 next primary chosen %1", cpt_position];
+	cpt_radius = (nextpt getVariable "targetradius");
+
 	};
 
-//diag_log format ["*** cur pt %1 is typeName %2", _currentprimarytarget, typeName _currentprimarytarget];
+diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", text _currentprimarytarget, typeName _currentprimarytarget, cpt_position];
 nul = [_logic] execVM "server\spawnprimarytargetunits.sqf";
 // create a marker
 cpt_marker = createMarker ["markerbane", _logic];
