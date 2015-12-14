@@ -12,6 +12,7 @@ if (isNil "militarybasesincluded") then {
 	publicVariable "militarybasesincluded";
 };
 _nearlogics = nearestObjects [_pos, ["Logic"], 3000];
+	diag_log format ["*** choosenext @1 nearlogics %1", _nearlogics];
 {
 	_tstatus = _x getVariable "targetstatus";
 	_ttype = _x getVariable "targettype";
@@ -29,8 +30,11 @@ _nearlogics = nearestObjects [_pos, ["Logic"], 3000];
 		_nearlogics = _nearlogics - [_x];
 	};
 } forEach _nearlogics;
+	diag_log format ["*** choosenext @33 nearlogics %1", _nearlogics];
 _nearlogics = _nearlogics select [0, 2];
-nextpt = [_nearlogics] call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
-diag_log format ["*** choosenextprimary @ 34 Next primary chosen is %1 at %2", nextpt, getpos nextpt];
+nextpt = ([_nearlogics] call BIS_fnc_selectRandom) select 0; // note: replace with selectRandom command after the nexus update
+
+diag_log format ["*** choosenextprimary @ 34 Next primary chosen is %1", nextpt];
+diag_log format ["*** choosenextrpimary @35 next primary position is %1", getpos nextpt];
 diag_log format ["*** %1 ends %2, %3", _thisscript, diag_tickTime, time];
 nextpt
