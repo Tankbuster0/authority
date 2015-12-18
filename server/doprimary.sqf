@@ -32,7 +32,7 @@ if (primarytargetcounter == 1) then
 	_ptarget = nextpt;
 	};
 
-//diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", text _currentprimarytarget, typeName _currentprimarytarget, cpt_position];
+diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", _ptarget, typeName _ptarget, cpt_position];
 nul = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
 sleep 1;
 // create a marker
