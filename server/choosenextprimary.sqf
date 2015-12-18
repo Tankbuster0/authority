@@ -10,7 +10,7 @@ if (isNil "militarybasesincluded") then {
 	sleep 1;
 	publicVariable "militarybasesincluded";
 };
-_removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 5000];
+_removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 4000];
 	diag_log format ["*** choosenext @14 nearlogics %1", _nearlogics];
 {
 	_tstatus = _x getVariable "targetstatus";
