@@ -2,7 +2,7 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits.sqf";
 private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir","_mypos2"];
-_currentprimarytarget = _this select 0;// recieves a logic
+_currentprimarytarget = _this select 0;// recieves a logic or object
 diag_log format ["***doprimary.sqf @ 6 Primary units spawn actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
 _loc_pos = getpos _currentprimarytarget;
 _mylogic = (_loc_pos nearEntities ["Logic", 500]) select 0;

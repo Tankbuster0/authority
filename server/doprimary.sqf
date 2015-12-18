@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic", "_npt"];
+private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_ptarget", "_npt"];
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
 	_foundairfields = [];
@@ -15,26 +15,28 @@ if (primarytargetcounter == 1) then
 	cpt_type =2;//type airfield
 	_currentprimarytarget = _foundairfields select 0;
 	cpt_position = locationPosition _currentprimarytarget;
-	_logicgroup = createGroup logiccenter;
-	_logic = _logicgroup createUnit ["Logic", cpt_position, [], 0, "NONE"];
-	_logic setVariable ["targetname", "Airfield"];
-	_logic setVariable ["targetradius", cpt_radius];
-	_logic setvariable ["targetstatus", cpt_status];// current pt
-	_logic setVariable ["targettype", cpt_type];// type airfield
+	_ptargetgroup = createGroup logiccenter;
+	_ptarget = _ptargetgroup createUnit ["Logic", cpt_position, [], 0, "NONE"];
+	_ptarget setVariable ["targetname", "Airfield"];
+	_ptarget setVariable ["targetradius", cpt_radius];
+	_ptarget setvariable ["targetstatus", cpt_status];// current pt
+	_ptarget setVariable ["targettype", cpt_type];// type airfield
 	}else{
 	// 2nd, 3rd , 4th targets, etc
-	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";
+	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";// creates global variable nextpt which is a logic
 	waitUntil {scriptDone _npt};
-
+	sleep 0.5;
+	cpt_position = getpos nextpt;
 	diag_log format ["*** doprimary @ 28 next primary chosen %1", cpt_position];
 	cpt_radius = (nextpt getVariable "targetradius");
-
+	_ptarget = nextpt;
 	};
 
-diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", text _currentprimarytarget, typeName _currentprimarytarget, cpt_position];
-nul = [_logic] execVM "server\spawnprimarytargetunits.sqf";
+//diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", text _currentprimarytarget, typeName _currentprimarytarget, cpt_position];
+nul = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
+sleep 1;
 // create a marker
-cpt_marker = createMarker ["markerbane", _logic];
+cpt_marker = createMarker [str primarytargetcounter, cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";
 cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
