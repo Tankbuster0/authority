@@ -1,5 +1,6 @@
 #define filename "spawnprimarytargetunits.sqf"
 //by tankbuster
+_myscript = _thisscript;
 private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir","_mypos2"];
 _currentprimarytarget = _this select 0;// recieves a logic
 diag_log format ["***doprimary.sqf @ 6 Primary units spawn actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
@@ -43,4 +44,4 @@ for "_count" from 1 to 3 do
 	};
 
 
-diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

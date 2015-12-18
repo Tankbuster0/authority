@@ -1,5 +1,6 @@
 //by tankbuster
-diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
+_myscript = _thisscript;
+diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic", "_npt"];
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
@@ -48,4 +49,4 @@ _trg setTriggerStatements ["this", "execVM 'server\primarytargetcleared.sqf'", "
 // task stuff
 //[west, ["task1"], ["Clear the target of all enemy forces", "clear", ]] call bis_fnc_taskCreate;
 
-diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

@@ -1,6 +1,7 @@
 //by tankbuster
 //execvd'd by initserver
-diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
+_myscript = _thisscript;
+diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance", "_logicgroup"];
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
@@ -130,4 +131,4 @@ if (!(surfaceIsWater _bestpos) ) then
 	};
 } foreach _possiblebases;
 diag_log format ["possible bases count %1", count _possiblebases];
-diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

@@ -1,6 +1,7 @@
 //by tankbuster
+_myscript = _thisscript;
 private ["_foundairfields","_mapsize","_mapcentre","_locs","_airfield","_drypos","_1pos","_y","_postest"];
-diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
+diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 // find all airfields
 	_foundairfields = [];
 	_mapsize  = worldSize;
@@ -34,4 +35,4 @@ _newdrypos = [_drypos,20,50, 5, 0, 10, 1] call bis_fnc_findSafePos;
 _newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
 ammobox setpos _newdrypos;
-diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

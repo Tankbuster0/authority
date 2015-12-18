@@ -1,4 +1,5 @@
-diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
+_myscript = _thisscript;
+diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 initserverfinished = false; publicVariable "initserverfinished";
 missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 1;
@@ -23,4 +24,4 @@ waitUntil {scriptDone _handle2};
 _handle3 = [] execVM "server\doprimary.sqf";
 initserverfinished = true;
 publicVariable "initserverfinished";
-diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
