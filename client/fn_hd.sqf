@@ -1,5 +1,3 @@
-#define filename "hd.sqf"
-_thisscript = "hd.sqf";
 //by tankbuster
 params ["_unit", "_dummy", "_damage", "_shooter", "_ammo" ];
 // system to save units loadout just before he is incapacitated so it can be given back to him after revive

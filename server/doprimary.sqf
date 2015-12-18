@@ -1,5 +1,3 @@
-#define filename "doprimary.sqf"
-//_thisscript = "doprimary.sqf";
 //by tankbuster
 diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic", "_npt"];

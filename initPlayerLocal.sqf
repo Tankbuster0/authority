@@ -1,5 +1,3 @@
-#define filename "initPlayerLocal.sqf"
-scriptname "initPlayerLocal.sqf";
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 [ missionNamespace, "arsenalClosed", {
     [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
