@@ -1,8 +1,8 @@
 // by tankbuster
 // takes a position and returns a logic
 _myscript = "choosenextprimary.sqf";
-private ["_thisscript", "_pos", "_nearlogics", "_tstatus", "_ttype", "_removeflag", "_nearlogics2", "_removearray"];
-diag_log format ["*** %1 starts %2, %3", _thisscript, diag_tickTime, time];
+private ["_pos", "_nearlogics", "_tstatus", "_ttype","_tname", "_removeflag", "_nearlogics2", "_removearray"];
+diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 _pos = _this select 0; _nearlogics2 = [];
 diag_log format ["choosenextprimary recieves %1", _pos];
 if (isNil "militarybasesincluded") then {
@@ -10,13 +10,14 @@ if (isNil "militarybasesincluded") then {
 	sleep 1;
 	publicVariable "militarybasesincluded";
 };
-_removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 3000];
-	diag_log format ["*** choosenext @1 nearlogics %1", _nearlogics];
+_removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 5000];
+	diag_log format ["*** choosenext @14 nearlogics %1", _nearlogics];
 {
 	_tstatus = _x getVariable "targetstatus";
 	_ttype = _x getVariable "targettype";
-	diag_log format ["logic %1, pos %2, status %3, type %4", _x, position _x, _tstatus, _ttype];
-	if ((_tstatus == 1) or (((militarybasesincluded == 0) and (_ttype == 3) ))) then {_removearray pushback _x};
+	_tname = _x getVariable "targetname";
+	diag_log format ["logic %1, name %5, pos %2, status %3, type %4", _x, position _x, _tstatus, _ttype, _tname];
+	if ( (isNil "_tstatus") or (_tstatus != 1) or (((militarybasesincluded == 0) and (_ttype == 3) ))) then {_removearray pushback _x};
 	/*_removeflag = false;
 	if (_tstatus < 2) then {
 		_removeflag = true;
@@ -32,12 +33,10 @@ _removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 3000];
 		if !(_removeflag) then { _nearlogics2 pushback _x}; */
 } forEach _nearlogics;
 _nearlogics2 = _nearlogics - _removearray;
-	diag_log format ["*** choosenext @34 nearlogics %1", _nearlogics];
-	diag_log format ["*** choosenext @35 nearlogics2 %1", _nearlogics2];
-_nearlogics = _nearlogics select [0, 2];
-nextpt = ([_nearlogics2] call BIS_fnc_selectRandom) select 0; // note: replace with selectRandom command after the nexus update
-
-diag_log format ["*** choosenextprimary @ 39 Next primary chosen is %1, pos is ", nextpt, getpos nextpt];
-//diag_log format ["*** choosenextrpimary @35 next primary position is %1", getpos nextpt];
-diag_log format ["*** %1 ends %2, %3", _thisscript, diag_tickTime, time];
+	diag_log format ["*** choosenext @36 removearray %1",_removearray];
+	diag_log format ["*** choosenext @37 nearlogics2 %1", _nearlogics2];
+_nextpt1 = [_nearlogics2] call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
+nextpt = _nextpt1 select 0;
+diag_log format ["*** choosenextprimary @ 40 Next primary chosen is %1, name %3, pos is %2 ", nextpt, getpos nextpt, (nextpt getVariable "targetname")];
+diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
 nextpt
