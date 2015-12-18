@@ -1,5 +1,5 @@
 _thisscript = "init.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+diag_log format ["*** %1 starts %2,%3", _thisscript, diag_tickTime, time];
 if (worldName == "Altis") then
 	{
 	_location = createlocation ["NameLocal",  [20983,7242,25.656], 100,100];
@@ -10,4 +10,4 @@ if (worldName == "Altis") then
 	_location setText "Abdera airfield";
 	};
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+diag_log format ["*** %1 ends %2,%3", _thisscript, diag_tickTime, time];
