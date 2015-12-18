@@ -1,5 +1,5 @@
 #define filename "spawnprimarytargetunits.sqf"
-_thisscript = "spawnprimarytargetunits.sqf";
+//_thisscript = "spawnprimarytargetunits.sqf";
 //by tankbuster
 private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir","_mypos2"];
 _currentprimarytarget = _this select 0;// recieves a logic

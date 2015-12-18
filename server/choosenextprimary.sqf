@@ -1,5 +1,5 @@
 #define filename "choosenextprimary"
-_thisscript = "choosenextprimary.sqf";
+//_thisscript = "choosenextprimary.sqf";
 // by tankbuster
 // takes a position and returns a logic
 private ["_thisscript", "_pos", "_nearlogics", "_tstatus", "_ttype", "_removeflag", "_nearlogics2"];
