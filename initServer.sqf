@@ -1,4 +1,4 @@
-_myscript = _thisscript;
+_myscript = "initserver.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 initserverfinished = false; publicVariable "initserverfinished";
 missionsetupprogress = 0; publicVariable "missionsetupprogress";

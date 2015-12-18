@@ -1,4 +1,4 @@
-_myscript = _thisscript;
+_myscript = "playerrevivied.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 [player , [missionNamespace, "reviveloadout"]] call bis_fnc_loadInventory;
 

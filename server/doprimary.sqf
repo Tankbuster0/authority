@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = _thisscript;
+_myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_logic", "_npt"];
 if (primarytargetcounter == 1) then

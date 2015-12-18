@@ -1,6 +1,6 @@
 //by tankbuster
 //execvd'd by initserver
-_myscript = _thisscript;
+_myscript = "getprimarytargetlocations";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance", "_logicgroup"];
 _mapsize  = worldSize;

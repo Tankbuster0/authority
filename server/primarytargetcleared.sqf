@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = _thisscript;
+_myscript = "primarytargetcleared.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 cpt_marker setMarkerColor "ColorPink";

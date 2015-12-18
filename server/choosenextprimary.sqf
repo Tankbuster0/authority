@@ -1,6 +1,6 @@
 // by tankbuster
 // takes a position and returns a logic
-_myscript = _thisscript;
+_myscript = "choosenextprimary.sqf";
 private ["_thisscript", "_pos", "_nearlogics", "_tstatus", "_ttype", "_removeflag", "_nearlogics2", "_removearray"];
 diag_log format ["*** %1 starts %2, %3", _thisscript, diag_tickTime, time];
 _pos = _this select 0; _nearlogics2 = [];

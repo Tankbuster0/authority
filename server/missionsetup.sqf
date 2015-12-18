@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = _thisscript;
+_myscript = "missionssetup";
 private ["_foundairfields","_mapsize","_mapcentre","_locs","_airfield","_drypos","_1pos","_y","_postest"];
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 // find all airfields
