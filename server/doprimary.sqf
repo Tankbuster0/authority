@@ -2,6 +2,7 @@
 _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_ptarget", "_npt"];
+vehiclecleanup= []; mancleanup = [];
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
 	_foundairfields = [];

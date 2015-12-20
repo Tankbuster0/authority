@@ -42,6 +42,8 @@ for "_count" from 1 to 3 do
 
 
 	};
-
+{
+if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
+};foreach (units _grpname);
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
