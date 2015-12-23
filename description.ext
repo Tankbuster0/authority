@@ -35,7 +35,6 @@ showCompass = 1;
 showMap = 1;
 showWatch = 1;
 enableItemsDropping = 0;
-
 taskManagement_markers3D = 1;
 taskManagement_propagate = 1;
 taskManagement_drawDist = 2000;
