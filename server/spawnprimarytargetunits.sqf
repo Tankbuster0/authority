@@ -39,11 +39,12 @@ for "_count" from 1 to 3 do
 	[_mypos2, (_mydir + 180), "O_Mortar_01_F", _grpname] call bis_fnc_spawnVehicle;
 	sleep 0.1;
 
-
-
-	};
 {
 if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
-}foreach (units _grpname);
+if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
+ }foreach (units _grpname);
+
+	};
+
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
