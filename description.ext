@@ -106,4 +106,16 @@ class Params
 			default = 0;
 			texts[] = {"No", "Yes"};
 		};
+		class line3 {
+		title = "---------------------- Player stuff ----------------------";
+		values[] = {-99999};
+		default = -99999;
+		texts[] = {""};
+	};
+			class playercanjump {
+			title = "Player can jump?";
+			values[] = {0,1,2};
+			default = 0;
+			texts[] = {"No", "Yes, if lightly loaded", "Yes, if no backpack"};
+		};
 };
