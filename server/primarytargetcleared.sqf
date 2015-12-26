@@ -19,8 +19,10 @@ vehiclecleanup= []; mancleanup = []; _allclean = [];*/
 	deletevehicle _x;
 } foreach vehiclecleanup;
 {deletevehicle _x} foreach mancleanup;
-{delete _x} foreach allGroups;
+{deleteGroup _x} foreach allGroups;
+[taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 primarytargetcounter = primarytargetcounter + 1;
+sleep 10;
 _nul = execVM "server\doprimary.sqf";
 
 

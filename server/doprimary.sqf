@@ -50,6 +50,7 @@ _trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
 _trg setTriggerStatements ["this", "execVM 'server\primarytargetcleared.sqf'", ""];
 
 // task stuff
-[west, ["task1"], ["Clear the target of all enemy forces", "clear","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
+taskname = "task" + str primarytargetcounter;
+[west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
