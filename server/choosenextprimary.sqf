@@ -13,9 +13,9 @@ if (isNil "militarybasesincluded") then {
 _removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 4000];
 	diag_log format ["*** choosenext @14 nearlogics %1", _nearlogics];
 {
-	_tstatus = _x getVariable "targetstatus";
-	_ttype = _x getVariable "targettype";
-	_tname = _x getVariable "targetname";
+	_tstatus = _x getVariable ["targetstatus", -1];
+	_ttype = _x getVariable ["targettype", -1];
+	_tname = _x getVariable ["targetname", "Springfield"];
 	diag_log format ["logic %1, name %5, pos %2, status %3, type %4", _x, position _x, _tstatus, _ttype, _tname];
 	if ( (isNil "_tstatus") or (_tstatus != 1) or (((militarybasesincluded == 0) and (_ttype == 3) ))) then {_removearray pushback _x};
 } forEach _nearlogics;

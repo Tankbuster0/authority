@@ -92,13 +92,15 @@ _mkr2 setMarkerBrush "Vertical";
 // create a game logic at each town position and store variables on it.
 if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	{
+
 	_logicgroup = createGroup logiccenter;
 	_logic = _logicgroup createUnit ["Logic", _bestpos, [], 0, "NONE"];
 	_logic setVariable ["targetname", (text _x)];
 	_logic setVariable ["targetradius", _rrad];
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 1];
-};
+	_logic setVariable ["targetruincount", (count (_bestpos nearObjects ["Ruins", _rrad]))];
+	};
 missionsetupprogress = (_foreachindex / _possibleprimariescount);
 publicVariable "missionsetupprogress";
 } foreach _possibleprimaries;
