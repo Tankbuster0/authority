@@ -2,7 +2,7 @@
 _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_ptarget", "_npt"];
-vehiclecleanup= []; mancleanup = [];
+vehiclecleanup= []; mancleanup = []; returndata = nil;
 if (primarytargetcounter == 1) then
 	{//first target... find nearest airfield..
 	_foundairfields = [];
@@ -36,13 +36,18 @@ if (primarytargetcounter == 1) then
 diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", _ptarget, typeName _ptarget, cpt_position];
 nul = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
 sleep 1;
+handle = [_ptarget] execVM "server\spawnroadblocks.sqf";
+waitUntil {sleep 1;(!(isnil returndata))};
 // create a marker
 cpt_marker = createMarker [str primarytargetcounter, cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";
 cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
 cpt_marker setMarkerColor "ColorRed";
-
+_roadblocktrigger = createTrigger ["EmptyDetector, cpt_position"];
+_roadblocktrigger setTriggerArea [1,1,0,false];
+_roadblocktrigger setTriggerActivation ["NONE", "NOT PRESENT", false];
+_roadblocktrigger setTriggerStatements ["{alive _x} count (units (returndata select 3)) == 0 ", "hint' roadblocks cleared'", ""];
 // make trigger that senses when town is empty of enemies
 _trg = createTrigger ["EmptyDetector", cpt_position];
 _trg setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
