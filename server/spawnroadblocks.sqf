@@ -2,6 +2,10 @@
 _myscript = "spawnroadblocks.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_mypos","_myradius","_mypos0","_myroadarray1","_road1","_road2","_mypos2","_mname","_mkr","_myroads","_rd1","_rd2","_foreachindex","_groups", "_totalenemies", "_objects", "_campgroup"];
+_currentprimarytarget = _this select 0;
+_mypos = getPosATL _currentprimarytarget;
+_myradius = _currentprimarytarget getvariable "targetradius";
+if ((_currentprimarytarget getvariable "targettype" ) >2) exitWith {returndata = [-1,-1,-1,-1,-1]};
 _mypos= getposatl dude; _myradius = (getmarkersize "marker1" select 0); _mypos0 = getMarkerPos "marker1"; _myroadarray1 = [];
 for "_i" from 0 to 355 step 5 do
 	{
