@@ -8,7 +8,7 @@ diag_log format ["***doprimary.sqf @ 7 Primary units spawn actual %1, typename %
 _loc_pos = getpos _currentprimarytarget;
 _mylogic = (_loc_pos nearEntities ["Logic", 500]) select 0;
 _pt_pos = getpos _mylogic;
-_pt_radius = _mylogic getVariable "targetradius";
+_pt_radius = (_mylogic getVariable "targetradius") - 50;
 diag_log format ["*** spawnprimaryunits @12 locpos %1 mylogic %2, ptpos %3, ptradius %4", _loc_pos, _mylogic, _pt_pos, _pt_radius];
 for "_count" from 1 to 3 do
 	{
@@ -17,7 +17,7 @@ for "_count" from 1 to 3 do
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
 	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
-	nul = [_grpname, _pt_pos, 800] call BIS_fnc_taskpatrol;
+	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;
 	sleep 0.1;
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
@@ -26,7 +26,7 @@ for "_count" from 1 to 3 do
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
 	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "OIA_MotInf_AT")] call BIS_fnc_spawnGroup;
-	nul = [_grpname, _pt_pos, 800] call BIS_fnc_taskpatrol;
+	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;
 	sleep 0.1;
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
