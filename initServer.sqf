@@ -17,10 +17,10 @@ primarytargetcounter = 1;
 _handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 
 waitUntil {scriptDone _handle1};
-
+sleep 1;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
-
+sleep 1;
 _handle3 = [] execVM "server\doprimary.sqf";
 initserverfinished = true;
 publicVariable "initserverfinished";
