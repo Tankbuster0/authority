@@ -11,7 +11,7 @@ opfor setFriend [blufor, 0.1];
 ["Initialize"] call BIS_fnc_dynamicGroups;
 mapsize  = getnumber (configfile/"CfgWorlds"/worldName/"mapSize");
 mapcentre = [mapsize / 2, mapsize /2, 0];// <-- is a posatl
-
+sleep 2;
 primarytargetcounter = 1;
 
 _handle1 = [] execVM "server\getprimarytargetlocations.sqf";

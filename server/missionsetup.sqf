@@ -8,7 +8,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 //diag_log format [" ***airfield chosen is %1 at %2", text _airfield, locationPosition _airfield];
 _drypos =[];
-_1pos = locationPosition _airfield;
+_1pos = getpos _airfield;
 
 //drypos finder by cool=azroul13
 For "_i" from 0 to 2000 step 100 do
