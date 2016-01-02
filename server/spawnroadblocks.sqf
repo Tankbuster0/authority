@@ -6,11 +6,11 @@ _currentprimarytarget = _this select 0;
 _mypos = getPosATL _currentprimarytarget;
 _myradius = _currentprimarytarget getvariable "targetradius";
 if ((_currentprimarytarget getvariable "targettype" ) >2) exitWith {returndata = [-1,-1,-1,-1,-1]};
-_mypos= getposatl dude; _myradius = (getmarkersize "marker1" select 0); _mypos0 = getMarkerPos "marker1"; _myroadarray1 = [];
+_myroadarray1 = [];
 for "_i" from 0 to 355 step 5 do
 	{
 	_road1 =  nil; _road2 = nil;
-	_mypos2 = [_mypos0, _myradius, _i] call BIS_fnc_relPos;
+	_mypos2 = [_mypos, _myradius, _i] call BIS_fnc_relPos;
 	_myroads = _mypos2 nearroads 15;
 	if ((count _myroads) > 0) then //found a road at edge of circle
 		{
@@ -18,7 +18,7 @@ for "_i" from 0 to 355 step 5 do
 		if ((count (roadsConnectedTo _road1)) > 1) then //_road1 actually has 2 roads connected to it ie, not a dead end
 			{
 			_road2 = (roadsConnectedTo _road1) select 0; // call it _road2
-			_rd1 = _mypos0 distance _road1; _rd2 = _mypos0 distance _road2; // get thier distances from the centre
+			_rd1 = _mypos distance _road1; _rd2 = _mypos distance _road2; // get thier distances from the centre
 			if (_rd2 < (_rd1 - 10) ) then
 				{
 				// 2nd road it at least 10m further outside the town than the 1st one.
@@ -28,7 +28,7 @@ for "_i" from 0 to 355 step 5 do
 				{ if (count (roadsConnectedTo _road1) > 2 ) then // try again if there's a second road piece connected to the original one.
 					{
 					_road3 = (roadsConnectedTo _road1) select 1;
-					_rd3 = _mypos0 distance _road3;
+					_rd3 = _mypos distance _road3;
 					if (_rd3 < (_rd1 - 10)) then
 						{
 						_myroadarray1 pushback _road1;
@@ -44,11 +44,6 @@ for "_i" from 0 to 355 step 5 do
 	_objects = [];
 	_campgroup = createGroup east;
 {
-	//create a marker there for ease of finding.
-	_mname = format ["m%1%2", _foreachindex, _x];// make a marker at each
-	_mkr = createmarker [_mname, _x];
-	_mkr setmarkershape "ICON";
-	_mkr setMarkerType "hd_dot";
 	//--------------------roadblock script nicked from fluits dep
 	private ["_pos", "_dir", "_newpos", "_prop", "_soldier", "_gate"];
 	_pos    = getpos _x; // roadblock position
