@@ -31,13 +31,14 @@ if (primarytargetcounter == 1) then
 	diag_log format ["*** doprimary @ 28 next primary chosen %1", cpt_position];
 	cpt_radius = (nextpt getVariable "targetradius");
 	_ptarget = nextpt;
+	nul = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
+	sleep 1;
+	handle = [_ptarget] execVM "server\spawnroadblocks.sqf";
+	waitUntil {sleep 1;(!(isnil "returndata"))};
 	};
 
 diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", _ptarget, typeName _ptarget, cpt_position];
-nul = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
-sleep 1;
-handle = [_ptarget] execVM "server\spawnroadblocks.sqf";
-waitUntil {sleep 1;(!(isnil returndata))};
+
 // create a marker
 cpt_marker = createMarker [str primarytargetcounter, cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";
