@@ -1,5 +1,6 @@
 //by tankbuster
 //execvd'd by initserver
+// finds towns, improves their centre location and radius, also finds military bases and airfields and makes a logic at all of them.
 _myscript = "getprimarytargetlocations";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance", "_logicgroup"];
@@ -133,4 +134,23 @@ if (!(surfaceIsWater _bestpos) ) then
 	};
 } foreach _possiblebases;
 diag_log format ["possible bases count %1", count _possiblebases];
+//find airfields.
+foundairfields = [];
+_airportlogicgroup = createGroup logiccentre;
+
+
+_airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsize / 2];
+		{
+		_llt = tolower (text _x);// lowercase location text
+		if (((_llt find "airb") > -1  ) or ((_llt find "airf") > -1)) then
+			{
+			_ptarget = _airportlogicgroup createUnit ["Logic", cpt_position, [], 0, "NONE"];
+			_ptarget setVariable ["targetname", text _x];
+			_ptarget setVariable ["targetradius", 300];
+			_ptarget setvariable ["targetstatus", 1];// enemy held
+			_ptarget setVariable ["targettype", 2];// type airfield
+			foundairfields pushback _ptarget;
+			};
+		} foreach _airfieldlocs;
+
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
