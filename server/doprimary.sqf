@@ -15,6 +15,7 @@ if (primarytargetcounter > 1) then
 	};
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
+_ptarget = nextpt;
 _handle = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
 
 
