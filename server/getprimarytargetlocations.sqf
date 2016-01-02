@@ -137,8 +137,6 @@ diag_log format ["possible bases count %1", count _possiblebases];
 //find airfields.
 foundairfields = [];
 _airportlogicgroup = createGroup logiccentre;
-
-
 _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsize / 2];
 		{
 		_llt = tolower (text _x);// lowercase location text
