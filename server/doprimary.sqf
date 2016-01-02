@@ -48,7 +48,7 @@ cpt_marker setMarkerColor "ColorRed";
 _roadblocktrigger = createTrigger ["EmptyDetector, cpt_position"];
 _roadblocktrigger setTriggerArea [1,1,0,false];
 _roadblocktrigger setTriggerActivation ["NONE", "NOT PRESENT", false];
-_roadblocktrigger setTriggerStatements ["{alive _x} count (units (returndata select 3)) == 0 ", "hint' roadblocks cleared'", ""];
+_roadblocktrigger setTriggerStatements ["this && {alive _x} count (units (returndata select 3)) == 0 ", "hint' roadblocks cleared'", ""];
 // make trigger that senses when town is empty of enemies
 _trg = createTrigger ["EmptyDetector", cpt_position];
 _trg setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
