@@ -3,7 +3,7 @@ _myscript = "primarytargetcleared.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 private ["_crew","_veh", "_allclean"];
-if (primarytargetcounter > 1) then {nextpt setvariable ["targetstatus", 2];};
+nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorPink";
 /*_allclean = vehiclecleanup + mancleanup;
 {
