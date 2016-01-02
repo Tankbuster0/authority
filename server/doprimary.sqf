@@ -3,39 +3,20 @@ _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_ptarget", "_npt"];
 vehiclecleanup= []; mancleanup = []; returndata = nil;
-if (primarytargetcounter == 1) then
-	{//first target... find nearest airfield..
-	_foundairfields = [];
-	_locs = nearestLocations [markerPos "respawn_west" ,["NameVillage", "NameLocal"], 2000];
-		{
-		if ((["airfield", text _x] call BIS_fnc_instring) or (["airbase", text _x] call BIS_fnc_instring)) then
-			{ _foundairfields pushback _x}
-		} foreach _locs;
-	cpt_radius = 300;
-	cpt_status = 3;// current pt
-	cpt_type =2;//type airfield
-	_currentprimarytarget = _foundairfields select 0;
-	cpt_position = locationPosition _currentprimarytarget;
-	_ptargetgroup = createGroup logiccenter;
-	_ptarget = _ptargetgroup createUnit ["Logic", cpt_position, [], 0, "NONE"];
-	_ptarget setVariable ["targetname", "Airfield"];
-	_ptarget setVariable ["targetradius", cpt_radius];
-	_ptarget setvariable ["targetstatus", cpt_status];// current pt
-	_ptarget setVariable ["targettype", cpt_type];// type airfield
-	}else{
+if (primarytargetcounter > 1) then
+	{
 	// 2nd, 3rd , 4th targets, etc
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";// creates global variable nextpt which is a logic
 	waitUntil {scriptDone _npt};
 	sleep 0.5;
-	cpt_position = getpos nextpt;
-	diag_log format ["*** doprimary @ 28 next primary chosen %1", cpt_position];
-	cpt_radius = (nextpt getVariable "targetradius");
 	_ptarget = nextpt;
-	nul = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
-	sleep 1;
 	handle = [_ptarget] execVM "server\spawnroadblocks.sqf";
 	waitUntil {sleep 1;(!(isnil "returndata"))};
 	};
+cpt_position = getpos nextpt;
+cpt_radius = (nextpt getVariable "targetradius");
+_handle = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
+
 
 diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", _ptarget, typeName _ptarget, cpt_position];
 
