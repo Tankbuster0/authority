@@ -48,7 +48,7 @@ for "_i" from 0 to 355 step 5 do
 	private ["_pos", "_dir", "_newpos", "_prop", "_soldier", "_gate"];
 	_pos    = getpos _x; // roadblock position
 	_dir    = [ ( (roadsConnectedTo _x) select 0), _x] call BIS_fnc_dirTo;  // roadblock direction
-
+	_outpos = [_mypos, _x] call BIS_fnc_dirTo;// direction away from town centre
 	_groups = _groups + [_campgroup];
 	_campgroup setFormDir _dir;
 	_gate = "Land_BarGate_F" createVehicle _pos;
@@ -108,12 +108,12 @@ for "_i" from 0 to 355 step 5 do
 	    _gun1 = "O_HMG_01_high_F" createVehicle _newpos;
 	};
 	_objects = _objects + [_gun1];
-	_gun1 setDir _dir;
+	_gun1 setDir _outpos;
 	_newpos = [_newpos, 1, (_dir + 180)] call BIS_fnc_relPos;
 	_gunner1 = _campgroup createUnit ["O_G_Soldier_F", _newpos, [],0,"NONE"];
 	_gunner1 assignAsGunner _gun1;
 	_gunner1 moveInGunner _gun1;
-	_gunner1 setDir _dir;
+	_gunner1 setDir _outpos;
 	_totalenemies = _totalenemies + 1;
 	sleep 0.2;
 	_newpos = [_gate, 4, _dir + 180] call BIS_fnc_relPos;
