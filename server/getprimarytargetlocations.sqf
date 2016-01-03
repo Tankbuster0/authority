@@ -3,6 +3,7 @@
 // finds towns, improves their centre location and radius, also finds military bases and airfields and makes a logic at all of them.
 _myscript = "getprimarytargetlocations";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+targetdata =[];
 private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rrad", "_betterhousecount", "_betterpos", "_deltahousecount", "_newpos", "_bestpos", "_besthousecount", "_shifts", "_shift", "_shiftedhousecount", "_data2", "_myindex", "_data1", "_mname1", "_data2", "_mname2", "_y", "_z", "_exitit", "_mydistance", "_logicgroup", "_airportlogicgroup"];
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
@@ -104,6 +105,8 @@ if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	};
 missionsetupprogress = (_foreachindex / _possibleprimariescount);
 publicVariable "missionsetupprogress";
+_towndata = [_x,text _x,_bestpos,_rrad,1,1,(count (_bestpos nearObjects ["Ruins", _rrad]))];
+targetdata pushback _towndata;
 } foreach _possibleprimaries;
 // find all the military bases by finding all the big towers. As some of the bases have more than tower in them,
 // remove those that have other towers nearby
@@ -132,6 +135,8 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
 	};
+_basedata = [_x, "Military Base", getpos _x, 250, 1, 3, -1];
+targetdata pushback _basedata;
 } foreach _possiblebases;
 diag_log format ["possible bases count %1", count _possiblebases];
 //find airfields.
@@ -149,6 +154,8 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_ptarget setVariable ["targettype", 2];// type airfield
 			foundairfields pushback _ptarget;
 			};
+		_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
+		targetdata pushBack _airfielddata;
 		} foreach _airfieldlocs;
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
