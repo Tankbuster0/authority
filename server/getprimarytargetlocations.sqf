@@ -134,8 +134,8 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic setVariable ["targetradius", 250];
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
-	_mname2 = format ["smn%1", _foreachindex];
-	_mkr2 = createMarker [_bname2, _getpos _x];
+	_mname2 = format ["bmn%1", _foreachindex];
+	_mkr2 = createMarker [_mname2, getpos _x];
 	_mkr2 setMarkerShape "ELLIPSE";
 	_mkr2 setMarkerType "Empty";
 	_mkr2 setMarkerSize [250,250];
@@ -159,12 +159,12 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_ptarget setvariable ["targetstatus", 1];// enemy held
 			_ptarget setVariable ["targettype", 2];// type airfield
 			foundairfields pushback _ptarget;
-				_mname2 = format ["smn%1", _foreachindex];
-	_mkr2 = createMarker [_aname2, _getpos _x];
-	_mkr2 setMarkerShape "ELLIPSE";
-	_mkr2 setMarkerType "Empty";
-	_mkr2 setMarkerSize [300,300];
-			};
+			_mname2 = format ["amn%1", _foreachindex];
+			_mkr2 = createMarker [_mname2, getpos _x];
+			_mkr2 setMarkerShape "ELLIPSE";
+			_mkr2 setMarkerType "Empty";
+			_mkr2 setMarkerSize [300,300];
+					};
 		_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
 		targetdata pushBack _airfielddata;
 		} foreach _airfieldlocs;
