@@ -82,7 +82,7 @@ _shifts = [/*[0,50],*/[-50,50],[-50,0],[-50,-50],[0,-50],[50,-50],[50,0], [50,50
 		};
 	}foreach _shifts;
 //diag_log format ["%3 _bestpos %1, hcount %2", _bestpos, _besthousecount, text _x];
-/*
+
 _mname2 = format ["smn%1", _foreachindex];
 _mkr2 = createMarker [_mname2, _bestpos];
 _mkr2 setMarkerShape "ELLIPSE";
@@ -90,7 +90,7 @@ _mkr2 setMarkerType "Empty";
 _mkr2 setMarkerSize [_rrad,_rrad];
 _mkr2 setMarkerText (str _rrad);
 _mkr2 setMarkerBrush "Vertical";
-*/
+
 // create a game logic at each town position and store variables on it.
 if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	{
@@ -134,6 +134,12 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic setVariable ["targetradius", 250];
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
+	_mname2 = format ["smn%1", _foreachindex];
+	_mkr2 = createMarker [_bname2, _getpos _x];
+	_mkr2 setMarkerShape "ELLIPSE";
+	_mkr2 setMarkerType "Empty";
+	_mkr2 setMarkerSize [250,250];
+	_mkr2 setMarkerBrush "Vertical";
 	};
 _basedata = [_x, "Military Base", getpos _x, 250, 1, 3, -1];
 targetdata pushback _basedata;
@@ -153,6 +159,11 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_ptarget setvariable ["targetstatus", 1];// enemy held
 			_ptarget setVariable ["targettype", 2];// type airfield
 			foundairfields pushback _ptarget;
+				_mname2 = format ["smn%1", _foreachindex];
+	_mkr2 = createMarker [_aname2, _getpos _x];
+	_mkr2 setMarkerShape "ELLIPSE";
+	_mkr2 setMarkerType "Empty";
+	_mkr2 setMarkerSize [300,300];
 			};
 		_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
 		targetdata pushBack _airfielddata;
