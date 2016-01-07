@@ -1,4 +1,5 @@
 // by tankbuster
+_myscript = "makeconvoy.sqf"''
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 _cpt = _this select 0; // actually a logic
 // choose a town a couple of K away, away from other blufor towns
