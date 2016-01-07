@@ -8,7 +8,7 @@ private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rra
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
 _possibleprimaries = nearestLocations [_mapcentre, ["NameCityCapital", "NameCity", "NameVillage"], _mapsize /2];
-diag_log format ["Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
+diag_log format ["***Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
 _possibleprimariescount = count _possibleprimaries;
 _betterhousecount = []; _betterpos = [];
 // ======functions
@@ -139,7 +139,7 @@ if (!(surfaceIsWater _bestpos) ) then
 	_mkr2 setMarkerShape "ELLIPSE";
 	_mkr2 setMarkerType "Empty";
 	_mkr2 setMarkerSize [250,250];
-	_mkr2 setMarkerBrush "Vertical";
+	_mkr2 setMarkerBrush "Horizontal";
 	};
 _basedata = [_x, "Military Base", getpos _x, 250, 1, 3, -1];
 targetdata pushback _basedata;
@@ -164,9 +164,10 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_mkr2 setMarkerShape "ELLIPSE";
 			_mkr2 setMarkerType "Empty";
 			_mkr2 setMarkerSize [300,300];
-					};
-		_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
-		targetdata pushBack _airfielddata;
+			_mkr2 setMarkerBrush "DiagGrid";
+			_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
+			targetdata pushBack _airfielddata;
+			};
 		} foreach _airfieldlocs;
-
+diag_log format ["*** total target count is %1", (count targetdata)];
 diag_log format ["*** %1 ends %2,%3, took %4", _myscript, diag_tickTime, time, (time - _starttime)];
