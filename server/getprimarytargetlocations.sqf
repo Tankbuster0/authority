@@ -38,51 +38,34 @@ fnc_getcitylimits =
 
 				} else {_houses = _dummyhouses};
 			} foreach _dummyhouses;
-
 		_allhousecount = (count _houses);
 		_ringhousecount = _allhousecount - _oldringshousecount;
-		//diag_log format ["houses count = %1 at ring %2 meters", _ringhousecount, _myradius];
 		if ((_ringhousecount < _previousringhousecount) and (_myradius > 99)) exitWith {_rads = _myradius; _finalhousecount = _ringhousecount; };
 		_oldringshousecount = _oldringshousecount +  _ringhousecount;
 		_previousringhousecount = _ringhousecount;
 		};
 	[_rads, _finalhousecount]
 	};
-
 // ===== end functions
 {
-//diag_log "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
-//diag_log format ["location = %1", text _x];
 _pos = locationPosition _x;
 _data1 = [_pos, true] call fnc_getcitylimits;
 _deltahousecount = _data1 select 1;
 _rrad = (_data1 select 0);
-/*
-_mname1 = format ["mn%1", _foreachindex];
-_mkr = createMarker [_mname1, _pos];
-_mkr setMarkerShape "ELLIPSE";
-_mkr setMarkerType "Empty";
-_mkr setMarkerSize [_rrad,_rrad];
-_mkr setMarkerText (str _rrad);
-_mkr setMarkerBrush "Horizontal";
-diag_log format ["marker %1 drawn for %2 at %3 with houses %4", _rrad, text _x, _pos, _deltahousecount]; */
-// so we have a good marker set for the town..
-// lets see if moving it a little might help?
+// so we have a good marker set for the town.. lets see if moving it a little might help?
 _newpos = [];_bestpos = _pos;_besthousecount = _deltahousecount;
 _shifts = [/*[0,50],*/[-50,50],[-50,0],[-50,-50],[0,-50],[50,-50],[50,0], [50,50]];
 	{
 	_newpos = [((_pos select 0) + (_x select 0)), ((_pos select 1) + (_x select 1)), 0];
 	_data2 = [_newpos, true] call fnc_getcitylimits;
 	_shiftedhousecount = _data2 select 1;
-	//diag_log format [" shift %1 gives pos %2 and houses %3", _x, _newpos, _shiftedhousecount];
 	if (_shiftedhousecount > _besthousecount) then
 		{
 		_besthousecount = _shiftedhousecount;
 		_bestpos = _newpos;
 		};
 	}foreach _shifts;
-//diag_log format ["%3 _bestpos %1, hcount %2", _bestpos, _besthousecount, text _x];
-
+/*
 _mname2 = format ["smn%1", _foreachindex];
 _mkr2 = createMarker [_mname2, _bestpos];
 _mkr2 setMarkerShape "ELLIPSE";
@@ -90,7 +73,7 @@ _mkr2 setMarkerType "Empty";
 _mkr2 setMarkerSize [_rrad,_rrad];
 _mkr2 setMarkerText (str _rrad);
 _mkr2 setMarkerBrush "Vertical";
-
+*/
 // create a game logic at each town position and store variables on it.
 if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	{
@@ -134,15 +117,17 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic setVariable ["targetradius", 250];
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
+	/*
 	_mname2 = format ["bmn%1", _foreachindex];
 	_mkr2 = createMarker [_mname2, getpos _x];
 	_mkr2 setMarkerShape "ELLIPSE";
 	_mkr2 setMarkerType "Empty";
 	_mkr2 setMarkerSize [250,250];
 	_mkr2 setMarkerBrush "Horizontal";
+	*/
 	};
-_basedata = [_x, "Military Base", getpos _x, 250, 1, 3, -1];
-targetdata pushback _basedata;
+	_basedata = [_x, "Military Base", getpos _x, 250, 1, 3, -1];
+	targetdata pushback _basedata;
 } foreach _possiblebases;
 diag_log format ["possible bases count %1", count _possiblebases];
 //find airfields.
@@ -159,12 +144,14 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_ptarget setvariable ["targetstatus", 1];// enemy held
 			_ptarget setVariable ["targettype", 2];// type airfield
 			foundairfields pushback _ptarget;
+			/*
 			_mname2 = format ["amn%1", _foreachindex];
 			_mkr2 = createMarker [_mname2, getpos _x];
 			_mkr2 setMarkerShape "ELLIPSE";
 			_mkr2 setMarkerType "Empty";
 			_mkr2 setMarkerSize [300,300];
 			_mkr2 setMarkerBrush "DiagGrid";
+			*/
 			_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
 			targetdata pushBack _airfielddata;
 			};
