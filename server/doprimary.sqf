@@ -22,7 +22,8 @@ _handle2 = [_ptarget] execVM "server\makeconvoy.sqf";
 
 
 diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", _ptarget, typeName _ptarget, cpt_position];
-
+_flagpos = [cpt_position,1,20,3,0,20,0] call bis_fnc_findSafePos;
+cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
 // create a marker
 cpt_marker = createMarker [str primarytargetcounter, cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";

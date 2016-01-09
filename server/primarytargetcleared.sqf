@@ -5,6 +5,10 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_crew","_veh", "_allclean"];
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorPink";
+_newflag = "Flag_Blue_F" createVehicleLocal (getpos cpt_flag);// replace the red flag with a LOCALLY NAMED blue one (so it's never deleted)
+deleteVehicle cpt_flag;// delete the globally named (but only created on server) red flag
+sleep 0.5;
+_newflag =
 /*_allclean = vehiclecleanup + mancleanup;
 {
 _crew = crew _x;

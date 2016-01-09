@@ -17,4 +17,5 @@ _possibleconvoystartpoints = _cpt nearEntities ["Logic", 3000];
 
 }foreach _pcst2;
 // foound a bunch of enemyheld towns between 3k and 1.5k away. Now take the one that is furthest from blufor
+//find nearest blufor
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
