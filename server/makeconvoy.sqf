@@ -34,5 +34,6 @@ diag_log format ["best convoy start = %1 at %2. road chosen at %3", _bestconvoys
 	_mkr setMarkerShape "ICON";
 	_mkr setMarkerType "hd_dot";
 _cveh  = createVehicle [ "O_Truck_03_transport_F", (getpos _bcsproad), [],0, "NONE" ];
-
+createVehicleCrew _cveh;
+for "_z" from 1 to (_cveh emptyPositions "cargo") do {createunit};
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
