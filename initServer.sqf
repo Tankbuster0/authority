@@ -8,6 +8,7 @@ independentcenter = createCenter independent;
 logiccenter = createCenter sideLogic;
 blufor setFriend [opfor, 0.1];
 opfor setFriend [blufor, 0.1];
+#include "server\global_variables.sqf";
 ["Initialize"] call BIS_fnc_dynamicGroups;
 mapsize  = getnumber (configfile/"CfgWorlds"/worldName/"mapSize");
 mapcentre = [mapsize / 2, mapsize /2, 0];// <-- is a posatl
