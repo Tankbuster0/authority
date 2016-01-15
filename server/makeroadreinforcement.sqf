@@ -1,7 +1,7 @@
 // by tankbuster
 _myscript = "makeconvoy.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
-private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1"];
+private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh"];
 _cpt = _this select 0; // actually a logic
 // choose a town a couple of K away, away from other blufor towns
 _furthestdistsofar = 0; _furthestlocsofar = objNull; _pcst2 = [];
@@ -24,23 +24,34 @@ _possibleconvoystartpoints = _cpt nearEntities ["Logic", 3000];
 	_data1 = _nearestblufors select 0;
 	if ((_data1 distance _x) > _furthestdistsofar) then
 		{_furthestdistsofar = (_data1 distance _x);
-			_furthestlocsofar = _x;
+		_furthestlocsofar = _x;
 		};
 } foreach _pcst2;
 //get a road section at the convoy start, put a vehicle there and give it a wp
 _bcsproad = [getpos _bestconvoystartpoint, 1000, []] call bis_fnc_nearestRoad;
 diag_log format ["best convoy start = %1 at %2. road chosen at %3", _bestconvoystartpoint, getpos _bestconvoystartpoint, getpos _bcsproad];
-	_mkr = createMarker ["mkr", (getpos _bestconvoystartpoint) ];
-	_mkr setMarkerShape "ICON";
-	_mkr setMarkerType "hd_dot";
-	_cveh  = createVehicle [ opfor_reinf_truck, (getpos _bcsproad), [],0, "NONE" ];
-createVehicleCrew _cveh;
+_mkr = createMarker ["mkr", (getpos _bestconvoystartpoint) ];
+_mkr setMarkerShape "ICON";
+_mkr setMarkerType "hd_dot";
+sleep 15;
+_cveh  = createVehicle [ opfor_reinf_truck, (getpos _bcsproad), [],0, "NONE" ];
+_cveh setDir ([_cveh, _cpt] call bis_fnc_dirTo);
 _rrgroup = createGroup east;
-for "_z" from 1 to (_cveh emptyPositions "cargo") do
-	{_ unit createunit [opfor_reinf_truck_solder, getpos _cveh, [],0, "CARGO"];
-	_unit moveInCargo _cevh;
+for "_z" from 1 to ((_cveh emptyPositions "cargo") -2) do
+	{_unit = _rrgroup createunit [opfor_reinf_truck_soldier, (getpos _cveh) , [],0, "CARGO"];
+	_unit moveInCargo _cveh;
 	_unit assignAsCargo _cveh;
-	createVehicleCrew _cveh;
 
 	};
+for "_z" from 0 to 1 do
+	{_unit = _rrgroup createunit [opfor_reinf_truck_soldier, (getpos _cveh) , [],0, "NONE"];
+	_unit moveInTurret [_cveh, [_z]];
+	_unit assignAsTurret [_cveh, [_z]];
+	};
+//createVehicleCrew _cveh;
+_unit = _rrgroup createUnit [opfor_reinf_truck_soldier, (getpos _cveh), [],0, "NONE"];
+_unit moveInDriver _cveh;
+_unit assignAsDriver _cveh;
+sleep 10;
+(driver _cveh) domove (getpos _cpt);
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
