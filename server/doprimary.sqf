@@ -18,7 +18,7 @@ cpt_radius = (nextpt getVariable "targetradius");
 _ptarget = nextpt;
 _handle1 = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
 waitUntil {scriptDone _handle1};
-_handle2 = [_ptarget] execVM "server\makeconvoy.sqf";
+_handle2 = [_ptarget] execVM "server\makeroadreinforcement.sqf";
 
 
 diag_log format ["***doprimary @31: cur pt %1 is typename %2 location is %3", _ptarget, typeName _ptarget, cpt_position];
