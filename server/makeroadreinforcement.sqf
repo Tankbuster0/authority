@@ -42,6 +42,11 @@ for "_z" from 0 to 1 do
 	_unit assignAsTurret [_cveh, [_z]];
 	};
 createVehicleCrew _cveh;
+(driver _cveh) setrank "COLONEL";
+[driver _cveh] joinSilent _rrgroup;
 sleep 10;
-_cveh domove (getpos _cpt);
+//_cveh domove (getpos _cpt);
+_wp = _rrgroup addWaypoint [_cpt, 40];
+_wp setWaypointType "MOVE";
+_wp setWaypointBehaviour "SAFE";
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
