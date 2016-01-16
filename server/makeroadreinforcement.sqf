@@ -1,5 +1,5 @@
 // by tankbuster
-_myscript = "makeconvoy.sqf";
+_myscript = "makeroadreinforcement.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh"];
 _cpt = _this select 0; // actually a logic
@@ -9,14 +9,7 @@ _possibleconvoystartpoints = _cpt nearEntities ["Logic", 3000];
 {
 	if (((_x getVariable ["targetstatus", -1]) == 1) and ((_x distance _cpt) > 1500)) then {_pcst2 pushback _x}; //if the town being checked is a real town, enemy held and more than 1500m away, add it to the pcst2 array
 } foreach _possibleconvoystartpoints;
-/*{
-	diag_log format ["***poss.conv.start.point is %1 at %2, dist %3", (_x getVariable "targetname" ), getpos _x, (_x distance _cpt)];
-	_mn = format ["cs%1", _forEachIndex];
-	_mkr = createMarker [_mn, _x];
-	_mkr setMarkerShape "ICON";
-	_mkr setMarkerType "hd_dot";
-}foreach _pcst2; */
-// foound a bunch of enemyheld towns between 3k and 1.5k away. Now take the one that is furthest from blufor
+// found a bunch of enemyheld towns between 3k and 1.5k away. Now take the one that is furthest from blufor
 //find nearest blufor town
 {
 	_nearestblufors = nearestobjects [_x, ["Flag_Blue_F"], 5000];
@@ -37,7 +30,7 @@ sleep 15;
 _cveh  = createVehicle [ opfor_reinf_truck, (getpos _bcsproad), [],0, "NONE" ];
 _cveh setDir ([_cveh, _cpt] call bis_fnc_dirTo);
 _rrgroup = createGroup east;
-for "_z" from 1 to ((_cveh emptyPositions "cargo") -2) do
+for "_z" from 1 to ((_cveh emptyPositions "cargo") -4) do
 	{_unit = _rrgroup createunit [opfor_reinf_truck_soldier, (getpos _cveh) , [],0, "CARGO"];
 	_unit moveInCargo _cveh;
 	_unit assignAsCargo _cveh;
@@ -48,10 +41,7 @@ for "_z" from 0 to 1 do
 	_unit moveInTurret [_cveh, [_z]];
 	_unit assignAsTurret [_cveh, [_z]];
 	};
-//createVehicleCrew _cveh;
-_unit = _rrgroup createUnit [opfor_reinf_truck_soldier, (getpos _cveh), [],0, "NONE"];
-_unit moveInDriver _cveh;
-_unit assignAsDriver _cveh;
+createVehicleCrew _cveh;
 sleep 10;
-(driver _cveh) domove (getpos _cpt);
+_cveh domove (getpos _cpt);
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
