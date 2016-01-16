@@ -48,13 +48,22 @@ if ((primarytargetcounter > 1)) then
 		0 spawn	{
 			while {!roadblockscleared} do
 				{
-				sleep 10;
+				sleep 5;
 				deadgatecount = 0;
 					{
 					if ((_x animationPhase "Door_1_rot" == 1) or (!alive _x) or ((damage _x) > 0.8)) then {deadgatecount = deadgatecount +1};
 					} foreach roadblockgates;
-				if (deadgatecount == (count roadblockgates)) then {roadblockscleared = true};
-				diag_log format ["***roadblock status %1 cleared of %2", deadgatecount, count roadblockgates];
+				if (deadgatecount == (count roadblockgates)) then
+					{
+					roadblockscleared = true;
+						{
+						_mytruck = _x;
+							{_mytruck deleteVehicleCrew _x}foreach (crew _mytruck);
+						deleteVehicle _mytruck;
+						} foreach roadreinforcementvehicles;
+					roadreinforcementvehicles = [];
+					}
+				//diag_log format ["***roadblock status %1 cleared of %2", deadgatecount, count roadblockgates];
 				};
 
 			};

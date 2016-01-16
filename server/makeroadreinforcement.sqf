@@ -3,17 +3,17 @@ _myscript = "makeroadreinforcement.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh"];
 _cpt = _this select 0; // actually a logic
-diag_log format ["*** mrr @ 6 _cpt %1", _cpt];
+//diag_log format ["*** mrr @ 6 _cpt %1", _cpt];
 // choose a town a couple of K away, away from other blufor towns
 _furthestdistsofar = 0; _furthestlocsofar = objNull; _pcst2 = [];
 _possibleconvoystartpoints = _cpt nearEntities ["Logic", 3000];
-diag_log format ["*** mrr @ 10 possconvstartpoints count %1 ", count _possibleconvoystartpoints];
+//diag_log format ["*** mrr @ 10 possconvstartpoints count %1 ", count _possibleconvoystartpoints];
 {
 	if (((_x getVariable ["targetstatus", -1]) == 1) and ((_x distance _cpt) > 1500)) then {_pcst2 pushback _x}; //if the town being checked is a real town, enemy held and more than 1500m away, add it to the pcst2 array
 } foreach _possibleconvoystartpoints;
 // found a bunch of enemyheld towns between 3k and 1.5k away. Now take the one that is furthest from blufor
 //find nearest blufor town
-diag_log format ["*** mrr @ 16 _pcst2 count %1", count _pcst2];
+//diag_log format ["*** mrr @ 16 _pcst2 count %1", count _pcst2];
 {
 	_nearestblufors = nearestobjects [_x, ["Flag_Blue_F"], 5000];
 	diag_log format ["*** mrr @ 19 nearestblufors count %1", count _nearestblufors];
@@ -26,7 +26,7 @@ diag_log format ["*** mrr @ 16 _pcst2 count %1", count _pcst2];
 } foreach _pcst2;
 //get a road section at the convoy start, put a vehicle there and give it a wp
 _bcsproad = [getpos _bestconvoystartpoint, 1000, []] call bis_fnc_nearestRoad;
-diag_log format ["best convoy start = %1 at %2. road chosen at %3", _bestconvoystartpoint, getpos _bestconvoystartpoint, getpos _bcsproad];
+//diag_log format ["best convoy start = %1 at %2. road chosen at %3", _bestconvoystartpoint, getpos _bestconvoystartpoint, getpos _bcsproad];
 _mkr = createMarker ["mkr", (getpos _bestconvoystartpoint) ];
 _mkr setMarkerShape "ICON";
 _mkr setMarkerType "hd_dot";
@@ -49,8 +49,8 @@ for "_z" from 0 to 1 do
 createVehicleCrew _cveh;
 (driver _cveh) setrank "COLONEL";
 [driver _cveh] joinSilent _rrgroup;
+roadreinforcementvehicles pushback _cveh;
 sleep 20;
-//_cveh domove (getpos _cpt);
 _rrgroup allowFleeing 0;
 _rrgroup setCombatMode "GREEN";
 _rrgroup setFormation "COLUMN";

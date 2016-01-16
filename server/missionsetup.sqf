@@ -8,6 +8,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 //diag_log format [" ***airfield chosen is %1 at %2", _airfield, Position _airfield];
 _drypos =[];
+roadreinforcementvehicles = [];
 _1pos = getpos _airfield;
 
 //drypos finder by cool=azroul13
