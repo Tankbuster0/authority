@@ -28,11 +28,12 @@ for "_count" from 1 to 3 do
 	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "OIA_MotInf_AT")] call BIS_fnc_spawnGroup;
 	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;
 	sleep 0.1;
-
-	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
-	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Armored" >> "OIA_TankSection"), [],[],[],[],[],(random 360)] call BIS_fnc_spawnGroup;
-	sleep 0.1;
-
+	if (_pt_type == 1) then //tanks only spawn at towns, not at bases or airfields
+	{
+		_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
+		_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Armored" >> "OIA_TankSection"), [],[],[],[],[],(random 360)] call BIS_fnc_spawnGroup;
+		sleep 0.1;
+	};
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
 	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_Mort")] call BIS_fnc_spawnGroup;
 	_mydir = [_pt_pos, _mypos]  call BIS_fnc_dirTo;
