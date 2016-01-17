@@ -3,12 +3,12 @@
 _myscript = "spawnprimarytargetunits.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir","_mypos2"];
-_currentprimarytarget = _this select 0;// recieves a logic or object
+_currentprimarytarget = _this select 0;// recieves a logic
 //diag_log format ["***doprimary.sqf @ 7 Primary units spawn actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
-_loc_pos = getpos _currentprimarytarget;
-_mylogic = (_loc_pos nearEntities ["Logic", 500]) select 0;
-_pt_pos = getpos _mylogic;
-_pt_radius = (_mylogic getVariable "targetradius") - 50;
+//_loc_pos = getpos _currentprimarytarget;
+_pt_pos = getpos _currentprimarytarget;
+_pt_radius = (_currentprimarytarget getVariable "targetradius") - 50;
+_pt_type = (_currentprimarytarget getVariable "targettype");
 //diag_log format ["*** spawnprimaryunits @12 locpos %1 mylogic %2, ptpos %3, ptradius %4", _loc_pos, _mylogic, _pt_pos, _pt_radius];
 for "_count" from 1 to 3 do
 	{
