@@ -116,9 +116,9 @@ for "_i" from 0 to 355 step 5 do
 	_newpos = [_gate, 6, _dir + 90] call BIS_fnc_relPos;
 	_gun1 = objNull;
 	if (random 1 < 0.3) then {
-	    _gun1 = "O_APC_Wheeled_02_rcws_F" createVehicle _newpos;
+	    _gun1 = "rhs_btr80_msv" createVehicle _newpos;
 	} else {
-	    _gun1 = "O_APC_Tracked_02_cannon_F" createVehicle _newpos;
+	    _gun1 = "rhs_bmd2m" createVehicle _newpos;
 	};
 	vehiclecleanup pushback _gun1;
 	_objects = _objects + [_gun1];
