@@ -136,7 +136,7 @@ _airportlogicgroup = createGroup logiccenter;
 _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsize / 2];
 		{
 		_llt = tolower (text _x);// lowercase location text
-		if (((_llt find "airb") > -1  ) or ((_llt find "airf") > -1)) then
+		if  ((_llt find "airf") > -1) then
 			{
 			_ptarget = _airportlogicgroup createUnit ["Logic", getpos _x, [], 0, "NONE"];
 			_ptarget setVariable ["targetname", text _x];
