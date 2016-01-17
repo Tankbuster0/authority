@@ -29,10 +29,6 @@ cpt_marker setMarkerShape "ELLIPSE";
 cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
 cpt_marker setMarkerColor "ColorRed";
-_roadblocktrigger = createTrigger ["EmptyDetector, cpt_position"];
-_roadblocktrigger setTriggerArea [1,1,0,false];
-_roadblocktrigger setTriggerActivation ["NONE", "NOT PRESENT", false];
-_roadblocktrigger setTriggerStatements ["this && {alive _x} count (units (returndata select 3)) == 0 ", "hint' roadblocks cleared'", ""];
 // make trigger that senses when town is empty of enemies
 _trg = createTrigger ["EmptyDetector", cpt_position];
 _trg setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
