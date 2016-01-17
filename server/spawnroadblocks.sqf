@@ -54,41 +54,51 @@ for "_i" from 0 to 355 step 5 do
 	_campgroup setFormDir _dir;
 	_gate = "Land_BarGate_F" createVehicle _pos;
 	roadblockgates pushback _gate;
+	vehiclecleanup pushback _gate;
+
 	_gate setDir _dir;
 	if ((random 1) < 0.7) then
 	{
 	    _newpos = [_gate, 6, _dir] call BIS_fnc_relPos;
 	    _newpos = [_newpos, 11, _dir - 90] call BIS_fnc_relPos;
 	    _prop = "Land_Sign_WarningMilitaryArea_F" createVehicle _newpos;
+	    vehiclecleanup pushback _prop;
 	    _prop setDir _dir + 180;
 	};
 	_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
 	_newpos = [_newpos, 11, _dir - 90] call BIS_fnc_relPos;
 	_prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
 	_newpos = [_newpos, 16, _dir - 90] call BIS_fnc_relPos;
 	_prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
 	_newpos = [_newpos, 3, _dir + 90] call BIS_fnc_relPos;
 	_prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
 	_newpos = [_newpos, 7, _dir + 90] call BIS_fnc_relPos;
 	_prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 9, _dir + 180] call BIS_fnc_relPos;
 	_newpos = [_newpos, 4, _dir + 90] call BIS_fnc_relPos;
 	_prop = "Land_Razorwire_F" createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 9, _dir + 180] call BIS_fnc_relPos;
 	_newpos = [_newpos, 13, _dir - 90] call BIS_fnc_relPos;
 	_prop = "Land_Razorwire_F" createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 4, _dir + 180] call BIS_fnc_relPos;
 	_newpos = [_newpos, 5, _dir + 90] call BIS_fnc_relPos;
 	_prop = (["Land_LampShabby_F","Land_TTowerSmall_1_F","Land_FieldToilet_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = [_gate, 10, _dir - 90] call BIS_fnc_relPos;
 	if (random 1 > 0.5) then {
@@ -100,6 +110,7 @@ for "_i" from 0 to 355 step 5 do
 	};
 	_newpos = (position _gate) findEmptyPosition[0, 30, "Box_East_Ammo_F"];
 	_prop = (["Box_East_Ammo_F", "Box_East_WpsSpecial_F", "Box_East_Ammo_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+	vehiclecleanup pushback _prop;
 	_prop setDir (_dir + 90);
 	sleep 0.02;
 	_newpos = [_gate, 6, _dir + 90] call BIS_fnc_relPos;
@@ -109,6 +120,7 @@ for "_i" from 0 to 355 step 5 do
 	} else {
 	    _gun1 = "O_APC_Tracked_02_cannon_F" createVehicle _newpos;
 	};
+	vehiclecleanup pushback _gun1;
 	_objects = _objects + [_gun1];
 	_gun1 setDir _outpos;
 	_newpos = [_newpos, 1, (_dir + 180)] call BIS_fnc_relPos;
@@ -127,11 +139,13 @@ for "_i" from 0 to 355 step 5 do
 	{
 	    _newpos = (position _gate) findEmptyPosition [0, 50, "O_G_Soldier_LAT_F"];
 	    _soldier = _campgroup createUnit ["O_G_Soldier_LAT_F", _newpos, [],0, "NONE"];
+	    mancleanup pushback _soldier;
 	    _soldier setDir (random 360);
 	    _totalenemies = _totalenemies + 1;
 	    doStop _soldier;
 	    _newpos = (position _gate) findEmptyPosition[0, 50, "O_G_Soldier_GL_F"];
 	    _soldier = _campgroup createUnit ["O_G_Soldier_GL_F", _newpos, [],0,"NONE"];
+	    mancleanup pushback _soldier;
 	    _soldier setDir (random 360);
 	    _totalenemies = _totalenemies + 1;
 	    doStop _soldier;
