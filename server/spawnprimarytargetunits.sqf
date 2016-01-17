@@ -2,7 +2,7 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_currentprimarytarget","_pt_pos","_count","_grpname","_mypos","_mydir","_mypos2"];
+private ["_currentprimarytarget","_loc_pos","_pt_pos","_pt_radius","_pt_type","_mylogic","_lc","_count","_grpname","_mypos","_mydir","_mypos2"];
 _currentprimarytarget = _this select 0;// recieves a logic
 //diag_log format ["***doprimary.sqf @ 7 Primary units spawn actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
 //_loc_pos = getpos _currentprimarytarget;
@@ -99,5 +99,3 @@ if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (v
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 
-/*
-infantry squads
