@@ -24,7 +24,7 @@ For "_i" from 0 to 2000 step 100 do
     };
        If (!(_drypos isequalto [])) exitwith {};
 };*/
-_newdrypos = [_1pos,800,1800, 5, 0, 10, 1] call bis_fnc_findSafePos;
+_newdrypos = [_1pos,800,1600, 5, 0, 10, 1] call bis_fnc_findSafePos;
 _newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
 ammobox setpos _newdrypos;
