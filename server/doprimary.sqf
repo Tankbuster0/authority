@@ -18,9 +18,8 @@ if (primarytargetcounter > 1) then
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 _ptarget = nextpt;
-_handle1 = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";
+_handle1 = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variabels stored on it
 waitUntil {scriptDone _handle1};
-//_handle2 = [_ptarget] execVM "server\makeroadreinforcement.sqf";
 _flagpos = [cpt_position,1,20,3,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
 // create a marker
