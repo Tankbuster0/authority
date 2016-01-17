@@ -10,22 +10,38 @@ _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius") - 50;
 _pt_type = (_currentprimarytarget getVariable "targettype");
 //diag_log format ["*** spawnprimaryunits @12 locpos %1 mylogic %2, ptpos %3, ptradius %4", _loc_pos, _mylogic, _pt_pos, _pt_radius];
+
+
+
+
+
+
 for "_count" from 1 to 3 do
 	{
 	_grpname = format ["grp%1", _count];
 	_grpname = createGroup east;
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
-	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OIA_InfSquad")] call BIS_fnc_spawnGroup;
+	switch ((floor (random 4))) do
+		{
+		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;};
+		case 1: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA")] call BIS_fnc_spawnGroup;};
+		case 2: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AT")] call BIS_fnc_spawnGroup;};
+		case 3: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_sniper")] call BIS_fnc_spawnGroup;};
+		case 4: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;};
+		};
+
+
+	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_fireteam")] call BIS_fnc_spawnGroup;
 	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;
 	sleep 0.1;
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
-	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Armoured" >> "OIA_MechInfSquad")] call BIS_fnc_spawnGroup;
+	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80" >> "rhs_group_rus_msv_BTR80_squad_2mg")] call BIS_fnc_spawnGroup;
 	sleep 0.1;
 
 	_mypos = [_pt_pos, 5, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
-	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "OIA_MotInf_AT")] call BIS_fnc_spawnGroup;
+	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_BMP3" >> "rhs_group_rus_MSV_BMP3_squad_2mg")] call BIS_fnc_spawnGroup;
 	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;
 	sleep 0.1;
 	if (_pt_type == 1) then //tanks only spawn at towns, not at bases or airfields
@@ -50,3 +66,6 @@ if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (v
 
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+
+/*
+infantry squads
