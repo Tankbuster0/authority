@@ -85,13 +85,14 @@ class Mission
 				class Item3
 				{
 					position[]={8455.7412,103.96878,25137.174};
-					azimut=36.362572;
+					azimut=36.362598;
 					id=3;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
 					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.44999999;
+					text="alpha_8";
 				};
 				class Item4
 				{

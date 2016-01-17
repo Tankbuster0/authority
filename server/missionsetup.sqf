@@ -10,7 +10,7 @@ _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 _drypos =[];
 roadreinforcementvehicles = [];
 _1pos = getpos _airfield;
-
+/*
 //drypos finder by cool=azroul13
 For "_i" from 0 to 2000 step 100 do
 {
@@ -23,8 +23,8 @@ For "_i" from 0 to 2000 step 100 do
              };
     };
        If (!(_drypos isequalto [])) exitwith {};
-};
-_newdrypos = [_drypos,20,50, 5, 0, 10, 1] call bis_fnc_findSafePos;
+};*/
+_newdrypos = [_1pos,1000,2000, 5, 0, 10, 1] call bis_fnc_findSafePos;
 _newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
 ammobox setpos _newdrypos;
