@@ -21,7 +21,7 @@ cpt_type = (nextpt getVariable "targettype");
 _ptarget = nextpt;
 _handle1 = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variabels stored on it
 waitUntil {scriptDone _handle1};
-_flagpos = [cpt_position,1,20,3,0,20,0] call bis_fnc_findSafePos;
+_flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
 // create a marker
 cpt_marker = createMarker [str primarytargetcounter, cpt_position];

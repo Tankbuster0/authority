@@ -46,7 +46,7 @@ for "_count" from 2 to _lc do
 		};
 	sleep 0.1;// static  apc /ifv group
 
-	_mypos = [_pt_pos, 0, _pt_radius, 8,0,30,0] call bis_fnc_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 6,0,30,0] call bis_fnc_findSafePos;
 
 		switch ((floor (random 14))) do
 		{
@@ -70,7 +70,7 @@ for "_count" from 2 to _lc do
 	sleep 0.1;
 	if (_pt_type == 1) then //tanks only spawn at towns, not at bases or airfields
 	{
-		_mypos = [_pt_pos, 0, _pt_radius, 30,0,30,0] call bis_fnc_findSafePos;
+		_mypos = [_pt_pos, 0, _pt_radius, 8,0,30,0] call bis_fnc_findSafePos;
 
 			switch ((floor (random 3))) do
 		{
