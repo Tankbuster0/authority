@@ -18,7 +18,7 @@ for "_count" from 2 to _lc do
 	_grpname = format ["grp%1", _count];
 	_grpname = createGroup east;
 
-	_mypos = [_pt_pos, 0, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	switch ((floor (random 5))) do
 		{
 		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;};
@@ -29,7 +29,7 @@ for "_count" from 2 to _lc do
 		};
 	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;// patrolling infantry group
 	sleep 0.1;
-	_mypos = [_pt_pos, 0, _pt_radius, 8,0,30,0] call bis_fnc_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		switch ((floor (random 7))) do
 		{
 		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_tv" >> "rhs_group_rus_tv_2s3" >> "RHS_SPGSection_tv_2s3")] call BIS_fnc_spawnGroup;};
@@ -42,7 +42,7 @@ for "_count" from 2 to _lc do
 		};
 	sleep 0.1;// static  apc /ifv group
 
-	_mypos = [_pt_pos, 0, _pt_radius, 6,0,30,0] call bis_fnc_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 
 		switch ((floor (random 14))) do
 		{
@@ -66,7 +66,7 @@ for "_count" from 2 to _lc do
 	sleep 0.1;
 	if (_pt_type == 1) then //tanks only spawn at towns, not at bases or airfields
 	{
-		_mypos = [_pt_pos, 0, _pt_radius, 8,0,30,0] call bis_fnc_findSafePos;
+		_mypos = [_pt_pos, 0, _pt_radius, 6,0,50,0] call bis_fnc_findSafePos;
 
 			switch ((floor (random 3))) do
 		{
@@ -76,7 +76,7 @@ for "_count" from 2 to _lc do
 		};
 		sleep 0.1;
 	};
-	_mypos = [_pt_pos, 0, _pt_radius, 4,0,30,0] call bis_fnc_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_Mort")] call BIS_fnc_spawnGroup;
 	_mydir = [_pt_pos, _mypos]  call BIS_fnc_dirTo;
 	_mypos2 = [_mypos,2,4,0,0,30,0] call bis_fnc_findSafePos;

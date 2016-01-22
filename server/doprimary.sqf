@@ -65,4 +65,6 @@ if ((primarytargetcounter > 1)) then
 			};
 		};
 	};
+//stuff that needs to be check constantly runs here
+
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
