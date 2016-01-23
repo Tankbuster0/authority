@@ -2,7 +2,7 @@
 _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_ptarget", "_npt"];
-vehiclecleanup= []; mancleanup = []; returndata = nil; roadblockscleared = false;
+vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
 sleep 5;
 if (primarytargetcounter > 1) then
 	{
@@ -12,8 +12,7 @@ if (primarytargetcounter > 1) then
 	sleep 0.5;
 	_ptarget = nextpt;// <-- dont forget nextpt is a logic
 	_handle = [_ptarget] execVM "server\spawnroadblocks.sqf";
-	waitUntil {sleep 1;(!(isnil "returndata"))};
-	if ((returndata select 4) > 0) then {_handle2 = [_ptarget] execVM "server\makeroadreinforcement.sqf";};// only make roadreinf if there are roadblocks
+	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
 	};
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
@@ -39,12 +38,12 @@ taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
 
 if ((primarytargetcounter > 1)) then
-	{if ((returndata select 4) > 0) then // if this isnt the first target and it has roadblocks spawned
+	{if ((roadblockreturndata select 4) > 0) then // if this isnt the first target and it has roadblocks spawned
 		{
 		0 spawn	{
 			while {!roadblockscleared} do
 				{
-				sleep 5;
+				sleep 10;
 				deadgatecount = 0;
 					{
 					if ((_x animationPhase "Door_1_rot" == 1) or (!alive _x) or ((damage _x) > 0.8)) then {deadgatecount = deadgatecount +1};
@@ -54,8 +53,8 @@ if ((primarytargetcounter > 1)) then
 					roadblockscleared = true;
 						{
 						_mytruck = _x;
-							{_mytruck deleteVehicleCrew _x}foreach (crew _mytruck);
-						deleteVehicle _mytruck;
+						{_mytruck deleteVehicleCrew _x}foreach (crew _mytruck);
+						deleteVehicle _mytruck; roadblockgates = [];
 						} foreach roadreinforcementvehicles;
 					roadreinforcementvehicles = [];
 					}
@@ -64,8 +63,8 @@ if ((primarytargetcounter > 1)) then
 
 			};
 		};
+		if (cpt_type==1) then {0 = execVM "server\roadreinforcementmanager.sqf";};
 	};
 //stuff that needs to be check constantly runs here
-0= exevVM "server\landreinforcementmanager.sqf";
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

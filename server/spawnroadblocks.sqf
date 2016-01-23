@@ -6,7 +6,7 @@ _currentprimarytarget = _this select 0;
 roadblockgates =[];
 _mypos = getPosATL _currentprimarytarget;
 _myradius = _currentprimarytarget getvariable "targetradius";
-if ((_currentprimarytarget getvariable "targettype" ) >2) exitWith {returndata = [-1,-1,-1,-1,-1]};
+if ((_currentprimarytarget getvariable "targettype" ) >2) exitWith {roadblockreturndata = [-1,-1,-1,-1,-1]};
 _myroadarray1 = [];
 for "_i" from 0 to 355 step 5 do
 	{
@@ -151,5 +151,5 @@ for "_i" from 0 to 355 step 5 do
 	    doStop _soldier;
 	};
 } foreach _myroadarray1;
-returndata = [_totalenemies, _groups, _objects, _campgroup, (count _myroadarray1)];
+roadblockreturndata = [_totalenemies, _groups, _objects, _campgroup, (count _myroadarray1)];
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
