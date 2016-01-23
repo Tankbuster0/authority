@@ -10,15 +10,15 @@ if (primarytargetcounter > 1) then
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";// creates global variable nextpt which is a logic
 	waitUntil {scriptDone _npt};
 	sleep 0.5;
-	_ptarget = nextpt;// <-- dont forget nextpt is a logic
-	_handle = [_ptarget] execVM "server\spawnroadblocks.sqf";
+	primarytarget = nextpt;// <-- dont forget nextpt is a logic
+	_handle = [primarytarget] execVM "server\spawnroadblocks.sqf";
 	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
 	};
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
-_ptarget = nextpt;
-_handle1 = [_ptarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variabels stored on it
+primarytarget = nextpt;
+_handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variabels stored on it
 waitUntil {scriptDone _handle1};
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;

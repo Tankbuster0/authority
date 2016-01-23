@@ -1,7 +1,7 @@
 // by tankbuster
 _myscript = "makeroadreinforcement.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
-private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh"];
+private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh", "_bcsp_name"];
 _cpt = _this select 0; // actually a logic
 // choose a town a couple of K away, away from other blufor towns
 _furthestdistsofar = 0; _furthestlocsofar = objNull; _pcst2 = [];
@@ -18,6 +18,7 @@ _possibleconvoystartpoints = _cpt nearEntities ["Logic", 3000];
 	if ((_data1 distance _x) > _furthestdistsofar) then
 		{_furthestdistsofar = (_data1 distance _x);
 		_bestconvoystartpoint = _x;
+		_bcsp_name = (_x getVariable "targetname");
 		};
 } foreach _pcst2;
 //get a road section at the convoy start, put a vehicle there and give it a wp
@@ -60,4 +61,5 @@ _wp1 setWaypointFormation "COLUMN";
 _wp2 = _rrgroup addWaypoint [_cpt, 40];
 _wp2 setWaypointType "UNLOAD";
 _wp2 setWaypointBehaviour "SAFE";
+diag_log format [*** mrr makes a truck at %1", _bcsp_name];
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
