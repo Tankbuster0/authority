@@ -65,6 +65,9 @@ if ((primarytargetcounter > 1)) then
 		};
 		if (cpt_type==1) then {0 = execVM "server\roadreinforcementmanager.sqf";};
 	};
+_radarpos = [cpt_position,0,(cpt_radius + 100),9,0,10,0] call bis_fnc_findSafePos;
+pt_radar = createVehicle [(["rhs_prv13", "rhs_p37"] call bis_fnc_selectRandom), _radarpos,[],0,"NONE"];
+
 //stuff that needs to be check constantly runs here
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
