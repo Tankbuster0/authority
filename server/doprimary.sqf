@@ -67,6 +67,7 @@ if ((primarytargetcounter > 1)) then
 	};
 _radarpos = [cpt_position,0,(cpt_radius + 100),9,0,10,0] call bis_fnc_findSafePos;
 pt_radar = createVehicle [(["rhs_prv13", "rhs_p37"] call bis_fnc_selectRandom), _radarpos,[],0,"NONE"];
+0 = execVM "server\airreinforcementmanager.sqf";
 
 //stuff that needs to be check constantly runs here
 
