@@ -44,10 +44,15 @@ class cfgFunctions
 {
 	class tky
 	{
-		class auth
+		class auth_client
 		{
 			file = "client";
 			class hd {};
+		};
+		class auth_server
+		{
+			file = "server";
+			class spawnandcrewvehicle {};
 		};
 	};
 };
