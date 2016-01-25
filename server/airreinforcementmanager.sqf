@@ -6,7 +6,7 @@ waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {(alive pt_radar)} do
 {
 	sleep 1800 + random 900;
-	diag_ log "*** arm finished sleeping. now checking if target moved on and radar still up";
+	diag_log "*** arm finished sleeping. now checking if target moved on and radar still up";
 
 	if (_cptc != primarytargetcounter)  exitWith {diag_log "***arm quits because primary target moved on"};
 	if !(alive pt_radar) exitwith {diag_log "***arm quits because radar destroyed"};
