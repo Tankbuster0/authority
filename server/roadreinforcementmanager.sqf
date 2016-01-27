@@ -5,10 +5,11 @@ _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {!roadblockscleared} do
 {
-	sleep 1800 + random 900;
+	//sleep 1800 + random 900;
+	sleep 30;
 	diag_log "*** rrm finished sleeping. now checking if target moved on and some roadblocks still up";
 	if (_cptc != primarytargetcounter) exitWith {diag_log "*** rrm quits becasue primary target moved on."};
-	if !(roadblockscleared) exitwith {diag_log "*** rrm quits because all roadblockscleared"};
+	if (roadblockscleared) exitwith {diag_log "*** rrm quits because all roadblockscleared"};
 	if ((west countSide allPlayers) > 0) then
 		{
 		_handle2 = [primarytarget] execVM "server\makeroadreinforcement.sqf";// only make roadreinf if there are players
