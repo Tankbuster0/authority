@@ -29,24 +29,10 @@ _mkr setMarkerShape "ICON";
 _mkr setMarkerType "hd_dot";
 sleep 15;
 _rrgroup = createGroup east;
-//_cveh  = createVehicle [ opfor_reinf_truck, (getpos _bcsproad), [],0, "FORM" ];
-//_cveh setDir ([_cveh, _cpt] call bis_fnc_dirTo);
-_cveh = [(getpos _bcsproad), ([_cveh, _cpt] call bis_fnc_dirTo), _opfor_reinf_truck, _rrgroup] call tky_fnc_spawnandcrewvehicle;
+_cveh = [(getpos _bcsproad), ([getpos _bcsproad, _cpt] call bis_fnc_dirTo), opfor_reinf_truck, _rrgroup] call tky_fnc_spawnandcrewvehicle;
+_cveh setUnloadInCombat [true, false];
 _cveh addEventHandler ["HandleDamage", {if (isNull (_this select 3)) then { 0; } else { _this select 2; }; }]; // tankys magic no damage when shit driver crashes
-/*
-for "_z" from 1 to ((_cveh emptyPositions "cargo") -4) do
-	{_unit = _rrgroup createunit [opfor_reinf_truck_soldier, (getpos _cveh) , [],0, "CARGO"];
-	_unit moveInCargo _cveh;
-	_unit assignAsCargo _cveh;
-	};
-for "_z" from 0 to 1 do
-	{_unit = _rrgroup createunit [opfor_reinf_truck_soldier, (getpos _cveh) , [],0, "NONE"];
-	_unit moveInTurret [_cveh, [_z]];
-	_unit assignAsTurret [_cveh, [_z]];
-	};
-createVehicleCrew _cveh;
-(driver _cveh) setrank "COLONEL";
-[driver _cveh] joinSilent _rrgroup;*/
+
 roadreinforcementvehicles pushback _cveh;
 sleep 10;
 _rrgroup allowFleeing 0;

@@ -64,9 +64,9 @@ for "_count" from 2 to _lc do
 		};
 	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;// patrolling  apc/ifv group
 	sleep 0.1;
-	if (_pt_type == 1) then //tanks only spawn at towns, not at bases or airfields
+	if ((_pt_type == 1) and (cpt_radius > 150)) then //tanks only spawn at towns, not at bases or airfields
 	{
-		_mypos = [_pt_pos, 0, _pt_radius, 6,0,50,0] call bis_fnc_findSafePos;
+		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 
 			switch ((floor (random 3))) do
 		{

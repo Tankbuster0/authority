@@ -1,5 +1,6 @@
 //fn_spawnandcrewvehicle
 // by Moricky and Tankbuster
+private ["_pos","_dir","_type","_sidegroup","_veharray","_veh","_vehArray","_vehCrew","_vehGroup","_crewType","_unit"];
 params ["_pos", "_dir", "_type", "_sidegroup"];// [position], direction, "classname", side/group (same as BIS_fnc_spawnvehicle)
 _veharray = [_pos,_dir,_type, _sidegroup] call BIS_fnc_spawnvehicle;
 _veh = _vehArray select 0;
@@ -15,4 +16,4 @@ if (count _vehCrew > 0) then
             _unit moveincargo _veh;
         };
     };
-[_veh]
+_veh
