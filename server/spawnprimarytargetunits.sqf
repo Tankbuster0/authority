@@ -129,7 +129,7 @@ for "_count" from 2 to _lc do
 		{
 		[_mypos, random 360, "rhs_zsu2345_aa", _grpname] call bis_fnc_spawnVehicle;
 		};
-		sleep 0.1l
+		sleep 0.1;
 {
 if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
