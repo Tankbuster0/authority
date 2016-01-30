@@ -9,7 +9,8 @@ if (isNil "militarybasesincluded") then {
 	sleep 1;
 	publicVariable "militarybasesincluded";
 };
-_removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 4000];
+_removearray = [];
+_nearlogics = nearestObjects [_pos, ["Logic"], 5000];
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
@@ -17,8 +18,7 @@ _removearray = []; _nearlogics = nearestObjects [_pos, ["Logic"], 4000];
 	if ( (isNil "_tstatus") or (_tstatus != 1) or (((militarybasesincluded == 0) and (_ttype == 3) ))) then {_removearray pushback _x};
 } forEach _nearlogics;
 _nearlogics2 = _nearlogics - _removearray;
-diag_log format ["***cnp can choose from %1 or %2", ((_nearlogics2 select 0) getVariable "targetname"), ((_nearlogics2 select 1) getVariable "targetname")];
-_nextpt1 = [_nearlogics2] call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
-nextpt = _nextpt1 select 0;
+_nearlogics2 resize 2;
+nextpt = _nearlogics2 call BIS_fnc_selectRandom; // note: replace with selectRandom command after the nexus update
 diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
 nextpt
