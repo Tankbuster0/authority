@@ -14,7 +14,7 @@ _lc = (_pt_radius /75); //scales spawn levels according to radius
 _pt_radius = _pt_radius - 50;
 
 for "_count" from 2 to _lc do
-	{
+{
 	_grpname = format ["grp%1", _count];
 	_grpname = createGroup east;
 
@@ -24,41 +24,61 @@ for "_count" from 2 to _lc do
 		{
 		case 0: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["rhs_d30_msv", _mypos, [],0,"NONE"];
-				_veh setdir _mydir;
-				_veh = createVehicle ["rhs_d30_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
-				_veh setdir (mydir + random 15);
+				//_veh = createVehicle ["rhs_d30_msv", _mypos, [],0,"NONE"];
+				//_veh setdir _mydir;
+				[_mypos, _mydir, "rhs_d30_msv", _grpname ] call bis_fnc_spawnVehicle;
+				//_veh = createVehicle ["rhs_d30_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
+				//_veh setdir (_mydir + random 15);
+				[ ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), (_mydir + (random 30)), "rhs_d30_msv", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["rhs_Igla_AA_pod_msv", _mypos, [],0,"NONE"];
-				_veh setDir _mydir;
+				//_veh = createVehicle ["rhs_Igla_AA_pod_msv", _mypos, [],0,"NONE"];
+				//_veh setDir _mydir;
+				[_mypos, _mydir, "rhs_Igla_AA_pod_msv", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AT")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["rhs_Metis_9k115_2_msv", _mypos, [],0, "NONE"];
-				_veh setdir _mydir;
+				//_veh = createVehicle ["rhs_Metis_9k115_2_msv", _mypos, [],0, "NONE"];
+				//_veh setdir _mydir;
+				[_mypos, _mydir, "rhs_Metis_9k115_2_msv", _grpname ] call bis_fnc_spawnVehicle;
+
 				};
 		case 3: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["rhs_KORD_high_msv", _mypos, [],0,"NONE"];
-				_veh setdir _mydir;
+				//_veh = createVehicle ["rhs_KORD_high_msv", _mypos, [],0,"NONE"];
+				//_veh setdir _mydir;
+				[_mypos, _mydir, "rhs_KORD_high_msv", _grpname ] call bis_fnc_spawnVehicle;
+
 				};
 		case 4: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["RHS_NSV_TriPod_MSV", _mypos, [],0,"NONE"];
-				_veh setdir _mydir;
+				//_veh = createVehicle ["RHS_NSV_TriPod_MSV", _mypos, [],0,"NONE"];
+				//_veh setdir _mydir;
+				[_mypos, _mydir, "RHS_NSV_TriPod_MSV", _grpname ] call bis_fnc_spawnVehicle;
+
 				};
 		case 5: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
 				_veh = createVehicle ["rhs_2b14_82mm_msv", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
-				_veh = createVehicle ["rhs_2b14_82mm_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
-				_veh setdir (mydir + random 15);
+				createVehicleCrew _veh;
+				_veh = createVehicle ["m", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
+				_veh setdir (_mydir + random 15);
+				createVehicleCrew _veh;
 				};
 		};
+	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 
-	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// patrolling infantry group
+	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
+	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
+	_veh = createVehicle ["rhs_2b14_82mm_msv", _mypos, [],0,"NONE"];
+	_veh setdir _mydir;
+	createVehicleCrew _veh;
+	_veh = createVehicle ["rhs_2b14_82mm_msv", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
+	_veh setdir (_mydir + random 15);
+	createVehicleCrew _veh;
+	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
 
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
@@ -118,24 +138,19 @@ for "_count" from 2 to _lc do
 		};
 		sleep 0.1;
 	};
-	/*_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
-	_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_Mort")] call BIS_fnc_spawnGroup;
-	_mydir = [_pt_pos, _mypos]  call BIS_fnc_dirTo;
-	_mypos2 = [_mypos,2,4,0,0,30,0] call bis_fnc_findSafePos;
-	[_mypos2, (_mydir + 180), "O_Mortar_01_F", _grpname] call bis_fnc_spawnVehicle;
-	sleep 0.1;*/
-	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	for "_zz" from 0 to 1 do
 		{
-		[_mypos, random 360, "rhs_zsu2345_aa", _grpname] call bis_fnc_spawnVehicle;
+		_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
+		_vehdata = [_mypos, random 360, "rhs_zsu234_aa", _grpname] call bis_fnc_spawnVehicle;
+		doStop (_vehdata select 0);
 		};
 		sleep 0.1;
-{
-if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
-if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
- }foreach (units _grpname);
+	{
+	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
+	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
+	 }foreach (units _grpname);
 
-	};
+};
 
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
