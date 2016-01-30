@@ -10,7 +10,7 @@ if (isNil "militarybasesincluded") then {
 	publicVariable "militarybasesincluded";
 };
 _removearray = [];
-_nearlogics = nearestObjects [_pos, ["Logic"], 5000];
+_nearlogics = nearestObjects [_pos, ["Logic"], 10000];
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
