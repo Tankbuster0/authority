@@ -70,8 +70,8 @@ if(isNil("LV_ACskills"))then{LV_ACskills = compile preprocessFile "LV\LV_functio
 if(isNil("LV_RandomSpot"))then{LV_RandomSpot = compile preprocessFile "LV\LV_functions\LV_fnc_randomSpot.sqf";};
 if(isNil("LV_vehicleInit"))then{LV_vehicleInit = compile preprocessFile "LV\LV_functions\LV_fnc_vehicleInit.sqf";};
 //Unit arrays:ADJ REV 21 JON
-_BLUmen = ["B_spotter_F","B_sniper_F","B_soldier_AR_F","B_soldier_exp_F","B_Soldier_GL_F","B_soldier_M_F","B_medic_F","B_Soldier_F","B_soldier_repair_F","B_soldier_LAT_F","B_Soldier_SL_F","B_Soldier_lite_F","B_Soldier_TL_F"];
-_OPFmen = ["O_recon_exp_F","O_recon_JTAC_F","O_recon_M_F", "O_recon_F", "O_recon_M_F","O_recon_M_F","O_recon_medic_F","O_recon_F","O_recon_F","O_recon_LAT_F", "O_recon_F","O_recon_F","O_recon_TL_F","O_soldier_AAR_F","O_soldier_AAA_F","O_soldier_AAT_F"];
+_BLUmen = ["B_soldier_AR_F","B_soldier_exp_F","B_Soldier_GL_F","B_soldier_M_F","B_medic_F","B_Soldier_F","B_soldier_repair_F","B_soldier_LAT_F","B_Soldier_SL_F","B_Soldier_lite_F","B_Soldier_TL_F"];
+_OPFmen = ["rhs_msv_efreitor","rhs_msv_grenadier","rhs_msv_grenadier_rpg", "rhs_msv_sergeant", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_LAT", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_strelok_rpg_assist","rhs_msv_strelok_rpg_assist","rhs_msv_at"];
 _chopperTypes = ["RHS_Mi8AMT_vvs","rhs_ka60_grey","O_HelO_Heli_Transport_04_bench_F"];
 //Side related group creation:
 switch(_side)do{
