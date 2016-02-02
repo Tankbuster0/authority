@@ -73,7 +73,7 @@ if(isNil("LV_RandomSpot"))then{LV_RandomSpot = compile preprocessFile "LV\LV_fun
 if(isNil("LV_vehicleInit"))then{LV_vehicleInit = compile preprocessFile "LV\LV_functions\LV_fnc_vehicleInit.sqf";};
 //Unit arrays:ADJ REV 21 JON
 _BLUmen = ["B_soldier_AR_F","B_soldier_exp_F","B_Soldier_GL_F","B_soldier_M_F","B_medic_F","B_Soldier_F","B_soldier_repair_F","B_soldier_LAT_F","B_Soldier_SL_F","B_Soldier_lite_F","B_Soldier_TL_F"];
-_OPFmen = ["rhs_msv_efreitor","rhs_msv_grenadier","rhs_msv_grenadier_rpg", "rhs_msv_sergeant", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_LAT", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_strelok_rpg_assist","rhs_msv_strelok_rpg_assist","rhs_msv_at"];
+_OPFmen = ["rhs_msv_efreitor","rhs_msv_grenadier","rhs_msv_grenadier_rpg", "rhs_msv_sergeant", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_LAT", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_strelok_rpg_assist","rhs_msv_strelok_rpg_assist","rhs_msv_at", "rhs_msv_efreitor","rhs_msv_grenadier","rhs_msv_grenadier_rpg", "rhs_msv_sergeant", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_LAT", "rhs_msv_grenadier","rhs_msv_grenadier","rhs_msv_medic","rhs_msv_strelok_rpg_assist","rhs_msv_strelok_rpg_assist","rhs_msv_at"];
 _chopperTypes = ["RHS_Mi8AMT_vvs","rhs_ka60_grey","O_HelO_Heli_Transport_04_bench_F"];
 //Side related group creation:
 switch(_side)do{
