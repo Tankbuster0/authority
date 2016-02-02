@@ -29,7 +29,6 @@ for "_count" from 2 to _lc do
 				[_mypos, _mydir, "rhs_d30_msv", _grpname ] call bis_fnc_spawnVehicle;
 				//_veh = createVehicle ["rhs_d30_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
 				//_veh setdir (_mydir + random 15);
-				[ ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), (_mydir + (random 30)), "rhs_d30_msv", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA")] call BIS_fnc_spawnGroup;
@@ -138,12 +137,12 @@ for "_count" from 2 to _lc do
 		};
 		sleep 0.1;
 	};
-	for "_zz" from 0 to 1 do
-		{
-		_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
-		_vehdata = [_mypos, random 360, "rhs_zsu234_aa", _grpname] call bis_fnc_spawnVehicle;
-		doStop (_vehdata select 0);
-		};
+
+	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
+	_vehdata = [_mypos, random 360, "rhs_zsu234_aa", _grpname] call bis_fnc_spawnVehicle;
+	doStop (_vehdata select 0);
+
+
 		sleep 0.1;
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
