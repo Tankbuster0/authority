@@ -11,7 +11,7 @@ _drypos =[];
 roadreinforcementvehicles = [];
 _1pos = getpos _airfield;
 
-_newdrypos = [_1pos,800,1500, 5, 0, 10, 1] call bis_fnc_findSafePos;
+_newdrypos = [_1pos,800,1300, 5, 0, 10, 1] call bis_fnc_findSafePos;
 _newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
 ammobox setpos _newdrypos;
