@@ -26,12 +26,16 @@ _startpos set [2, 500];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
-(_veh select 0) setVelocity [150 * (sin _dir), 150 * (cos _dir), 0];
-(_veh select 0) setcaptive true;
+_dropveh = _veh select 0
+_dropveh setVelocity [150 * (sin _dir), 150 * (cos _dir), 0];
+_dropveh setcaptive true;
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
 _dwp setWaypointtype "MOVE";
+
+waituntil {sleep 0.5; (_dropveh distance _droppos) < 1000 };
+//_dropveh animateDoor something etc blah blah;
 
 
 
