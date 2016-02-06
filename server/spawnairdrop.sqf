@@ -57,7 +57,9 @@ _cargo attachto [_para, [0,0,-2]];
 [_cargo, _droppos, 0, "blah", _para, false ] spawn tky_fnc_mando_chute;
 waitUntil {isTouchingGround _dropveh};
 detach _cargo;
-detach _dropveh;
-_para setpos _droppos;
-_d
+detach _para;
+_underground = _droppos;
+_underground set [2, -2];
+_para setpos _underground;
+
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

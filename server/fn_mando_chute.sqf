@@ -102,8 +102,8 @@ while {alive _chuto && {(getPos _chuto select 2) > 5}} do {
 };
 //deleteVehicle _man; rdx CHAMPY
 _pos_conex = [position _cone select 0,position _cone select 1,position _cone select 2];
-deleteVehicle _cone;
-deleteVehicle _chuto;
+//deleteVehicle _cone;
+//deleteVehicle _chuto;
 sleep 1;
 if (_is_ammo) then {
 	_airbox2 = createVehicle ["B_Supplycrate_F",_target_pos,[],0,"NONE"];// tanky code to create a public airdropped box
