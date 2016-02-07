@@ -54,6 +54,7 @@ class cfgFunctions
 			file = "server";
 			class spawnandcrewvehicle {};
 			class mando_chute {};
+			class objectsMapper {};
 		};
 	};
 };

@@ -33,6 +33,8 @@ _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
 _dwp setWaypointtype "MOVE";
+_dropgroup setCombatMode "BLUE";
+_dropgroup allowFleeing 0;
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
