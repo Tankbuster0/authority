@@ -5,7 +5,7 @@ params ["_unit", "_dummy", "_damage", "_shooter", "_ammo" ];
 
 if ((_damage > 0.9) and (time > (_unit getVariable "last_inventory_saved"))) then
 	{
-		_data1 = [player, [missionNamespace, "reviveloadout"]] call bis_fnc_saveInventory;
+		_data1 = [player, [profileNamespace, "reviveloadout"]] call bis_fnc_saveInventory;
 		_unit setVariable ["last_inventory_saved", time +2];
 		diag_log _data1;
 	};
