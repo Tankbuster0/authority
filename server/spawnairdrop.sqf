@@ -36,7 +36,7 @@ _dwp setWaypointtype "MOVE";
 _dropgroup setCombatMode "BLUE";
 _dropgroup allowFleeing 0;
 (driver _dropveh) setskill ["courage",1];
-(driver _dropveh) disableAI "FSM"; (driver _dropveh) disableAI "TARGET"; (driver _dropveh) disableAI "TARGET";
+(driver _dropveh) disableAI "FSM"; (driver _dropveh) disableAI "TARGET"; (driver _dropveh) disableAI "AUTOTARGET";
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
