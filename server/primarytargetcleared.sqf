@@ -14,7 +14,7 @@ if ((count _nearestplayers) <1) then {_pos = (getpos _newflag)} else {_pos = (ge
 
 if (primarytargetcounter isEqualTo 1) then {_droptype = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"};//else choose prize vehicle
 
-_nul = [_pos, "RHS_C130J" _droptype ] execVM "server\spawnairdop.sqf";
+_nul = [_pos, "RHS_C130J", _droptype ] execVM "server\spawnairdop.sqf";
 
 
 
