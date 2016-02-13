@@ -2,15 +2,15 @@
 _myscript = "primarytargetcleared.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
-private ["_crew","_veh", "_allclean"];
+private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh"];
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorPink";
 _newflag = "Flag_Blue_F" createVehicleLocal (getpos cpt_flag);// replace the red flag with a LOCALLY NAMED blue one (so it's never deleted)
 deleteVehicle cpt_flag;// delete the globally named (but only created on server) red flag
 sleep 0.5;
-//find the player nearest to the new blue flag, and call the airdrop on him, if this is target 1, this must be the fob vehicle
+//find the player nearest to the new blue flag, and call the airdrop on him. If this is target 1, this must be the fob vehicle
 _nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750];
-if ((count _nearestplayers) <1) then {_pos = getpos _newflag} else {_pos = (getpos (_nearestplayers select 0))};
+if ((count _nearestplayers) <1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
 
 if (primarytargetcounter isEqualTo 1) then {_droptype = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"};//else choose prize vehicle
 
