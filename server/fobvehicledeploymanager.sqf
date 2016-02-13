@@ -33,7 +33,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				hint "Not enough space to make FOB here";
 				diag_log "*** fvdm not enough space for FOB";
 				_veh animateDoor ["extend_shelter_source",0,false];
-				sleep 1;
+				sleep 5;
 				_veh setfuel 1;
 				} else
 				{
