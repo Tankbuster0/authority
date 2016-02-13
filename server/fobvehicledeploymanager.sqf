@@ -39,7 +39,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				{
 				hint "Deploying FOB";
 				diag_log "*** fvdm depolying fob";
-				_nul = [position _veh] execVM "server\buildfob.sqf";
+				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
 				sleep 5;
 				};
 			};
