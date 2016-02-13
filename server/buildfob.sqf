@@ -1,7 +1,7 @@
 // by tankbuster
 _myscript = "buildfob.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
-private ["_pos","_dir","_droppos","_testradius","_requestedpos"];
+private ["_pos","_dir","_mypos","_testradius","_droppos","_hpad"];
 params [
 ["_pos", ""],
 ["_dir", ""]];
@@ -48,13 +48,15 @@ Using orientation of objects: yes
 
 // find a good place nearby for helipad
 
-_droppos = [0,0,0]; _testradius = 2;
-while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+_mypos = [0,0,0]; _testradius = 16;
+while {_mypos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
-		_droppos = [_requestedpos, 0,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
-		//diag_log format ["*** spawnairdrop suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
-		_testradius = _testradius * 2;
+		_mypos = [_pos, 15,_testradius, 10, 0,10,0] call bis_fnc_findSafePos;
+		diag_log format ["*** buildfob looking for helipad suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
+		_testradius = _testradius + 4;
 	};
+_mypos [set 2,0];
+_hpad = createVehicle ["Land_HelipadCircle_F", _mypos,[],0,"NONE"];
 fobdeployed = true;
 publicVariable "fobdeployed";
 
