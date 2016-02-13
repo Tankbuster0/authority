@@ -8,15 +8,16 @@ cpt_marker setMarkerColor "ColorPink";
 _newflag = "Flag_Blue_F" createVehicleLocal (getpos cpt_flag);// replace the red flag with a LOCALLY NAMED blue one (so it's never deleted)
 deleteVehicle cpt_flag;// delete the globally named (but only created on server) red flag
 sleep 0.5;
-_newflag =
-/*_allclean = vehiclecleanup + mancleanup;
-{
-_crew = crew _x;
-_veh = _x;
-{_veh deletevehiclecrew _x} foreach _crew;
-deleteVehicle _veh;
-}foreach _allclean;
-vehiclecleanup= []; mancleanup = []; _allclean = [];*/
+//find the player nearest to the new blue flag, and call the airdrop on him, if this is target 1, this must be the fob vehicle
+_nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750];
+if ((count _nearestplayers) <1) then {_pos = getpos _newflag} else {_pos = (getpos (_nearestplayers select 0))};
+
+if (primarytargetcounter isEqualTo 1) then {_droptype = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"};//else choose prize vehicle
+
+_nul = [_pos, "RHS_C130J" _droptype ] execVM "server\spawnairdop.sqf";
+
+
+
 {
 	_veh = _x;
 	{_veh deleteVehicleCrew _x} foreach crew _veh;
