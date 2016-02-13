@@ -43,7 +43,8 @@ fobjects = [
 	["RHS_Stinger_AA_pod_D",[6.10547,-12.9614,-0.0780692],0.00432919,1,0,[-0.000822887,0.00262605],"","",true,false],
 	["B_Slingload_01_Repair_F",[-5.29126,-13.6973,0],132.925,1,0.00682588,[-1.09181e-006,1.28108e-005],"","",true,false]
 ],0.0] call bis_fnc_ObjectsMapper;
-
+fobdeployed = true;
+publicVariable "fobdeployed";
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 

@@ -9,6 +9,8 @@ _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 //diag_log format [" ***airfield chosen is %1 at %2", _airfield, Position _airfield];
 _drypos =[];
 roadreinforcementvehicles = [];
+fobdeployed = false;
+publicVariable "fobdeployed";
 _1pos = getpos _airfield;
 
 _newdrypos = [_1pos,800,1300, 5, 0, 10, 1] call bis_fnc_findSafePos;

@@ -10,4 +10,5 @@ if (worldName == "Altis") then
 	_location setText "Abdera airfield";
 	};
 if (("rhs_main" in activatedAddons) and ("rhsusf_main" in activatedAddons)) then {RHS = true} else {RHS = false};
+
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
