@@ -54,7 +54,7 @@ _dropveh flyinheight 100;
 waitUntil {(_dropveh distance2D _droppos) < 100};
 _para = createVehicle ["B_Parachute_02_F", (_dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-_cargo = createvehicle ["rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy", (_para modelToWorld [0,0,-10]), [],0, "NONE"];
+_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "NONE"];
 _cargo attachto [_para, [0,0,-2]];
 _cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 
