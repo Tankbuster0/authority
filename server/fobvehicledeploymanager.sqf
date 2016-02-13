@@ -12,10 +12,10 @@ params [
 diag_log format ["***fvdm says you got in %1 seat", _seat];
 while {true} do
 	{
-		if (_seat = driver) exitWith {_reason = "driver"};
+		if (_seat isEqualTo "driver") exitWith {_reason = "driver"};
 		if !(_unit in _veh ) exitWith {_reason = "out"};
 		sleep 0.1;
-		};
+
 	};
 diag_log format ["*** fvdm dropped out of 1st wait with %1", _reason];
 if (_reason isEqualTo "out") exitWith {};
