@@ -1,7 +1,12 @@
 // by tankbuster
 _myscript = "buildfob.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
-fobjects = [(getpos alpha_1), (getdir alpha_1),
+private ["_pos","_dir","_droppos","_testradius","_requestedpos"];
+params [
+["_pos", ""],
+["_dir", ""]];
+
+fobjects = [_pos, _dir,
 /*
 Grab data:
 Mission: fobtemplate
@@ -40,6 +45,16 @@ Using orientation of objects: yes
 	["RHS_Stinger_AA_pod_D",[6.10547,-12.9614,-0.0780692],0.00432919,1,0,[-0.000822887,0.00262605],"","",true,false],
 	["B_Slingload_01_Repair_F",[-5.29126,-13.6973,0],132.925,1,0.00682588,[-1.09181e-006,1.28108e-005],"","",true,false]
 ],0.0] call bis_fnc_ObjectsMapper;
+
+// find a good place nearby for helipad
+
+_droppos = [0,0,0]; _testradius = 2;
+while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+	{
+		_droppos = [_requestedpos, 0,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
+		//diag_log format ["*** spawnairdrop suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
+		_testradius = _testradius * 2;
+	};
 fobdeployed = true;
 publicVariable "fobdeployed";
 
