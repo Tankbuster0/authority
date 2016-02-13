@@ -56,7 +56,7 @@ _para = createVehicle ["B_Parachute_02_F", (_dropveh modelToWorld [0,-12,0]), []
 _smoker1 = ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 _cargo = createvehicle ["rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy", (_para modelToWorld [0,0,-10]), [],0, "NONE"];
 _cargo attachto [_para, [0,0,-2]];
-
+_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 
 [_cargo, _droppos, 0, "blah", _para, false ] spawn tky_fnc_mando_chute;
 waitUntil {isTouchingGround _dropveh};

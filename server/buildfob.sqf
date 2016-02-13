@@ -13,7 +13,7 @@ Area size: 30
 Using orientation of objects: yes
 */
 
-[
+fobjects = [
 	/*["rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy",[0.716553,-2.60254,-0.010603],359.998,1,0,[-0.334017,0.496119],"","",true,false], */
 	["Land_GamingSet_01_controller_F",[-3.13501,-0.803223,0],359.999,1,0,[-0.00159125,-0.00062277],"","",true,false],
 	["Land_ToiletBox_F",[-2.15796,2.41895,7.62939e-006],0.000161926,1,0,[0.000360799,0.00068173],"","",true,false],
@@ -46,22 +46,4 @@ Using orientation of objects: yes
 
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
-
-/*
-Grab data:
-Mission: fobtemplate
-World: VR
-Anchor position: [3650.85, 2357.35]
-Area size: 30
-Using orientation of objects: yes
-*/
-
-/*
-Grab data:
-Mission: fobtemplate
-World: VR
-Anchor position: [3650.27, 2360.49]
-Area size: 30
-Using orientation of objects: yes
-*/
 
