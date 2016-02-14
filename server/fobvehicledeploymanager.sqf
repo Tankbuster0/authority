@@ -6,17 +6,13 @@ params [
 ["_veh", ""],
 ["_seat", ""],
 ["_unit", ""]
-
 ];
-
-diag_log format ["***fvdm says you got in %1 seat", _seat];
 while {true} do
 	{
 		if (_unit isequalto (driver _veh)) exitWith {_reason = "driver"};
 		if !(_unit in _veh ) exitWith {_reason = "out"};
 		sleep 0.1;
 	};
-diag_log format ["*** fvdm dropped out of 1st wait with %1", _reason];
 if (_reason isEqualTo "out") exitWith {};
 while {(alive _veh) and (!(isnull (driver _veh)))} do
 	{
@@ -31,14 +27,12 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 			if (_candidatepos isEqualTo []) then
 				{
 				hint "Not enough space to make FOB here";
-				diag_log "*** fvdm not enough space for FOB";
 				_veh animateDoor ["extend_shelter_source",0,false];
 				sleep 5;
 				_veh setfuel 1;
 				} else
 				{
 				hint "Deploying FOB";
-				diag_log "*** fvdm depolying fob";
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
 				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
 				sleep 5;
@@ -50,7 +44,6 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 		sleep 0.1;
 		if (_veh doorPhase "extend_shelter_source" < _doorphase1) then
 			{//door closing
-			diag_log "*** fvdm removing fob";
 			if (!(isNil "fobjects")) then
 				{
 				hint "Removing FOB";
@@ -62,7 +55,5 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				};
 			};
 		};
-
 	};
-
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
