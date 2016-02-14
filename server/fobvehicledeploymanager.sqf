@@ -40,6 +40,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				hint "Deploying FOB";
 				diag_log "*** fvdm depolying fob";
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
+				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
 				sleep 5;
 				};
 			};
@@ -55,6 +56,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				hint "Removing FOB";
 				{deleteVehicle _x} foreach fobjects;
 				fobdeployed = false;
+				fobrespawn call BIS_fnc_removeRespawnPosition;
 				publicVariable "fobdeployed";
 				sleep 5;
 				};
