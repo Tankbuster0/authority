@@ -26,40 +26,40 @@ _startpos set [2, 500];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
-_dropveh = (_veh select 0);
-_dropveh setVelocity [150 * (sin _dir), 150 * (cos _dir), 0];
-_dropveh setcaptive true;
+dropveh = (_veh select 0);
+dropveh setVelocity [150 * (sin _dir), 150 * (cos _dir), 0];
+dropveh setcaptive true;
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
 _dwp setWaypointtype "MOVE";
 _dropgroup setCombatMode "BLUE";
 _dropgroup allowFleeing 0;
-(driver _dropveh) setskill ["courage",1];
-(driver _dropveh) disableAI "FSM"; (driver _dropveh) disableAI "TARGET"; (driver _dropveh) disableAI "AUTOTARGET";
+(driver dropveh) setskill ["courage",1];
+(driver dropveh) disableAI "FSM"; (driver dropveh) disableAI "TARGET"; (driver dropveh) disableAI "AUTOTARGET";
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
 _dwp2 setWaypointBehaviour "CARELESS";
 _dwp2 setWaypointSpeed "NORMAL";
-_dwp2 setWaypointScript "deleteVehiclecrew _dropveh; deleteVehicle _dropveh;";
+_dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;";
 
-waituntil {sleep 0.5; (_dropveh distance2D _droppos) < 800 };
+waituntil {sleep 0.5; (dropveh distance2D _droppos) < 800 };
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-_dropveh flyinheight 100;
+dropveh flyinheight 100;
 
 
-//_dropveh animateDoor something etc blah blah;
-waitUntil {(_dropveh distance2D _droppos) < 100};
-_para = createVehicle ["B_Parachute_02_F", (_dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
+//dropveh animateDoor something etc blah blah;
+waitUntil {(dropveh distance2D _droppos) < 100};
+_para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 _cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "NONE"];
 _cargo attachto [_para, [0,0,-2]];
 _cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 
 [_cargo, _droppos, 0, "blah", _para, false ] spawn tky_fnc_mando_chute;
-waitUntil {isTouchingGround _dropveh};
+waitUntil {isTouchingGround dropveh};
 detach _cargo;
 detach _para;
 _underground = _droppos;
