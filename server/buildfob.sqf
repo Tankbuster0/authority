@@ -23,7 +23,7 @@ Using orientation of objects: yes
 	["Land_ChairPlastic_F",[-3.19263,-2.23267,1.7643e-005],267.093,1,0,[0.0027207,-0.00271977],"","",true,false],
 	["Land_Laptop_unfolded_F",[-3.98779,-0.477783,-0.139849],2.19473,1,0,[-42.8161,-180],"","",true,false],
 	["Land_ChairPlastic_F",[-4.26465,-2.12769,1.81198e-005],275.045,1,0,[0.00278547,-0.00270908],"","",true,false],
-	["rhsusf_mags_crate",[4.97974,-1.27979,1.90735e-006],360,1,0.00506644,[0.00121719,-0.000883828],"","clearMagazineCargoGlobal this;clearWeaponCargoGlobal this;clearItemCargoGlobal this;clearBackpackCargoGlobal this;this allowDamage false; this enableSimulation false;this addaction [""==Virtual Arsenal=="", ""server\b_virtual_arsenal.sqf""];",true,false],
+	["rhsusf_mags_crate",[4.97974,-1.27979,1.90735e-006],360,1,0.00506644,[0.00121719,-0.000883828],"","clearMagazineCargoGlobal this;clearWeaponCargoGlobal this;clearItemCargoGlobal this;clearBackpackCargoGlobal this;this allowDamage false; this enableSimulation false;[[this,[""==Virtual Arsenal=="", ""server\b_virtual_arsenal.sqf""]],""addAction"",true,true] call BIS_fnc_MP;",true,false],
 	["B_Slingload_01_Medevac_F",[0.333496,7.52148,-4.76837e-007],270.914,1,0,[-1.58613e-005,8.20316e-005],"","",true,false],
 	["Land_TTowerSmall_1_F",[-7.73193,-2.59326,0],0,1,0,[0,0],"","",true,false],
 	["Land_FireExtinguisher_F",[5.88135,6.40796,0.000141144],359.974,1,0,[-0.0680144,0.0777159],"","",true,false],
