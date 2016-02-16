@@ -8,13 +8,15 @@ class Mission
 		"a3_characters_f",
 		"A3_Supplies_F_Heli_CargoNets",
 		"A3_Modules_F",
-		"A3_Modules_F_ObjectModifiers"
+		"A3_Modules_F_ObjectModifiers",
+		"A3_Characters_F_Mark"
 	};
 	addOnsAuto[]=
 	{
 		"A3_Characters_F_BLUFOR",
 		"a3_characters_f",
 		"A3_Modules_F_ObjectModifiers",
+		"A3_Characters_F_Mark",
 		"A3_Supplies_F_Heli_CargoNets",
 		"a3_map_altis"
 	};
@@ -39,13 +41,13 @@ class Mission
 	};
 	class Groups
 	{
-		items=2;
+		items=3;
 		class Item0
 		{
 			side="WEST";
 			class Vehicles
 			{
-				items=8;
+				items=9;
 				class Item0
 				{
 					position[]={8460.4502,104.25183,25134.613};
@@ -139,6 +141,16 @@ class Mission
 					skill=0.40000001;
 					text="alpha_7";
 				};
+				class Item8
+				{
+					position[]={8458.5928,104.37824,25133.338};
+					id=8;
+					side="WEST";
+					vehicle="B_soldier_repair_F";
+					player="PLAYER COMMANDER";
+					skill=0.60000002;
+					text="alpha_9";
+				};
 			};
 		};
 		class Item1
@@ -166,12 +178,105 @@ class Mission
 							typeName="excludeAir";
 						};
 					};
-					id=8;
+					id=9;
 					side="LOGIC";
 					vehicle="ModuleSimulationManager_F";
 					leader=1;
 					lock="UNLOCKED";
 					skill=0.60000002;
+				};
+			};
+		};
+		class Item2
+		{
+			side="WEST";
+			class Vehicles
+			{
+				items=9;
+				class Item0
+				{
+					position[]={8455.0234,104.35477,25132.039};
+					id=10;
+					side="WEST";
+					vehicle="B_Soldier_SL_F";
+					leader=1;
+					rank="SERGEANT";
+					skill=0.5;
+					text="bravo_1";
+				};
+				class Item1
+				{
+					position[]={8458.9678,104.98027,25124.564};
+					id=11;
+					side="WEST";
+					vehicle="B_soldier_AR_F";
+					skill=0.40000001;
+					text="bravo_5";
+				};
+				class Item2
+				{
+					position[]={8463.9678,105.94565,25119.564};
+					id=12;
+					side="WEST";
+					vehicle="B_soldier_AAR_F";
+					skill=0.40000001;
+					text="bravo_6";
+				};
+				class Item3
+				{
+					position[]={8443.9678,107.22856,25119.564};
+					id=13;
+					side="WEST";
+					vehicle="B_soldier_M_F";
+					skill=0.40000001;
+					text="bravo_3";
+				};
+				class Item4
+				{
+					position[]={8468.9678,107.17989,25114.564};
+					id=14;
+					side="WEST";
+					vehicle="B_Sharpshooter_F";
+					rank="CORPORAL";
+					skill=0.44999999;
+					text="bravo_7";
+				};
+				class Item5
+				{
+					position[]={8438.9678,109.62186,25114.564};
+					id=15;
+					side="WEST";
+					vehicle="B_soldier_LAT_F";
+					skill=0.40000001;
+					text="bravo_4";
+				};
+				class Item6
+				{
+					position[]={8473.9678,108.57069,25109.564};
+					id=16;
+					side="WEST";
+					vehicle="B_medic_F";
+					skill=0.40000001;
+					text="bravo_8";
+				};
+				class Item7
+				{
+					position[]={8453.1885,104.73975,25125.215};
+					id=17;
+					side="WEST";
+					vehicle="B_HeavyGunner_F";
+					rank="CORPORAL";
+					skill=0.44999999;
+					text="bravo_2";
+				};
+				class Item8
+				{
+					position[]={8455.5098,104.74296,25126.398};
+					id=18;
+					side="WEST";
+					vehicle="B_soldier_repair_F";
+					skill=0.40000001;
+					text="bravo_9";
 				};
 			};
 		};
@@ -182,7 +287,7 @@ class Mission
 		class Item0
 		{
 			position[]={8427.3135,111.30589,25113.9};
-			id=9;
+			id=19;
 			side="EMPTY";
 			vehicle="B_CargoNet_01_ammo_F";
 			skill=0.60000002;
