@@ -199,6 +199,7 @@ class Mission
 					id=10;
 					side="WEST";
 					vehicle="B_Soldier_SL_F";
+					player="PLAY CDG";
 					leader=1;
 					rank="SERGEANT";
 					skill=0.5;
@@ -210,6 +211,7 @@ class Mission
 					id=11;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
+					player="PLAY CDG";
 					skill=0.40000001;
 					text="bravo_5";
 				};
@@ -219,6 +221,7 @@ class Mission
 					id=12;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
+					player="PLAY CDG";
 					skill=0.40000001;
 					text="bravo_6";
 				};
@@ -228,6 +231,7 @@ class Mission
 					id=13;
 					side="WEST";
 					vehicle="B_soldier_M_F";
+					player="PLAY CDG";
 					skill=0.40000001;
 					text="bravo_3";
 				};
@@ -237,6 +241,7 @@ class Mission
 					id=14;
 					side="WEST";
 					vehicle="B_Sharpshooter_F";
+					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.44999999;
 					text="bravo_7";
@@ -247,6 +252,7 @@ class Mission
 					id=15;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
+					player="PLAY CDG";
 					skill=0.40000001;
 					text="bravo_4";
 				};
@@ -256,6 +262,7 @@ class Mission
 					id=16;
 					side="WEST";
 					vehicle="B_medic_F";
+					player="PLAY CDG";
 					skill=0.40000001;
 					text="bravo_8";
 				};
@@ -265,6 +272,7 @@ class Mission
 					id=17;
 					side="WEST";
 					vehicle="B_HeavyGunner_F";
+					player="PLAY CDG";
 					rank="CORPORAL";
 					skill=0.44999999;
 					text="bravo_2";
@@ -275,6 +283,7 @@ class Mission
 					id=18;
 					side="WEST";
 					vehicle="B_soldier_repair_F";
+					player="PLAY CDG";
 					skill=0.40000001;
 					text="bravo_9";
 				};

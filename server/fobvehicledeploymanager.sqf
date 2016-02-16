@@ -28,11 +28,12 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				{
 				hint "Not enough space to make FOB here";
 				_veh animateDoor ["extend_shelter_source",0,false];
-				sleep 5;
-				_veh setfuel 1;
+				sleep 4;
+				dropveh setfuel 1;
 				} else
 				{
 				hint "Deploying FOB";
+				while {(_veh doorPhase "extend_shelter_source") < 1} do {sleep 0.1;};
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
 				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
 				sleep 5;
