@@ -26,13 +26,15 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 			_candidatepos = (position _unit) isFlatEmpty [9,0,1,10,0,false, _unit];
 			if (_candidatepos isEqualTo []) then
 				{
-				hint "Not enough space to make FOB here";
+				//hint "Not enough space to make FOB here";
+				[[[driver _veh], "Not enough space to build FOB here"],"tky_super_hint", true,false] call BIS_fnc_MP;
 				_veh animateDoor ["extend_shelter_source",0,false];
 				sleep 4;
 				dropveh setfuel 1;
 				} else
 				{
-				hint "Deploying FOB";
+				//hint "Deploying FOB";
+				[[[driver _veh], "Deploying FOB"],"tky_super_hint", true,false] call BIS_fnc_MP;
 				while {(_veh doorPhase "extend_shelter_source") < 1} do {sleep 0.1;};
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
 				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
@@ -47,7 +49,9 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 			{//door closing
 			if (!(isNil "fobjects")) then
 				{
-				hint "Removing FOB";
+				//hint "Removing FOB";
+				[[[driver _veh], "Removing FOB"],"tky_super_hint", true,false] call BIS_fnc_MP;
+				while {(_veh doorPhase "extend_shelter_source") > 0} do {sleep 0.1;};
 				{deleteVehicle _x} foreach fobjects;
 				fobdeployed = false;
 				fobrespawn call BIS_fnc_removeRespawnPosition;

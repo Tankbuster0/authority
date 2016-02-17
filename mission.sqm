@@ -24,6 +24,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
+		overviewText="build 00227";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -207,7 +208,7 @@ class Mission
 				};
 				class Item1
 				{
-					position[]={8458.9678,104.98027,25124.564};
+					position[]={8455.5234,104.64486,25127.906};
 					id=11;
 					side="WEST";
 					vehicle="B_soldier_AR_F";
@@ -217,7 +218,7 @@ class Mission
 				};
 				class Item2
 				{
-					position[]={8463.9678,105.94565,25119.564};
+					position[]={8458.0918,104.98253,25124.021};
 					id=12;
 					side="WEST";
 					vehicle="B_soldier_AAR_F";
@@ -227,7 +228,7 @@ class Mission
 				};
 				class Item3
 				{
-					position[]={8443.9678,107.22856,25119.564};
+					position[]={8449.4365,104.09217,25136.787};
 					id=13;
 					side="WEST";
 					vehicle="B_soldier_M_F";
@@ -237,7 +238,7 @@ class Mission
 				};
 				class Item4
 				{
-					position[]={8468.9678,107.17989,25114.564};
+					position[]={8459.041,105.17562,25121.352};
 					id=14;
 					side="WEST";
 					vehicle="B_Sharpshooter_F";
@@ -248,7 +249,7 @@ class Mission
 				};
 				class Item5
 				{
-					position[]={8438.9678,109.62186,25114.564};
+					position[]={8448.5908,104.48832,25133.203};
 					id=15;
 					side="WEST";
 					vehicle="B_soldier_LAT_F";
@@ -258,7 +259,7 @@ class Mission
 				};
 				class Item6
 				{
-					position[]={8473.9678,108.57069,25109.564};
+					position[]={8461.002,105.21191,25123.951};
 					id=16;
 					side="WEST";
 					vehicle="B_medic_F";
@@ -268,7 +269,7 @@ class Mission
 				};
 				class Item7
 				{
-					position[]={8453.1885,104.73975,25125.215};
+					position[]={8450.4531,104.67033,25128.459};
 					id=17;
 					side="WEST";
 					vehicle="B_HeavyGunner_F";
@@ -279,7 +280,7 @@ class Mission
 				};
 				class Item8
 				{
-					position[]={8455.5098,104.74296,25126.398};
+					position[]={8449.4316,105.14735,25125.385};
 					id=18;
 					side="WEST";
 					vehicle="B_soldier_repair_F";
