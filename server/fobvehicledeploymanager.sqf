@@ -30,6 +30,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				[[[driver _veh], "Not enough space to build FOB here"],"tky_super_hint", true,false] call BIS_fnc_MP;
 				//_veh animateDoor ["extend_shelter_source",0,false];
 				[_veh, 0,true] call RHS_fnc_fmtv_deploy;
+				["tky_setfuel", [dropveh, 1]] call BIS_fnc_MP;
 				sleep 4;
 				//dropveh setfuel 1;
 
