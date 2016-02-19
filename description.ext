@@ -55,6 +55,7 @@ class cfgFunctions
 			class spawnandcrewvehicle {};
 			class mando_chute {};
 			class objectsMapper {};
+			class setfuel {};
 		};
 	};
 };
