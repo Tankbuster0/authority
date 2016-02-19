@@ -36,7 +36,7 @@ _dwp setWaypointtype "MOVE";
 _dropgroup setCombatMode "BLUE";
 _dropgroup allowFleeing 0;
 (driver dropveh) setskill ["courage",1];
-(driver dropveh) disableAI "FSM"; (driver dropveh) disableAI "TARGET"; (driver dropveh) disableAI "AUTOTARGET";
+(driver dropveh) disableAI "FSM"; (driver dropveh) disableAI "TARGET"; (driver dropveh) disableAI "AUTOTARGET"; (driver dropveh) disableAI "AUTOCOMBAT";
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
@@ -59,7 +59,7 @@ _cargo attachto [_para, [0,0,-2]];
 _cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 
 [_cargo, _droppos, 0, "blah", _para, false ] spawn tky_fnc_mando_chute;
-waitUntil {isTouchingGround dropveh};
+waitUntil {isTouchingGround _cargo};
 detach _cargo;
 detach _para;
 _underground = _droppos;
