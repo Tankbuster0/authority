@@ -17,6 +17,16 @@ if (_reason isEqualTo "out") exitWith {};
 while {(alive _veh) and (!(isnull (driver _veh)))} do
 	{
 	sleep 0.1;
+	
+	// Experimental FOB§ building
+	//unassignCurator cur;	
+	if (fobdeployed) then 
+	{
+		(driver _veh) assignCurator cur;
+	};
+	//--
+	
+	
 	_doorphase1 = (_veh doorPhase "extend_shelter_source");
 	if (_doorphase1 > 0) then // shelter not closed, is it opening?
 		{
@@ -37,6 +47,11 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				[[[driver _veh], "Deploying FOB"],"tky_super_hint", true,false] call BIS_fnc_MP;
 				while {(_veh doorPhase "extend_shelter_source") < 1} do {sleep 0.1;};
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
+				
+				// Make editing area for curator
+				cur addCuratorEditingArea [1,(position _veh),50];
+				cur addCuratorCameraArea [1,(position _veh),50];
+				
 				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
 				sleep 5;
 				};
@@ -56,6 +71,13 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				fobdeployed = false;
 				fobrespawn call BIS_fnc_removeRespawnPosition;
 				publicVariable "fobdeployed";
+				
+				// Remove Editing Area and curator owner
+				cur removeCuratorEditingArea 1;
+				cur removeCuratorCameraArea  1;
+				[[(position _veh select 0),(position _veh select 1),8],(position _veh),2] call BIS_fnc_setCuratorCamera;
+				unassignCurator cur;
+				
 				sleep 5;
 				};
 			};

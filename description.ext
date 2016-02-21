@@ -3,7 +3,7 @@
 onLoadMission = "Authority";
 onLoadMissionTime = 1;
 loadscreen = "logo.paa";
-author = "Tankbuster";
+author = "Lackluster";
 joinUnassigned = 0;
 saving = 0;
 enableDebugConsole = 1;
