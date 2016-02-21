@@ -12,22 +12,21 @@ Grab data:
 Mission: fobtemplate
 World: VR
 Anchor position: [3650.27, 2360.49]
-Area size: 15
+Area size: 20
 Using orientation of objects: yes
 */
 
 [
-	["rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy",[0.716553,-2.60254,-0.00947857],359.997,1,0,[-0.333704,0.565123],"","",true,false],
-	["Flag_White_F",[0.554932,3.36157,0],0,1,0,[0,0],"","",true,false],
-	["FirePlace_burning_F",[-2.91846,-3.90112,-0.030755],0,1,0,[0,0],"","",true,false],
-	["Land_ToiletBox_F",[-2.83862,-4.35596,-2.00272e-005],0.0831968,1,0,[0.002059,-0.00126319],"","",true,false],
-	["Land_FireExtinguisher_F",[-4.0647,-4.20898,0.000143051],359.829,1,0,[-0.0561211,0.0889441],"","",true,false],
-	["rhsusf_weapons_crate",[5.74341,-4.37012,1.43051e-006],359.973,1,0.953522,[0.000670926,-0.000637796],"","",true,false],
-	["Land_TTowerSmall_2_F",[0.859375,-12.6907,0],0,1,0,[0,0],"","",true,false]
+	["Flag_White_F",[0.554688,3.36157,0],0,1,0,[0,0],"","",true,false],
+	["FirePlace_burning_F",[-2.9187,-3.90112,-0.0307665],0,1,0,[0,0],"","",true,false],
+	["Land_ToiletBox_F",[-2.83838,-4.35571,1.7643e-005],0.0349144,1,0,[-0.000674493,-0.000603045],"","",true,false],
+	["Land_FireExtinguisher_F",[-4.06494,-4.20898,0.000127792],359.79,1,0,[-0.0478408,0.0883972],"","",true,false],
+	["Sign_Sphere25cm_F",[6.32104,-4.87207,0],0,1,0,[0,0],"fobbox_locator","",true,false],
+	["Land_TTowerSmall_2_F",[0.859131,-12.6907,0],0,1,0,[0,0],"","",true,false]
 ],0.0] call bis_fnc_ObjectsMapper;
 
 // find a good place nearby for helipad
-
+/*
 _mypos = [0,0,0]; _testradius = 20;
 while {_mypos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
@@ -38,6 +37,7 @@ while {_mypos in [[0,0,0], islandcentre]} do // findsafepos not found a good pla
 _mypos set [2,0];
 _hpad = createVehicle ["Land_HelipadCircle_F", _mypos,[],0,"NONE"];
 fobjects pushback _hpad;
+*/
 fobdeployed = true;
 publicVariable "fobdeployed";
 
