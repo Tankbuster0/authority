@@ -75,6 +75,9 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Remove Editing Area and curator owner
 				cur removeCuratorEditingArea 1;
 				cur removeCuratorCameraArea  1;
+				_cobj = curatorEditableObjects cur;
+				{ deleteVehicle _x;} forEach _cobj;
+				
 				[[(position _veh select 0),(position _veh select 1),8],(position _veh),2] call BIS_fnc_setCuratorCamera;
 				unassignCurator cur;
 				
