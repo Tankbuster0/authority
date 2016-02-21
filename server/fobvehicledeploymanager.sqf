@@ -51,7 +51,9 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Make editing area for curator
 				cur addCuratorEditingArea [1,(position _veh),50];
 				cur addCuratorCameraArea [1,(position _veh),50];
-				"Press Zeus Button (Default Y) to open buildmode" remoteExec ["hint", _veh];
+				
+				// Hint press button to get in zeus mode
+				"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", _veh];
 				
 				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
 				sleep 5;
