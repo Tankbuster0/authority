@@ -24,7 +24,7 @@ Using orientation of objects: yes
 	["Land_FireExtinguisher_F",[-4.0647,-4.20898,0.000143051],359.829,1,0,[-0.0561211,0.0889441],"","",true,false],
 	["rhsusf_weapons_crate",[5.74341,-4.37012,1.43051e-006],359.973,1,0.953522,[0.000670926,-0.000637796],"","",true,false],
 	["Land_TTowerSmall_2_F",[0.859375,-12.6907,0],0,1,0,[0,0],"","",true,false]
-] call bis_fnc_ObjectsMapper;
+],0.0] call bis_fnc_ObjectsMapper;
 
 // find a good place nearby for helipad
 
