@@ -6,7 +6,7 @@ _currentprimarytarget = _this select 0;
 roadblockgates =[];
 _mypos = getPosATL _currentprimarytarget;
 _myradius = _currentprimarytarget getvariable "targetradius";
-if ((_currentprimarytarget getvariable "targettype" ) >2) exitWith {roadblockreturndata = [-1,-1,-1,-1,-1]};
+if ((_currentprimarytarget getvariable "targettype" ) >1) exitWith {roadblockreturndata = [-1,-1,-1,-1,-1]};
 _myroadarray1 = [];
 for "_i" from 0 to 355 step 5 do
 	{
