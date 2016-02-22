@@ -8,7 +8,7 @@ class EditorData
 	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=74;
+		nextID=75;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8447.3232,128.94646,25118.014};
-		dir[]={0,-0.70710683,0.70710683};
-		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,0};
+		pos[]={8450,128.88715,25114};
+		dir[]={0,-0.70710695,0.70710671};
+		up[]={0,0.70710665,0.70710689};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -178,24 +178,6 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8450,103.88858,25139.051};
-						angles[]={0.077178404,0.63465405,6.223258};
-					};
-					side="West";
-					class Attributes
-					{
-						rank="SERGEANT";
-						name="alpha_2";
-						isPlayable=1;
-					};
-					id=51;
-					type="rhsusf_army_ucp_squadleader";
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={8459,103.60065,25140.051};
 						angles[]={0.066566855,0.63465405,6.2738476};
 					};
@@ -211,7 +193,7 @@ class Mission
 					id=52;
 					type="rhsusf_army_ucp_squadleader";
 				};
-				class Item2
+				class Item1
 				{
 					dataType="Object";
 					class PositionInfo
@@ -229,7 +211,7 @@ class Mission
 					id=53;
 					type="rhsusf_army_ucp_machinegunnera";
 				};
-				class Item3
+				class Item2
 				{
 					dataType="Object";
 					class PositionInfo
@@ -247,7 +229,7 @@ class Mission
 					id=54;
 					type="rhsusf_army_ucp_grenadier";
 				};
-				class Item4
+				class Item3
 				{
 					dataType="Object";
 					class PositionInfo
@@ -265,7 +247,7 @@ class Mission
 					id=55;
 					type="rhsusf_army_ucp_marksman";
 				};
-				class Item5
+				class Item4
 				{
 					dataType="Object";
 					class PositionInfo
@@ -284,7 +266,7 @@ class Mission
 					id=56;
 					type="rhsusf_army_ucp_autorifleman";
 				};
-				class Item6
+				class Item5
 				{
 					dataType="Object";
 					class PositionInfo
@@ -302,7 +284,7 @@ class Mission
 					id=57;
 					type="rhsusf_army_ucp_medic";
 				};
-				class Item7
+				class Item6
 				{
 					dataType="Object";
 					class PositionInfo
@@ -321,7 +303,7 @@ class Mission
 					id=58;
 					type="rhsusf_army_ocp_javelin";
 				};
-				class Item8
+				class Item7
 				{
 					dataType="Object";
 					class PositionInfo
@@ -338,6 +320,24 @@ class Mission
 					};
 					id=59;
 					type="rhsusf_army_ucp_engineer";
+				};
+				class Item8
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8450,103.88859,25139.051};
+						angles[]={0.077178456,0.63465405,6.2232509};
+					};
+					side="West";
+					class Attributes
+					{
+						rank="SERGEANT";
+						name="alpha_2";
+						isPlayable=1;
+					};
+					id=74;
+					type="rhsusf_army_ucp_teamleader";
 				};
 			};
 			class Attributes
