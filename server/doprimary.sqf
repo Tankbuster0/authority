@@ -32,7 +32,7 @@ cpt_marker setMarkerColor "ColorRed";
 _trg = createTrigger ["EmptyDetector", cpt_position];
 _trg setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 _trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
-_trg setTriggerStatements ["this", "execVM 'server\primarytargetcleared.sqf'", ""];
+_trg setTriggerStatements ["((!(alive pt_radar)) and (roadblockscleared))", "execVM 'server\primarytargetcleared.sqf'", ""];
 // task stuff
 taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
