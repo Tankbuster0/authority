@@ -5,21 +5,21 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=5;
+	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=73;
+		nextID=74;
 	};
 	class MarkerIDProvider
 	{
-		nextID=1;
+		nextID=2;
 	};
 	class Camera
 	{
-		pos[]={8467.8184,132.85437,25095.758};
-		dir[]={-0.056157596,-0.61410767,0.7873143};
-		up[]={-0.043696404,0.78918397,0.61260521};
-		aside[]={0.99754035,-7.2088915e-007,0.071156293};
+		pos[]={8447.3232,128.94646,25118.014};
+		dir[]={0,-0.70710683,0.70710683};
+		up[]={0,0.70710677,0.70710677};
+		aside[]={0.99999994,0,-0};
 	};
 };
 binarizationWanted=0;
@@ -53,6 +53,25 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -84,25 +103,6 @@ class CustomAttributes
 							};
 						};
 					};
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
 				};
 			};
 		};
