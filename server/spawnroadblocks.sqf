@@ -24,7 +24,7 @@ for "_i" from 0 to 355 step 5 do
 				{
 				// 2nd road it at least 10m further outside the town than the 1st one.
 				_myroadarray1 pushback _road1;
-				_i = _i + 5; // skip a bit around the edge to prevent getting another edgepoint nearby
+				_i = _i + 10; // skip a bit around the edge to prevent getting another edgepoint nearby
 				} else
 				{ if (count (roadsConnectedTo _road1) > 2 ) then // try again if there's a second road piece connected to the original one.
 					{
