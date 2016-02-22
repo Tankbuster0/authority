@@ -47,7 +47,8 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				[[[driver _veh], "Deploying FOB"],"tky_super_hint", true,false] call BIS_fnc_MP;
 				while {(_veh doorPhase "extend_shelter_source") < 1} do {sleep 0.1;};
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
-				fobbox setpos fobboxlocator;
+				sleep 0.5;
+				fobbox setpos (position fobboxlocator);
 				// Make editing area for curator
 				cur addCuratorEditingArea [1,(position _veh),50];
 				cur addCuratorCameraArea [1,(position _veh),50];
