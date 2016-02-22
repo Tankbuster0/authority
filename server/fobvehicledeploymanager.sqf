@@ -49,7 +49,9 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
 				sleep 0.5;
 				fobbox setpos (position fobboxlocator);
+				
 				// Make editing area for curator
+				[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
 				cur addCuratorEditingArea [1,(position _veh),50];
 				cur addCuratorCameraArea [1,(position _veh),50];
 
