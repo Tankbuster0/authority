@@ -13,6 +13,9 @@ if (primarytargetcounter > 1) then
 	primarytarget = nextpt;// <-- dont forget nextpt is a logic
 	_handle = [primarytarget] execVM "server\spawnroadblocks.sqf";
 	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
+	}else
+	{
+	roadblockscleared = true;
 	};
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
