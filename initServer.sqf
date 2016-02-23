@@ -30,6 +30,7 @@ diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 // MHQ Curator Build Stuff
 // Objects that can be build by the MHQ curator 
 [cur,"object"] call BIS_fnc_setCuratorAttributes;
+cur setCuratorCoef ["place",-1];
 cur setCuratorCameraAreaCeiling 10;
 cur addEventHandler ["CuratorObjectPlaced", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorObjectPlaced"];}];
 // BIS done goofed, this eventhandler does not give its deleted object making my job a lot god damn more difficult

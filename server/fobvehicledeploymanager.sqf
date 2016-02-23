@@ -81,6 +81,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Remove Editing Area and curator owner
 				cur removeCuratorEditingArea 1;
 				cur removeCuratorCameraArea  1;
+				
 				_cobj = curatorEditableObjects cur;
 				{ deleteVehicle _x;} forEach _cobj;
 				fobbox setpos (getpos fobboxsecretlocation);
