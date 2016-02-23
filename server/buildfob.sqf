@@ -24,7 +24,7 @@ Using orientation of objects: yes
 	["Sign_Sphere25cm_F",[6.32104,-4.87207,0],0,1,0,[0,0],"fobboxlocator","",true,false],
 	["Land_TTowerSmall_2_F",[0.859131,-12.6907,0],0,1,0,[0,0],"","",true,false]
 ],0.0] call bis_fnc_ObjectsMapper;
-fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag_200x200.paa";
+fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag.paa";
 
 fobdeployed = true;
 publicVariable "fobdeployed";
