@@ -5,7 +5,7 @@
 params [
 ["_cur", ""],
 ["_obj", ""]];
-
+hint "Placed";
 if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 
 	// Remove Helipad out of list
