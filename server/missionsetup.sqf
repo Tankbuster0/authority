@@ -18,9 +18,14 @@ ammobox setpos _newdrypos;
 sleep 1;
 for "_q" from 1 to 3 do
 	{
+	sleep 0.5
 	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 	_mytruck = createVehicle ["rhsusf_m998_w_2dr", _mypos,[],0,"NONE"];
+	sleep 0.5;
+	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
+	_mymortar = createVehicle ["RHS_M252_D", _mypos,[],0, "NONE"];
 	};
+
 nextpt = _airfield;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 nextpt
