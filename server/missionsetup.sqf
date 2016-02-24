@@ -18,7 +18,7 @@ ammobox setpos _newdrypos;
 sleep 1;
 for "_q" from 1 to 3 do
 	{
-	sleep 0.5
+	sleep 0.5;
 	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 	_mytruck = createVehicle ["rhsusf_m998_w_2dr", _mypos,[],0,"NONE"];
 	sleep 0.5;
