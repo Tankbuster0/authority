@@ -5,7 +5,7 @@
 params [
 ["_cur", ""],
 ["_obj", ""]];
-hint "Placed";
+
 if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 
 	// Remove Helipad out of list
@@ -53,3 +53,23 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 	FOBHelipad = _obj;
 	
 };
+/*
+switch (typeOf _obj) do {
+				case "RHS_Stinger_AA_pod_WD";
+				case "RHS_M252_WD";
+				case "RHS_M2StaticMG_MiniTripod_WD";
+				case "RHS_M2StaticMG_WD": {
+				
+				alpha_1 addEventHandler ["WeaponDisassembled", {
+					if (cursorTarget == MGTEST) then 
+					{
+					KWAK = _this select 1;
+					deleteVehicle (_this select 1);
+					deleteVehicle (_this select 2);
+					};
+				}];
+				
+				};
+				default {[false,0]};
+			};
+/*
