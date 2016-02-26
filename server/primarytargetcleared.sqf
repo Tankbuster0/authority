@@ -10,7 +10,7 @@ deleteVehicle cpt_flag;// delete the globally named (but only created on server)
 sleep 0.5;
 //find the player nearest to the new blue flag, and call the airdrop on him. If this is target 1, this must be the fob vehicle
 _nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750];
-if ((count _nearestplayers) <1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
+if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
 
 if (primarytargetcounter isEqualTo 1) then {_droptype = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"} else {_droptype = (selectRandom prizes)};//else choose prize vehicle
 
