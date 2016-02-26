@@ -33,7 +33,7 @@ player setpos ([(getmarkerpos "respawn_west"), (3+ (random 3)), random 360] call
 		_nul = execVM "client\playerrevived.sqf";
 	};
 }] call BIS_fnc_addScriptedEventHandler;
-player addEventHandler ["Respawn", {
+/*player addEventHandler ["Respawn", {
 deleteVehicle (_this select 1);
-}];
+}];*/
 player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// think this one is NOT respawn persistent. might need to readd it after respawn.
