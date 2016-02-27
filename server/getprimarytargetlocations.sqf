@@ -88,7 +88,7 @@ if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	};
 missionsetupprogress = (_foreachindex / _possibleprimariescount);
 publicVariable "missionsetupprogress";
-_towndata = [_x,text _x,_bestpos,_rrad,1,1,(count (_bestpos nearObjects ["Ruins", _rrad]))];
+_towndata = [text _x,_bestpos,_rrad,1,1,(count (_bestpos nearObjects ["Ruins", _rrad]))];
 targetdata pushback _towndata;
 } foreach _possibleprimaries;
 // find all the military bases by finding all the big towers. As some of the bases have more than tower in them,
@@ -126,7 +126,7 @@ if (!(surfaceIsWater _bestpos) ) then
 	_mkr2 setMarkerBrush "Horizontal";
 	*/
 	};
-	_basedata = [_x, "Military Base", getpos _x, 250, 1, 3, -1];
+	_basedata = ["Military Base", getpos _x, 250, 1, 3, -1];
 	targetdata pushback _basedata;
 } foreach _possiblebases;
 diag_log format ["possible bases count %1", count _possiblebases];
@@ -152,7 +152,7 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_mkr2 setMarkerSize [300,300];
 			_mkr2 setMarkerBrush "DiagGrid";
 			*/
-			_airfielddata = [_x,text _x, getpos _x,300,1,2,-1];
+			_airfielddata = [text _x, getpos _x,300,1,2,-1];
 			targetdata pushBack _airfielddata;
 			};
 		} foreach _airfieldlocs;
