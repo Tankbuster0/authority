@@ -32,10 +32,16 @@ cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
 cpt_marker setMarkerColor "ColorRed";
 // make trigger that senses when town is empty of enemies
-_trg = createTrigger ["EmptyDetector", cpt_position];
-_trg setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
-_trg setTriggerActivation  ["EAST", "NOT PRESENT", false];
-_trg setTriggerStatements ["((!(alive pt_radar)) and (roadblockscleared))", "execVM 'server\primarytargetcleared.sqf'", ""];
+trg2 = createTrigger ["EmptyDetector", cpt_position];
+trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
+trg2 setTriggerActivation  ["EAST", "NOT PRESENT", false];
+trg2 setTriggerStatements ["this", "diag_log '***all east dead'", ""];
+
+trg3 = createTrigger ["EmptyDetector", cpt_position];
+trg3 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
+trg3 setTriggerActivation  ["EAST", "NOT PRESENT", false];
+trg3 setTriggerStatements ["((!(alive pt_radar)) and (roadblockscleared) and (triggerActivated trg2))", "execVM 'server\primarytargetcleared.sqf'", ""];
+
 // task stuff
 taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
