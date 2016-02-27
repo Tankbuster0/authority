@@ -15,7 +15,8 @@ tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;
 	_text = [_this ,1] call BIS_fnc_param;
 	{if (_x == player) then {hint _text; [playerSide, 'HQ'] sideChat _text;};}foreach _parray;"; call BIS_fnc_MP;
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+execVM "functions.sqf";
+
 
 // MHQ Curator Build Stuff
 
@@ -23,10 +24,10 @@ diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 FOBHelipad = objNull;
 
 //Hack around eventhandler crud
-LastSelectedObjects = objNull; 
+LastSelectedObjects = objNull;
 
 // MHQ Curator Build Stuff
-// Objects that can be build by the MHQ curator 
+// Objects that can be build by the MHQ curator
 [cur,"object"] call BIS_fnc_setCuratorAttributes;
 cur setCuratorCoef ["place",-1];
 cur setCuratorCameraAreaCeiling 10;
@@ -34,3 +35,7 @@ cur addEventHandler ["CuratorObjectPlaced", {[_this select 0, _this select 1] re
 // BIS done goofed, this eventhandler does not give its deleted object making my job a lot god damn more difficult
 cur addEventHandler ["CuratorObjectDeleted", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorObjectRemoved"];}];
 cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorSelectionChanged"];}];
+
+
+
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
