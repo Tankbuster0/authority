@@ -15,6 +15,7 @@ _newdrypos = [_1pos,800,1300, 5, 0, 10, 1] call bis_fnc_findSafePos;
 _newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
 ammobox setpos _newdrypos;
+
 sleep 1;
 for "_q" from 1 to 3 do
 	{
@@ -25,6 +26,9 @@ for "_q" from 1 to 3 do
 	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 	_mymortar = createVehicle ["RHS_M252_D", _mypos,[],0, "NONE"];
 	};
+_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
+forward setVehiclePosition [_mypos, [],0, "NONE"];
+forwardrespawnpositionid = [west,forward] call BIS_fnc_addrespawnposition;
 
 nextpt = _airfield;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
