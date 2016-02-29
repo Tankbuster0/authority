@@ -14,17 +14,19 @@ mapsize  = getnumber (configfile/"CfgWorlds"/worldName/"mapSize");
 mapcentre = [mapsize / 2, mapsize /2, 0];// <-- is a posatl
 sleep 0.5;
 primarytargetcounter = 1;
+foundairfields = [];
 if (worldName in ["Altis", "altis"]) then // remove the ! to make this if statement work as intended. wip
 	{
+		
+		_airportlogicgroup = createGroup logiccenter;
+		_logicgroup = createGroup logiccenter;
+	
 		altisdata = (loadfile "targetdata\altis.txt") splitstring "\";
 		TESTOUTPUT = [];
 		//-------------------------
 		// BEWARE THE STRINGPARSER	
 		//-------------------------
 		// I'M SO SORRY TANKY
-		
-		// Bookkeeping vars
-		_arrSize = count altisdata;
 		
 		{
 			
@@ -37,7 +39,7 @@ if (worldName in ["Altis", "altis"]) then // remove the ! to make this if statem
 			// 3 is at status
 			// 4 is at type
 			// 5 is at ruin count
-			_arrayState = 1;
+			_arrayState = 0;
 			
 			// Variables for the gameLogic
 			_targetName= "";
@@ -69,9 +71,16 @@ if (worldName in ["Altis", "altis"]) then // remove the ! to make this if statem
 			
 			{
 				// Name shite ------------------------------------------------------
-				if (_isName && (_x != 34)) then {_targetName = _targetName + (toString [_x]);};
-				if (_x == 34) then {_isName = !_isName;}; //34 is '"'
-				
+				if (_arrayState == 0) then {
+					if (_isName && (_x != 34)) then {_targetName = _targetName + (toString [_x]);};
+					if ((_x == 34)) then {
+						if ((!_isName)) then {
+							_isName = true;
+						} else {
+							_arrayState = 1;
+						}; //34 is '"'
+					};
+				};
 				// Location Shite --------------------------------------------------
 				if (_arrayState == 1) then {
 					if ((_x == 93) && (_isLocation)) then 
@@ -108,6 +117,7 @@ if (worldName in ["Altis", "altis"]) then // remove the ! to make this if statem
 					
 					if (_x == 91) then {_isLocation = true;}; //91 is '['
 				};
+				
 				// Radius Shite --------------------------------------------------
 				if (_arrayState == 2) then {
 					if (_tnF) then {
@@ -166,16 +176,29 @@ if (worldName in ["Altis", "altis"]) then // remove the ! to make this if statem
 				
 			} foreach _currentN;
 
-			_tempArr = [_targetName, _targetLocation, _targetRadius, _targetStatus, _targetType, _targetRuinCount];
-			TESTOUTPUT pushBack _tempArr;
+			_logic = _logicgroup createUnit ["Logic", _targetLocation, [], 0, "NONE"];
+			if (_targetType == 2) then {
+				_logic = _airportlogicgroup createUnit ["Logic", _targetLocation, [], 0, "NONE"];
+			};
+			_logic setVariable ["targetname", _targetName];
+			_logic setVariable ["targetradius", _targetRadius];
+			_logic setvariable ["targetstatus", _targetStatus];
+			_logic setVariable ["targettype", _targetType];
+			_logic setVariable ["targetruincount", _targetRuinCount];
+			
+			if (_targetType == 2) then {
+				foundairfields pushback _logic;
+			};
+			
+			//TESTOUTPUT pushBack _tempArr;
+			
+			missionsetupprogress = 1;
+			publicVariable "missionsetupprogress";
 			
 		} foreach altisdata;
 		//-------------------------
 		// REJOICE THE STRINGPARSER
 		//-------------------------
-		
-		_handle1 = [] execVM "server\getprimarytargetlocations.sqf";
-		waitUntil {scriptDone _handle1};
 	
 	}else
 	{
