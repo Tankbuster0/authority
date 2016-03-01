@@ -18,6 +18,7 @@ endLoadingScreen;
 
 player setpos ([(getmarkerpos "respawn_west"), (3+ (random 3)), random 360] call bis_fnc_relPos);
 //larrows EH to better handle revive and respawn.
+/*
 [ missionNamespace, "reviveRevived", {
 	_nul = _this spawn
 		{
@@ -52,6 +53,50 @@ player addEventHandler [ "Respawn",
 		missionNamespace setVariable [ "menuRespawn", false ];
 		};
 	}];
+*/
 
+#include "\a3\functions_f_mp_mark\Revive\defines.hpp"
+
+systemChat "Saving initial loadout";
+//Save initial loadout
+[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
+
+
+//Save loadout when ever we exit an arsenal
+[ missionNamespace, "arsenalClosed", {
+	systemChat "Arsenal closed";
+	[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
+}] call BIS_fnc_addScriptedEventHandler;
+
+
+player addEventHandler [ "Respawn", {
+
+	systemChat "Respawning";
+	systemChat format[ "state %1", GET_STATE_STR(GET_STATE( player )) ];
+
+	if ( GET_STATE( player ) == STATE_RESPAWNED ) then {
+		systemChat "Died or Respawned via menu";
+		_templates = [];
+		{
+			{
+				_nul = _templates pushBackUnique _x;
+			}forEach ( getMissionConfigValue [ _x, [] ] );
+		}forEach [ "respawntemplates", format[ "respawntemplates%1", str playerSide ] ];
+
+		if ( { "menuInventory" == _x }count _templates > 0 ) then {
+			systemChat "Respawning - saving menu inventory";
+			[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
+		}else{
+			h = [] spawn {
+				sleep playerRespawnTime;
+				systemChat "Respawning - loading last saved";
+				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
+			};
+		};
+
+	}else{
+		systemChat "Incapacitated";
+	};
+}];
 
 player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// think this one is NOT respawn persistent. might need to readd it after respawn.
