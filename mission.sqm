@@ -21,9 +21,9 @@ class EditorData
 	class Camera
 	{
 		pos[]={8455.9736,158.95435,25091.17};
-		dir[]={0.01816342,-0.80317271,0.59547949};
-		up[]={0.024487182,0.5957284,0.80281287};
-		aside[]={0.99954057,-4.0286977e-008,-0.030488381};
+		dir[]={0.48111293,-0.75106919,0.45218134};
+		up[]={0.54729325,0.66021055,0.51438272};
+		aside[]={0.68487328,1.4134857e-006,-0.72869253};
 	};
 };
 binarizationWanted=0;
@@ -144,7 +144,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
-		overviewText="build 00284";
+		overviewText="build 00290";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
