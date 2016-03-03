@@ -13,7 +13,7 @@ _target_pos = [_this, 1] call BIS_fnc_param;
 _rad = [_this, 2] call BIS_fnc_param;
 _chuto = [_this, 3] call BIS_fnc_param;
 _is_ammo = [_this, 4] call BIS_fnc_param;
-diag_log format ["***mando chute gets man %1, targetpos %2, rad %3, chuto %5, isammo %6", _man, _target_pos, _rad, _chuto, _is_ammo];
+diag_log format ["***mando chute gets man %1, targetpos %2, rad %3, chuto %4, isammo %5", _man, _target_pos, _rad, _chuto, _is_ammo];
 if (count _target_pos isEqualTo 2) then {_target_pos set [count _target_pos, 0]};
 _ang = random 360;
 _target_pos = if (_rad isEqualTo 0) then {
@@ -116,6 +116,7 @@ _pos_conex = [position _cone select 0,position _cone select 1,position _cone sel
 sleep 1;
 if (_is_ammo) then
 	{
+	diag_log "*** airbox on the ground!";
 	_airbox2 = createVehicle ["B_Supplycrate_F",_target_pos,[],0,"NONE"];// tanky code to create a public airdropped box
 	_airbox2 addEventHandler ["killed",{deleteVehicle (_this select 0)}];
 	_airbox2 setPos [_pos_man select 0, _pos_man select 1, 0];
@@ -125,6 +126,7 @@ if (_is_ammo) then
 	{
 	if (getposATL _man select 2 <= -1) then
 		{
+		diag_log "*** man on the ground";
 		_pos_man = getposATL _man;
 		_helper1 = "Land_HelipadEmpty_F" createVehicleLocal [_pos_man select 0, _pos_man select 1, 0];
 		_helper1 setPos [_pos_man select 0, _pos_man select 1, 0];

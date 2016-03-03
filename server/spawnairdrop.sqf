@@ -67,7 +67,7 @@ _cargo attachto [_para, [0,0,0]];
 _cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 _cargo addEventHandler ["GetOut", {unassignCurator cur;}];
 
-[_cargo, _droppos, 0, "blah", _para, false ] spawn tky_fnc_mando_chute;
+[_cargo, _droppos, 0, _para, false ] spawn tky_fnc_mando_chute;
 waitUntil {isTouchingGround _cargo};
 detach _cargo;
 detach _para;
