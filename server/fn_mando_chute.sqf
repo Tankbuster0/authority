@@ -40,9 +40,9 @@ _cone setDir _dir;
 _cone setPosASL [_posc select 0, _posc select 1, (_posc select 2) - 2];
 _posc = getPosASL _cone;
 _detached = false;
-
-diag_log format ["*** before main airborne loop, alivechuto %1, chuto altitude %2 ", alive _chuto, ((getpos _chuto) select 2)];
-while {alive _chuto && {(getPos _chuto select 2) > 5}} do
+sleep 1;
+diag_log format ["*** before main airborne loop, alivechuto %1, chuto altitude %2, man altitude %3", alive _chuto, ((getpos _chuto) select 2), ((getpos _man) select 2)];
+while {alive _chuto && {(getPosATLVisual _chuto select 2) > 5}} do
 {
 	_deltatime = (time - _timeold) max 0.001;
 	_timeold = time;
