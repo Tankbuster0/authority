@@ -18,5 +18,8 @@ _droppoint = [_respawns2, _oldv] call BIS_fnc_nearestPosition; //find the one ne
 if ((typeName _droppoint) != "ARRAY") then {_droppoint = (getpos _droppoint)};
 diag_log format ["**** forwardrespawn is calling a drop at %1", _droppoint];
 sleep 1;
-_nul = [_droppoint, "RHS_C130J", "rhsusf_m113_usarmy_medical" ] execVM "server\spawnairdrop.sqf";
+_nul = [_droppoint, "RHS_C130J", forwardpointvehicle ] execVM "server\spawnairdrop.sqf";
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+
+//1921 20:56:49 "***mando chute gets man 9943eb00# 1781138: m1083a1p2_shelter_d.p3d, targetpos [9366.56,22486.5,0], rad 0, _bla blah, chuto 87ad10c0# 1781135: parachute_02_f.p3d, isammo false"
+//1224 20:53:47 "***mando chute gets man 99464100# 1780718: m113a3_wd_medical.p3d, targetpos [9384.21,22491.3,0], rad 0, _bla blah, chuto 99473040# 1780715: parachute_02_f.p3d, isammo false"
