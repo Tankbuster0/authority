@@ -1,12 +1,13 @@
 _myscript = "spawnairdrop.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_requestedpos","_airtype","_droptype","_droppos","_testradius"];
+private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground"];
 params [
-["_requestedpos", (getpos ammobox)], // location where the cargo should land
+["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
 ["_droptype", "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"]]; // classname of delivered object
 // find a good place to land the cargo
 _droppos = [0,0,0]; _testradius = 2;
+if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_droppos = [_requestedpos, 0,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
@@ -21,7 +22,7 @@ _mkr setMarkerType "hd_dot";
 // create the drop veh;
 
 _dropgroup = createGroup west;
-_startpos = [_droppos, (5000 + random 5000), 0] call bis_fnc_relPos;
+_startpos = [_droppos, (5000 + random 5), 0] call bis_fnc_relPos;
 _startpos set [2, 500];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
@@ -54,8 +55,15 @@ dropveh flyinheight 100;
 waitUntil {(dropveh distance2D _droppos) < 100};
 _para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "NONE"];
-_cargo attachto [_para, [0,0,-2]];
+if (_droptype == forwardpointvehicle) then
+	{
+	forward setpos (_para modelToWorld [0,0,-10]);
+	_cargo = forward;
+	} else
+	{
+	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "NONE"];
+	};
+_cargo attachto [_para, [0,0,0]];
 _cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 _cargo addEventHandler ["GetOut", {unassignCurator cur;}];
 
