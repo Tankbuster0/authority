@@ -49,7 +49,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				_nul = [position _veh, direction _veh] execVM "server\buildfob.sqf";
 				sleep 0.5;
 				fobbox setpos (position fobboxlocator);
-				
+
 				// Make editing area for curator
 				[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
 				cur addCuratorEditingArea [1,(position _veh),50];
@@ -58,7 +58,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Hint press button to get in zeus mode
 				"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", _veh];
 
-				fobrespawn = [missionNamespace,_veh] call BIS_fnc_addRespawnPosition;
+				fobrespawn = [west,_veh] call BIS_fnc_addRespawnPosition;
 				sleep 5;
 				};
 			};
@@ -81,7 +81,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Remove Editing Area and curator owner
 				cur removeCuratorEditingArea 1;
 				cur removeCuratorCameraArea  1;
-				
+
 				_cobj = curatorEditableObjects cur;
 				{ deleteVehicle _x;} forEach _cobj;
 				fobbox setpos (getpos fobboxsecretlocation);
