@@ -49,8 +49,6 @@ waituntil {sleep 0.5; (dropveh distance2D _droppos) < 800 };
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 dropveh flyinheight 100;
-
-
 //dropveh animateDoor something etc blah blah;
 waitUntil {(dropveh distance2D _droppos) < 100};
 _para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
@@ -67,8 +65,9 @@ if (_droptype == fobvehicle) then //it's a fob vehicle
 	{
 	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
+	_cargo addEventHandler ["killed", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
-	fobvehiclerespawn synchronizeObjectsAdd [fobveh];
+	assetrespawn synchronizeObjectsAdd [fobveh];
 	// ^^^^ need to sync in script as the fob vehicle isn't created, or synced with the respawn module in the sqm.
 	};
 _cargo attachto [_para, [0,0,0]];
