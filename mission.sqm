@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=435;
+		nextID=437;
 	};
 	class MarkerIDProvider
 	{
@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=433;
+		nextID=487;
 	};
 	class Camera
 	{
-		pos[]={8455.9736,158.95435,25091.17};
+		pos[]={8460.5225,136.80782,25100.758};
 		dir[]={0.054390769,-0.79303193,0.60678828};
 		up[]={0.070801415,0.60916466,0.78987402};
 		aside[]={0.99603224,1.3716435e-006,-0.089281254};
@@ -35,7 +35,7 @@ addons[]=
 	"A3_Misc_F_Helpers",
 	"rhsusf_c_weapons",
 	"A3_Modules_F_Multiplayer",
-	"rhsusf_c_m113"
+	"rhsusf_c_rg33"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -49,7 +49,7 @@ class ScenarioData
 		maxPlayers=18;
 	};
 	corpseManagerMode="AddNoneButRespawned";
-	corpseLimit=10;
+	corpseLimit=5;
 	corpseRemovalMinTime=1319.1321;
 };
 class CustomAttributes
@@ -721,7 +721,7 @@ class Mission
 			{
 				skill=0.60000002;
 				ammo=0;
-				init="[missionNamespace, ammobox] call BIS_fnc_addRespawnPosition";
+				init="[west, ammobox] call BIS_fnc_addRespawnPosition";
 				name="ammobox";
 			};
 			id=48;
@@ -968,7 +968,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="1";
+							value="0";
 						};
 					};
 				};
@@ -1034,46 +1034,6 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8457.542,108.04816,25118.18};
-				angles[]={0.0877726,0,0.0066671576};
-			};
-			side="Empty";
-			class Attributes
-			{
-				name="forward";
-				textures="standard";
-			};
-			id=430;
-			type="rhsusf_m113_usarmy_medical";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[],[]],[[""rhs_mag_m18_red"",""rhs_mag_m18_purple"",""rhs_mag_m18_yellow"",""SmokeShellBlue""],[6,6,6,6]],[[""FirstAidKit"",""Medikit"",""rhs_6b23_medic"",""rhsusf_spc_corpsman""],[20,2,4,4]],[[],[]]],false]";
-						};
-					};
-				};
-				nAttributes=1;
-			};
-		};
-		class Item18
-		{
-			dataType="Object";
-			class PositionInfo
-			{
 				position[]={8444.3965,105.22714,25142.365};
 				angles[]={0.098349303,0,5.9554472};
 			};
@@ -1082,7 +1042,6 @@ class Mission
 			{
 				skill=0.60000002;
 				ammo=0;
-				init="[missionNamespace, ammobox] call BIS_fnc_addRespawnPosition";
 				name="fobbox";
 			};
 			id=434;
@@ -1130,6 +1089,46 @@ class Mission
 				nAttributes=2;
 			};
 		};
+		class Item18
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8457.5439,107.76991,25118.154};
+				angles[]={0.0877726,0,0.0066671576};
+			};
+			side="Empty";
+			class Attributes
+			{
+				name="forward";
+				textures="standard";
+			};
+			id=436;
+			type="rhsusf_rg33_wd";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[],[]],[[""rhs_mag_m18_red"",""rhs_mag_m18_purple"",""rhs_mag_m18_yellow"",""SmokeShellBlue""],[6,6,6,6]],[[""FirstAidKit"",""Medikit""],[20,2]],[[],[]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
 	};
 	class Connections
 	{
@@ -1143,7 +1142,7 @@ class Mission
 			class Item0
 			{
 				linkID=0;
-				item0=430;
+				item0=436;
 				item1=86;
 				class CustomData
 				{
