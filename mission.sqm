@@ -1175,7 +1175,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[_this select 0, _this select 1]  execVM ""server\fobvehiclerespawn.sqf""";
+							value="[_this select 0, _this select 1]  execVM ""server\fobrespawn.sqf""";
 						};
 					};
 				};
