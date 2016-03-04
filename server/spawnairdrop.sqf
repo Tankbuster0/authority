@@ -68,6 +68,8 @@ if (_droptype == fobvehicle) then //it's a fob vehicle
 	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
 	fobveh = _cargo;
+	fobvehiclerespawn synchronizeObjectsAdd [fobveh];
+	// ^^^^ need to sync in script as the fob vehicle isn't created, or synced with the respawn module in the sqm.
 	};
 _cargo attachto [_para, [0,0,0]];
 
