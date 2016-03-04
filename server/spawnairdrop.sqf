@@ -6,11 +6,11 @@ params [
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
 ["_droptype", "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"]]; // classname of delivered object
 // find a good place to land the cargo
-_droppos = [0,0,0]; _testradius = 2;
+_droppos = [0,0,0]; _testradius = 4;
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
-		_droppos = [_requestedpos, 0,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
+		_droppos = [_requestedpos, 3,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
 		diag_log format ["*** spawnairdrop suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
 		_testradius = _testradius * 2;
 	};
