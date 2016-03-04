@@ -16,6 +16,7 @@ _droppoint = [_respawns2, _oldv] call BIS_fnc_nearestPosition; //find the one ne
 _myid = _respawns find _oldv;
  if (_myid > -1) then {[west, _myid] call bis_fnc_removeRespawnPosition;};
 if ((typeName _droppoint) != "ARRAY") then {_droppoint = (getpos _droppoint)};
+
 diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
 sleep 1;
 switch (_oldv) do
