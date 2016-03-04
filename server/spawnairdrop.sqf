@@ -53,8 +53,7 @@ dropveh flyinheight 100;
 
 //dropveh animateDoor something etc blah blah;
 waitUntil {(dropveh distance2D _droppos) < 100};
-//_para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
-_para = createVehicle ["NonSteerable_Parachute_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
+_para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 if (_droptype == forwardpointvehicle) then
 	{
