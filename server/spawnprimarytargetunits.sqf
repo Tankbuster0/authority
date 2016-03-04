@@ -150,6 +150,6 @@ for "_count" from 2 to _lc do
 
 };
 
-
+[_grpname, true, true] call tky_fnc_tc_setskill;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 
