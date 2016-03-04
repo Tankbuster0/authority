@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "forwardrespawned.sqf";
+_myscript = "forwardrespawn.sqf";
 // execvmd by the vehiclerespawn module
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul"];
