@@ -60,6 +60,7 @@ class cfgFunctions
 			class mando_chute {};
 			class objectsMapper {};
 			class setfuel {};
+			class tc_setskill {};
 		};
 	};
 };
