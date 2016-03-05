@@ -7,7 +7,7 @@ _highestpossofar = cpt_position;
 for "_y" from 0 to (15 + (floor random 15)) do
 	{
 	_cpos =  [cpt_position, (cpt_radius + (cpt_radius /3)), 0, 100] call bis_fnc_findOverwatch;
-	_highobject = createVehicleLocal ["Sign_Arrow_F", _cpos, [],0,"NONE"];
+	_highobject = "Sign_Arrow_F" createVehicleLocal _cpos;
 	_dif = (((getposASL _highobject) select 2) - ((getposASL cpt_flag) select 2));
 	if (_dif > _max) then
 		{
