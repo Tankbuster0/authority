@@ -42,6 +42,7 @@ taskManagement_drawDist = 2000;
 enableTeamSwitch = 0;
 class cfgFunctions
 {
+	#include "CHVD\cfgFunctions.hpp"
 	class tky
 	{
 		class auth_client
