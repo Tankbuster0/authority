@@ -5,6 +5,7 @@ params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
 ["_droptype", "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"]]; // classname of delivered object
+_mytime = serverTime;
 // find a good place to land the cargo
 _droppos = [0,0,0]; _testradius = 4;
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
@@ -45,7 +46,16 @@ _dwp2 setWaypointBehaviour "CARELESS";
 _dwp2 setWaypointSpeed "NORMAL";
 _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;";
 
-waituntil {sleep 0.5; (dropveh distance2D _droppos) < 800 };
+waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
+if (serverTime > (_mytime + 180))) exitWith
+	{
+	diag_log "spawnairdrop timed out. ";
+	deleteVehicleCrew dropveh;
+	deleteVehicle dropveh;
+	deleteWaypoint [_dropgroup, all];
+	sleep 5;
+	nul = [_droppos, _airtype, _droptype] execVM "server\spawnairdrop.sqf";
+	};
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 dropveh flyinheight 100;
@@ -67,7 +77,7 @@ if (_droptype == fobvehicle) then //it's a fob vehicle
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
 	_cargo addEventHandler ["killed", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
-	assetrespawn synchronizeObjectsAdd [fobveh];
+	//assetrespawn synchronizeObjectsAdd [fobveh];
 	// ^^^^ need to sync in script as the fob vehicle isn't created, or synced with the respawn module in the sqm.
 	};
 _cargo attachto [_para, [0,0,0]];
