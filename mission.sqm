@@ -144,7 +144,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
-		overviewText="build 00290";
+		overviewText="build 00312";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
