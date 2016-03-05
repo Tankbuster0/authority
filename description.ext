@@ -40,6 +40,7 @@ taskManagement_propagate = 1;
 taskManagement_drawDist = 2000;
 
 enableTeamSwitch = 0;
+#include "CHVD\dialog.hpp"
 class cfgFunctions
 {
 	#include "CHVD\cfgFunctions.hpp"
