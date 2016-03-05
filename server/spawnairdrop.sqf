@@ -4,7 +4,9 @@ private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
-["_droptype", "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"]]; // classname of delivered object
+["_droptype", "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"],// classname of deliverd objects
+["_spawnpoint", [0,0,0]]
+]; // classname of delivered object
 _mytime = serverTime;
 // find a good place to land the cargo
 _droppos = [0,0,0]; _testradius = 4;
@@ -23,7 +25,13 @@ _mkr setMarkerType "hd_dot";
 // create the drop veh;
 
 _dropgroup = createGroup west;
-_startpos = [_droppos, (5000 + random 5), 0] call bis_fnc_relPos;
+if (_spawnpoint isEqualTo [0,0,0]) then
+	{
+	_startpos = [_droppos, (5000 + random 5), 0] call bis_fnc_relPos;
+	} else
+	{
+	_startpos = _spawnpoint;
+	};
 _startpos set [2, 500];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
@@ -47,14 +55,15 @@ _dwp2 setWaypointSpeed "NORMAL";
 _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;";
 
 waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
-if (serverTime > (_mytime + 180))) exitWith
+if (serverTime > (_mytime + 180)) exitWith
 	{
 	diag_log "spawnairdrop timed out. ";
 	deleteVehicleCrew dropveh;
 	deleteVehicle dropveh;
 	deleteWaypoint [_dropgroup, all];
 	sleep 5;
-	nul = [_droppos, _airtype, _droptype] execVM "server\spawnairdrop.sqf";
+	nul = [_droppos, _airtype, _droptype, ([_droppos, 5000, 180] call bis_fnc_relPos)] execVM "server\spawnairdrop.sqf";
+	//^^^ if after 3 mins, the herc hasn't dropped, delete it and go again having him approach from the opposite direction
 	};
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
