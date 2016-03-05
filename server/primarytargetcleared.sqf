@@ -26,6 +26,7 @@ _nul = [_pos, "RHS_C130J", _droptype ] execVM "server\spawnairdrop.sqf";
 {deletevehicle _x} foreach mancleanup;
 {deleteGroup _x} foreach allGroups;
 [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
+sleep 180;
 primarytargetcounter = primarytargetcounter + 1;
 sleep 10;
 _nul = execVM "server\doprimary.sqf";
