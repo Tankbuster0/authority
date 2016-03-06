@@ -7,8 +7,7 @@ if ((_damage > 0.9) and (time > (_unit getVariable "last_inventory_saved"))) the
 	{
 		_data1 = [player, [profileNamespace, "reviveloadout"]] call bis_fnc_saveInventory;
 		_unit setVariable ["last_inventory_saved", time +2];
-		diag_log _data1;
-		diag_log "*** loadout saved to profile by fn_hd ";
+
 	};
 
 
