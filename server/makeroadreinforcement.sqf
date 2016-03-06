@@ -48,5 +48,5 @@ _wp1 setWaypointFormation "COLUMN";
 _wp2 = _rrgroup addWaypoint [_cpt, 40];
 _wp2 setWaypointType "UNLOAD";
 _wp2 setWaypointBehaviour "SAFE";
-diag_log format ["*** mrr makes a truck at %1", _bcsp_name];
+//diag_log format ["*** mrr makes a truck at %1", _bcsp_name];
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
