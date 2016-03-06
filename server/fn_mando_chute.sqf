@@ -126,7 +126,7 @@ if (_is_ammo) then
 	{
 	if (getposATL _man select 2 <= -1) then
 		{
-		,,diag_log "*** man on the ground";
+		//diag_log "*** man on the ground";
 		_pos_man = getposATL _man;
 		_helper1 = "Land_HelipadEmpty_F" createVehicleLocal [_pos_man select 0, _pos_man select 1, 0];
 		_helper1 setPos [_pos_man select 0, _pos_man select 1, 0];
