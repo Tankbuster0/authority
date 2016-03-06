@@ -8,7 +8,7 @@ private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rra
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
 _possibleprimaries = nearestLocations [_mapcentre, ["NameCityCapital", "NameCity", "NameVillage"], _mapsize /2];
-diag_log format ["***Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
+//diag_log format ["***Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
 _possibleprimariescount = count _possibleprimaries;
 _betterhousecount = []; _betterpos = [];
 // ======functions
@@ -129,7 +129,7 @@ if (!(surfaceIsWater _bestpos) ) then
 	_basedata = ["Military Base", getpos _x, 250, 1, 3, -1];
 	targetdata pushback _basedata;
 } foreach _possiblebases;
-diag_log format ["possible bases count %1", count _possiblebases];
+//diag_log format ["possible bases count %1", count _possiblebases];
 //find airfields.
 foundairfields = [];
 _airportlogicgroup = createGroup logiccenter;

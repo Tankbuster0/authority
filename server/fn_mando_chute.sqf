@@ -41,7 +41,7 @@ _cone setPosASL [_posc select 0, _posc select 1, (_posc select 2) - 2];
 _posc = getPosASL _cone;
 _detached = false;
 sleep 1;
-diag_log format ["*** before main airborne loop, alivechuto %1, chuto altitude %2, man altitude %3", alive _chuto, ((getpos _chuto) select 2), ((getpos _man) select 2)];
+//diag_log format ["*** before main airborne loop, alivechuto %1, chuto altitude %2, man altitude %3", alive _chuto, ((getpos _chuto) select 2), ((getpos _man) select 2)];
 while {alive _chuto && {(getPosATLVisual _chuto select 2) > 5}} do
 {
 	_deltatime = (time - _timeold) max 0.001;
@@ -108,7 +108,7 @@ while {alive _chuto && {(getPosATLVisual _chuto select 2) > 5}} do
 
 	sleep 0.01;
 };
-diag_log "***mc exited main airborne loop";
+//diag_log "***mc exited main airborne loop";
 //deleteVehicle _man; rdx CHAMPY
 _pos_conex = [position _cone select 0,position _cone select 1,position _cone select 2];
 //deleteVehicle _cone;
@@ -126,7 +126,7 @@ if (_is_ammo) then
 	{
 	if (getposATL _man select 2 <= -1) then
 		{
-		diag_log "*** man on the ground";
+		,,diag_log "*** man on the ground";
 		_pos_man = getposATL _man;
 		_helper1 = "Land_HelipadEmpty_F" createVehicleLocal [_pos_man select 0, _pos_man select 1, 0];
 		_helper1 setPos [_pos_man select 0, _pos_man select 1, 0];

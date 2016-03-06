@@ -14,10 +14,10 @@ if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedp
 while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_droppos = [_requestedpos, 3,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
-		diag_log format ["*** spawnairdrop suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
+		//diag_log format ["*** spawnairdrop suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
 		_testradius = _testradius * 2;
 	};
-diag_log format ["*** spawnairdrop decides on %1", _droppos];
+//diag_log format ["*** spawnairdrop decides on %1", _droppos];
 _mkr = createMarker ["dropmkr", (_droppos) ];
 _mkr setMarkerShape "ICON";
 _mkr setMarkerType "hd_dot";
