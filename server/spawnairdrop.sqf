@@ -1,6 +1,6 @@
 _myscript = "spawnairdrop.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground"];
+private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground", "_spawndir"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
@@ -25,9 +25,10 @@ _mkr setMarkerType "hd_dot";
 // create the drop veh;
 
 _dropgroup = createGroup west;
+_spawndir = floor (random 360);
 if (_spawnpoint isEqualTo [0,0,0]) then
 	{
-	_startpos = [_droppos, (5000 + random 5), 0] call bis_fnc_relPos;
+	_startpos = [_droppos, (3000 + random 3000), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
@@ -58,11 +59,16 @@ waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_
 if (serverTime > (_mytime + 180)) exitWith
 	{
 	diag_log "spawnairdrop timed out. ";
-	deleteVehicleCrew dropveh;
+	{ dropveh deleteVehicleCrew _x} foreach crew dropveh;
 	deleteVehicle dropveh;
-	deleteWaypoint [_dropgroup, all];
+	while {(count (waypoints _dropgroup)) > 0} do
+		{
+		deleteWaypoint ((waypoints _dropgroup) select 0);
+		};
 	sleep 5;
-	nul = [_droppos, _airtype, _droptype, ([_droppos, 5000, 180] call bis_fnc_relPos)] execVM "server\spawnairdrop.sqf";
+	_spawndir = _spawndir -180;
+	if (_spawndir < 0) then {_spawndir = _spawndir + 360};
+	nul = [_droppos, _airtype, _droptype, ([_droppos, (3000 + random 3000), _spawndir] call bis_fnc_relPos)] execVM "server\spawnairdrop.sqf";
 	//^^^ if after 3 mins, the herc hasn't dropped, delete it and go again having him approach from the opposite direction
 	};
 _smokepos = _droppos; _smokepos set [2,0];
