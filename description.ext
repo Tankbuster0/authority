@@ -110,6 +110,13 @@ class Params
 			default = 3;
 			texts[] = {"Random", "Preset Route", "Random, but nearby town"};
 		};
+			class notveryclose {
+			title = "When choosing next primary targets, don't choose ones that are closer than";
+			values[] = {100000,500,750,1000,2000};
+			default = 100000;
+			texts[] = {"Off","500m", "750m", "1 km", "2 km"};
+		};
+
 			class allowcapturefail {
 			title = "Failing to capture town possible?";
 			values[] = {0,1};
