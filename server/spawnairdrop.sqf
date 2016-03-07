@@ -105,6 +105,6 @@ detach _para;
 _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
-if (_droptype == forwardpointvehicleclassname) then {[west, forward] call bis_fnc_addRespawnPosition;};
+if (_droptype == forward) then {[west, forward] call bis_fnc_addRespawnPosition;};
 if (_droptype == )
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
