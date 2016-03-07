@@ -78,7 +78,7 @@ dropveh flyinheight 100;
 waitUntil {(dropveh distance2D _droppos) < 100};
 _para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-if (_droptype == forwardpointvehicle) then
+if (_droptype == forwardpointvehicleclassname) then
 	{
 	forward setpos (_para modelToWorld [0,0,-10]);
 	_cargo = forward;
@@ -105,5 +105,6 @@ detach _para;
 _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
-if (_droptype == forwardpointvehicle) then {[west, forward] call bis_fnc_addRespawnPosition;};
+if (_droptype == forwardpointvehicleclassname) then {[west, forward] call bis_fnc_addRespawnPosition;};
+if (_droptype == )
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
