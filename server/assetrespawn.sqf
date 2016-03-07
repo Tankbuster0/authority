@@ -21,8 +21,8 @@ diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
 sleep 1;
 switch (_oldv) do
 	{
-	case forward: {_nul = [_droppoint, "RHS_C130J", forwardpointvehicle ] execVM "server\spawnairdrop.sqf"; diag_log "***ar calls a fpv"};
-	case fobveh: {_nul = [_droppoint, "RHS_C130J", fobvehicle ] execVM "server\spawnairdrop.sqf"; diag_log "***ar calls a fob";};
+	case forward: {_nul = [_droppoint, "RHS_C130J", forwardpointvehicleclassname ] execVM "server\spawnairdrop.sqf"; diag_log "***ar calls a fpv"};
+	case fobveh: {_nul = [_droppoint, "RHS_C130J", fobvehicleclassname ] execVM "server\spawnairdrop.sqf"; diag_log "***ar calls a fob";};
 	default {diag_log "***default"};
 	};
 
