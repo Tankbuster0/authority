@@ -24,36 +24,25 @@ for "_count" from 2 to _lc do
 		{
 		case 0: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
-				//_veh = createVehicle ["rhs_d30_msv", _mypos, [],0,"NONE"];
-				//_veh setdir _mydir;
 				[_mypos, _mydir, "rhs_d30_msv", _grpname ] call bis_fnc_spawnVehicle;
-				//_veh = createVehicle ["rhs_d30_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
-				//_veh setdir (_mydir + random 15);
+
 				};
 		case 1: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA")] call BIS_fnc_spawnGroup;
-				//_veh = createVehicle ["rhs_Igla_AA_pod_msv", _mypos, [],0,"NONE"];
-				//_veh setDir _mydir;
 				[_mypos, _mydir, "rhs_Igla_AA_pod_msv", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AT")] call BIS_fnc_spawnGroup;
-				//_veh = createVehicle ["rhs_Metis_9k115_2_msv", _mypos, [],0, "NONE"];
-				//_veh setdir _mydir;
 				[_mypos, _mydir, "rhs_Metis_9k115_2_msv", _grpname ] call bis_fnc_spawnVehicle;
 
 				};
 		case 3: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
-				//_veh = createVehicle ["rhs_KORD_high_msv", _mypos, [],0,"NONE"];
-				//_veh setdir _mydir;
 				[_mypos, _mydir, "rhs_KORD_high_msv", _grpname ] call bis_fnc_spawnVehicle;
 
 				};
 		case 4: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
-				//_veh = createVehicle ["RHS_NSV_TriPod_MSV", _mypos, [],0,"NONE"];
-				//_veh setdir _mydir;
 				[_mypos, _mydir, "RHS_NSV_TriPod_MSV", _grpname ] call bis_fnc_spawnVehicle;
 
 				};
@@ -88,7 +77,7 @@ for "_count" from 2 to _lc do
 		case 2: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_sniper")] call BIS_fnc_spawnGroup;};
 		case 3: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;};
 		};
-	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;// patrolling infantry group
+	nul = [_grpname, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;// patrolling infantry group
 	sleep 0.1;
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		switch ((floor (random 6))) do
@@ -122,7 +111,7 @@ for "_count" from 2 to _lc do
 		case 13: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad"  )] call BIS_fnc_spawnGroup;};
 		case 14: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad_sniper" )] call BIS_fnc_spawnGroup;};
 		};
-	nul = [_grpname, _pt_pos, _pt_radius] call BIS_fnc_taskpatrol;// patrolling  apc/ifv group
+	nul = [_grpname, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;// patrolling  apc/ifv group
 	sleep 0.1;
 	if ((_pt_type == 1) and (cpt_radius > 150)) then //tanks only spawn at big towns, not at bases or airfields
 	{
