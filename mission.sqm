@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=784;
+		nextID=820;
 	};
 	class Camera
 	{
-		pos[]={8459.1318,158.41881,25092.996};
+		pos[]={8454.3027,201.92271,25067.75};
 		dir[]={0.031278625,-0.87948883,0.47496989};
 		up[]={0.057793561,0.47589311,0.87760025};
 		aside[]={0.99787909,1.6587655e-006,-0.065714858};
@@ -40,6 +40,7 @@ addons[]=
 randomSeed=15772250;
 class ScenarioData
 {
+	author="Tankbuster and WASP clan";
 	onLoadMission="Please wait. Mission setting up.";
 	joinUnassigned=0;
 	class Header
@@ -136,7 +137,64 @@ class CustomAttributes
 				};
 			};
 		};
-		nAttributes=1;
+		class Attribute1
+		{
+			property="Revo_soundVolume";
+			expression="				if (!(is3den)) then				{					[0,_value] remoteExec ['fadeSound',0,true];				};			";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute2
+		{
+			property="Revo_musicVolume";
+			expression="				if (!(is3den)) then				{					[0,_value] remoteExec ['fadeMusic',0,true];				};				";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=0.5;
+				};
+			};
+		};
+		class Attribute3
+		{
+			property="Revo_radioVolume";
+			expression="				if (!(is3den)) then				{					[0,_value] remoteExec ['fadeRadio',0,true];				};				";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		nAttributes=4;
 	};
 };
 class Mission
@@ -144,7 +202,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
-		overviewText="build 00312";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and thier bases, while keeping the local population happy.";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -159,6 +217,182 @@ class Mission
 		minute=0;
 		startFogDecay=0.013;
 		forecastFogDecay=0.013;
+		class CustomAttributes
+		{
+			name="Intel";
+			class Attribute0
+			{
+				property="Revo_fogActivate";
+				expression="				[] spawn				{					waitUntil {time > 0.2};					[						(missionNamespace getVariable 'Revo_fogDelay'),						[							missionNamespace getVariable 'Revo_fogValue',							missionNamespace getVariable 'Revo_fogDecay',							missionNamespace getVariable 'Revo_fogBase'						]					]remoteExec ['setFog',2];				};			";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"BOOL"
+							};
+						};
+						value=0;
+					};
+				};
+			};
+			class Attribute1
+			{
+				property="Revo_fogBase";
+				expression="missionNamespace setVariable ['Revo_fogBase',_value]";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"SCALAR"
+							};
+						};
+						value=0;
+					};
+				};
+			};
+			class Attribute2
+			{
+				property="Revo_enableEnvironment";
+				expression="if (!(is3den)) then { enableEnvironment _value};";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"BOOL"
+							};
+						};
+						value=1;
+					};
+				};
+			};
+			class Attribute3
+			{
+				property="Revo_timeMultiplier";
+				expression="setTimeMultiplier _value";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"SCALAR"
+							};
+						};
+						value=1;
+					};
+				};
+			};
+			class Attribute4
+			{
+				property="Revo_disableGrass";
+				expression="if(_value) then {50 remoteExec ['setTerrainGrid',0,true]}";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"BOOL"
+							};
+						};
+						value=0;
+					};
+				};
+			};
+			class Attribute5
+			{
+				property="Revo_fogDecay";
+				expression="missionNamespace setVariable ['Revo_fogDecay',_value]";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"SCALAR"
+							};
+						};
+						value=0;
+					};
+				};
+			};
+			class Attribute6
+			{
+				property="Revo_viewDistance";
+				expression="_value remoteExec ['setViewDistance',0,true]";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"SCALAR"
+							};
+						};
+						value=12000;
+					};
+				};
+			};
+			class Attribute7
+			{
+				property="Revo_fogValue";
+				expression="missionNamespace setVariable ['Revo_fogValue',_value]";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"SCALAR"
+							};
+						};
+						value=0;
+					};
+				};
+			};
+			class Attribute8
+			{
+				property="Revo_fogDelay";
+				expression="missionNamespace setVariable ['Revo_fogDelay',_value]";
+				class Value
+				{
+					class data
+					{
+						class type
+						{
+							type[]=
+							{
+								"SCALAR"
+							};
+						};
+						value=0;
+					};
+				};
+			};
+			nAttributes=9;
+		};
 	};
 	class Entities
 	{
