@@ -109,7 +109,7 @@ for "_i" from 0 to 355 step 5 do
 	    _prop setDir (_dir - 90);
 	};
 	_newpos = (position _gate) findEmptyPosition[0, 30, "Box_East_Ammo_F"];
-	_prop = (["Box_East_Ammo_F", "Box_East_WpsSpecial_F", "Box_East_Ammo_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+	_prop = (["rhs_mags_crate", "rhs_launchers_crate"] call BIS_fnc_selectRandom) createVehicle _newpos;
 	vehiclecleanup pushback _prop;
 	_prop setDir (_dir + 90);
 	sleep 0.02;
@@ -124,7 +124,7 @@ for "_i" from 0 to 355 step 5 do
 	_objects = _objects + [_gun1];
 	_gun1 setDir _outpos;
 	_newpos = [_newpos, 1, (_dir + 180)] call BIS_fnc_relPos;
-	_gunner1 = _campgroup createUnit ["O_G_Soldier_F", _newpos, [],0,"NONE"];
+	_gunner1 = _campgroup createUnit ["rhs_msv_emr_armoredcrew", _newpos, [],0,"NONE"];
 	_gunner1 assignAsGunner _gun1;
 	_gunner1 moveInGunner _gun1;
 	_gunner1 setDir _outpos;
@@ -132,19 +132,19 @@ for "_i" from 0 to 355 step 5 do
 	sleep 0.2;
 	_newpos = [_gate, 4, _dir + 180] call BIS_fnc_relPos;
 	_newpos = [_newpos, 4, _dir  - 90] call BIS_fnc_relPos;
-	_soldier = _campgroup createUnit ["O_G_Soldier_SL_F", _newpos, [],0,"NONE"];
+	_soldier = _campgroup createUnit ["rhs_msv_sergeant", _newpos, [],0,"NONE"];
 	_totalenemies = _totalenemies + 1;
 	doStop _soldier;
 	for "_c" from 1 to (1 + round (random 1)) do
 	{
 	    _newpos = (position _gate) findEmptyPosition [0, 50, "O_G_Soldier_LAT_F"];
-	    _soldier = _campgroup createUnit ["O_G_Soldier_LAT_F", _newpos, [],0, "NONE"];
+	    _soldier = _campgroup createUnit ["rhs_msv_emr_LAT", _newpos, [],0, "NONE"];
 	    mancleanup pushback _soldier;
 	    _soldier setDir (random 360);
 	    _totalenemies = _totalenemies + 1;
 	    doStop _soldier;
 	    _newpos = (position _gate) findEmptyPosition[0, 50, "O_G_Soldier_GL_F"];
-	    _soldier = _campgroup createUnit ["O_G_Soldier_GL_F", _newpos, [],0,"NONE"];
+	    _soldier = _campgroup createUnit ["rhs_msv_emr_RShG2", _newpos, [],0,"NONE"];
 	    mancleanup pushback _soldier;
 	    _soldier setDir (random 360);
 	    _totalenemies = _totalenemies + 1;
