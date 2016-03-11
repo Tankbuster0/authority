@@ -8,22 +8,22 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=439;
+		nextID=442;
 	};
 	class MarkerIDProvider
 	{
-		nextID=2;
+		nextID=5;
 	};
 	class LayerIndexProvider
 	{
-		nextID=757;
+		nextID=784;
 	};
 	class Camera
 	{
-		pos[]={8462.1064,152.76083,25089.311};
-		dir[]={0.054390769,-0.79303193,0.60678828};
-		up[]={0.070801415,0.60916466,0.78987402};
-		aside[]={0.99603224,1.3716435e-006,-0.089281254};
+		pos[]={8459.1318,158.41881,25092.996};
+		dir[]={0.031278625,-0.87948883,0.47496989};
+		up[]={0.057793561,0.47589311,0.87760025};
+		aside[]={0.99787909,1.6587655e-006,-0.065714858};
 	};
 };
 binarizationWanted=0;
@@ -59,25 +59,6 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -109,6 +90,25 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
 				};
 			};
 		};
@@ -162,7 +162,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=19;
+		items=22;
 		class Item0
 		{
 			dataType="Marker";
@@ -1100,7 +1100,7 @@ class Mission
 			side="Empty";
 			class Attributes
 			{
-				init="[west,forward] call BIS_fnc_addRespawnPosition";
+				init="[west,forward] call BIS_fnc_addRespawnPosition; ";
 				name="forward";
 				textures="standard";
 			};
@@ -1129,6 +1129,36 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item19
+		{
+			dataType="Marker";
+			position[]={8484.1025,107.24145,25139.385};
+			name="forwardmarker";
+			text="Forward Vehicle";
+			type="respawn_inf";
+			colorName="ColorBlue";
+			id=439;
+		};
+		class Item20
+		{
+			dataType="Marker";
+			position[]={8476.8936,106.96413,25134.939};
+			name="fobmarker";
+			text="FOB";
+			type="b_hq";
+			colorName="ColorBlue";
+			id=440;
+		};
+		class Item21
+		{
+			dataType="Marker";
+			position[]={8424,104.26945,25161};
+			name="dropvehmarker";
+			text="Drop Aircraft";
+			type="b_plane";
+			colorName="ColorBlue";
+			id=441;
 		};
 	};
 	class Connections

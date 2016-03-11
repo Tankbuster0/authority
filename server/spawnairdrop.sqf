@@ -53,7 +53,8 @@ _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
 _dwp2 setWaypointBehaviour "CARELESS";
 _dwp2 setWaypointSpeed "NORMAL";
-_dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;";
+_dwp2 setWaypointCompletionRadius 400;
+_dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;'dropvehmarker' setMarkerAlpha 0; ";
 
 waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
 if (serverTime > (_mytime + 180)) exitWith
@@ -86,7 +87,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	{
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "NONE"];
 	};
-if (_droptype == fobvehicle) then //it's a fob vehicle
+if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
 	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
@@ -105,6 +106,5 @@ detach _para;
 _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
-if (_droptype == forward) then {[west, forward] call bis_fnc_addRespawnPosition;};
-if (_droptype == )
+if (_droptype == forwardpointvehicleclassname) then {[west, forward] call bis_fnc_addRespawnPosition;};
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
