@@ -112,8 +112,8 @@ class Params
 		};
 			class notveryclose {
 			title = "When choosing next primary targets, don't choose ones that are closer than";
-			values[] = {100000,500,750,1000,2000};
-			default = 100000;
+			values[] = {0,500,750,1000,2000};
+			default = 500;
 			texts[] = {"Off","500m", "750m", "1 km", "2 km"};
 		};
 

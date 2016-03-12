@@ -53,7 +53,7 @@ _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
 _dwp2 setWaypointBehaviour "CARELESS";
 _dwp2 setWaypointSpeed "NORMAL";
-_dwp2 setWaypointCompletionRadius 400;
+_dwp2 setWaypointCompletionRadius 800;
 _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;'dropvehmarker' setMarkerAlpha 0; ";
 
 waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
