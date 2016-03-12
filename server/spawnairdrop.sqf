@@ -85,7 +85,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo = forward;
 	} else
 	{
-	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "NONE"];
+	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
@@ -97,7 +97,12 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	// ^^^^ need to sync in script as the fob vehicle isn't created, or synced with the respawn module in the sqm.
 	};
 _cargo attachto [_para, [0,0,0]];
-
+/*
+rope1 = ropeCreate [_para, "SlingLoad0", _cargo, [1,1.65,1], 7];
+rope2 = ropeCreate [_para, "SlingLoad0", _cargo, [-1,1.65,1],7];
+rope3 = ropeCreate [_para, "SlingLoad0", _cargo, [1,-5,1.5],7];
+rope4 = ropeCreate [_para, "SlingLoad0", _cargo, [-1,-5,1.5],7];
+*/
 sleep 1;
 [_cargo, _droppos, 0, _para, false ] spawn tky_fnc_mando_chute;
 waitUntil {isTouchingGround _cargo};
