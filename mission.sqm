@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=442;
+		nextID=469;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=856;
+		nextID=919;
 	};
 	class Camera
 	{
-		pos[]={8454.3027,201.92271,25067.75};
-		dir[]={0.031278625,-0.87948883,0.47496989};
-		up[]={0.057793561,0.47589311,0.87760025};
-		aside[]={0.99787909,1.6587655e-006,-0.065714858};
+		pos[]={8413.9248,123.54388,25139.135};
+		dir[]={0.22838636,-0.67489254,0.7017408};
+		up[]={0.20886561,0.73790711,0.64176226};
+		aside[]={0.95094031,7.7049481e-007,-0.30949295};
 	};
 };
 binarizationWanted=0;
@@ -35,7 +35,23 @@ addons[]=
 	"A3_Misc_F_Helpers",
 	"rhsusf_c_weapons",
 	"A3_Modules_F_Multiplayer",
-	"rhsusf_c_rg33"
+	"rhsusf_c_rg33",
+	"ace_captives",
+	"ace_explosives",
+	"ace_hearing",
+	"ace_interaction",
+	"ace_map",
+	"ace_map_gestures",
+	"ace_microdagr",
+	"ace_mk6mortar",
+	"ace_nametags",
+	"ace_nightvision",
+	"ace_finger",
+	"ace_viewdistance",
+	"ace_weather",
+	"ace_cargo",
+	"ace_repair",
+	"ace_medical"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -59,6 +75,25 @@ class CustomAttributes
 	{
 		name="Multiplayer";
 		class Attribute0
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute1
 		{
 			property="RespawnTemplates";
 			expression="true";
@@ -94,25 +129,6 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
 		nAttributes=2;
 	};
 	class Category1
@@ -137,64 +153,7 @@ class CustomAttributes
 				};
 			};
 		};
-		class Attribute1
-		{
-			property="Revo_soundVolume";
-			expression="				if (!(is3den)) then				{					[0,_value] remoteExec ['fadeSound',0,true];				};			";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		class Attribute2
-		{
-			property="Revo_musicVolume";
-			expression="				if (!(is3den)) then				{					[0,_value] remoteExec ['fadeMusic',0,true];				};				";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=0.5;
-				};
-			};
-		};
-		class Attribute3
-		{
-			property="Revo_radioVolume";
-			expression="				if (!(is3den)) then				{					[0,_value] remoteExec ['fadeRadio',0,true];				};				";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		nAttributes=4;
+		nAttributes=1;
 	};
 };
 class Mission
@@ -396,7 +355,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=22;
+		items=41;
 		class Item0
 		{
 			dataType="Marker";
@@ -590,8 +549,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8448,105.14513,25127};
-				angles[]={0.13647936,0,6.1310382};
+				position[]={8441,107.23705,25126};
+				angles[]={0.16125457,0,5.9200377};
 			};
 			id=12;
 			type="ModuleSimulationManager_F";
@@ -821,7 +780,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8454.752,104.68713,25126.85};
+				position[]={8439,107.99686,25126};
+				angles[]={0.16125457,0,5.9200377};
 			};
 			name="cur";
 			id=25;
@@ -956,32 +916,14 @@ class Mission
 				skill=0.60000002;
 				ammo=0;
 				init="[west, ammobox] call BIS_fnc_addRespawnPosition";
-				name="ammobox";
+				name="ammobox_Backup";
+				presence=0;
 			};
 			id=48;
 			type="rhsusf_weapons_crate";
 			class CustomAttributes
 			{
 				class Attribute0
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhsusf_m112_mag"",""rhsusf_m112x4_mag"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_m69"",""rhs_mag_m7a3_cs"",""rhs_mag_mk84"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""FirstAidKit"",""ItemGPS"",""Medikit"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""rhs_tr8_periscope"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""B_rhsusf_B_BACKPACK"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty""],[]]],true]";
-						};
-					};
-				};
-				class Attribute1
 				{
 					property="allowDamage";
 					expression="_this allowdamage _value;";
@@ -1000,7 +942,45 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute1
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic"",""FirstAidKit"",""Medikit""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhsusf_m112_mag"",""rhsusf_m112x4_mag"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_m69"",""rhs_mag_m7a3_cs"",""rhs_mag_mk84"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""rhs_tr8_periscope"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""B_rhsusf_B_BACKPACK"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty""],[]]],true]";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 		class Item7
@@ -1284,25 +1264,6 @@ class Mission
 			{
 				class Attribute0
 				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhsusf_m112_mag"",""rhsusf_m112x4_mag"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_m69"",""rhs_mag_m7a3_cs"",""rhs_mag_mk84"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""FirstAidKit"",""ItemGPS"",""Medikit"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""rhs_tr8_periscope"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""B_rhsusf_B_BACKPACK"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty""],[]]],true]";
-						};
-					};
-				};
-				class Attribute1
-				{
 					property="allowDamage";
 					expression="_this allowdamage _value;";
 					class Value
@@ -1320,7 +1281,45 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute1
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP"",""Chemlight_blue"",""Chemlight_green"",""Chemlight_red"",""Chemlight_yellow"",""rhs_mag_fakel"",""rhs_mag_fakels"",""ACE_HuntIR_M203"",""ACE_HandFlare_Green"",""ACE_HandFlare_Red"",""ACE_HandFlare_White"",""ACE_HandFlare_Yellow""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""rhs_tr8_periscope"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556"",""ACE_Altimeter"",""ACE_fieldDressing"",""Binocular"",""ACE_SpraypaintBlack"",""ACE_bloodIV"",""ACE_bloodIV_250"",""ACE_bloodIV_500"",""ACE_SpraypaintBlue"",""ACE_bodyBag"",""ACE_CableTie"",""ACE_DAGR"",""ACE_DefusalKit"",""ACE_EarPlugs"",""ACE_EntrenchingTool"",""ACE_epinephrine"",""ACE_muzzle_mzls_338"",""ACE_muzzle_mzls_smg_01"",""ACE_muzzle_mzls_L"",""ACE_muzzle_mzls_H"",""ACE_muzzle_mzls_B"",""ACE_muzzle_mzls_smg_02"",""ACE_muzzle_mzls_93mmg"",""ACE_Flashlight_MX991"",""ACE_SpraypaintGreen"",""ACE_HuntIR_monitor"",""ACE_IR_Strobe_Item"",""ACE_Kestrel4500"",""ACE_Flashlight_KSF1"",""ACE_M26_Clacker"",""ACE_Clacker"",""ACE_Flashlight_XL50"",""ACE_MapTools"",""ACE_microDAGR"",""ACE_morphine"",""ACE_MX2A"",""ACE_SpraypaintRed"",""ACE_Sandbag_empty"",""ACE_SpareBarrel"",""ACE_SpottingScope"",""ACE_Tripod"",""ACE_Vector"",""ACE_wirecutter"",""ACE_Yardage450""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty"",""ACE_TacticalLadder_Pack""],[]]],true]";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 		class Item18
@@ -1393,6 +1392,1704 @@ class Mission
 			type="b_plane";
 			colorName="ColorBlue";
 			id=441;
+		};
+		class Item22
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8441.3076,106.18925,25142.084};
+				angles[]={0.091741994,0,5.9554467};
+			};
+			side="Empty";
+			class Attributes
+			{
+				skill=0.60000002;
+				ammo=0;
+				init="[west, ammobox] call BIS_fnc_addRespawnPosition";
+				name="ammobox";
+			};
+			id=442;
+			type="rhsusf_weapons_crate";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="allowDamage";
+					expression="_this allowdamage _value;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP"",""Chemlight_blue"",""Chemlight_green"",""Chemlight_red"",""Chemlight_yellow"",""rhs_mag_fakel"",""rhs_mag_fakels"",""ACE_HuntIR_M203"",""ACE_HandFlare_Green"",""ACE_HandFlare_Red"",""ACE_HandFlare_White"",""ACE_HandFlare_Yellow""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""rhs_tr8_periscope"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556"",""ACE_Altimeter"",""ACE_fieldDressing"",""Binocular"",""ACE_SpraypaintBlack"",""ACE_bloodIV"",""ACE_bloodIV_250"",""ACE_bloodIV_500"",""ACE_SpraypaintBlue"",""ACE_bodyBag"",""ACE_CableTie"",""ACE_DAGR"",""ACE_DefusalKit"",""ACE_EarPlugs"",""ACE_EntrenchingTool"",""ACE_epinephrine"",""ACE_muzzle_mzls_338"",""ACE_muzzle_mzls_smg_01"",""ACE_muzzle_mzls_L"",""ACE_muzzle_mzls_H"",""ACE_muzzle_mzls_B"",""ACE_muzzle_mzls_smg_02"",""ACE_muzzle_mzls_93mmg"",""ACE_Flashlight_MX991"",""ACE_SpraypaintGreen"",""ACE_HuntIR_monitor"",""ACE_IR_Strobe_Item"",""ACE_Kestrel4500"",""ACE_Flashlight_KSF1"",""ACE_M26_Clacker"",""ACE_Clacker"",""ACE_Flashlight_XL50"",""ACE_MapTools"",""ACE_microDAGR"",""ACE_morphine"",""ACE_MX2A"",""ACE_SpraypaintRed"",""ACE_Sandbag_empty"",""ACE_SpareBarrel"",""ACE_SpottingScope"",""ACE_Tripod"",""ACE_Vector"",""ACE_wirecutter"",""ACE_Yardage450""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty"",""ACE_TacticalLadder_Pack""],[]]],true]";
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=3;
+			};
+		};
+		class Item23
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,49.800621,25292};
+				angles[]={0.10230836,0,0.18969145};
+			};
+			id=443;
+			type="ace_captives_moduleSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_captives_moduleSettings_requireSurrender";
+					expression="_this setVariable ['requireSurrender',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_captives_moduleSettings_allowHandcuffOwnSide";
+					expression="_this setVariable ['allowHandcuffOwnSide',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_captives_moduleSettings_allowSurrender";
+					expression="_this setVariable ['allowSurrender',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=3;
+			};
+		};
+		class Item24
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8313,50.964577,25292};
+				angles[]={0.10230836,0,0.25436813};
+			};
+			id=444;
+			type="ACE_ModuleExplosive";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_ModuleExplosive_RequireSpecialist";
+					expression="_this setVariable ['RequireSpecialist',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_ModuleExplosive_PunishNonSpecialists";
+					expression="_this setVariable ['PunishNonSpecialists',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ACE_ModuleExplosive_ExplodeOnDefuse";
+					expression="_this setVariable ['ExplodeOnDefuse',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=3;
+			};
+		};
+		class Item25
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8318,52.093269,25292};
+				angles[]={0.17680109,0,0.21782166};
+			};
+			id=446;
+			type="ACE_ModuleHearing";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_ModuleHearing_autoAddEarplugsToUnits";
+					expression="_this setVariable ['autoAddEarplugsToUnits',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_ModuleHearing_EnableCombatDeafness";
+					expression="_this setVariable ['EnableCombatDeafness',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ACE_ModuleHearing_enabledForZeusUnits";
+					expression="_this setVariable ['enabledForZeusUnits',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ACE_ModuleHearing_DisableEarRinging";
+					expression="_this setVariable ['DisableEarRinging',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=-1;
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item26
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8323,53.199814,25292};
+				angles[]={0.20379768,0,0.1909772};
+			};
+			id=447;
+			type="ACE_ModuleInteraction";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_ModuleInteraction_EnableTeamManagement";
+					expression="_this setVariable ['EnableTeamManagement',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item27
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,51.312439,25285};
+				angles[]={0.24811386,0,0.17033349};
+			};
+			id=448;
+			type="ACE_ModuleMap";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_ModuleMap_MapShake";
+					expression="_this setVariable ['MapShake',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_ModuleMap_MapShowCursorCoordinates";
+					expression="_this setVariable ['MapShowCursorCoordinates',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ACE_ModuleMap_DefaultChannel";
+					expression="_this setVariable ['DefaultChannel',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=-1;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ACE_ModuleMap_MapIllumination";
+					expression="_this setVariable ['MapIllumination',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ACE_ModuleMap_MapGlow";
+					expression="_this setVariable ['MapGlow',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="ACE_ModuleMap_MapLimitZoom";
+					expression="_this setVariable ['MapLimitZoom',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=6;
+			};
+		};
+		class Item28
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8313,52.100384,25285};
+				angles[]={0.2481136,0,0.14693396};
+			};
+			id=449;
+			type="ace_map_gestures_moduleSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_map_gestures_moduleSettings_maxRange";
+					expression="_this setVariable ['maxRange',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=7;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_map_gestures_moduleSettings_enabled";
+					expression="_this setVariable ['enabled',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_map_gestures_moduleSettings_defaultLeadColor";
+					expression="_this setVariable ['defaultLeadColor',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="1,0.88,0,0.95";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ace_map_gestures_moduleSettings_defaultColor";
+					expression="_this setVariable ['defaultColor',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="1,0.88,0,0.7";
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ace_map_gestures_moduleSettings_interval";
+					expression="_this setVariable ['interval',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0.029999999;
+						};
+					};
+				};
+				nAttributes=5;
+			};
+		};
+		class Item29
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8318,53.109261,25285};
+				angles[]={0.14040378,0,0.12468291};
+			};
+			id=450;
+			type="ace_map_gestures_moduleGroupSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_map_gestures_moduleGroupSettings_leadColor";
+					expression="_this setVariable ['leadColor',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="1,0.88,0,0.95";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_map_gestures_moduleGroupSettings_color";
+					expression="_this setVariable ['color',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="1,0.88,0,0.7";
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item30
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8323,53.784054,25285};
+				angles[]={0.045302324,0,0.21782166};
+			};
+			id=451;
+			type="ace_microdagr_dagrModule";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_microdagr_dagrModule_MapDataAvailable";
+					expression="_this setVariable ['MapDataAvailable',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=2;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item31
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,51.166191,25303};
+				angles[]={5.9819717,0,0.081154868};
+			};
+			id=452;
+			type="ace_mk6mortar_module";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_mk6mortar_module_allowCompass";
+					expression="_this setVariable ['allowCompass',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_mk6mortar_module_airResistanceEnabled";
+					expression="_this setVariable ['airResistanceEnabled',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_mk6mortar_module_allowComputerRangefinder";
+					expression="_this setVariable ['allowComputerRangefinder',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ace_mk6mortar_module_useAmmoHandling";
+					expression="_this setVariable ['useAmmoHandling',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item32
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8330,55.23027,25303};
+				angles[]={6.0539536,0,0.25186872};
+			};
+			id=453;
+			type="ACE_ModuleNameTags";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_ModuleNameTags_showCursorTagForVehicles";
+					expression="_this setVariable ['showCursorTagForVehicles',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_ModuleNameTags_showNamesForAI";
+					expression="_this setVariable ['showNamesForAI',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=-1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ACE_ModuleNameTags_showVehicleCrewInfo";
+					expression="_this setVariable ['showVehicleCrewInfo',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=-1;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ACE_ModuleNameTags_showPlayerNames";
+					expression="_this setVariable ['showPlayerNames',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=-1;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ACE_ModuleNameTags_playerNamesViewDistance";
+					expression="_this setVariable ['playerNamesViewDistance',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=5;
+						};
+					};
+				};
+				nAttributes=5;
+			};
+		};
+		class Item33
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8313,51.684719,25303};
+				angles[]={6.1690168,0,6.2711854};
+			};
+			id=454;
+			type="ace_nightvision_ModuleSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_nightvision_ModuleSettings_disableNVGsWithSights";
+					expression="_this setVariable ['disableNVGsWithSights',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item34
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,52.437962,25278};
+				angles[]={0.10890111,0,0.17033315};
+			};
+			id=455;
+			type="ace_finger_moduleSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_finger_moduleSettings_maxRange";
+					expression="_this setVariable ['maxRange',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=4;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_finger_moduleSettings_enabled";
+					expression="_this setVariable ['enabled',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item35
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,52.203522,25311};
+				angles[]={6.2152901,0,0.077179179};
+			};
+			id=458;
+			type="ace_viewdistance_ModuleSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_viewdistance_ModuleSettings_moduleViewDistanceLimit";
+					expression="_this setVariable ['moduleViewDistanceLimit',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=5000;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_viewdistance_ModuleSettings_moduleViewDistanceEnabled";
+					expression="_this setVariable ['moduleViewDistanceEnabled',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item36
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8313,52.488411,25311};
+				angles[]={6.1063843,0,0.09834861};
+			};
+			id=459;
+			type="ace_weather_ModuleSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_weather_ModuleSettings_useACEWeather";
+					expression="_this setVariable ['useACEWeather',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_weather_ModuleSettings_serverUpdateInterval";
+					expression="_this setVariable ['serverUpdateInterval',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=60;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ace_weather_ModuleSettings_syncMisc";
+					expression="_this setVariable ['syncMisc',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ace_weather_ModuleSettings_syncRain";
+					expression="_this setVariable ['syncRain',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ace_weather_ModuleSettings_enableServerController";
+					expression="_this setVariable ['enableServerController',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="ace_weather_ModuleSettings_syncWind";
+					expression="_this setVariable ['syncWind',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=6;
+			};
+		};
+		class Item37
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8307.957,52.487301,25316.971};
+			};
+			id=461;
+			type="ACE_moduleCargoSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleCargoSettings_enable";
+					expression="_this setVariable ['enable',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item38
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,52.616596,25321};
+				angles[]={0.090419561,0,0.14040335};
+			};
+			id=463;
+			type="ACE_moduleRepairSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleRepairSettings_fullRepairLocation";
+					expression="_this setVariable ['fullRepairLocation',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_moduleRepairSettings_engineerSetting_fullRepair";
+					expression="_this setVariable ['engineerSetting_fullRepair',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ACE_moduleRepairSettings_engineerSetting_Repair";
+					expression="_this setVariable ['engineerSetting_Repair',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ACE_moduleRepairSettings_consumeItem_ToolKit";
+					expression="_this setVariable ['consumeItem_ToolKit',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ACE_moduleRepairSettings_repairDamageThreshold";
+					expression="_this setVariable ['repairDamageThreshold',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0.60000002;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="ACE_moduleRepairSettings_wheelRepairRequiredItems";
+					expression="_this setVariable ['wheelRepairRequiredItems',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="ACE_moduleRepairSettings_repairDamageThreshold_Engineer";
+					expression="_this setVariable ['repairDamageThreshold_Engineer',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0.40000001;
+						};
+					};
+				};
+				class Attribute7
+				{
+					property="ACE_moduleRepairSettings_engineerSetting_Wheel";
+					expression="_this setVariable ['engineerSetting_Wheel',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute8
+				{
+					property="ACE_moduleRepairSettings_addSpareParts";
+					expression="_this setVariable ['addSpareParts',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=9;
+			};
+		};
+		class Item39
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8308,52.169987,25325};
+				angles[]={0.11810643,0,0.11285299};
+			};
+			id=466;
+			type="ACE_moduleMedicalSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleMedicalSettings_litterCleanUpDelay";
+					expression="_this setVariable ['litterCleanUpDelay',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1800;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_moduleMedicalSettings_enableScreams";
+					expression="_this setVariable ['enableScreams',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ACE_moduleMedicalSettings_preventInstaDeath";
+					expression="_this setVariable ['preventInstaDeath',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ACE_moduleMedicalSettings_bleedingCoefficient";
+					expression="_this setVariable ['bleedingCoefficient',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute4
+				{
+					property="ACE_moduleMedicalSettings_increaseTrainingInLocations";
+					expression="_this setVariable ['increaseTrainingInLocations',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute5
+				{
+					property="ACE_moduleMedicalSettings_enableUnconsciousnessAI";
+					expression="_this setVariable ['enableUnconsciousnessAI',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=2;
+						};
+					};
+				};
+				class Attribute6
+				{
+					property="ACE_moduleMedicalSettings_remoteControlledAI";
+					expression="_this setVariable ['remoteControlledAI',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute7
+				{
+					property="ACE_moduleMedicalSettings_painCoefficient";
+					expression="_this setVariable ['painCoefficient',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute8
+				{
+					property="ACE_moduleMedicalSettings_AIDamageThreshold";
+					expression="_this setVariable ['AIDamageThreshold',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute9
+				{
+					property="ACE_moduleMedicalSettings_playerDamageThreshold";
+					expression="_this setVariable ['playerDamageThreshold',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute10
+				{
+					property="ACE_moduleMedicalSettings_level";
+					expression="_this setVariable ['level',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute11
+				{
+					property="ACE_moduleMedicalSettings_allowLitterCreation";
+					expression="_this setVariable ['allowLitterCreation',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute12
+				{
+					property="ACE_moduleMedicalSettings_keepLocalSettingsSynced";
+					expression="_this setVariable ['keepLocalSettingsSynced',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute13
+				{
+					property="ACE_moduleMedicalSettings_medicSetting";
+					expression="_this setVariable ['medicSetting',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=14;
+			};
+		};
+		class Item40
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8312,52.607307,25325};
+				angles[]={0.11811461,0,0.1049457};
+			};
+			id=467;
+			type="ACE_moduleBasicMedicalSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleBasicMedicalSettings_medicSetting_basicEpi";
+					expression="_this setVariable ['medicSetting_basicEpi',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_moduleBasicMedicalSettings_useLocation_basicEpi";
+					expression="_this setVariable ['useLocation_basicEpi',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=2;
+			};
 		};
 	};
 	class Connections
