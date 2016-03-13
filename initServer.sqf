@@ -15,7 +15,7 @@ mapcentre = [mapsize / 2, mapsize /2, 0];// <-- is a posatl
 sleep 0.5;
 primarytargetcounter = 1;
 foundairfields = [];
-if (worldName in ["Altis", "altis"]) then // remove the ! to make this if statement work as intended. wip
+if (worldName in ["Altis", "altis"]) then 
 	{
 		
 		_airportlogicgroup = createGroup logiccenter;

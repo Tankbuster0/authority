@@ -3,7 +3,7 @@
 onLoadMission = "Authority";
 onLoadMissionTime = 1;
 loadscreen = "logo.paa";
-author = "Tankbuster";
+author = "Dankmusterd";
 joinUnassigned = 0;
 saving = 0;
 enableDebugConsole = 1;
@@ -17,7 +17,7 @@ AvgScore = 2500;
 MaxScore = 5000;
 respawn = "BASE";
 respawnDelay = 3;
-respawnTemplates[] = {"Counter", "Revive", "MenuPosition"};
+respawnTemplates[] = {"Counter", "MenuPosition"};
 respawnButton = 1;
 respawnOnStart = 1;
 reviveDelay = 10;
@@ -40,10 +40,10 @@ taskManagement_propagate = 1;
 taskManagement_drawDist = 2000;
 
 enableTeamSwitch = 0;
-#include "CHVD\dialog.hpp"
+//#include "CHVD\dialog.hpp"
 class cfgFunctions
 {
-	#include "CHVD\cfgFunctions.hpp"
+	//#include "CHVD\cfgFunctions.hpp"
 	class tky
 	{
 		class auth_client
