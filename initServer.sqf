@@ -24,7 +24,7 @@ foundairfields = [];
 		if (not isnull forward) then
 			{
 			"forwardmarker" setMarkerPos getpos forward;
-			if ((alive forward) and (isTouchingGround forward)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
+			if ((alive forward) and (isTouchingGround forward) and (initserverfinished)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
 			    {"forwardmarker" setMarkerAlpha 1}
 			    else
 			    {"fowardmarker" setMarkerAlpha 0};
@@ -36,7 +36,7 @@ foundairfields = [];
 		if (not isnull fobveh) then
 			{
 			"fobmarker" setMarkerPos getpos fobveh;
-			if ((alive fobveh) and (isTouchingGround fobveh)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
+			if ((alive fobveh) and (isTouchingGround fobveh) and (initserverfinished)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
 			    {"fobmarker" setMarkerAlpha 1}
 			    else
 			    {"fobmarker" setMarkerAlpha 0};
