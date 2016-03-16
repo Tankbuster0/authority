@@ -53,7 +53,7 @@ _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
 _dwp2 setWaypointBehaviour "CARELESS";
 _dwp2 setWaypointSpeed "NORMAL";
-_dwp2 setWaypointCompletionRadius 800;
+_dwp2 setWaypointCompletionRadius 1500;
 _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;'dropvehmarker' setMarkerAlpha 0; ";
 
 waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
@@ -81,8 +81,10 @@ _para = createVehicle ["B_Parachute_02_F", (dropveh modelToWorld [0,-12,0]), [],
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 if (_droptype == forwardpointvehicleclassname) then
 	{
+	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
+	forward = _cargo;
 	forward setpos (_para modelToWorld [0,0,-10]);
-	_cargo = forward;
+	_cargo addEventHandler ["killed", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	} else
 	{
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
@@ -93,8 +95,6 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
 	_cargo addEventHandler ["killed", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
-	//assetrespawn synchronizeObjectsAdd [fobveh];
-	// ^^^^ need to sync in script as the fob vehicle isn't created, or synced with the respawn module in the sqm.
 	};
 _cargo attachto [_para, [0,0,0]];
 /*

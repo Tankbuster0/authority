@@ -25,7 +25,18 @@ execVM "functions.sqf";
 	while {true} do
 		{
 		sleep 1;
-		if (not isnull forward) then {"forwardmarker" setMarkerPos getpos forward };
+		if (not isnull forward) then
+			{
+			"forwardmarker" setMarkerPos getpos forward;
+			if ((alive fobveh) and (isTouchingGround fobveh)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
+			    {"fobmarker" setMarkerAlpha 1}
+			    else
+			    {"fobmarker" setMarkerAlpha 0};
+
+
+
+			 };
+
 		if (not isnull fobveh) then
 			{
 			"fobmarker" setMarkerPos getpos fobveh;
