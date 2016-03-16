@@ -12,6 +12,7 @@ if (worldName == "Altis") then
 if (("rhs_main" in activatedAddons) and ("rhsusf_main" in activatedAddons)) then {RHS = true} else {RHS = false};
 fobveh = objNull;
 dropveh = objNull;
+missionrunning = false; publicVariable "missionrunning";
 "fobmarker" setMarkerAlpha 0;
 "dropvehmarker" setMarkerAlpha 0;
 tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;

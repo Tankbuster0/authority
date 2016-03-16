@@ -29,7 +29,7 @@ for "_q" from 1 to 3 do
 _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
 forwardrespawnpositionid = [west,forward] call BIS_fnc_addrespawnposition;
-
+missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 nextpt
