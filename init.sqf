@@ -20,38 +20,6 @@ tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;
 
 execVM "functions.sqf";
 
-[] spawn //moving markers on forward and fob
-	{
-	while {true} do
-		{
-		sleep 1;
-		if (not isnull forward) then
-			{
-			"forwardmarker" setMarkerPos getpos forward;
-			if ((alive fobveh) and (isTouchingGround fobveh)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
-			    {"fobmarker" setMarkerAlpha 1}
-			    else
-			    {"fobmarker" setMarkerAlpha 0};
-
-
-
-			 };
-
-		if (not isnull fobveh) then
-			{
-			"fobmarker" setMarkerPos getpos fobveh;
-			if ((alive fobveh) and (isTouchingGround fobveh)) then // hide marker if fobveh isnt yet in the game or is in the air (ie, being dropped in)
-			    {"fobmarker" setMarkerAlpha 1}
-			    else
-			    {"fobmarker" setMarkerAlpha 0};
-		   };
-		if (not isNull dropveh) then
-			{
-			"dropvehmarker" setmarkerpos getpos dropveh;
-			"dropvehmarker" setMarkerAlpha 1;
-			};
-		};
-	};
 
 // MHQ Curator Build Stuff
 
