@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=955;
+		nextID=973;
 	};
 	class Camera
 	{
-		pos[]={8470.7031,149.34804,25097.691};
-		dir[]={-0.51360375,-0.61668605,0.59667945};
-		up[]={-0.40232009,0.78719056,0.4673956};
-		aside[]={0.75793839,6.0113962e-007,0.65240705};
+		pos[]={8449.4668,130.17319,25135.121};
+		dir[]={0.25361511,-0.80758429,-0.53248459};
+		up[]={0.34728846,0.58966267,-0.72915965};
+		aside[]={-0.90284705,1.0188669e-006,-0.43001175};
 	};
 };
 binarizationWanted=0;
@@ -1500,13 +1500,13 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8457.5439,107.76991,25118.154};
-				angles[]={0.0877726,0,0.0066671576};
+				position[]={8455.9844,107.99506,25114.209};
+				angles[]={0.055937801,0,0.0066671576};
 			};
 			side="Empty";
 			class Attributes
 			{
-				init="[west,forward] call BIS_fnc_addRespawnPosition; ";
+				init="[west,forward] call BIS_fnc_addRespawnPosition; forward addEventHandler [""killed"", {nul = [_this select 0, _this select 0] execVM ""server\assetrespawn.sqf""}];";
 				name="forward";
 				textures="standard";
 			};
@@ -1515,6 +1515,25 @@ class Mission
 			class CustomAttributes
 			{
 				class Attribute0
+				{
+					property="ace_isMedicalVehicle";
+					expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute1
 				{
 					property="ammoBox";
 					expression="[_this,_value] call bis_fnc_initAmmoBox;";
@@ -1529,11 +1548,11 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[],[]],[[""rhs_mag_m18_red"",""rhs_mag_m18_purple"",""rhs_mag_m18_yellow"",""SmokeShellBlue""],[6,6,6,6]],[[""FirstAidKit"",""Medikit""],[20,2]],[[],[]]],false]";
+							value="[[[[""FirstAidKit"",""Medikit""],[20,2]],[[""rhs_mag_m18_red"",""rhs_mag_m18_purple"",""rhs_mag_m18_yellow"",""SmokeShellBlue""],[6,6,6,6]],[[],[]],[[],[]]],false]";
 						};
 					};
 				};
-				nAttributes=1;
+				nAttributes=2;
 			};
 		};
 		class Item18
@@ -3217,7 +3236,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8312,52.607307,25325};
-				angles[]={0.11811461,0,0.1049457};
+				angles[]={0.11810643,0,0.10494665};
 			};
 			id=467;
 			type="ACE_moduleBasicMedicalSettings";
