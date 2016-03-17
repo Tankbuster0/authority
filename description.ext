@@ -32,13 +32,12 @@ class Header {
 disabledAI = 1;
 showGPS = 1;
 showCompass = 1;
-showMap = 1;
+showMap = 0;
 showWatch = 1;
 enableItemsDropping = 0;
 taskManagement_markers3D = 1;
 taskManagement_propagate = 1;
 taskManagement_drawDist = 2000;
-
 enableTeamSwitch = 0;
 //#include "CHVD\dialog.hpp"
 class cfgFunctions

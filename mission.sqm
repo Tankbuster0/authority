@@ -1506,7 +1506,7 @@ class Mission
 			side="Empty";
 			class Attributes
 			{
-				init="[west,forward] call BIS_fnc_addRespawnPosition; forward addEventHandler [""killed"", {nul = [_this select 0, _this select 0] execVM ""server\assetrespawn.sqf""}];";
+				init="[west,forward] call BIS_fnc_addRespawnPosition; forward addMPEventHandler [""mpkilled"", {nul = [_this select 0, _this select 0] execVM ""server\assetrespawn.sqf""}];";
 				name="forward";
 				textures="standard";
 			};

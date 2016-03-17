@@ -84,7 +84,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
 	forward = _cargo;
 	forward setpos (_para modelToWorld [0,0,-10]);
-	_cargo addEventHandler ["killed", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
+	_cargo addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	} else
 	{
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
@@ -93,7 +93,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
 	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
-	_cargo addEventHandler ["killed", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
+	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
 	};
 _cargo attachto [_para, [0,0,0]];
