@@ -1,6 +1,7 @@
 //by tankbuster
 _myscript = "assetrespawn.sqf";
 // execvmd by the vehiclerespawn module
+if (not isServer) exitWith {};
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul"];
 _newv = _this select 0;
