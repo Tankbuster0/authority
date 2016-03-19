@@ -56,7 +56,7 @@ _dwp2 setWaypointSpeed "NORMAL";
 _dwp2 setWaypointCompletionRadius 2000;
 _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;'dropvehmarker' setMarkerAlpha 0; ";
 
-waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
+waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 1000) or (serverTime > (_mytime + 180))) };
 if (serverTime > (_mytime + 180)) exitWith
 	{
 	diag_log "spawnairdrop timed out. ";
