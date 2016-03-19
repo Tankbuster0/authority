@@ -162,7 +162,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 339";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 356";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
