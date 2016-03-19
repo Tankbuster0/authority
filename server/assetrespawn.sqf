@@ -20,13 +20,13 @@ if (_typefpv) then
 	{
 	forwardrespawning = true;
 	publicVariable "forwardrespawning";
-	[west, forwardrespawnpositionid] call bis_fnc_removeRespawnPosition;
+	forwardrespawnpositionid call bis_fnc_removeRespawnPosition;
 	};
 if (_typefob) then
 	{
 	fobrespawning = true;
 	publicVariable "fobrespawning";
-	[west, fobrespawnpositionid] call bis_fnc_removeRespawnPosition;
+	fobrespawnpositionid call bis_fnc_removeRespawnPosition;
 	};
 diag_log format ["***assetrespawn says _typefpv %1 and _typefob %2", _typefpv, _typefob];
 // find the nearest current respawn to the old position
