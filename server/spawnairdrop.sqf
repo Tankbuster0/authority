@@ -1,6 +1,6 @@
 _myscript = "spawnairdrop.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground", "_spawndir"];
+private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground", "_spawndir", "_mytime"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
@@ -53,7 +53,7 @@ _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
 _dwp2 setWaypointBehaviour "CARELESS";
 _dwp2 setWaypointSpeed "NORMAL";
-_dwp2 setWaypointCompletionRadius 1500;
+_dwp2 setWaypointCompletionRadius 2000;
 _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;'dropvehmarker' setMarkerAlpha 0; ";
 
 waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 800) or (serverTime > (_mytime + 180))) };
