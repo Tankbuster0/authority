@@ -58,7 +58,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Hint press button to get in zeus mode
 				"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", _veh];
 
-				fobrespawn = [west,_veh] call BIS_fnc_addRespawnPosition;
+				fobrespawnpositionid = [west,(position _veh), "FOB"] call BIS_fnc_addRespawnPosition;
 				sleep 5;
 				};
 			};
@@ -75,7 +75,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				while {(_veh doorPhase "extend_shelter_source") > 0} do {sleep 0.1;};
 				{deleteVehicle _x} foreach fobjects;
 				fobdeployed = false;
-				fobrespawn call BIS_fnc_removeRespawnPosition;
+				fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
 				publicVariable "fobdeployed";
 
 				// Remove Editing Area and curator owner
