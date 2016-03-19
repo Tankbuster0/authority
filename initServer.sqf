@@ -46,7 +46,9 @@ foundairfields = [];
 			{
 			"dropvehmarker" setmarkerpos getpos dropveh;
 			"dropvehmarker" setMarkerAlpha 1;
-			};
+			}
+			else
+			{"dropvehmarker" setMarkerAlpha 0};
 		};
 	};
 
