@@ -112,4 +112,9 @@ _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
 if (_droptype == forwardpointvehicleclassname) then {[west, forward] call bis_fnc_addRespawnPosition;};
+["UniqueId",
+	{
+	{ dropveh deleteVehicleCrew _x} foreach crew dropveh;
+	deleteVehicle dropveh;
+	 }, 30, "seconds"] call BIS_fnc_runlater;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

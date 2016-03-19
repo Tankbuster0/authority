@@ -14,6 +14,7 @@ _1pos = getpos _airfield;
 _newdrypos = [_1pos,800,1300, 4, 0, 5, 1] call bis_fnc_findSafePos;
 _newdrypos set [2,0];
 "respawn_west" setmarkerpos _newdrypos;
+deleteMarker "respawn_west";
 ammobox setpos _newdrypos;
 
 sleep 1;
