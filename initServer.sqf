@@ -14,6 +14,7 @@ mapsize  = getnumber (configfile/"CfgWorlds"/worldName/"mapSize");
 mapcentre = [mapsize / 2, mapsize /2, 0];// <-- is a posatl
 sleep 0.5;
 primarytargetcounter = 1;
+
 foundairfields = [];
 
 [] spawn //moving markers on forward and fob
