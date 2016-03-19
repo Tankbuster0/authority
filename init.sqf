@@ -13,6 +13,8 @@ if (("rhs_main" in activatedAddons) and ("rhsusf_main" in activatedAddons)) then
 fobveh = objNull;
 dropveh = objNull;
 missionrunning = false; publicVariable "missionrunning";
+forwardrespawning = false;
+fobrespawning = false;
 "fobmarker" setMarkerAlpha 0;
 "dropvehmarker" setMarkerAlpha 0;
 tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;

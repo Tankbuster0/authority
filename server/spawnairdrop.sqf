@@ -84,7 +84,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
 	forward = _cargo;
 	forward setpos (_para modelToWorld [0,0,-10]);
-	_cargo addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
+	_cargo addMPEventHandler ["MPkilled", {sleep 1 + (3 *(random 2)); nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	} else
 	{
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
