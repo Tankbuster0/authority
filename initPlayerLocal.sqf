@@ -16,7 +16,7 @@ waitUntil {initserverfinished};
 player setVariable ["last_inventory_saved", -1];
 endLoadingScreen;
 
-player setpos ([(getmarkerpos "respawn_west"), (3+ (random 3)), random 360] call bis_fnc_relPos);
+//player setpos ([(getmarkerpos "respawn_west"), (3+ (random 3)), random 360] call bis_fnc_relPos);
 
 #include "\a3\functions_f_mp_mark\Revive\defines.hpp"
 

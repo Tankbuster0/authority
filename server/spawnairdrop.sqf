@@ -111,7 +111,7 @@ detach _para;
 _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
-if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,(getpos forward)] call bis_fnc_addRespawnPosition;};
+if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
 ["UniqueId",
 	{
 	{ dropveh deleteVehicleCrew _x} foreach crew dropveh;

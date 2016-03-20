@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=5;
+	toggles=133;
 	class ItemIDProvider
 	{
 		nextID=478;
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1009;
+		nextID=1027;
 	};
 	class Camera
 	{
-		pos[]={8438.9043,130.1731,25157.145};
-		dir[]={0.16762841,-0.54813939,-0.81945783};
-		up[]={0.10987352,0.83630687,-0.53712386};
-		aside[]={-0.97973931,2.7869828e-007,-0.20041277};
+		pos[]={8436.208,125.02944,25154.152};
+		dir[]={0.57976818,-0.62306875,-0.52517027};
+		up[]={0.46188459,0.78203595,-0.41839069};
+		aside[]={-0.67139655,-2.3684697e-007,-0.74118948};
 	};
 };
 binarizationWanted=0;
@@ -356,17 +356,8 @@ class Mission
 	};
 	class Entities
 	{
-		items=42;
+		items=41;
 		class Item0
-		{
-			dataType="Marker";
-			position[]={8459,105.07531,25123};
-			name="respawn_west";
-			type="Empty";
-			angle=36.362564;
-			id=0;
-		};
-		class Item1
 		{
 			dataType="Group";
 			side="West";
@@ -545,13 +536,13 @@ class Mission
 			};
 			id=2;
 		};
-		class Item2
+		class Item1
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8441,107.23705,25126};
-				angles[]={0.16125098,0,5.9200344};
+				position[]={8444,105.95973,25127};
+				angles[]={0.13647979,0,5.942359};
 			};
 			id=12;
 			type="ModuleSimulationManager_F";
@@ -598,7 +589,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item3
+		class Item2
 		{
 			dataType="Group";
 			side="West";
@@ -1154,7 +1145,7 @@ class Mission
 			};
 			id=13;
 		};
-		class Item4
+		class Item3
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1265,7 +1256,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item5
+		class Item4
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1281,7 +1272,7 @@ class Mission
 			id=72;
 			type="Sign_Sphere25cm_F";
 		};
-		class Item6
+		class Item5
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1361,61 +1352,61 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item7
+		class Item6
 		{
 			dataType="Layer";
 			name="Check Point (Small)";
 			id=110;
 		};
-		class Item8
+		class Item7
 		{
 			dataType="Layer";
 			name="Camp Ant";
 			id=147;
 		};
-		class Item9
+		class Item8
 		{
 			dataType="Layer";
 			name="Camp Audacity";
 			id=204;
 		};
-		class Item10
+		class Item9
 		{
 			dataType="Layer";
 			name="Camp Courage";
 			id=257;
 		};
-		class Item11
+		class Item10
 		{
 			dataType="Layer";
 			name="Camp Defiance";
 			id=307;
 		};
-		class Item12
+		class Item11
 		{
 			dataType="Layer";
 			name="Camp Endurance";
 			id=358;
 		};
-		class Item13
+		class Item12
 		{
 			dataType="Layer";
 			name="Camp Fortitude";
 			id=409;
 		};
-		class Item14
+		class Item13
 		{
 			dataType="Layer";
 			name="Roadblock";
 			id=421;
 		};
-		class Item15
+		class Item14
 		{
 			dataType="Layer";
 			name="Hasty Roadblock";
 			id=429;
 		};
-		class Item16
+		class Item15
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1475,7 +1466,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item17
+		class Item16
 		{
 			dataType="Marker";
 			position[]={8484.1025,107.24145,25139.385};
@@ -1485,7 +1476,7 @@ class Mission
 			colorName="ColorBlue";
 			id=439;
 		};
-		class Item18
+		class Item17
 		{
 			dataType="Marker";
 			position[]={8476.8936,106.96413,25134.939};
@@ -1495,7 +1486,7 @@ class Mission
 			colorName="ColorBlue";
 			id=440;
 		};
-		class Item19
+		class Item18
 		{
 			dataType="Marker";
 			position[]={8424,104.26945,25161};
@@ -1505,7 +1496,7 @@ class Mission
 			colorName="ColorBlue";
 			id=441;
 		};
-		class Item20
+		class Item19
 		{
 			dataType="Object";
 			class PositionInfo
@@ -1584,7 +1575,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item21
+		class Item20
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1656,7 +1647,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item22
+		class Item21
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1728,7 +1719,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item23
+		class Item22
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1819,7 +1810,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item24
+		class Item23
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1853,7 +1844,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item25
+		class Item24
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1982,7 +1973,7 @@ class Mission
 				nAttributes=6;
 			};
 		};
-		class Item26
+		class Item25
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2092,7 +2083,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item27
+		class Item26
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2145,7 +2136,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item28
+		class Item27
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2179,7 +2170,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item29
+		class Item28
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2270,7 +2261,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item30
+		class Item29
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2380,7 +2371,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item31
+		class Item30
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2414,7 +2405,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item32
+		class Item31
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2467,7 +2458,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item33
+		class Item32
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2520,7 +2511,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item34
+		class Item33
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2649,7 +2640,7 @@ class Mission
 				nAttributes=6;
 			};
 		};
-		class Item35
+		class Item34
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2682,7 +2673,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item36
+		class Item35
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2868,7 +2859,7 @@ class Mission
 				nAttributes=9;
 			};
 		};
-		class Item37
+		class Item36
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3149,7 +3140,7 @@ class Mission
 				nAttributes=14;
 			};
 		};
-		class Item38
+		class Item37
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3202,7 +3193,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item39
+		class Item38
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3407,7 +3398,7 @@ class Mission
 				nAttributes=10;
 			};
 		};
-		class Item40
+		class Item39
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3498,7 +3489,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item41
+		class Item40
 		{
 			dataType="Object";
 			class PositionInfo
