@@ -58,7 +58,7 @@ while {(alive _veh) and (!(isnull (driver _veh)))} do
 				// Hint press button to get in zeus mode
 				"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", _veh];
 
-				fobrespawnpositionid = [west,(position _veh), "FOB"] call BIS_fnc_addRespawnPosition;
+				fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
 				sleep 5;
 				};
 			};
