@@ -11,3 +11,5 @@ forwardpointvehicleclassname = "rhsusf_rg33_wd";
 fobvehicleclassname = "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy";
 
 prizes = ["rhsusf_M1083A1P2_B_M2_wd_fmtv_usarmy","rhsusf_m1025_w_mk19","rhsusf_m109_usarmy", "rhsusf_m1a1aimwd_usarmy", "rhsusf_m1a2sep1tuskiiwd_usarmy", "RHS_M2A3_BUSKIII_wd", "rhsusf_m113_usarmy_MK19"]
+
+civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_man_polo_1_F_afro","C_man_polo_1_F_euro","C_man_polo_1_F_asia","C_man_polo_2_F","C_man_polo_2_F_afro","C_man_polo_2_F_euro","C_man_polo_2_F_asia","C_man_polo_3_F","C_man_polo_3_F_afro","C_man_polo_3_F_euro","C_man_polo_3_F_asia","C_man_polo_4_","C_man_polo_4_F_afro","C_man_polo_4_F_euro","C_man_polo_4_F_asia","C_man_polo_5_F","  	C_man_polo_5_F_afro","C_man_polo_5_F_euro","C_man_polo_5_F_asia","C_man_polo_6_F","C_man_polo_6_F_afro","C_man_polo_6_F_euro","C_man_polo_6_F_asia"]// got as far as the fugitives

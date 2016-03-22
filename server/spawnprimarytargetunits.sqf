@@ -15,6 +15,7 @@ _pt_radius = _pt_radius - 50;
 
 for "_count" from 2 to _lc do
 {
+	diag_log format ["***spu loop %1", _count];
 	_grpname = format ["grp%1", _count];
 	_grpname = createGroup east;
 
@@ -25,7 +26,6 @@ for "_count" from 2 to _lc do
 		case 0: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "rhs_d30_msv", _grpname ] call bis_fnc_spawnVehicle;
-
 				};
 		case 1: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA")] call BIS_fnc_spawnGroup;
@@ -34,17 +34,14 @@ for "_count" from 2 to _lc do
 		case 2: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AT")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "rhs_Metis_9k115_2_msv", _grpname ] call bis_fnc_spawnVehicle;
-
 				};
 		case 3: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "rhs_KORD_high_msv", _grpname ] call bis_fnc_spawnVehicle;
-
 				};
 		case 4: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "RHS_NSV_TriPod_MSV", _grpname ] call bis_fnc_spawnVehicle;
-
 				};
 		case 5: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
@@ -57,7 +54,6 @@ for "_count" from 2 to _lc do
 				};
 		};
 	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
-
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
 	_veh = createVehicle ["rhs_2b14_82mm_msv", _mypos, [],0,"NONE"];
@@ -68,7 +64,6 @@ for "_count" from 2 to _lc do
 	createVehicleCrew _veh;
 	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
-
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	switch ((floor (random 4))) do
 		{
@@ -138,7 +133,18 @@ for "_count" from 2 to _lc do
 	 }foreach (units _grpname);
 
 };
-
 [_grpname, true, true] call tky_fnc_tc_setskill;
+//createcivilians
+if (_pt_type isEqualTo 1) then
+	{
+	_townroadsx = _pt_pos nearRoads _pt_radius;
+	_townroads = _townroadsx call BIS_fnc_arrayShuffle;
+
+	for "_i" from 1 to 20 do
+		{};
+
+
+	};
+
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 
