@@ -5,6 +5,7 @@ missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 0.5;
 opforcenter = createCenter opfor;
 independentcenter = createCenter independent;
+civcenter = createCenter civilian;
 logiccenter = createCenter sideLogic;
 blufor setFriend [opfor, 0.1];
 opfor setFriend [blufor, 0.1];
