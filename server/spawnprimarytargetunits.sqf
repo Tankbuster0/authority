@@ -136,12 +136,19 @@ for "_count" from 2 to _lc do
 [_grpname, true, true] call tky_fnc_tc_setskill;
 //createcivilians
 if (_pt_type isEqualTo 1) then
-	{
+	{//civs on foot
 	_townroadsx = _pt_pos nearRoads _pt_radius;
 	_townroads = _townroadsx call BIS_fnc_arrayShuffle;
-
-	for "_i" from 1 to 20 do
-		{};
+	_civcount = 20;
+	while {count _townroads < _civcount} do {_townroads append _townroads};
+	_civfootgroup = createGroup civilian;
+	for "_i" from 1 to _civcount do
+		{
+		_pos = getpos (selectRandom _townroads);
+		_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
+		_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
+		// _cfunit call some funky patrol suite to make them wander around
+		};
 
 
 	};
