@@ -136,21 +136,44 @@ for "_count" from 2 to _lc do
 [_grpname, true, true] call tky_fnc_tc_setskill;
 //createcivilians
 if (_pt_type isEqualTo 1) then
-	{//civs on foot
-	_townroadsx = _pt_pos nearRoads _pt_radius;
-	_townroads = _townroadsx call BIS_fnc_arrayShuffle;
-	_civcount = 20;
-	while {count _townroads < _civcount} do {_townroads append _townroads};
-	_civfootgroup = createGroup civilian;
-	for "_i" from 1 to _civcount do
 		{
-		_pos = getpos (selectRandom _townroads);
-		_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
-		_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
-		// _cfunit call some funky patrol suite to make them wander around
-		};
+		//civs on foot
+
+		_townroadsx = _pt_pos nearRoads _pt_radius;
+		_townroads = _townroadsx call BIS_fnc_arrayShuffle;
 
 
+		_civcount = 20;
+		_civarray = [];
+		while {count _townroads < _civcount} do {_townroads append _townroads};
+		_civfootgroup = createGroup civilian;
+		for "_i" from 1 to _civcount do
+			{
+			_pos = getpos (selectRandom _townroads);
+			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
+			_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
+			_civarray pushback _cfunit;
+			// _cfunit call some funky patrol suite to make them wander around
+			};
+
+		//driven cars
+		_dcar = [];
+		_dcarcount = 10;
+		_dcargroup = createGroup civilian;
+		for "_i" from 1 to _dcarcount do
+			{
+			_road2 = []
+			while {_roads2 isEqualTo []} do
+				{
+				_road1 = selectRandom _townroads;
+				_road2 = (roadsConnectedTo _road1) select 0;
+				};
+			_dir = _road1 getdir _road2;
+			_roadsidepos
+			_veh = createVehicle [(selectRandom civcars), ]
+
+			};
+		_null = [_civarray] execVM "server\cosPatrol.sqf";
 	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
