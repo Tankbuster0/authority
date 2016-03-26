@@ -2,15 +2,17 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_currentprimarytarget","_loc_pos","_pt_pos","_pt_radius","_pt_type","_lc","_count","_grpname","_mypos","_mydir","_veh","_vehdata","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_road2","_road1","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_roadoccupied","_possiblepos","_objs","_obj"];
+private ["_currentprimarytarget","_loc_pos","_pt_pos","_pt_radius","_pt_type","_lc","_count","_grpname","_mypos","_mydir","_veh","_vehdata","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_road2","_road1","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_roadnogood","_possiblepos","_objs","_obj", "_start"];
 _currentprimarytarget = _this select 0;// recieves a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
 _pt_type = (_currentprimarytarget getVariable "targettype");
 _lc = (_pt_radius /75); //scales spawn levels according to radius
-_pt_radius = _pt_radius - 50;
 
-for "_count" from (["enemyspawnlevel", 2] call BIS_fnc_getParamValue) to _lc do
+_start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;
+if ((_start == 3) and (_pt_radius == 150)) then {_start = 2};
+_pt_radius = _pt_radius - 50;
+for "_count" from _start to _lc do
 {
 	diag_log format ["***spu loop %1", _count];
 	_grpname = format ["grp%1", _count];
@@ -140,7 +142,7 @@ if (_pt_type isEqualTo 1) then
 		_townroads = _townroadsx call BIS_fnc_arrayShuffle;
 
 
-		_civcount = 20;
+		_civcount = (5 * _lc);
 		_fciv = [];
 		while {count _townroads < _civcount} do {_townroads append _townroads};
 
@@ -156,7 +158,7 @@ if (_pt_type isEqualTo 1) then
 
 		//driven cars
 		_dcar = [];
-		_dcarcount = 10;
+		_dcarcount = (3 * _lc);
 		for "_i" from 1 to _dcarcount do
 			{
 			_dcargroup = createGroup civilian;
@@ -169,8 +171,6 @@ if (_pt_type isEqualTo 1) then
 			_dir = _road1 getdir _road2;
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
 			_veh setdir _dir;
-			//_veh setpos (_veh modelToWorld [-4,0,-1.3]);
-
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
 			_unit assignAsDriver _veh;
 			_unit moveInDriver _veh;
@@ -181,37 +181,27 @@ if (_pt_type isEqualTo 1) then
 				_unit2 moveInAny _veh;
 				};
 			_dcar pushback _dcargroup;
-
-
-
 			};
 		_roadposarray = [];
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";
-
 		//parked cars
 		_pcar = [];
-		_pcarcount = 15;
+		_pcarcount = (4 * _lc);
 		for "_i" from 1 to _pcarcount do
 			{
-			_roadoccupied = true;
-			while {_roadoccupied} do // make sure the roadpiece chosen doesn't already have a car on it.
+			_roadnogood = true;
+			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 				{
-				_possiblepos = getpos (selectRandom _townroads);
-				_objs = _possiblepos nearEntities [["LandVehicle"],5];
-				if ((count _objs) < 1) then {_roadoccupied = false};
+				_road1 = (selectRandom _townroads);
+				//_possiblepos = getpos (selectRandom _townroads);
+				_objs = (getpos _road1) nearEntities [["LandVehicle"],5];
+				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) > 0))  then {_roadnogood = false};
 				};
-			_road2 = [];
-			while {_road2 isEqualTo []} do
-				{
-				_road1 = selectRandom _townroads;
-				_road2 = (roadsConnectedTo _road1) select 0;
-				};
-			_dir = _road1 getdir _road2;
 			//_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
 			_veh = createVehicle ["C_Offroad_01_repair_F", (getpos _road1), [],0,"NONE"];
-			_veh setdir _dir;
-			_veh setpos (_veh modelToWorld [-4,0,-1.3]);
+			_veh setdir (getdir (nearestBuilding _veh));
+			_veh setpos (_veh modelToWorld [-5,0,-1.3]);
 			};
 
 
