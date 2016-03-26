@@ -98,6 +98,12 @@ class Params
 		default = -99999;
 		texts[] = {""};
 	};
+			class enemyspawnlevel {
+			title = "How many enemies in each target?";
+			values[] = {3,2,1};
+			default = 3;
+			texts[] = {"Few", "Normal", "Lots"};
+		};
 			class militarybasesincluded {
 			title = "Island military bases are primaries too?";
 			values[] = {0,1};

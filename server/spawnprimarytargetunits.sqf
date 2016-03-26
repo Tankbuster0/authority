@@ -2,18 +2,15 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_currentprimarytarget","_loc_pos","_pt_pos","_pt_radius","_pt_type","_mylogic","_lc","_count","_grpname","_mypos","_mydir","_mypos2"];
+private ["_currentprimarytarget","_loc_pos","_pt_pos","_pt_radius","_pt_type","_lc","_count","_grpname","_mypos","_mydir","_veh","_vehdata","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_road2","_road1","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_roadoccupied","_possiblepos","_objs","_obj"];
 _currentprimarytarget = _this select 0;// recieves a logic
-//diag_log format ["***doprimary.sqf @ 7 Primary units spawn actual %1, typename %2", _currentprimarytarget, typeName _currentprimarytarget];
-//_loc_pos = getpos _currentprimarytarget;
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
 _pt_type = (_currentprimarytarget getVariable "targettype");
-//diag_log format ["*** spawnprimaryunits @12 locpos %1 mylogic %2, ptpos %3, ptradius %4", _loc_pos, _mylogic, _pt_pos, _pt_radius];
 _lc = (_pt_radius /75); //scales spawn levels according to radius
 _pt_radius = _pt_radius - 50;
 
-for "_count" from 2 to _lc do
+for "_count" from (["enemyspawnlevel", 2] call BIS_fnc_getParamValue) to _lc do
 {
 	diag_log format ["***spu loop %1", _count];
 	_grpname = format ["grp%1", _count];
@@ -144,36 +141,80 @@ if (_pt_type isEqualTo 1) then
 
 
 		_civcount = 20;
-		_civarray = [];
+		_fciv = [];
 		while {count _townroads < _civcount} do {_townroads append _townroads};
-		_civfootgroup = createGroup civilian;
+
 		for "_i" from 1 to _civcount do
 			{
+			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
 			_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
-			_civarray pushback _cfunit;
+			_fciv pushback _civfootgroup;
 			// _cfunit call some funky patrol suite to make them wander around
 			};
 
 		//driven cars
 		_dcar = [];
 		_dcarcount = 10;
-		_dcargroup = createGroup civilian;
 		for "_i" from 1 to _dcarcount do
 			{
-			_road2 = []
-			while {_roads2 isEqualTo []} do
+			_dcargroup = createGroup civilian;
+			_road2 = [];
+			while {_road2 isEqualTo []} do
 				{
 				_road1 = selectRandom _townroads;
 				_road2 = (roadsConnectedTo _road1) select 0;
 				};
 			_dir = _road1 getdir _road2;
-			_roadsidepos
-			_veh = createVehicle [(selectRandom civcars), ]
+			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
+			_veh setdir _dir;
+			//_veh setpos (_veh modelToWorld [-4,0,-1.3]);
+
+			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
+			_unit assignAsDriver _veh;
+			_unit moveInDriver _veh;
+			_crewcount = [(typeof _veh), true] call BIS_fnc_crewCount;
+			for "_ii" from 1 to (random _crewcount) do
+				{
+				_unit2 = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
+				_unit2 moveInAny _veh;
+				};
+			_dcar pushback _dcargroup;
+
+
 
 			};
-		_null = [_civarray] execVM "server\cosPatrol.sqf";
+		_roadposarray = [];
+		{_roadposarray pushback (getpos _x)} foreach _townroads;
+		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";
+
+		//parked cars
+		_pcar = [];
+		_pcarcount = 15;
+		for "_i" from 1 to _pcarcount do
+			{
+			_roadoccupied = true;
+			while {_roadoccupied} do // make sure the roadpiece chosen doesn't already have a car on it.
+				{
+				_possiblepos = getpos (selectRandom _townroads);
+				_objs = _possiblepos nearEntities [["LandVehicle"],5];
+				if ((count _objs) < 1) then {_roadoccupied = false};
+				};
+			_road2 = [];
+			while {_road2 isEqualTo []} do
+				{
+				_road1 = selectRandom _townroads;
+				_road2 = (roadsConnectedTo _road1) select 0;
+				};
+			_dir = _road1 getdir _road2;
+			//_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
+			_veh = createVehicle ["C_Offroad_01_repair_F", (getpos _road1), [],0,"NONE"];
+			_veh setdir _dir;
+			_veh setpos (_veh modelToWorld [-4,0,-1.3]);
+			};
+
+
 	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
