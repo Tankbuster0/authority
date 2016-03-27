@@ -187,7 +187,7 @@ if (_pt_type isEqualTo 1) then
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";
 		//parked cars
 		_pcar = [];
-		_pcarcount = (4 * _lc);
+		_pcarcount = (3 * _lc);
 		for "_i" from 1 to _pcarcount do
 			{
 			_roadnogood = true;
@@ -196,11 +196,17 @@ if (_pt_type isEqualTo 1) then
 				_road1 = (selectRandom _townroads);
 				//_possiblepos = getpos (selectRandom _townroads);
 				_objs = (getpos _road1) nearEntities [["LandVehicle"],5];
-				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) > 0))  then {_roadnogood = false};
+				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 				};
 			//_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
 			_veh = createVehicle ["C_Offroad_01_repair_F", (getpos _road1), [],0,"NONE"];
-			_veh setdir (getdir (nearestBuilding _veh));
+			_nb = nearestBuilding _veh;
+			if ((_veh distance _nb) > 12) then
+				{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
+				 else
+				{_dir = (getdir (nearestBuilding _veh));};
+
+			_veh setdir _dir;
 			_veh setpos (_veh modelToWorld [-5,0,-1.3]);
 			};
 
