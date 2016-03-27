@@ -163,7 +163,8 @@ if (_pt_type isEqualTo 1) then
 			{
 			_dcargroup = createGroup civilian;
 			_road2 = [];
-			while {_road2 isEqualTo []} do
+			_road1 = selectRandom _townroads;
+			while {((_road2 isEqualTo []) and (count ((getpos _road1) nearEntities ["LandVehicle", 5] )) > 0)} do
 				{
 				_road1 = selectRandom _townroads;
 				_road2 = (roadsConnectedTo _road1) select 0;
@@ -195,7 +196,7 @@ if (_pt_type isEqualTo 1) then
 				{
 				_road1 = (selectRandom _townroads);
 				//_possiblepos = getpos (selectRandom _townroads);
-				_objs = (getpos _road1) nearEntities [["LandVehicle"],5];
+				_objs = (getpos _road1) nearEntities ["LandVehicle",5];
 				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 				};
 			//_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
