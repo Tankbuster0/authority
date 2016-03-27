@@ -162,13 +162,15 @@ if (_pt_type isEqualTo 1) then
 		for "_i" from 1 to _dcarcount do
 			{
 			_dcargroup = createGroup civilian;
-			_road2 = [];
-			_road1 = selectRandom _townroads;
-			while {((_road2 isEqualTo []) and (count ((getpos _road1) nearEntities ["LandVehicle", 5] )) > 0)} do
+			_roadnogood = true;
+			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 				{
-				_road1 = selectRandom _townroads;
-				_road2 = (roadsConnectedTo _road1) select 0;
+				_road1 = (selectRandom _townroads);
+				//_possiblepos = getpos (selectRandom _townroads);
+				_objs = (getpos _road1) nearEntities ["LandVehicle",5];
+				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) < 1 ))  then {_roadnogood = false};
 				};
+			_road2 = (roadsConnectedTo _road1) select 0;
 			_dir = _road1 getdir _road2;
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
 			_veh setdir _dir;
