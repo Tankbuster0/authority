@@ -47,7 +47,7 @@ for "_count" from _start to _lc do
 				_veh = createVehicle ["rhs_2b14_82mm_msv", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
 				createVehicleCrew _veh;
-				_veh = createVehicle ["m", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
+				_veh = createVehicle ["rhs_2b14_82mm_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
 				_veh setdir (_mydir + random 15);
 				createVehicleCrew _veh;
 				};
@@ -137,15 +137,12 @@ for "_count" from _start to _lc do
 if (_pt_type isEqualTo 1) then
 		{
 		//civs on foot
-
+		diag_log "***spu makes dismounted civs";
 		_townroadsx = _pt_pos nearRoads _pt_radius;
 		_townroads = _townroadsx call BIS_fnc_arrayShuffle;
-
-
 		_civcount = (5 * _lc);
 		_fciv = [];
 		while {count _townroads < _civcount} do {_townroads append _townroads};
-
 		for "_i" from 1 to _civcount do
 			{
 			_civfootgroup = createGroup civilian;
@@ -153,10 +150,9 @@ if (_pt_type isEqualTo 1) then
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
 			_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
 			_fciv pushback _civfootgroup;
-			// _cfunit call some funky patrol suite to make them wander around
 			};
-
 		//driven cars
+		diag_log "***spu makes driven cards";
 		_dcar = [];
 		_dcarcount = (3 * _lc);
 		for "_i" from 1 to _dcarcount do
@@ -168,7 +164,7 @@ if (_pt_type isEqualTo 1) then
 				_road1 = (selectRandom _townroads);
 				//_possiblepos = getpos (selectRandom _townroads);
 				_objs = (getpos _road1) nearEntities ["LandVehicle",5];
-				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) < 1 ))  then {_roadnogood = false};
+				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) > 1 ))  then {_roadnogood = false};
 				};
 			_road2 = (roadsConnectedTo _road1) select 0;
 			_dir = _road1 getdir _road2;
@@ -189,6 +185,7 @@ if (_pt_type isEqualTo 1) then
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";
 		//parked cars
+		diag_log "***spu makes parked cars";
 		_pcar = [];
 		_pcarcount = (3 * _lc);
 		for "_i" from 1 to _pcarcount do
