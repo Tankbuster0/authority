@@ -13,7 +13,7 @@ _target_pos = [_this, 1] call BIS_fnc_param;
 _rad = [_this, 2] call BIS_fnc_param;
 _chuto = [_this, 3] call BIS_fnc_param;
 _is_ammo = [_this, 4] call BIS_fnc_param;
-diag_log format ["***mando chute gets man %1, targetpos %2, rad %3, chuto %4, isammo %5", _man, _target_pos, _rad, _chuto, _is_ammo];
+//diag_log format ["***mando chute gets man %1, targetpos %2, rad %3, chuto %4, isammo %5", _man, _target_pos, _rad, _chuto, _is_ammo];
 if (count _target_pos isEqualTo 2) then {_target_pos set [count _target_pos, 0]};
 _ang = random 360;
 _target_pos = if (_rad isEqualTo 0) then {
