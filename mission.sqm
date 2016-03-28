@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1198;
+		nextID=1207;
 	};
 	class Camera
 	{
-		pos[]={8436.208,125.02944,25154.152};
-		dir[]={0.57976818,-0.62306875,-0.52517027};
-		up[]={0.46188459,0.78203595,-0.41839069};
-		aside[]={-0.67139655,-2.3684697e-007,-0.74118948};
+		pos[]={8347.3047,86.379189,25258.99};
+		dir[]={-0.43869644,-0.75675625,0.4848009};
+		up[]={-0.50782669,0.65355873,0.56119937};
+		aside[]={0.74154478,8.7654917e-007,0.67101645};
 	};
 };
 binarizationWanted=0;
@@ -77,6 +77,25 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -108,25 +127,6 @@ class CustomAttributes
 							};
 						};
 					};
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
 				};
 			};
 		};
@@ -2463,8 +2463,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8308,52.203522,25311};
-				angles[]={6.2152901,0,0.077179179};
+				position[]={8313,52.050087,25307};
+				angles[]={6.2152901,0,6.2711854};
 			};
 			id=458;
 			type="ace_viewdistance_ModuleSettings";
@@ -2516,8 +2516,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8313,52.488411,25311};
-				angles[]={6.1063843,0,0.09834861};
+				position[]={8321,52.266212,25302};
+				angles[]={6.0275688,0,0.32773846};
 			};
 			id=459;
 			type="ace_weather_ModuleSettings";
@@ -3038,7 +3038,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0.80000001;
 						};
 					};
 				};
@@ -3198,8 +3198,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8328,52.416565,25325};
-				angles[]={0.18455112,0,0.053284902};
+				position[]={8328,53.437168,25298};
+				angles[]={6.0275688,0,0.27794731};
 			};
 			id=469;
 			type="ace_advanced_ballistics_ModuleSettings";
@@ -3403,8 +3403,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8328,53.43824,25321};
-				angles[]={0.25935686,0,6.2578578};
+				position[]={8325,54.409962,25305};
+				angles[]={0.021328852,0,0.25186872};
 			};
 			id=470;
 			type="ace_winddeflection_ModuleSettings";
