@@ -138,7 +138,14 @@ if (_pt_type isEqualTo 1) then
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
-			_cfunit addEventHandler ["HandleDamage", {if (isNull (_this select 3)) then { 0; } else { _this select 2; }; }];// should disable collision damage, so they don't get run over
+			_cfunit removeAllEventHandlers "HandleDamage";
+			_cfunit addEventHandler ["HandleDamage",
+				{
+				if (isNull (_this select 3))then //if unit is run over by an east or civ vehicle, dont take damage
+					{
+					0;
+					} else
+					{ _this select 2; }; }];// should disable collision damage, so they don't get run over
 			_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
 			_fciv pushback _civfootgroup;
 			};

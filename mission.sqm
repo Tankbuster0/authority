@@ -5,7 +5,7 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=133;
+	toggles=5;
 	class ItemIDProvider
 	{
 		nextID=478;
@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1207;
+		nextID=1252;
 	};
 	class Camera
 	{
-		pos[]={8347.3047,86.379189,25258.99};
+		pos[]={8352.168,90.970795,25250.473};
 		dir[]={-0.43869644,-0.75675625,0.4848009};
 		up[]={-0.50782669,0.65355873,0.56119937};
 		aside[]={0.74154478,8.7654917e-007,0.67101645};
@@ -77,25 +77,6 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -127,6 +108,25 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
 				};
 			};
 		};
