@@ -135,18 +135,38 @@ if (_pt_type isEqualTo 1) then
 		while {count _townroads < _civcount} do {_townroads append _townroads};
 		for "_i" from 1 to _civcount do
 			{
+			sleep 1;
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
-			_cfunit removeAllEventHandlers "HandleDamage";
+			//_cfunit removeAllEventHandlers "HandleDamage";
+/*			_cfunit spawn {
+			    sleep 1; //Wait for ace to install it's eh
+			    _this removeAllEventHandlers "HandleDamage"; //remove ace's eh
+
+			    _this addEventHandler ["HandleDamage", {
+			        _return = 0;
+			        if (!isNull (_this select 3))then {
+			            _return = _this call ace_medical_fnc_handleDamage;
+			        };
+			        _return
+			    }];
+			};
+*/
+/*
 			_cfunit addEventHandler ["HandleDamage",
 				{
-				if (isNull (_this select 3))then //if unit is run over by an east or civ vehicle, dont take damage
+				if (_this select 4 == "")then
 					{
 					0;
 					} else
-					{ _this select 2; }; }];// should disable collision damage, so they don't get run over
-			_cfunit addEventHandler [ "killed", {/* call handler fnc */}];
+					{
+					_this select 2;
+					};
+				}];// should disable collision damage, so they don't get run over
+*/
+			_cfunit addEventHandler [ "killed", {if (side (_this select 1)==west) then {civkillcount = civkillcount +1};}];
+			//_cfunit addEventHandler ["killed", {diag_log format ["***civ %1 killed by %2, who is side %3", _this select 0, _this select 1, side (_this select 1)]}];
 			_fciv pushback _civfootgroup;
 			};
 		//driven cars
@@ -188,7 +208,7 @@ if (_pt_type isEqualTo 1) then
 			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 				{
 				_road1 = (selectRandom _townroads);
-				_objs = (getpos _road1) nearEntities ["LandVehicle",5];
+				_objs = (getpos _road1) nearEntities ["LandVehicle",6];
 				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 				};
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
