@@ -20,6 +20,7 @@ if (primarytargetcounter > 1) then
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
+civkillcount = 0;
 primarytarget = nextpt;
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variabels stored on it
 waitUntil {scriptDone _handle1};

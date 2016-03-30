@@ -4,7 +4,7 @@ private ["_foundairfields","_mapsize","_mapcentre","_locs","_airfield","_newdryp
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
-
+enableVehicleCrashes = false;
 _newdrypos =[0,0,0];
 roadreinforcementvehicles = [];
 fobdeployed = false;
