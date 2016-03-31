@@ -135,38 +135,12 @@ if (_pt_type isEqualTo 1) then
 		while {count _townroads < _civcount} do {_townroads append _townroads};
 		for "_i" from 1 to _civcount do
 			{
-			sleep 1;
+			sleep 0.2;
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
-			//_cfunit removeAllEventHandlers "HandleDamage";
-/*			_cfunit spawn {
-			    sleep 1; //Wait for ace to install it's eh
-			    _this removeAllEventHandlers "HandleDamage"; //remove ace's eh
-
-			    _this addEventHandler ["HandleDamage", {
-			        _return = 0;
-			        if (!isNull (_this select 3))then {
-			            _return = _this call ace_medical_fnc_handleDamage;
-			        };
-			        _return
-			    }];
-			};
-*/
-/*
-			_cfunit addEventHandler ["HandleDamage",
-				{
-				if (_this select 4 == "")then
-					{
-					0;
-					} else
-					{
-					_this select 2;
-					};
-				}];// should disable collision damage, so they don't get run over
-*/
-			_cfunit addEventHandler [ "killed", {if (side (_this select 1)==west) then {civkillcount = civkillcount +1};}];
-			//_cfunit addEventHandler ["killed", {diag_log format ["***civ %1 killed by %2, who is side %3", _this select 0, _this select 1, side (_this select 1)]}];
+			_cfunit addEventHandler ["killed", {if ((_this select 1) isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
+			//_cfunit addEventHandler [ "killed", {if ((_this select 1) isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
 			_fciv pushback _civfootgroup;
 			};
 		//driven cars
@@ -174,6 +148,7 @@ if (_pt_type isEqualTo 1) then
 		_dcarcount = (3 * _lc);
 		for "_i" from 1 to _dcarcount do
 			{
+			sleep 0.2;
 			_dcargroup = createGroup civilian;
 			_roadnogood = true;
 			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
@@ -204,16 +179,17 @@ if (_pt_type isEqualTo 1) then
 		_pcarcount = (3 * _lc);
 		for "_i" from 1 to _pcarcount do
 			{
+			sleep 0.2;
 			_roadnogood = true;
 			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 				{
 				_road1 = (selectRandom _townroads);
-				_objs = (getpos _road1) nearEntities ["LandVehicle",6];
+				_objs = (getpos _road1) nearEntities ["LandVehicle",7];
 				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 				};
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
 			_nb = nearestBuilding _veh;
-			if ((_veh distance _nb) > 12) then
+			if ((_veh distance _nb) > 10) then
 				{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
 				 else
 				{_dir = (getdir (nearestBuilding _veh));};
