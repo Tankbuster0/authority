@@ -12,7 +12,7 @@ publicVariable "fobdeployed";
 _1pos = getpos _airfield;
 while {_newdrypos in [[0,0,0], islandcentre]} do
 	{
-	_newdrypos = [_1pos,800,1300, 2.5, 0, 5, 1] call bis_fnc_findSafePos;
+	_newdrypos = [_1pos,800,1300, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
 	};
 _newdrypos set [2,0];
 //"respawn_west" setmarkerpos _newdrypos;
