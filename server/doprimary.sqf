@@ -56,7 +56,7 @@ if ((primarytargetcounter > 1)) then
 				sleep 10;
 				deadgatecount = 0;
 					{
-					if ((_x animationPhase "Door_1_rot" == 1) or (!alive _x) or ((damage _x) > 0.8)) then {deadgatecount = deadgatecount +1};
+					if ((_x animationPhase "Door_1_rot" == 0) or (!alive _x) or ((damage _x) > 0.8)) then {deadgatecount = deadgatecount +1};
 					} foreach roadblockgates;
 				if (deadgatecount == (count roadblockgates)) then
 					{
