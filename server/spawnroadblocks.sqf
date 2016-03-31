@@ -53,6 +53,7 @@ for "_i" from 0 to 355 step 5 do
 	_groups = _groups + [_campgroup];
 	_campgroup setFormDir _dir;
 	_gate = "Land_BarGate_F" createVehicle _pos;
+	_gate animate ["Door_1_rot",1,true];
 	roadblockgates pushback _gate;
 	vehiclecleanup pushback _gate;
 
