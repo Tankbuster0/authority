@@ -13,6 +13,7 @@ while {!roadblockscleared} do
 		{
 		_handle2 = [primarytarget] execVM "server\makeroadreinforcement.sqf";// only make roadreinf if there are players
 		//diag_log "****rrm calls mrr!";
+		reinforcementcounter = reinforcementcounter + 1;
 		};
 };
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

@@ -17,6 +17,7 @@ if (primarytargetcounter > 1) then
 	{
 	roadblockscleared = true;
 	};
+reinforcementcounter = 0;
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");

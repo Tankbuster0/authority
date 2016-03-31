@@ -17,7 +17,7 @@ while {(alive pt_radar)} do
 		{
 		nul = [cpt_position, false,2,1,false, true, player,"random", 2000, true, false,20,[0.25,0.25,0.8,0.45,0.6,0.45,0.45,0.55,1,0.55],nil,nil,nil] execVM "server\reinforcementChopper.sqf";// only make airreinf if there are playerd
 
-		diag_log "****arm calls rc!";
+		reinforcementcounter = reinforcementcounter + 1;
 		};
 };
 
