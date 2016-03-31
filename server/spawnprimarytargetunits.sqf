@@ -2,15 +2,35 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_lc","_start","_count","_grpname","_mypos","_mydir","_veh","_vehdata","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
+private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_count","_grpname","_mypos","_mydir","_veh","_vehdata","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
 _pt_type = (_currentprimarytarget getVariable "targettype");
+_pt_name = (_currentprimarytarget getVariable "targetname");
 _lc = (_pt_radius /75); //scales spawn levels according to radius
 _start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;
 if ((_start == 3) and (_pt_radius == 150)) then {_start = 2};
 _pt_radius = _pt_radius - 50;
+if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
+	{
+	switch (_pt_name) do
+		{
+		case "AAC airfield": {_composition = aacomposition};
+
+		case "Almyra airfield": {_composition = almyracomposition};
+
+		case "Abdera airfield": {_composition = abderacomposition};
+
+		case "Feres airfield": {_composition = ferescomposition};
+
+		case "Molos Airfield":{_composition = moloscomposition};
+
+		};
+	nul = [_pt_pos, 0, _composition] call BIS_fnc_ObjectsMapper;
+
+	};
+
 for "_count" from _start to _lc do
 {
 	diag_log format ["***spu loop %1", _count];
