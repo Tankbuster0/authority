@@ -15,7 +15,7 @@ if (primarytargetcounter > 1) then
 	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
 	}else
 	{
-	roadblockscleared = true;
+	roadblockscleared = true;// this is the first target, no roadblocks so set it to true so it's ignored
 	};
 reinforcementcounter = 0;
 cpt_position = getpos nextpt;
@@ -23,7 +23,7 @@ cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
 civkillcount = 0;
 primarytarget = nextpt;
-_handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variabels stored on it
+_handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 waitUntil {scriptDone _handle1};
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
