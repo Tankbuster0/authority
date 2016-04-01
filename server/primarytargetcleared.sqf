@@ -3,18 +3,6 @@ _myscript = "primarytargetcleared.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh"];
-// need to handle all the secondarys now. gulp
-if (cpt_type == 1) then
-	{
-	_ruinstartcount = nextpt getVariable "targetruincount";
-	_ruinendcount = (count (cpt_position nearObjects ["Ruins", cpt_radius]));
-	_heartandmindscore = (_ruinendcount - _ruinstartcount) + civkillcount + reinforcementcounter;
-	diag_log format ["****h&m = %1, ruinend %2 ruinstart %3 civkill %4 reinfcntr %5", _heartandmindscore, _ruinendcount, _ruinstartcount,civkillcount, reinforcementcounter];
-	sleep 3;
-	};
-
-
-
 
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorBlue";
@@ -28,8 +16,6 @@ if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (g
 if (primarytargetcounter isEqualTo 1) then {_droptype = fobvehicleclassname} else {_droptype = (selectRandom prizes)};//else choose prize vehicle
 
 _nul = [_pos, "RHS_C130J", _droptype ] execVM "server\spawnairdrop.sqf";
-
-
 
 {
 	_veh = _x;

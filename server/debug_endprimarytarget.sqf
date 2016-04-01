@@ -8,7 +8,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 if (cpt_type ==1 ) then
 	{
 	{_x setdamage 1} foreach roadblockgates;
-	}
+	};
 pt_radar setdamage 1;
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
