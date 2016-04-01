@@ -4,7 +4,7 @@ private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", "RHS_C130J"], // classname of delivering aircraft
-["_droptype", "rhsusf_M1083A1P2_B_M2_d_MHQ_fmtv_usarmy"],// classname of deliverd objects
+["_droptype", fobvehicleclassname],// classname of deliverd objects
 ["_spawnpoint", [0,0,0]]
 ]; // classname of delivered object
 _mytime = serverTime;
