@@ -42,7 +42,7 @@ trg2 setTriggerStatements ["this", "diag_log '***all east dead'", ""];
 trg3 = createTrigger ["EmptyDetector", cpt_position];
 trg3 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg3 setTriggerActivation  ["EAST", "NOT PRESENT", false];
-trg3 setTriggerStatements ["((!(alive pt_radar)) and (roadblockscleared) and (triggerActivated trg2))", "execVM 'server\primarytargetcleared.sqf'", ""];
+trg3 setTriggerStatements ["((!(alive pt_radar)) and (roadblockscleared) and (triggerActivated trg2))", "execVM 'server\assaultphasefinished.sqf'", ""];
 
 // task stuff
 taskname = "task" + str primarytargetcounter;

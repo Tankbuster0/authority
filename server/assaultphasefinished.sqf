@@ -15,13 +15,6 @@ sleep 5;
 
 
 
-
-
-
-
-
-
-
 nul =  execVM "server\primarytargetcleared.sqf"
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
