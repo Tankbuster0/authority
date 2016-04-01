@@ -16,7 +16,7 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 	{
 	switch (_pt_name) do
 		{
-		case "AAC airfield": {_composition = aacomposition};
+		case "AAC airfield": {_composition = aaccomposition};
 
 		case "Almyra airfield": {_composition = almyracomposition};
 
