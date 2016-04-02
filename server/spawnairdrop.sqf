@@ -59,7 +59,7 @@ _dwp2 setWaypointScript "deleteVehiclecrew dropveh; deleteVehicle dropveh;'dropv
 waituntil {sleep 0.5; (((dropveh distance2D _droppos) < 1000) or (serverTime > (_mytime + 90))) };
 if (serverTime > (_mytime + 90)) exitWith
 	{
-	diag_log "***spawnairdrop timed out. ";
+	//diag_log "***spawnairdrop timed out. ";
 	{ dropveh deleteVehicleCrew _x} foreach crew dropveh;
 	deleteVehicle dropveh;
 	while {(count (waypoints _dropgroup)) > 0} do

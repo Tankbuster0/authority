@@ -33,10 +33,9 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 
 for "_count" from _start to _lc do
 {
-	diag_log format ["***spu loop %1", _count];
+	//diag_log format ["***spu loop %1", _count];
 	_grpname = format ["grp%1", _count];
 	_grpname = createGroup east;
-	diag_log format ["***created group %1", _grpname];
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
@@ -144,7 +143,6 @@ for "_count" from _start to _lc do
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
 	 }foreach (units _grpname);
-	//[_grpname, true, true] call tky_fnc_tc_setskill;
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 {
@@ -163,9 +161,6 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
-
-
-
 //createcivilians
 if (_pt_type isEqualTo 1) then
 		{
