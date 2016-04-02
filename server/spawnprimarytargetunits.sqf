@@ -148,7 +148,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 if (_removeenemyvests > 0) then
 	{
 		{
-		if (_removeenemyvests == 2 or ((_removeenemyvests == 1) and (random 1 > 0.5))) then
+		if ((_removeenemyvests == 2) or ((_removeenemyvests == 1) and (random 1 > 0.5))) then
 			{
 			removeVest _x;
 			}
