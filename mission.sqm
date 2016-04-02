@@ -64,8 +64,7 @@ addons[]=
 	"A3_Structures_F_Households_House_Small02",
 	"A3_Structures_F_Households_House_Small01",
 	"A3_Structures_F_Naval_Piers",
-	"A3_Structures_F_Dominants_Lighthouse",
-	"CUP_WheeledVehicles_LR"
+	"A3_Structures_F_Dominants_Lighthouse"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -3795,7 +3794,7 @@ class Mission
 				textures="standard";
 			};
 			id=574;
-			type="CUP_B_LR_Special_CZ_W";
+			type="rhsusf_rg33_wd";
 			class CustomAttributes
 			{
 				class Attribute0
