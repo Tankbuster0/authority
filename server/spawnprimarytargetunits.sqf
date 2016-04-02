@@ -36,6 +36,8 @@ for "_count" from _start to _lc do
 	diag_log format ["***spu loop %1", _count];
 	_grpname = format ["grp%1", _count];
 	_grpname = createGroup east;
+	diag_log format ["***created group %1", _grpname];
+	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
 	switch ((floor (random 6))) do
@@ -142,18 +144,28 @@ for "_count" from _start to _lc do
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
 	 }foreach (units _grpname);
+	//[_grpname, true, true] call tky_fnc_tc_setskill;
 };
-[_grpname, true, true] call tky_fnc_tc_setskill;
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
-if (_removeenemyvests > 0) then
-	{
+{
+	if (side _x == east) then
 		{
-		if ((_removeenemyvests == 2) or ((_removeenemyvests == 1) and (random 1 > 0.5))) then
+		_mygroup = _x;
+		[_mygroup, true, true] call tky_fnc_tc_setskill;
+		if (_removeenemyvests > 0) then
 			{
-			removeVest _x;
-			}
-		} foreach units _grpname;
-	};
+				{
+				if ((_removeenemyvests == 2) or ((_removeenemyvests == 1) and (random 1 > 0.8))) then
+					{
+					removeVest _x;
+					}
+				} foreach units _mygroup;
+			};
+		};
+} foreach allgroups;
+
+
+
 //createcivilians
 if (_pt_type isEqualTo 1) then
 		{

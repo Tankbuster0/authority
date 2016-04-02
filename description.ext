@@ -84,7 +84,7 @@ class CfgTaskEnhancements
 };
 class Params
 {
-	class line1 {
+		class line1 {
 		title = "---------------------- Mission Values ----------------------";
 		values[] = {-99999};
 		default = -99999;
@@ -96,12 +96,6 @@ class Params
 		default = -99999;
 		texts[] = {""};
 	};
-			class enemyspawnlevel {
-			title = "How many enemies in each target?";
-			values[] = {3,2,1};
-			default = 3;
-			texts[] = {"Few", "Normal", "Lots"};
-		};
 			class militarybasesincluded {
 			title = "Island military bases are primaries too?";
 			values[] = {0,1};
@@ -145,7 +139,7 @@ class Params
 			default = 0;
 			texts[] = {"No", "Yes, if lightly loaded", "Yes, if no backpack"};
 		};
-				class line4 {
+		class line4 {
 		title = "---------------------- Difficulty Settings ----------------------";
 		values[] = {-99999};
 		default = -99999;
