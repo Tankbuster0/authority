@@ -122,7 +122,7 @@ _pos = [(_targetPos select 0) + (sin _dir) * _range, (_targetPos select 1) + (co
 _heli = createVehicle [_heliT, _pos, [], 0, "FLY"];
 _heli setfuel 0.02;
 _t_ehindex = _heli addeventhandler ["HandleDamage", {if ((_this select 4) isKindOf "MissileCore") then { 1; } else { _this select 2; }; }];
-diag_log format ["*** rc spawns an aircraft at %1", _pos];
+//diag_log format ["*** rc spawns an aircraft at %1", _pos];
 if(_grpSize > (getNumber (configFile >> "CfgVehicles" >> _heliT >> "transportSoldier")))then{
 	_vehSpots = getNumber (configFile >> "CfgVehicles" >> _heliT >> "transportSoldier");
 }else{

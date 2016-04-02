@@ -28,7 +28,7 @@ if (_typefob) then
 	publicVariable "fobrespawning";
 	fobrespawnpositionid call bis_fnc_removeRespawnPosition;
 	};
-diag_log format ["***assetrespawn says _typefpv %1 and _typefob %2", _typefpv, _typefob];
+//diag_log format ["***assetrespawn says _typefpv %1 and _typefob %2", _typefpv, _typefob];
 // find the nearest current respawn to the old position
 _respawns = [west] call bis_fnc_getRespawnPositions;
 //diag_log format ["*** found some respawns %1", _respawns];
@@ -41,7 +41,7 @@ _myid = _respawns find _oldv;
  */
 if ((typeName _droppoint) != "ARRAY") then {_droppoint = (getpos _droppoint)};
 
-diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
+//diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
 sleep 1;
 switch (true) do
 	{
