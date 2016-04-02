@@ -1,9 +1,7 @@
 //Operation Authority by Tankbuster
 #define filename "description.ext"
-onLoadMission = "Authority";
 onLoadMissionTime = 1;
 loadscreen = "logo.paa";
-author = "Dankmusterd";
 joinUnassigned = 0;
 saving = 0;
 enableDebugConsole = 1;
@@ -146,5 +144,23 @@ class Params
 			values[] = {0,1,2};
 			default = 0;
 			texts[] = {"No", "Yes, if lightly loaded", "Yes, if no backpack"};
+		};
+				class line4 {
+		title = "---------------------- Difficulty Settings ----------------------";
+		values[] = {-99999};
+		default = -99999;
+		texts[] = {""};
+	};
+			class enemyspawnlevel {
+			title = "How many enemies in each target?";
+			values[] = {3,2,1};
+			default = 3;
+			texts[] = {"Few", "Normal", "Lots"};
+		};
+			class removeenemyvests {
+			title = "Remove enemy vests (makes them easier to kill)";
+			values[] = {0,1,2};
+			default = 1;
+			texts[] = {"No", "Random for some AI", "Yes"};
 		};
 };
