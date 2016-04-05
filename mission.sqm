@@ -8,7 +8,7 @@ class EditorData
 	toggles=6;
 	class ItemIDProvider
 	{
-		nextID=575;
+		nextID=578;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1756;
+		nextID=1765;
 	};
 	class Camera
 	{
-		pos[]={8459.8564,121.63085,25090.033};
-		dir[]={-0.051335033,-0.60412526,0.79523504};
-		up[]={-0.038917109,0.79688728,0.60287172};
-		aside[]={0.99792242,-2.9511284e-008,0.064419076};
+		pos[]={8339.6504,75.825981,25267.174};
+		dir[]={-0.51894301,-0.48387083,0.70470554};
+		up[]={-0.28692901,0.87512797,0.38964027};
+		aside[]={0.80524367,9.4994903e-008,0.5929786};
 	};
 };
 binarizationWanted=0;
@@ -64,7 +64,8 @@ addons[]=
 	"A3_Structures_F_Households_House_Small02",
 	"A3_Structures_F_Households_House_Small01",
 	"A3_Structures_F_Naval_Piers",
-	"A3_Structures_F_Dominants_Lighthouse"
+	"A3_Structures_F_Dominants_Lighthouse",
+	"rhsusf_c_rg33"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -88,6 +89,25 @@ class CustomAttributes
 	{
 		name="Multiplayer";
 		class Attribute0
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute1
 		{
 			property="RespawnTemplates";
 			expression="true";
@@ -120,25 +140,6 @@ class CustomAttributes
 							};
 						};
 					};
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
 				};
 			};
 		};
@@ -3783,7 +3784,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8455.9873,107.56595,25114.182};
+				position[]={8455.9873,107.56561,25114.182};
 				angles[]={0.055937801,0,0.0066671576};
 			};
 			side="Empty";
@@ -3835,7 +3836,26 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute2
+				{
+					property="ace_isRepairVehicle";
+					expression="_this setVariable ['ace_isRepairVehicle',_value, true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 	};
