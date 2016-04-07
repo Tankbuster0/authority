@@ -8,10 +8,9 @@ _vehCrew = _vehArray select 1;
 _vehGroup = _vehArray select 2;
 if (count _vehCrew > 0) then
 	{
-        _crewType = typeof (_vehCrew select 0);
         while {_veh emptypositions "cargo" > 0} do
 		{
-            _unit = _vehGroup createunit [_crewType,(getpos _veh),[],0,"none"];
+            _unit = _vehGroup createunit [opfor_reinf_truck_soldier,(getpos _veh),[],0,"none"];
             _unit assignascargo _veh;
             _unit moveincargo _veh;
         };
