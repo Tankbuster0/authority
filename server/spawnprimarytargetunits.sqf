@@ -178,6 +178,7 @@ if (_pt_type isEqualTo 1) then
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
 			_cfunit addEventHandler ["killed", {if ((_this select 1) isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
 			//_cfunit addEventHandler [ "killed", {if ((_this select 1) isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
+			//_cfunit addEventHandler ["HandleDamage", {if (isNull (_this select 3)) then { diag_log format ["***%1 collision damage!"]; } else { _this select 2; }; }];
 			_fciv pushback _civfootgroup;
 			};
 		//driven cars
