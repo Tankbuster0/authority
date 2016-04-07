@@ -12,7 +12,7 @@ _group=_x;
 _group setBehaviour "SAFE";
 _group setSpeedMode "LIMITED";
 
-	_EHkilledIdx = (leader _group) addEventHandler ["FiredNear", {_this call breakPatrol_FNC;}];
+	_EHkilledIdx = (leader _group) addEventHandler ["FiredNear", {_this call tky_patrolFnc;}];
 
 _shuffleWaypoints=_waypoints call BIS_fnc_arrayShuffle;
 	for "_i" from 0 to _findWps do {
