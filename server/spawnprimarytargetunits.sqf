@@ -173,6 +173,7 @@ if (_pt_type isEqualTo 1) then
 		for "_i" from 1 to _civcount do
 			{
 			sleep 0.2;
+			_civfootgroup = format ["civftgrp%1", _i];
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
@@ -187,6 +188,7 @@ if (_pt_type isEqualTo 1) then
 		for "_i" from 1 to _dcarcount do
 			{
 			sleep 0.2;
+			_dcargroup = format ["civcrgrp%1", _i];
 			_dcargroup = createGroup civilian;
 			_roadnogood = true;
 			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
@@ -212,7 +214,7 @@ if (_pt_type isEqualTo 1) then
 			};
 		_roadposarray = [];
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
-		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";
+		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 		_pcar = [];
 		_pcarcount = (3 * _lc);
 		for "_i" from 1 to _pcarcount do
