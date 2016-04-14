@@ -3,7 +3,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground", "_spawndir", "_mytime"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
-["_airtype", "RHS_C130J"], // classname of delivering aircraft
+["_airtype", "CUP_B_C130J_Cargo_GB"], // classname of delivering aircraft
 ["_droptype", fobvehicleclassname],// classname of deliverd objects
 ["_spawnpoint", [0,0,0]]
 ]; // classname of delivered object

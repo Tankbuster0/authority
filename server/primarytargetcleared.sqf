@@ -15,7 +15,7 @@ if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (g
 
 if (primarytargetcounter isEqualTo 1) then {_droptype = fobvehicleclassname} else {_droptype = (selectRandom prizes)};//else choose prize vehicle
 
-_nul = [_pos, "RHS_C130J", _droptype ] execVM "server\spawnairdrop.sqf";
+_nul = [_pos, "CUP_B_C130J_Cargo_GB", _droptype ] execVM "server\spawnairdrop.sqf";
 
 {
 	_veh = _x;
