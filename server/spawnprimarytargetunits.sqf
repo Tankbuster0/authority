@@ -64,10 +64,10 @@ for "_count" from _start to _lc do
 				};
 		case 5: {
 				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["rhs_2b14_82mm_msv", _mypos, [],0,"NONE"];
+				_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
 				createVehicleCrew _veh;
-				_veh = createVehicle ["rhs_2b14_82mm_msv", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
+				_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
 				_veh setdir (_mydir + random 15);
 				createVehicleCrew _veh;
 				};
@@ -75,10 +75,10 @@ for "_count" from _start to _lc do
 	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
-	_veh = createVehicle ["rhs_2b14_82mm_msv", _mypos, [],0,"NONE"];
+	_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
 	createVehicleCrew _veh;
-	_veh = createVehicle ["rhs_2b14_82mm_msv", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
+	_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
 	_veh setdir (_mydir + random 15);
 	createVehicleCrew _veh;
 	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
@@ -137,7 +137,7 @@ for "_count" from _start to _lc do
 		sleep 0.1;
 	};
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
-	_vehdata = [_mypos, random 360, "rhs_zsu234_aa", _grpname] call bis_fnc_spawnVehicle;
+	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", _grpname] call bis_fnc_spawnVehicle;
 	doStop (_vehdata select 0);
 		sleep 0.1;
 	{
