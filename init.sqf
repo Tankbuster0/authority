@@ -9,7 +9,6 @@ if (worldName == "Altis") then
 	_location = createLocation ["NameLocal", [9155.25,21538.2,16.0988], 100,100];
 	_location setText "Abdera airfield";
 	};
-if (("rhs_main" in activatedAddons) and ("rhsusf_main" in activatedAddons)) then {RHS = true} else {RHS = false};
 fobveh = objNull;
 dropveh = objNull;
 missionrunning = false; publicVariable "missionrunning";

@@ -110,7 +110,7 @@ for "_i" from 0 to 355 step 5 do
 	    _prop setDir (_dir - 90);
 	};
 	_newpos = (position _gate) findEmptyPosition[0, 30, "Box_East_Ammo_F"];
-	_prop = (["rhs_mags_crate", "rhs_launchers_crate"] call BIS_fnc_selectRandom) createVehicle _newpos;
+	_prop = (["CUP_RUBasicAmmunitionBox", "CUP_RULaunchersBox"] call BIS_fnc_selectRandom) createVehicle _newpos;
 	vehiclecleanup pushback _prop;
 	_prop setDir (_dir + 90);
 	sleep 0.02;
