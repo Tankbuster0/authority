@@ -43,27 +43,27 @@ for "_count" from _start to _lc do
 	switch ((floor (random 6))) do
 		{
 		case 0: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
+				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "cup_b_d30_cdf", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AA")] call BIS_fnc_spawnGroup;
+				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AA")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "cup_b_zu23_cdf", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_section_AT")] call BIS_fnc_spawnGroup;
+				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "cup_o_metis_ru", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 3: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
+				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "cup_o_kord_high_ru", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 4: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad_2mg")] call BIS_fnc_spawnGroup;
+				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "cup_o_kord_ru", _grpname ] call bis_fnc_spawnVehicle;
 				};
 		case 5: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_infantry" >> "rhs_group_rus_msv_infantry_squad")] call BIS_fnc_spawnGroup;
+				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
 				_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
 				createVehicleCrew _veh;
