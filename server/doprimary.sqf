@@ -79,9 +79,8 @@ if ((primarytargetcounter > 1)) then
 // air radar controls the opfor reinforcements that are bought in by helicopter
 //_radarpos = [cpt_position,0,(cpt_radius + 100),9,0,10,0] call bis_fnc_findSafePos;
 _radarpos = [] call tky_fnc_findhighground;
-_radartype = selectRandom  ["rhs_prv13", "rhs_p37", "rhs_gaz66_r142_msv"];
+_radartype = selectRandom  ["CUP_A2_76n6_clamshell_lower", "CUP_A2_76n6_clamshell_ep1"];
 pt_radar = createVehicle [_radartype, _radarpos,[],0,"NONE"];
-if (_radartype isEqualTo "rhs_gaz66_r142_msv") then {[pt_radar, 1, true] call RHS_fnc_gaz66_radioDeploy};
 0 = execVM "server\airreinforcementmanager.sqf";
 
 //stuff that needs to be check constantly runs here

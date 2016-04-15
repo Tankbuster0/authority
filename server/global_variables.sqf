@@ -2,8 +2,8 @@
 //by tankbuster
 islandcentre = getarray (configFile >> "CfgWorlds" >> "Altis" >> "centerPosition");
 
-opfor_reinf_truck_soldier = (if (RHS) then {"CUP_O_RU_Soldier_GL_EMR"} else {"O_Soldier_GL_F"});
-opfor_reinf_truck =  (if (RHS) then {"CUP_O_Ural_Open_RU"} else {"O_Truck_03_transport_F"});
+opfor_reinf_truck_soldier = "CUP_O_RU_Soldier_GL_EMR";
+opfor_reinf_truck =  "CUP_O_Ural_Open_RU";
 
 opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_Mi8_medevac_RU"];
 
