@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=6;
+	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=584;
+		nextID=634;
 	};
 	class MarkerIDProvider
 	{
@@ -16,24 +16,23 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=1855;
+		nextID=1882;
 	};
 	class Camera
 	{
-		pos[]={8339.4346,80.891678,25255.566};
-		dir[]={-0.51894301,-0.48387083,0.70470554};
-		up[]={-0.28692901,0.87512797,0.38964027};
-		aside[]={0.80524367,9.4994903e-008,0.5929786};
+		pos[]={8472.873,111.86681,25140.15};
+		dir[]={-0.9394989,-0.32492962,0.10921937};
+		up[]={-0.32282633,0.94571209,0.037529867};
+		aside[]={0.11548577,-7.9442543e-008,0.99338895};
 	};
 };
 binarizationWanted=0;
 addons[]=
 {
-	"rhsusf_c_troops",
+	"CUP_Creatures_Military_BAF",
 	"A3_Modules_F_ObjectModifiers",
 	"A3_Modules_F_Curator_Curator",
 	"A3_Misc_F_Helpers",
-	"rhsusf_c_weapons",
 	"ace_captives",
 	"ace_explosives",
 	"ace_hearing",
@@ -65,8 +64,9 @@ addons[]=
 	"A3_Structures_F_Households_House_Small01",
 	"A3_Structures_F_Naval_Piers",
 	"A3_Structures_F_Dominants_Lighthouse",
-	"rhsusf_c_rg33",
-	"ace_medical"
+	"ace_medical",
+	"CUP_WheeledVehicles_Coyote",
+	"A3_Supplies_F_Heli_CargoNets"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -90,25 +90,6 @@ class CustomAttributes
 	{
 		name="Multiplayer";
 		class Attribute0
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		class Attribute1
 		{
 			property="RespawnTemplates";
 			expression="true";
@@ -141,6 +122,25 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
 				};
 			};
 		};
@@ -370,7 +370,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=77;
+		items=76;
 		class Item0
 		{
 			dataType="Group";
@@ -383,7 +383,7 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8460,102.69519,25147.051};
+						position[]={8459,103.00144,25144.051};
 						angles[]={0.12730432,0.63465405,0.0079936078};
 					};
 					side="West";
@@ -395,138 +395,147 @@ class Mission
 						isPlayer=1;
 						isPlayable=1;
 					};
-					id=52;
-					type="rhsusf_army_ucp_squadleader";
+					id=600;
+					type="CUP_B_BAF_Officer_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
 				};
 				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8453,103.75531,25139.051};
-						angles[]={0.077179179,0.63465405,0.033321146};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.40000001;
-						name="alpha_3";
-						isPlayable=1;
-					};
-					id=53;
-					type="rhsusf_army_ucp_machinegunnera";
-				};
-				class Item2
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8456,103.74853,25139.051};
-						angles[]={0.11942901,0.63465405,6.2738566};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.40000001;
-						name="alpha_4";
-						isPlayable=1;
-					};
-					id=54;
-					type="rhsusf_army_ucp_grenadier";
-				};
-				class Item3
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8459,103.84071,25138.051};
-						angles[]={0.11942901,0.63465405,6.2738566};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.40000001;
-						name="alpha_5";
-						isPlayable=1;
-					};
-					id=55;
-					type="rhsusf_army_ucp_marksman";
-				};
-				class Item4
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8462,103.75381,25139.051};
-						angles[]={0.14562827,0.63465405,0.0080009829};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.44999999;
-						rank="CORPORAL";
-						name="alpha_6";
-						isPlayable=1;
-					};
-					id=56;
-					type="rhsusf_army_ucp_autorifleman";
-				};
-				class Item5
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8464,103.76981,25139.051};
-						angles[]={0.14562827,0.63465405,0.0080009829};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.40000001;
-						name="alpha_7";
-						isPlayable=1;
-					};
-					id=57;
-					type="rhsusf_army_ucp_medic";
-				};
-				class Item6
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8466,103.9327,25138.051};
-						angles[]={0.14562827,0.63465405,0.0080009829};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.44999999;
-						rank="CORPORAL";
-						name="alpha_8";
-						isPlayable=1;
-					};
-					id=58;
-					type="rhsusf_army_ocp_javelin";
-				};
-				class Item7
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8469,104.4809,25138.051};
-						angles[]={0.14562827,0,0.34319288};
-					};
-					side="West";
-					class Attributes
-					{
-						skill=0.60000002;
-						name="alpha_9";
-						isPlayable=1;
-					};
-					id=59;
-					type="rhsusf_army_ucp_engineer";
-				};
-				class Item8
 				{
 					dataType="Object";
 					class PositionInfo
@@ -541,8 +550,1232 @@ class Mission
 						name="alpha_2";
 						isPlayable=1;
 					};
-					id=74;
-					type="rhsusf_army_ucp_teamleader";
+					id=601;
+					type="CUP_B_BAF_Soldier_TL_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item2
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8453,103.75531,25139.051};
+						angles[]={0.077178456,0.63465405,0.033318337};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.40000001;
+						name="alpha_3";
+						isPlayable=1;
+					};
+					id=602;
+					type="CUP_B_BAF_Soldier_MG_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item3
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8456,103.74852,25139.051};
+						angles[]={0.11943288,0.63465405,6.2738476};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.40000001;
+						name="alpha_4";
+						isPlayable=1;
+					};
+					id=603;
+					type="CUP_B_BAF_Soldier_GL_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item4
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8459,103.84071,25138.051};
+						angles[]={0.11943288,0.63465405,6.2738476};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.40000001;
+						name="alpha_5";
+						isPlayable=1;
+					};
+					id=604;
+					type="CUP_B_BAF_Soldier_scout_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item5
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8462,103.75381,25139.051};
+						angles[]={0.14563027,0.63465405,0.0079936078};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.44999999;
+						rank="CORPORAL";
+						name="alpha_6";
+						isPlayable=1;
+					};
+					id=605;
+					type="CUP_B_BAF_Medic_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item6
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8464,103.76981,25139.051};
+						angles[]={0.14563027,0.63465405,0.0079936078};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.40000001;
+						name="alpha_7";
+						isPlayable=1;
+					};
+					id=606;
+					type="CUP_B_BAF_Soldier_AA_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item7
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8466,103.9327,25138.051};
+						angles[]={0.14563027,0.63465405,0.0079936078};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.44999999;
+						rank="CORPORAL";
+						name="alpha_8";
+						isPlayable=1;
+					};
+					id=607;
+					type="CUP_B_BAF_Soldier_HAT_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item8
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8469,104.4809,25138.051};
+						angles[]={0.14563027,0,0.34320155};
+					};
+					side="West";
+					class Attributes
+					{
+						skill=0.60000002;
+						name="alpha_9";
+						isPlayable=1;
+					};
+					id=608;
+					type="CUP_B_BAF_Engineer_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
 				};
 			};
 			class Attributes
@@ -615,69 +1848,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8459,104.62474,25130.051};
-						angles[]={0.06656827,0,0.033321146};
-					};
-					side="West";
-					flags=2;
-					class Attributes
-					{
-						rank="SERGEANT";
-						name="bravo_1";
-						isPlayable=1;
-					};
-					id=60;
-					type="rhsusf_army_ucp_squadleader";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						nAttributes=2;
-					};
-				};
-				class Item1
-				{
-					dataType="Object";
-					class PositionInfo
-					{
 						position[]={8451,104.65734,25128.051};
-						angles[]={0.065241449,0,6.2020307};
+						angles[]={0.065240405,0,6.2020273};
 					};
 					side="West";
 					class Attributes
@@ -687,11 +1859,30 @@ class Mission
 						name="bravo_2";
 						isPlayable=1;
 					};
-					id=61;
-					type="rhsusf_army_ucp_autorifleman";
+					id=597;
+					type="CUP_B_BAF_Soldier_TL_WDL";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -710,7 +1901,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -729,7 +1958,201 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
+					};
+				};
+				class Item1
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8459,104.62474,25130.051};
+						angles[]={0.066566855,0,0.033318337};
+					};
+					side="West";
+					flags=2;
+					class Attributes
+					{
+						rank="SERGEANT";
+						name="bravo_1";
+						isPlayable=1;
+					};
+					id=599;
+					type="CUP_B_BAF_Officer_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item2
@@ -738,7 +2161,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8453,104.55273,25128.051};
-						angles[]={0.065241449,0,0.034650784};
+						angles[]={0.065240405,0,0.034644786};
 					};
 					side="West";
 					class Attributes
@@ -747,11 +2170,30 @@ class Mission
 						name="bravo_3";
 						isPlayable=1;
 					};
-					id=62;
-					type="rhsusf_army_ucp_marksman";
+					id=609;
+					type="CUP_B_BAF_Soldier_scout_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -770,7 +2212,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -789,7 +2269,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item3
@@ -798,7 +2316,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8455,104.62205,25128.051};
-						angles[]={0.065241449,0,0.034650784};
+						angles[]={0.065240405,0,0.034644786};
 					};
 					side="West";
 					class Attributes
@@ -807,11 +2325,30 @@ class Mission
 						name="bravo_4";
 						isPlayable=1;
 					};
-					id=63;
-					type="rhsusf_army_ucp_javelin";
+					id=610;
+					type="CUP_B_BAF_Soldier_AT_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -830,7 +2367,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -849,7 +2424,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item4
@@ -858,7 +2471,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8459,104.82469,25127.051};
-						angles[]={0.06656827,0,0.033321146};
+						angles[]={0.066566855,0,0.033318337};
 					};
 					side="West";
 					class Attributes
@@ -867,11 +2480,30 @@ class Mission
 						name="bravo_5";
 						isPlayable=1;
 					};
-					id=65;
-					type="rhsusf_army_ucp_sniper";
+					id=611;
+					type="CUP_B_BAF_Soldier_Marksman_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -890,7 +2522,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -909,7 +2579,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item5
@@ -918,7 +2626,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8462,104.98875,25128.051};
-						angles[]={0.06656827,0,0.098349214};
+						angles[]={0.066566855,0,0.098349303};
 					};
 					side="West";
 					class Attributes
@@ -927,11 +2635,30 @@ class Mission
 						name="bravo_6";
 						isPlayable=1;
 					};
-					id=66;
-					type="rhsusf_army_ucp_autoriflemana";
+					id=612;
+					type="CUP_B_BAF_Soldier_AR_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -950,7 +2677,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -969,7 +2734,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item6
@@ -978,7 +2781,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8465,105.35142,25127.051};
-						angles[]={0.06656827,0,0.098349214};
+						angles[]={0.066566855,0,0.098349303};
 					};
 					side="West";
 					class Attributes
@@ -988,11 +2791,30 @@ class Mission
 						name="bravo_7";
 						isPlayable=1;
 					};
-					id=68;
-					type="rhsusf_army_ucp_rifleman_m4";
+					id=613;
+					type="CUP_B_BAF_Soldier_GL_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -1011,7 +2833,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1030,7 +2890,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item7
@@ -1039,7 +2937,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8467,105.58324,25126.051};
-						angles[]={0.12993059,0,0.034652505};
+						angles[]={0.1299223,0,0.034644786};
 					};
 					side="West";
 					class Attributes
@@ -1048,11 +2946,30 @@ class Mission
 						name="bravo_8";
 						isPlayable=1;
 					};
-					id=69;
-					type="rhsusf_army_ucp_medic";
+					id=614;
+					type="CUP_B_BAF_Medic_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -1071,7 +2988,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1090,7 +3045,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 				class Item8
@@ -1099,7 +3092,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8469,106.21938,25125.051};
-						angles[]={0.12993105,0,0.31453258};
+						angles[]={0.12993976,0,0.31452578};
 					};
 					side="West";
 					class Attributes
@@ -1108,11 +3101,30 @@ class Mission
 						name="bravo_9";
 						isPlayable=1;
 					};
-					id=70;
-					type="rhsusf_army_ucp_engineer";
+					id=615;
+					type="CUP_B_BAF_Engineer_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="Revo_animType";
+							expression="_this setVariable ['Revo_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
@@ -1131,7 +3143,45 @@ class Mission
 								};
 							};
 						};
-						class Attribute1
+						class Attribute2
+						{
+							property="Revo_animCombType";
+							expression="_this setVariable ['Revo_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Revo_animEquipment";
+							expression="_this setVariable ['Revo_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute4
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1150,7 +3200,45 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute5
+						{
+							property="Revo_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute6
+						{
+							property="Revo_animCombEquipment";
+							expression="_this setVariable ['Revo_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=7;
 					};
 				};
 			};
@@ -1288,139 +3376,59 @@ class Mission
 		};
 		class Item5
 		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={8442.0166,106.48054,25135.941};
-				angles[]={0.098349303,0,5.9554472};
-			};
-			side="Empty";
-			class Attributes
-			{
-				skill=0.60000002;
-				ammo=0;
-				name="ammobox_Backup";
-				presence=0;
-			};
-			id=48;
-			type="rhsusf_weapons_crate";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic"",""FirstAidKit"",""Medikit""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhsusf_m112_mag"",""rhsusf_m112x4_mag"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_m69"",""rhs_mag_m7a3_cs"",""rhs_mag_mk84"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""rhs_tr8_periscope"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""B_rhsusf_B_BACKPACK"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty""],[]]],true]";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ace_isMedicalFacility";
-					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=3;
-			};
-		};
-		class Item6
-		{
 			dataType="Layer";
 			name="Check Point (Small)";
 			id=110;
 		};
-		class Item7
+		class Item6
 		{
 			dataType="Layer";
 			name="Camp Ant";
 			id=147;
 		};
-		class Item8
+		class Item7
 		{
 			dataType="Layer";
 			name="Camp Audacity";
 			id=204;
 		};
-		class Item9
+		class Item8
 		{
 			dataType="Layer";
 			name="Camp Courage";
 			id=257;
 		};
-		class Item10
+		class Item9
 		{
 			dataType="Layer";
 			name="Camp Defiance";
 			id=307;
 		};
-		class Item11
+		class Item10
 		{
 			dataType="Layer";
 			name="Camp Endurance";
 			id=358;
 		};
-		class Item12
+		class Item11
 		{
 			dataType="Layer";
 			name="Camp Fortitude";
 			id=409;
 		};
-		class Item13
+		class Item12
 		{
 			dataType="Layer";
 			name="Roadblock";
 			id=421;
 		};
-		class Item14
+		class Item13
 		{
 			dataType="Layer";
 			name="Hasty Roadblock";
 			id=429;
 		};
-		class Item15
+		class Item14
 		{
 			dataType="Marker";
 			position[]={8484.1025,107.24145,25139.385};
@@ -1430,7 +3438,7 @@ class Mission
 			colorName="ColorBlue";
 			id=439;
 		};
-		class Item16
+		class Item15
 		{
 			dataType="Marker";
 			position[]={8476.8936,106.96413,25134.939};
@@ -1440,7 +3448,7 @@ class Mission
 			colorName="ColorBlue";
 			id=440;
 		};
-		class Item17
+		class Item16
 		{
 			dataType="Marker";
 			position[]={8424,104.26945,25161};
@@ -1450,86 +3458,7 @@ class Mission
 			colorName="ColorBlue";
 			id=441;
 		};
-		class Item18
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={8441.3076,106.18925,25142.084};
-				angles[]={0.091734506,0,5.9554472};
-			};
-			side="Empty";
-			class Attributes
-			{
-				skill=0.60000002;
-				ammo=0;
-				name="ammobox";
-			};
-			id=442;
-			type="rhsusf_weapons_crate";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP"",""Chemlight_blue"",""Chemlight_green"",""Chemlight_red"",""Chemlight_yellow"",""rhs_mag_fakel"",""rhs_mag_fakels"",""ACE_HuntIR_M203"",""ACE_HandFlare_Green"",""ACE_HandFlare_Red"",""ACE_HandFlare_White"",""ACE_HandFlare_Yellow""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556"",""ACE_Altimeter"",""ACE_fieldDressing"",""Binocular"",""ACE_SpraypaintBlack"",""ACE_bloodIV"",""ACE_bloodIV_250"",""ACE_bloodIV_500"",""ACE_SpraypaintBlue"",""ACE_bodyBag"",""ACE_CableTie"",""ACE_DAGR"",""ACE_DefusalKit"",""ACE_EarPlugs"",""ACE_EntrenchingTool"",""ACE_epinephrine"",""ACE_muzzle_mzls_338"",""ACE_muzzle_mzls_smg_01"",""ACE_muzzle_mzls_L"",""ACE_muzzle_mzls_H"",""ACE_muzzle_mzls_B"",""ACE_muzzle_mzls_smg_02"",""ACE_muzzle_mzls_93mmg"",""ACE_Flashlight_MX991"",""ACE_SpraypaintGreen"",""ACE_HuntIR_monitor"",""ACE_IR_Strobe_Item"",""ACE_Kestrel4500"",""ACE_Flashlight_KSF1"",""ACE_M26_Clacker"",""ACE_Clacker"",""ACE_Flashlight_XL50"",""ACE_MapTools"",""ACE_microDAGR"",""ACE_morphine"",""ACE_MX2A"",""ACE_SpraypaintRed"",""ACE_Sandbag_empty"",""ACE_SpareBarrel"",""ACE_SpottingScope"",""ACE_Tripod"",""ACE_Vector"",""ACE_wirecutter"",""ACE_Yardage450"",""ACE_RangeTable_82mm"",""ACE_RangeCard""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty"",""ACE_TacticalLadder_Pack""],[]]],true]";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ace_isMedicalFacility";
-					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=3;
-			};
-		};
-		class Item19
+		class Item17
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1601,7 +3530,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item20
+		class Item18
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1673,7 +3602,7 @@ class Mission
 				nAttributes=3;
 			};
 		};
-		class Item21
+		class Item19
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1764,7 +3693,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item22
+		class Item20
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1798,7 +3727,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item23
+		class Item21
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -1927,7 +3856,7 @@ class Mission
 				nAttributes=6;
 			};
 		};
-		class Item24
+		class Item22
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2037,7 +3966,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item25
+		class Item23
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2090,7 +4019,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item26
+		class Item24
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2124,7 +4053,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item27
+		class Item25
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2215,7 +4144,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item28
+		class Item26
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2325,7 +4254,7 @@ class Mission
 				nAttributes=5;
 			};
 		};
-		class Item29
+		class Item27
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2359,7 +4288,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item30
+		class Item28
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2412,7 +4341,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item31
+		class Item29
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2465,7 +4394,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item32
+		class Item30
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2594,7 +4523,7 @@ class Mission
 				nAttributes=6;
 			};
 		};
-		class Item33
+		class Item31
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2627,7 +4556,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item34
+		class Item32
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -2813,7 +4742,7 @@ class Mission
 				nAttributes=9;
 			};
 		};
-		class Item35
+		class Item33
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3018,7 +4947,7 @@ class Mission
 				nAttributes=10;
 			};
 		};
-		class Item36
+		class Item34
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -3109,86 +5038,7 @@ class Mission
 				nAttributes=4;
 			};
 		};
-		class Item37
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={8444.4043,105.23006,25141.988};
-				angles[]={0.091734506,0,5.9554472};
-			};
-			side="Empty";
-			class Attributes
-			{
-				skill=0.60000002;
-				ammo=0;
-				name="fobbox";
-			};
-			id=477;
-			type="rhsusf_weapons_crate";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="allowDamage";
-					expression="_this allowdamage _value;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[""launch_Titan_F"",""launch_Titan_short_F"",""rhs_weap_fgm148"",""rhs_weap_fim92"",""rhs_weap_M136"",""rhs_weap_M136_hedp"",""rhs_weap_M136_hp"",""rhs_weap_m16a4"",""rhs_weap_m16a4_carryhandle_M203"",""rhs_weap_m16a4_grip"",""rhs_weap_XM2010"",""rhs_weap_XM2010_d"",""rhs_weap_XM2010_sa"",""rhs_weap_m240B"",""rhs_weap_m240G"",""rhs_weap_m249_pip_L"",""rhs_weap_m27iar"",""rhs_weap_m32"",""rhs_weap_m32_usmc"",""rhs_weap_m4"",""rhs_weap_m4_grip2"",""rhs_weap_m4_carryhandle"",""rhs_weap_m4_carryhandle_pmag"",""rhs_weap_m4_m203"",""rhs_weap_m4_m320"",""rhs_m4_acog2"",""rhs_weap_m4a1_carryhandle"",""rhs_weap_m4a1_carryhandle_grip2"",""rhs_weap_m4a1_carryhandle_pmag"",""rhs_weap_m4a1_carryhandle_m203"",""rhs_weap_m4a1_carryhandle_m203S"",""rhs_weap_m4a1_m203"",""rhs_m4a1_m203_acog3_usmc_sup"",""rhs_m4a1_m203_acog_usmc"",""rhs_weap_m4a1_m203s"",""rhs_weap_m4a1_m320"",""rhs_weap_M590_8RD"",""rhs_weap_M590_5RD"",""hgun_PDW2000_F"",""hgun_PDW2000_Holo_F"",""hgun_PDW2000_Holo_snds_F"",""hgun_PDW2000_snds_F"",""SMG_02_F"",""SMG_02_ACO_F"",""SMG_02_ARCO_pointg_F"",""MineDetector"",""rhsusf_weap_glock17g4"",""rhsusf_weap_m1911a1"",""rhs_weap_M320"",""rhsusf_weap_m9"",""rhs_weap_pya"",""rhs_weap_makarov_pmm"",""rhs_weap_smaw"",""rhs_weap_smaw_optic"",""rhs_weap_smaw_green"",""rhs_weap_smaw_gr_optic""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""7Rnd_408_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""Laserbatteries"",""NLAW_F"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_556x45_Stanag_green"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_M200_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_No_Tracer"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Green"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Orange"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Red"",""rhs_mag_30Rnd_556x45_M855A1_Stanag_Tracer_Yellow"",""rhs_mag_30Rnd_556x45_Mk262_Stanag"",""rhs_mag_30Rnd_556x45_Mk318_Stanag"",""rhs_mag_30Rnd_556x45_M855A1_Stanag"",""rhs_30Rnd_762x39mm"",""rhs_30Rnd_762x39mm_89"",""rhs_30Rnd_762x39mm_tracer"",""rhs_30Rnd_762x39mm_U"",""rhs_30Rnd_545x39_AK"",""rhs_30Rnd_545x39_AK_no_tracers"",""rhs_45Rnd_545X39_AK"",""rhsusf_5Rnd_00Buck"",""rhsusf_5Rnd_FRAG"",""rhsusf_5Rnd_HE"",""rhsusf_5Rnd_Slug"",""rhsusf_5Rnd_300winmag_xm2010"",""rhsusf_mag_6Rnd_M433_HEDP"",""rhsusf_mag_6Rnd_M441_HE"",""rhsusf_mag_6Rnd_M576_Buckshot"",""rhsusf_mag_6Rnd_M781_Practice"",""rhsusf_8Rnd_00Buck"",""rhsusf_8Rnd_FRAG"",""rhsusf_8Rnd_HE"",""rhsusf_8Rnd_Slug"",""rhs_fim92_mag"",""rhs_GDM40"",""rhs_mag_m4009"",""rhs_GRD40_Green"",""rhs_GRD40_Red"",""rhs_GRD40_White"",""rhs_fgm148_magazine_AT"",""rhs_mag_M433_HEDP"",""rhs_mag_M441_HE"",""rhs_mag_m576"",""rhs_mag_M585_white"",""rhs_mag_m661_green"",""rhs_mag_m662_red"",""rhs_mag_m713_Red"",""rhs_mag_m714_White"",""rhsusf_mag_6Rnd_M714_white"",""rhs_mag_m715_Green"",""rhs_mag_m716_yellow"",""rhs_mag_M781_Practice"",""rhs_mag_smaw_SR"",""rhs_mag_smaw_HEDP"",""rhs_mag_smaw_HEAA"",""rhs_20rnd_9x39mm_SP5"",""rhs_20rnd_9x39mm_SP6"",""rhs_VG40MD_Green"",""rhs_VG40MD_Red"",""rhs_VG40MD_White"",""rhs_VG40OP_green"",""rhs_VG40OP_red"",""rhs_VG40OP_white"",""rhs_VG40SZ"",""rhs_VG40TB"",""rhs_VOG25"",""rhs_VOG25P"",""rhs_mag_an_m14_th3"",""rhs_mag_an_m8hc"",""rhs_mag_m18_purple"",""rhs_mag_m18_red"",""rhs_mag_m18_yellow"",""rhs_mine_M19_mag"",""rhs_mag_m67"",""rhs_mag_mk3a2"",""rhs_mag_nspd"",""rhs_mag_nspn_green"",""rhs_mag_nspn_red"",""rhs_mag_nspn_yellow"",""rhs_mag_9x19_17"",""rhsusf_mag_7x45acp_MHP"",""16Rnd_9x21_Mag"",""rhsusf_mag_15Rnd_9x19_FMJ"",""rhsusf_mag_17Rnd_9x19_FMJ"",""rhsusf_mag_15Rnd_9x19_JHP"",""rhsusf_mag_17Rnd_9x19_JHP"",""Chemlight_blue"",""Chemlight_green"",""Chemlight_red"",""Chemlight_yellow"",""rhs_mag_fakel"",""rhs_mag_fakels"",""ACE_HuntIR_M203"",""ACE_HandFlare_Green"",""ACE_HandFlare_Red"",""ACE_HandFlare_White"",""ACE_HandFlare_Yellow""],[]],[[""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_DMS"",""optic_Hamr"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit"",""rhsusf_acc_anpeq15side"",""rhsusf_acc_ACOG2_USMC"",""rhsusf_acc_harris_bipod"",""rhsusf_acc_ELCAN"",""rhsusf_acc_rotex5_grey"",""rhsusf_acc_SF3P556"",""rhs_weap_optic_smaw"",""muzzle_snds_338_black"",""muzzle_snds_M"",""muzzle_snds_93mmg"",""muzzle_snds_93mmg_tan"",""rhsusf_acc_SR25S"",""rhsusf_acc_ACOG_d"",""rhsusf_acc_ACOG_sa"",""rhsusf_acc_ACOG_wd"",""rhs_acc_tgpa"",""rhs_acc_tgpv"",""rhsusf_acc_EOTECH"",""optic_Yorris"",""rhs_uniform_cu_ocp"",""rhs_uniform_cu_ocp_101st"",""rhs_uniform_cu_ocp_10th"",""rhs_uniform_cu_ocp_1stcav"",""rhs_uniform_cu_ocp_82nd"",""rhs_uniform_cu_ucp"",""rhs_uniform_cu_ucp_101st"",""rhs_uniform_cu_ucp_10th"",""rhs_uniform_cu_ucp_82nd"",""rhsusf_opscore_bk"",""rhsusf_opscore_coy_cover"",""rhsusf_opscore_coy_cover_pelt"",""rhsusf_opscore_fg"",""rhsusf_opscore_mc_cover"",""rhsusf_opscore_mc_cover_pelt"",""rhsusf_opscore_rg_cover"",""rhsusf_opscore_rg_cover_pelt"",""rhsusf_opscore_ut"",""rhsusf_iotv_ocp_Grenadier"",""rhsusf_iotv_ucp_Grenadier"",""rhsusf_iotv_ocp_Medic"",""rhsusf_iotv_ucp_Medic"",""rhsusf_iotv_ocp"",""rhsusf_iotv_ocp_Repair"",""rhsusf_iotv_ucp_Repair"",""rhsusf_iotv_ocp_Rifleman"",""rhsusf_iotv_ucp_Rifleman"",""rhsusf_iotv_ocp_SAW"",""rhsusf_iotv_ucp_SAW"",""rhsusf_iotv_ocp_Squadleader"",""rhsusf_iotv_ucp_Squadleader"",""rhsusf_iotv_ocp_Teamleader"",""rhsusf_iotv_ucp_Teamleader"",""rhsusf_iotv_ucp"",""rhsusf_lwh_helmet_M1942"",""rhsusf_lwh_helmet_marpatd"",""rhsusf_lwh_helmet_marpatd_ess"",""rhsusf_lwh_helmet_marpatd_headset"",""rhsusf_lwh_helmet_marpatwd"",""rhsusf_lwh_helmet_marpatwd_ess"",""rhsusf_mich_bare"",""rhsusf_mich_bare_alt"",""rhsusf_mich_bare_headset"",""rhsusf_mich_bare_norotos"",""rhsusf_mich_bare_norotos_alt"",""rhsusf_mich_bare_norotos_alt_headset"",""rhsusf_mich_bare_norotos_arc"",""rhsusf_mich_bare_norotos_arc_alt"",""rhsusf_mich_bare_norotos_arc_alt_headset"",""rhsusf_mich_bare_norotos_arc_headset"",""rhsusf_mich_bare_norotos_headset"",""rhsusf_mich_bare_semi"",""rhsusf_mich_bare_alt_semi"",""rhsusf_mich_bare_semi_headset"",""rhsusf_mich_bare_norotos_semi"",""rhsusf_mich_bare_norotos_alt_semi"",""rhsusf_mich_bare_norotos_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi"",""rhsusf_mich_bare_norotos_arc_alt_semi_headset"",""rhsusf_mich_bare_norotos_arc_semi_headset"",""rhsusf_mich_bare_norotos_semi_headset"",""rhsusf_mich_bare_tan"",""rhsusf_mich_bare_alt_tan"",""rhsusf_mich_bare_tan_headset"",""rhsusf_mich_bare_norotos_tan"",""rhsusf_mich_bare_norotos_alt_tan"",""rhsusf_mich_bare_norotos_alt_tan_headset"",""rhsusf_mich_bare_norotos_arc_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan"",""rhsusf_mich_bare_norotos_arc_alt_tan_headset"",""rhsusf_mich_bare_norotos_tan_headset"",""rhsusf_mich_helmet_marpatd"",""rhsusf_mich_helmet_marpatd_alt"",""rhsusf_mich_helmet_marpatd_alt_headset"",""rhsusf_mich_helmet_marpatd_headset"",""rhsusf_mich_helmet_marpatd_norotos"",""rhsusf_mich_helmet_marpatd_norotos_arc"",""rhsusf_mich_helmet_marpatd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatd_norotos_headset"",""rhsusf_mich_helmet_marpatwd"",""rhsusf_mich_helmet_marpatwd_alt"",""rhsusf_mich_helmet_marpatwd_alt_headset"",""rhsusf_mich_helmet_marpatwd_headset"",""rhsusf_mich_helmet_marpatwd_norotos"",""rhsusf_mich_helmet_marpatwd_norotos_arc"",""rhsusf_mich_helmet_marpatwd_norotos_arc_headset"",""rhsusf_mich_helmet_marpatwd_norotos_headset"",""V_TacVestIR_blk"",""V_RebreatherB"",""rhsusf_spc"",""rhsusf_spc_corpsman"",""rhsusf_spc_crewman"",""rhsusf_spc_iar"",""rhsusf_spc_light"",""rhsusf_spc_mg"",""rhsusf_spc_marksman"",""rhsusf_spc_rifleman"",""rhsusf_spc_squadleader"",""rhsusf_spc_teamleader"",""U_B_Wetsuit"",""rhsusf_ANPVS_14"",""rhsusf_ANPVS_15"",""ItemCompass"",""lerca_1200_black"",""lerca_1200_tan"",""Leupold_Mk4"",""ItemMap"",""rhs_pdu4"",""ItemRadio"",""rhs_tr8_periscope_pip"",""ItemWatch"",""rhs_uniform_cu_ucp_1stcav"",""rhsusf_ach_bare"",""rhsusf_ach_bare_des"",""rhsusf_ach_bare_des_ess"",""rhsusf_ach_bare_des_headset"",""rhsusf_ach_bare_des_headset_ess"",""rhsusf_ach_bare_ess"",""rhsusf_ach_bare_headset"",""rhsusf_ach_bare_headset_ess"",""rhsusf_ach_bare_semi"",""rhsusf_ach_bare_semi_ess"",""rhsusf_ach_bare_semi_headset"",""rhsusf_ach_bare_semi_headset_ess"",""rhsusf_ach_bare_tan"",""rhsusf_ach_bare_tan_ess"",""rhsusf_ach_bare_tan_headset"",""rhsusf_ach_bare_tan_headset_ess"",""rhsusf_ach_bare_wood"",""rhsusf_ach_bare_wood_ess"",""rhsusf_ach_bare_wood_headset"",""rhsusf_ach_bare_wood_headset_ess"",""rhsusf_ach_helmet_M81"",""rhsusf_ach_helmet_ocp"",""rhsusf_ach_helmet_ESS_ocp"",""rhsusf_ach_helmet_headset_ocp"",""rhsusf_ach_helmet_headset_ess_ocp"",""rhsusf_ach_helmet_camo_ocp"",""rhsusf_ach_helmet_ocp_norotos"",""rhsusf_ach_helmet_ucp"",""rhsusf_ach_helmet_ESS_ucp"",""rhsusf_ach_helmet_headset_ucp"",""rhsusf_ach_helmet_ucp_norotos"",""rhs_acc_ekp1"",""rhsusf_hgu56p"",""rhsusf_hgu56p_mask"",""RHS_jetpilot_usaf"",""rhsusf_lwh_helmet_marpatwd_headset"",""rhsusf_acc_ELCAN_pip"",""rhsusf_acc_ELCAN_ard"",""rhsusf_acc_ACOG_pip"",""rhsusf_acc_ACOG2"",""rhsusf_acc_ACOG3"",""rhsusf_acc_M2A1"",""rhsusf_acc_eotech_552"",""rhsusf_acc_compm4"",""rhsusf_acc_LEUPOLDMK4"",""rhsusf_acc_LEUPOLDMK4_2"",""optic_Nightstalker"",""rhsusf_acc_rotex5_tan"",""rhsusf_acc_SFMB556"",""ACE_Altimeter"",""ACE_fieldDressing"",""Binocular"",""ACE_SpraypaintBlack"",""ACE_bloodIV"",""ACE_bloodIV_250"",""ACE_bloodIV_500"",""ACE_SpraypaintBlue"",""ACE_bodyBag"",""ACE_CableTie"",""ACE_DAGR"",""ACE_DefusalKit"",""ACE_EarPlugs"",""ACE_EntrenchingTool"",""ACE_epinephrine"",""ACE_muzzle_mzls_338"",""ACE_muzzle_mzls_smg_01"",""ACE_muzzle_mzls_L"",""ACE_muzzle_mzls_H"",""ACE_muzzle_mzls_B"",""ACE_muzzle_mzls_smg_02"",""ACE_muzzle_mzls_93mmg"",""ACE_Flashlight_MX991"",""ACE_SpraypaintGreen"",""ACE_HuntIR_monitor"",""ACE_IR_Strobe_Item"",""ACE_Kestrel4500"",""ACE_Flashlight_KSF1"",""ACE_M26_Clacker"",""ACE_Clacker"",""ACE_Flashlight_XL50"",""ACE_MapTools"",""ACE_microDAGR"",""ACE_morphine"",""ACE_MX2A"",""ACE_SpraypaintRed"",""ACE_Sandbag_empty"",""ACE_SpareBarrel"",""ACE_SpottingScope"",""ACE_Tripod"",""ACE_Vector"",""ACE_wirecutter"",""ACE_Yardage450"",""ACE_RangeTable_82mm"",""ACE_RangeCard""],[]],[[""rhsusf_assault_eagleaiii_coy"",""rhsusf_assault_eagleaiii_ocp"",""rhsusf_assault_eagleaiii_ucp"",""rhsusf_falconii"",""rhs_assault_umbts"",""rhs_assault_umbts_engineer_empty"",""ACE_TacticalLadder_Pack""],[]]],true]";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ace_isMedicalFacility";
-					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=3;
-			};
-		};
-		class Item38
+		class Item35
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3203,7 +5053,7 @@ class Mission
 			id=478;
 			type="Land_LifeguardTower_01_F";
 		};
-		class Item39
+		class Item36
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3218,7 +5068,7 @@ class Mission
 			id=481;
 			type="Land_BeachBooth_01_F";
 		};
-		class Item40
+		class Item37
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3233,7 +5083,7 @@ class Mission
 			id=482;
 			type="Land_BeachBooth_01_F";
 		};
-		class Item41
+		class Item38
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3248,7 +5098,7 @@ class Mission
 			id=483;
 			type="Land_BeachBooth_01_F";
 		};
-		class Item42
+		class Item39
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3263,7 +5113,7 @@ class Mission
 			id=484;
 			type="Land_BeachBooth_01_F";
 		};
-		class Item43
+		class Item40
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3278,7 +5128,7 @@ class Mission
 			id=485;
 			type="Land_BeachBooth_01_F";
 		};
-		class Item44
+		class Item41
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3293,7 +5143,7 @@ class Mission
 			id=486;
 			type="Land_BeachBooth_01_F";
 		};
-		class Item45
+		class Item42
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3308,7 +5158,7 @@ class Mission
 			id=488;
 			type="Land_Water_source_F";
 		};
-		class Item46
+		class Item43
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3323,7 +5173,7 @@ class Mission
 			id=489;
 			type="Land_StallWater_F";
 		};
-		class Item47
+		class Item44
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3338,7 +5188,7 @@ class Mission
 			id=506;
 			type="Land_Sun_chair_green_F";
 		};
-		class Item48
+		class Item45
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3353,7 +5203,7 @@ class Mission
 			id=507;
 			type="Land_Sun_chair_F";
 		};
-		class Item49
+		class Item46
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3368,7 +5218,7 @@ class Mission
 			id=508;
 			type="Land_Sunshade_01_F";
 		};
-		class Item50
+		class Item47
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3383,7 +5233,7 @@ class Mission
 			id=509;
 			type="Land_Sunshade_02_F";
 		};
-		class Item51
+		class Item48
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3398,7 +5248,7 @@ class Mission
 			id=510;
 			type="Land_WoodenTable_large_F";
 		};
-		class Item52
+		class Item49
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3413,7 +5263,7 @@ class Mission
 			id=511;
 			type="Land_CampingChair_V1_F";
 		};
-		class Item53
+		class Item50
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3428,7 +5278,7 @@ class Mission
 			id=512;
 			type="Land_Sunshade_F";
 		};
-		class Item54
+		class Item51
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3443,7 +5293,7 @@ class Mission
 			id=516;
 			type="Pole_F";
 		};
-		class Item55
+		class Item52
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3458,7 +5308,7 @@ class Mission
 			id=528;
 			type="Dirthump_4_F";
 		};
-		class Item56
+		class Item53
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3473,7 +5323,7 @@ class Mission
 			id=532;
 			type="Dirthump_3_F";
 		};
-		class Item57
+		class Item54
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3488,7 +5338,7 @@ class Mission
 			id=533;
 			type="Dirthump_2_F";
 		};
-		class Item58
+		class Item55
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3503,7 +5353,7 @@ class Mission
 			id=538;
 			type="Dirthump_1_F";
 		};
-		class Item59
+		class Item56
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3518,7 +5368,7 @@ class Mission
 			id=539;
 			type="Dirthump_3_F";
 		};
-		class Item60
+		class Item57
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3533,7 +5383,7 @@ class Mission
 			id=540;
 			type="Dirthump_4_F";
 		};
-		class Item61
+		class Item58
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3549,7 +5399,7 @@ class Mission
 			id=542;
 			type="Land_i_Shop_01_V1_F";
 		};
-		class Item62
+		class Item59
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3565,7 +5415,7 @@ class Mission
 			id=552;
 			type="Land_i_Addon_02_V1_F";
 		};
-		class Item63
+		class Item60
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3604,7 +5454,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item64
+		class Item61
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3620,7 +5470,7 @@ class Mission
 			id=556;
 			type="Land_i_Addon_04_V1_F";
 		};
-		class Item65
+		class Item62
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3659,7 +5509,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item66
+		class Item63
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3675,7 +5525,7 @@ class Mission
 			id=559;
 			type="Land_i_House_Small_01_V3_F";
 		};
-		class Item67
+		class Item64
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3690,7 +5540,7 @@ class Mission
 			id=561;
 			type="Land_Sea_Wall_F";
 		};
-		class Item68
+		class Item65
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3705,7 +5555,7 @@ class Mission
 			id=562;
 			type="Land_LightHouse_F";
 		};
-		class Item69
+		class Item66
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3720,7 +5570,7 @@ class Mission
 			id=564;
 			type="Land_Sea_Wall_F";
 		};
-		class Item70
+		class Item67
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3735,7 +5585,7 @@ class Mission
 			id=565;
 			type="Land_Sea_Wall_F";
 		};
-		class Item71
+		class Item68
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3750,7 +5600,7 @@ class Mission
 			id=566;
 			type="Land_Sea_Wall_F";
 		};
-		class Item72
+		class Item69
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3765,7 +5615,7 @@ class Mission
 			id=567;
 			type="Land_Sea_Wall_F";
 		};
-		class Item73
+		class Item70
 		{
 			dataType="Object";
 			class PositionInfo
@@ -3780,86 +5630,7 @@ class Mission
 			id=568;
 			type="Land_Sea_Wall_F";
 		};
-		class Item74
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={8455.9873,107.56561,25114.182};
-				angles[]={0.055937801,0,0.0066671576};
-			};
-			side="Empty";
-			class Attributes
-			{
-				init="forward addMPEventHandler [""mpkilled"", {nul = [_this select 0, _this select 0] execVM ""server\assetrespawn.sqf""}];";
-				name="forward";
-				textures="standard";
-			};
-			id=574;
-			type="rhsusf_rg33_wd";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ace_isMedicalVehicle";
-					expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ammoBox";
-					expression="[_this,_value] call bis_fnc_initAmmoBox;";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="[[[[""FirstAidKit"",""Medikit""],[20,2]],[[""rhs_mag_m18_red"",""rhs_mag_m18_purple"",""rhs_mag_m18_yellow"",""SmokeShellBlue""],[6,6,6,6]],[[],[]],[[],[]]],false]";
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ace_isRepairVehicle";
-					expression="_this setVariable ['ace_isRepairVehicle',_value, true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=3;
-			};
-		};
-		class Item75
+		class Item71
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4139,12 +5910,12 @@ class Mission
 				nAttributes=14;
 			};
 		};
-		class Item76
+		class Item72
 		{
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8337.8145,56.459885,25302.094};
+				position[]={8319,56,25305};
 			};
 			id=580;
 			type="ACE_moduleBasicMedicalSettings";
@@ -4182,6 +5953,220 @@ class Mission
 								type[]=
 								{
 									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item73
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8456.001,105.34287,25114.953};
+				angles[]={0.055937801,0,0.0066671576};
+			};
+			side="Empty";
+			class Attributes
+			{
+				init="forward addMPEventHandler [""mpkilled"", {nul = [_this select 0, _this select 0] execVM ""server\assetrespawn.sqf""}];";
+				name="forward";
+				textures="standard";
+			};
+			id=585;
+			type="CUP_B_BAF_Coyote_L2A1_W";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="Revo_clearVehCargo";
+					expression="				if(_value) then				{					clearItemCargoGlobal _this;					clearMagazineCargoGlobal _this;					clearWeaponCargoGlobal _this;					clearBackpackCargoGlobal _this;				};			";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_isMedicalVehicle";
+					expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				class Attribute2
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""FirstAidKit"",""Medikit""],[20,2]],[[],[]],[[],[]],[[],[]]],false]";
+						};
+					};
+				};
+				class Attribute3
+				{
+					property="ace_isRepairVehicle";
+					expression="_this setVariable ['ace_isRepairVehicle',_value, true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=4;
+			};
+		};
+		class Item74
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8446.2646,104.79594,25144.076};
+				angles[]={0.0079936078,0,6.2232509};
+			};
+			side="Empty";
+			class Attributes
+			{
+				name="ammobox";
+			};
+			id=631;
+			type="B_CargoNet_01_ammo_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""arifle_MXC_F"",""arifle_MXM_F"",""arifle_MX_F"",""arifle_MX_GL_F"",""arifle_MX_SW_F"",""arifle_SDAR_F"",""hgun_P07_F"",""hgun_Pistol_heavy_01_F"",""launch_NLAW_F"",""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""srifle_EBR_F"",""srifle_LRR_camo_F"",""srifle_LRR_F"",""FirstAidKit"",""Medikit"",""MineDetector"",""CUP_hgun_BallisticShield_Armed"",""hgun_PDW2000_F"",""arifle_TRG20_F"",""arifle_Mk20_plain_F"",""arifle_Mk20_F"",""arifle_Mk20_GL_plain_F"",""arifle_Mk20C_plain_F"",""CUP_arifle_FNFAL"",""CUP_arifle_FNFAL_railed"",""CUP_arifle_FNFAL_OSW"",""CUP_srifle_G22_des"",""CUP_arifle_G36A"",""CUP_arifle_G36C"",""CUP_arifle_G36K"",""CUP_arifle_G36A_camo"",""CUP_arifle_G36C_camo"",""CUP_arifle_G36K_camo"",""srifle_GM6_F"",""srifle_GM6_camo_F"",""arifle_Katiba_F"",""arifle_Katiba_GL_F"",""arifle_Katiba_C_F"",""CUP_srifle_AWM_des"",""CUP_srifle_AWM_wdl"",""CUP_srifle_L129A1"",""CUP_arifle_L85A2"",""CUP_arifle_L85A2_GL"",""CUP_arifle_L86A2"",""CUP_srifle_LeeEnfield"",""CUP_sgun_M1014"",""CUP_srifle_M110"",""CUP_srifle_M14"",""CUP_srifle_M14_DMR"",""CUP_arifle_M16A2"",""CUP_arifle_M16A4_Base"",""CUP_arifle_M16A4_GL"",""srifle_LRR_LRPS_F"",""CUP_srifle_M24_wdl"",""CUP_srifle_M24_des"",""CUP_glaunch_M32"",""CUP_srifle_M40A3"",""CUP_arifle_M4A1"",""CUP_arifle_M4A1_black"",""CUP_arifle_M4A1_desert"",""CUP_arifle_M4A1_camo"",""CUP_arifle_M4A1_BUIS_GL"",""CUP_arifle_M4A1_BUIS_desert_GL"",""CUP_arifle_M4A1_BUIS_camo_GL"",""CUP_arifle_M4A3_desert"",""CUP_glaunch_M79"",""CUP_arifle_MG36"",""CUP_arifle_MG36_camo"",""CUP_srifle_Mk12SPR"",""CUP_glaunch_Mk13"",""CUP_arifle_Mk16_CQC"",""CUP_arifle_Mk16_CQC_EGLM"",""CUP_arifle_Mk16_STD"",""CUP_arifle_Mk16_STD_EGLM"",""CUP_arifle_Mk16_SV"",""CUP_arifle_Mk17_CQC"",""CUP_arifle_Mk17_CQC_EGLM"",""CUP_arifle_Mk20"",""CUP_arifle_Mk17_STD"",""CUP_arifle_Mk17_STD_EGLM"",""CUP_smg_MP5A5"",""CUP_smg_MP5SD6"",""arifle_MX_Black_F"",""arifle_MX_Black_Hamr_pointer_F"",""arifle_MX_GL_Black_F"",""arifle_MXC_Black_F"",""arifle_MXM_Black_F"",""CUP_arifle_XM8_Carbine"",""CUP_arifle_XM8_Railed"",""CUP_arifle_XM8_Carbine_GL"",""CUP_arifle_XM8_Compact"",""CUP_arifle_XM8_Carbine_FG"",""CUP_arifle_xm8_SAW"",""CUP_arifle_xm8_sharpshooter""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""16Rnd_9x21_Mag"",""1Rnd_HE_Grenade_shell"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""30Rnd_65x39_caseless_mag"",""3Rnd_HE_Grenade_shell"",""7Rnd_408_Mag"",""APERSBoundingMine_Range_Mag"",""APERSMine_Range_Mag"",""APERSTripMine_Wire_Mag"",""ATMine_Range_Mag"",""B_IR_Grenade"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""HandGrenade"",""Laserbatteries"",""MiniGrenade"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""SmokeShell"",""SmokeShellBlue"",""SmokeShellGreen"",""SmokeShellOrange"",""SmokeShellPurple"",""SmokeShellRed"",""SmokeShellYellow"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Green"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Red"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow"",""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""CUP_20Rnd_762x51_B_M110"",""CUP_20Rnd_TE1_Green_Tracer_762x51_M110"",""CUP_20Rnd_B_AA12_HE"",""CUP_20Rnd_B_AA12_Pellets"",""CUP_20Rnd_B_AA12_74Slug"",""CUP_20Rnd_556x45_Stanag"",""CUP_30Rnd_556x45_Stanag"",""3Rnd_UGL_FlareGreen_F"",""3Rnd_UGL_FlareCIR_F"",""3Rnd_SmokeBlue_Grenade_shell"",""CUP_5Rnd_762x67_G22"",""30Rnd_556x45_Stanag"",""ACE_30Rnd_556x45_Stanag_M995_AP_mag"",""ACE_30Rnd_556x45_Stanag_Mk262_mag"",""ACE_30Rnd_556x45_Stanag_Mk318_mag"",""ACE_30Rnd_556x45_Stanag_Tracer_Dim"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""CUP_5Rnd_86x70_L115A1"",""CUP_5Rnd_762x51_M24"",""CUP_6Rnd_HE_GP25_M"",""CUP_6Rnd_HE_M203"",""CUP_6Rnd_FlareWhite_M203"",""CUP_6Rnd_SmokeGreen_M203"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_8Rnd_B_Beneli_74Pellets"",""CUP_8Rnd_B_Beneli_74Slug"",""16Rnd_9x21_green_Mag"",""30Rnd_9x21_Mag"",""CUP_100Rnd_556x45_BetaCMag"",""CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag"",""UGL_FlareCIR_F"",""CUP_30Rnd_556x45_G36"",""CUP_30Rnd_TE1_Green_Tracer_556x45_G36"",""CUP_FlareWhite_GP25_M"",""CUP_1Rnd_HE_GP25_M"",""CUP_1Rnd_SmokeGreen_GP25_M"",""CUP_IlumFlareWhite_GP25_M"",""ACE_HuntIR_M203"",""CUP_10x_303_M"",""CUP_1Rnd_HE_M203"",""CUP_FlareWhite_M203"",""CUP_1Rnd_SmokeGreen_M203"",""CUP_15Rnd_9x19_M9"",""CUP_20Rnd_762x51_B_SCAR"",""CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR"",""CUP_30Rnd_9x19_MP5""],[]],[[""Binocular"",""Laserdesignator"",""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_Aco"",""optic_Aco_smg"",""optic_DMS"",""optic_Hamr"",""optic_Holosight"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit""],[]],[[],[]]],true]";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item75
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8450.126,104.19882,25148.131};
+				angles[]={0.12468386,0,6.1650715};
+			};
+			side="Empty";
+			class Attributes
+			{
+				name="fobbox";
+			};
+			id=633;
+			type="B_CargoNet_01_ammo_F";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""arifle_MXC_F"",""arifle_MXM_F"",""arifle_MX_F"",""arifle_MX_GL_F"",""arifle_MX_SW_F"",""arifle_SDAR_F"",""hgun_P07_F"",""hgun_Pistol_heavy_01_F"",""launch_NLAW_F"",""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""srifle_EBR_F"",""srifle_LRR_camo_F"",""srifle_LRR_F"",""FirstAidKit"",""Medikit"",""MineDetector"",""CUP_hgun_BallisticShield_Armed"",""hgun_PDW2000_F"",""arifle_TRG20_F"",""arifle_Mk20_plain_F"",""arifle_Mk20_F"",""arifle_Mk20_GL_plain_F"",""arifle_Mk20C_plain_F"",""CUP_arifle_FNFAL"",""CUP_arifle_FNFAL_railed"",""CUP_arifle_FNFAL_OSW"",""CUP_srifle_G22_des"",""CUP_arifle_G36A"",""CUP_arifle_G36C"",""CUP_arifle_G36K"",""CUP_arifle_G36A_camo"",""CUP_arifle_G36C_camo"",""CUP_arifle_G36K_camo"",""srifle_GM6_F"",""srifle_GM6_camo_F"",""arifle_Katiba_F"",""arifle_Katiba_GL_F"",""arifle_Katiba_C_F"",""CUP_srifle_AWM_des"",""CUP_srifle_AWM_wdl"",""CUP_srifle_L129A1"",""CUP_arifle_L85A2"",""CUP_arifle_L85A2_GL"",""CUP_arifle_L86A2"",""CUP_srifle_LeeEnfield"",""CUP_sgun_M1014"",""CUP_srifle_M110"",""CUP_srifle_M14"",""CUP_srifle_M14_DMR"",""CUP_arifle_M16A2"",""CUP_arifle_M16A4_Base"",""CUP_arifle_M16A4_GL"",""srifle_LRR_LRPS_F"",""CUP_srifle_M24_wdl"",""CUP_srifle_M24_des"",""CUP_glaunch_M32"",""CUP_srifle_M40A3"",""CUP_arifle_M4A1"",""CUP_arifle_M4A1_black"",""CUP_arifle_M4A1_desert"",""CUP_arifle_M4A1_camo"",""CUP_arifle_M4A1_BUIS_GL"",""CUP_arifle_M4A1_BUIS_desert_GL"",""CUP_arifle_M4A1_BUIS_camo_GL"",""CUP_arifle_M4A3_desert"",""CUP_glaunch_M79"",""CUP_arifle_MG36"",""CUP_arifle_MG36_camo"",""CUP_srifle_Mk12SPR"",""CUP_glaunch_Mk13"",""CUP_arifle_Mk16_CQC"",""CUP_arifle_Mk16_CQC_EGLM"",""CUP_arifle_Mk16_STD"",""CUP_arifle_Mk16_STD_EGLM"",""CUP_arifle_Mk16_SV"",""CUP_arifle_Mk17_CQC"",""CUP_arifle_Mk17_CQC_EGLM"",""CUP_arifle_Mk20"",""CUP_arifle_Mk17_STD"",""CUP_arifle_Mk17_STD_EGLM"",""CUP_smg_MP5A5"",""CUP_smg_MP5SD6"",""arifle_MX_Black_F"",""arifle_MX_Black_Hamr_pointer_F"",""arifle_MX_GL_Black_F"",""arifle_MXC_Black_F"",""arifle_MXM_Black_F"",""CUP_arifle_XM8_Carbine"",""CUP_arifle_XM8_Railed"",""CUP_arifle_XM8_Carbine_GL"",""CUP_arifle_XM8_Compact"",""CUP_arifle_XM8_Carbine_FG"",""CUP_arifle_xm8_SAW"",""CUP_arifle_xm8_sharpshooter""],[]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""16Rnd_9x21_Mag"",""1Rnd_HE_Grenade_shell"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""30Rnd_65x39_caseless_mag"",""3Rnd_HE_Grenade_shell"",""7Rnd_408_Mag"",""APERSBoundingMine_Range_Mag"",""APERSMine_Range_Mag"",""APERSTripMine_Wire_Mag"",""ATMine_Range_Mag"",""B_IR_Grenade"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""HandGrenade"",""Laserbatteries"",""MiniGrenade"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""SmokeShell"",""SmokeShellBlue"",""SmokeShellGreen"",""SmokeShellOrange"",""SmokeShellPurple"",""SmokeShellRed"",""SmokeShellYellow"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Green"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Red"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Yellow"",""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""CUP_20Rnd_762x51_B_M110"",""CUP_20Rnd_TE1_Green_Tracer_762x51_M110"",""CUP_20Rnd_B_AA12_HE"",""CUP_20Rnd_B_AA12_Pellets"",""CUP_20Rnd_B_AA12_74Slug"",""CUP_20Rnd_556x45_Stanag"",""CUP_30Rnd_556x45_Stanag"",""3Rnd_UGL_FlareGreen_F"",""3Rnd_UGL_FlareCIR_F"",""3Rnd_SmokeBlue_Grenade_shell"",""CUP_5Rnd_762x67_G22"",""30Rnd_556x45_Stanag"",""ACE_30Rnd_556x45_Stanag_M995_AP_mag"",""ACE_30Rnd_556x45_Stanag_Mk262_mag"",""ACE_30Rnd_556x45_Stanag_Mk318_mag"",""ACE_30Rnd_556x45_Stanag_Tracer_Dim"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""CUP_5Rnd_86x70_L115A1"",""CUP_5Rnd_762x51_M24"",""CUP_6Rnd_HE_GP25_M"",""CUP_6Rnd_HE_M203"",""CUP_6Rnd_FlareWhite_M203"",""CUP_6Rnd_SmokeGreen_M203"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_8Rnd_B_Beneli_74Pellets"",""CUP_8Rnd_B_Beneli_74Slug"",""16Rnd_9x21_green_Mag"",""30Rnd_9x21_Mag"",""CUP_100Rnd_556x45_BetaCMag"",""CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag"",""UGL_FlareCIR_F"",""CUP_30Rnd_556x45_G36"",""CUP_30Rnd_TE1_Green_Tracer_556x45_G36"",""CUP_FlareWhite_GP25_M"",""CUP_1Rnd_HE_GP25_M"",""CUP_1Rnd_SmokeGreen_GP25_M"",""CUP_IlumFlareWhite_GP25_M"",""ACE_HuntIR_M203"",""CUP_10x_303_M"",""CUP_1Rnd_HE_M203"",""CUP_FlareWhite_M203"",""CUP_1Rnd_SmokeGreen_M203"",""CUP_15Rnd_9x19_M9"",""CUP_20Rnd_762x51_B_SCAR"",""CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR"",""CUP_30Rnd_9x19_MP5""],[]],[[""Binocular"",""Laserdesignator"",""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_Aco"",""optic_Aco_smg"",""optic_DMS"",""optic_Hamr"",""optic_Holosight"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit""],[]],[[],[]]],true]";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
 								};
 							};
 							value=0;
