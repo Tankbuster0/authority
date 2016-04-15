@@ -35,35 +35,35 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 for "_count" from _start to _lc do
 {
 	//diag_log format ["***spu loop %1", _count];
-	_grpname = format ["grp%1", _count];
-	_grpname = createGroup east;
+	_staticgrpname = format ["staticgrp%1", _count];
+	//_grpname = createGroup east;
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
 	switch ((floor (random 6))) do
 		{
 		case 0: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_b_d30_cdf", _grpname ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "cup_b_d30_cdf", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AA")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_b_zu23_cdf", _grpname ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AA")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "cup_b_zu23_cdf", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_o_metis_ru", _grpname ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "cup_o_metis_ru", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 3: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_o_kord_high_ru", _grpname ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "cup_o_kord_high_ru", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 4: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_o_kord_ru", _grpname ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "cup_o_kord_ru", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 5: {
-				_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
 				_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
 				createVehicleCrew _veh;
@@ -72,7 +72,7 @@ for "_count" from _start to _lc do
 				createVehicleCrew _veh;
 				};
 		};
-	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
+	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
 	_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
@@ -83,18 +83,24 @@ for "_count" from _start to _lc do
 	createVehicleCrew _veh;
 	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
+	// statics end
+
+	// patrolling infantry start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	switch ((floor (random 4))) do
 		{
-		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;};
-		case 1: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;};
-		case 2: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_SniperTeam")] call BIS_fnc_spawnGroup;};
-		case 3: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;};
+		case 0: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;};
+		case 1: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;};
+		case 2: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_SniperTeam")] call BIS_fnc_spawnGroup;};
+		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;};
 		};
-	nul = [_grpname, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;// patrolling infantry group
+	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
+	// patrolling infantry end
 	sleep 0.1;
+
+	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
-		switch ((floor (random 6))) do
+		/*switch ((floor (random 6))) do
 		{
 		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_tv" >> "rhs_group_rus_tv_2s3" >> "RHS_SPGSection_tv_2s3")] call BIS_fnc_spawnGroup;};
 		case 1: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_btr70" >> "rhs_group_rus_msv_btr70_squad_2mg")] call BIS_fnc_spawnGroup;};
@@ -102,8 +108,11 @@ for "_count" from _start to _lc do
 		case 3: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp2" >> "rhs_group_rus_msv_bmp2_squad" )] call BIS_fnc_spawnGroup;};
 		case 4: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp2" >> "rhs_group_rus_msv_bmp2_squad_2mg" )] call BIS_fnc_spawnGroup;};
 		case 5: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad_sniper" )] call BIS_fnc_spawnGroup;};
-		};
-	sleep 0.1;// static  apc /ifv group
+		};*/
+		_veh = selectRandom ["CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR90_RU", "CUP_O_GAZ_Vodnik_AGS_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_Ural_ZU23_RU", "CUP_O_UAZ_MG_RU", "CUP_O_UAZ_METIS_RU", "CUP_O_BRDM2_SLA"]
+	//static ifv/ apc end
+	sleep 0.1;
+	// patrolling  apc /ifv group start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		switch ((floor (random 15))) do
 		{
@@ -123,7 +132,8 @@ for "_count" from _start to _lc do
 		case 13: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad"  )] call BIS_fnc_spawnGroup;};
 		case 14: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad_sniper" )] call BIS_fnc_spawnGroup;};
 		};
-	nul = [_grpname, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;// patrolling  apc/ifv group
+	nul = [_grpname, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
+	// patrolling  apc/ifv group end
 	sleep 0.1;
 	if ((_pt_type == 1) and (cpt_radius > 150)) then //tanks only spawn at big towns, not at bases or airfields
 	{
