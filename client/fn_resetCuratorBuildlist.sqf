@@ -12,9 +12,9 @@ cur addEventHandler [
 			_cost = 		
 			switch (_x) do {
 				case "RHS_Stinger_AA_pod_WD": {[true,0.3]};
-				case "RHS_M252_WD": {[true,0.5]};
-				case "RHS_M2StaticMG_MiniTripod_WD": {[true,0.1]};
-				case "RHS_M2StaticMG_WD": {[true,0.2]};
+				case "CUP_B_M252_USMC": {[true,0.5]};
+				case "CUP_B_M2StaticMG_MiniTripod_USMC": {[true,0.1]};
+				case "CUP_B_M2StaticMG_USMC": {[true,0.2]};
 				case "Land_BagBunker_Small_F": {[true,0]};
 				case "Land_BagFence_Corner_F": {[true,0]};
 				case "Land_BagFence_End_F": {[true,0]};
