@@ -100,56 +100,31 @@ for "_count" from _start to _lc do
 
 	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
-		/*switch ((floor (random 6))) do
-		{
-		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_tv" >> "rhs_group_rus_tv_2s3" >> "RHS_SPGSection_tv_2s3")] call BIS_fnc_spawnGroup;};
-		case 1: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_btr70" >> "rhs_group_rus_msv_btr70_squad_2mg")] call BIS_fnc_spawnGroup;};
-		case 2: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp1" >> "rhs_group_rus_msv_bmp1_squad_aa")] call BIS_fnc_spawnGroup;};
-		case 3: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp2" >> "rhs_group_rus_msv_bmp2_squad" )] call BIS_fnc_spawnGroup;};
-		case 4: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp2" >> "rhs_group_rus_msv_bmp2_squad_2mg" )] call BIS_fnc_spawnGroup;};
-		case 5: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad_sniper" )] call BIS_fnc_spawnGroup;};
-		};*/
-		_veh = selectRandom ["CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR90_RU", "CUP_O_GAZ_Vodnik_AGS_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_Ural_ZU23_RU", "CUP_O_UAZ_MG_RU", "CUP_O_UAZ_METIS_RU", "CUP_O_BRDM2_SLA"]
-	//static ifv/ apc end
+
+		_veh = selectRandom opforstaticlandvehicles;
+		_staticveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+
 	sleep 0.1;
 	// patrolling  apc /ifv group start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
-		switch ((floor (random 15))) do
-		{
-		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_btr70" >> "rhs_group_rus_msv_btr70_squad" )] call BIS_fnc_spawnGroup;};
-		case 1: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_btr70" >> "rhs_group_rus_msv_btr70_squad_2mg")] call BIS_fnc_spawnGroup;};
-		case 2: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80" >> "rhs_group_rus_msv_BTR80_squad")] call BIS_fnc_spawnGroup;};
-		case 3: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80" >> "rhs_group_rus_msv_BTR80_squad_aa" )] call BIS_fnc_spawnGroup;};
-		case 4: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80" >> "rhs_group_rus_msv_BTR80_squad_mg_sniper"  )] call BIS_fnc_spawnGroup;};
-		case 5: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80a" >> "rhs_group_rus_msv_BTR80a_squad" )] call BIS_fnc_spawnGroup;};
-		case 6: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80a" >> "rhs_group_rus_msv_BTR80a_squad_2mg" )] call BIS_fnc_spawnGroup;};
-		case 7: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp1" >> "rhs_group_rus_msv_bmp1_squad_aa" )] call BIS_fnc_spawnGroup;};
-		case 8: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp2" >> "rhs_group_rus_msv_bmp2_squad" )] call BIS_fnc_spawnGroup;};
-		case 9: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_bmp2" >> "rhs_group_rus_msv_bmp2_squad_2mg" )] call BIS_fnc_spawnGroup;};
-		case 10: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_BMP3" >> "rhs_group_rus_MSV_BMP3_squad" )] call BIS_fnc_spawnGroup;};
-		case 11: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_msv_BTR80a" >> "rhs_group_rus_msv_BTR80a_squad_2mg" )] call BIS_fnc_spawnGroup;};
-		case 12: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_BMP3" >> "rhs_group_rus_MSV_BMP3_squad_mg_sniper" )] call BIS_fnc_spawnGroup;};
-		case 13: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad"  )] call BIS_fnc_spawnGroup;};
-		case 14: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_msv" >> "rhs_group_rus_MSV_bmp3m" >> "rhs_group_rus_MSV_bmp3m_squad_sniper" )] call BIS_fnc_spawnGroup;};
-		};
-	nul = [_grpname, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
+	_veh = selectRandom opforpatrollandvehicles;
+	_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+	nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
 	// patrolling  apc/ifv group end
 	sleep 0.1;
+	//heavy armour and shit start
 	if ((_pt_type == 1) and (cpt_radius > 150)) then //tanks only spawn at big towns, not at bases or airfields
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
-			switch ((floor (random 3))) do
-		{
-		case 0: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_tv" >> "rhs_group_rus_tv_72" >> "RHS_T72BDSection" )] call BIS_fnc_spawnGroup;};
-		case 1: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_tv" >> "rhs_group_rus_tv_80" >> "RHS_T80UPlatoon_AA" )] call BIS_fnc_spawnGroup;};
-		case 2: {_grpname = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "rhs_faction_tv" >> "rhs_group_rus_tv_90" >> "RHS_t90aPlatoon")] call BIS_fnc_spawnGroup;};
-		};
+		_veh = selectRandom opfortanks;
+		_statictanks = [mypos, east, [_veh, _veh, _veh], [[0,10,0], [5,0,0], [10,0,0]]] call BIS_fnc_spawngroup;
 		sleep 0.1;
 	};
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", _grpname] call bis_fnc_spawnVehicle;
 	doStop (_vehdata select 0);
-		sleep 0.1;
+	//heavy armour end
+	sleep 0.1;
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
