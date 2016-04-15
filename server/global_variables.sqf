@@ -27,6 +27,11 @@ civcars =["C_Offroad_01_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad
 		 "CUP_C_Golf4_yellow_Civ","CUP_C_Golf4_random_Civ","CUP_C_Octavia_CIV","CUP_C_Ural_Civ_01","CUP_C_Datsun_4seat","CUP_C_Datsun","CUP_C_Skoda_White_CIV","CUP_C_Skoda_Red_CIV","CUP_C_Skoda_Green_CIV",
 		 "CUP_C_Skoda_Blue_CIV","CUP_C_Golf4_red_Civ","CUP_C_Golf4_green_Civ","CUP_C_Golf4_blue_Civ","CUP_C_Golf4_black_Civ"];
 
+opforpatrollandvehicles = ["CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR90_RU", "CUP_O_GAZ_Vodnik_AGS_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_Ural_ZU23_RU", "CUP_O_UAZ_MG_RU", "CUP_O_UAZ_METIS_RU", "CUP_O_BRDM2_SLA"];
+opforstaticlandvehicles =["CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_Ural_ZU23_RU", "CUP_O_BM21_RU", "CUP_O_2S6M_RU"];
+
+opfortanks = ["CUP_O_T55_TK", "CUP_O_T72_RU"];
+
 aaccomposition = [
 	["CUP_O_UAZ_MG_RU",[-20.1211,33.5195,0.0134125],124.876,1,0,[-1.26621,2.01704],"","",true,false],
 	["CUP_O_Ural_Open_RU",[-15.9697,39.3184,0.063118],128.25,1,0,[-1.4036,-0.622098],"","",true,false],
