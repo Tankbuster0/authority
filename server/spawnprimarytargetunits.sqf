@@ -36,7 +36,6 @@ for "_count" from _start to _lc do
 {
 	//diag_log format ["***spu loop %1", _count];
 	_staticgrpname = format ["staticgrp%1", _count];
-	//_grpname = createGroup east;
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
@@ -81,7 +80,7 @@ for "_count" from _start to _lc do
 	_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
 	_veh setdir (_mydir + random 15);
 	createVehicleCrew _veh;
-	nul = [_grpname, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
+	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
 	// statics end
 
@@ -121,14 +120,15 @@ for "_count" from _start to _lc do
 		sleep 0.1;
 	};
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
-	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", _grpname] call bis_fnc_spawnVehicle;
+	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", _statictanks] call bis_fnc_spawnVehicle;// spawn another tunguska for fun :)
 	doStop (_vehdata select 0);
 	//heavy armour end
 	sleep 0.1;
+// add them all to cleanup arrays
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
-	 }foreach (units _grpname);
+	 }foreach (_allcompositionunits + (units _staticgrp) + (units _patrolinf) + (units _patrolveh) + (units _statictanks));
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 {
