@@ -28,8 +28,12 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 
 		};
 	_allcompositionunits = [_pt_pos, 0, _composition] call BIS_fnc_ObjectsMapper;
-	{if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";}; }foreach _allcompositionunits;
-
+	{
+	if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";}; }foreach _allcompositionunits;
+	}
+	else
+	{
+	_allcompositionunits = [];
 	};
 
 for "_count" from _start to _lc do
@@ -116,11 +120,11 @@ for "_count" from _start to _lc do
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
-		_statictanks = [mypos, east, [_veh, _veh, _veh], [[0,10,0], [5,0,0], [10,0,0]]] call BIS_fnc_spawngroup;
+		_statictanks = [_mypos, east, [_veh, _veh, _veh], [[0,10,0], [5,0,0], [10,0,0]]] call BIS_fnc_spawngroup;
 		sleep 0.1;
 	};
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
-	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", _statictanks] call bis_fnc_spawnVehicle;// spawn another tunguska for fun :)
+	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", east] call bis_fnc_spawnVehicle;// spawn another tunguska for fun :)
 	doStop (_vehdata select 0);
 	//heavy armour end
 	sleep 0.1;

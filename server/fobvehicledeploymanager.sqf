@@ -15,6 +15,7 @@ private ["_candidatepos","_nul","_cobj","_veh"];
 */
 if not (fobdeployed) then
 {
+	diag_log format ["*** fdm says fob not deployed"];
 	//fob deploy requested
 	_candidatepos = (position fobveh) isFlatEmpty
 	[8,// nothing within this distance
@@ -27,14 +28,16 @@ if not (fobdeployed) then
 	 ];
 	if (_candidatepos isEqualTo []) then
 		{
+		diag_log "*** fdm deploy denied";
 		//hint "Not enough space to make FOB here";
 		"Not enough space or too steep to build FOB here." remoteexec ["hint", fobveh];
 		[fobveh,1] remoteexec ["tky_fnc_setfuel"];
 		sleep 4;
 		} else
 		{
+		diag_log "*** fdm deploing";
 		//hint "Deploying FOB";
-		fobvehicle  setUserActionText [fobdeployactionid, "Undeploy FOB"];
+		fobveh  setUserActionText [fobdeployactionid, "Undeploy FOB"];
 		"Deploying FOB." remoteExec ["hint", fobveh];
 		sleep 2;
 		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
@@ -60,7 +63,7 @@ else
 		{
 		//hint "Removing FOB";
 		"Removing FOB" remoteexec ["hint", fobveh];
-		fobvehicle  setUserActionText [fobdeployactionid, "Working! Please wait"];
+		fobveh  setUserActionText [fobdeployactionid, "Working! Please wait"];
 		sleep 2;
 		{deleteVehicle _x} foreach fobjects;
 		fobdeployed = false;
@@ -78,7 +81,7 @@ else
 		unassignCurator cur;
 
 		sleep 5;
-		fobvehicle  setUserActionText [fobdeployactionid, "Redeploy FOB."];
+		fobveh  setUserActionText [fobdeployactionid, "Redeploy FOB."];
 		};
-
+};
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
