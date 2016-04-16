@@ -28,17 +28,17 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if (_spawnpoint isEqualTo [0,0,0]) then
 	{
-	_startpos = [_droppos, (1000 + random 1000), _spawndir] call bis_fnc_relPos;
+	_startpos = [_droppos, (750 + random 750), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
 	};
-_startpos set [2, 500];
+_startpos set [2, 250];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
 dropveh = (_veh select 0);
-dropveh setVelocity [150 * (sin _dir), 150 * (cos _dir), 0];
+dropveh setVelocity [200 * (sin _dir), 200 * (cos _dir), 0];
 dropveh setcaptive true;
 /*
 _dwp = _dropgroup addWaypoint [_droppos, 0];
