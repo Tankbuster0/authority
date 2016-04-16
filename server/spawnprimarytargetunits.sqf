@@ -128,7 +128,7 @@ for "_count" from _start to _lc do
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
-	 }foreach (_allcompositionunits + (units _staticgrp) + (units _patrolinf) + (units _patrolveh) + (units _statictanks));
+	 }foreach (_allcompositionunits + (units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 {
