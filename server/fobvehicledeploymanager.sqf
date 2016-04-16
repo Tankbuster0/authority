@@ -11,19 +11,23 @@ while {true} do
 	{
 		if (_unit isequalto (driver _veh)) exitWith {_reason = "driver"};
 		if !(_unit in _veh ) exitWith {_reason = "out"};
-		sleep 0.1;
+		sleep 0.2;
 	};
 if (_reason isEqualTo "out") exitWith {};
+
 while {(alive _veh) and (!(isnull (driver _veh)))} do
 	{
-	sleep 0.1;
+	sleep 0.2;
 
 	// Experimental FOB§ building
 	//unassignCurator cur;
 	if (fobdeployed) then
-	{
-		(driver _veh) assignCurator cur;
-	};
+		{
+		if (getAssignedCuratorUnit cur != (driver _veh)) then
+			{
+			(driver _veh) assignCurator cur;
+			};
+		};
 	//--
 
 
