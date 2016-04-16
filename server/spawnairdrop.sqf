@@ -3,7 +3,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground", "_spawndir", "_mytime"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
-["_airtype", "CUP_B_C130J_Cargo_GB"], // classname of delivering aircraft
+["_airtype", blufordropaircraft], // classname of delivering aircraft
 ["_droptype", fobvehicleclassname],// classname of deliverd objects
 ["_spawnpoint", [0,0,0]]
 ]; // classname of delivered object
@@ -28,7 +28,7 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if (_spawnpoint isEqualTo [0,0,0]) then
 	{
-	_startpos = [_droppos, (3000 + random 3000), _spawndir] call bis_fnc_relPos;
+	_startpos = [_droppos, (1000 + random 1000), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
@@ -94,8 +94,8 @@ if (_droptype == forwardpointvehicleclassname) then
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
-	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
-	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
+	_cargo addEventHandler ["GetIn", {_nul = [_this select 0,_this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
+	_cargo addEventHandler ["GetOut", {_nul = [] execVM "server\handlefobgetout.sqf"}];
 	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
 	};

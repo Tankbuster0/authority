@@ -1,18 +1,6 @@
 _myscript = "fobvehicledeploymanager.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_candidatepos","_nul","_cobj","_veh"];
-/*
-	// Experimental FOB§ building
-	//unassignCurator cur;
-	if (fobdeployed) then
-		{
-		if (getAssignedCuratorUnit cur != (driver fobveh)) then
-			{
-			(driver fobveh) assignCurator cur;
-			};
-		};
-	//--
-*/
 if not (fobdeployed) then
 {
 	diag_log format ["*** fdm says fob not deployed"];
@@ -35,7 +23,7 @@ if not (fobdeployed) then
 		sleep 4;
 		} else
 		{
-		diag_log "*** fdm deploing";
+		diag_log "*** fdm deploying";
 		//hint "Deploying FOB";
 		fobveh  setUserActionText [fobdeployactionid, "Undeploy FOB"];
 		"Deploying FOB." remoteExec ["hint", fobveh];
@@ -43,25 +31,24 @@ if not (fobdeployed) then
 		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 		sleep 0.5;
 		fobbox setpos (position fobboxlocator);
-
 		// Make editing area for curator
 		(driver fobveh) assignCurator cur;
 		[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
 		cur addCuratorEditingArea [1,(position fobveh),50];
 		cur addCuratorCameraArea [1,(position fobveh),50];
-
 		// Hint press button to get in zeus mode
 		"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", fobveh];
-
 		fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
 		sleep 5;
 		};
 }
 else
 {
+	diag_log "*** fdm says fod is deployed";
 	if (!(isNil "fobjects")) then
 		{
 		//hint "Removing FOB";
+		diag_log "***removing fob";
 		"Removing FOB" remoteexec ["hint", fobveh];
 		fobveh  setUserActionText [fobdeployactionid, "Working! Please wait"];
 		sleep 2;
@@ -69,18 +56,15 @@ else
 		fobdeployed = false;
 		fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
 		publicVariable "fobdeployed";
-
 		// Remove Editing Area and curator owner
 		cur removeCuratorEditingArea 1;
 		cur removeCuratorCameraArea  1;
-
 		_cobj = curatorEditableObjects cur;
 		{ deleteVehicle _x;} forEach _cobj;
 		fobbox setpos (getpos fobboxsecretlocation);
-		[[(position fobveh select 0),(position _veh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
+		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
-
-		sleep 5;
+		sleep 2;
 		fobveh  setUserActionText [fobdeployactionid, "Redeploy FOB."];
 		};
 };

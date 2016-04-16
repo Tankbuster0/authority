@@ -9,6 +9,7 @@ opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_
 
 forwardpointvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
 fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
+blufordropaircraft = "CUP_B_C130J_GB";
 
 prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_MCV80_GB_W_SLAT","CUP_B_MCV80_GB_W","CUP_B_Mastiff_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","CUP_B_FV432_Bulldog_GB_W_RWS","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W"];
 

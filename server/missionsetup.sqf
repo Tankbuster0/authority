@@ -24,7 +24,7 @@ for "_q" from 1 to 3 do
 	{
 	sleep 0.5;
 	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
-	_mytruck = createVehicle ["CUP_B_BAF_Coyote_L2A1_W", _mypos,[],0,"NONE"];
+	_mytruck = createVehicle ["CUP_B_LR_Transport_GB_W", _mypos,[],0,"NONE"];
 	sleep 0.5;
 	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 	_mymortar = createVehicle ["CUP_B_M252_USMC", _mypos,[],0, "NONE"];
