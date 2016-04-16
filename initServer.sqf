@@ -245,6 +245,7 @@ if (worldName in ["Altis", "altis"]) then
 		_handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 		waitUntil {scriptDone _handle1};
 	};
+
 sleep 0.5;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
