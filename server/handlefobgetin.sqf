@@ -1,6 +1,5 @@
 _myscript = "handlefobgetin.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_reason"]
 private ["_veh","_seat","_unit","_reason"];
 params [
 ["_veh", ""],
@@ -8,12 +7,12 @@ params [
 ["_unit", ""]
 ];
 _reason = "";
-while {reason isEqualTo ""} do
+while {_reason isEqualTo ""} do
 	{
-	if not ((isalive _unit) or (isalive _veh))  then {_reason = "dead";};
+	if not ((alive _unit) or (alive _veh))  then {_reason = "dead";};
 	if not (_unit in _veh) then {_reason = "dismounted";};
 	// unit is in veh, but might not be in drivers seat, so stay in loop
-	if ((assignedVehicleRole isEqualTypeArray "driver") and (not (engineOn _veh)) and (speed _veh isEqualTo 0)) then {_reason = "good";};
+	if (((driver fobveh) isEqualTo _unit) and (not (isengineOn fobveh)) and ((speed _veh) isEqualTo 0)) then {_reason = "good";};
 	sleep 0.5;
 	};
  if not (_reason  isEqualTo "good") exitWith {};
@@ -28,6 +27,6 @@ while {reason isEqualTo ""} do
 	  "", //shortcut
 	  "true" // condition
 	  ];
-if (fobdeployed) then {fobvehicle  setUserActionText [fobdeployactionid, "Undeploy FOB"];};
+if (fobdeployed) then {fobveh setUserActionText [fobdeployactionid, "Undeploy FOB"];};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

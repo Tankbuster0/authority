@@ -40,14 +40,17 @@ _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
 dropveh = (_veh select 0);
 dropveh setVelocity [150 * (sin _dir), 150 * (cos _dir), 0];
 dropveh setcaptive true;
+/*
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
 _dwp setWaypointtype "MOVE";
 _dropgroup setCombatMode "BLUE";
+*/
 _dropgroup allowFleeing 0;
 (driver dropveh) setskill ["courage",1];
 (driver dropveh) disableAI "FSM"; (driver dropveh) disableAI "TARGET"; (driver dropveh) disableAI "AUTOTARGET"; (driver dropveh) disableAI "AUTOCOMBAT";
+dropveh domove _droppos;
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
