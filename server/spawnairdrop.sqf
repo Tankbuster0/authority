@@ -91,7 +91,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
-	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\fobvehicledeploymanager.sqf"}];
+	_cargo addEventHandler ["GetIn", {nul = [_this select 0,_this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
 	_cargo addEventHandler ["GetOut", {unassignCurator cur;}];
 	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
