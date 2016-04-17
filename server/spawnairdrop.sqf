@@ -28,7 +28,7 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if (_spawnpoint isEqualTo [0,0,0]) then
 	{
-	_startpos = [_droppos, (750 + random 750), _spawndir] call bis_fnc_relPos;
+	_startpos = [_droppos, (2000 + random 100), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
@@ -40,13 +40,13 @@ _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
 dropveh = (_veh select 0);
 dropveh setVelocity [200 * (sin _dir), 200 * (cos _dir), 0];
 dropveh setcaptive true;
-/*
+
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
 _dwp setWaypointtype "MOVE";
 _dropgroup setCombatMode "BLUE";
-*/
+
 _dropgroup allowFleeing 0;
 (driver dropveh) setskill ["courage",1];
 (driver dropveh) disableAI "FSM"; (driver dropveh) disableAI "TARGET"; (driver dropveh) disableAI "AUTOTARGET"; (driver dropveh) disableAI "AUTOCOMBAT";
