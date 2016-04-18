@@ -33,13 +33,14 @@ if (_spawnpoint isEqualTo [0,0,0]) then
 	{
 	_startpos = _spawnpoint;
 	};
-_startpos set [2, 250];
+_startpos set [2, 200];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
 dropveh = (_veh select 0);
 dropveh setVelocity [200 * (sin _dir), 200 * (cos _dir), 0];
 dropveh setcaptive true;
+dropveh flyInHeight 200;
 
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
