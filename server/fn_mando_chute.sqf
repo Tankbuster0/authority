@@ -132,8 +132,10 @@ if (_is_ammo) then
 		_helper1 setPos [_pos_man select 0, _pos_man select 1, 0];
 		_man setPos [_pos_man select 0, _pos_man select 1, 0];
 		_man setVectorUp (vectorUp  _helper1);
+		_man allowdamage true;
 		};
 	};
+_
 if (!(isnull _helper1)) then
 	{deleteVehicle _helper1;};
 //if (((getpos _helper1) select 0) != 0) then {deletevehicle _helper1};

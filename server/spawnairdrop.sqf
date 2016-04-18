@@ -100,6 +100,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	fobveh = _cargo;
 	};
 _cargo attachto [_para, [0,0,0]];
+_cargo allowDamage false;
 /*
 rope1 = ropeCreate [_para, "SlingLoad0", _cargo, [1,1.65,1], 7];
 rope2 = ropeCreate [_para, "SlingLoad0", _cargo, [-1,1.65,1],7];

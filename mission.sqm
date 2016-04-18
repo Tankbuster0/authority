@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2107;
+		nextID=2116;
 	};
 	class Camera
 	{
@@ -91,25 +91,6 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -141,6 +122,25 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
 				};
 			};
 		};
@@ -401,25 +401,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -437,45 +418,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -494,45 +437,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item1
@@ -556,25 +461,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -592,45 +478,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -649,45 +497,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item2
@@ -711,25 +521,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -747,45 +538,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -804,45 +557,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item3
@@ -866,25 +581,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -902,45 +598,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -959,45 +617,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item4
@@ -1021,25 +641,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -1057,45 +658,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1114,45 +677,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item5
@@ -1177,25 +702,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -1213,45 +719,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1270,45 +738,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item6
@@ -1332,25 +762,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -1368,45 +779,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1425,45 +798,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item7
@@ -1488,25 +823,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -1524,45 +840,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1581,45 +859,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item8
@@ -1643,25 +883,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -1679,45 +900,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1736,45 +919,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 			};
@@ -1865,25 +1010,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -1901,45 +1027,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -1958,45 +1046,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item1
@@ -2021,25 +1071,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2057,45 +1088,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2114,45 +1107,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item2
@@ -2176,25 +1131,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2212,45 +1148,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2269,45 +1167,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item3
@@ -2331,25 +1191,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2367,45 +1208,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2424,45 +1227,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item4
@@ -2486,25 +1251,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2522,45 +1268,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2579,45 +1287,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item5
@@ -2641,25 +1311,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2677,45 +1328,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2734,45 +1347,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item6
@@ -2797,25 +1372,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2833,45 +1389,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -2890,45 +1408,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item7
@@ -2952,25 +1432,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -2988,45 +1449,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -3045,45 +1468,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 				class Item8
@@ -3107,25 +1492,6 @@ class Mission
 					{
 						class Attribute0
 						{
-							property="Revo_animType";
-							expression="_this setVariable ['Revo_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute1
-						{
 							property="ace_isSurrendered";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
 							class Value
@@ -3143,45 +1509,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute2
-						{
-							property="Revo_animCombType";
-							expression="_this setVariable ['Revo_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Revo_animEquipment";
-							expression="_this setVariable ['Revo_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
+						class Attribute1
 						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
@@ -3200,45 +1528,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute5
-						{
-							property="Revo_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
-							property="Revo_animCombEquipment";
-							expression="_this setVariable ['Revo_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=7;
+						nAttributes=2;
 					};
 				};
 			};
@@ -5983,25 +4273,6 @@ class Mission
 			{
 				class Attribute0
 				{
-					property="Revo_clearVehCargo";
-					expression="				if(_value) then				{					clearItemCargoGlobal _this;					clearMagazineCargoGlobal _this;					clearWeaponCargoGlobal _this;					clearBackpackCargoGlobal _this;				};			";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				class Attribute1
-				{
 					property="ace_isMedicalVehicle";
 					expression="_this setVariable [""ace_medical_medicClass"",_value,true];";
 					class Value
@@ -6019,7 +4290,7 @@ class Mission
 						};
 					};
 				};
-				class Attribute2
+				class Attribute1
 				{
 					property="ammoBox";
 					expression="[_this,_value] call bis_fnc_initAmmoBox;";
@@ -6038,7 +4309,7 @@ class Mission
 						};
 					};
 				};
-				class Attribute3
+				class Attribute2
 				{
 					property="ace_isRepairVehicle";
 					expression="_this setVariable ['ace_isRepairVehicle',_value, true];";
@@ -6057,7 +4328,7 @@ class Mission
 						};
 					};
 				};
-				nAttributes=4;
+				nAttributes=3;
 			};
 		};
 		class Item74
