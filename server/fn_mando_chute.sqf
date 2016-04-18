@@ -135,7 +135,7 @@ if (_is_ammo) then
 		_man allowdamage true;
 		};
 	};
-_
+
 if (!(isnull _helper1)) then
 	{deleteVehicle _helper1;};
 //if (((getpos _helper1) select 0) != 0) then {deletevehicle _helper1};

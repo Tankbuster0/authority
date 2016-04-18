@@ -17,7 +17,7 @@ while {_reason isEqualTo ""} do
 	};
  if not (_reason  isEqualTo "good") exitWith {};
 
- fobdeployactionid = fobveh addaction [
+ fobdeployactionid = _unit addaction [
 	"Deploy FOB",// text on action menu
 	 "server\fobvehicledeploymanager.sqf",// executed script
 	  "",//optional arguments
@@ -28,6 +28,6 @@ while {_reason isEqualTo ""} do
 	  "true" // condition
 	  ];
 sleep 0.5;
-if (fobdeployed) then {fobveh setUserActionText [fobdeployactionid, "Undeploy FOB"];};
+if (fobdeployed) then {_user setUserActionText [fobdeployactionid, "Undeploy FOB"];};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
