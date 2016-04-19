@@ -23,7 +23,7 @@ _target_pos = if (_rad isEqualTo 0) then {
 };
 
 _deg_sec = 30;
-_max_spd = 4;
+_max_spd = 6;
 _hspd = _max_spd;
 _acc = 2;
 _vh = 0;
