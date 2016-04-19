@@ -6,18 +6,19 @@ params [
 ["_seat", ""],
 ["_unit", ""]
 ];
+diag_log format ["***hfgetin gets Veh %1, _seat %2, _unit %3", _veh, _seat, _unit];
 _reason = "";
 while {_reason isEqualTo ""} do
 	{
 	if not ((alive _unit) or (alive _veh))  then {_reason = "dead";};
-	if not (_unit in _veh) then {_reason = "dismounted";};
+	if not (_unit) in _veh) then {_reason = "dismounted";};
 	// unit is in veh, but might not be in drivers seat, so stay in loop
 	if (((driver fobveh) isEqualTo _unit) and (not (isengineOn fobveh)) and ((speed _veh) isEqualTo 0)) then {_reason = "good";};
 	sleep 0.5;
 	};
- if not (_reason  isEqualTo "good") exitWith {};
-
- fobdeployactionid = _unit addaction [
+ if not (_reason  isEqualTo "good") exitWith {diag_log "***hfgetin quits because of criteria"};
+diag_log "***hfgetin adds addaction";
+ fobdeployactionid = (driver fobveh) addaction [
 	"Deploy FOB",// text on action menu
 	 "server\fobvehicledeploymanager.sqf",// executed script
 	  "",//optional arguments
