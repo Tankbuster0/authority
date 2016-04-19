@@ -20,13 +20,13 @@ while {_reason isEqualTo ""} do
 diag_log "***hfgetin adds addaction";
  fobdeployactionid = (driver fobveh) addaction [
 	"Deploy FOB",// text on action menu
-	 "server\fobvehicledeploymanager.sqf",// executed script
+	 "server\fobvehicledeploymanager.sqf"/*,// executed script
 	  "",//optional arguments
 	  0, //priority, appears low down the addaction list
 	  false, //don't show titletext in middle of screen
 	  false, //hide on use
 	  "", //shortcut
-	  "true" // condition
+	  "true" // condition */
 	  ];
 sleep 0.5;
 if (fobdeployed) then {_user setUserActionText [fobdeployactionid, "Undeploy FOB"];};
