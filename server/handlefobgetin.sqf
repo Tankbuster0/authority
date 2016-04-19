@@ -10,8 +10,8 @@ diag_log format ["***hfgetin gets Veh %1, _seat %2, _unit %3", _veh, _seat, _uni
 _reason = "";
 while {_reason isEqualTo ""} do
 	{
-	if not ((alive _unit) or (alive _veh))  then {_reason = "dead";};
-	if not (_unit) in _veh) then {_reason = "dismounted";};
+	if not ((alive _unit) or (alive _veh))  then {_reason = "dead"};
+	if not (_unit in _veh) then {_reason = "dismounted"};
 	// unit is in veh, but might not be in drivers seat, so stay in loop
 	if (((driver fobveh) isEqualTo _unit) and (not (isengineOn fobveh)) and ((speed _veh) isEqualTo 0)) then {_reason = "good";};
 	sleep 0.5;
