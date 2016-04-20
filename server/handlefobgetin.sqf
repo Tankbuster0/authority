@@ -1,6 +1,7 @@
 _myscript = "handlefobgetin.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_veh","_seat","_unit","_reason"];
+if (true) exitwith {};
 params [
 ["_veh", ""],
 ["_seat", ""],
