@@ -28,12 +28,13 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if (_spawnpoint isEqualTo [0,0,0]) then
 	{
-	_startpos = [_droppos, (3000 + random 100), _spawndir] call bis_fnc_relPos;
+	_startpos = [_droppos, (3000 + random 1000), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
 	};
 _startpos set [2, 200];
+_droppos set [ 2,150];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
@@ -51,7 +52,7 @@ _dropgroup setCombatMode "BLUE";
 _dropgroup allowFleeing 0;
 (driver dropveh) setskill ["courage",1];
 (driver dropveh) disableAI "FSM"; (driver dropveh) disableAI "TARGET"; (driver dropveh) disableAI "AUTOTARGET"; (driver dropveh) disableAI "AUTOCOMBAT";
-dropveh domove _droppos;
+//dropveh domove _droppos;
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
@@ -95,10 +96,11 @@ if (_droptype == forwardpointvehicleclassname) then
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
-	_cargo addEventHandler ["GetIn", {_nul = [_this select 0,_this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
+	//_cargo addEventHandler ["GetIn", {_nul = [_this select 0,_this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
 	_cargo addEventHandler ["GetOut", {_nul = [] execVM "server\handlefobgetout.sqf"}];
 	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
+	publicVariable "fobveh";
 	};
 _cargo attachto [_para, [0,0,0]];
 _cargo allowDamage false;
