@@ -32,6 +32,14 @@ for "_q" from 1 to 3 do
 _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
+//find a pos for the frigate
+_frigateposdata = selectBestPlaces [_mypos, 500, "waterDepth 75", 1,5] ;
+// ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
+// need to do this in a while loop to make sure it doesn't bomb out and not find a place
+_fpos = ((_frigateposdata select 0) select 0);
+// authfrigate = createvehicle ["cup frigate", _fpos]
+
+
 missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
