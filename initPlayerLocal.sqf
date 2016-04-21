@@ -61,29 +61,8 @@ player addEventHandler [ "Respawn", {
 		//systemChat "Incapacitated";
 	};
 }];
-/*
-[] spawn
-	{
-	sleep 0.5;
-	if (fobdeployed) then
-		{
-		player setUserActionText [fobdeployactionid, "Undeploy FOB"];
-		}
-		else
-		{comment "might have to set the action text back again here";}
 
-	};
-*/
- fobdeployactionid = (player) addaction [
-	"Deploy FOB",// text on action menu
-	 "server\fobvehicledeploymanager.sqf",// executed script
-	  "",//optional arguments
-	  0, //priority, appears low down the addaction list
-	  false, //don't show titletext in middle of screen
-	  false, //hide on use
-	  "", //shortcut
-	  "true" // condition
-	  ];
 
+[] execVM "client\playersetup.sqf";
 // "((typeof vehicle player) isequalto fobvehicleclassname) and  (player isEqualTo (driver fobveh)) and (floor (speed fobveh) isEqualTo 0) "
 player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
