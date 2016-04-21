@@ -16,6 +16,7 @@ if (primarytargetcounter > 1) then
 	}else
 	{
 	roadblockscleared = true;// this is the first target, no roadblocks so set it to true so it's ignored
+
 	};
 reinforcementcounter = 0;
 cpt_position = getpos nextpt;
