@@ -115,9 +115,11 @@ sleep 1;
 waitUntil {isTouchingGround _cargo};
 detach _cargo;
 detach _para;
+
 _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
+_cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
 ["UniqueId",
 	{
