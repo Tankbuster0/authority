@@ -1,8 +1,7 @@
 //by tankbuster
 _myscript = "missionssetup";
-private ["_foundairfields","_mapsize","_mapcentre","_locs","_airfield","_newdrypos","_1pos","_y","_postest", "_airfield"];
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-
+private ["_airfield","_newdrypos","_1pos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 enableVehicleCrashes = false;
 _newdrypos =[0,0,0];
@@ -33,10 +32,18 @@ _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 //find a pos for the frigate
-_frigateposdata = selectBestPlaces [_mypos, 500, "waterDepth 75", 1,5] ;
+_frigateposdata = selectBestPlaces [_mypos, 500, "waterDepth", 1,100];
 // ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
 // need to do this in a while loop to make sure it doesn't bomb out and not find a place
-_fpos = ((_frigateposdata select 0) select 0);
+for "_l" from 0 to (count _frigateposdata) do
+	{
+	_mydata1 = _frigateposdata select _l;
+	if ((_mydata1 select 1) > 30) exitWith {_fpos = _mydata1 select 0};//
+
+	};
+
+frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
+frigate setdir (random 360);
 // authfrigate = createvehicle ["cup frigate", _fpos]
 
 
