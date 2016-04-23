@@ -167,8 +167,8 @@ if (_pt_type isEqualTo 1) then
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
-			_cfunit addEventHandler ["killed", {if ((_this select 1) isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
-			//_cfunit addEventHandler [ "killed", {if ((_this select 1) isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
+			//_cfunit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
+			_cfunit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
 			//_cfunit addEventHandler ["HandleDamage", {if (isNull (_this select 3)) then { diag_log format ["***%1 collision damage!"]; } else { _this select 2; }; }];
 			_fciv pushback _civfootgroup;
 			};
@@ -192,12 +192,14 @@ if (_pt_type isEqualTo 1) then
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
 			_veh setdir _dir;
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
+			_unit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
 			_unit assignAsDriver _veh;
 			_unit moveInDriver _veh;
 			_crewcount = [(typeof _veh), true] call BIS_fnc_crewCount;
 			for "_ii" from 1 to (random _crewcount) do
 				{
 				_unit2 = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
+				_unit2 addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
 				_unit2 moveInAny _veh;
 				};
 			_dcar pushback _dcargroup;
