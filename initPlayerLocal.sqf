@@ -61,7 +61,9 @@ player addEventHandler [ "Respawn", {
 		//systemChat "Incapacitated";
 	};
 }];
-
+forward synchronizeObjectsAdd [requester_module1];
+frigate synchronizeObjectsAdd [provider_module1];
+BIS_supp_refresh = true;
 
 [] execVM "client\playersetup.sqf";
 // "((typeof vehicle player) isequalto fobvehicleclassname) and  (player isEqualTo (driver fobveh)) and (floor (speed fobveh) isEqualTo 0) "
