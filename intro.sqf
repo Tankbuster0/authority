@@ -14,8 +14,8 @@ introended = false; publicVariable "introended";
 loopdone = false; publicVariable "loopdone";
 while {!loopdone} do {if ((introended) and (!loopdone)) then {loopdone = true; publicVariable "loopdone";};
 
-_firstshot = [cam1, cam2, target1, 20, 0.3, 0.1, false, 0, 0, 0] execVM "camera_work.sqf";
-waitUntil {scriptdone _firstshot};
+//_firstshot = [cam1, cam2, target1, 20, 0.3, 0.1, false, 0, 0, 0] execVM "camera_work.sqf";
+//waitUntil {scriptdone _firstshot};
 cutText ["A small group of international Special Forces have been deployed to the island of Altis to investigate and remove hostile forces and return the island back to it's people.", "PLAIN DOWN", 25];
 _secondshot = [cam3, cam3, target2, 15, 0.5, 0.5, false, 0, 0, 0] execVM "camera_work.sqf";
 waitUntil {scriptdone _secondshot};
