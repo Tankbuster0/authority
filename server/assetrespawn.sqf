@@ -46,8 +46,6 @@ switch (typeName _droppoint) do
 	case "OBJECT": {_droppoint2 = getpos _droppoint};
 	};
 
-if ((typeName _droppoint) != "ARRAY") then {_droppoint = (getpos _droppoint)};
-
 //diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
 sleep 1;
 switch (true) do
