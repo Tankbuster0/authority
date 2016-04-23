@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2512;
+		nextID=2539;
 	};
 	class Camera
 	{
@@ -99,25 +99,6 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
-				};
-			};
-		};
-		class Attribute1
-		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -149,6 +130,25 @@ class CustomAttributes
 							};
 						};
 					};
+				};
+			};
+		};
+		class Attribute1
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
 				};
 			};
 		};
@@ -4438,7 +4438,7 @@ class Mission
 			};
 			id=631;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.031997681;
+			atlOffset=-0.031990051;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6669,6 +6669,7 @@ class Mission
 			};
 			id=987;
 			type="B_CargoNet_01_ammo_F";
+			atlOffset=-0.0095596313;
 			class CustomAttributes
 			{
 				class Attribute0
