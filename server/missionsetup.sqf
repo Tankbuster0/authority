@@ -14,8 +14,7 @@ while {_newdrypos in [[0,0,0], islandcentre]} do
 	_newdrypos = [_1pos,800,1300, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
 	};
 _newdrypos set [2,0];
-//"respawn_west" setmarkerpos _newdrypos;
-//deleteMarker "respawn_west";
+
 ammobox setpos _newdrypos;
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
 sleep 1;
@@ -32,11 +31,10 @@ _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 //find a pos for the frigate
-_fpos locationPosition (nearestLocation [_mypos, "NameMarine"]);
+_fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
 // if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
 _frigateposdata = selectBestPlaces [_mypos, 500, "waterDepth", 1,100];
 // ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
-// need to do this in a while loop to make sure it doesn't bomb out and not find a place
 for "_l" from 0 to (count _frigateposdata) do
 	{
 	_mydata1 = _frigateposdata select _l;
