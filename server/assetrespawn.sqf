@@ -39,6 +39,13 @@ _droppoint = [_respawns2, _newv] call BIS_fnc_nearestPosition; //find the one ne
 _myid = _respawns find _oldv;
  if (_myid > -1) then {[west, _myid] call bis_fnc_removeRespawnPosition;};
  */
+switch (typeName _droppoint) do
+	{
+	case "ARRAY": {_droppoint2 = _droppoint};
+	case "STRING": {_droppoint2 = markerpos _droppoint};
+	case "OBJECT": {_droppoint2 = getpos _droppoint};
+	};
+
 if ((typeName _droppoint) != "ARRAY") then {_droppoint = (getpos _droppoint)};
 
 //diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
@@ -47,14 +54,14 @@ switch (true) do
 	{
 	case _typefpv:
 		{
-		_nul = [_droppoint, blufordropaircraft, forwardpointvehicleclassname ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fpv";
 		forwardrespawning = false;
 		publicVariable "forwardrespawning";
 		};
 	case _typefob:
 		{
-		_nul = [_droppoint, blufordropaircraft, fobvehicleclassname ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fob";
 		fobrespawning = true;
 		publicVariable "fobrespawning";
