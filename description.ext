@@ -1,7 +1,7 @@
 //Operation Authority by Tankbuster
 #define filename "description.ext"
 author = Tankbuster;
-onLoadName = "Operation Authority";
+onLoadName = "Authority";
 onLoadMissionTime = 1;
 loadscreen = "Img\Overlay.jpg";
 joinUnassigned = 0;

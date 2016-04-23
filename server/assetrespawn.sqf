@@ -45,8 +45,6 @@ switch (typeName _droppoint) do
 	case "STRING": {_droppoint2 = markerpos _droppoint};
 	case "OBJECT": {_droppoint2 = getpos _droppoint};
 	};
-
-//diag_log format ["**** assetrespawn is calling a drop at %1", _droppoint];
 sleep 1;
 switch (true) do
 	{

@@ -1,13 +1,13 @@
 //[] execVM "intro.sqf";
 
 if (isDedicated) exitWith {};
-
+if ((score player) > 5 ) then
 playsound "intro_music";
 
 if (hasInterface) then {
-cutText ["OPERATION AUTHORITY", "BLACK IN", 10];
+cutText ["AUTHORITY", "BLACK IN", 10];
 
-if (!isNil "_camera_run") exitWith {};
+if (!isNil "_camera_run") exitWith {introended = true; publicVariable "introended"};
 _camera_run = true;
 
 introended = false; publicVariable "introended";
@@ -22,22 +22,22 @@ waitUntil {scriptdone _secondshot};
 
 _thirdshot = [cam4, cam4, target3, 10, 1, 1, true, 0, 1, 3] execVM "camera_work.sqf";
 waitUntil {scriptdone _thirdshot};
-cutText ["OPERATION AUTHORITY", "PLAIN", 10];
+cutText ["AUTHORITY", "PLAIN", 10];
 _fourthshot = [cam5, cam6, target5, 15, 1, 1, false, 3, -6, 0] execVM "camera_work.sqf";
 waitUntil {scriptdone _fourthshot};
 cutText ["By Tankbuster and WASP", "PLAIN", 10];
 _fifthshot = [cam6, cam7, target6, 12, 1, 0.01, false, 7, 1, 6] execVM "camera_work.sqf";
 waitUntil {scriptdone _fifthshot};
 
-introended = true; publicVariable "introstarted";
+introended = true; publicVariable "introended";
 
 sleep 0.1;
 };
 
 cutText ["Good Luck!", "BLACK IN", 3];
-"dynamicBlur" ppEffectEnable true;   
-"dynamicBlur" ppEffectAdjust [100];   
-"dynamicBlur" ppEffectCommit 0;     
-"dynamicBlur" ppEffectAdjust [0.0];  
-"dynamicBlur" ppEffectCommit 4;  
+"dynamicBlur" ppEffectEnable true;
+"dynamicBlur" ppEffectAdjust [100];
+"dynamicBlur" ppEffectCommit 0;
+"dynamicBlur" ppEffectAdjust [0.0];
+"dynamicBlur" ppEffectCommit 4;
 };
