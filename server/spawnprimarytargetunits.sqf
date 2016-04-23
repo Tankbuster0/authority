@@ -107,7 +107,7 @@ for "_count" from _start to _lc do
 		_veh = selectRandom opforstaticlandvehicles;
 		_staticveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
 
-	sleep 0.1;
+	sleep 0.2;
 	// patrolling  apc /ifv group start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 	_veh = selectRandom opforpatrollandvehicles;

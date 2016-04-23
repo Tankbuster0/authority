@@ -1,7 +1,9 @@
 //Operation Authority by Tankbuster
 #define filename "description.ext"
+author = Tankbuster;
+onLoadName = "Operation Authority";
 onLoadMissionTime = 1;
-loadscreen = "logo.paa";
+loadscreen = "Img\Overlay.jpg";
 joinUnassigned = 0;
 saving = 0;
 enableDebugConsole = 1;
@@ -14,6 +16,7 @@ MinScore = 0;
 AvgScore = 2500;
 MaxScore = 5000;
 respawn = "BASE";
+debriefing = 1;
 respawnDelay = 3;
 respawnTemplates[] = {"Counter", "MenuPosition"};
 respawnButton = 1;
@@ -27,6 +30,7 @@ class Header {
 	maxPlayers = 40;
 	playerCountMultipleOf = 1;
 };
+overviewPicture = "Img\Snapshot.jpg";
 disabledAI = 1;
 showGPS = 1;
 showCompass = 1;
@@ -37,6 +41,16 @@ taskManagement_markers3D = 1;
 taskManagement_propagate = 1;
 taskManagement_drawDist = 2000;
 enableTeamSwitch = 0;
+class CfgSounds
+{
+	class intro_music
+	{
+		name = "intro_music"; // Name for mission editor
+		sound[] = {\sound\intro_music.ogg, db+9, 1.0};
+		titles[] = {0, ""};
+	};
+
+};
 class cfgFunctions
 {
 
