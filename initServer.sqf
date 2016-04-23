@@ -249,7 +249,7 @@ if (worldName in ["Altis", "altis"]) then
 sleep 0.5;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
-sleep 0.5;
+sleep 15.5;
 _handle3 = [] execVM "server\doprimary.sqf";
 initserverfinished = true;
 publicVariable "initserverfinished";
