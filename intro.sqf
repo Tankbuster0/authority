@@ -6,8 +6,8 @@ playsound "intro_music";
 
 if (hasInterface) then {
 cutText ["AUTHORITY", "BLACK IN", 10];
-
-if (!isNil "_camera_run") exitWith {introended = true; publicVariable "introended"};
+if ((score player) > 2) exitWith {};
+if (!isNil "_camera_run") exitWith {};
 _camera_run = true;
 
 introended = false; publicVariable "introended";
