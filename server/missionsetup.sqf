@@ -42,10 +42,10 @@ for "_l" from 0 to (count _frigateposdata) do
 
 	};
 
-//frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
+frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
 // authfrigate = createvehicle ["cup frigate", _fpos]
-frigate setVehiclePosition [_fpos, [], 0, "NONE"];
+
 
 missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;

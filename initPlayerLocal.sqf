@@ -62,6 +62,7 @@ player addEventHandler [ "Respawn", {
 	};
 }];
 
+
 [] execVM "client\playersetup.sqf";
 // "((typeof vehicle player) isequalto fobvehicleclassname) and  (player isEqualTo (driver fobveh)) and (floor (speed fobveh) isEqualTo 0) "
 player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
