@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2467;
+		nextID=2476;
 	};
 	class Camera
 	{
-		pos[]={10241.742,583.15887,25920.984};
-		dir[]={0,-0.70710683,0.70710683};
-		up[]={0,0.70710677,0.70710677};
-		aside[]={0.99999994,0,0};
+		pos[]={9047.1436,67.914658,26520.83};
+		dir[]={0.039196923,-0.20641589,0.97770452};
+		up[]={0.0082704611,0.97845793,0.20626712};
+		aside[]={0.99922734,-3.141522e-007,-0.040058367};
 	};
 };
 binarizationWanted=0;
@@ -99,6 +99,25 @@ class CustomAttributes
 		name="Multiplayer";
 		class Attribute0
 		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute1
+		{
 			property="RespawnTemplates";
 			expression="true";
 			class Value
@@ -130,25 +149,6 @@ class CustomAttributes
 							};
 						};
 					};
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
 				};
 			};
 		};
@@ -4856,6 +4856,7 @@ class Mission
 					flags=2;
 					class Attributes
 					{
+						name="target2D";
 					};
 					id=981;
 					type="CUP_B_BAF_Pilot_DDPM";
@@ -4872,6 +4873,7 @@ class Mission
 					side="West";
 					class Attributes
 					{
+						name="target2G";
 					};
 					id=982;
 					type="CUP_B_BAF_Pilot_DDPM";
@@ -6508,7 +6510,7 @@ class Mission
 				};
 			};
 			id=955;
-			atlOffset=220.38799;
+			atlOffset=220.39325;
 		};
 		class Item93
 		{
@@ -6641,6 +6643,7 @@ class Mission
 			flags=2;
 			class Attributes
 			{
+				name="target2";
 			};
 			id=980;
 			type="CUP_B_AH1_MR_BAF";
@@ -6684,7 +6687,7 @@ class Mission
 			};
 			id=983;
 			type="CUP_B_Merlin_HC3A_GB_Armed";
-			atlOffset=220.38799;
+			atlOffset=220.39325;
 			class CustomAttributes
 			{
 				class Attribute0
