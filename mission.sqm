@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=678;
+		nextID=680;
 	};
 	class MarkerIDProvider
 	{
@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2188;
+		nextID=2197;
 	};
 	class Camera
 	{
-		pos[]={8456.2539,136.90251,25081.65};
+		pos[]={8464.3301,122.27039,25158.117};
 		dir[]={-0.71017998,-0.31226623,-0.63102925};
 		up[]={-0.23344839,0.94998664,-0.20743118};
 		aside[]={-0.66424751,1.2383098e-006,0.74755907};
@@ -69,7 +69,9 @@ addons[]=
 	"A3_Supplies_F_Heli_CargoNets",
 	"A3_Characters_F_BLUFOR",
 	"a3_characters_f",
-	"CUP_WaterVehicles_Fregata"
+	"CUP_WaterVehicles_Fregata",
+	"cup_misc3_config",
+	"cup_misc_e_config"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -93,6 +95,25 @@ class CustomAttributes
 	{
 		name="Multiplayer";
 		class Attribute0
+		{
+			property="RespawnButton";
+			expression="true";
+			class Value
+			{
+				class data
+				{
+					class type
+					{
+						type[]=
+						{
+							"SCALAR"
+						};
+					};
+					value=1;
+				};
+			};
+		};
+		class Attribute1
 		{
 			property="RespawnTemplates";
 			expression="true";
@@ -125,25 +146,6 @@ class CustomAttributes
 							};
 						};
 					};
-				};
-			};
-		};
-		class Attribute1
-		{
-			property="RespawnButton";
-			expression="true";
-			class Value
-			{
-				class data
-				{
-					class type
-					{
-						type[]=
-						{
-							"SCALAR"
-						};
-					};
-					value=1;
 				};
 			};
 		};
@@ -373,7 +375,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=80;
+		items=82;
 		class Item0
 		{
 			dataType="Group";
@@ -4873,6 +4875,64 @@ class Mission
 								};
 							};
 							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],true]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item80
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8441.6201,106.43812,25136.059};
+				angles[]={0.11285125,0,5.942359};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=678;
+			type="Hhedgehog_concreteBig";
+			atlOffset=0.047012329;
+		};
+		class Item81
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8422.8799,126.36586,25141.402};
+				angles[]={0.097022854,0,0.050632};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				presence=0;
+			};
+			id=679;
+			type="76n6ClamShell_EP1";
+			atlOffset=0.11199951;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
 						};
 					};
 				};
