@@ -1,7 +1,8 @@
 //[] execVM "intro.sqf";
 
 if (isDedicated) exitWith {};
-if ((score player) > 5 ) then
+waituntil {alive player};
+if ((score player) > 5 ) exitWith {};
 playsound "intro_music";
 
 if (hasInterface) then {
