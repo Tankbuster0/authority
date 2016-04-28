@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2575;
+		nextID=2584;
 	};
 	class Camera
 	{
-		pos[]={8455.9688,109.11706,25147.484};
-		dir[]={-0.81155282,-0.5524109,-0.190597};
-		up[]={-0.53780752,0.83354998,-0.12630466};
-		aside[]={-0.22864978,-7.1768227e-007,0.97356713};
+		pos[]={8462.042,111.78019,25126.141};
+		dir[]={-0.33293647,-0.35862336,-0.87215322};
+		up[]={-0.12791769,0.93346059,-0.33508566};
+		aside[]={-0.93429917,-1.929584e-007,0.35665724};
 	};
 };
 binarizationWanted=0;
@@ -998,101 +998,6 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="Enh_taskPatrol_behaviour";
-							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="Enh_taskPatrol_speed";
-							expression="_this setVariable ['Enh_randomPatrol_speed',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="normal";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Enh_animCombEquipment";
-							expression="_this setVariable ['Enh_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
-						{
-							property="Enh_animType";
-							expression="_this setVariable ['Enh_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="Enh_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
@@ -1110,45 +1015,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="Enh_animCombType";
-							expression="_this setVariable ['Enh_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute8
-						{
-							property="Enh_animEquipment";
-							expression="_this setVariable ['Enh_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=9;
+						nAttributes=2;
 					};
 				};
 			};
@@ -1807,101 +1674,6 @@ class Mission
 						};
 						class Attribute1
 						{
-							property="Enh_taskPatrol_behaviour";
-							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="";
-								};
-							};
-						};
-						class Attribute2
-						{
-							property="Enh_taskPatrol_speed";
-							expression="_this setVariable ['Enh_randomPatrol_speed',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="normal";
-								};
-							};
-						};
-						class Attribute3
-						{
-							property="Enh_animCombEquipment";
-							expression="_this setVariable ['Enh_animCombEquipment',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						class Attribute4
-						{
-							property="Enh_animType";
-							expression="_this setVariable ['Enh_animType',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute5
-						{
-							property="Enh_unitPos";
-							expression="_this setUnitPos _value";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="auto";
-								};
-							};
-						};
-						class Attribute6
-						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
@@ -1919,45 +1691,7 @@ class Mission
 								};
 							};
 						};
-						class Attribute7
-						{
-							property="Enh_animCombType";
-							expression="_this setVariable ['Enh_animCombType',_value]";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="STAND";
-								};
-							};
-						};
-						class Attribute8
-						{
-							property="Enh_animEquipment";
-							expression="_this setVariable ['Enh_animEquipment',_value];";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"STRING"
-										};
-									};
-									value="ASIS";
-								};
-							};
-						};
-						nAttributes=9;
+						nAttributes=2;
 					};
 				};
 			};
@@ -4747,8 +4481,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8454.998,105.77484,25114.906};
-				angles[]={0.059927464,0,0.0026520467};
+				position[]={8454.998,105.77522,25114.906};
+				angles[]={0.059934605,0,0.0026529003};
 			};
 			side="Empty";
 			flags=4;
@@ -4760,7 +4494,7 @@ class Mission
 			};
 			id=585;
 			type="CUP_B_BAF_Coyote_L2A1_W";
-			atlOffset=0.003616333;
+			atlOffset=0.0039978027;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4797,7 +4531,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""FirstAidKit"",""Medikit""],[20,2]],[[],[]],[[],[]],[[],[]]],false]";
+							value="[[[[""FirstAidKit"",""Medikit""],[]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M""],[]],[[""ACE_adenosine"",""ACE_atropine"",""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_epinephrine"",""ACE_morphine"",""ACE_packingBandage"",""ACE_personalAidKit"",""ACE_plasmaIV"",""ACE_salineIV"",""ACE_surgicalKit""],[]],[[""ACE_TacticalLadder_Pack""],[]]],true]";
 						};
 					};
 				};
@@ -7051,26 +6785,7 @@ class Mission
 						};
 					};
 				};
-				class Attribute2
-				{
-					property="Enh_arsenal";
-					expression="if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn BIS_fnc_arsenal}";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				nAttributes=3;
+				nAttributes=2;
 			};
 		};
 		class Item97
@@ -7089,7 +6804,7 @@ class Mission
 			};
 			id=631;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.031997681;
+			atlOffset=-0.031990051;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -7130,26 +6845,7 @@ class Mission
 						};
 					};
 				};
-				class Attribute2
-				{
-					property="Enh_arsenal";
-					expression="if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn BIS_fnc_arsenal}";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				nAttributes=3;
+				nAttributes=2;
 			};
 		};
 	};
