@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2584;
+		nextID=2593;
 	};
 	class Camera
 	{
-		pos[]={8462.042,111.78019,25126.141};
-		dir[]={-0.33293647,-0.35862336,-0.87215322};
-		up[]={-0.12791769,0.93346059,-0.33508566};
-		aside[]={-0.93429917,-1.929584e-007,0.35665724};
+		pos[]={8471.543,118.61879,25138.699};
+		dir[]={-0.38371134,-0.55512822,-0.73807615};
+		up[]={-0.25608531,0.83172578,-0.49257913};
+		aside[]={-0.88733184,1.1286465e-007,0.4613072};
 	};
 };
 binarizationWanted=0;
@@ -4531,7 +4531,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""FirstAidKit"",""Medikit""],[]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M""],[]],[[""ACE_adenosine"",""ACE_atropine"",""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_epinephrine"",""ACE_morphine"",""ACE_packingBandage"",""ACE_personalAidKit"",""ACE_plasmaIV"",""ACE_salineIV"",""ACE_surgicalKit""],[]],[[""ACE_TacticalLadder_Pack""],[]]],true]";
+							value="[[[[],[]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M"",""ACE_10Rnd_338_300gr_HPBT_Mag"",""ACE_10Rnd_338_API526_Mag"",""10Rnd_338_Mag"",""130Rnd_338_Mag"",""CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M"",""CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M"",""CUP_100Rnd_TE4_Green_Tracer_556x45_M249"",""CUP_100Rnd_TE4_Red_Tracer_556x45_M249"",""CUP_100Rnd_TE4_Yellow_Tracer_556x45_M249"",""CUP_10Rnd_127x99_M107"",""10Rnd_127x54_Mag"",""CUP_20Rnd_762x51_B_M110"",""CUP_20Rnd_TE1_Green_Tracer_762x51_M110"",""CUP_200Rnd_TE4_Green_Tracer_556x45_L110A1"",""CUP_200Rnd_TE4_Red_Tracer_556x45_L110A1"",""CUP_200Rnd_TE4_Yellow_Tracer_556x45_L110A1"",""CUP_200Rnd_TE1_Red_Tracer_556x45_M249"",""CUP_200Rnd_TE4_Green_Tracer_556x45_M249"",""CUP_200Rnd_TE4_Red_Tracer_556x45_M249"",""CUP_200Rnd_TE4_Yellow_Tracer_556x45_M249"",""CUP_30Rnd_556x45_Stanag"",""3Rnd_UGL_FlareCIR_F"",""3Rnd_UGL_FlareWhite_F"",""3Rnd_SmokeBlue_Grenade_shell"",""ACE_30Rnd_556x45_Stanag_M995_AP_mag"",""CUP_5Rnd_127x99_as50_M"",""CUP_6Rnd_HE_GP25_M"",""CUP_6Rnd_HE_M203"",""CUP_6Rnd_FlareYellow_M203"",""CUP_6Rnd_SmokeRed_M203"",""CUP_6Rnd_Smoke_M203"",""CUP_6Rnd_SmokeGreen_M203"",""CUP_6Rnd_SmokeYellow_M203"",""30Rnd_65x39_caseless_green_mag_Tracer"",""100Rnd_65x39_caseless_mag"",""ACE_100Rnd_65x39_caseless_mag_Tracer_Dim"",""100Rnd_65x39_caseless_mag_Tracer"",""200Rnd_65x39_cased_Box"",""200Rnd_65x39_cased_Box_Tracer"",""ACE_200Rnd_65x39_cased_Box_Tracer_Dim"",""30Rnd_65x39_caseless_green"",""30Rnd_65x39_caseless_mag"",""ACE_30Rnd_65x39_caseless_green_mag_Tracer_Dim"",""ACE_30Rnd_65x39_caseless_mag_Tracer_Dim"",""150Rnd_762x54_Box_Tracer"",""10Rnd_762x54_Mag"",""150Rnd_762x54_Box"",""ACE_20Rnd_762x67_Berger_Hybrid_OTM_Mag"",""ACE_20Rnd_762x67_Mk248_Mod_0_Mag"",""ACE_20Rnd_762x67_Mk248_Mod_1_Mag"",""ACE_10Rnd_762x54_Tracer_mag"",""10Rnd_93x64_DMR_05_Mag"",""150Rnd_93x64_Mag"",""UGL_FlareGreen_F"",""UGL_FlareCIR_F"",""UGL_FlareRed_F"",""UGL_FlareWhite_F"",""UGL_FlareYellow_F"",""CUP_20Rnd_762x51_FNFAL_M"",""CUP_30Rnd_556x45_G36"",""CUP_30Rnd_TE1_Green_Tracer_556x45_G36"",""CUP_30Rnd_TE1_Red_Tracer_556x45_G36"",""CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36"",""ACE_HuntIR_M203"",""CUP_1Rnd_HE_M203"",""CUP_1Rnd_HEDP_M203"",""CUP_Dragon_EP1_M"",""CUP_FlareWhite_M203"",""CUP_1Rnd_StarFlare_White_M203"",""CUP_1Rnd_StarCluster_White_M203"",""CUP_FlareGreen_M203"",""CUP_1Rnd_StarCluster_Green_M203"",""CUP_1Rnd_StarFlare_Green_M203"",""CUP_FlareRed_M203"",""CUP_1Rnd_StarCluster_Red_M203"",""CUP_1Rnd_StarFlare_Red_M203"",""CUP_FlareYellow_M203"",""CUP_1Rnd_SmokeRed_M203"",""CUP_1Rnd_Smoke_M203"",""CUP_1Rnd_SmokeGreen_M203"",""CUP_1Rnd_SmokeYellow_M203"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_30Rnd_9x19_MP5"",""CUP_SMAW_HEAA_M"",""CUP_SMAW_HEDP_M"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""Titan_AA"",""Titan_AP"",""Titan_AT""],[20,20,20,20,20,25,100,100,100,100,100,100,100,100,100,100,100,20,20,10,15,15,15,20,10,10,10,10,10,15,15,40,40,10,10,10,10,10,10,10,100,20,20,20,100,30,30,30,5,5,5,5,5,100,25,25,25,25,25,25,70,70,70,70,50,30,50,100,100,100,100,40,20,10,10,10,10,10,50,50,50,50,50,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,25,20,20,10,10,10,10,10,10,10,25,25,25]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_morphine"",""ACE_EarPlugs"",""ACE_SpraypaintGreen"",""ACE_HuntIR_monitor""],[20,20,5,20,5,5,5]],[[""ACE_TacticalLadder_Pack""],[5]]],false]";
 						};
 					};
 				};
@@ -6785,7 +6785,26 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute2
+				{
+					property="Enh_arsenal";
+					expression="if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn BIS_fnc_arsenal}";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 		class Item97
@@ -6804,7 +6823,7 @@ class Mission
 			};
 			id=631;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.031990051;
+			atlOffset=-0.031997681;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6845,7 +6864,26 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute2
+				{
+					property="Enh_arsenal";
+					expression="if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn BIS_fnc_arsenal}";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 	};
