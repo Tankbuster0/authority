@@ -82,6 +82,7 @@ if ((primarytargetcounter > 1)) then
 _radarpos = [] call tky_fnc_findhighground;
 _radartype = selectRandom  opforradartypes;
 pt_radar = createVehicle [_radartype, _radarpos,[],0,"NONE"];
+pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkilled.sqf"}];
 0 = execVM "server\airreinforcementmanager.sqf";
 
 //stuff that needs to be check constantly runs here
