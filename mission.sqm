@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2593;
+		nextID=2611;
 	};
 	class Camera
 	{
@@ -6823,7 +6823,7 @@ class Mission
 			};
 			id=631;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.031997681;
+			atlOffset=-0.031990051;
 			class CustomAttributes
 			{
 				class Attribute0
