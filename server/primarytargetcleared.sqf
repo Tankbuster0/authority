@@ -3,7 +3,7 @@ _myscript = "primarytargetcleared.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh"];
-
+previousmission = nextpt; // remember the old target in this variable to use in later cleanup scripts
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorBlue";
 _newflag = "Flag_Blue_F" createVehicleLocal (getpos cpt_flag);// replace the red flag with a LOCALLY NAMED blue one (so it's never deleted)
@@ -30,6 +30,5 @@ sleep 30;
 primarytargetcounter = primarytargetcounter + 1;
 sleep 10;
 _nul = execVM "server\doprimary.sqf";
-
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
