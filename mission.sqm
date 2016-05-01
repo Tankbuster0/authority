@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2701;
+		nextID=2710;
 	};
 	class Camera
 	{
@@ -6656,7 +6656,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8453.4697,106.05386,25110.111};
+				position[]={8453.4697,106.05411,25110.111};
 				angles[]={0.067893311,0,0.0026529003};
 			};
 			side="Empty";
@@ -6668,7 +6668,7 @@ class Mission
 			};
 			id=1002;
 			type="CUP_B_BAF_Coyote_L2A1_W";
-			atlOffset=-7.6293945e-006;
+			atlOffset=-0.0070114136;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6686,7 +6686,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""FirstAidKit""],[1]],[[],[]],[[],[]],[[],[]]],false]";
+							value="[[[[""FirstAidKit""],[1]],[[""5Rnd_127x108_APDS_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""CUP_20Rnd_762x51_B_M110"",""CUP_20Rnd_TE1_Green_Tracer_762x51_M110"",""CUP_20Rnd_TE1_Red_Tracer_762x51_M110"",""CUP_20Rnd_TE1_White_Tracer_762x51_M110"",""CUP_20Rnd_TE1_Yellow_Tracer_762x51_M110"",""CUP_20Rnd_B_AA12_HE"",""CUP_20Rnd_B_AA12_Pellets"",""CUP_20Rnd_B_AA12_74Slug"",""CUP_Javelin_M""],[73,90,49,48,52,48,57,38,68,53,253]],[[],[]],[[],[]]],false]";
 						};
 					};
 				};
