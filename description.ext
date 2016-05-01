@@ -46,7 +46,7 @@ class CfgSounds
 	class intro_music
 	{
 		name = "intro_music"; // Name for mission editor
-		sound[] = {\sound\intro_music.ogg, db+4, 1.0};
+		sound[] = {\sound\intro_music.ogg, db+9, 1.0};
 		titles[] = {0, ""};
 	};
 
