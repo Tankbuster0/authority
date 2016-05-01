@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2656;
+		nextID=2692;
 	};
 	class Camera
 	{
-		pos[]={8485.7939,139.72821,25146.184};
+		pos[]={8477.1885,137.2731,25123.016};
 		dir[]={-0.55523014,-0.80714846,-0.20105062};
 		up[]={-0.75891531,0.59034693,-0.27480197};
 		aside[]={-0.34050006,-3.3200922e-007,0.94034374};
@@ -404,7 +404,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=10;
+				items=9;
 				class Item0
 				{
 					dataType="Object";
@@ -960,65 +960,6 @@ class Mission
 						nAttributes=2;
 					};
 				};
-				class Item9
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8469.1514,104.47443,25138.441};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						name="alpha_10";
-						isPlayable=1;
-					};
-					id=989;
-					type="CUP_B_BAF_Pilot_MTP";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						nAttributes=2;
-					};
-				};
 			};
 			class Attributes
 			{
@@ -1085,7 +1026,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=10;
+				items=9;
 				class Item0
 				{
 					dataType="Object";
@@ -1594,65 +1535,6 @@ class Mission
 					};
 					id=615;
 					type="CUP_B_BAF_Engineer_MTP";
-					class CustomAttributes
-					{
-						class Attribute0
-						{
-							property="ace_isSurrendered";
-							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						class Attribute1
-						{
-							property="ace_isHandcuffed";
-							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
-							class Value
-							{
-								class data
-								{
-									class type
-									{
-										type[]=
-										{
-											"BOOL"
-										};
-									};
-									value=0;
-								};
-							};
-						};
-						nAttributes=2;
-					};
-				};
-				class Item9
-				{
-					dataType="Object";
-					class PositionInfo
-					{
-						position[]={8469.0732,106.22637,25123.355};
-					};
-					side="West";
-					flags=4;
-					class Attributes
-					{
-						name="bravo_10";
-						isPlayable=1;
-					};
-					id=991;
-					type="CUP_B_BAF_Pilot_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
@@ -4533,7 +4415,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""FirstAidKit"",""Medikit""],[]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M""],[]],[[""ACE_adenosine"",""ACE_atropine"",""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_epinephrine"",""ACE_morphine"",""ACE_packingBandage"",""ACE_personalAidKit"",""ACE_plasmaIV"",""ACE_salineIV"",""ACE_surgicalKit""],[]],[[""ACE_TacticalLadder_Pack""],[]]],true]";
+							value="[[[[""MineDetector""],[10]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M"",""CUP_20Rnd_TE1_White_Tracer_762x51_SCAR"",""CUP_20Rnd_TE1_Yellow_Tracer_762x51_SCAR"",""CUP_30Rnd_9x19_MP5"",""ACE_10Rnd_338_300gr_HPBT_Mag"",""ACE_10Rnd_338_API526_Mag"",""10Rnd_338_Mag"",""130Rnd_338_Mag"",""7Rnd_408_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_45ACP_Mag_SMG_01_Tracer_Green"",""9Rnd_45ACP_Mag"",""CUP_6Rnd_45ACP_M"",""11Rnd_45ACP_Mag"",""6Rnd_45ACP_Cylinder"",""CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M"",""CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M"",""CUP_100Rnd_TE4_Green_Tracer_556x45_M249"",""CUP_10Rnd_127x99_M107"",""10Rnd_127x54_Mag"",""CUP_20Rnd_762x51_B_M110"",""CUP_20Rnd_TE1_Green_Tracer_762x51_M110"",""CUP_20Rnd_TE1_Red_Tracer_762x51_M110"",""CUP_20Rnd_TE1_White_Tracer_762x51_M110"",""CUP_20Rnd_TE1_Yellow_Tracer_762x51_M110"",""CUP_200Rnd_TE4_Green_Tracer_556x45_L110A1"",""CUP_200Rnd_TE4_Green_Tracer_556x45_M249"",""CUP_20Rnd_B_AA12_HE"",""CUP_20Rnd_B_AA12_Pellets"",""CUP_20Rnd_B_AA12_74Slug"",""CUP_20Rnd_556x45_Stanag"",""CUP_30Rnd_556x45_Stanag"",""3Rnd_UGL_FlareWhite_F"",""3Rnd_SmokeBlue_Grenade_shell"",""1Rnd_HE_Grenade_shell"",""CUP_5Rnd_762x67_G22"",""20Rnd_556x45_UW_mag"",""ACE_30Rnd_556x45_Stanag_M995_AP_mag"",""ACE_30Rnd_556x45_Stanag_Mk262_mag"",""ACE_30Rnd_556x45_Stanag_Mk318_mag"",""ACE_30Rnd_556x45_Stanag_Tracer_Dim"",""30Rnd_556x45_Stanag_Tracer_Red"",""30Rnd_556x45_Stanag_Tracer_Yellow"",""CUP_50Rnd_UK59_762x54R_Tracer"",""CUP_5Rnd_86x70_L115A1"",""CUP_5Rnd_127x99_as50_M"",""CUP_5Rnd_762x51_M24"",""CUP_6Rnd_HE_GP25_M"",""CUP_6Rnd_HE_M203"",""CUP_6Rnd_FlareWhite_M203"",""CUP_6Rnd_SmokeGreen_M203"",""30Rnd_65x39_caseless_green_mag_Tracer"",""100Rnd_65x39_caseless_mag"",""ACE_100Rnd_65x39_caseless_mag_Tracer_Dim"",""100Rnd_65x39_caseless_mag_Tracer"",""200Rnd_65x39_cased_Box"",""200Rnd_65x39_cased_Box_Tracer"",""ACE_200Rnd_65x39_cased_Box_Tracer_Dim"",""30Rnd_65x39_caseless_green"",""30Rnd_65x39_caseless_mag"",""ACE_30Rnd_65x39_caseless_green_mag_Tracer_Dim"",""ACE_30Rnd_65x39_caseless_mag_Tracer_Dim"",""ACE_30Rnd_65_Creedmor_mag"",""ACE_30Rnd_65x47_Scenar_mag"",""6Rnd_GreenSignal_F"",""6Rnd_RedSignal_F"",""150Rnd_762x54_Box_Tracer"",""10Rnd_762x54_Mag"",""150Rnd_762x54_Box"",""ACE_20Rnd_762x67_Berger_Hybrid_OTM_Mag"",""ACE_20Rnd_762x67_Mk248_Mod_0_Mag"",""ACE_20Rnd_762x67_Mk248_Mod_1_Mag"",""ACE_10Rnd_762x54_Tracer_mag"",""CUP_8Rnd_B_Beneli_74Pellets"",""CUP_8Rnd_B_Beneli_74Slug"",""16Rnd_9x21_green_Mag"",""30Rnd_9x21_Green_Mag"",""10Rnd_93x64_DMR_05_Mag"",""150Rnd_93x64_Mag"",""16Rnd_9x21_Mag"",""30Rnd_9x21_Mag"",""CUP_Mine_M"",""CUP_100Rnd_556x45_BetaCMag"",""CUP_100Rnd_TE1_Green_Tracer_556x45_BetaCMag"",""Chemlight_blue"",""CUP_10Rnd_9x19_Compact"",""Laserbatteries"",""UGL_FlareWhite_F"",""CUP_20Rnd_762x51_FNFAL_M"",""CUP_17Rnd_9x19_glock17"",""CUP_30Rnd_556x45_G36"",""CUP_30Rnd_TE1_Green_Tracer_556x45_G36"",""CUP_FlareWhite_GP25_M"",""CUP_1Rnd_HE_GP25_M"",""CUP_1Rnd_SmokeGreen_GP25_M"",""CUP_IlumFlareWhite_GP25_M"",""ACE_HuntIR_M203"",""B_IR_Grenade"",""CUP_HandGrenade_L109A1_HE"",""CUP_HandGrenade_L109A2_HE"",""CUP_10x_303_M"",""DemoCharge_Remote_Mag"",""ATMine_Range_Mag"",""SmokeShellBlue"",""SmokeShellGreen"",""SatchelCharge_Remote_Mag"",""ClaymoreDirectionalMine_Remote_Mag"",""CUP_7Rnd_45ACP_1911"",""APERSBoundingMine_Range_Mag"",""CUP_1Rnd_HE_M203"",""CUP_1Rnd_HEDP_M203"",""CUP_Dragon_EP1_M"",""SLAMDirectionalMine_Wire_Mag"",""CUP_FlareWhite_M203"",""CUP_1Rnd_StarFlare_White_M203"",""CUP_1Rnd_StarCluster_White_M203"",""CUP_HandGrenade_M67"",""HandGrenade"",""CUP_1Rnd_SmokeGreen_M203"",""SmokeShell"",""ACE_M84"",""CUP_15Rnd_9x19_M9"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_20Rnd_762x51_B_SCAR"",""CUP_20Rnd_TE1_Green_Tracer_762x51_SCAR"",""CUP_18Rnd_9x19_Phantom"",""APERSTripMine_Wire_Mag"",""CUP_HandGrenade_RGD5"",""MiniGrenade"",""CUP_HandGrenade_RGO"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""APERSMine_Range_Mag""],[10,10,10,10,10,40,100,100,100,100,100,100,100,100,100,100,100,40,40,50,100,100,100,25,25,25,50,20,10,10,30,30,30,30,50,30,30,30,50,15,15,15,15,15,40,40,15,15,15,50,100,15,20,40,20,100,100,60,100,100,100,100,20,25,50,30,25,25,20,20,100,50,30,50,30,30,30,100,100,100,100,50,50,20,20,50,100,50,100,100,100,100,40,40,60,60,100,30,50,50,10,40,40,10,10,10,50,75,20,100,100,30,40,40,30,20,40,100,100,50,50,50,25,25,40,40,20,40,75,75,40,40,30,30,30,50,50,30,20,20,20,40,40,100,100,2,20,20,20,20,30,30,50,50,50,30]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_morphine"",""ACE_elasticBandage"",""Binocular"",""ACE_bodyBag"",""ACE_DAGR"",""ACE_DeadManSwitch"",""ACE_EarPlugs"",""ACE_Flashlight_MX991"",""ACE_HuntIR_monitor"",""ACE_IR_Strobe_Item"",""ACE_M26_Clacker"",""ACE_Clacker"",""ToolKit"",""ACE_UAVBattery"",""B_UavTerminal"",""ACE_wirecutter""],[100,60,10,200,100,10,10,10,10,100,10,10,10,30,30,10,10,20,10]],[[""ACE_TacticalLadder_Pack""],[10]]],false]";
 						};
 					};
 				};
