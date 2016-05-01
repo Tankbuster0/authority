@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2656;
+		nextID=2647;
 	};
 	class Camera
 	{
-		pos[]={8464.3105,109.7736,25145.771};
-		dir[]={-0.31635392,-0.43010947,-0.84563363};
-		up[]={-0.15072985,0.90273756,-0.40290305};
-		aside[]={-0.93668401,-6.4977212e-007,0.35041881};
+		pos[]={8466.9072,112.70701,25148.457};
+		dir[]={-0.30957004,-0.69908947,-0.64467794};
+		up[]={-0.30262691,0.7150051,-0.6302132};
+		aside[]={-0.90153033,1.7956336e-007,0.43291128};
 	};
 };
 binarizationWanted=0;
@@ -203,7 +203,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 479";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 476";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -841,7 +841,7 @@ class Mission
 					class PositionInfo
 					{
 						position[]={8465,103.92471,25138.051};
-						angles[]={0.14563027,0.63465405,0.0079936078};
+						angles[]={0.14562827,0.63465405,0.0080009829};
 					};
 					side="West";
 					flags=4;
@@ -854,7 +854,6 @@ class Mission
 					};
 					id=607;
 					type="CUP_B_BAF_Soldier_HAT_MTP";
-					atlOffset=7.6293945e-006;
 					class CustomAttributes
 					{
 						class Attribute0
@@ -878,6 +877,101 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="Enh_unitTraits_engineer";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['Engineer',true]} else {_this setUnitTrait ['Engineer',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Enh_unitTrait_UAVHacker";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['UAVHacker',true]} else {_this setUnitTrait ['UAVHacker',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Enh_taskPatrol_behaviour";
+							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="Enh_taskPatrol_speed";
+							expression="_this setVariable ['Enh_randomPatrol_speed',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="normal";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Enh_animCombEquipment";
+							expression="_this setVariable ['Enh_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute6
+						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
@@ -895,7 +989,121 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute7
+						{
+							property="Enh_animType";
+							expression="_this setVariable ['Enh_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute8
+						{
+							property="Enh_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute9
+						{
+							property="Enh_unitTrait_explosiveSpecialist";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['ExplosiveSpecialist',true]} else {_this setUnitTrait ['ExplosiveSpecialist',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute10
+						{
+							property="Enh_animCombType";
+							expression="_this setVariable ['Enh_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute11
+						{
+							property="Enh_unitTraits_medic";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['Medic',true]} else {_this setUnitTrait ['Medic',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute12
+						{
+							property="Enh_animEquipment";
+							expression="_this setVariable ['Enh_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=13;
 					};
 				};
 				class Item8
@@ -972,7 +1180,6 @@ class Mission
 					class Attributes
 					{
 						name="alpha_10";
-						isPlayable=1;
 					};
 					id=989;
 					type="CUP_B_BAF_Pilot_MTP";
@@ -999,6 +1206,101 @@ class Mission
 						};
 						class Attribute1
 						{
+							property="Enh_unitTraits_engineer";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['Engineer',true]} else {_this setUnitTrait ['Engineer',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute2
+						{
+							property="Enh_unitTrait_UAVHacker";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['UAVHacker',true]} else {_this setUnitTrait ['UAVHacker',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute3
+						{
+							property="Enh_taskPatrol_behaviour";
+							expression="_this setVariable ['Enh_randomPatrol_behaviour',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="";
+								};
+							};
+						};
+						class Attribute4
+						{
+							property="Enh_taskPatrol_speed";
+							expression="_this setVariable ['Enh_randomPatrol_speed',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="normal";
+								};
+							};
+						};
+						class Attribute5
+						{
+							property="Enh_animCombEquipment";
+							expression="_this setVariable ['Enh_animCombEquipment',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						class Attribute6
+						{
 							property="ace_isHandcuffed";
 							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
 							class Value
@@ -1016,7 +1318,121 @@ class Mission
 								};
 							};
 						};
-						nAttributes=2;
+						class Attribute7
+						{
+							property="Enh_animType";
+							expression="_this setVariable ['Enh_animType',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute8
+						{
+							property="Enh_unitPos";
+							expression="_this setUnitPos _value";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="auto";
+								};
+							};
+						};
+						class Attribute9
+						{
+							property="Enh_unitTrait_explosiveSpecialist";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['ExplosiveSpecialist',true]} else {_this setUnitTrait ['ExplosiveSpecialist',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute10
+						{
+							property="Enh_animCombType";
+							expression="_this setVariable ['Enh_animCombType',_value]";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="STAND";
+								};
+							};
+						};
+						class Attribute11
+						{
+							property="Enh_unitTraits_medic";
+							expression="				if (_value isEqualTo 'noChange') then {};				if (_value isEqualTo 'yes') then {_this setUnitTrait ['Medic',true]} else {_this setUnitTrait ['Medic',false]};			";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="noChange";
+								};
+							};
+						};
+						class Attribute12
+						{
+							property="Enh_animEquipment";
+							expression="_this setVariable ['Enh_animEquipment',_value];";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="ASIS";
+								};
+							};
+						};
+						nAttributes=13;
 					};
 				};
 			};
@@ -4532,7 +4948,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[],[]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M"",""ACE_10Rnd_338_300gr_HPBT_Mag"",""ACE_10Rnd_338_API526_Mag"",""10Rnd_338_Mag"",""130Rnd_338_Mag"",""CUP_100Rnd_TE4_LRT4_White_Tracer_762x51_Belt_M"",""CUP_100Rnd_TE4_LRT4_Red_Tracer_762x51_Belt_M"",""CUP_100Rnd_TE4_Green_Tracer_556x45_M249"",""CUP_100Rnd_TE4_Red_Tracer_556x45_M249"",""CUP_100Rnd_TE4_Yellow_Tracer_556x45_M249"",""CUP_10Rnd_127x99_M107"",""10Rnd_127x54_Mag"",""CUP_20Rnd_762x51_B_M110"",""CUP_20Rnd_TE1_Green_Tracer_762x51_M110"",""CUP_200Rnd_TE4_Green_Tracer_556x45_L110A1"",""CUP_200Rnd_TE4_Red_Tracer_556x45_L110A1"",""CUP_200Rnd_TE4_Yellow_Tracer_556x45_L110A1"",""CUP_200Rnd_TE1_Red_Tracer_556x45_M249"",""CUP_200Rnd_TE4_Green_Tracer_556x45_M249"",""CUP_200Rnd_TE4_Red_Tracer_556x45_M249"",""CUP_200Rnd_TE4_Yellow_Tracer_556x45_M249"",""CUP_30Rnd_556x45_Stanag"",""3Rnd_UGL_FlareCIR_F"",""3Rnd_UGL_FlareWhite_F"",""3Rnd_SmokeBlue_Grenade_shell"",""ACE_30Rnd_556x45_Stanag_M995_AP_mag"",""CUP_5Rnd_127x99_as50_M"",""CUP_6Rnd_HE_GP25_M"",""CUP_6Rnd_HE_M203"",""CUP_6Rnd_FlareYellow_M203"",""CUP_6Rnd_SmokeRed_M203"",""CUP_6Rnd_Smoke_M203"",""CUP_6Rnd_SmokeGreen_M203"",""CUP_6Rnd_SmokeYellow_M203"",""30Rnd_65x39_caseless_green_mag_Tracer"",""100Rnd_65x39_caseless_mag"",""ACE_100Rnd_65x39_caseless_mag_Tracer_Dim"",""100Rnd_65x39_caseless_mag_Tracer"",""200Rnd_65x39_cased_Box"",""200Rnd_65x39_cased_Box_Tracer"",""ACE_200Rnd_65x39_cased_Box_Tracer_Dim"",""30Rnd_65x39_caseless_green"",""30Rnd_65x39_caseless_mag"",""ACE_30Rnd_65x39_caseless_green_mag_Tracer_Dim"",""ACE_30Rnd_65x39_caseless_mag_Tracer_Dim"",""150Rnd_762x54_Box_Tracer"",""10Rnd_762x54_Mag"",""150Rnd_762x54_Box"",""ACE_20Rnd_762x67_Berger_Hybrid_OTM_Mag"",""ACE_20Rnd_762x67_Mk248_Mod_0_Mag"",""ACE_20Rnd_762x67_Mk248_Mod_1_Mag"",""ACE_10Rnd_762x54_Tracer_mag"",""10Rnd_93x64_DMR_05_Mag"",""150Rnd_93x64_Mag"",""UGL_FlareGreen_F"",""UGL_FlareCIR_F"",""UGL_FlareRed_F"",""UGL_FlareWhite_F"",""UGL_FlareYellow_F"",""CUP_20Rnd_762x51_FNFAL_M"",""CUP_30Rnd_556x45_G36"",""CUP_30Rnd_TE1_Green_Tracer_556x45_G36"",""CUP_30Rnd_TE1_Red_Tracer_556x45_G36"",""CUP_30Rnd_TE1_Yellow_Tracer_556x45_G36"",""ACE_HuntIR_M203"",""CUP_1Rnd_HE_M203"",""CUP_1Rnd_HEDP_M203"",""CUP_Dragon_EP1_M"",""CUP_FlareWhite_M203"",""CUP_1Rnd_StarFlare_White_M203"",""CUP_1Rnd_StarCluster_White_M203"",""CUP_FlareGreen_M203"",""CUP_1Rnd_StarCluster_Green_M203"",""CUP_1Rnd_StarFlare_Green_M203"",""CUP_FlareRed_M203"",""CUP_1Rnd_StarCluster_Red_M203"",""CUP_1Rnd_StarFlare_Red_M203"",""CUP_FlareYellow_M203"",""CUP_1Rnd_SmokeRed_M203"",""CUP_1Rnd_Smoke_M203"",""CUP_1Rnd_SmokeGreen_M203"",""CUP_1Rnd_SmokeYellow_M203"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_30Rnd_9x19_MP5"",""CUP_SMAW_HEAA_M"",""CUP_SMAW_HEDP_M"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""Titan_AA"",""Titan_AP"",""Titan_AT""],[20,20,20,20,20,25,100,100,100,100,100,100,100,100,100,100,100,20,20,10,15,15,15,20,10,10,10,10,10,15,15,40,40,10,10,10,10,10,10,10,100,20,20,20,100,30,30,30,5,5,5,5,5,100,25,25,25,25,25,25,70,70,70,70,50,30,50,100,100,100,100,40,20,10,10,10,10,10,50,50,50,50,50,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,20,25,20,20,10,10,10,10,10,10,10,25,25,25]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_morphine"",""ACE_EarPlugs"",""ACE_SpraypaintGreen"",""ACE_HuntIR_monitor""],[20,20,5,20,5,5,5]],[[""ACE_TacticalLadder_Pack""],[5]]],false]";
+							value="[[[[""FirstAidKit"",""Medikit""],[]],[[""5Rnd_127x108_APDS_Mag"",""5Rnd_127x108_Mag"",""ACE_5Rnd_127x99_Mag"",""ACE_5Rnd_127x99_AMAX_Mag"",""ACE_5Rnd_127x99_API_Mag"",""3Rnd_HE_Grenade_shell"",""30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag_Tracer_Green"",""30Rnd_65x39_caseless_mag_Tracer"",""20Rnd_762x51_Mag"",""ACE_20Rnd_762x51_M118LR_Mag"",""ACE_20Rnd_762x51_M993_AP_Mag"",""ACE_20Rnd_762x51_Mk316_Mod_0_Mag"",""ACE_20Rnd_762x51_Mk319_Mod_0_Mag"",""ACE_20Rnd_762x51_Mag_SD"",""ACE_20Rnd_762x51_Mag_Tracer_Dim"",""ACE_20Rnd_762x51_Mag_Tracer"",""CUP_Stinger_M"",""CUP_Javelin_M"",""CUP_PipeBomb_M""],[]],[[""ACE_adenosine"",""ACE_atropine"",""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_SpraypaintBlue"",""ACE_epinephrine"",""ACE_morphine"",""ACE_packingBandage"",""ACE_personalAidKit"",""ACE_plasmaIV"",""ACE_salineIV"",""ACE_surgicalKit""],[]],[[""ACE_TacticalLadder_Pack""],[]]],true]";
 						};
 					};
 				};
@@ -6786,7 +7202,26 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute2
+				{
+					property="Enh_arsenal";
+					expression="if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn BIS_fnc_arsenal}";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 		class Item97
@@ -6805,7 +7240,7 @@ class Mission
 			};
 			id=631;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.031990051;
+			atlOffset=-0.031997681;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6846,7 +7281,26 @@ class Mission
 						};
 					};
 				};
-				nAttributes=2;
+				class Attribute2
+				{
+					property="Enh_arsenal";
+					expression="if (_value && !is3DEN) then {['AmmoboxInit',[_this,true]] spawn BIS_fnc_arsenal}";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=3;
 			};
 		};
 	};
