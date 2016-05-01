@@ -3,7 +3,7 @@
 if (isDedicated) exitWith {};
 waituntil {alive player};
 if ((score player) > 5 ) exitWith {};
-playsound "intro_music";
+//playsound "intro_music";
 
 if (hasInterface) then {
 cutText ["AUTHORITY", "BLACK IN", 10];
