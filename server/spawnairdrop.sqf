@@ -90,6 +90,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	forward = _cargo;
 	forward setpos (_para modelToWorld [0,0,-10]);
 	_cargo addMPEventHandler ["MPkilled", {sleep 1 + (3 *(random 2)); nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
+	[forward, "[[[[""FirstAidKit""],[1]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_Dragon_EP1_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEAA_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AP"",""Titan_AT""],[50,50,50,50,50,25,10,30,30,15,15,30,30,30]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[50,40,50]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
 	} else
 	{
 	_cargo = createvehicle [_droptype, (_para modelToWorld [0,0,-10]), [],0, "FLY"];
