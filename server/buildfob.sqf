@@ -30,7 +30,7 @@ fobdeployed = true;
 publicVariable "fobdeployed";
 if (not ( isnull previousmission)) and ((_pos distance nextpt) > 400) then
 	{
-	//0 = execVM "server\cleanupoldprimary.sqf"
+	0 = execVM "server\cleanupoldprimary.sqf"
 	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
