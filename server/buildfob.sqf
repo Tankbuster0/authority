@@ -28,7 +28,7 @@ fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag.paa";
 
 fobdeployed = true;
 publicVariable "fobdeployed";
-if (not ( isnull previousmission)) and ((_pos distance nextpt) > 400) then
+if ((_pos distance nextpt) > 400) then
 	{
 	0 = execVM "server\cleanupoldprimary.sqf"
 	};
