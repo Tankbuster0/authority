@@ -21,7 +21,7 @@ tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;
 	{if (_x == player) then {hint _text; [playerSide, 'HQ'] sideChat _text;};}foreach _parray;"; call BIS_fnc_MP;
 
 execVM "functions.sqf";
-execVM "intro.sqf";
+//execVM "intro.sqf";
 
 // MHQ Curator Build Stuff
 
