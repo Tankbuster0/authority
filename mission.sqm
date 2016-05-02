@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2800;
+		nextID=2890;
 	};
 	class Camera
 	{
 		pos[]={8464.1553,129.67703,25115.168};
-		dir[]={-0.39469036,-0.81003803,0.43390375};
-		up[]={-0.54506427,0.58635432,0.59922254};
-		aside[]={0.73981887,-9.9773752e-007,0.67296034};
+		dir[]={-0.29640001,-0.82495648,0.48146561};
+		up[]={-0.43247232,0.56518012,0.70250511};
+		aside[]={0.85165668,-9.7941665e-007,0.52429843};
 	};
 };
 binarizationWanted=0;
@@ -89,8 +89,9 @@ class ScenarioData
 		maxPlayers=18;
 	};
 	corpseManagerMode="AddNoneButRespawned";
-	corpseLimit=5;
-	corpseRemovalMinTime=1319.1321;
+	corpseLimit=20;
+	corpseRemovalMinTime=60.000004;
+	corpseRemovalMaxTime=109.20313;
 };
 class CustomAttributes
 {
