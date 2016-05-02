@@ -28,9 +28,12 @@ fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag.paa";
 
 fobdeployed = true;
 publicVariable "fobdeployed";
-if ((_pos distance nextpt) > 400) then
+if ((_pos distance previousmission) > 400) then
 	{
 	0 = execVM "server\cleanupoldprimary.sqf"
+	}else
+	{
+	diag_log "*** buildfob says deploying too close to previous mission so not running cleanup"
 	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
