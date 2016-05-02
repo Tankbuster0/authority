@@ -17,7 +17,6 @@ _newdrypos set [2,0];
 
 ammobox setpos _newdrypos;
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
-//ammobox enableSimulationGlobal false;
 sleep 1;
 for "_q" from 1 to 3 do
 	{
