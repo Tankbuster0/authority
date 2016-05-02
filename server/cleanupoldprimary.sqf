@@ -26,7 +26,7 @@ sleep 0.5;
 // ^^ finds and delete civ and russian cars/tanks . leaves anything british
 sleep 0.5;
 
-{deleteVehicle _x} foreach ((getpos previousmission) nearestObjects ["Civilian", 400]);
+{deleteVehicle _x} foreach (nearestObjects [previousmission,["Civilian_F"], 400]);
 // ^^ finds and deletes civilian men. any in cars/tanks etc will have been ejected when their veh was deleted earlier.
 
 sleep 0.5;
