@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2917;
+		nextID=2953;
 	};
 	class Camera
 	{
-		pos[]={8464.1553,129.67703,25115.168};
-		dir[]={-0.29640001,-0.82495648,0.48146561};
-		up[]={-0.43247232,0.56518012,0.70250511};
-		aside[]={0.85165668,-9.7941665e-007,0.52429843};
+		pos[]={8457.6406,111.9174,25112.885};
+		dir[]={-0.53979099,-0.81580424,-0.20810767};
+		up[]={-0.76119435,0.57830614,-0.29346251};
+		aside[]={-0.35976574,-8.943025e-007,0.93315929};
 	};
 };
 binarizationWanted=0;
@@ -6540,7 +6540,7 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8453.4805,106.0179,25110.641};
+				position[]={8453.4805,106.01815,25110.641};
 				angles[]={0.067893311,0,0.0026529003};
 			};
 			side="Empty";
@@ -6552,7 +6552,7 @@ class Mission
 			};
 			id=1008;
 			type="CUP_B_BAF_Coyote_L2A1_W";
-			atlOffset=-0.0072631836;
+			atlOffset=-0.0070114136;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6570,7 +6570,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""FirstAidKit""],[1]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_Dragon_EP1_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEAA_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AP"",""Titan_AT""],[50,50,50,50,50,25,10,30,30,15,15,30,30,30]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[50,40,50]],[[],[]]],false]";
+							value="[[[[""FirstAidKit""],[1]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_Dragon_EP1_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEAA_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""CUP_Stinger_M""],[50,50,50,50,50,25,10,30,30,15,15,30,30,30,15]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[50,40,50]],[[""ACE_TacticalLadder_Pack""],[5]]],false]";
 						};
 					};
 				};
