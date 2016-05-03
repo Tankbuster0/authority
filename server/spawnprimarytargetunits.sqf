@@ -168,8 +168,7 @@ if (_pt_type isEqualTo 1) then
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
 			//_cfunit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
-			_cfunit addEventHandler ["killed", {if (((_this select 0) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {civkillcount = civkillcount +1};}];
-			//_cfunit addEventHandler ["HandleDamage", {if (isNull (_this select 3)) then { diag_log format ["***%1 collision damage!"]; } else { _this select 2; }; }];
+			_cfunit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
 			_fciv pushback _civfootgroup;
 			};
 		//driven cars
