@@ -22,11 +22,11 @@ sleep 0.5;
 	{
 	deleteVehicle _x;
 	};
-} foreach  ((getpos previousmission) nearEntities ["LandVehicle", 400]);
+} foreach  ((getpos previousmission) nearEntities ["LandVehicle", 500]);
 // ^^ finds and delete civ and russian cars/tanks . leaves anything british
 sleep 0.5;
 
-{deleteVehicle _x} foreach (nearestObjects [previousmission,["Civilian_F"], 400]);
+{deleteVehicle _x} foreach (nearestObjects [previousmission,["Civilian_F", "CUP_Creatures_Civil_Chernarus_Base"], 500]);
 // ^^ finds and deletes civilian men. any in cars/tanks etc will have been ejected when their veh was deleted earlier.
 
 sleep 0.5;
