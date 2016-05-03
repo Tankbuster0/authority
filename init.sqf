@@ -42,5 +42,4 @@ cur addEventHandler ["CuratorObjectDeleted", {[_this select 0, _this select 1] r
 cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorSelectionChanged"];}];
 
 
-
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
