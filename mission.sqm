@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2962;
+		nextID=2980;
 	};
 	class Camera
 	{
-		pos[]={8457.6406,111.9174,25112.885};
+		pos[]={8461.1162,117.58435,25112.846};
 		dir[]={-0.53979099,-0.81580424,-0.20810767};
 		up[]={-0.76119435,0.57830614,-0.29346251};
 		aside[]={-0.35976574,-8.943025e-007,0.93315929};
@@ -207,7 +207,7 @@ class Mission
 	class Intel
 	{
 		briefingName="COOP40 Authority";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 518";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 525";
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
