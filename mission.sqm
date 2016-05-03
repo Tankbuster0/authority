@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2908;
+		nextID=2917;
 	};
 	class Camera
 	{
@@ -88,10 +88,13 @@ class ScenarioData
 		minPlayers=1;
 		maxPlayers=18;
 	};
+	wreckManagerMode="AddAllButRespawned";
+	wreckRemovalMinTime=574.55981;
+	wreckRemovalMaxTime=1396.6902;
 	corpseManagerMode="AddNoneButRespawned";
-	corpseLimit=20;
-	corpseRemovalMinTime=60.000004;
-	corpseRemovalMaxTime=109.20313;
+	corpseLimit=10;
+	corpseRemovalMinTime=636.60742;
+	corpseRemovalMaxTime=1831.0233;
 };
 class CustomAttributes
 {

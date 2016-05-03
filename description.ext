@@ -71,6 +71,7 @@ class cfgFunctions
 			class tc_setskill {};
 			class findhighground {};
 			class patrolFnc {};
+			class cleanupoldprimary {};
 		};
 	};
 };
