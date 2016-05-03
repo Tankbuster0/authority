@@ -41,7 +41,7 @@ _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
 dropveh = (_veh select 0);
 dropveh setVelocity [200 * (sin _dir), 200 * (cos _dir), 0];
 dropveh setcaptive true;
-dropveh flyInHeight 200;
+dropveh flyInHeight 100;
 
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
