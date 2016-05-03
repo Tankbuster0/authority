@@ -33,8 +33,8 @@ if (_spawnpoint isEqualTo [0,0,0]) then
 	{
 	_startpos = _spawnpoint;
 	};
-_startpos set [2, 200];
-_droppos set [ 2,150];
+_startpos set [2, 100];
+_droppos set [ 2,100];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
