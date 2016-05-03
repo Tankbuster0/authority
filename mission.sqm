@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=2980;
+		nextID=2998;
 	};
 	class Camera
 	{
-		pos[]={8461.1162,117.58435,25112.846};
+		pos[]={8454.5029,118.604,25128.01};
 		dir[]={-0.53979099,-0.81580424,-0.20810767};
 		up[]={-0.76119435,0.57830614,-0.29346251};
 		aside[]={-0.35976574,-8.943025e-007,0.93315929};
@@ -977,7 +977,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8444,105.95973,25127};
-				angles[]={0.13647979,0,5.942359};
+				angles[]={0.13648474,0,5.9423571};
 			};
 			id=12;
 			type="ModuleSimulationManager_F";
@@ -6570,7 +6570,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""FirstAidKit""],[1]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_Dragon_EP1_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEAA_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""CUP_Stinger_M""],[50,50,50,50,50,25,10,30,30,15,15,30,30,30,15]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[50,40,50]],[[""ACE_TacticalLadder_Pack""],[5]]],false]";
+							value="[[[[],[]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AT"",""CUP_Stinger_M""],[25,25,25,25,20,25,20,20,15,20,20,10]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[30,20,30]],[[],[]]],false]";
 						};
 					};
 				};
