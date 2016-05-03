@@ -24,5 +24,6 @@ if (isNull previousmission) exitWith {diag_log "***cleanupoldprimary exits becau
 {deleteVehicle _x} foreach (nearestObjects [previousmission,["Civilian_F", "CUP_Creatures_Civil_Chernarus_Base"], 500]);
 // ^^ finds and deletes civilian men. any in cars/tanks etc will have been ejected when their veh was deleted earlier.
 
+{deleteGroup _x} foreach allGroups;
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
