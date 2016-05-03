@@ -98,7 +98,6 @@ if (_droptype == forwardpointvehicleclassname) then
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
-	//_cargo addEventHandler ["GetIn", {_nul = [_this select 0,_this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}]; //handled in playersetup now
 	_cargo addEventHandler ["GetOut", {_nul = [] execVM "server\handlefobgetout.sqf"}];
 	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
