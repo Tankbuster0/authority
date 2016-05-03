@@ -1,4 +1,5 @@
 // by tankbuster
+// note sometimes this runs aon client, sometimes it doesnt. grrr.
 _myscript = "buildfob.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_pos","_dir","_mypos","_testradius","_droppos","_hpad"];
@@ -15,7 +16,6 @@ Anchor position: [3650.27, 2360.49]
 Area size: 20
 Using orientation of objects: yes
 */
-
 [
 	["Flag_White_F",[0.554688,4.36157,0],0,1,0,[0,0],"fobflagpole","",true,false],
 	["FirePlace_burning_F",[-2.9187,-3.90112,-0.0307665],0,1,0,[0,0],"","",true,false],
@@ -25,15 +25,18 @@ Using orientation of objects: yes
 	["Land_TTowerSmall_2_F",[0.859131,-12.6907,0],0,1,0,[0,0],"","",true,false]
 ],0.0] call bis_fnc_ObjectsMapper;
 fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag.paa";
-
 fobdeployed = true;
 publicVariable "fobdeployed";
+previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
+sleep 0.5;
 if ((_pos distance previousmission) > 400) then
 	{
-	0 = execVM "server\cleanupoldprimary.sqf"
-	}else
+	//0 = execVM "server\cleanupoldprimary.sqf";
+	remoteexec ["tky_fnc_cleanupoldprimary",2];
+	}
+	else
 	{
-	diag_log "*** buildfob says deploying too close to previous mission so not running cleanup"
+	diag_log "*** buildfob says deploying too close to previous mission so not running cleanup";
 	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
