@@ -14,8 +14,9 @@ while {_newdrypos in [[0,0,0], islandcentre]} do
 	_newdrypos = [_1pos,800,1300, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
 	};
 _newdrypos set [2,0];
-
+_ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _newdrypos, [],0, "NONE"];
 ammobox setpos _newdrypos;
+ammobox attachTo [_ammoboxpad];
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
 sleep 1;
 for "_q" from 1 to 3 do
