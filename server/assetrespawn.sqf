@@ -4,7 +4,7 @@ _myscript = "assetrespawn.sqf";
 
 if (not isServer) exitWith {};
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob"];
+private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
 _newv = _this select 0;
 _oldv = _this select 1;
 diag_log format ["***assetrespawn gets newv %1 and oldv %2", _newv, _oldv];
@@ -26,7 +26,10 @@ if (_typefob) then
 	{
 	fobrespawning = true;
 	publicVariable "fobrespawning";
-	fobrespawnpositionid call bis_fnc_removeRespawnPosition;
+	if (fobdeployed) then
+		{
+		fobrespawnpositionid call bis_fnc_removeRespawnPosition;
+		};//if the fob is deployed, remove its respawn id
 	};
 //diag_log format ["***assetrespawn says _typefpv %1 and _typefob %2", _typefpv, _typefob];
 // find the nearest current respawn to the old position
@@ -34,7 +37,8 @@ _respawns = [west] call bis_fnc_getRespawnPositions;
 //diag_log format ["*** found some respawns %1", _respawns];
 _respawns2 = _respawns - [_newv];
 //diag_log format ["*** rspawns minus the old veh %1", _respawns2];
-_droppoint = [_respawns2, _newv] call BIS_fnc_nearestPosition; //find the one nearest to the old respawn pos
+//_droppoint = [_respawns2, _newv] call BIS_fnc_nearestPosition; //find the one nearest to the old respawn pos
+_droppoint = (nearestObjects [_oldv, ["Flag_Blue_F"], 10000]) select 0; // get the nearest blue flag. there's 1 at the beach and another at each taken target.
 /*
 _myid = _respawns find _oldv;
  if (_myid > -1) then {[west, _myid] call bis_fnc_removeRespawnPosition;};
@@ -45,6 +49,7 @@ switch (typeName _droppoint) do
 	case "STRING": {_droppoint2 = markerpos _droppoint};
 	case "OBJECT": {_droppoint2 = getpos _droppoint};
 	};
+diag_log format ["*** droppoint is %1 type %2", _droppoint, typeName _droppoint];
 sleep 1;
 switch (true) do
 	{
