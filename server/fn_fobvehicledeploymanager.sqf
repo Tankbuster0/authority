@@ -25,7 +25,6 @@ if not (fobdeployed) then
 		{
 		diag_log "*** fdm deploying";
 		//hint "Deploying FOB";
-		fobveh  setUserActionText [fobdeployactionid, "Undeploy FOB"];
 		"Deploying FOB." remoteExec ["hint", fobveh];
 		sleep 2;
 		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
@@ -45,7 +44,6 @@ if not (fobdeployed) then
 else
 {
 	diag_log "*** fdm says fod is deployed";
-
 	if (!(isNil "fobjects")) then
 		{
 		//hint "Removing FOB";

@@ -16,8 +16,6 @@ waitUntil {initserverfinished};
 player setVariable ["last_inventory_saved", -1];
 endLoadingScreen;
 
-//player setpos ([(getmarkerpos "respawn_west"), (3+ (random 3)), random 360] call bis_fnc_relPos);
-
 #include "\a3\functions_f_mp_mark\Revive\defines.hpp"
 
 //systemChat "Saving initial loadout";
@@ -49,11 +47,14 @@ player addEventHandler [ "Respawn", {
 		if ( { "menuInventory" == _x }count _templates > 0 ) then {
 			//systemChat "Respawning - saving menu inventory";
 			[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
-		}else{
-			h = [] spawn {
+		}else
+		{
+			h = [] spawn
+			{
 				sleep playerRespawnTime;
 				//systemChat "Respawning - loading last saved";
 				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
+				fobdeployactionid = player addaction ["Deploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "(player isEqualTo (driver fobveh)) and (round (speed fobveh) isEqualTo 0)"];
 			};
 		};
 
