@@ -102,7 +102,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
 	publicVariable "fobveh";
-	["ace_wheel", fobveh, 10, false] call ace_cargo_fnc_addCargoItem;
+	["ace_wheel", fobveh, 6, false] call ace_cargo_fnc_addCargoItem;
 	};
 _cargo attachto [_para, [0,0,0]];
 _cargo allowDamage false;
