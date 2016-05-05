@@ -17,6 +17,7 @@ while {_reason isEqualTo ""} do
 	sleep 0.5;
 	};
  if not (_reason  isEqualTo "good") exitWith {diag_log "***hfgetin quits because of criteria"};
+/*
 diag_log "***hfgetin adds addaction";
  fobdeployactionid = (driver fobveh) addaction [
 	"Deploy FOB",// text on action menu
@@ -24,5 +25,5 @@ diag_log "***hfgetin adds addaction";
 	  ];
 sleep 0.5;
 if (fobdeployed) then {_user setUserActionText [fobdeployactionid, "Undeploy FOB"];};
-
+*/
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
