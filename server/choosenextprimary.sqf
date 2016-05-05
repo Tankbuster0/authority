@@ -5,8 +5,8 @@ private ["_pos", "_nearlogics", "_tstatus", "_ttype","_tname", "_removeflag", "_
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 _pos = _this select 0; _nearlogics2 = [];
 
-_mbi = ["militarybasesincluded", 1] call bis_fnc_getParamValue;
-_nvc = ["notveryclose",500] call bis_fnc_getParamValue;
+_mbi = ["militarybasesincluded", 1] call BIS_fnc_getParamValue;
+_nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
 _removearray = [];
 _nearlogics = nearestObjects [_pos, ["Logic"], 10000];
 {
