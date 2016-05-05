@@ -54,7 +54,7 @@ player addEventHandler [ "Respawn", {
 				sleep playerRespawnTime;
 				//systemChat "Respawning - loading last saved";
 				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
-				fobdeployactionid = player addaction ["Deploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "(typeof (vehicle player) == "CUP_B_Mastiff_HMG_GB_W" ) and (round (speed vehicle player) isEqualTo 0)"];
+				fobdeployactionid = player addaction ["Deploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "(typeof (vehicle player) == 'CUP_B_Mastiff_HMG_GB_W' ) and (round (speed vehicle player) isEqualTo 0)"];
 			};
 		};
 
