@@ -72,7 +72,7 @@ class cfgFunctions
 			class findhighground {};
 			class patrolFnc {};
 			class cleanupoldprimary {};
-			class fobdeploymanager {};
+			class fobvehicledeploymanager {};
 		};
 	};
 };
