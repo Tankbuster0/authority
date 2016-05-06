@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=5;
+	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=1011;
+		nextID=1019;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3043;
+		nextID=3097;
 	};
 	class Camera
 	{
-		pos[]={8490.8584,170.24596,25113.828};
-		dir[]={-0.53979099,-0.81580424,-0.20810767};
-		up[]={-0.76119435,0.57830614,-0.29346251};
-		aside[]={-0.35976574,-8.943025e-007,0.93315929};
+		pos[]={8428.8887,131.02341,25138.625};
+		dir[]={0.33173823,-0.8396132,-0.43037716};
+		up[]={0.51257074,0.54316956,-0.66498488};
+		aside[]={-0.79210383,-1.3991812e-006,-0.6105628};
 	};
 };
 binarizationWanted=0;
@@ -74,7 +74,9 @@ addons[]=
 	"cup_airvehicles_ah64",
 	"CUP_AirVehciles_Merlin",
 	"CUP_WheeledVehicles_Coyote",
-	"A3_Supplies_F_Heli_CargoNets"
+	"A3_Supplies_F_Heli_CargoNets",
+	"ace_refuel",
+	"CUP_Weapons_AmmoBoxes"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -401,7 +403,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=98;
+		items=101;
 		class Item0
 		{
 			dataType="Group";
@@ -1819,7 +1821,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8308,49.800621,25292};
-				angles[]={0.10230836,0,0.18969145};
+				angles[]={0.1023112,0,0.18969984};
 			};
 			id=443;
 			type="ace_captives_moduleSettings";
@@ -1859,7 +1861,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -1891,7 +1893,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8313,50.964577,25292};
-				angles[]={0.10230836,0,0.25436813};
+				angles[]={0.1023112,0,0.25436428};
 			};
 			id=444;
 			type="ACE_ModuleExplosive";
@@ -1963,7 +1965,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8318,52.093269,25292};
-				angles[]={0.17680109,0,0.21782166};
+				angles[]={0.17680186,0,0.21781708};
 			};
 			id=446;
 			type="ACE_ModuleHearing";
@@ -2022,7 +2024,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -2054,7 +2056,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8323,53.199814,25292};
-				angles[]={0.20379768,0,0.1909772};
+				angles[]={0.20380209,0,0.19097394};
 			};
 			id=447;
 			type="ACE_ModuleInteraction";
@@ -2380,7 +2382,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8323,53.784054,25285};
-				angles[]={0.045302324,0,0.21782166};
+				angles[]={0.045308746,0,0.21781708};
 			};
 			id=451;
 			type="ace_microdagr_dagrModule";
@@ -2702,7 +2704,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8313,52.050087,25307};
-				angles[]={6.2152901,0,6.2711854};
+				angles[]={6.2152915,0,6.2711778};
 			};
 			id=458;
 			type="ace_viewdistance_ModuleSettings";
@@ -3014,7 +3016,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0.60000002;
+							value=0.80000001;
 						};
 					};
 				};
@@ -3052,7 +3054,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0.40000001;
+							value=0.60000002;
 						};
 					};
 				};
@@ -3103,7 +3105,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8328,53.437168,25298};
-				angles[]={6.0275688,0,0.27794731};
+				angles[]={6.0275645,0,0.27794367};
 			};
 			id=469;
 			type="ace_advanced_ballistics_ModuleSettings";
@@ -4057,7 +4059,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1800;
+							value=240;
 						};
 					};
 				};
@@ -4209,7 +4211,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0.89999998;
 						};
 					};
 				};
@@ -4316,11 +4318,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8319,56,25305};
+				position[]={8319,55.999516,25305};
 			};
 			id=580;
 			type="ACE_moduleBasicMedicalSettings";
-			atlOffset=3.6294861;
+			atlOffset=3.6290016;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4409,7 +4411,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="forward,  fobveh";
+							value="forward";
 						};
 					};
 				};
@@ -4440,7 +4442,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8326.2949,54.110657,25318.168};
+				position[]={8313,53.187164,25321};
+				angles[]={0.11811461,0,0.1049457};
 			};
 			id=660;
 			type="ACE_moduleAddSpareParts";
@@ -6570,7 +6573,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[],[]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AT"",""CUP_Stinger_M""],[25,25,25,25,20,25,20,20,15,20,20,10]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[30,20,30]],[[],[]]],false]";
+							value="[[[[],[]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AT"",""CUP_Stinger_M"",""SatchelCharge_Remote_Mag""],[25,25,25,25,20,25,20,20,15,20,20,10,10]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine"",""ACE_Clacker"",""ToolKit""],[30,20,30,5,4]],[[],[]]],false]";
 						};
 					};
 				};
@@ -6673,6 +6676,116 @@ class Mission
 								};
 							};
 							value="[[[[""arifle_MXC_F"",""arifle_MXM_F"",""arifle_MX_F"",""arifle_MX_GL_F"",""arifle_MX_SW_F"",""arifle_SDAR_F"",""hgun_P07_F"",""hgun_Pistol_heavy_01_F"",""launch_NLAW_F"",""launch_Titan_F"",""launch_Titan_short_F"",""SMG_01_F"",""srifle_EBR_F"",""srifle_LRR_camo_F"",""srifle_LRR_F"",""FirstAidKit"",""Medikit"",""MineDetector""],[4,2,8,4,4,2,2,2,2,2,2,2,2,2,2,10,1,1]],[[""100Rnd_65x39_caseless_mag_Tracer"",""11Rnd_45ACP_Mag"",""16Rnd_9x21_Mag"",""1Rnd_HE_Grenade_shell"",""1Rnd_SmokeBlue_Grenade_shell"",""1Rnd_SmokeGreen_Grenade_shell"",""1Rnd_SmokeOrange_Grenade_shell"",""1Rnd_SmokePurple_Grenade_shell"",""1Rnd_SmokeRed_Grenade_shell"",""1Rnd_SmokeYellow_Grenade_shell"",""1Rnd_Smoke_Grenade_shell"",""20Rnd_556x45_UW_mag"",""20Rnd_762x51_Mag"",""30Rnd_45ACP_Mag_SMG_01"",""30Rnd_556x45_Stanag_red"",""30Rnd_65x39_caseless_mag"",""3Rnd_HE_Grenade_shell"",""7Rnd_408_Mag"",""APERSBoundingMine_Range_Mag"",""APERSMine_Range_Mag"",""APERSTripMine_Wire_Mag"",""ATMine_Range_Mag"",""B_IR_Grenade"",""ClaymoreDirectionalMine_Remote_Mag"",""DemoCharge_Remote_Mag"",""HandGrenade"",""Laserbatteries"",""MiniGrenade"",""SatchelCharge_Remote_Mag"",""SLAMDirectionalMine_Wire_Mag"",""SmokeShell"",""SmokeShellBlue"",""SmokeShellGreen"",""SmokeShellOrange"",""SmokeShellPurple"",""SmokeShellRed"",""SmokeShellYellow"",""Titan_AA"",""Titan_AP"",""Titan_AT"",""UGL_FlareGreen_F"",""UGL_FlareWhite_F""],[16,14,14,15,2,2,2,2,2,2,2,6,24,14,6,52,3,12,5,5,5,5,8,5,5,24,5,24,5,5,2,2,2,2,2,2,2,6,6,6,2,2]],[[""Binocular"",""Laserdesignator"",""Rangefinder"",""acc_flashlight"",""acc_pointer_IR"",""ItemGPS"",""muzzle_snds_acp"",""muzzle_snds_B"",""muzzle_snds_H"",""muzzle_snds_H_SW"",""muzzle_snds_L"",""optic_Aco"",""optic_Aco_smg"",""optic_DMS"",""optic_Hamr"",""optic_Holosight"",""optic_LRPS"",""optic_MRD"",""optic_NVS"",""optic_SOS"",""optic_tws"",""optic_tws_mg"",""ToolKit""],[1,1,1,5,5,5,5,5,5,1,5,2,2,2,2,2,2,2,2,2,2,2,1]],[[],[]]],false]";
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item98
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8336.6924,56.178238,25313.02};
+			};
+			id=1011;
+			type="ACE_moduleRefuelSettings";
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleRefuelSettings_rate";
+					expression="_this setVariable ['rate',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=10;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item99
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8425.874,110.95512,25125.693};
+				angles[]={0.17680176,0,0.030658109};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+			};
+			id=1015;
+			type="CUP_USBasicWeapons_EP1";
+			atlOffset=0.00078582764;
+		};
+		class Item100
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8449.1963,107.08543,25116.518};
+				angles[]={0.059934605,0,6.0463791};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="fobvehloadout";
+			};
+			id=1018;
+			type="CUP_BAF_IEDBox";
+			atlOffset=-7.6293945e-006;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[],[]],[[""SatchelCharge_Remote_Mag""],[20]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_CableTie"",""ACE_Clacker"",""ACE_morphine"",""ToolKit""],[50,20,20,15,50,10]],[[],[]]],false]";
 						};
 					};
 				};

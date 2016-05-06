@@ -37,9 +37,10 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 //find a pos for the frigate
 _fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
 // if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
-_frigateposdata = selectBestPlaces [_mypos, 500, "waterDepth", 1,10];
+_frigateposdata = selectBestPlaces [_mypos, 500, "sea * waterDepth", 10,20];
+diag_log format ["***frigateposdata %1", _frigateposdata];
 // ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
-if (_frigateposdata isEqualTypeArray []) then
+if (isNil {_frigateposdata}) then
 	{
 	_fpos = _frigateposdata;
 	}// if selectbestplaces doesnt find anywhere, use the nearest marine
@@ -52,7 +53,7 @@ if (_frigateposdata isEqualTypeArray []) then
 
 		};
 	};
-
+ //[[[9772.76,22725.4],56.096],[[9771.98,22725.1],56.0898],[[9772.52,22723.2],55.9945],[[9771.39,22724.9],55.9911],[[9772.36,22726.3],55.9649],[[9771.36,22725.2],55.964],[[9772.15,22726],55.9636],[[9772.32,22723.1],55.9619],[[9771.3,22724.6],55.9423],[[9773.48,22724.1],55.8833]]
 
 frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
