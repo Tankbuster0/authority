@@ -101,6 +101,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	_cargo addEventHandler ["GetOut", {_nul = [] execVM "server\handlefobgetout.sqf"}];
 	_cargo addMPEventHandler ["mpkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	fobveh = _cargo;
+	[fobveh, "[[[[],[]],[[""SatchelCharge_Remote_Mag""],[20]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_CableTie"",""ACE_Clacker"",""ACE_morphine"",""ToolKit""],[50,20,20,15,50,10]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
 	publicVariable "fobveh";
 	["ace_wheel", fobveh, 6, false] call ace_cargo_fnc_addCargoItem;
 	};
