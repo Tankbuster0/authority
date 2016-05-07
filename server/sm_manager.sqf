@@ -23,7 +23,7 @@ switch (_sm_hint) do
 			format ["There's a lot of destroyed buildings here, not to mention many killed civilians. We don't make war on civilians. Let's rebuild their faith in us and the town. You will now complete a number of reconstruction and reparation tasks. Try not to do any more damage. Hearts and minds, soldier, not blood and guts."] remoteexec ["hint", -2];
 			};
 	};
-smtypearray = [
+_smtypearray = [
 "fsapow",// find, subdue, arrest and transport surrendered opfor from pt to airbase pow camp
 "nvmcle",// naval mine clearance in the nearest marine (that doesn't have the frigate in it)
 "vipesc",// escort ai vip from pt to another town for a meeting, then back again, opfor in theatre
@@ -34,11 +34,16 @@ smtypearray = [
 "rebild",// if they have an engineer, with other units, find ruins , use engineering foo to remove ruin model and bring back proper building model to surface
 "blcnvy",// from a remote location, drive a number of supply trucks to pt (use must stay close code), opfor on map
 "radtwr",// find and destroy a radiotower on a hilltop
- ]
-//pow
+ ];
+
+
 for "smcounter" from 0 to _sm_required do
 	{
-	_typeselected = selectRandom smtypearray;
+	_typeselected = selectRandom _smtypearray;
+	_smtypearray = _smtypearray - _typeselected;
+	_smmanagerhandle - execVM (format ["\server\sm\do_%1", _typeselected]);
+	waitUntil {sleep 1;scriptDone _smmanagerhandle};
+
 
 	}
 
