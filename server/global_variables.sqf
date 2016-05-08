@@ -13,6 +13,11 @@ publicVariable "fobvehicleclassname";
 blufordropaircraft = "CUP_B_C130J_GB";
 cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "];
 
+heartandmindscore = 0;
+civkillcount = 0;
+reinforcementcounter = 0;
+captivekillcounter = 0;
+
 prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_MCV80_GB_W_SLAT","CUP_B_MCV80_GB_W","CUP_B_Mastiff_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","CUP_B_FV432_Bulldog_GB_W_RWS","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W"];
 alllandmines = ["APERSBoundingMine_Range_Mag","APERSMine_Range_Mag","ATMine_Range_Mag","ClaymoreDirectionalMine_Remote_Mag","SLAMDirectionalMine_Wire_Mag"];
 civs = ["CUP_C_C_Worker_01","CUP_C_C_Worker_02","CUP_C_C_Worker_03","CUP_C_C_Worker_04","CUP_C_C_Rocker_02","CUP_C_C_Woodlander_04","CUP_C_C_Worker_05","CUP_C_C_Woodlander_01","CUP_C_C_Woodlander_02","CUP_C_C_Woodlander_03",

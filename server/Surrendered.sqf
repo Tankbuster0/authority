@@ -72,6 +72,7 @@ _unit doMove _gopos;
 
 _unit addEventHandler ["FiredNear", "if (_this select 2 < 7) then {[_this select 0,true] call ACE_captives_fnc_setSurrendered;} else {};"];
 _unit addEventHandler ["Hit", "[_this select 0,true] call ACE_captives_fnc_setSurrendered;"];
+_unit addEventHandler ["Killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {captivekillcounter = captivekillcounter +1};}];
 
 if (!_rebel) then 
 {
@@ -87,8 +88,10 @@ else
 	
 	_unit setCaptive false;
 	[_unit,false] call ACE_captives_fnc_setSurrendered;
+	
 	_unit removeAllEventHandlers "Hit";
 	_unit removeAllEventHandlers "FiredNear";
+	_unit removeAllEventHandlers "Killed";
 	
 	if ( primaryWeapon _unit isequalto "" || handgunWeapon _unit isequalto "" ) then 
 	{
