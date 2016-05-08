@@ -17,7 +17,6 @@ if (primarytargetcounter > 1) then
 	}else
 	{
 	roadblockscleared = true;// this is the first target, no roadblocks so set it to true so it's ignored
-
 	};
 reinforcementcounter = 0;
 cpt_position = getpos nextpt;
@@ -40,12 +39,10 @@ trg2 = createTrigger ["EmptyDetector", cpt_position];
 trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg2 setTriggerActivation  ["EAST", "NOT PRESENT", false];
 trg2 setTriggerStatements ["this", "diag_log '***all east dead'", ""];
-
 trg3 = createTrigger ["EmptyDetector", cpt_position];
 trg3 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg3 setTriggerActivation  ["EAST", "NOT PRESENT", false];
 trg3 setTriggerStatements ["((!(alive pt_radar)) and (roadblockscleared) and (triggerActivated trg2))", "execVM 'server\assaultphasefinished.sqf'", ""];
-
 // task stuff
 taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
@@ -73,7 +70,6 @@ if ((primarytargetcounter > 1)) then
 					}
 				//diag_log format ["***roadblock status %1 cleared of %2", deadgatecount, count roadblockgates];
 				};
-
 			};
 		};
 		if (cpt_type==1) then {0 = execVM "server\roadreinforcementmanager.sqf";};
