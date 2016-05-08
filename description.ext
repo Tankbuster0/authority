@@ -60,6 +60,7 @@ class cfgFunctions
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
 			class resetCuratorBuildlist {};
+			class addAceInterToCaptive {};
 		};
 		class auth_server
 		{
