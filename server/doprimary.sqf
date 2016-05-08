@@ -18,7 +18,14 @@ if (primarytargetcounter > 1) then
 	{
 	roadblockscleared = true;// this is the first target, no roadblocks so set it to true so it's ignored
 	};
+
+//Reset goodguy scores.
 reinforcementcounter = 0;
+heartandmindscore = 0;
+civkillcount = 0;
+reinforcementcounter = 0;
+captivekillcounter = 0;
+
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
