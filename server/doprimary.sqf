@@ -34,11 +34,24 @@ cpt_marker setMarkerShape "ELLIPSE";
 cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
 cpt_marker setMarkerColor "ColorRed";
-// make trigger that senses when town is empty of enemies
-trg2 = createTrigger ["EmptyDetector", cpt_position];
-trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
-trg2 setTriggerActivation  ["EAST", "NOT PRESENT", false];
-trg2 setTriggerStatements ["this", "diag_log '***all east dead'", ""];
+
+if (cpt_type == 1 || cpt_type == 4) then 
+{
+	// make trigger that senses when town is empty of enemies
+	trg2 = createTrigger ["EmptyDetector", cpt_position];
+	trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
+	trg2 setTriggerActivation  ["WEST SEIZED", "PRESENT", false];
+	trg2 setTriggerTimeout [5, 50, 120, true];
+	trg2 setTriggerStatements ["this", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\SurrenderSurvivors.sqf';", ""];
+} else 
+{
+	// make trigger that senses when town is empty of enemies
+	trg2 = createTrigger ["EmptyDetector", cpt_position];
+	trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
+	trg2 setTriggerActivation  ["EAST", "NOT PRESENT", false];
+	trg2 setTriggerStatements ["this", "diag_log '***all east dead'", ""];
+};
+
 trg3 = createTrigger ["EmptyDetector", cpt_position];
 trg3 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg3 setTriggerActivation  ["EAST", "NOT PRESENT", false];
