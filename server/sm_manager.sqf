@@ -4,7 +4,7 @@ _myscript = "sm_manager";
 _myscript = "sm_manager";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
-_sm_required = ((2 + ( floor (heartandmindscore / ))) min 9);
+_sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
 switch (_sm_hint) do
 	{
@@ -33,19 +33,20 @@ _smtypearray = [
 "patrol",// patrol a nearby (not blue) town that has civs and some insurgents in it
 "rebild",// if they have an engineer, with other units, find ruins , use engineering foo to remove ruin model and bring back proper building model to surface
 "blcnvy",// from a remote location, drive a number of supply trucks to pt (use must stay close code), opfor on map
-"radtwr",// find and destroy a radiotower on a hilltop
+"radtwr"// find and destroy a radiotower on a hilltop
  ];
 
 
 for "smcounter" from 0 to _sm_required do
 	{
-	_typeselected = selectRandom _smtypearray;
-	_smtypearray = _smtypearray - _typeselected;
-	_smmanagerhandle - execVM (format ["\server\sm\do_%1", _typeselected]);
+	//_typeselected = selectRandom _smtypearray;
+	_typeselected = "lnmcle";
+	_smtypearray = _smtypearray - [_typeselected];
+	_smmanagerhandle = execVM (format ["\server\sm\do_%1", _typeselected]);
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
 
 
-	}
+	};
 
 
 

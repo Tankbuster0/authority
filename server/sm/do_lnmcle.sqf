@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "do_lnmcle.sqf";
+_myscript = "do_lnmcle";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 //land mine clearance mission
 
