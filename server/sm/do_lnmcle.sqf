@@ -30,7 +30,6 @@ while
 		_meadowdata = selectRandom _meadows;
 		_mfpos = _meadowdata select 0;
 		};
-
 for "_minecounter" from 5 to ((2 * playersNumber west) min 12) do
 	{
 	_mine = createMine [(selectRandom alllandmines), _mfpos, [], 50];
@@ -46,21 +45,22 @@ for "_minecounter" from 5 to ((2 * playersNumber west) min 12) do
 	_smcleanup pushback  _minecone;
 	};
 
-taskname = "task" + str primarytargetcounter + "sm" + str smcounter;
+//taskname = "task" + str primarytargetcounter + "sm" + str smcounter;
 //[west, [taskname], ["Clear the landmines", "Clear the landmines","mine1"], _mfpos,1,2,true ] call bis_fnc_taskCreate;
 
 sleep 4;
 
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
 "Local elders have told us there's a minefield %1 the town. We need to clear them without taking casualties." remoteexec ["hint", -2];
-
-while {missionactive} do
+waitUntil {sleep 3;false};
+while {true} do
 	{
 	sleep 3;
 	if (({mineactive _x} count minearray) isEqualTo 0) then
 		{
 		missionactive = false;
 		missionsuccess = true;
+		"All the mines have been cleared. Well done." remoteexec ["hint", -2];
 		};
 
 	};
