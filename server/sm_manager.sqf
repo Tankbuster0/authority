@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "smmanager";
+_myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 
 
