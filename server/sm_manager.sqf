@@ -1,9 +1,10 @@
 //by tankbuster
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
+_myscript = "sm_manager";
+diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
-
-_sm_required = ((2 + ( floor (_heartandmindscore / ))) min 9);
+_sm_required = ((2 + ( floor (heartandmindscore / ))) min 9);
 _sm_hint = ceil (_sm_required /2);
 switch (_sm_hint) do
 	{
@@ -24,7 +25,6 @@ switch (_sm_hint) do
 			};
 	};
 _smtypearray = [
-"fsapow",// find, subdue, arrest and transport surrendered opfor from pt to airbase pow camp
 "nvmcle",// naval mine clearance in the nearest marine (that doesn't have the frigate in it)
 "vipesc",// escort ai vip from pt to another town for a meeting, then back again, opfor in theatre
 "medvac",// get an injured ai civ from pt to hospital (in base or elsewhere?)
