@@ -18,7 +18,7 @@ _myplaces = selectbestplaces [cpt_position, 1000, "meadow", 50,50];
   _m1 setMarkerText str _exp;
  }foreach _myplaces;
  */
-_mfpos = []; minearray = []; missionactive = true; missionsuccess = false;
+_mfpos = []; minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 while {((_mfpos == []) or ((_mfpos distance fobveh) < 100) or ((_mfpos distance forward) < 100)) } do //choose a position that isn't near the fobveh or the forward vehicle
 	{
 	_mfpos =  (selectRandom  (_myplaces select {(_x select 1) == 1})) select 0;//select only those that are meadow 1, from them get a random one, and from that, get the position part of the array
@@ -28,9 +28,14 @@ for "_minecounter" from 5 to ((2 * playersNumber west) min 12) do
 	{
 	_mine = createMine [(selectRandom alllandmines), _mfpos, [], 50];
 	minearray pushback _mine;
+	_minecone = createVehicle ["RoadCone_L_F", getpos _mine, [],0, "CAN_COLLIDE"];
+	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"];
+	hideObjectGlobal _minecone;
   	_m1 = createmarker [(format ["mine%1", foreachindex]) ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";
+	_smcleanup pushback _mine;
+	_smcleanup pushback  _minecone;
 	};
 
 taskname = "task" + str primarytargetcounter + "sm" + str smcounter;
