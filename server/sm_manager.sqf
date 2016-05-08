@@ -3,6 +3,7 @@ _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 _myscript = "sm_manager";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+private ["_sm_required","_sm_hint","_smtypearray","_typeselected","_smmanagerhandle"];
 
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
@@ -42,7 +43,9 @@ for "smcounter" from 0 to _sm_required do
 	//_typeselected = selectRandom _smtypearray;
 	_typeselected = "lnmcle";
 	_smtypearray = _smtypearray - [_typeselected];
-	_smmanagerhandle = execVM (format ["\server\sm\do_%1", _typeselected]);
+	_fname = format ["server\sm\do_%1.sqf", _typeselected];
+	diag_log format ["***fname = %1", _fname];
+	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
 
 
