@@ -11,6 +11,7 @@ KK_fnc_fileExists = {
 };
 
 tky_fnc_getscreenname = {
+	// with thanks to hoverguy and tryteyker
 	private ["_suppliedtype","_type", "_cfg_type","_data", "_ret"];
 	params ["_suppliedtype"];
 	if ((typeName _suppliedtype) == "OBJECT") then

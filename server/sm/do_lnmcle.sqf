@@ -36,9 +36,9 @@ diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 0 to _numberofmines do
 	{
 	_chosenmine = selectRandom alllandmines;
-	_mine = createMine [chosenmine, _mfpos, [], 50];
+	_mine = createMine [_chosenmine, _mfpos, [], 50];
 	minearray pushback _mine;
-	diag_log format ["*** do_m made %3 type %1 at %2", _minecounter, (getpos _mine), _chosenmine];
+	diag_log format ["*** do_m made %3 type %1 at %2", _minecounter, (getpos _mine), ([_chosenmine] call tky_fnc_getscreenname)];
 	_minecone = createVehicle ["RoadCone_L_F", getpos _mine, [],0, "CAN_COLLIDE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"];
 	hideObjectGlobal _minecone;
