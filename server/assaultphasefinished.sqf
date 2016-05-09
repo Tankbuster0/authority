@@ -11,8 +11,8 @@ diag_log format ["****h&m = %1, ruinend %2 ruinstart %3 civkill %4 reinfcntr %5"
 sleep 3;
 format ["Congratulations! You've driven the enemy from the town. Now we need to win the hearts and minds of the locals\nWe must to complete secondary missions and tasks to achieve this."] remoteexec ["hint", -2];
 sleep 10;
-_handle2 = [] execVM "server\sm_manager.sqf";
-waitUntil {sleep 1;scriptdone _handle2};
+//_handle2 = [] execVM "server\sm_manager.sqf";
+//waitUntil {sleep 1;scriptdone _handle2};
 
 nul =  execVM "server\primarytargetcleared.sqf";
 
