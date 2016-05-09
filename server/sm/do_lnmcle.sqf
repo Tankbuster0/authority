@@ -2,9 +2,9 @@
 _myscript = "do_lnmcle";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 //land mine clearance mission
-
-//get a good place for minefield
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
+//get a good place for minefield
+
 _myplaces = selectbestplaces [cpt_position, 1000, "meadow", 50,25];
 _meadows = _myplaces select {(_x select 1) == 1};
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
@@ -12,7 +12,7 @@ _meadowdata = selectRandom _meadows;
 _mfpos = _meadowdata select 0;
 //^^ choose one to start with, then below, if it isnt good, keep choosing until it is.
 while
-	{(	((_mfpos distance fobveh) < 100) or ((_mfpos distance forward) < 100) or (_mfpos inArea "cpt_marker")	)	}
+	{(	((_mfpos distance fobveh) < 100) or ((_mfpos distance forward) < 100) or (_mfpos inArea ("cpt_marker_" + primarytargetcounter) )	)	}
 		do //choose a position that isn't near the fobveh or the forward vehicle or inside the town marker
 		{
 		_meadowdata = selectRandom _meadows;
@@ -50,7 +50,7 @@ diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
-(format ["Local elders have told us there's a minefield %1 the town. We need to clear them without taking casualties.", _dirtohint]) remoteexec ["hint", -2];
+(format ["Local elders have told us there's a minefield %1the town. We need to clear them without taking casualties.", _dirtohint]) remoteexec ["hint", -2];
 waitUntil {sleep 3;false};
 while {true} do
 	{
