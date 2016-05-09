@@ -33,9 +33,10 @@ if (not isServer) then
 		_building = _buildings select _i;
 		_windowarray = [_building] call fn_p_getWindowPos;// use new pilgrim function to get all window position. returns [position, direction, quality] for each building pos
 		
-		_grp = [d_enemy_side] call fn_creategroup;//create the a group for each house
-		_unit_array = ["cqb_men", opfor] call d_fnc_getunitlist;//func getunitliste; calling basic gets a single man from the array
+		_grp = createGroup east;//create the a group for each house
+		_unit_array = _grp createunit [opfor_CQB_soldier,_building,[],0,"none"];//calling basic gets a single man from the array
 
+		
 		{
 			_thispos = _x; //selects the first (then second) record from windowarray
 			_unitgroup = [_thispos select 0, _unit_array select 0, _grp] call d_fnc_makemgroup;
