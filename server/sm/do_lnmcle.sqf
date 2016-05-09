@@ -23,7 +23,7 @@ _numberofmines = ((selectrandom [2,3,4,5]) + (2 * playersnumber west)) min 12;
 diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 for "_minecounter" from 0 to _numberofmines do
 	{
-	_chosenmine = selectRandom alllandmines;
+	_chosenmine = selectRandom aplandmines;
 	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
 
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
@@ -33,7 +33,7 @@ for "_minecounter" from 0 to _numberofmines do
 
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
 	minearray pushback _mine;
-	diag_log format ["***made %3 at %2, number %1, planned position was %4", _minecounter, (getpos _mine), ([_chosenmine] call tky_fnc_getscreenname), _realminepos];
+	diag_log format ["***made %3 at %2, number %1, planned position was %4", _minecounter, (getpos _mine), _chosenmine, _realminepos];
 
   	_minename = format ["mine%1", _minecounter];
   	_m1 = createmarker [_minename ,getpos _mine];
