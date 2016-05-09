@@ -36,13 +36,13 @@ waitUntil {scriptDone _handle1};
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
 // create a marker
-cpt_marker = createMarker [str primarytargetcounter, cpt_position];
+cpt_marker = createMarker [("cpt_marker_" + str primarytargetcounter), cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";
 cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
 cpt_marker setMarkerColor "ColorRed";
 
-if (cpt_type == 1 || cpt_type == 4) then 
+if (cpt_type == 1 || cpt_type == 4) then
 {
 	// make trigger that senses when town is empty of enemies
 	trg2 = createTrigger ["EmptyDetector", cpt_position];
@@ -50,7 +50,7 @@ if (cpt_type == 1 || cpt_type == 4) then
 	trg2 setTriggerActivation  ["WEST SEIZED", "PRESENT", false];
 	trg2 setTriggerTimeout [5, 50, 120, true];
 	trg2 setTriggerStatements ["this", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\SurrenderSurvivors.sqf';", ""];
-} else 
+} else
 {
 	// make trigger that senses when town is empty of enemies
 	trg2 = createTrigger ["EmptyDetector", cpt_position];
