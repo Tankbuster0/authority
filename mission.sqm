@@ -8,7 +8,7 @@ class EditorData
 	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=1019;
+		nextID=1021;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3106;
+		nextID=3124;
 	};
 	class Camera
 	{
-		pos[]={8428.8887,131.02341,25138.625};
-		dir[]={0.33173823,-0.8396132,-0.43037716};
-		up[]={0.51257074,0.54316956,-0.66498488};
-		aside[]={-0.79210383,-1.3991812e-006,-0.6105628};
+		pos[]={8461.6777,110.11794,25125.18};
+		dir[]={0.89916718,-0.42760125,0.094291352};
+		up[]={0.42538741,0.90389532,0.044603933};
+		aside[]={0.10430718,-6.5947643e-007,-0.99465799};
 	};
 };
 binarizationWanted=0;
@@ -410,7 +410,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=9;
+				items=10;
 				class Item0
 				{
 					dataType="Object";
@@ -966,6 +966,65 @@ class Mission
 						nAttributes=2;
 					};
 				};
+				class Item9
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8468.6621,104.62901,25136.217};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						name="alpha_10";
+						isPlayable=1;
+					};
+					id=1019;
+					type="CUP_B_BAF_Soldier_JTAC_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=2;
+					};
+				};
 			};
 			class Attributes
 			{
@@ -1032,7 +1091,7 @@ class Mission
 			side="West";
 			class Entities
 			{
-				items=9;
+				items=10;
 				class Item0
 				{
 					dataType="Object";
@@ -1541,6 +1600,65 @@ class Mission
 					};
 					id=615;
 					type="CUP_B_BAF_Engineer_MTP";
+					class CustomAttributes
+					{
+						class Attribute0
+						{
+							property="ace_isSurrendered";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleSurrender}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						class Attribute1
+						{
+							property="ace_isHandcuffed";
+							expression="if (_value) then {[objNull,[_this],true] call ace_captives_fnc_moduleHandcuffed}";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"BOOL"
+										};
+									};
+									value=0;
+								};
+							};
+						};
+						nAttributes=2;
+					};
+				};
+				class Item9
+				{
+					dataType="Object";
+					class PositionInfo
+					{
+						position[]={8469.7168,106.42772,25123.793};
+					};
+					side="West";
+					flags=5;
+					class Attributes
+					{
+						name="bravo_10";
+						isPlayable=1;
+					};
+					id=1020;
+					type="CUP_B_BAF_Soldier_JTAC_MTP";
 					class CustomAttributes
 					{
 						class Attribute0
