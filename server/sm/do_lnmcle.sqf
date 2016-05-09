@@ -4,21 +4,9 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 //land mine clearance mission
 
 //get a good place for minefield
-private ["_myplaces","_meadows","_mydata","_mname","_m1","_exp","_smcleanup","_meadowdata","_mfpos","_minecounter","_mine","_minecone","_dirtohint", "_minename"];
+private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
 _myplaces = selectbestplaces [cpt_position, 1000, "meadow", 50,25];
 _meadows = _myplaces select {(_x select 1) == 1};
- /*
- {
-  _mydata = _x;
-  _mname = (format ["%1",_forEachIndex ]);
-  _m1 = createmarker [_mname,(_mydata select 0)];
-  _m1 setMarkerShape "ICON";
-  _m1 setMarkerType "hd_dot";
-  _exp = [(_mydata select 1),1] call BIS_fnc_cutDecimals;
-  if (_exp ==1) then {_mname setMarkerColor "ColorGreen"};
-  _m1 setMarkerText str _exp;
- }foreach _myplaces;
- */
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 _meadowdata = selectRandom _meadows;
 _mfpos = _meadowdata select 0;
@@ -36,16 +24,22 @@ diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 0 to _numberofmines do
 	{
 	_chosenmine = selectRandom alllandmines;
-	_mine = createMine [_chosenmine, _mfpos, [], 50];
-	minearray pushback _mine;
-	diag_log format ["*** do_m made %3 type %1 at %2", _minecounter, (getpos _mine), ([_chosenmine] call tky_fnc_getscreenname)];
-	_minecone = createVehicle ["RoadCone_L_F", getpos _mine, [],0, "CAN_COLLIDE"];
+	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
+
+	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"];
-	hideObjectGlobal _minecone;
+	diag_log format ["*** cone made at %1", getpos _minecone];
+	//hideObjectGlobal _minecone;
+
+	_mine = createMine [_chosenmine, _realminepos, [], 0];
+	minearray pushback _mine;
+	diag_log format ["***made %3 at %2, number %1, planned position was %4", _minecounter, (getpos _mine), ([_chosenmine] call tky_fnc_getscreenname), _realminepos];
+
   	_minename = format ["mine%1", _minecounter];
   	_m1 = createmarker [_minename ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";
+
 	_smcleanup pushback _mine;
 	_smcleanup pushback  _minecone;
 	};
