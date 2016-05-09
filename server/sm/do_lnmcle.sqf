@@ -30,28 +30,33 @@ while
 		_meadowdata = selectRandom _meadows;
 		_mfpos = _meadowdata select 0;
 		};
-for "_minecounter" from 5 to ((2 * playersNumber west) min 12) do
+
+_numberofmines = ((selectrandom [2,3,4,5]) + (2 * playersnumber west)) min 12;
+diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
+for "_minecounter" from 0 to _numberofmines do
 	{
-	_mine = createMine [(selectRandom alllandmines), _mfpos, [], 50];
+	_chosenmine = selectRandom alllandmines;
+	_mine = createMine [chosenmine, _mfpos, [], 50];
 	minearray pushback _mine;
+	diag_log format ["*** do_m made %3 type %1 at %2", _minecounter, (getpos _mine), _chosenmine];
 	_minecone = createVehicle ["RoadCone_L_F", getpos _mine, [],0, "CAN_COLLIDE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"];
 	hideObjectGlobal _minecone;
-  	_minename = format ["mine%1", _forEachIndex];
+  	_minename = format ["mine%1", _minecounter];
   	_m1 = createmarker [_minename ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";
 	_smcleanup pushback _mine;
 	_smcleanup pushback  _minecone;
 	};
-
+diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 //taskname = "task" + str primarytargetcounter + "sm" + str smcounter;
 //[west, [taskname], ["Clear the landmines", "Clear the landmines","mine1"], _mfpos,1,2,true ] call bis_fnc_taskCreate;
 
 sleep 4;
 
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
-"Local elders have told us there's a minefield %1 the town. We need to clear them without taking casualties." remoteexec ["hint", -2];
+(format ["Local elders have told us there's a minefield %1 the town. We need to clear them without taking casualties.", _dirtohint]) remoteexec ["hint", -2];
 waitUntil {sleep 3;false};
 while {true} do
 	{
