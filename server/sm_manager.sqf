@@ -38,7 +38,7 @@ _smtypearray = [
  ];
 
 
-for "mycounter" from 0 to _sm_required do
+for "mycounter" from 1 to _sm_required do
 	{
 	smcounter = mycounter;
 	sleep 1;
@@ -51,18 +51,21 @@ for "mycounter" from 0 to _sm_required do
 
 	//succeed or fail?
 
-	if (missionsuccess) then
+	if not (missionsuccess) then
 		{
+		format ["%1", failtext] remoteexec ["hint", -2];
+		mycounter = mycounter -1;
+		sleep 10;
 
 		}
 
 
 	};
 
-hint parseText "<t size='1.6' font='PuristaBold' color='#ff0000' underline='true'>AUTHORITY</t>";
 
 
 
+		"ALL MISSIONS COMPLETED" remoteexec ["hint", -2];
 
 
 
