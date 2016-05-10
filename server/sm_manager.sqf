@@ -49,10 +49,17 @@ for "mycounter" from 0 to _sm_required do
 	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
 
+	//succeed or fail?
+
+	if (missionsuccess) then
+		{
+
+		}
+
 
 	};
 
-
+hint parseText "<t size='1.6' font='PuristaBold' color='#ff0000' underline='true'>AUTHORITY</t>";
 
 
 

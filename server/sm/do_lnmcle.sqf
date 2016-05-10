@@ -51,7 +51,7 @@ sleep 4;
 
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
 (format ["Local elders have told us there's a minefield %1the town. We need to clear them without taking casualties.", _dirtohint]) remoteexec ["hint", -2];
-waitUntil {sleep 3;false};
+
 while {true} do
 	{
 	sleep 3;
