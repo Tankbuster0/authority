@@ -20,7 +20,7 @@ reinforcementcounter = 0;
 captivekillcounter = 0;
 
 prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_MCV80_GB_W_SLAT","CUP_B_MCV80_GB_W","CUP_B_Mastiff_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","CUP_B_FV432_Bulldog_GB_W_RWS","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W"];
-aplandmines = ["APERSBoundingMine","APERSMine"];
+aplandmines = ["ModuleMine_APERSBoundingMine_F"];  //APERSBoundingMine APERSMine
 civs = ["CUP_C_C_Worker_01","CUP_C_C_Worker_02","CUP_C_C_Worker_03","CUP_C_C_Worker_04","CUP_C_C_Rocker_02","CUP_C_C_Woodlander_04","CUP_C_C_Worker_05","CUP_C_C_Woodlander_01","CUP_C_C_Woodlander_02","CUP_C_C_Woodlander_03",
 	   "CUP_C_C_Villager_01","CUP_C_C_Villager_02","CUP_C_C_Villager_03","CUP_C_C_Villager_04","CUP_C_C_Rocker_01","CUP_C_C_Profiteer_04","CUP_C_C_Citizen_01","CUP_C_C_Profiteer_03","CUP_C_C_Profiteer_02","CUP_C_C_Profiteer_01",
 	   "CUP_C_C_Rocker_04","CUP_C_C_Rocker_03","CUP_C_C_Citizen_02","CUP_C_C_Citizen_03","CUP_C_C_Citizen_04","CUP_C_C_Mechanic_01","CUP_C_C_Woodlander_02","CUP_C_C_Mechanic_02","CUP_C_C_Mechanic_03","C_man_1","C_man_1_1_F",
