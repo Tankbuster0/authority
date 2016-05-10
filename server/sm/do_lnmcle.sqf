@@ -27,7 +27,7 @@ for "_minecounter" from 0 to _numberofmines do
 	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
 
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
-	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"];
+	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"; failtext = "One of the mines has gone off. You failed the task."];
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	//hideObjectGlobal _minecone;
 

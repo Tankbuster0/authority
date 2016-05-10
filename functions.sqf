@@ -37,7 +37,9 @@ tky_fnc_getscreenname = {
 tky_fnc_hintandhqchat =
 	{
 	private ["_mytext"];
-	hint format ["AUTHORITY\n===========\n %1", _mytext];
-	[west, "HQ"] commandchat (format ["%1",_mytext]);
-
+	params ["_mytext"];
+	format ["AUTHORITY\n===========\n %1", _mytext] remoteexec ["hint", -2];
+	//remoteexec []
+	//[west, "HQ"] commandchat (format ["%1",_mytext]);
+	//  got confused. might come back ti this :)
 	};
