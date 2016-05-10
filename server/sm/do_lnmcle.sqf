@@ -63,5 +63,6 @@ while {missionactive} do
 		};
 
 	};
+{deletevehicle}foreach _smcleanup;
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
