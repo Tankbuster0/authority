@@ -28,7 +28,8 @@ for "_minecounter" from 1 to _numberofmines do
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	diag_log format ["*** cone made at %1", getpos _minecone];
-	_mine = createMine [_chosenmine, _realminepos, [], 0];
+	_mine = _chosenmine createvehicle _realminepos;
+	//_mine = createMine [_chosenmine, _realminepos, [], 0];
 	_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
     _defuseHelper attachTo [_mine, [0,0,0]];
     _defuseHelper setVariable ["ACE_explosives_Explosive",_mine, true];
