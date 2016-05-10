@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3124;
+		nextID=3133;
 	};
 	class Camera
 	{
-		pos[]={8461.6777,110.11794,25125.18};
+		pos[]={8454.3457,110.11794,25124.41};
 		dir[]={0.89916718,-0.42760125,0.094291352};
 		up[]={0.42538741,0.90389532,0.044603933};
 		aside[]={0.10430718,-6.5947643e-007,-0.99465799};
@@ -982,6 +982,7 @@ class Mission
 					};
 					id=1019;
 					type="CUP_B_BAF_Soldier_JTAC_MTP";
+					atlOffset=7.6293945e-006;
 					class CustomAttributes
 					{
 						class Attribute0

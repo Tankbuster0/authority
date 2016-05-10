@@ -33,3 +33,11 @@ tky_fnc_getscreenname = {
 	_ret = getText (configFile >> _cfg_type >> _type >> "displayName");
 	_ret
 };
+
+tky_fnc_hintandhqchat =
+	{
+	private ["_mytext"];
+	hint format ["AUTHORITY\n===========\n %1", _mytext];
+	[west, "HQ"] commandchat (format ["%1",_mytext]);
+
+	};
