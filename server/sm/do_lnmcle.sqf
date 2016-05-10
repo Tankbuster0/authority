@@ -31,10 +31,9 @@ for "_minecounter" from 1 to _numberofmines do
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
 	_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
     _defuseHelper attachTo [_mine, [0,0,0]];
-    _defuseHelper setVariable ["ACE_explosives_Explosive",_mine];
+    _defuseHelper setVariable ["ACE_explosives_Explosive",_mine, true];
 	minearray pushback _mine;
 	diag_log format ["***made %3 at %2, number %1, planned position was %4", _minecounter, (getpos _mine), _chosenmine, _realminepos];
-
   	_minemarkername = format ["mine%1", _minecounter];
   	_m1 = createmarker [_minemarkername ,getpos _mine];
   	_m1 setMarkerShape "ICON";
@@ -45,13 +44,9 @@ for "_minecounter" from 1 to _numberofmines do
 	_smcleanup pushback  _minecone;
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
-//taskname = "task" + str primarytargetcounter + "sm" + str smcounter;
-//[west, [taskname], ["Clear the landmines", "Clear the landmines","mine1"], _mfpos,1,2,true ] call bis_fnc_taskCreate;
-
 sleep 4;
-
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
-(format ["Local elders have told us there's a minefield %1the town. We need to clear them without taking casualties.", _dirtohint]) remoteexec ["hint", -2];
+(format ["Local elders have told us there's a minefield %1the town. We need to defuse them.", _dirtohint]) remoteexec ["hint", -2];
 
 while {missionactive} do
 	{
