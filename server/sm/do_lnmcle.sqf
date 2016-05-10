@@ -21,25 +21,26 @@ while
 
 _numberofmines = ((selectrandom [2,3,4,5]) + (2 * playersnumber west)) min 12;
 diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
-for "_minecounter" from 0 to _numberofmines do
+for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom aplandmines;
 	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
-
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	diag_log format ["*** cone made at %1", getpos _minecone];
-	//hideObjectGlobal _minecone;
-
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
+	_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
+    _defuseHelper attachTo [_mine, [0,0,0]];
+    _defuseHelper setVariable ["ACE_explosives_Explosive",_mine];
 	minearray pushback _mine;
 	diag_log format ["***made %3 at %2, number %1, planned position was %4", _minecounter, (getpos _mine), _chosenmine, _realminepos];
 
-  	_minename = format ["mine%1", _minecounter];
-  	_m1 = createmarker [_minename ,getpos _mine];
+  	_minemarkername = format ["mine%1", _minecounter];
+  	_m1 = createmarker [_minemarkername ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";
 
+  	_smcleanup pushback _defuseHelper;
 	_smcleanup pushback _mine;
 	_smcleanup pushback  _minecone;
 	};
@@ -63,6 +64,10 @@ while {missionactive} do
 		};
 
 	};
-{deletevehicle}foreach _smcleanup;
+{deletevehicle _x} foreach _smcleanup;
+for "_zz" from 0 to _numberofmines do
+	{
+	deleteMarker format ["mine%1", _zz];
+	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
