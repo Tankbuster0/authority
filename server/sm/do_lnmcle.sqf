@@ -27,7 +27,7 @@ for "_minecounter" from 0 to _numberofmines do
 	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
 
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
-	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false"; failtext = "One of the mines has gone off. You failed the task."];
+	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	//hideObjectGlobal _minecone;
 
@@ -52,7 +52,7 @@ sleep 4;
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
 (format ["Local elders have told us there's a minefield %1the town. We need to clear them without taking casualties.", _dirtohint]) remoteexec ["hint", -2];
 
-while {true} do
+while {missionactive} do
 	{
 	sleep 3;
 	if (({mineactive _x} count minearray) isEqualTo 0) then
