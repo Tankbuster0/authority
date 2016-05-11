@@ -105,6 +105,10 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	publicVariable "fobveh";
 	["ace_wheel", fobveh, 6, false] call ace_cargo_fnc_addCargoItem;
 	};
+if (_cargo iskindof "Cargo_Base_F") then //
+	{
+	container = _cargo;
+	}
 _cargo attachto [_para, [0,0,0]];
 _cargo allowDamage false;
 /*
