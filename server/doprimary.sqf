@@ -29,6 +29,7 @@ captivekillcounter = 0;
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
+cpt_name = (nextpt getVariable "targetname");
 civkillcount = 0;
 primarytarget = nextpt;
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
