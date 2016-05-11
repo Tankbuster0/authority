@@ -2,6 +2,7 @@
 _myscript = "assaultphasefinished.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_ruinstartcount","_ruinendcount","_heartandmindscore","_sm_required","_sm_hint","_smmhandle", "_handle2"];
+if (primarytargetcounter isEqualTo 1) then {nul = execVM "server\movebase.sqf"};
 if (cpt_type != 1) exitWith {nul = execVM "server\primarytargetcleared.sqf"};
 _ruinstartcount = nextpt getVariable "targetruincount";
 _ruinendcount = (count (cpt_position nearObjects ["Ruins", cpt_radius]));
