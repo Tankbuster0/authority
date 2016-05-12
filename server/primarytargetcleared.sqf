@@ -28,7 +28,7 @@ _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 //sleep 180;
 sleep 30;
 primarytargetcounter = primarytargetcounter + 1;
-sleep 10;
+sleep 40;
 _nul = execVM "server\doprimary.sqf";
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

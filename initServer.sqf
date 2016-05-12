@@ -43,6 +43,7 @@ foundairfields = [];
 			    else
 			    {"fobmarker" setMarkerAlpha 0};
 		   };
+		/*
 		if (not isNull dropveh) then
 			{
 			"dropvehmarker" setmarkerpos getpos dropveh;
@@ -50,6 +51,7 @@ foundairfields = [];
 			}
 			else
 			{"dropvehmarker" setMarkerAlpha 0};
+		*/
 		};
 	};
 

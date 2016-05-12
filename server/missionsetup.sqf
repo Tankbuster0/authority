@@ -48,7 +48,7 @@ if (isNil {_frigateposdata}) then
 	{
 	for "_l" from 0 to (count _frigateposdata) do
 		{
-		_mydata1 = _frigateposdata select _l;
+		_mydata1 = (_frigateposdata select _l);
 		if ((_mydata1 select 1) > 30) exitWith {_fpos = _mydata1 select 0};
 
 		};
