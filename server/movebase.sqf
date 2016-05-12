@@ -58,6 +58,10 @@ waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {(getposATL mycontainer select 2) < 2};
 deletevehicle mycontainer;
 [cpt_position, 0, _composition] call BIS_fnc_ObjectsMapper;
+_mypos = getpos ammoboxcone;
+deleteVehicle ammoboxcone;
+ammobox setpos _mypos;
+baseflag setFlagTexture "pics\wasp-inc_dirty_flag.paa";
 
 
 
