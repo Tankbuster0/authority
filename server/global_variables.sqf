@@ -2,6 +2,8 @@
 //by tankbuster
 islandcentre = getarray (configFile >> "CfgWorlds" >> "Altis" >> "centerPosition");
 
+testservernames = ["Tanky-Testy"];
+
 opfor_reinf_truck_soldier = "CUP_O_RU_Soldier_GL_EMR";
 opfor_CQB_soldier = ["CUP_O_RUS_Soldier_TL_Autumn","CUP_O_RUS_SpecOps_Autumn","CUP_O_RUS_SpecOps_SD_Autumn","CUP_O_RUS_SpecOps_Night_Autumn","CUP_O_RUS_Saboteur_Autumn","CUP_O_RUS_Soldier_GL_Autumn","CUP_O_RUS_Soldier_Marksman_Autumn","CUP_O_RUS_Commander_Autumn","CUP_O_RUS_SpecOps_Scout_Night_Autumn","CUP_O_RUS_SpecOps_Scout_Night_Autumn","CUP_O_RUS_SpecOps_Scout_Autumn"];
 opfor_reinf_truck =  "CUP_O_Ural_Open_RU";

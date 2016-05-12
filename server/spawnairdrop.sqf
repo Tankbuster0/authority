@@ -88,7 +88,6 @@ diag_log format ["*** _cargo is %1", typeOf _cargo];
 if (_droptype == forwardpointvehicleclassname) then
 	{
 	forward = _cargo;
-	forward setpos (_para modelToWorld [0,0,-10]);
 	_cargo addMPEventHandler ["MPkilled", {sleep 1 + (3 *(random 2)); nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	[forward, "[[[[],[]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AT"",""CUP_Stinger_M""],[25,25,25,25,20,25,20,20,15,20,20,10]],[[""ACE_fieldDressing"",""ACE_bloodIV"",""ACE_morphine""],[30,20,30]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
 	["ace_wheel", forward, 6, false] call ace_cargo_fnc_addCargoItem;
