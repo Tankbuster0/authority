@@ -52,7 +52,6 @@ _dropgroup setCombatMode "BLUE";
 _dropgroup allowFleeing 0;
 (driver _dropveh) setskill ["courage",1];
 (driver _dropveh) disableAI "FSM"; (driver _dropveh) disableAI "TARGET"; (driver _dropveh) disableAI "AUTOTARGET"; (driver _dropveh) disableAI "AUTOCOMBAT";
-//dropveh domove _droppos;
 
 _dwp2 = _dropgroup addWaypoint [_startpos,0];
 _dwp2 setWaypointType "MOVE";
@@ -64,7 +63,7 @@ _dwp2 setWaypointScript "deleteVehiclecrew _dropveh; deleteVehicle _dropveh;'_dr
 waituntil {sleep 0.5; (((_dropveh distance2D _droppos) < 1000) or (serverTime > (_mytime + 90))) };
 if (serverTime > (_mytime + 90)) exitWith
 	{
-	//diag_log "***spawnairdrop timed out. ";
+
 	{ _dropveh deleteVehicleCrew _x} foreach crew _dropveh;
 	deleteVehicle _dropveh;
 	while {(count (waypoints _dropgroup)) > 0} do
@@ -80,9 +79,8 @@ if (serverTime > (_mytime + 90)) exitWith
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 _dropveh flyinheight 100;
-//dropveh animateDoor something etc blah blah;
 waitUntil {(_dropveh distance2D _droppos) < 100};
-//_para = createVehicle ["B_Parachute_02_F", (_dropveh modelToWorld [0,-12,0]), [],0, "NONE"];
+
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 diag_log format ["*** spawnairdrop makes %1", _droptype];
 _cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,0,-10]), [],0, "FLY"];
