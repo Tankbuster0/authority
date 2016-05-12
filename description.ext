@@ -3,7 +3,6 @@
 author = Tankbuster;
 onLoadName = "Authority";
 onLoadMissionTime = 1;
-loadscreen = "Img\Overlay.jpg";
 joinUnassigned = 0;
 saving = 0;
 enableDebugConsole = 1;
@@ -26,7 +25,6 @@ class Header {
 	maxPlayers = 40;
 	playerCountMultipleOf = 1;
 };
-overviewPicture = "Img\Snapshot.jpg";
 disabledAI = 1;
 showGPS = 1;
 showCompass = 1;

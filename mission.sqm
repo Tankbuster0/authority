@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3187;
+		nextID=3205;
 	};
 	class Camera
 	{
@@ -82,7 +82,9 @@ randomSeed=15772250;
 class ScenarioData
 {
 	author="Tankbuster and WASP clan";
+	overViewPicture="pics\auth1.paa";
 	onLoadMission="Please wait. Mission setting up.";
+	loadScreen="pics\auth1.paa";
 	joinUnassigned=0;
 	class Header
 	{

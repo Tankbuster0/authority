@@ -2,7 +2,7 @@
 //execvmd by assaultphasefinished
 _myscript = "movebase";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_blubasedroppos","_composition","_handle"];
+private ["_blubasedroppos","_composition","_handle", "_mypos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
 
@@ -44,7 +44,7 @@ _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F",
 diag_log "*** returned from spawnairdrop";
 sleep 10;
 diag_log "***clearing landing point";
-_naughtybaseobjects = _blubasedroppos nearobjects 7;
+_naughtybaseobjects = _blubasedroppos nearobjects 11;
 if (count _naughtybaseobjects > 0) then
 	{
 		{
