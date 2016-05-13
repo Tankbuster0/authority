@@ -58,7 +58,7 @@ waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {(getposATL mycontainer select 2) < 2};
 deletevehicle mycontainer;
 blubaseobjects = [cpt_position, 0, _composition] call BIS_fnc_ObjectsMapper;
-{setdamage 0;} foreach blubaseobjects;
+{_x setdamage 0;} foreach blubaseobjects;
 _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
 ammobox setpos _mypos;
