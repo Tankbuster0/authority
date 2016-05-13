@@ -83,7 +83,7 @@ waitUntil {(_dropveh distance2D _droppos) < 100};
 
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 diag_log format ["*** spawnairdrop makes %1", _droptype];
-_cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,0,-10]), [],0, "FLY"];
+_cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-20,-7]), [],0, "FLY"];
 diag_log format ["*** _cargo is %1", typeOf _cargo];
 if (_droptype == forwardpointvehicleclassname) then
 	{
