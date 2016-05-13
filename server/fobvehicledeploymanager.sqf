@@ -9,7 +9,7 @@ if not (fobdeployed) then
 	[5,// nothing within this distance
 	-1,// biki says set this to -1
 	0.5,// max gradient (upto about 27degrees)
-	7,// how far to check gradient
+	5,// how far to check gradient
 	0,// cannot be water
 	false,// ignore shoreline detection
 	 objNull// ignore unit in object detection
@@ -21,7 +21,8 @@ if not (fobdeployed) then
 		"Not enough space or too steep to build FOB here." remoteexec ["hint", fobveh];
 		[fobveh,1] remoteexec ["tky_fnc_setfuel"];
 		sleep 4;
-		} else
+		}
+		else
 		{
 		diag_log "*** fdm deploying";
 		//hint "Deploying FOB";
