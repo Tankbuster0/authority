@@ -44,7 +44,7 @@ _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F",
 diag_log "*** returned from spawnairdrop";
 sleep 10;
 diag_log "***clearing landing point";
-_naughtybaseobjects = _blubasedroppos nearobjects 11;
+_naughtybaseobjects = _blubasedroppos nearobjects 15;
 if (count _naughtybaseobjects > 0) then
 	{
 		{
