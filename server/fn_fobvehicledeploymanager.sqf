@@ -26,12 +26,13 @@ if not (fobdeployed) then
 		diag_log "*** fdm deploying";
 		//hint "Deploying FOB";
 		"Deploying FOB." remoteExec ["hint", fobveh];
+		[fobveh, true] remoteexec ["lockdriver"];
 		sleep 2;
 		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 		sleep 0.5;
 		fobbox setpos (position fobboxlocator);
 		// Make editing area for curator
-		(driver fobveh) assignCurator cur;
+		(commander fobveh) assignCurator cur;
 		[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
 		cur addCuratorEditingArea [1,(position fobveh),50];
 		cur addCuratorCameraArea [1,(position fobveh),50];
@@ -53,6 +54,7 @@ else
 		sleep 2;
 		{deleteVehicle _x} foreach fobjects;
 		fobdeployed = false;
+		[fobveh, false] remoteexec ["lockdriver"];
 		fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
 		publicVariable "fobdeployed";
 		// Remove Editing Area and curator owner
