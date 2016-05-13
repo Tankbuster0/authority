@@ -10,10 +10,5 @@ if (isNil{fobveh}) then
 	fobveh = [missionNamespace, "fobveh", nil] call BIS_fnc_getServerVariable;
 	};
 
-//fobdeployactionid = player addaction ["Deploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "(typeof (vehicle player) == 'CUP_B_Mastiff_HMG_GB_W' ) and (round (speed vehicle player) isEqualTo 0)"];
 
-//sleep 10;
-diag_log format ["***4 pos player %1", getpos player];
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
-
-// (player isEqualTo (driver fobveh))
