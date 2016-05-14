@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3232;
+		nextID=3241;
 	};
 	class Camera
 	{
-		pos[]={8452.751,118.12082,25190.373};
-		dir[]={-0.17516054,-0.23055957,-0.95728594};
-		up[]={-0.04153078,0.97300124,-0.22695476};
-		aside[]={-0.98378092,1.0349904e-006,0.18000318};
+		pos[]={8466.1348,118.12082,25162.033};
+		dir[]={-0.019724412,-0.3652688,-0.93082058};
+		up[]={-0.0077448124,0.93082827,-0.36532462};
+		aside[]={-0.99988872,3.0328192e-007,0.021182761};
 	};
 };
 binarizationWanted=0;
@@ -984,7 +984,6 @@ class Mission
 					};
 					id=1019;
 					type="CUP_B_BAF_Soldier_JTAC_MTP";
-					atlOffset=7.6293945e-006;
 					class CustomAttributes
 					{
 						class Attribute0
