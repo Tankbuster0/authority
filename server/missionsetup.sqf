@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "missionssetup";
+_myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfield","_newdrypos","_1pos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
