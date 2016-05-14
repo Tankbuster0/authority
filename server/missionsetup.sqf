@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_airfield","_newdrypos","_1pos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos"];
+private ["_airfield","_newdrypos","_1pos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 enableVehicleCrashes = false;
 _newdrypos =[0,0,0];
@@ -33,6 +33,9 @@ for "_q" from 1 to 3 do
 	};
 _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
+forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetout.sqf"}];
+forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
+forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 //find a pos for the frigate
 _fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
@@ -54,8 +57,66 @@ if (isNil {_frigateposdata}) then
 		};
 	};
 
+//Make stuff
+// Frig
 frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
+// Arty Vehicle
+_pos = position frigate;
+_sr = [_pos, 0, "B_MBT_01_arty_F", West] call BIS_fnc_spawnVehicle;
+arty = _sr select 0;
+_dd = driver arty;
+moveOut (_dd);
+_dd setpos [0,0,0];
+deleteVehicle _dd;
+_az =  getDir frigate;
+_gopos = [position frigate, 35.5, +_az] call BIS_fnc_relPos;
+_gopos = [_gopos select 0, _gopos select 1, (_gopos select 2) + 10.8];
+
+// Take out advanced ammo types;
+Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
+Arty removeMagazinesTurret ["6Rnd_155mm_Mo_AT_mine",[0]];
+Arty removeMagazineTurret ["2Rnd_155mm_Mo_guided",[0]];
+Arty removeMagazinesTurret ["6Rnd_155mm_Mo_mine",[0]];
+
+// Support Arty Frig
+ArtySupport synchronizeObjectsAdd [arty];
+arty synchronizeObjectsAdd [ArtySupport];
+
+//Setup requestor limit values
+{
+	[SupportReq, _x, 0] call BIS_fnc_limitSupport;
+}forEach [
+	"Artillery",
+	"CAS_Heli",
+	"CAS_Bombing",
+	"UAV",
+	"Drop",
+	"Transport"
+];
+
+
+//Setup provider values
+{
+	ArtySupport setVariable [(_x select 0),(_x select 1)];
+}forEach [
+	["BIS_SUPP_vehicles",[]],        //types of vehicles to use
+	["BIS_SUPP_vehicleinit",""],    //init code for vehicle
+	["BIS_SUPP_filter","SIDE"]        //whether default vehicles comes from "SIDE" or "FACTION"
+];
+
+//Set our limit on the requester for artillery to 1
+[SupportReq, "Artillery", 1] call BIS_fnc_limitSupport;
+
+
+BIS_supp_refresh = TRUE;
+
+publicVariable "BIS_supp_refresh";
+
+arty setpos _gopos;
+arty attachTo [frigate];
+
+
 // authfrigate = createvehicle ["cup frigate", _fpos]
 
 missionrunning = true; publicVariable "missionrunning";

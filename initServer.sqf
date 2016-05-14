@@ -18,6 +18,11 @@ primarytargetcounter = 1;
 previousmission = locationNull;
 foundairfields = [];
 
+// Place support modules
+_logicGroup = createGroup sideLogic;
+SupportReq = _logicGroup createUnit ["SupportRequester",[0,0,0], [], 0, "FORM"];
+ArtySupport = _logicGroup createUnit ["SupportProvider_Artillery", [0,0,0], [], 0, "FORM"];
+
 [] spawn //moving markers on forward and fob
 	{
 	while {true} do

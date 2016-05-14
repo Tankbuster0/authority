@@ -22,6 +22,11 @@ endLoadingScreen;
 //Save initial loadout
 [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 
+// Link up stuff if player is JTAC
+if (!isNil "alpha_10" && str player == "alpha_10") then
+	{[alpha_10, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;} else {};
+if (!isNil "bravo_10" && str player == "bravo_10") then 
+{[bravo_10, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;} else {};
 
 //Save loadout when ever we exit an arsenal
 [ missionNamespace, "arsenalClosed", {
