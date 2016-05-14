@@ -14,9 +14,9 @@ while {_newdrypos in [[0,0,0], islandcentre]} do
 	_newdrypos = [_1pos,600,1100, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
 	};
 _newdrypos set [2,0];
-_ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _newdrypos, [],0, "NONE"];
+ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _newdrypos, [],0, "NONE"];
 ammobox setpos _newdrypos;
-ammobox attachTo [_ammoboxpad];
+ammobox attachTo [ammoboxpad];
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
 
 _beachflag = "Flag_Blue_F" createVehicleLocal (_newdrypos);
@@ -53,12 +53,10 @@ if (isNil {_frigateposdata}) then
 
 		};
 	};
- //[[[9772.76,22725.4],56.096],[[9771.98,22725.1],56.0898],[[9772.52,22723.2],55.9945],[[9771.39,22724.9],55.9911],[[9772.36,22726.3],55.9649],[[9771.36,22725.2],55.964],[[9772.15,22726],55.9636],[[9772.32,22723.1],55.9619],[[9771.3,22724.6],55.9423],[[9773.48,22724.1],55.8833]]
 
 frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
 // authfrigate = createvehicle ["cup frigate", _fpos]
-
 
 missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;
