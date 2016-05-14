@@ -4,8 +4,8 @@ if (worldName == "Altis") then
 	{
 	_location = createlocation ["NameLocal",  [20983,7242,25.656], 100,100];
 	_location setText "Feres airfield";
-	_location = createLocation ["NameLocal", [23145,18443.621,3.1900], 100, 100];
-	_location setText "Almyra airfield";
+	//_location = createLocation ["NameLocal", [23145,18443.621,3.1900], 100, 100];
+	//_location setText "Almyra airfield";
 	_location = createLocation ["NameLocal", [9155.25,21538.2,16.0988], 100,100];
 	_location setText "Abdera airfield";
 	};
