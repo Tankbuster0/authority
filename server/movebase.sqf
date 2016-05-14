@@ -61,7 +61,7 @@ blubaseobjects = [cpt_position, 0, _composition] call BIS_fnc_ObjectsMapper;
 {_x setdamage 0;} foreach blubaseobjects;
 _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
-ammobox setpos _mypos;
+ammoboxpad setpos _mypos;
 baseflag setFlagTexture "pics\wasp-inc_dirty_flag.paa";
 
 
