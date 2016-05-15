@@ -106,7 +106,7 @@ arty synchronizeObjectsAdd [ArtySupport];
 ];
 
 //Set our limit on the requester for artillery to 1
-[SupportReq, "Artillery", 1] call BIS_fnc_limitSupport;
+[SupportReq, "Artillery", -1] call BIS_fnc_limitSupport;
 
 
 BIS_supp_refresh = TRUE;
