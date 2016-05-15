@@ -30,9 +30,9 @@ _movePos = param [2];
 _holder = createVehicle ["GroundWeaponHolder", position _unit, [], 0, "CAN_COLLIDE"];
 
 //Mrkr debug
-_m = createMarker [FORMAT["db_mw%1",_holder], position _holder];
-_m setMarkerShape "ICON";
-_m setMarkerType "hd_dot";
+//_m = createMarker [FORMAT["db_mw%1",_holder], position _holder];
+//_m setMarkerShape "ICON";
+//_m setMarkerType "hd_dot";
 
 _holder addItemCargo ["ItemWatch",1];
 {_unit removeMagazine _x} forEach magazines _unit;
