@@ -72,6 +72,7 @@ class cfgFunctions
 			class patrolFnc {};
 			class cleanupoldprimary {};
 			class fobvehicledeploymanager {};
+			class addSupportRequester {};
 		};
 	};
 };
