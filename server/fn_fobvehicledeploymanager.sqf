@@ -29,11 +29,7 @@ if not (fobdeployed) then
 		[fobveh, true] remoteexec ["lockdriver"];
 		//fobveh setHitPointDamage ["HitEngine", 1 ];
 		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
-		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
-		if not (isnull (driver fobveh)) then
-			{
-				{(driver fobveh), ["eject", fobveh] } remoteexec ["action", -2 ];
-			};
+		[(driver fobveh), ["eject", fobveh] ] remoteexec ["action", fobveh ];
 		sleep 2;
 		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 		sleep 0.5;
@@ -44,7 +40,7 @@ if not (fobdeployed) then
 		cur addCuratorEditingArea [1,(position fobveh),50];
 		cur addCuratorCameraArea [1,(position fobveh),50];
 		// Hint press button to get in zeus mode
-		"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", fobveh];
+		"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (commander fobveh)];
 		fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
 		sleep 5;
 		};
