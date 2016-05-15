@@ -25,7 +25,7 @@ endLoadingScreen;
 // Link up stuff if player is JTAC
 if (str player == "alpha_10") then
 	{alpha_10 remoteExecCall ["tky_fnc_addSupportRequester", 2, false];} else {};
-if (str player == "bravo_10") then 
+if (str player == "bravo_10") then
 {bravo_10 remoteExecCall ["tky_fnc_addSupportRequester", 2, false];} else {};
 
 //Save loadout when ever we exit an arsenal
@@ -59,7 +59,7 @@ player addEventHandler [ "Respawn", {
 				sleep playerRespawnTime;
 				//systemChat "Respawning - loading last saved";
 				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
-				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "(typeof (vehicle player) isEqualTo 'CUP_B_Mastiff_HMG_GB_W' ) and (round (speed vehicle player) isEqualTo 0) and (player isEqualTo (commander (vehicle player) ) )"];
+				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "(typeof (vehicle player) isEqualTo 'CUP_B_Mastiff_HMG_GB_W' ) and (round (speed vehicle player) isEqualTo 0) and (player isEqualTo (commander (vehicle player) ) ) and (not (isEngineOn (vehicle player))) )"];
 			};
 		};
 
