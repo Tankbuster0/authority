@@ -26,8 +26,14 @@ if not (fobdeployed) then
 		diag_log "*** fdm deploying";
 		//hint "Deploying FOB";
 		"Deploying FOB." remoteExec ["hint", fobveh];
-		[fobveh, true] remoteexec ["lockdriver"];
-
+		//[fobveh, true] remoteexec ["lockdriver"];
+		//fobveh setHitPointDamage ["HitEngine", 1 ];
+		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
+		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
+		if not (isnull (driver fobveh)) then
+			{
+				{(driver fobveh), ["eject", fobveh] } remoteexec ["action", -2 ];
+			};
 		sleep 2;
 		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 		sleep 0.5;
@@ -56,6 +62,7 @@ else
 		{deleteVehicle _x} foreach fobjects;
 		fobdeployed = false;
 		[fobveh, false] remoteexec ["lockdriver"];
+		fobveh setHitPointDamage ["HitEngine", 0 ];
 		fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
 		publicVariable "fobdeployed";
 		// Remove Editing Area and curator owner
