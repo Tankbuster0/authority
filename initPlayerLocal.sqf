@@ -22,12 +22,6 @@ endLoadingScreen;
 //Save initial loadout
 [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 
-// Link up stuff if player is JTAC
-if (str player == "alpha_10") then
-	{alpha_10 remoteExecCall ["tky_fnc_addSupportRequester", 2, false];} else {};
-if (str player == "bravo_10") then
-{bravo_10 remoteExecCall ["tky_fnc_addSupportRequester", 2, false];} else {};
-
 //Save loadout when ever we exit an arsenal
 [ missionNamespace, "arsenalClosed", {
 	//systemChat "Arsenal closed";
@@ -68,5 +62,12 @@ player addEventHandler [ "Respawn", {
 	};
 }];
 player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
+
+// Arty JIP stuff
+if ((typeOf player) == "CUP_B_BAF_Soldier_JTAC_MTP") then  {
+	player synchronizeObjectsAdd [SupportReq];
+	[player, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
+	BIS_supp_refresh = TRUE;
+};
 
 [] execVM "client\playersetup.sqf";

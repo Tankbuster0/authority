@@ -63,15 +63,9 @@ frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
 // Arty Vehicle
 _pos = position frigate;
-_sr = [_pos, 0, "B_MBT_01_arty_F", West] call BIS_fnc_spawnVehicle;
-arty = _sr select 0;
-_dd = driver arty;
-moveOut (_dd);
-_dd setpos [0,0,0];
-deleteVehicle _dd;
 _az =  getDir frigate;
-_gopos = [position frigate, 35.5, +_az] call BIS_fnc_relPos;
-_gopos = [_gopos select 0, _gopos select 1, (_gopos select 2) + 10.8];
+_gopos = [position frigate, -17.5, +_az] call BIS_fnc_relPos;
+_gopos = [_gopos select 0, _gopos select 1, (_gopos select 2) + 16.4];
 
 // Take out advanced ammo types;
 Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
@@ -80,10 +74,11 @@ Arty removeMagazineTurret ["2Rnd_155mm_Mo_guided",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_mine",[0]];
 
 // Support Arty Frig
-ArtySupport synchronizeObjectsAdd [arty];
-arty synchronizeObjectsAdd [ArtySupport];
+//ArtySupport synchronizeObjectsAdd [Arty];
+//Arty synchronizeObjectsAdd [ArtySupport];
 
 //Setup requestor limit values
+/*
 {
 	[SupportReq, _x, 0] call BIS_fnc_limitSupport;
 }forEach [
@@ -112,9 +107,10 @@ arty synchronizeObjectsAdd [ArtySupport];
 BIS_supp_refresh = TRUE;
 
 publicVariable "BIS_supp_refresh";
+*/
 
-arty setpos _gopos;
-arty attachTo [frigate];
+Arty setpos _gopos;
+Arty attachTo [frigate];
 
 
 // authfrigate = createvehicle ["cup frigate", _fpos]

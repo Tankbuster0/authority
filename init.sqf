@@ -24,6 +24,11 @@ tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;
 execVM "functions.sqf";
 //execVM "intro.sqf";
 
+
+// Arty Support Stuff
+ArtySupport synchronizeObjectsAdd [SupportReq];
+SupportReq synchronizeObjectsAdd [ArtySupport];
+
 // MHQ Curator Build Stuff
 
 // Build Helipad, Can be NULL!
