@@ -1,4 +1,4 @@
 // Add requester to Support Module
 
-hint "Linking Art Support";
+diag_log format ["Linking Arty"];
 [_this, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
