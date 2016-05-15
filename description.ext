@@ -59,6 +59,7 @@ class cfgFunctions
 			class curatorSelectionChanged {};
 			class resetCuratorBuildlist {};
 			class addAceInterToCaptive {};
+			class addSupportRequester {};
 		};
 		class auth_server
 		{
@@ -72,7 +73,6 @@ class cfgFunctions
 			class patrolFnc {};
 			class cleanupoldprimary {};
 			class fobvehicledeploymanager {};
-			class addSupportRequester {};
 		};
 	};
 };
