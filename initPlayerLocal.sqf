@@ -24,9 +24,9 @@ endLoadingScreen;
 
 // Link up stuff if player is JTAC
 if (str player == "alpha_10") then
-	{[alpha_10, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_addSupportLink", 2, false];} else {};
+	{alpha_10 remoteExecCall ["tky_fnc_addSupportRequester", 2, false];} else {};
 if (str player == "bravo_10") then 
-{[bravo_10, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_addSupportLink", 2, false];} else {};
+{bravo_10 remoteExecCall ["tky_fnc_addSupportRequester", 2, false];} else {};
 
 //Save loadout when ever we exit an arsenal
 [ missionNamespace, "arsenalClosed", {
