@@ -2,7 +2,8 @@ _myscript = "handlefobgetseatchanged.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 {
-	[_x, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink", 2, false];
+	if if (str _x == "alpha_10" || str _x == "bravo_10") then {
+	[_x, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink", 2, false];} else {};
 }forEach crew (_this select 0);
 
 if (!isnull (commander (_this select 0)) ) then 
