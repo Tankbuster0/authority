@@ -26,7 +26,7 @@ if not (fobdeployed) then
 		diag_log "*** fdm deploying";
 		//hint "Deploying FOB";
 		"Deploying FOB." remoteExec ["hint", fobveh];
-		//[fobveh, true] remoteexec ["lockdriver"];
+		[fobveh, true] remoteexec ["lockdriver"];
 		//fobveh setHitPointDamage ["HitEngine", 1 ];
 		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
 		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
