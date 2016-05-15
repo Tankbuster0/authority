@@ -5,7 +5,8 @@ if (!isNull(commander (_this select 0))) then
 {
 	if ((_this select 2)  == (commander (_this select 0))) then 
 	{
-		[_this select 2, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
+		//[_this select 2, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
+		[_this select 2, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_addSupportLink", 2, false];
 	} else {};
 } else {};
 //removeAllActions fobveh;
