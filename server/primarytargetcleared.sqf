@@ -27,9 +27,13 @@ _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 	deletevehicle _x;
 } foreach vehiclecleanup;
 {
-	deletevehicle _x
+	deletevehicle _x;
+	sleep 0.05;
 } foreach mancleanup;
-{deleteGroup _x} foreach allGroups;
+{
+	deleteGroup _x;
+	sleep 0.05;
+} foreach allGroups;
 [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 sleep 180;
 
