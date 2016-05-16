@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3340;
+		nextID=3349;
 	};
 	class Camera
 	{
@@ -4902,7 +4902,7 @@ class Mission
 				};
 			};
 			id=921;
-			atlOffset=210.52821;
+			atlOffset=210.52815;
 		};
 		class Item78
 		{
@@ -6459,7 +6459,7 @@ class Mission
 				};
 			};
 			id=955;
-			atlOffset=220.36932;
+			atlOffset=220.37596;
 		};
 		class Item90
 		{
@@ -6596,7 +6596,7 @@ class Mission
 			};
 			id=980;
 			type="CUP_B_AH1_MR_BAF";
-			atlOffset=210.52821;
+			atlOffset=210.52815;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6636,7 +6636,7 @@ class Mission
 			};
 			id=983;
 			type="CUP_B_Merlin_HC3A_GB_Armed";
-			atlOffset=220.36932;
+			atlOffset=220.37596;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6715,7 +6715,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="0 = [""AmmoboxInit"", [this, true]] spawn BIS_fnc_arsenal;";
+				init="_t = this execVM ""Server\setUpBox.sqf"";";
 				name="ammobox";
 			};
 			id=1009;
@@ -6775,7 +6775,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="0 = [""AmmoboxInit"", [this, true]] spawn BIS_fnc_arsenal;";
+				init="_t = this execVM ""Server\setUpBox.sqf"";";
 				name="fobbox";
 			};
 			id=1010;
@@ -6957,7 +6957,6 @@ class Mission
 			name="SupportReq";
 			id=1069;
 			type="SupportRequester";
-			atlOffset=-7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
