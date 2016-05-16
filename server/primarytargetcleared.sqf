@@ -18,11 +18,17 @@ if (primarytargetcounter isEqualTo 1) then {_droptype = fobvehicleclassname} els
 _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 
 {
+	sleep 0.05;
 	_veh = _x;
-	{_veh deleteVehicleCrew _x} foreach crew _veh;
+	{
+		_veh deleteVehicleCrew _x;
+		sleep 0.05;
+	} foreach crew _veh;
 	deletevehicle _x;
 } foreach vehiclecleanup;
-{deletevehicle _x} foreach mancleanup;
+{
+	deletevehicle _x
+} foreach mancleanup;
 {deleteGroup _x} foreach allGroups;
 [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 sleep 180;
