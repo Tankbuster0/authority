@@ -8,11 +8,14 @@ _pos = _this select 0; _nearlogics2 = [];
 _mbi = ["militarybasesincluded", 1] call BIS_fnc_getParamValue;
 _nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
 _removearray = [];
-_nearlogics = nearestObjects [_pos, ["Logic"], 10000];
+_nearlogics = nearestObjects [_pos, ["Logic"], 7000];
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
+	sleep 0.1;
 	_ttype = _x getVariable ["targettype", -1];
+	sleep 0.1;
 	_tname = _x getVariable ["targetname", "Springfield"];
+	sleep 0.1;
 	if ( (isNil "_tstatus") or (_tstatus != 1) or (((_mbi == 0) and (_ttype == 3) )) or ((_pos distance _x) < _nvc)) then {_removearray pushback _x};
 } forEach _nearlogics;
 _nearlogics2 = _nearlogics - _removearray;
