@@ -33,7 +33,7 @@ cpt_name = (nextpt getVariable "targetname");
 civkillcount = 0;
 primarytarget = nextpt;
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
-waitUntil {scriptDone _handle1};
+waitUntil {sleep 0.05;scriptDone _handle1};
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
 // create a marker
@@ -69,7 +69,8 @@ taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
 if ((primarytargetcounter == 1) or (cpt_type != 1)) then {roadblockscleared = true};
 if ((primarytargetcounter > 1)) then
-	{if ((roadblockreturndata select 4) > 0) then // if this isnt the first target and it has roadblocks spawned
+	{
+	if ((roadblockreturndata select 4) > 0) then // if this isnt the first target and it has roadblocks spawned
 		{
 		0 spawn	{
 			while {!roadblockscleared} do
@@ -96,7 +97,6 @@ if ((primarytargetcounter > 1)) then
 		if (cpt_type==1) then {0 = execVM "server\roadreinforcementmanager.sqf";};
 	};
 // air radar controls the opfor reinforcements that are bought in by helicopter
-//_radarpos = [cpt_position,0,(cpt_radius + 100),9,0,10,0] call bis_fnc_findSafePos;
 _radarpos = [] call tky_fnc_findhighground;
 _radartype = selectRandom  opforradartypes;
 pt_radar = createVehicle [_radartype, _radarpos,[],0,"NONE"];

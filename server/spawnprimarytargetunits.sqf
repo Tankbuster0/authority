@@ -1,6 +1,5 @@
-#define filename "spawnprimarytargetunits.sqf"
 //by tankbuster
-_myscript = "spawnprimarytargetunits.sqf";
+_myscript = "spawnprimarytargetunits";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_allcompositionunits","_count","_staticgrpname","_grpname","_mypos","_mydir","_staticgrp","_veh","_patrolinf","_staticveh","_patrolveh","_statictanks","_vehdata","_removeenemyvests","_mygroup","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
 _currentprimarytarget = _this select 0;// receives a logic
@@ -17,17 +16,13 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 	switch (_pt_name) do
 		{
 		case "AAC airfield": {_composition = aaccomposition};
-
-		case "Almyra airfield": {_composition = almyracomposition};
-
+		/*case "Almyra airfield": {_composition = almyracomposition};*/
 		case "Abdera airfield": {_composition = abderacomposition};
-
 		case "Feres airfield": {_composition = ferescomposition};
-
 		case "Molos Airfield":{_composition = moloscomposition};
-
 		};
 	_allcompositionunits = [_pt_pos, 0, _composition] call BIS_fnc_ObjectsMapper;
+	sleep 0.05;
 	{
 	if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";}; }foreach _allcompositionunits;
 	}
@@ -38,6 +33,7 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 
 for "_count" from _start to _lc do
 {
+	sleep 0.1;
 	//diag_log format ["***spu loop %1", _count];
 	_staticgrpname = format ["staticgrp%1", _count];
 	// statics start
@@ -85,7 +81,7 @@ for "_count" from _start to _lc do
 	_veh setdir (_mydir + random 15);
 	createVehicleCrew _veh;
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
-	sleep 0.05;
+	sleep 0.1;
 	// statics end
 
 	// patrolling infantry start
@@ -99,7 +95,7 @@ for "_count" from _start to _lc do
 		};
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
-	sleep 0.05;
+	sleep 0.1;
 
 	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
@@ -132,6 +128,7 @@ for "_count" from _start to _lc do
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
+	sleep 0.02;
 	 }foreach (_allcompositionunits + (units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
@@ -183,6 +180,7 @@ if (_pt_type isEqualTo 1) then
 			_roadnogood = true;
 			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 				{
+				sleep 0.05;
 				_road1 = (selectRandom _townroads);
 				_objs = (getpos _road1) nearEntities ["LandVehicle",5];
 				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) > 1 ))  then {_roadnogood = false};
@@ -199,6 +197,7 @@ if (_pt_type isEqualTo 1) then
 			_crewcount = [(typeof _veh), true] call BIS_fnc_crewCount;
 			for "_ii" from 1 to (random _crewcount) do
 				{
+				sleep 0.05;
 				_unit2 = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
 				_unit2 addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
 				_unit2 moveInAny _veh;
