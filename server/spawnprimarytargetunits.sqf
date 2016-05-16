@@ -85,7 +85,7 @@ for "_count" from _start to _lc do
 	_veh setdir (_mydir + random 15);
 	createVehicleCrew _veh;
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
-	sleep 0.1;
+	sleep 0.05;
 	// statics end
 
 	// patrolling infantry start
@@ -99,7 +99,7 @@ for "_count" from _start to _lc do
 		};
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
-	sleep 0.1;
+	sleep 0.05;
 
 	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
@@ -114,20 +114,20 @@ for "_count" from _start to _lc do
 	_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
 	nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
 	// patrolling  apc/ifv group end
-	sleep 0.1;
+	sleep 0.05;
 	//heavy armour and shit start
 	if ((_pt_type == 1) and (cpt_radius > 150)) then //tanks only spawn at big towns, not at bases or airfields
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
 		_statictanks = [_mypos, east, [_veh, _veh, _veh], [[0,10,0], [5,0,0], [10,0,0]]] call BIS_fnc_spawngroup;
-		sleep 0.1;
+		sleep 0.05;
 	};
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", east] call bis_fnc_spawnVehicle;// spawn another tunguska for fun :)
 	doStop (_vehdata select 0);
 	//heavy armour end
-	sleep 0.1;
+	sleep 0.05;
 // add them all to cleanup arrays
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};

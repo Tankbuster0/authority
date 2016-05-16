@@ -32,7 +32,7 @@ waitUntil {scriptdone _fifthshot};
 
 introended = true; publicVariable "introended";
 
-sleep 0.1;
+sleep 0.05;
 };
 
 cutText ["Good Luck!", "BLACK IN", 3];
