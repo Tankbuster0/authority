@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3349;
+		nextID=3358;
 	};
 	class Camera
 	{
-		pos[]={8466.2998,147.41095,25184.279};
-		dir[]={0.054934997,-0.54836828,-0.83457166};
-		up[]={0.036020599,0.83615321,-0.54727864};
-		aside[]={-0.99795181,-7.5460412e-007,-0.065694235};
+		pos[]={8430.8379,236.79997,25286.736};
+		dir[]={-0.56376302,-0.59065586,-0.57752055};
+		up[]={-0.41265175,0.80684006,-0.42271701};
+		aside[]={-0.71566224,-1.1778902e-006,0.69860756};
 	};
 };
 binarizationWanted=0;
@@ -4902,7 +4902,7 @@ class Mission
 				};
 			};
 			id=921;
-			atlOffset=210.52815;
+			atlOffset=210.52802;
 		};
 		class Item78
 		{
@@ -6459,7 +6459,7 @@ class Mission
 				};
 			};
 			id=955;
-			atlOffset=220.37596;
+			atlOffset=220.39325;
 		};
 		class Item90
 		{
@@ -6596,7 +6596,7 @@ class Mission
 			};
 			id=980;
 			type="CUP_B_AH1_MR_BAF";
-			atlOffset=210.52815;
+			atlOffset=210.52802;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -6636,7 +6636,7 @@ class Mission
 			};
 			id=983;
 			type="CUP_B_Merlin_HC3A_GB_Armed";
-			atlOffset=220.37596;
+			atlOffset=220.39325;
 			class CustomAttributes
 			{
 				class Attribute0
