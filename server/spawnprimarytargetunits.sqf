@@ -154,7 +154,7 @@ if (_pt_type isEqualTo 1) then
 		//civs on foot
 		_townroadsx = _pt_pos nearRoads _pt_radius;
 		_townroads = _townroadsx call BIS_fnc_arrayShuffle;
-		_civcount = (3 * _lc);
+		_civcount = (2 * _lc);
 		_fciv = [];
 		while {count _townroads < _civcount} do {_townroads append _townroads};
 		for "_i" from 1 to _civcount do
