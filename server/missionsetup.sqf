@@ -58,6 +58,7 @@ if (isNil {_frigateposdata}) then
 // Frig
 frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
+frigate setCaptive true;
 // Arty Vehicle
 _pos = position frigate;
 _az =  getDir frigate;
