@@ -28,12 +28,26 @@ for "_q" from 1 to 3 do
 	_mytruck = createVehicle ["CUP_B_LR_Transport_GB_W", _mypos,[],0,"NONE"];
 	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
+	
+// Forward Set up
 _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
 forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetout.sqf"}];
 forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
 forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
+
+{
+	_tmp = Forward call compile format [ "get%1Cargo _this", _x ];
+	_unique = [];
+	{
+		if !( _x in _unique ) then {
+			_unique pushBack _x;
+		};
+	}forEach _tmp;
+	CQBCleanupArr pushBack _unique;
+}forEach [ "backpack", "item", "magazine", "weapon" ];
+
 //find a pos for the frigate
 _fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
 // if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
