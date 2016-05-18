@@ -10,6 +10,8 @@ opfor_reinf_truck =  "CUP_O_Ural_Open_RU";
 opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_Mi8_medevac_RU"];
 
 forwardpointvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
+
+
 fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
 publicVariable "fobvehicleclassname";
 blufordropaircraft = "CUP_B_C130J_GB";

@@ -8,7 +8,7 @@ class EditorData
 	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=1103;
+		nextID=1104;
 	};
 	class MarkerIDProvider
 	{
@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3367;
+		nextID=3385;
 	};
 	class Camera
 	{
