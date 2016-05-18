@@ -30,12 +30,21 @@ cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
 cpt_name = (nextpt getVariable "targetname");
-civkillcount = 0;
+
 primarytarget = nextpt;
+
+// Spawn Enemy Horde.
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 waitUntil {sleep 0.05;scriptDone _handle1};
+
+// Spawn Enemy CQB
+_handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\populateCQBBuildings.sqf";//
+waitUntil {sleep 0.05;scriptDone _handle1};
+
+
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
+
 // create a marker
 cpt_marker = createMarker [("cpt_marker_" + str primarytargetcounter), cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";

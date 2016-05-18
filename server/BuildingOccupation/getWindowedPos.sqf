@@ -26,7 +26,7 @@ _myscript = "fn_p_getWindowPos.sqf";
 	_chkdst = 5;
 
 	_houseDir = getDir _house;
-	if (isNil("fn_p_buildingPos")) then {fn_p_buildingPos = compile preprocessFile "BuildingOccupation\getBuildingPos.sqf";};
+	if (isNil("fn_p_buildingPos")) then {fn_p_buildingPos = compile preprocessFile "Server\BuildingOccupation\getBuildingPos.sqf";};
 	//if (isNil("fn_p_relativePos")) then {fn_p_buildingPos = compile preprocessFile "BuildingOccupation\relativePos.sqf";};
 	_roofedPoses = [];
 	_roofedPoses = [_house,-1,true] call fn_p_buildingPos;

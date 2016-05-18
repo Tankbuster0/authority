@@ -4,7 +4,7 @@
 // Input: Building Position
 // Output: [[Lookout direction, Quality of lookout], [L..,Q..]]
 
-AM_fnc_checkInside = compile preprocessFile "BuildingOccupation\isInsideBuilding.sqf";
+AM_fnc_checkInside = compile preprocessFile "Server\BuildingOccupation\isInsideBuilding.sqf";
 
 params ["_buildPos"];
 private ["_checkDist", "_samplePosASL", "_cansee", "_return" ,"_rDir"];
