@@ -35,7 +35,7 @@ CQBCleanupArr = [];
 prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_MCV80_GB_W_SLAT","CUP_B_MCV80_GB_W","CUP_B_Mastiff_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","CUP_B_FV432_Bulldog_GB_W_RWS","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W"];
 
 // List of useable landmines
-aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives 
+aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives
 civs = ["CUP_C_C_Worker_01","CUP_C_C_Worker_02","CUP_C_C_Worker_03","CUP_C_C_Worker_04","CUP_C_C_Rocker_02","CUP_C_C_Woodlander_04","CUP_C_C_Worker_05","CUP_C_C_Woodlander_01","CUP_C_C_Woodlander_02","CUP_C_C_Woodlander_03",
 	   "CUP_C_C_Villager_01","CUP_C_C_Villager_02","CUP_C_C_Villager_03","CUP_C_C_Villager_04","CUP_C_C_Rocker_01","CUP_C_C_Profiteer_04","CUP_C_C_Citizen_01","CUP_C_C_Profiteer_03","CUP_C_C_Profiteer_02","CUP_C_C_Profiteer_01",
 	   "CUP_C_C_Rocker_04","CUP_C_C_Rocker_03","CUP_C_C_Citizen_02","CUP_C_C_Citizen_03","CUP_C_C_Citizen_04","CUP_C_C_Mechanic_01","CUP_C_C_Woodlander_02","CUP_C_C_Mechanic_02","CUP_C_C_Mechanic_03","C_man_1","C_man_1_1_F",
@@ -376,3 +376,13 @@ molos_blubase =[
 	["CampEast_EP1",[-211.414,-132.053,0.224188],310.509,1,0,[-0.762329,-0.0483798],"","",true,false],
 	["Land_BagBunker_Small_F",[-219.406,-124.318,-0.0262489],129.61,1,0,[3.099,0.0880829],"","",true,false]
 ];
+
+enemyskills =
+
+	[
+		[0.12,0.08,0.50,0.30,0.58,0.35,0.38,0.45,1,0.30],
+		[0.15,0.10,0.55,0.35,0.60,0.38,0.40,0.50,1,0.40],
+		[0.17,0.17,0.60,0.40,0.63,0.40,0.40,0.50,1,0.50],
+		[0.20,0.20,0.65,0.45,0.65,0.42,0.45,0.55,1,0.55],
+		[0.25,0.25,0.70,0.50,0.70,0.50,0.50,0.60,1,0.60]
+	];

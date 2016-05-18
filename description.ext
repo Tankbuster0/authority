@@ -168,4 +168,10 @@ class Params
 			default = 1;
 			texts[] = {"No", "Random for some AI", "Yes"};
 		};
+			class removeenemyvests {
+			title = "Enemy SKill level";
+			values[] = {0,1,2,3,4};
+			default = 2;
+			texts[] = {"Recruit", "Conscript", "Regular","Veteran", "Elite"};
+		};
 };
