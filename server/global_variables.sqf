@@ -5,7 +5,6 @@ islandcentre = getarray (configFile >> "CfgWorlds" >> "Altis" >> "centerPosition
 testservernames = ["Tanky-Testy"];
 
 opfor_reinf_truck_soldier = "CUP_O_RU_Soldier_GL_EMR";
-opfor_CQB_soldier = ["CUP_O_RUS_Soldier_TL_Autumn","CUP_O_RUS_SpecOps_Autumn","CUP_O_RUS_SpecOps_SD_Autumn","CUP_O_RUS_SpecOps_Night_Autumn","CUP_O_RUS_Saboteur_Autumn","CUP_O_RUS_Soldier_GL_Autumn","CUP_O_RUS_Soldier_Marksman_Autumn","CUP_O_RUS_Commander_Autumn","CUP_O_RUS_SpecOps_Scout_Night_Autumn","CUP_O_RUS_SpecOps_Scout_Night_Autumn","CUP_O_RUS_SpecOps_Scout_Autumn"];
 opfor_reinf_truck =  "CUP_O_Ural_Open_RU";
 
 opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_Mi8_medevac_RU"];
@@ -16,15 +15,27 @@ publicVariable "fobvehicleclassname";
 blufordropaircraft = "CUP_B_C130J_GB";
 cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "];
 
+// Variables for HeartandMind SideMission calc
 heartandmindscore = 0;
 civkillcount = 0;
 reinforcementcounter = 0;
 captivekillcounter = 0;
 
+// CQB Arrs
+// CQB Center Troops
+opfor_CQB_soldier = ["CUP_O_RUS_Soldier_TL_Autumn","CUP_O_RUS_SpecOps_Autumn","CUP_O_RUS_SpecOps_SD_Autumn","CUP_O_RUS_SpecOps_Night_Autumn","CUP_O_RUS_Saboteur_Autumn","CUP_O_RUS_Soldier_GL_Autumn","CUP_O_RUS_Soldier_Marksman_Autumn","CUP_O_RUS_Commander_Autumn","CUP_O_RUS_SpecOps_Scout_Night_Autumn","CUP_O_RUS_SpecOps_Scout_Night_Autumn","CUP_O_RUS_SpecOps_Scout_Autumn"];
+opfor_CQB_Outskirt = ["CUP_O_RU_Sniper_KSVK_EMR","CUP_O_RU_Sniper_EMR","CUP_O_RU_Soldier_Marksman_EMR","CUP_O_RUS_Soldier_Marksman_Autumn","CUP_O_RUS_SpecOps_Scout_Autumn"];
+opfor_CQB_Pattio = ["CUP_O_RU_Soldier_Marksman_EMR","CUP_O_RU_Soldier_MG_EMR","CUP_O_RU_Soldier_AR_EMR"];
+
+// Cleanup array of CQB
+CQBCleanupArr = [];
+
+
+// Prizes for Prim Targets
 prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_MCV80_GB_W_SLAT","CUP_B_MCV80_GB_W","CUP_B_Mastiff_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","CUP_B_FV432_Bulldog_GB_W_RWS","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W"];
-//aplandmines = ["ModuleMine_APERSBoundingMine_F"];
-//aplandmines = ["ACE_Explosives_Place_APERSBoundingMine", "ACE_Explosives_Place_APERSMine"]; //APERSBoundingMine APERSMine ace from things/other << spawn at 000
-aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives << spawn and explode but no defuse
+
+// List of useable landmines
+aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives 
 civs = ["CUP_C_C_Worker_01","CUP_C_C_Worker_02","CUP_C_C_Worker_03","CUP_C_C_Worker_04","CUP_C_C_Rocker_02","CUP_C_C_Woodlander_04","CUP_C_C_Worker_05","CUP_C_C_Woodlander_01","CUP_C_C_Woodlander_02","CUP_C_C_Woodlander_03",
 	   "CUP_C_C_Villager_01","CUP_C_C_Villager_02","CUP_C_C_Villager_03","CUP_C_C_Villager_04","CUP_C_C_Rocker_01","CUP_C_C_Profiteer_04","CUP_C_C_Citizen_01","CUP_C_C_Profiteer_03","CUP_C_C_Profiteer_02","CUP_C_C_Profiteer_01",
 	   "CUP_C_C_Rocker_04","CUP_C_C_Rocker_03","CUP_C_C_Citizen_02","CUP_C_C_Citizen_03","CUP_C_C_Citizen_04","CUP_C_C_Mechanic_01","CUP_C_C_Woodlander_02","CUP_C_C_Mechanic_02","CUP_C_C_Mechanic_03","C_man_1","C_man_1_1_F",

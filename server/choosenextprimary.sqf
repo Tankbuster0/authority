@@ -19,12 +19,13 @@ _nearlogics = _pos nearEntities ["Logic", 6000];
 } forEach _nearlogics;
 _nearlogics2 = _nearlogics - _removearray;
 
-_nearlogics2 = _nearlogics - _removearray;
+//_nearlogics2 = _nearlogics - _removearray;
 {
 	_nearlogics2 set [_ForEachIndex, [ _x distance _pos, _x]];
 } foreach _nearlogics2;
 _nearlogics2 resize 2;
 _nextpt1 = selectRandom _nearlogics2;
 _nextpt = _nextpt1 select 1;
+nextpt = _nextpt;
 diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
 nextpt

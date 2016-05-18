@@ -26,4 +26,9 @@ if (isNull previousmission) exitWith {diag_log "***cleanupoldprimary exits becau
 
 {deleteGroup _x} foreach allGroups;
 
+// Delete all CQB stuff (Mines, statics, etc)
+{
+	deleteVehicle _x;
+} forEach CQBCleanupArr;
+
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
