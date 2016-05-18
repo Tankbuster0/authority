@@ -15,16 +15,45 @@ AM_fnc_checkInside = compile preprocessFile "BuildingOccupation\isInsideBuilding
 fn_p_getWindowPos = compile preprocessFile "BuildingOccupation\getWindowedPos.sqf";
 
 params ["_position", "_radiusTarget"];
-private ["_possibleCenterBuildingCount", "_possibleOutskirtBuildingCount", "_centerBuildings", 
+/*private ["_possibleCenterBuildingCount", "_possibleOutskirtBuildingCount", "_centerBuildings", 
 "_outskirtBuildings", "_radius", "_buildingPosList","_ballistradeArray","_windowarray","_watchPos",
-"_ballistradeMax","_maxOutskirtSoldiers","_maxOccupiedCenterSoldiers"];
+"_ballistradeMax","_maxOutskirtSoldiers","_maxOccupiedCenterSoldiers","_maxCenterBallistradeSoldiers","_maxSquadSizeOutskirt","_elligableTripMineBuildings",
+"_maxTripwireMinesBuildings","];*/
 
+// This Array can be used for cleanup. It contains everything non human.
+CQBCleanupArr = [];
+
+//*********************************
+// Main tweakable parameters
+//*********************************
+
+// Maximum implies max possible units. may be less depending on chance %
+
+_possibleCenterBuildingCount = random [7,10,15];
+
+_chanceOfOccupiedSoldier = 80;
+_chanceOfOccupiedStaticMG = 5;
 _maxOccupiedCenterSoldiers = 45;
 
+_chanceOfBallistradeSoldier = 50;
 _maxCenterBallistradeSoldiers = 15;
 
+_chanceTripwireMinesBuildings = 35;
+_maxTripwireMinesBuildings = 5;
+
+_possibleOutskirtBuildingCount = random [0,3,6];
+
+_chanceOfOutskirtSoldier = 100;
 _maxOutskirtSoldiers = 15;
-_maxSquadSizeOutskirt = 3;
+
+// Actually max + 1
+_maxSquadSizeOutskirt = 2;
+
+_elligableTripMineBuildings = [
+["Land_i_House_Big_01_V2_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]], ["Land_u_House_Big_01_V1_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]],
+["Land_i_House_Big_02_V2_F",[[[0,4,-2.5], 0],[[-2.5,-3,-2.5], 0]]], ["Land_i_House_Big_02_V1_F",[[[0,4,-2.5], 0],[[-2.5,-3,-2.5], 0]]]
+];
+//**********************************
 
 // Helper function to quickly create units
 AM_fnc_CreateUnit = {
@@ -48,6 +77,11 @@ AM_fnc_CreateStatic = {
 	params ["_type","_pos","_watchPos","_grp","_dbg"];
 
 	_unit = [_pos, 0,_type, West] call BIS_fnc_spawnVehicle;
+	//(_unit select 0) attachTo [( (position (_unit select 0)) nearestObject "House")];
+	
+	// Add MG to cleanup array;
+	CQBCleanupArr pushBack (_unit select 0);
+	
 	_unit doWatch _watchpos;
 		
 	if (!_dbg) exitWith {_unit};
@@ -55,6 +89,18 @@ AM_fnc_CreateStatic = {
 	_marker1 setMarkerType "hd_dot";	
 	_unit
 };
+
+// Helper function to quickly create mine
+AM_fnc_CreateMine = {
+	params ["_building","_localPos","_dir"];
+	_m = createMine ["APERSTripMine", (_building modelToWorld _localPos) ,[], 0];
+	// Add mine to cleanup array;
+	CQBCleanupArr pushBack _m;
+	
+	_m setDir (getDir _building + _dir);
+	_m
+};
+
 /////////////////////////////////////////////////////
 // Find Buildings with buildingspositions
 //***********************************************
@@ -66,7 +112,6 @@ _radius = 20;
 _buildingPosList = [];
 
 _centerBuildings = [];
-_possibleCenterBuildingCount = random [7,10,15];
 
 _currOccupiedCenterSoldiers = 0;
 
@@ -85,21 +130,27 @@ while { count _buildingPosList < _possibleCenterBuildingCount} do
 	
 	_radius = _radius + 50;
 	
-	if (_radius > (_radiusTarget / 3)) exitWith {diag_log "***populateCQBBuildings: No center buildings found within 250 meters"};
+	if (_radius > (_radiusTarget / 3)) exitWith {diag_log "***populateCQBBuildings: Not enough center buildings found within 250 meters, using what we have"};
 };
 
+//*********************************************
 // Create troops inside buildings near windows
+//*********************************************
 {
+	// Create Units
 	_grp = createGroup west;
 	_windowarray = [_x select 0] call fn_p_getWindowPos;
 	{
 		_watchpos = [_x select 0, 5, _x select 1] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
-		if (random 100 < 5) then 
-		{	
-			//Fun easteregg :D
-			_unit = ["CUP_O_DSHKM_ChDKZ", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateStatic;
-		}else{
-			_unit = ["B_crew_F", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateUnit;
+		if (random 100 < _chanceOfOccupiedSoldier) then 
+		{
+			if (random 100 > (100 - _chanceOfOccupiedStaticMG)) then 
+			{	
+				//Fun easteregg :D
+				_unit = ["CUP_O_DSHKM_ChDKZ", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateStatic;
+			}else{
+				_unit = ["B_crew_F", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateUnit;
+			};
 		};
 		_currOccupiedCenterSoldiers = _currOccupiedCenterSoldiers +1;
 	}foreach _windowarray;// interate through each position within the building
@@ -109,7 +160,36 @@ while { count _buildingPosList < _possibleCenterBuildingCount} do
 	
 } forEach _buildingPosList;
 
+//*********************************************
+// Create tripMines inside buildings
+//*********************************************
+_currentTripMinesBuild = 0;
+{
+	// Array structure is [["Land_i_House_Big_01_V2_F",[[[-0.8,-5.5,-2.5], - 90],[4.5,5,-2.5], + 90]]];
+	_bdng = _x select 0;
+	{
+		diag_log FORMAT ["***populateCQBBuildings: checking house %1 for %2 is %3",(_x select 0), (typeOf _bdng), (_x select 0) isEqualTo (typeOf _bdng)] ;
+		if ( (_x select 0) isEqualTo (typeOf _bdng) ) then
+		{
+			{
+				diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
+				if (random 100 > (100 - _chanceTripwireMinesBuildings)) then 
+				{	
+					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
+				};
+			} forEach (_x select 1);
+			_currentTripMinesBuild = _currentTripMinesBuild + 1;
+		};
+	} forEach _elligableTripMineBuildings; 
+	
+	// Limiter
+	if (_currentTripMinesBuild >= _maxTripwireMinesBuildings) exitWith{};
+	
+} forEach _buildingPosList;
+
+//***************************************
 // Create machinegunners on balistrade
+//****************************************
 _ballistradeCount = 0;
 {
 	_ballistradeArray = [];
@@ -122,18 +202,21 @@ _ballistradeCount = 0;
 		if (! ([_x] call AM_fnc_checkInside) ) then 
 		{
 			_ballistradeArray pushBack _x;
-			_ballistradeCount = _ballistradeCount + 1;
 		};
 	} forEach (_x select 1) ;
 	
-	
 	{
-		_watchpos = [_x, 5, (random 360)] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
-		_unit = ["B_HeavyGunner_F", _x, _watchpos , _grp, false] call AM_fnc_CreateUnit;
+		if (random 100 > (100 - _chanceOfBallistradeSoldier)) then 
+		{
+			_watchpos = [_x, 5, (random 360)] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
+			_unit = ["B_HeavyGunner_F", _x, _watchpos , _grp, false] call AM_fnc_CreateUnit;
+		};
+		_ballistradeCount = _ballistradeCount + 1;
 	}foreach _ballistradeArray;// interate through each position within the building
 	
 } forEach _buildingPosList;
 
+//****************************************************
 ////////////////////////////////////////////////////
 // Occupy outskirt buildings.
 ////////////////////////////////////////////////////
@@ -141,8 +224,6 @@ _radius = 20;
 
 // First index is buildingObj, second index is array of positions.
 _buildingPosList = [];
-
-_possibleOutskirtBuildingCount = random [0,3,6];
 
 _currOutskirtSoldiers = 0;
 _currOutskirtSquadNr = 0;
@@ -172,8 +253,11 @@ BLis = _buildingPosList;
 	
 	_windowarray = [_x select 0] call fn_p_getWindowPos;
 	{
-		_watchpos = [_x select 0, 5, _x select 1] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
-		_unit = ["B_soldier_M_F", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateUnit;
+		if (random 100 > ( 100 - _chanceOfOutskirtSoldier)) then 
+		{
+			_watchpos = [_x select 0, 5, _x select 1] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
+			_unit = ["B_soldier_M_F", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateUnit;
+		};
 		
 		if (_currOutskirtSquadNr >= _maxSquadSizeOutskirt) exitWith{};
 		
