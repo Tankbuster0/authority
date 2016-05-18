@@ -77,7 +77,7 @@ AM_fnc_CreateStatic = {
 
 	params ["_type","_pos","_watchPos","_grp","_dbg"];
 
-	_unit = [_pos, 0,_type, West] call BIS_fnc_spawnVehicle;
+	_unit = [_pos, 0,_type, East] call BIS_fnc_spawnVehicle;
 	//(_unit select 0) attachTo [( (position (_unit select 0)) nearestObject "House")];
 	
 	// Add MG to cleanup array;
