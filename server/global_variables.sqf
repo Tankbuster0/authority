@@ -377,7 +377,7 @@ molos_blubase =[
 	["Land_BagBunker_Small_F",[-219.406,-124.318,-0.0262489],129.61,1,0,[3.099,0.0880829],"","",true,false]
 ];
 
-enemyskills =
+enemyskillsarray =
 
 	[
 		[0.12,0.08,0.50,0.30,0.58,0.35,0.38,0.45,1,0.30],
