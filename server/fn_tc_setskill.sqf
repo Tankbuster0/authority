@@ -11,7 +11,8 @@ so a typical call for this function would be [_myunit, true, true] call tky_fnc_
 _dudes = [_this, 0] call BIS_fnc_param;
 _skills = [_this, 1, true] call BIS_fnc_param;
 _variationflag = [_this, 2, true] call BIS_fnc_param;
-_selectedskill = (enemyskillsarray select ( ["enemyskilllevel", 2] call BIS_fnc_getParamValue;));
+_esl = ["enemyskilllevel", 2] call BIS_fnc_getParamValue;
+_selectedskill = (enemyskillsarray select esl);
 
 if (typeName _dudes isEqualTo "OBJECT") then { _dudes = [_dudes]}; //script has been sent an unit, not a group, put the single unit into an array so we can iterate in the foreach, even though it's only once
 if (typename _dudes isEqualTo "GROUP") then {_dudes = units _dudes};// script has been sent a group, make _dudes an array of its members
