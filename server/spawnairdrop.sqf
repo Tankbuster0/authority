@@ -1,6 +1,6 @@
 _myscript = "spawnairdrop.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_requestedpos","_airtype","_droptype","_droppos","_testradius","_inpos","_mkr","_dropgroup","_startpos","_dir","_veh","_dwp","_dwp2","_smokepos","_smoker1","_para","_cargo","_underground", "_spawndir", "_mytime", "_dropveh"];
+private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_cargo","_nul","_cargopos","_para","_underground","_movingtowardsend","_1pos","_2pos", "_thisaidropiteration"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", blufordropaircraft], // classname of delivering aircraft
@@ -8,6 +8,8 @@ params [
 ["_spawnpoint", [0,0,0]]
 ]; // classname of delivered object
 _mytime = serverTime;
+airdropcounter = airdropcounter +1;
+_thisaidropiteration = airdropcounter;
 // find a good place to land the cargo
 _droppos = [0,0,0]; _testradius = 4;
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
@@ -18,30 +20,43 @@ while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good p
 		_testradius = _testradius * 2;
 	};
 //diag_log format ["*** spawnairdrop decides on %1", _droppos];
-/*_mkr = createMarker ["dropmkr", (_droppos) ];
+
+_mkrnumber = format ["ad%1", _thisaidropiteration];
+_mkr = createMarker [_mkrnumber, (_droppos) ];
 _mkr setMarkerShape "ICON";
 _mkr setMarkerType "hd_dot";
-*/
+_mkrnumber setMarkerText _mkrnumber;
+
 // create the drop veh;
 
 _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if (_spawnpoint isEqualTo [0,0,0]) then
 	{
-	_startpos = [_droppos, (3000 + random 1000), _spawndir] call bis_fnc_relPos;
+	_startpos = [_droppos, (4000 + random 4000), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
 	};
-_startpos set [2, 100];
+_startpos set [2, 200];
 _droppos set [ 2,100];
 _dir = [_startpos, _droppos] call bis_fnc_dirTo;
 
 _veh = [_startpos, _dir, _airtype, _dropgroup] call bis_fnc_spawnVehicle;
+
 _dropveh = (_veh select 0);
+[_dropveh, _mkrnumber] spawn
+	{
+	while {not isNull (_this select 0)} do
+		{
+		(_this select 1) setMarkerPos (getpos (_this select 0));
+		sleep 0.5;
+		};
+	};
+// ^^ marker to follow the c130
 _dropveh setVelocity [200 * (sin _dir), 200 * (cos _dir), 0];
 _dropveh setcaptive true;
-_dropveh flyInHeight 100;
+_dropveh flyInHeight 150;
 
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
@@ -78,12 +93,12 @@ if (serverTime > (_mytime + 90)) exitWith
 	};
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-_dropveh flyinheight 100;
+_dropveh flyinheight 150;
 waitUntil {(_dropveh distance2D _droppos) < 100};
 
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 diag_log format ["*** spawnairdrop makes %1", _droptype];
-_cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-20,-7]), [],0, "FLY"];
+_cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-25,-10]), [],0, "FLY"];
 diag_log format ["*** _cargo is %1", typeOf _cargo];
 if (_droptype == forwardpointvehicleclassname) then
 	{
@@ -110,7 +125,7 @@ if (_cargo iskindof "Cargo_Base_F") then //
 	{
 	mycontainer = _cargo;
 	};
-while {(getPosATL _cargo select 2) > 75} do {sleep 0.1};
+while {(getPosATL _cargo select 2) > 100} do {sleep 0.1};
 diag_log "*** spawnairdrop makes parachute";
 _cargopos = getpos _cargo;
 _para = createVehicle ["B_Parachute_02_F", _cargopos, [],0, "NONE"];
@@ -125,7 +140,7 @@ rope4 = ropeCreate [_para, "SlingLoad0", _cargo, [-1,-5,1.5],7];
 */
 sleep 1;
 [_cargo, _droppos, 0, _para, false ] spawn tky_fnc_mando_chute;
-waitUntil {isTouchingGround _cargo};
+waitUntil {(getposatl _cargo select 2) < 2};
 detach _cargo;
 detach _para;
 
@@ -134,9 +149,18 @@ _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
-["UniqueId",
+
+_dropveh domove _startpos;
+_movingtowardsend = true;
+while {_movingtowardsend} do
 	{
-	{ _dropveh deleteVehicleCrew _x} foreach crew _dropveh;
-	deleteVehicle _dropveh;
-	 }, 30, "seconds"] call BIS_fnc_runlater;
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+	sleep 2;
+	_1pos = getpos _dropveh;
+	sleep 0.2;
+	_2pos = getpos _dropveh;
+	if ((_startpos distance2d _1pos) < (_startpos distance2D _2pos)) then {_movingtowardsend = false};
+	};
+deletemarker _mkrnumber;
+{_dropveh deleteVehicleCrew _x} foreach (crew _dropveh);
+deleteVehicle _dropveh;
+diag_log format ["*** %1 ends %2,%3, iteration %4", _myscript, diag_tickTime, time, _thisaidropiteration];
