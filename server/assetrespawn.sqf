@@ -83,4 +83,3 @@ switch (true) do
 	};
 sleep 8;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
-
