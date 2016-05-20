@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3412;
+		nextID=3430;
 	};
 	class Camera
 	{
-		pos[]={8326.1543,149.40726,25297.553};
-		dir[]={-0.20595133,-0.97865689,-0.0076455954};
-		up[]={-0.97788984,0.20585732,-0.036299787};
-		aside[]={-0.037105247,-4.3933778e-006,0.99942684};
+		pos[]={8426.3008,145.14932,25152.035};
+		dir[]={0.28919199,-0.48038802,-0.82815248};
+		up[]={0.15841079,0.8769685,-0.45364389};
+		aside[]={-0.94419873,1.3853423e-008,-0.32972223};
 	};
 };
 binarizationWanted=0;
@@ -6673,7 +6673,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="forward addMPEventHandler [""Killed"", {nul = [_this select 0, _this select 0] execVM ""server\assetrespawn.sqf""}];";
+				init="forward addMPEventHandler [""Killed"", ""nul = [_this select 0, _this select 0] execVM 'server\assetrespawn.sqf'""];";
 				name="forward";
 			};
 			id=1008;
