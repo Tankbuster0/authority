@@ -28,7 +28,7 @@ for "_q" from 1 to 3 do
 	_mytruck = createVehicle ["CUP_B_LR_Transport_GB_W", _mypos,[],0,"NONE"];
 	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
-	
+
 // Forward Set up
 _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
@@ -52,7 +52,6 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 _fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
 // if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
 _frigateposdata = selectBestPlaces [_mypos, 500, "sea * waterDepth", 10,20];
-diag_log format ["***frigateposdata %1", _frigateposdata];
 // ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
 if (isNil {_frigateposdata}) then
 	{
