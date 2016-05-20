@@ -2,7 +2,7 @@
 _myscript = "assetrespawn.sqf";
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
 
-//if (not isServer) exitWith {};
+if (not isServer) exitWith {};
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
 if (isServer) then {diag_log "***assetrespawn runs on the server!"};
@@ -18,8 +18,11 @@ switch (_newv) do
 	case fobveh: {_typefpv = false; _typefob = true;};
 	default {_typefpv = false; _typefob = false};
 	};
+/*
 if ((_typefpv) and (forwardrespawning)) exitWith {diag_log "***assetrespawn fpv duplication avoided!"};
 if ((_typefob) and (fobrespawning)) exitWith {diag_log "***assetrespawn fob duplication avoided!"};
+*/
+// above code should now be redundant as this ony runs on the server via killed eh (previously was mpkilled)
 if (_typefpv) then
 	{
 	forwardrespawning = true;
