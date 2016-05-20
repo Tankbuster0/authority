@@ -88,7 +88,7 @@ diag_log format ["*** _cargo is %1", typeOf _cargo];
 if (_droptype == forwardpointvehicleclassname) then
 	{
 	forward = _cargo;
-	_cargo addMPEventHandler ["MPkilled", {sleep 1 + (3 *(random 2)); nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
+	_cargo addMPEventHandler ["MPkilled", {nul = [_this select 0, _this select 0] execVM "server\assetrespawn.sqf"}];
 	_cargo addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetout.sqf"}];
 	_cargo addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
 	_cargo addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];

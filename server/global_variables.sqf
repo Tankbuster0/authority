@@ -11,6 +11,7 @@ opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_
 
 forwardpointvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
 
+airdropcounter = 0;
 
 fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
 publicVariable "fobvehicleclassname";
