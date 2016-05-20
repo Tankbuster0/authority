@@ -2,9 +2,13 @@
 _myscript = "assetrespawn.sqf";
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
 
-if (not isServer) exitWith {};
+//if (not isServer) exitWith {};
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
+if (isServer) then {diag_log "***assetrespawn runs on the server!"};
+if (isDedicated) then {diag_log "***assetrespawn runs on dedicated!"};
+if (hasInterface) then (diag_log "***assetrespawn runs on client!");
+
 _newv = _this select 0;
 _oldv = _this select 1;
 diag_log format ["***assetrespawn gets newv %1 and oldv %2", _newv, _oldv];
@@ -57,7 +61,7 @@ switch (true) do
 		{
 		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fpv";
-		
+
 		// Place in standard inventory of Forward
 		{
 			_fn = _x;
@@ -65,11 +69,11 @@ switch (true) do
 			_tar = _tp select 0;
 			{
 				_n = (_tp select 1) select _forEachIndex;
-				_tmp = Forward call compile format [ "_this add%1CargoGlobal[%2,%3]", _fn, _tar, _n ]; 
+				_tmp = Forward call compile format [ "_this add%1CargoGlobal[%2,%3]", _fn, _tar, _n ];
 			} forEach _tar;
-				
+
 		}forEach [ "backpack", "item", "magazine", "weapon" ];
-		
+
 		forwardrespawning = false;
 		publicVariable "forwardrespawning";
 		};
