@@ -7,7 +7,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
 if (isServer) then {diag_log "***assetrespawn runs on the server!"};
 if (isDedicated) then {diag_log "***assetrespawn runs on dedicated!"};
-if (hasInterface) then (diag_log "***assetrespawn runs on client!");
+if (hasInterface) then {diag_log "***assetrespawn runs on client!"};
 
 _newv = _this select 0;
 _oldv = _this select 1;
