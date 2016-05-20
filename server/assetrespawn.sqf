@@ -18,11 +18,7 @@ switch (_newv) do
 	case fobveh: {_typefpv = false; _typefob = true;};
 	default {_typefpv = false; _typefob = false};
 	};
-/*
-if ((_typefpv) and (forwardrespawning)) exitWith {diag_log "***assetrespawn fpv duplication avoided!"};
-if ((_typefob) and (fobrespawning)) exitWith {diag_log "***assetrespawn fob duplication avoided!"};
-*/
-// above code should now be redundant as this ony runs on the server via killed eh (previously was mpkilled)
+
 if (_typefpv) then
 	{
 	forwardrespawning = true;
@@ -44,19 +40,15 @@ _respawns = [west] call bis_fnc_getRespawnPositions;
 //diag_log format ["*** found some respawns %1", _respawns];
 _respawns2 = _respawns - [_newv];
 //diag_log format ["*** rspawns minus the old veh %1", _respawns2];
-//_droppoint = [_respawns2, _newv] call BIS_fnc_nearestPosition; //find the one nearest to the old respawn pos
-_droppoint = (nearestObjects [_oldv, ["Flag_Blue_F"], 10000]) select 0; // get the nearest blue flag. there's 1 at the beach and another at each taken target.
-/*
-_myid = _respawns find _oldv;
- if (_myid > -1) then {[west, _myid] call bis_fnc_removeRespawnPosition;};
- */
-switch (typeName _droppoint) do
+_droppoint2 = [0,0,0];
+_testradius = 10;
+_nearestblueflag = getpos ((nearestObjects [_oldv, ["Flag_Blue_F"], 7000]) select 0); // get the nearest blue flag position. there's 1 at the beach and another at each taken target.
+while {_droppoint2 in [[0,0,0], islandcentre] } do
 	{
-	case "ARRAY": {_droppoint2 = _droppoint};
-	case "STRING": {_droppoint2 = markerpos _droppoint};
-	case "OBJECT": {_droppoint2 = getpos _droppoint};
+	_droppoint2 = [_nearestblueflag, 6, _testradius, 6, 0, 0, 0] call BIS_fnc_findSafePos;
+	_testradius = _testradius + 10;
 	};
-diag_log format ["*** droppoint is %1 type %2", _droppoint, typeName _droppoint];
+// ^^^ system that gets a good droppos without the possibility of findsafepos returning islandcentre (which is does when it fails)
 sleep 1;
 switch (true) do
 	{
