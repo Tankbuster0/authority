@@ -24,8 +24,8 @@ while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good p
 _mkrnumber = format ["ad%1", _thisaidropiteration];
 _mkr = createMarker [_mkrnumber, (_droppos) ];
 _mkr setMarkerShape "ICON";
-_mkr setMarkerType "hd_dot";
-_mkrnumber setMarkerText _mkrnumber;
+_mkr setMarkerType "b_plane";
+_mkrnumber setMarkerText ("Charlie Juliet " + (_thisaidropiteration call BIS_fnc_phoneticalWord) );
 
 // create the drop veh;
 
