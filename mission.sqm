@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3439;
+		nextID=3448;
 	};
 	class Camera
 	{
 		pos[]={8426.3008,145.14932,25152.035};
-		dir[]={0.23610643,-0.68482745,-0.68956989};
-		up[]={0.22185546,0.72862262,-0.64795691};
-		aside[]={-0.9461838,-1.7023849e-006,-0.32397717};
+		dir[]={0.94558018,-0.23674402,-0.22376977};
+		up[]={0.2305492,0.97150832,-0.054561831};
+		aside[]={-0.23030731,1.7195998e-006,-0.97323287};
 	};
 };
 binarizationWanted=0;
@@ -94,11 +94,12 @@ class ScenarioData
 		minPlayers=1;
 		maxPlayers=18;
 	};
-	wreckManagerMode="AddAllButRespawned";
+	wreckManagerMode="AddAll";
+	wreckLimit=20;
 	wreckRemovalMinTime=574.55981;
 	wreckRemovalMaxTime=1396.6902;
-	corpseManagerMode="AddNoneButRespawned";
-	corpseLimit=10;
+	corpseManagerMode="AddAll";
+	corpseLimit=20;
 	corpseRemovalMinTime=636.60742;
 	corpseRemovalMaxTime=1831.0233;
 };
