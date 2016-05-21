@@ -9,6 +9,7 @@ params [
 ]; // classname of delivered object
 _mytime = serverTime;
 airdropcounter = airdropcounter +1;
+if (airdropcounter isEqualTo 27) then {airdropcounter =1};
 _thisaidropiteration = airdropcounter;
 // find a good place to land the cargo
 _droppos = [0,0,0]; _testradius = 4;
