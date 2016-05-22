@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3529;
+		nextID=3547;
 	};
 	class Camera
 	{
@@ -6716,7 +6716,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="_t = this execVM ""Server\setUpBox.sqf"";";
+				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;";
 				name="ammobox";
 			};
 			id=1009;
@@ -6776,7 +6776,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="_t = this execVM ""Server\setUpBox.sqf"";";
+				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;";
 				name="fobbox";
 			};
 			id=1010;
