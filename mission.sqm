@@ -8,7 +8,7 @@ class EditorData
 	toggles=133;
 	class ItemIDProvider
 	{
-		nextID=1104;
+		nextID=1109;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3547;
+		nextID=3556;
 	};
 	class Camera
 	{
-		pos[]={8441.417,111.08087,25144.023};
-		dir[]={0.71570998,-0.68842643,0.11862641};
-		up[]={0.67921889,0.7252233,0.11257536};
-		aside[]={0.16354133,-1.5568585e-006,-0.98665214};
+		pos[]={8330.8652,133.62134,25263.637};
+		dir[]={-0.23213938,-0.87498069,0.42488217};
+		up[]={-0.41953504,0.48411119,0.76787102};
+		aside[]={0.87756187,-5.4016709e-008,0.4794662};
 	};
 };
 binarizationWanted=0;
@@ -78,7 +78,8 @@ addons[]=
 	"ace_refuel",
 	"CUP_Weapons_AmmoBoxes",
 	"A3_Modules_F_Supports",
-	"A3_Armor_F_Slammer"
+	"A3_Armor_F_Slammer",
+	"ace_rearm"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -408,7 +409,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=105;
+		items=108;
 		class Item0
 		{
 			dataType="Group";
@@ -4442,11 +4443,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8341,59,25296};
+				position[]={8341,58.999882,25296};
 			};
 			id=580;
 			type="ACE_moduleBasicMedicalSettings";
-			atlOffset=3.2421188;
+			atlOffset=3.2420006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -7233,6 +7234,128 @@ class Mission
 					};
 				};
 				nAttributes=2;
+			};
+		};
+		class Item105
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8322.2822,52.785118,25323.666};
+			};
+			id=1104;
+			type="ACE_moduleAssignRepairFacility";
+			atlOffset=-3.8146973e-006;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleAssignRepairFacility_role";
+					expression="_this setVariable ['role',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				class Attribute1
+				{
+					property="ACE_moduleAssignRepairFacility_EnableList";
+					expression="_this setVariable ['EnableList',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="repairbpx";
+						};
+					};
+				};
+				nAttributes=2;
+			};
+		};
+		class Item106
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8331.7002,53.345375,25321.08};
+			};
+			id=1105;
+			type="ACE_moduleRearmSettings";
+			atlOffset=3.8146973e-006;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleRearmSettings_level";
+					expression="_this setVariable ['level',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"SCALAR"
+								};
+							};
+							value=2;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item107
+		{
+			dataType="Logic";
+			class PositionInfo
+			{
+				position[]={8338,55.743877,25300};
+				angles[]={5.9364405,0,0.21654299};
+			};
+			id=1107;
+			type="ACE_moduleAssignMedicalFacility";
+			atlOffset=-3.8146973e-006;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ACE_moduleAssignMedicalFacility_enabled";
+					expression="_this setVariable ['enabled',_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=1;
+						};
+					};
+				};
+				nAttributes=1;
 			};
 		};
 	};
