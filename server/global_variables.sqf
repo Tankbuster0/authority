@@ -249,24 +249,33 @@ moloscomposition = [
 	["Land_i_Shed_Ind_F",[-230.998,-183.521,0.0666714],130,1,0,[0,-0],"","",true,false],
 	["Land_ReservoirTank_Airport_F",[-271.477,-143.178,0.00749207],0,1,0,[0,0],"","",true,false]
 ];
+/*
+Grab data:
+Mission: AAC_blubase
+World: Altis
+Anchor position: [11461, 11661]
+Area size: 400
+Using orientation of objects: yes
+*/
 
-aac_blubase =[
-	["B_Slingload_01_Repair_F",[69.2891,129.34,0.00302887],303.698,1,0.00638949,[1.33829,0.610944],"repairbox","",true,false],
+[
+	["B_Slingload_01_Repair_F",[69.2891,129.341,0.00305939],303.692,1,0.00648921,[1.34162,0.604084],"blubaserepairbox","",true,false],
 	["CampEast_EP1",[53.7969,141.576,-0.00670052],303.636,1,0,[1.92637,-1.65363],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[65.1221,139.681,2.47955e-005],303.679,1,0,[0,0],"","",true,false],
 	["Land_BagBunker_Small_F",[44.9307,148.286,0.00561523],122.812,1,0,[-0.556485,1.00445],"","",true,false],
 	["Land_New_WiredFence_10m_F",[54.6689,149.652,0.618752],30.5823,1,0,[0,0],"","",true,false],
-	["CUP_A1_Heli_H_army",[82.7822,138.895,2.28882e-005],294.755,1,0,[1.01886,-0.203006],"","",true,false],
-	["B_Slingload_01_Ammo_F",[71.8994,145.076,0.00308228],31.4615,1,0.0069762,[-0.299897,1.40826],"","",true,false],
+	["CUP_A1_Heli_H_army",[82.7822,138.895,2.28882e-005],294.755,1,0,[1.01886,-0.203006],"blubasehelipad","",true,false],
+	["B_Slingload_01_Ammo_F",[71.8994,145.076,0.00308228],31.4615,1,0.00697495,[-0.299897,1.40826],"","",true,false],
 	["Land_Net_Fence_Gate_F",[59.0225,156.357,-0.111502],303.679,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[68.6475,153.051,-0.083807],122.836,1,0,[0,-0],"","",true,false],
-	["Land_Medevac_house_V1_F",[50.9297,158.099,2.28882e-005],303.324,1,0,[0,0],"","",true,false],
+	["Land_Medevac_house_V1_F",[50.9297,158.099,0],303.324,1,0,[0,0],"blubasehospital","",true,false],
 	["Land_New_WiredFence_5m_F",[57.8135,154.777,0.142902],303.679,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[60.5723,158.812,0.440071],34.4126,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[73.9795,152.846,2.28882e-005],303.679,1,0,[0,0],"","",true,false],
-	["MapBoard_altis_F",[68.1563,159.072,0.000818253],154.151,1,0,[-2.00989,-0.839163],"basewhiteboard","",true,false],
-	["RoadCone_L_F",[67.3545,162.865,0.00304413],359.987,1,0,[1.38212,1.60882],"ammoboxcone","",true,false],
-	["B_Slingload_01_Fuel_F",[87.043,154.184,0.00481796],303.671,1,0.00616072,[0.76245,-0.494854],"","",true,false],
+	["Land_DataTerminal_01_F",[78.2861,151.456,-2.09808e-005],0,1,0,[0.458022,0.382001],"blubasedataterminal","",true,false],
+	["MapBoard_altis_F",[68.1563,159.072,0.000818253],154.151,1,0,[-2.00989,-0.839163],"blubasewhiteboard","",true,false],
+	["RoadCone_L_F",[67.3535,162.865,0.00304604],359.987,1,0,[1.3823,1.60862],"ammoboxcone","",true,false],
+	["B_Slingload_01_Fuel_F",[87.043,154.184,0.00481796],303.671,1,0.00616149,[0.76245,-0.494854],"","",true,false],
 	["Land_BagBunker_Small_F",[57.3037,167.815,0.0397186],122.847,1,0,[-3.83322,-1.65957],"","",true,false],
 	["CUP_A1_Danger",[74.0137,161.285,-0.000236511],0,1,0,[0.611019,2.367],"","",true,false],
 	["Land_FieldToilet_F",[72.8506,161.884,-0.459158],303.691,1,0,[2.30723,0.8056],"","",true,false],
@@ -276,37 +285,56 @@ aac_blubase =[
 	["Land_FireExtinguisher_F",[73.875,163.252,0.000865936],303.659,1,0,[2.28374,0.928609],"","",true,false]
 ];
 
-abdera_blubase = [
-	["B_Slingload_01_Repair_F",[21.6533,90.8809,0.00324631],329.313,1,0.00695264,[-0.723651,0.780969],"repairbox","",true,false],
-	["CUP_A1_Heli_H_army",[37.8906,93.5879,4.76837e-006],320.396,1,0,[-1.06536,-0.209133],"","",true,false],
+/*
+Grab data:
+Mission: Abdera_blubase
+World: Altis
+Anchor position: [9155, 21538.1]
+Area size: 400
+Using orientation of objects: yes
+*/
+
+[
+	["B_Slingload_01_Repair_F",[21.6533,90.8809,0.00324631],329.313,1,0.00694899,[-0.723342,0.781751],"blubaserepairbox","",true,false],
+	["CUP_A1_Heli_H_army",[37.8906,93.5898,0],320.396,1,0,[-1.06554,-0.208678],"blubasehelipad","",true,false],
 	["Land_Cargo_Patrol_V1_F",[22.3086,101.938,0],329.316,1,0,[0,0],"","",true,false],
 	["CampEast_EP1",[12.9033,108.477,0.872322],329.316,1,0,[-0.342804,0.469694],"","",true,false],
-	["B_Slingload_01_Ammo_F",[30.3789,105.412,0.022481],57.0975,1,0.00604586,[0.723379,-0.82215],"","",true,false],
+	["B_Slingload_01_Ammo_F",[30.3789,105.412,0.022481],57.0975,1,0.00603778,[0.723379,-0.82215],"","",true,false],
 	["Land_New_WiredFence_10m_F",[31.3086,112.436,0.0491238],148.473,1,0,[0,-0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[17.2334,115.426,-0.0785303],56.2194,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Fuel_F",[48.3623,105.563,0.0261803],329.321,1,0.00564134,[0.0678922,-0.104752],"","",true,false],
+	["B_Slingload_01_Fuel_F",[48.3623,105.563,0.0261803],329.321,1,0.00562478,[0.0678922,-0.104752],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[35.9902,109.975,0],329.316,1,0,[0,0],"","",true,false],
 	["Land_BagBunker_Small_F",[7.81836,118.416,0],148.453,1,0,[0,-0],"","",true,false],
 	["Land_Net_Fence_Gate_F",[24.0869,119.561,0.00233364],329.316,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[26.5186,121.129,-0.097065],60.0497,1,0,[0,0],"","",true,false],
-	["MapBoard_altis_F",[33.2949,116.82,-0.00185299],190.15,1,0,[-0.208189,1.108],"basewhiteboard","",true,false],
+	["MapBoard_altis_F",[33.2959,116.82,-0.00184441],190.076,1,0,[-0.206273,1.10839],"blubasewhiteboard","",true,false],
 	["Land_New_WiredFence_5m_F",[22.3262,118.656,0.00462532],329.316,1,0,[0,0],"","",true,false],
 	["CUP_A1_Danger",[39.1035,117.818,0],0,1,0,[-0.381549,-0.992903],"","",true,false],
 	["Land_FieldToilet_F",[38.8887,118.664,-0.313959],329.32,1,0,[-0.837414,-0.658458],"","",true,false],
 	["Land_Axe_fire_F",[40.2783,118.377,-0.00327206],329.31,1,0,[-0.766412,-0.543906],"","",true,false],
 	["Land_Fire_burning",[38.6797,118.936,0.33239],329.316,1,0,[0,0],"","",true,false],
-	["Land_Medevac_house_V1_F",[17.4834,124.684,0],328.961,1,0,[0,0],"","",true,false],
-	["RoadCone_F",[34.0674,120.641,9.44138e-005],329.319,1,0.00991888,[-0.833899,-0.656417],"ammoboxcone","",true,false],
-	["Land_FireExtinguisher_F",[40.1143,119.434,0.000159264],328.926,1,0,[-0.791874,-0.479598],"","",true,false],
+	["Land_Medevac_house_V1_F",[17.4834,124.684,0],328.961,1,0,[0,0],"blubasehospital","",true,false],
+	["RoadCone_F",[34.0674,120.641,9.44138e-005],329.319,1,0.00991893,[-0.833899,-0.656417],"ammoboxcone","",true,false],
+	["Land_FireExtinguisher_F",[40.1143,119.434,0.000217438],329.075,1,0,[-0.817219,-0.456633],"","",true,false],
 	["FlagCarrierBLUFOR_EP1",[33.877,126.08,0],329.316,1,0,[0,0],"baseflag","",true,false],
 	["Land_BagBunker_Small_F",[27.4922,130.643,-0.00164509],148.453,1,0,[0.16958,-0.0142072],"","",true,false]
 ];
 
-almyra_blubase =[
-	["CUP_A1_Heli_H_army",[69.0215,14.4746,0],81.2563,1,0,[0,0],"","",true,false],
+/*
+Grab data:
+Mission: almyra_blubase
+World: Altis
+Anchor position: [23145, 18443.1]
+Area size: 400
+Using orientation of objects: yes
+*/
+
+[
+	["CUP_A1_Heli_H_army",[69.0215,14.4746,0],81.256,1,0,[0,0],"blubasehelipad","",true,false],
 	["B_Slingload_01_Fuel_F",[73.9141,-0.632813,2.38419e-006],90.1732,1,0,[8.39178e-006,-0.000142938],"","",true,false],
-	["B_Slingload_01_Repair_F",[75.0352,29.8105,2.86102e-006],90.1736,1,0,[1.72801e-005,-0.000198366],"repairbox","",true,false],
-	["B_Slingload_01_Ammo_F",[81.4902,15.3965,4.76837e-007],177.975,1,0.00660153,[4.82622e-007,2.73177e-006],"","",true,false],
+	["B_Slingload_01_Repair_F",[75.0352,29.8105,2.86102e-006],90.1736,1,0,[1.72801e-005,-0.000198366],"blubaserepairbox","",true,false],
+	["Land_DataTerminal_01_F",[81.002,8,0],0,1,0,[0,0],"blubasedataterminal","",true,false],
+	["B_Slingload_01_Ammo_F",[81.4902,15.3965,4.76837e-007],177.975,1,0.00660152,[4.82622e-007,2.73177e-006],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[84.0645,7.69922,0],90.1734,1,0,[0,-0],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[84.1816,23.5664,0],90.1734,1,0,[0,-0],"","",true,false],
 	["Land_Axe_fire_F",[89.0762,-0.289063,-0.00336051],90.1734,1,0,[-1.562e-005,-5.16511e-006],"","",true,false],
@@ -315,24 +343,34 @@ almyra_blubase =[
 	["Land_FieldToilet_F",[90.0215,0.820313,-0.332881],90.1729,1,0,[0.00166375,-0.000845286],"","",true,false],
 	["Land_FireExtinguisher_F",[90.0684,-0.689453,0.000122786],90.242,1,0,[-0.0433049,0.0852259],"","",true,false],
 	["Land_Fire_burning",[90.377,0.796875,0.323533],90.2292,1,0,[-2.42919,-1.32048],"","",true,false],
-	["MapBoard_altis_F",[91.709,6.24414,-0.00216007],310.105,1,0,[-0.318079,-0.00452041],"basewhiteboard","",true,false],
+	["MapBoard_altis_F",[91.709,6.24414,-0.00216866],310.121,1,0,[-0.318534,0.00377384],"blubasewhiteboard","",true,false],
 	["Land_New_WiredFence_10m_F",[98.502,10.1152,-2.38419e-006],180.907,1,0,[0,0],"","",true,false],
-	["RoadCone_F",[94.2031,3.875,9.05991e-006],90.176,1,0.00993604,[0.00216143,0.00412263],"ammoboxcone","",true,false],
+	["RoadCone_F",[94.2031,3.875,9.05991e-006],90.176,1,0.00993603,[0.00216145,0.00412266],"ammoboxcone","",true,false],
 	["Land_New_WiredFence_10m_F",[98.3711,21.0078,-2.38419e-006],177.077,1,0,[0,-0],"","",true,false],
 	["CampEast_EP1",[94.627,28.2773,0.120339],90.1734,1,0,[0,-0],"","",true,false],
 	["FlagCarrierBLUFOR_EP1",[98.9707,1.25391,0],90.173,1,0,[0,-0],"baseflag","",true,false],
 	["Land_New_WiredFence_5m_F",[98.5254,14.9766,1.43051e-006],90.1734,1,0,[0,-0],"","",true,false],
 	["Land_Net_Fence_Gate_F",[98.3984,13.0039,0],90.1734,1,0,[0,-0],"","",true,false],
 	["Land_BagBunker_Small_F",[106.168,4.39453,0],269.311,1,0,[0,0],"","",true,false],
-	["Land_Medevac_house_V1_F",[106.184,16.0449,0],89.8185,1,0,[0,0],"","",true,false],
+	["Land_Medevac_house_V1_F",[106.184,16.0449,0],89.818,1,0,[0,0],"blubasehospital","",true,false],
 	["Land_BagBunker_Small_F",[105.76,27.5547,0],269.311,1,0,[0,0],"","",true,false]
 ];
 
-feres_blubase = [
-	["B_Slingload_01_Repair_F",[-155.359,5.54297,0.0571785],236.289,1,0.0121181,[0.719631,-0.309321],"repairbox","",true,false],
-	["CUP_A1_Heli_H_army",[-158.943,21.6235,0],227.404,1,0,[0.108243,0.00455708],"","",true,false],
+/*
+Grab data:
+Mission: Feres_blubase_Comp
+World: Altis
+Anchor position: [20983, 7242.05]
+Area size: 400
+Using orientation of objects: yes
+*/
+
+[
+	["B_Slingload_01_Repair_F",[-155.361,5.54346,0.0572205],236.281,1,0.01806,[0.714331,-0.325607],"blubaserepairbox","",true,false],
+	["CUP_A1_Heli_H_army",[-158.943,21.623,0],227.403,1,0,[0.108804,0.00456093],"blubasehelipad","",true,false],
 	["Land_Cargo_Patrol_V1_F",[-166.469,5.62646,0],236.321,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-168.973,13.8789,0.00465584],324.121,1,0.00609944,[-1.51807,2.98215],"","",true,false],
+	["B_Slingload_01_Ammo_F",[-168.973,13.8789,0.00465965],324.12,1,0.0121826,[-1.51799,2.98232],"","",true,false],
+	["Land_DataTerminal_01_F",[-170.494,19.1074,0],0,1,0,[0,0],"blubasedataterminal","",true,false],
 	["CampEast_EP1",[-172.521,-4.11035,0.324123],236.321,1,0,[0.23298,0.211489],"","",true,false],
 	["B_Slingload_01_Fuel_F",[-171.402,31.4375,0.00256348],236.3,1,0.0058226,[-0.505582,1.36586],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-177.432,14.0396,-0.257574],55.4774,1,0,[0,0],"","",true,false],
@@ -341,41 +379,51 @@ feres_blubase = [
 	["Land_Net_Fence_Gate_F",[-184.164,6.47412,-0.0110779],236.321,1,0,[0,0],"","",true,false],
 	["Land_BagBunker_Small_F",[-182.215,-9.74951,0.0405464],55.5487,1,0,[-3.94612,-0.623685],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-185.854,8.75732,0.437016],327.054,1,0,[0,0],"","",true,false],
-	["MapBoard_altis_F",[-182.619,16.5684,0.000938416],91.3268,1,0,[-0.488537,-3.28995],"basewhiteboard","",true,false],
+	["MapBoard_altis_F",[-182.619,16.5684,0.000947952],91.3971,1,0,[-0.481155,-3.28196],"blubasewhiteboard","",true,false],
 	["Danger",[-183.268,21.7891,0],0,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-183.172,4.7373,0.171946],236.321,1,0,[0,0],"","",true,false],
-	["Land_Axe_fire_F",[-183.822,22.7139,-0.00334358],236.324,1,0,[0.572139,0.444936],"","",true,false],
-	["Land_FieldToilet_F",[-184.057,21.3643,-0.787411],236.325,1,0,[0.57073,0.445698],"","",true,false],
-	["Land_Fire_burning",[-184.297,21.0869,0.820007],236.321,1,0,[0,0],"","",true,false],
-	["Land_FireExtinguisher_F",[-184.855,22.5181,0.000207901],236.365,1,0,[0.529646,0.533943],"","",true,false],
-	["RoadCone_F",[-185.748,16.4028,0.000837326],236.385,1,0.00981166,[2.24388,2.27323],"ammoboxcone","",true,false],
-	["Land_Medevac_house_V1_F",[-188.93,-0.380859,1.90735e-006],235.966,1,0,[0,0],"","",true,false],
+	["Land_Axe_fire_F",[-183.822,22.7139,-0.00334358],236.324,1,0,[0.572134,0.444966],"","",true,false],
+	["Land_FieldToilet_F",[-184.057,21.3643,-0.787474],236.311,1,0,[0.57469,0.443607],"","",true,false],
+	["Land_Fire_burning",[-184.297,21.0869,0.820034],236.321,1,0,[0,0],"","",true,false],
+	["Land_FireExtinguisher_F",[-184.855,22.5181,0.000213623],236.426,1,0,[0.530568,0.540611],"","",true,false],
+	["RoadCone_F",[-185.748,16.4028,0.000841141],236.391,1,0.0197996,[2.24656,2.27657],"ammoboxcone","",true,false],
+	["Land_Medevac_house_V1_F",[-188.93,-0.381348,1.90735e-006],235.966,1,0,[0,0],"blubasehospital","",true,false],
 	["FlagCarrierBLUFOR_EP1",[-191.182,15.918,0],236.321,1,0,[0,0],"baseflag","",true,false],
 	["Land_BagBunker_Small_F",[-195.406,9.25146,0.0176544],55.4938,1,0,[-1.68732,-2.45371],"","",true,false]
 ];
 
-molos_blubase =[
-	["B_Slingload_01_Fuel_F",[-176.939,-123.357,0.00628662],310.475,1,0,[-3.55568,-1.0059],"","",true,false],
-	["Land_FireExtinguisher_F",[-189.207,-112.908,0.000244141],310.653,1,0,[0.197725,-0.562359],"","",true,false],
+/*
+Grab data:
+Mission: molos_blubasee
+World: Altis
+Anchor position: [26939, 24743.1]
+Area size: 400
+Using orientation of objects: yes
+*/
+
+[
+	["B_Slingload_01_Fuel_F",[-176.941,-123.357,0.00630379],310.494,1,0,[-3.55823,-1.01042],"","",true,false],
+	["Land_FireExtinguisher_F",[-189.207,-112.908,0.000169754],310.574,1,0,[0.222639,-0.605222],"","",true,false],
 	["Land_Axe_fire_F",[-188.707,-113.861,-0.00332832],310.508,1,0,[-0.62086,0.373256],"","",true,false],
 	["Danger",[-189.285,-114.596,0],0,1,0,[0,0],"","",true,false],
-	["Land_FieldToilet_F",[-190.063,-114.135,0.00126076],310.51,1,0,[-0.611411,0.266893],"","",true,false],
-	["Land_Fire_burning",[-190.4,-113.848,-0.0308914],311.302,1,0,[17.4538,10.2115],"","",true,false],
+	["Land_FieldToilet_F",[-190.063,-114.135,0.00122833],310.506,1,0,[-0.609142,0.267632],"","",true,false],
+	["Land_Fire_burning",[-190.4,-113.848,-0.0308743],311.302,1,0,[17.4538,10.2115],"","",true,false],
 	["FlagCarrierBLUFOR_EP1",[-198.252,-106.506,0],310.511,1,0,[0,0],"baseflag","",true,false],
-	["RoadCone_F",[-195.311,-113.715,-7.62939e-006],310.511,1,0.00976851,[0.39044,-0.568725],"ammoboxcone","",true,false],
-	["MapBoard_altis_F",[-194.459,-116.723,-0.00194931],157.941,1,0,[-0.942092,0.345485],"basewhiteboard","",true,false],
+	["Land_DataTerminal_01_F",[-187.258,-125.633,0.000116348],0,1,0,[-1.528,-1.60457],"blubasedataterminal","",true,false],
+	["RoadCone_F",[-195.311,-113.715,-7.62939e-006],310.511,1,0.00976852,[0.39044,-0.568725],"ammoboxcone","",true,false],
+	["MapBoard_altis_F",[-194.459,-116.723,-0.00194931],157.941,1,0,[-0.942092,0.345485],"blubasewhiteboard","",true,false],
 	["Land_Cargo_Patrol_V1_F",[-190.059,-123.197,0.0025177],310.511,1,0,[0,0],"","",true,false],
-	["CUP_A1_Heli_H_army",[-182.977,-138.096,0],301.613,1,0,[-5.286,-1.73736],"","",true,false],
+	["CUP_A1_Heli_H_army",[-182.986,-138.088,0],301.613,1,0,[-5.28587,-1.73779],"blubasehelipad","",true,false],
 	["Land_BagBunker_Small_F",[-204.672,-106.348,-0.0295944],129.841,1,0,[3.54412,4.44456],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-202.625,-115.678,0.0222244],41.2451,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-192.613,-131.188,0.0257702],38.2122,1,0.0121412,[0.572668,-2.83487],"","",true,false],
+	["B_Slingload_01_Ammo_F",[-192.611,-131.188,0.0257034],38.2272,1,0.0121412,[0.573273,-2.83592],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-195.297,-122.385,-0.0765495],129.668,1,0,[0,-0],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-205.742,-119.369,-0.131025],310.511,1,0,[0,0],"","",true,false],
 	["Land_Net_Fence_Gate_F",[-204.414,-117.969,-0.015358],310.511,1,0,[0,0],"","",true,false],
-	["Land_Medevac_house_V1_F",[-212.318,-115.238,0.00133324],310.156,1,0,[0,0],"","",true,false],
+	["Land_Medevac_house_V1_F",[-212.318,-115.24,0.000999451],310.156,1,0,[0,0],"blubasehospital","",true,false],
 	["Land_New_WiredFence_10m_F",[-209.57,-124.09,-0.127295],37.4148,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[-200.42,-135.215,0],310.511,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Repair_F",[-197.479,-145.883,0.00174904],310.483,1,0.00677199,[-1.86201,1.10868],"repairbox","",true,false],
+	["B_Slingload_01_Repair_F",[-197.479,-145.883,0.00175476],310.482,1,0.00618311,[-1.862,1.10897],"blubaserepairbox","",true,false],
 	["CampEast_EP1",[-211.414,-132.053,0.224188],310.509,1,0,[-0.762329,-0.0483798],"","",true,false],
 	["Land_BagBunker_Small_F",[-219.406,-124.318,-0.0262489],129.61,1,0,[3.099,0.0880829],"","",true,false]
 ];
