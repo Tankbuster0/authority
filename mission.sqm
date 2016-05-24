@@ -5,10 +5,10 @@ class EditorData
 	angleGridStep=0.2617994;
 	scaleGridStep=1;
 	autoGroupingDist=10;
-	toggles=133;
+	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=1109;
+		nextID=1110;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3556;
+		nextID=3565;
 	};
 	class Camera
 	{
-		pos[]={8330.8652,133.62134,25263.637};
-		dir[]={-0.23213938,-0.87498069,0.42488217};
-		up[]={-0.41953504,0.48411119,0.76787102};
-		aside[]={0.87756187,-5.4016709e-008,0.4794662};
+		pos[]={8427.5459,133.36285,25147.063};
+		dir[]={0.51469207,-0.793136,-0.32565096};
+		up[]={0.6702736,0.60899824,-0.42408904};
+		aside[]={-0.53468007,-3.3550896e-007,-0.84506351};
 	};
 };
 binarizationWanted=0;
@@ -409,7 +409,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=108;
+		items=109;
 		class Item0
 		{
 			dataType="Group";
@@ -1832,8 +1832,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8447.3232,103.94646,25143.014};
-				angles[]={0.0079936078,0,6.2232509};
+				position[]={8448,103.86061,25145};
+				angles[]={0.06656827,0,6.165072};
 			};
 			side="Empty";
 			flags=4;
@@ -1843,7 +1843,6 @@ class Mission
 			};
 			id=72;
 			type="Sign_Sphere25cm_F";
-			atlOffset=-7.6293945e-006;
 		};
 		class Item5
 		{
@@ -7352,6 +7351,47 @@ class Mission
 								};
 							};
 							value=1;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item108
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8435.1182,106.56141,25144.875};
+				angles[]={0.091734506,0,6.1245351};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="temporaryposforobjectmapper";
+			};
+			id=1109;
+			type="Sign_Sphere25cm_F";
+			atlOffset=-0.03099823;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
 						};
 					};
 				};

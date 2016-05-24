@@ -57,7 +57,7 @@ diag_log "***removing mycontainer and spawning composition";
 waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {(getposATL mycontainer select 2) < 2};
 deletevehicle mycontainer;
-blubaseobjects = [cpt_position, 0, _composition] call BIS_fnc_ObjectsMapper;
+blubaseobjects = [cpt_position, 0, _composition] call tky_fnc_t_objectsmapper;
 {_x setdamage 0;} foreach blubaseobjects;
 _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
