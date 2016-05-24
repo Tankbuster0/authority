@@ -21,7 +21,7 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 		case "Feres airfield": {_composition = ferescomposition};
 		case "Molos Airfield":{_composition = moloscomposition};
 		};
-	_allcompositionunits = [_pt_pos, 0, _composition] call BIS_fnc_ObjectsMapper;
+	_allcompositionunits = [_pt_pos, 0, _composition] call tky_fnc_t_objectsmapper;
 	sleep 0.05;
 	{
 	if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";}; }foreach _allcompositionunits;

@@ -23,7 +23,7 @@ Using orientation of objects: yes
 	["Land_FireExtinguisher_F",[-4.06494,-4.20898,0.000127792],359.79,1,0,[-0.0478408,0.0883972],"","",true,false],
 	["Sign_Sphere25cm_F",[6.32104,-4.87207,0],0,1,0,[0,0],"fobboxlocator","",true,false],
 	["Land_TTowerSmall_2_F",[0.859131,-12.6907,0],0,1,0,[0,0],"","",true,false]
-],0.0] call bis_fnc_ObjectsMapper;
+],0.0] call tky_fnc_t_objectsmapper;
 fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag.paa";
 fobdeployed = true;
 publicVariable "fobdeployed";

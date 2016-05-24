@@ -66,13 +66,13 @@ class cfgFunctions
 			file = "server";
 			class spawnandcrewvehicle {};
 			class mando_chute {};
-			class objectsMapper {};
 			class setfuel {};
 			class tc_setskill {};
 			class findhighground {};
 			class patrolFnc {};
 			class cleanupoldprimary {};
 			class fobvehicledeploymanager {};
+			class t_objectsmapper {};
 		};
 	};
 };
