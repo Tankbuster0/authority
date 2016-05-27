@@ -1,6 +1,7 @@
 // global_variable.includes
 //by tankbuster
 islandcentre = getarray (configFile >> "CfgWorlds" >> "Altis" >> "centerPosition");
+publicVariable "islandcentre";
 
 testservernames = ["Tanky-Testy"];
 
@@ -257,7 +258,7 @@ Anchor position: [11461, 11661]
 Area size: 400
 Using orientation of objects: yes
 */
-
+AAC_blubase =
 [
 	["B_Slingload_01_Repair_F",[69.2891,129.341,0.00305939],303.692,1,0.00648921,[1.34162,0.604084],"blubaserepairbox","",true,false],
 	["CampEast_EP1",[53.7969,141.576,-0.00670052],303.636,1,0,[1.92637,-1.65363],"","",true,false],
@@ -293,7 +294,7 @@ Anchor position: [9155, 21538.1]
 Area size: 400
 Using orientation of objects: yes
 */
-
+Abdera_blubase =
 [
 	["B_Slingload_01_Repair_F",[21.6533,90.8809,0.00324631],329.313,1,0.00694899,[-0.723342,0.781751],"blubaserepairbox","",true,false],
 	["CUP_A1_Heli_H_army",[37.8906,93.5898,0],320.396,1,0,[-1.06554,-0.208678],"blubasehelipad","",true,false],
@@ -328,7 +329,7 @@ Anchor position: [23145, 18443.1]
 Area size: 400
 Using orientation of objects: yes
 */
-
+almyra_blubase =
 [
 	["CUP_A1_Heli_H_army",[69.0215,14.4746,0],81.256,1,0,[0,0],"blubasehelipad","",true,false],
 	["B_Slingload_01_Fuel_F",[73.9141,-0.632813,2.38419e-006],90.1732,1,0,[8.39178e-006,-0.000142938],"","",true,false],
@@ -364,7 +365,7 @@ Anchor position: [20983, 7242.05]
 Area size: 400
 Using orientation of objects: yes
 */
-
+feres_blubase =
 [
 	["B_Slingload_01_Repair_F",[-155.361,5.54346,0.0572205],236.281,1,0.01806,[0.714331,-0.325607],"blubaserepairbox","",true,false],
 	["CUP_A1_Heli_H_army",[-158.943,21.623,0],227.403,1,0,[0.108804,0.00456093],"blubasehelipad","",true,false],
@@ -400,7 +401,7 @@ Anchor position: [26939, 24743.1]
 Area size: 400
 Using orientation of objects: yes
 */
-
+molos_blubase
 [
 	["B_Slingload_01_Fuel_F",[-176.941,-123.357,0.00630379],310.494,1,0,[-3.55823,-1.01042],"","",true,false],
 	["Land_FireExtinguisher_F",[-189.207,-112.908,0.000169754],310.574,1,0,[0.222639,-0.605222],"","",true,false],
