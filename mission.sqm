@@ -16,11 +16,11 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3592;
+		nextID=3601;
 	};
 	class Camera
 	{
-		pos[]={8427.5459,133.36285,25147.063};
+		pos[]={8415.8867,151.23637,25154.799};
 		dir[]={0.51469207,-0.793136,-0.32565096};
 		up[]={0.6702736,0.60899824,-0.42408904};
 		aside[]={-0.53468007,-3.3550896e-007,-0.84506351};
@@ -33,11 +33,13 @@ addons[]=
 	"A3_Modules_F_ObjectModifiers",
 	"A3_Modules_F_Curator_Curator",
 	"A3_Misc_F_Helpers",
+	"A3_Structures_F_Heli_VR_Helpers",
+	"A3_Ui_F",
+	"ace_map",
 	"ace_captives",
 	"ace_explosives",
 	"ace_hearing",
 	"ace_interaction",
-	"ace_map",
 	"ace_map_gestures",
 	"ace_microdagr",
 	"ace_mk6mortar",
@@ -56,6 +58,7 @@ addons[]=
 	"A3_Structures_F_Civ_Camping",
 	"A3_Structures_F_EPC_Civ_Camping",
 	"A3_Structures_F_EPA_Civ_Camping",
+	"ace_sitting",
 	"A3_Signs_F",
 	"A3_Structures_F_Training",
 	"A3_Structures_F_Households_House_Shop01",
@@ -65,22 +68,287 @@ addons[]=
 	"A3_Structures_F_Naval_Piers",
 	"A3_Structures_F_Dominants_Lighthouse",
 	"ace_medical",
-	"A3_Characters_F_BLUFOR",
-	"a3_characters_f",
+	"A3_Characters_F",
 	"A3_Boat_F_Boat_Transport_01",
 	"A3_Boat_F_Boat_Armed_01",
+	"ace_vehicles",
 	"A3_Structures_F_Mil_Helipads",
 	"CUP_WaterVehicles_Fregata",
-	"cup_airvehicles_ah64",
+	"CUP_AirVehicles_AH64",
 	"CUP_AirVehciles_Merlin",
 	"CUP_WheeledVehicles_Coyote",
 	"A3_Supplies_F_Heli_CargoNets",
 	"ace_refuel",
 	"CUP_Weapons_AmmoBoxes",
 	"A3_Modules_F_Supports",
-	"A3_Armor_F_Slammer",
+	"A3_Armor_F_Gamma_MBT_01",
+	"ace_realisticnames",
 	"ace_rearm",
 	"A3_Props_F_Exp_A_Military_Equipment"
+};
+class AddonsMetaData
+{
+	class List
+	{
+		items=45;
+		class Item0
+		{
+			className="CUP_Creatures_Military_BAF";
+			name="CUP_Creatures_Military_BAF";
+		};
+		class Item1
+		{
+			className="A3_Modules_F";
+			name="Arma 3 Alpha - Scripted Modules";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item2
+		{
+			className="A3_Modules_F_Curator";
+			name="Arma 3 Zeus Update - Scripted features";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item3
+		{
+			className="A3_Misc_F";
+			name="Arma 3 - 3D aids and helpers";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item4
+		{
+			className="A3_Structures_F_Heli";
+			name="Arma 3 Helicopters - Buildings and structures";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item5
+		{
+			className="A3_Ui_F";
+			name="Arma 3 - User Interface";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item6
+		{
+			className="ace_map";
+			name="ace_map";
+		};
+		class Item7
+		{
+			className="ace_captives";
+			name="ace_captives";
+		};
+		class Item8
+		{
+			className="ace_explosives";
+			name="ace_explosives";
+		};
+		class Item9
+		{
+			className="ace_hearing";
+			name="ace_hearing";
+		};
+		class Item10
+		{
+			className="ace_interaction";
+			name="ace_interaction";
+		};
+		class Item11
+		{
+			className="ace_map_gestures";
+			name="ace_map_gestures";
+		};
+		class Item12
+		{
+			className="ace_microdagr";
+			name="ace_microdagr";
+		};
+		class Item13
+		{
+			className="ace_mk6mortar";
+			name="ace_mk6mortar";
+		};
+		class Item14
+		{
+			className="ace_nametags";
+			name="ace_nametags";
+		};
+		class Item15
+		{
+			className="ace_nightvision";
+			name="ace_nightvision";
+		};
+		class Item16
+		{
+			className="ace_finger";
+			name="ace_finger";
+		};
+		class Item17
+		{
+			className="ace_viewdistance";
+			name="ace_viewdistance";
+		};
+		class Item18
+		{
+			className="ace_weather";
+			name="ace_weather";
+		};
+		class Item19
+		{
+			className="ace_cargo";
+			name="ace_cargo";
+		};
+		class Item20
+		{
+			className="ace_repair";
+			name="ace_repair";
+		};
+		class Item21
+		{
+			className="ace_advanced_ballistics";
+			name="ace_advanced_ballistics";
+		};
+		class Item22
+		{
+			className="ace_winddeflection";
+			name="ace_winddeflection";
+		};
+		class Item23
+		{
+			className="A3_Structures_F_EPC";
+			name="Arma 3 Win Episode - Buildings and structures";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item24
+		{
+			className="A3_Structures_F";
+			name="Arma 3 Alpha - Buildings and structures";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item25
+		{
+			className="A3_Structures_F_EPA";
+			name="Arma 3 Survive Episode - Buildings and Structures";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item26
+		{
+			className="ace_sitting";
+			name="ace_sitting";
+		};
+		class Item27
+		{
+			className="A3_Signs_F";
+			name="Arma 3 - Signs";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item28
+		{
+			className="A3_Structures_F_Households";
+			name="Arma 3 Alpha - Houses";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item29
+		{
+			className="ace_medical";
+			name="ace_medical";
+		};
+		class Item30
+		{
+			className="A3_Characters_F";
+			name="Arma 3 Alpha - Characters and Clothing";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item31
+		{
+			className="A3_Boat_F";
+			name="Arma 3 Alpha - Boats and submersibles";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item32
+		{
+			className="ace_vehicles";
+			name="ace_vehicles";
+		};
+		class Item33
+		{
+			className="A3_Structures_F_Mil";
+			name="Arma 3 - Military Buildings and Structures";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item34
+		{
+			className="CUP_WaterVehicles_Fregata";
+			name="CUP_WaterVehicles_Fregata";
+		};
+		class Item35
+		{
+			className="CUP_AirVehicles_AH64";
+			name="CUP_AirVehicles_AH64";
+		};
+		class Item36
+		{
+			className="CUP_AirVehciles_Merlin";
+			name="CUP_AirVehciles_Merlin";
+		};
+		class Item37
+		{
+			className="CUP_WheeledVehicles_Coyote";
+			name="CUP_WheeledVehicles_Coyote";
+		};
+		class Item38
+		{
+			className="A3_Supplies_F_Heli";
+			name="Arma 3 Helicopters - Ammoboxes and supplies";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item39
+		{
+			className="ace_refuel";
+			name="ace_refuel";
+		};
+		class Item40
+		{
+			className="CUP_Weapons_AmmoBoxes";
+			name="CUP_Weapons_AmmoBoxes";
+		};
+		class Item41
+		{
+			className="A3_Armor_F_Gamma";
+			name="Arma 3 - Armored land vehicles";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+		class Item42
+		{
+			className="ace_realisticnames";
+			name="ace_realisticnames";
+		};
+		class Item43
+		{
+			className="ace_rearm";
+			name="ace_rearm";
+		};
+		class Item44
+		{
+			className="A3_Props_F_Exp_A";
+			name="Arma 3 Nexus Update - Decorative and mission objects";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
+	};
 };
 randomSeed=15772250;
 class ScenarioData
@@ -4060,6 +4328,7 @@ class Mission
 			};
 			id=561;
 			type="Land_Sea_Wall_F";
+			atlOffset=-0.018512487;
 		};
 		class Item65
 		{
@@ -4091,14 +4360,14 @@ class Mission
 			};
 			id=564;
 			type="Land_Sea_Wall_F";
-			atlOffset=0.96349144;
+			atlOffset=0.94497919;
 		};
 		class Item67
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={24562,3.1547744,18482};
+				position[]={24562,3.1547742,18482};
 				angles[]={0,2.1778245,0};
 			};
 			side="Empty";
@@ -4108,6 +4377,7 @@ class Mission
 			};
 			id=565;
 			type="Land_Sea_Wall_F";
+			atlOffset=-0.018512726;
 		};
 		class Item68
 		{
@@ -4123,7 +4393,7 @@ class Mission
 			};
 			id=566;
 			type="Land_Sea_Wall_F";
-			atlOffset=0.3371706;
+			atlOffset=0.31865835;
 		};
 		class Item69
 		{
@@ -4140,14 +4410,14 @@ class Mission
 			};
 			id=567;
 			type="Land_Sea_Wall_F";
-			atlOffset=-0.17998505;
+			atlOffset=-0.1984973;
 		};
 		class Item70
 		{
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={24498,7.8627605,18421};
+				position[]={24498,7.8627601,18421};
 				angles[]={0,2.353106,0};
 			};
 			side="Empty";
@@ -4156,7 +4426,7 @@ class Mission
 			};
 			id=568;
 			type="Land_Sea_Wall_F";
-			atlOffset=1.5628271;
+			atlOffset=1.5443144;
 		};
 		class Item71
 		{
