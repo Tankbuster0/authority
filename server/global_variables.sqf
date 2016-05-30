@@ -401,7 +401,7 @@ Anchor position: [26939, 24743.1]
 Area size: 400
 Using orientation of objects: yes
 */
-molos_blubase
+molos_blubase =
 [
 	["B_Slingload_01_Fuel_F",[-176.941,-123.357,0.00630379],310.494,1,0,[-3.55823,-1.01042],"","",true,false],
 	["Land_FireExtinguisher_F",[-189.207,-112.908,0.000169754],310.574,1,0,[0.222639,-0.605222],"","",true,false],
