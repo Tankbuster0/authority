@@ -34,7 +34,7 @@ SupportReq synchronizeObjectsAdd [ArtySupport];
 // Build Helipad, Can be NULL!
 FOBHelipad = objNull;
 
-blubasedataterminal = objNull;
+//blubasedataterminal = objNull;
 
 //Hack around eventhandler crud
 LastSelectedObjects = objNull;

@@ -67,7 +67,9 @@ _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
 ammoboxpad setpos _mypos;
 baseflag setFlagTexture "pics\wasp-inc_dirty_flag.paa";
-
+_mypos = getpos terminalcone;
+deleteVehicle terminalcone;
+blubasedataterminal setpos _mypos;
 
 
 
