@@ -5,7 +5,7 @@ private ["_caller","_requestedpos","_spawnpos","_testradius","_runabout"];
 
 params [
 ["_target", player], //
-["_caller", player], //
+["_caller", player] //
 
 ];
 
