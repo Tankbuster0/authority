@@ -42,20 +42,24 @@ diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
 
 _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
 diag_log "*** returned from spawnairdrop";
-sleep 10;
+//sleep 10;
 diag_log "***clearing landing point";
-_naughtybaseobjects = _blubasedroppos nearobjects 15;
+_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 20];
 if (count _naughtybaseobjects > 0) then
 	{
 		{
-		deletevehicle _x;
-		diag_log format ["removing _naughtybaseobjects %1", _x];
+		if not ((typename _x) in [forwardpointvehicleclassname, fobvehicleclassname]) then //things that must not be deleted
+			{
+		    deletevehicle _x;
+			diag_log format ["***removing _naughtybaseobject %1", _x];
+			};
 		} foreach _naughtybaseobjects;
 	};
 sleep 2;
-diag_log "***removing mycontainer and spawning composition";
+
 waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {(getposATL mycontainer select 2) < 2};
+diag_log "***removing mycontainer and spawning composition";
 deletevehicle mycontainer;
 blubaseobjects = [cpt_position, 0, _composition] call tky_fnc_t_objectsmapper;
 {_x setdamage 0;} foreach blubaseobjects;

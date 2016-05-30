@@ -17,11 +17,8 @@ if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedp
 while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_droppos = [_requestedpos, 3,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
-		//diag_log format ["*** spawnairdrop suggests %1 using radius %2 which is blacklisted %3", _droppos, _testradius, (_droppos in [[0,0,0], islandcentre])];
 		_testradius = _testradius * 2;
 	};
-//diag_log format ["*** spawnairdrop decides on %1", _droppos];
-
 _mkrnumber = format ["ad%1", _thisaidropiteration];
 _mkr = createMarker [_mkrnumber, (_droppos) ];
 _mkr setMarkerShape "ICON";
@@ -98,9 +95,7 @@ _dropveh flyinheight 150;
 waitUntil {(_dropveh distance2D _droppos) < 100};
 
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-diag_log format ["*** spawnairdrop makes %1", _droptype];
 _cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-25,-10]), [],0, "FLY"];
-diag_log format ["*** _cargo is %1", typeOf _cargo];
 if (_droptype == forwardpointvehicleclassname) then
 	{
 	forward = _cargo;
@@ -127,10 +122,8 @@ if (_cargo iskindof "Cargo_Base_F") then //
 	mycontainer = _cargo;
 	};
 while {(getPosATL _cargo select 2) > 100} do {sleep 0.1};
-diag_log "*** spawnairdrop makes parachute";
 _cargopos = getpos _cargo;
 _para = createVehicle ["B_Parachute_02_F", _cargopos, [],0, "NONE"];
-//_para = createVehicle ["B_Parachute_02_F", (_cargo modelToWorld [0,0,0]), [],0, "NONE"];
 _cargo attachto [_para, [0,0,0]];
 _cargo allowDamage false;
 /*
