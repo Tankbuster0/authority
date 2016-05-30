@@ -180,7 +180,6 @@ _multiplyMatrixFunc =
 		};
 		if (!isNil "_init") then {_newObj call (compile ("this = _this; " + _init));}; //TODO: remove defining this hotfix?
 		if (!isNil "_simulation") then {_newObj enableSimulation _simulation; _newObj setVariable ["BIS_DynO_simulation", _simulation];};
-
 		_newObjs = _newObjs + [_newObj];
 	};
 } forEach _objs;

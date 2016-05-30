@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=1110;
+		nextID=1111;
 	};
 	class MarkerIDProvider
 	{
@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3574;
+		nextID=3592;
 	};
 	class Camera
 	{
@@ -79,7 +79,8 @@ addons[]=
 	"CUP_Weapons_AmmoBoxes",
 	"A3_Modules_F_Supports",
 	"A3_Armor_F_Slammer",
-	"ace_rearm"
+	"ace_rearm",
+	"A3_Props_F_Exp_A_Military_Equipment"
 };
 randomSeed=15772250;
 class ScenarioData
@@ -409,7 +410,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=109;
+		items=110;
 		class Item0
 		{
 			dataType="Group";
@@ -7374,6 +7375,47 @@ class Mission
 			id=1109;
 			type="Sign_Sphere25cm_F";
 			atlOffset=-0.03099823;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ace_isMedicalFacility";
+					expression="_this setVariable [""ace_medical_isMedicalFacility"",_value,true];";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"BOOL"
+								};
+							};
+							value=0;
+						};
+					};
+				};
+				nAttributes=1;
+			};
+		};
+		class Item109
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8451.0898,103.56618,25144.078};
+				angles[]={0.066566855,0,6.1650786};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="blubasedataterminal";
+			};
+			id=1110;
+			type="Land_DataTerminal_01_F";
+			atlOffset=-7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
