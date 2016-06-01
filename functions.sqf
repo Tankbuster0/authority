@@ -43,3 +43,16 @@ tky_fnc_hintandhqchat =
 	//[west, "HQ"] commandchat (format ["%1",_mytext]);
 	//  got confused. might come back ti this :)
 	};
+
+fnc_setVehicleName = {
+
+//set vehicle name for spawned object
+
+//example
+//_veh = createVehicle ["I_UAV_02_F", [24068.07,18587.05,3.19], [], 0, "NONE"];
+//[_veh, "uavName"] call fnc_setVehicleName;
+
+    params ["_veh", "_name"];
+    missionNamespace setVariable [_name, _veh, true];
+    [_veh, _name] remoteExecCall ["setVehicleVarName", 0, _name];
+};

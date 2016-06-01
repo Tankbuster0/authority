@@ -175,7 +175,9 @@ _multiplyMatrixFunc =
 			if (_varName != "") then
 			{
 				_newObj setVehicleVarName _varName;
+				[_newObj, _varName] call fnc_setVehicleName;
 				call (compile (_varName + " = _newObj;"));
+
 			};
 		};
 		if (!isNil "_init") then {_newObj call (compile ("this = _this; " + _init));}; //TODO: remove defining this hotfix?
