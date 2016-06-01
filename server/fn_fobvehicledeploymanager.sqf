@@ -8,7 +8,7 @@ if not (fobdeployed) then
 	_candidatepos = (position fobveh) isFlatEmpty
 	[5,// nothing within this distance
 	-1,// biki says set this to -1
-	0.5,// max gradient (upto about 27degrees)
+	0.75,// max gradient (upto about 27degrees)
 	5,// how far to check gradient
 	0,// cannot be water
 	false,// ignore shoreline detection
@@ -31,7 +31,8 @@ if not (fobdeployed) then
 		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
 		[(driver fobveh), ["eject", fobveh] ] remoteexec ["action", fobveh ];
 		sleep 2;
-		_nul = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
+		_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
+		waitUntil {scriptDone _handle22};
 		sleep 0.5;
 		fobbox setpos (position fobboxlocator);
 		// Make editing area for curator

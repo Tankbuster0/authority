@@ -149,15 +149,15 @@ _multiplyMatrixFunc =
 
 		//Create the object and make sure it's in the correct location
 		_newObj = _type createVehicle getpos temporaryposforobjectmapper; //_newPos
-		uiSleep 0.02;
+		uiSleep 0.002;
 		_newObj hideObjectGlobal true;
-		uiSleep 0.02;
+		uiSleep 0.002;
 		_newObj setDir (_azi + _azimuth);
-		uiSleep 0.02;
+		uiSleep 0.002;
 		_newObj setPos _newPos;
-		uiSleep 0.02;
+		uiSleep 0.002;
 		_newObj hideObjectGlobal false;
-		uiSleep 0.02;
+		uiSleep 0.002;
 		if (!_ASL) then {_newObj setPos _newPos;} else {_newObj setPosASL _newPos; _newObj setVariable ["BIS_DynO_ASL", true];};
 
 		//If fuel and damage were grabbed, map them
