@@ -108,6 +108,8 @@ if ((primarytargetcounter > 1)) then
 _radarpos = [] call tky_fnc_findhighground;
 _radartype = selectRandom  opforradartypes;
 pt_radar = createVehicle [_radartype, _radarpos,[],0,"NONE"];
+pt_radar addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
+
 pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkilled.sqf"}];
 0 = execVM "server\airreinforcementmanager.sqf";
 
