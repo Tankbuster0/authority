@@ -17,7 +17,7 @@ while {_spawnpos in [[0,0,0], islandcentre]} do // findsafepos not found a good 
 		_testradius = _testradius * 2;
 	};
 
-_runabout =  createVehicle ["CUP_B_M1030", _spawnpos, [], 0, "NONE"];
+_runabout =  createVehicle ["B_Quadbike_01_F", _spawnpos, [], 0, "NONE"];
 
 
 
