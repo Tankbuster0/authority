@@ -168,6 +168,7 @@ switch (dep_side) do
         if (isNil "dep_u_g_at")         	then { dep_u_g_at       	= "CUP_I_GUE_Forester"; };
         if (isNil "dep_u_g_medic")      	then { dep_u_g_medic    	= "CUP_I_GUE_Villager"; };
         if (isNil "dep_u_g_sl")         	then { dep_u_g_sl       	= "CUP_I_GUE_Farmer"; };
+		if (isNil "dep_u_g_gl")           	then { dep_u_g_gl         = "CUP_I_GUE_Farmer"; };
         if (isNil "dep_u_g_marksman")   	then { dep_u_g_marksman 	= "CUP_I_GUE_Woodman"; };
 
         if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= ["CUP_I_GUE_Soldier_01 ", "CUP_I_GUE_Soldier_02","CUP_I_GUE_Soldier_03","CUP_I_GUE_Soldier_04","CUP_I_GUE_Soldier_05","CUP_I_GUE_Soldier_06",									                        "CUP_I_GUE_Soldier_07","CUP_I_GUE_Soldier_08","CUP_I_GUE_Soldier_09","CUP_I_GUE_Soldier_10","CUP_I_GUE_Soldier_11","CUP_I_GUE_Soldier_12","CUP_I_GUE_Soldier_13",
