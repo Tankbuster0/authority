@@ -171,7 +171,7 @@ switch (dep_side) do
 		if (isNil "dep_u_g_gl")           	then { dep_u_g_gl         = "CUP_I_GUE_Farmer"; };
         if (isNil "dep_u_g_marksman")   	then { dep_u_g_marksman 	= "CUP_I_GUE_Woodman"; };
 
-        if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= ["CUP_I_GUE_Soldier_01 ", "CUP_I_GUE_Soldier_02","CUP_I_GUE_Soldier_03","CUP_I_GUE_Soldier_04","CUP_I_GUE_Soldier_05","CUP_I_GUE_Soldier_06",									                       "CUP_I_GUE_Soldier_07","CUP_I_GUE_Soldier_08","CUP_I_GUE_Soldier_09","CUP_I_GUE_Soldier_10","CUP_I_GUE_Soldier_11","CUP_I_GUE_Soldier_12","CUP_I_GUE_Soldier_13",
+        if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= ["CUP_I_GUE_Soldier_01", "CUP_I_GUE_Soldier_02","CUP_I_GUE_Soldier_03","CUP_I_GUE_Soldier_04","CUP_I_GUE_Soldier_05","CUP_I_GUE_Soldier_06",									                       "CUP_I_GUE_Soldier_07","CUP_I_GUE_Soldier_08","CUP_I_GUE_Soldier_09","CUP_I_GUE_Soldier_10","CUP_I_GUE_Soldier_11","CUP_I_GUE_Soldier_12","CUP_I_GUE_Soldier_13",
 		                                                          "CUP_I_GUE_Soldier_14",	"CUP_I_GUE_Soldier_15"]; };		
 		
         if (isNil "dep_u_gl")           	then { dep_u_gl         	= "CUP_I_GUE_Soldier_GL"; };
