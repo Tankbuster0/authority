@@ -37,7 +37,7 @@ dep_side = independent;
     possible values:    east, west, independent
     default value:      west
 */
-// dep_own_side = west;
+dep_own_side = west;
 
 /*
     setting name:       dep_despawn
@@ -101,7 +101,7 @@ dep_safe_rad = 800;
     possible values:    boolean (true or false)
     default value:      true
 */
-// dep_ieds = true;
+ dep_ieds = true;
  
  /*
     setting name:       dep_mines
@@ -109,7 +109,7 @@ dep_safe_rad = 800;
     possible values:    boolean (true or false)
     default value:      true
 */
-// dep_mines = true;
+ dep_mines = true;
 
 /*
     setting name:       dep_ied_chance
@@ -117,7 +117,7 @@ dep_safe_rad = 800;
     possible values:    decimal number from 0 to 1
     default value:      0.7
 */
-// dep_ied_chance = 0.3;
+ dep_ied_chance = 0.7;
 
 /*
     setting name:       dep_cr_ied
@@ -133,7 +133,7 @@ dep_cr_ied = true;
     possible values:    decimal number from 0 to 1
     default value:      0.3
 */
-// dep_veh_chance = 0.3;
+ dep_veh_chance = 0.3;
 
 /*
     setting name:       dep_unit_init
@@ -165,7 +165,7 @@ dep_unit_init = "[_this] call tky_fnc_tc_setskill";
     possible values:    boolean (true or false)
     default value:      true
 */
-// dep_allow_mortars = true;
+dep_allow_mortars = true;
 
 /*
     setting name:       dep_civilians
@@ -257,28 +257,28 @@ dep_act_speed = 100;
     possible values:    integer greater than 0
     default value:      <map specific>
 */
-// dep_roadblocks = 10;
+dep_roadblocks = 30;
 
 /*
 	Number of bunkers
 	possible values: integer
 	default value: <map specific>
 */
-//dep_bunkers=8;
+dep_bunkers=30;
 
 /*
 	Number of vehicle patrol areas
 	possible values: integer
 	default value: <map specific>
 */
-//dep_patrols=8;
+dep_patrols=30;
 
 /*
 	Number of patroling air vehicles
 	possible values: integer
 	default value: 1
 */
-//dep_air_patrols=3;
+dep_air_patrols=1;
 
 /*
     setting name:       dep_aa_camps
@@ -286,7 +286,7 @@ dep_act_speed = 100;
     possible values:    integer greater than 0
     default value:      <map specific>
 */
-dep_aa_camps = 5;
+dep_aa_camps = 20;
 
 /*
     setting name:       dep_housepop
@@ -301,7 +301,7 @@ dep_housepop = 150;
 	possible values: integer
 	default value: <map specific>
 */
-//dep_ambushes=8;
+dep_ambushes=12;
 
 /*
 	Number of occupied military installations
