@@ -29,7 +29,7 @@
     possible values:    east, west, independent
     default value:      east
 */
-dep_side = independent;
+//dep_side = independent;
 
 /*
     setting name:       dep_own_side
@@ -37,7 +37,7 @@ dep_side = independent;
     possible values:    east, west, independent
     default value:      west
 */
-dep_own_side = west;
+//dep_own_side = west;
 
 /*
     setting name:       dep_despawn
@@ -45,7 +45,7 @@ dep_own_side = west;
     possible values:    integer greater than 0
     default value:      5
 */
-dep_despawn = 2;
+//dep_despawn = 2;
 
 /*
     setting name:       dep_debug
@@ -76,16 +76,16 @@ dep_despawn = 2;
     description:        Safe zone position. No enemy positions will spawn here
     possible values:    position or array with positions
     default value:      []
-*/
-dep_safe_zone = [markerPos "dep_safezone_marker_1", markerPos "dep_safezone_marker_2", markerPos "dep_safezone_marker_3",markerPos "dep_safezone_marker_4",markerPos "dep_safezone_marker_5",markerPos "dep_safezone_marker_6"];
 
+dep_safe_zone = [markerPos "dep_safezone_marker_1", markerPos "dep_safezone_marker_2", markerPos "dep_safezone_marker_3",markerPos "dep_safezone_marker_4",markerPos "dep_safezone_marker_5",markerPos "dep_safezone_marker_6"];
+*/
 /*
     setting name:       dep_safe_rad
     description:        Safe zone radius in meters.
     possible values:    integer greater than 0
     default value:      800
 */
-dep_safe_rad = 800;
+//dep_safe_rad = 800;
 
 /*
 	setting name: 	dep_map_margin
@@ -101,7 +101,7 @@ dep_safe_rad = 800;
     possible values:    boolean (true or false)
     default value:      true
 */
- dep_ieds = true;
+// dep_ieds = true;
  
  /*
     setting name:       dep_mines
@@ -109,7 +109,7 @@ dep_safe_rad = 800;
     possible values:    boolean (true or false)
     default value:      true
 */
- dep_mines = true;
+// dep_mines = true;
 
 /*
     setting name:       dep_ied_chance
@@ -117,7 +117,7 @@ dep_safe_rad = 800;
     possible values:    decimal number from 0 to 1
     default value:      0.7
 */
- dep_ied_chance = 0.7;
+// dep_ied_chance = 0.7;
 
 /*
     setting name:       dep_cr_ied
@@ -125,7 +125,7 @@ dep_safe_rad = 800;
     possible values:    boolean (true or false)
     default value:      false
 */
-dep_cr_ied = true;
+//dep_cr_ied = true;
 
 /*
     setting name:       dep_veh_chance
@@ -133,7 +133,7 @@ dep_cr_ied = true;
     possible values:    decimal number from 0 to 1
     default value:      0.3
 */
- dep_veh_chance = 0.3;
+// dep_veh_chance = 0.3;
 
 /*
     setting name:       dep_unit_init
@@ -141,7 +141,7 @@ dep_cr_ied = true;
     possible values:    string
     default value:      ""
 */
-dep_unit_init = "[_this] call tky_fnc_tc_setskill";
+//dep_unit_init = "[_this] call tky_fnc_tc_setskill";
 
 /*
     setting name:       dep_useheadless
@@ -165,7 +165,7 @@ dep_unit_init = "[_this] call tky_fnc_tc_setskill";
     possible values:    boolean (true or false)
     default value:      true
 */
-dep_allow_mortars = true;
+//dep_allow_mortars = true;
 
 /*
     setting name:       dep_civilians
@@ -173,7 +173,7 @@ dep_allow_mortars = true;
     possible values:    boolean (true or false)
     default value:      false
 */
-dep_civilians = true;
+//dep_civilians = true;
 
 /*
     setting name:       dep_fail_civilians
@@ -189,7 +189,7 @@ dep_civilians = true;
     possible values:    [], ['all'], ['military', 'roadpop']
     default value:      []
 */
-dep_zone_markers = [];
+//dep_zone_markers = [];
 
  /*
     setting name:       dep_civ_fail_script
@@ -207,7 +207,7 @@ dep_zone_markers = [];
     possible values:    integer greater than 0
     default value:      8
 */
-dep_max_ai_loc = 4;
+//dep_max_ai_loc = 4;
 
 /*
     setting name:       dep_aim_player
@@ -223,7 +223,7 @@ dep_max_ai_loc = 4;
     possible values:    integer greater than 0
     default value:      200
 */
-dep_max_ai_tot = 100;
+//dep_max_ai_tot = 100;
 
 /*
     setting name:       dep_act_dist
@@ -231,7 +231,7 @@ dep_max_ai_tot = 100;
     possible values:    integer greater than 0
     default value:      800
 */
-dep_act_dist = 600;
+//dep_act_dist = 600;
 
 /*
     setting name:       dep_act_height
@@ -247,7 +247,7 @@ dep_act_dist = 600;
     possible values:    integer greater than 0
     default value:      160
 */
-dep_act_speed = 100;
+//dep_act_speed = 100;
 
 //   LOCATION TYPES
 
@@ -257,28 +257,28 @@ dep_act_speed = 100;
     possible values:    integer greater than 0
     default value:      <map specific>
 */
-dep_roadblocks = 30;
+//dep_roadblocks = 30;
 
 /*
 	Number of bunkers
 	possible values: integer
 	default value: <map specific>
 */
-dep_bunkers=30;
+//dep_bunkers=30;
 
 /*
 	Number of vehicle patrol areas
 	possible values: integer
 	default value: <map specific>
 */
-dep_patrols=30;
+//dep_patrols=30;
 
 /*
 	Number of patroling air vehicles
 	possible values: integer
 	default value: 1
 */
-dep_air_patrols=1;
+//dep_air_patrols=1;
 
 /*
     setting name:       dep_aa_camps
@@ -286,7 +286,7 @@ dep_air_patrols=1;
     possible values:    integer greater than 0
     default value:      <map specific>
 */
-dep_aa_camps = 20;
+//dep_aa_camps = 20;
 
 /*
     setting name:       dep_housepop
@@ -294,14 +294,14 @@ dep_aa_camps = 20;
     possible values:    integer greater than 0
     default value:      <map specific>
 */
-dep_housepop = 150;
+//dep_housepop = 150;
 
 /*
 	Number of ambush zones
 	possible values: integer
 	default value: <map specific>
 */
-dep_ambushes=12;
+//dep_ambushes=12;
 
 /*
 	Number of occupied military installations

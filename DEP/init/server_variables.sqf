@@ -30,7 +30,7 @@ dep_civgroups 				= [];
 dep_exceeded_ai_limit       = false;
 dep_exceeded_group_limit	= false;
 
-if (isNil "dep_side")               then { dep_side             = east; };          // Enemy side (east, west, independent)
+if (isNil "dep_side")               then { dep_side             = independent; };          // Enemy side (east, west, independent)
 if (isNil "dep_own_side")           then { dep_own_side         = west; };          // Friendly side (east, west, independent)
 if (isNil "dep_despawn")            then { dep_despawn          = 5; };             // Despawn location after x minutes inactivity
 if (isNil "dep_debug")              then { dep_debug            = false; };         // Enable debug
@@ -39,19 +39,19 @@ if (isNil "dep_chat_logging") 		then { dep_chat_logging 	= false; };         // 
 if (isNil "dep_precache")           then { dep_precache         = false; };         // Pre cache locations
 if (isNil "dep_max_ai_loc")         then { dep_max_ai_loc       = 8; };             // Maximum AI per location
 if (isNil "dep_aim_player")         then { dep_aim_player       = 0; };             // AI multiplier for on the fly modifying the maximum amount of enemy per location
-if (isNil "dep_max_ai_tot")         then { dep_max_ai_tot       = 200; };           // Maximum AI in total
+if (isNil "dep_max_ai_tot")         then { dep_max_ai_tot       = 100; };           // Maximum AI in total
 if (isNil "dep_act_dist")           then { dep_act_dist         = 800; };           // Location activation distance
 if (isNil "dep_act_height")         then { dep_act_height       = 80; };            // Player must be below this height to activate location
 if (isNil "dep_act_speed")          then { dep_act_speed        = 160; };           // Player must be below this speed to activate location
-if (isNil "dep_safe_rad")           then { dep_safe_rad         = 800; };           // Safe zone radius
+if (isNil "dep_safe_rad")           then { dep_safe_rad         = 600; };           // Safe zone radius
 if (isNil "dep_max_veh")            then { dep_max_veh          = 10; };            // Max number of vehicles
 if (isNil "dep_ied_chance")         then { dep_ied_chance       = 0.7; };           // Chance of IEDs
 if (isNil "dep_veh_chance")         then { dep_veh_chance       = 0.3; };           // Chance of vehicles
-if (isNil "dep_unit_init")          then { dep_unit_init        = ""; };            // Code executed on unit creation
+if (isNil "dep_unit_init")          then { dep_unit_init        = "[_this] call tky_fnc_tc_setskill"; };// Code executed on unit creation
 if (isNil "dep_cr_ied")             then { dep_cr_ied           = false; };         // Restrict disarming IED to explosives class
 if (isNil "dep_useheadless")        then { dep_useheadless      = false; };         // Load DEP on a headless client
 if (isNil "dep_headlessclient")     then { dep_headlessclient   = ""; };            // Specify the headless client if there are more than one
-if (isNil "dep_civilians")          then { dep_civilians        = false; };         // Place civilians on the map
+if (isNil "dep_civilians")          then { dep_civilians        = true; };         // Place civilians on the map
 if (isNil "dep_mines")          	then { dep_mines        	= true; };         	// Spawn mines
 if (isNil "dep_ieds")          		then { dep_ieds        		= true; };         	// Spawn IEDs
 if (isNil "dep_allow_mortars")      then { dep_allow_mortars    = true; };          // Allow players to use mortars
@@ -66,7 +66,7 @@ if (isNil "dep_safe_zone") then
     if (getMarkerColor "respawn_west" != "" && dep_own_side == west) then { dep_safe_zone = getMarkerPos "respawn_west"; };
     if (getMarkerColor "respawn_east" != "" && dep_own_side == east) then { dep_safe_zone = getMarkerPos "respawn_east"; };
     if (getMarkerColor "respawn_guerrila" != "" && dep_own_side == independent) then { dep_safe_zone = getMarkerPos "respawn_guerrila"; };
-    if (isNil "dep_safe_zone") then { dep_safe_zone = []; }; 
+    if (isNil "dep_safe_zone") then { dep_safe_zone = [markerPos "dep_safezone_marker_1", markerPos "dep_safezone_marker_2", markerPos "dep_safezone_marker_3",markerPos "dep_safezone_marker_4",markerPos "dep_safezone_marker_5",markerPos "dep_safezone_marker_6",markerPos "dep_safezone_marker_7"]; }; 
 };
 
 dep_base_ai_loc = dep_max_ai_loc;
