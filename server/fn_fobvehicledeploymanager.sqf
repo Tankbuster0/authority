@@ -21,26 +21,35 @@ if not (fobdeployed) then
 		"Not enough space or too steep to build FOB here." remoteexec ["hint", fobveh];
 		[fobveh,1] remoteexec ["tky_fnc_setfuel"];
 		sleep 4;
-		} else
+		}
+		else
 		{
-		diag_log "*** fdm deploying";
-		//hint "Deploying FOB";
-		"Deploying FOB." remoteExec ["hint", fobveh];
-		[fobveh, true] remoteexec ["lockdriver"];
-		sleep 2;
-		_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
-		waitUntil {scriptDone _handle22};
-		sleep 0.5;
-		fobbox setpos (position fobboxlocator);
-		// Make editing area for curator
-		(commander fobveh) assignCurator cur;
-		[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
-		cur addCuratorEditingArea [1,(position fobveh),50];
-		cur addCuratorCameraArea [1,(position fobveh),50];
-		// Hint press button to get in zeus mode
-		"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (commander fobveh)];
-		fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
-		sleep 5;
+		if not(isNull (driver fobveh)) then
+			{
+			diag_log "*** fdm refuses because there's a driver in fobveh";
+			"Can't deploy while there's a driver in the vehicle." remoteexec ["hint", fobveh];
+			}
+			else
+			{
+			diag_log "*** fdm deploying";
+			//hint "Deploying FOB";
+			"Deploying FOB." remoteExec ["hint", fobveh];
+			[fobveh, true] remoteexec ["lockdriver"];
+			sleep 2;
+			_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
+			waitUntil {scriptDone _handle22};
+			sleep 0.5;
+			fobbox setpos (position fobboxlocator);
+			// Make editing area for curator
+			(commander fobveh) assignCurator cur;
+			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
+			cur addCuratorEditingArea [1,(position fobveh),50];
+			cur addCuratorCameraArea [1,(position fobveh),50];
+			// Hint press button to get in zeus mode
+			"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (commander fobveh)];
+			fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
+			sleep 5;
+			};
 		};
 }
 else
