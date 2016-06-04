@@ -8,22 +8,22 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=1111;
+		nextID=1119;
 	};
 	class MarkerIDProvider
 	{
-		nextID=5;
+		nextID=6;
 	};
 	class LayerIndexProvider
 	{
-		nextID=3601;
+		nextID=3610;
 	};
 	class Camera
 	{
-		pos[]={8415.8867,151.23637,25154.799};
-		dir[]={0.51469207,-0.793136,-0.32565096};
-		up[]={0.6702736,0.60899824,-0.42408904};
-		aside[]={-0.53468007,-3.3550896e-007,-0.84506351};
+		pos[]={8180.6367,340.58682,25191.736};
+		dir[]={0.34319189,-0.7839129,-0.51743102};
+		up[]={0.43331629,0.62081504,-0.6533125};
+		aside[]={-0.83337045,8.783536e-008,-0.55274063};
 	};
 };
 binarizationWanted=0;
@@ -485,6 +485,8 @@ class Mission
 	{
 		briefingName="COOP40 Authority";
 		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 682";
+		resistanceWest=0;
+		resistanceEast=1;
 		startWeather=0.29999998;
 		startWind=0.099999994;
 		startWaves=0.099999994;
@@ -678,7 +680,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=110;
+		items=117;
 		class Item0
 		{
 			dataType="Group";
@@ -7709,6 +7711,84 @@ class Mission
 				};
 				nAttributes=1;
 			};
+		};
+		class Item110
+		{
+			dataType="Marker";
+			position[]={11513.618,22.982136,11690.579};
+			name="dep_safezone_marker_1";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1111;
+		};
+		class Item111
+		{
+			dataType="Marker";
+			position[]={21109,21.282658,7292};
+			name="dep_safezone_marker_2";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1112;
+		};
+		class Item112
+		{
+			dataType="Marker";
+			position[]={26873,13,24674};
+			name="dep_safezone_marker_3";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1113;
+			atlOffset=-8.7326298;
+		};
+		class Item113
+		{
+			dataType="Marker";
+			position[]={9156,16.707327,21493};
+			name="dep_safezone_marker_4";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1114;
+		};
+		class Item114
+		{
+			dataType="Marker";
+			position[]={14240,21.334661,16123};
+			name="dep_safezone_marker_5";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1116;
+		};
+		class Item115
+		{
+			dataType="Marker";
+			position[]={14717,17.91,16525};
+			name="dep_safezone_marker_6";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1117;
+		};
+		class Item116
+		{
+			dataType="Marker";
+			position[]={15177,17.879326,16954};
+			name="dep_safezone_marker_7";
+			markerType="ELLIPSE";
+			type="ellipse";
+			a=600;
+			b=600;
+			id=1118;
 		};
 	};
 	class Connections
