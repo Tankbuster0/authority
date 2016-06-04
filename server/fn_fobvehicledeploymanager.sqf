@@ -49,6 +49,7 @@ if not (fobdeployed) then
 			"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (commander fobveh)];
 			fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
 			sleep 5;
+			nul = execVM "server\cleanupoldprimary.sqf";
 			};
 		};
 }
