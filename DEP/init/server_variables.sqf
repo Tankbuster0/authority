@@ -110,8 +110,8 @@ switch (dep_side) do
         if (isNil "dep_u_veh_cmnd")     	then { dep_u_veh_cmnd   	= "O_officer_F"; };
         if (isNil "dep_u_veh_crew")     	then { dep_u_veh_crew   	= "O_crew_F"; };
 		
-		if (isNil "dep_static_aa") 			then { dep_static_aa		= "O_static_AA_F"; };
-		if (isNil "dep_static_at") 			then { dep_static_at		= "O_static_AT_F"; };
+		if (isNil "dep_static_aa") 			then { dep_static_aa	= "O_static_AA_F"; };
+		if (isNil "dep_static_at") 			then { dep_static_at	= "O_static_AT_F"; };
 		if (isNil "dep_static_hmg") 		then { dep_static_hmg		= "O_HMG_01_high_F"; };
 		if (isNil "dep_static_gmg") 		then { dep_static_gmg		= "O_GMG_01_high_F"; };
 		if (isNil "dep_static_hmg_tri") 	then { dep_static_hmg_tri 	= "O_HMG_01_F"; };
@@ -119,10 +119,10 @@ switch (dep_side) do
 		if (isNil "dep_box_weapons") 		then { dep_box_weapons		= "Box_East_Wps_F"; };
 		if (isNil "dep_box_special") 		then { dep_box_special		= "Box_East_WpsSpecial_F"; };
 		if (isNil "dep_box_launchers") 		then { dep_box_launchers	= "Box_East_WpsLaunch_F"; };
-		if (isNil "dep_box_ammo") 			then { dep_box_ammo			= "Box_East_Ammo_F"; };
-		if (isNil "dep_box_ord") 			then { dep_box_ord			= "Box_East_AmmoOrd_F"; };
+		if (isNil "dep_box_ammo") 			then { dep_box_ammo		= "Box_East_Ammo_F"; };
+		if (isNil "dep_box_ord") 			then { dep_box_ord		= "Box_East_AmmoOrd_F"; };
         
-        if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Tracked_02_cannon_F","O_G_Van_01_transport_F","O_APC_Wheeled_02_rcws_F","O_G_Offroad_01_armed_F"]; };
+        if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles = ["O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Tracked_02_cannon_F","O_G_Van_01_transport_F","O_APC_Wheeled_02_rcws_F","O_G_Offroad_01_armed_F"]; };
         if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["O_Heli_Attack_02_F","O_Heli_Light_02_F","O_Plane_CAS_02_F"]; };
     };
     case west: {
@@ -147,57 +147,58 @@ switch (dep_side) do
         if (isNil "dep_u_veh_cmnd")     	then { dep_u_veh_cmnd   	= "B_officer_F"; };
         if (isNil "dep_u_veh_crew")     	then { dep_u_veh_crew   	= "B_crew_F"; };
 		
-		if (isNil "dep_static_aa") 			then { dep_static_aa		= "B_static_AA_F"; };
-		if (isNil "dep_static_at") 			then { dep_static_at		= "B_static_AT_F"; };
+		if (isNil "dep_static_aa") 			then { dep_static_aa	= "B_static_AA_F"; };
+		if (isNil "dep_static_at") 			then { dep_static_at	= "B_static_AT_F"; };
 		if (isNil "dep_static_hmg") 		then { dep_static_hmg		= "B_HMG_01_high_F"; };
 		if (isNil "dep_static_gmg") 		then { dep_static_gmg		= "B_GMG_01_high_F"; };
 		if (isNil "dep_static_hmg_tri") 	then { dep_static_hmg_tri 	= "B_HMG_01_F"; };
 		
-		if (isNil "dep_box_weapons") 		then { dep_box_weapons 		= "Box_NATO_Wps_F"; };
-		if (isNil "dep_box_special") 		then { dep_box_special 		= "Box_NATO_WpsSpecial_F"; };
+		if (isNil "dep_box_weapons") 		then { dep_box_weapons 	= "Box_NATO_Wps_F"; };
+		if (isNil "dep_box_special") 		then { dep_box_special 	= "Box_NATO_WpsSpecial_F"; };
 		if (isNil "dep_box_launchers") 		then { dep_box_launchers 	= "Box_NATO_WpsLaunch_F"; };
 		if (isNil "dep_box_ammo") 			then { dep_box_ammo 		= "Box_NATO_Ammo_F"; };
 		if (isNil "dep_box_ord") 			then { dep_box_ord 			= "Box_NATO_AmmoOrd_F"; };
         
-        if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["B_MRAP_01_hmg_F","B_MRAP_01_gmg_F","B_APC_Wheeled_01_cannon_F","B_G_Van_01_transport_F","B_APC_Tracked_01_AA_F","B_G_Offroad_01_armed_F"]; };
+        if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles = ["B_MRAP_01_hmg_F","B_MRAP_01_gmg_F","B_APC_Wheeled_01_cannon_F","B_G_Van_01_transport_F","B_APC_Tracked_01_AA_F","B_G_Offroad_01_armed_F"]; };
 		if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["B_Heli_Attack_01_F","B_Heli_Light_01_armed_F","B_Plane_CAS_01_F"]; };
     };
     default {
-        if (isNil "dep_u_g_soldier")    	then { dep_u_g_soldier  	= "I_G_Soldier_F"; };
-        if (isNil "dep_u_g_gl")         	then { dep_u_g_gl       	= "I_G_Soldier_GL_F"; };
-        if (isNil "dep_u_g_ar")         	then { dep_u_g_ar       	= "I_G_Soldier_AR_F"; };
-        if (isNil "dep_u_g_at")         	then { dep_u_g_at       	= "I_G_Soldier_LAT_F"; };
-        if (isNil "dep_u_g_medic")      	then { dep_u_g_medic    	= "I_G_medic_F"; };
-        if (isNil "dep_u_g_sl")         	then { dep_u_g_sl       	= "I_G_Soldier_SL_F"; };
-        if (isNil "dep_u_g_marksman")   	then { dep_u_g_marksman 	= "I_G_Soldier_M_F"; };
+        if (isNil "dep_u_g_soldier")    	then { dep_u_g_soldier  	= "CUP_I_GUE_Local"; };																	
+		if (isNil "dep_u_g_ar")         	then { dep_u_g_ar       	= "CUP_I_GUE_Gamekeeper"; };
+        if (isNil "dep_u_g_at")         	then { dep_u_g_at       	= "CUP_I_GUE_Forester"; };
+        if (isNil "dep_u_g_medic")      	then { dep_u_g_medic    	= "CUP_I_GUE_Villager"; };
+        if (isNil "dep_u_g_sl")         	then { dep_u_g_sl       	= "CUP_I_GUE_Farmer"; };
+        if (isNil "dep_u_g_marksman")   	then { dep_u_g_marksman 	= "CUP_I_GUE_Woodman"; };
 
-        if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= "I_soldier_F"; };
-        if (isNil "dep_u_gl")           	then { dep_u_gl         	= "I_Soldier_GL_F"; };
-        if (isNil "dep_u_ar")           	then { dep_u_ar         	= "I_Soldier_AR_F"; };
-        if (isNil "dep_u_at")           	then { dep_u_at         	= "I_Soldier_LAT_F"; };
-        if (isNil "dep_u_medic")        	then { dep_u_medic      	= "I_medic_F"; };
-        if (isNil "dep_u_aa")           	then { dep_u_aa         	= "I_Soldier_AA_F"; };
-        if (isNil "dep_u_aaa")          	then { dep_u_aaa        	= "I_Soldier_AAA_F"; };
-        if (isNil "dep_u_sl")           	then { dep_u_sl         	= "I_Soldier_SL_F"; };
-        if (isNil "dep_u_marksman")     	then { dep_u_marksman   	= "I_soldier_M_F"; };
-        if (isNil "dep_u_sniper")       	then { dep_u_sniper     	= "I_Sniper_F"; };
-        if (isNil "dep_u_veh_cmnd")     	then { dep_u_veh_cmnd   	= "I_officer_F"; };
-        if (isNil "dep_u_veh_crew")     	then { dep_u_veh_crew   	= "I_crew_F"; };
+        if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= ["CUP_I_GUE_Soldier_01 ", "CUP_I_GUE_Soldier_02","CUP_I_GUE_Soldier_03","CUP_I_GUE_Soldier_04","CUP_I_GUE_Soldier_05","CUP_I_GUE_Soldier_06",									                        "CUP_I_GUE_Soldier_07","CUP_I_GUE_Soldier_08","CUP_I_GUE_Soldier_09","CUP_I_GUE_Soldier_10","CUP_I_GUE_Soldier_11","CUP_I_GUE_Soldier_12","CUP_I_GUE_Soldier_13",
+		                                                           "CUP_I_GUE_Soldier_14",	"CUP_I_GUE_Soldier_15"]; };		
 		
-		if (isNil "dep_static_aa") 			then { dep_static_aa		= "I_static_AA_F"; };
-		if (isNil "dep_static_at") 			then { dep_static_at		= "I_static_AT_F"; };
-		if (isNil "dep_static_hmg") 		then { dep_static_hmg		= "I_HMG_01_high_F"; };
-		if (isNil "dep_static_gmg") 		then { dep_static_gmg		= "I_GMG_01_high_F"; };
-		if (isNil "dep_static_hmg_tri") 	then { dep_static_hmg_tri 	= "I_HMG_01_F"; };
+        if (isNil "dep_u_gl")           	then { dep_u_gl         	= "CUP_I_GUE_Soldier_GL"; };
+        if (isNil "dep_u_ar")           	then { dep_u_ar         	= "CUP_I_GUE_Soldier_MG"; };
+        if (isNil "dep_u_at")           	then { dep_u_at         	= "CUP_I_GUE_Soldier_AT"; };
+        if (isNil "dep_u_medic")        	then { dep_u_medic      	= "CUP_I_GUE_Medic"; };
+        if (isNil "dep_u_aa")           	then { dep_u_aa         	= "CUP_I_GUE_Soldier_AA2"; };
+        if (isNil "dep_u_aaa")          	then { dep_u_aaa        	= "CUP_I_GUE_Soldier_AA"; };
+        if (isNil "dep_u_sl")           	then { dep_u_sl         	= "CUP_I_GUE_Soldier_Scout"; };
+        if (isNil "dep_u_marksman")     	then { dep_u_marksman   	= "CUP_I_GUE_Soldier_Scout"; };
+        if (isNil "dep_u_sniper")       	then { dep_u_sniper     	= "CUP_I_GUE_Sniper"; };
+        if (isNil "dep_u_veh_cmnd")     	then { dep_u_veh_cmnd   	= "CUP_I_GUE_Officer"; };
+        if (isNil "dep_u_veh_crew")     	then { dep_u_veh_crew   	= "CUP_I_GUE_Crew"; };
+		
+		if (isNil "dep_static_aa") 		then { dep_static_aa		= "CUP_I_ZU23_NAPA"; };
+		if (isNil "dep_static_at") 		then { dep_static_at		= "CUP_I_SPG9_NAPA"; };
+		if (isNil "dep_static_hmg") 		then { dep_static_hmg		= "CUP_I_DSHKM_NAPA"; };
+		if (isNil "dep_static_gmg") 		then { dep_static_gmg		= "CUP_I_DSHKM_NAPA"; };
+		if (isNil "dep_static_hmg_tri") 	then { dep_static_hmg_tri 	= "CUP_I_DSHKM_NAPA"; };
 		
 		if (isNil "dep_box_weapons") 		then { dep_box_weapons		= "Box_IND_Wps_F"; };
 		if (isNil "dep_box_special") 		then { dep_box_special		= "Box_IND_WpsSpecial_F"; };
 		if (isNil "dep_box_launchers") 		then { dep_box_launchers	= "Box_IND_WpsLaunch_F"; };
-		if (isNil "dep_box_ammo") 			then { dep_box_ammo			= "Box_IND_Ammo_F"; };
-		if (isNil "dep_box_ord") 			then { dep_box_ord			= "Box_IND_AmmoOrd_F"; };
+		if (isNil "dep_box_ammo") 			then { dep_box_ammo		= "Box_IND_Ammo_F"; };
+		if (isNil "dep_box_ord") 			then { dep_box_ord		= "Box_IND_AmmoOrd_F"; };
         
-        if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["I_MRAP_03_hmg_F","I_MRAP_03_gmg_F","I_APC_tracked_03_cannon_F","I_G_Van_01_transport_F","I_APC_Wheeled_03_cannon_F","I_G_offroad_01_armed_F"]; };
-		if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["I_Heli_light_03_F","I_Plane_Fighter_03_CAS_F"]; };
+        if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles = ["CUP_I_BRDM2_NAPA","CUP_I_BRDM2_HQ_NAPA","CUP_I_BRDM2_ATGM_NAPA","CUP_I_BMP_HQ_NAPA","CUP_I_BMP2_NAPA","CUP_I_BMP2_AMB_NAPA","CUP_I_Datsun_PK","CUP_I_Datsun_PK_Random"]; };
+		if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["CUP_B_Wildcat_Cannon_Armed_Green_AAF","CUP_B_Wildcat_Cannon_Armed_Green_AAF","CUP_B_Wildcat_Unarmed_Green_AAF"]; };
     };
 };
 
