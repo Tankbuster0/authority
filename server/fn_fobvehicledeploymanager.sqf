@@ -54,7 +54,6 @@ else
 		//hint "Removing FOB";
 		diag_log "***removing fob";
 		"Removing FOB" remoteexec ["hint", fobveh];
-		fobveh  setUserActionText [fobdeployactionid, "Working! Please wait"];
 		sleep 2;
 		{deleteVehicle _x} foreach fobjects;
 		fobdeployed = false;
@@ -71,7 +70,6 @@ else
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
 		sleep 2;
-		fobveh  setUserActionText [fobdeployactionid, "Redeploy FOB."];
 		};
 };
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
