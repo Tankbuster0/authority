@@ -1,0 +1,135 @@
+Version 0.5.3
+=============
+* Fixed: Error in expression
+
+Version 0.5.2
+=============
+* Added: new type of roadblock
+* Changed: now able to edit air patrol setting "on the fly".
+* Changed: air patrol interval according to map size (small maps have a greater interval)
+* Changed: air patrols stop when no players are on the server
+* Fixed: planes fly higher than helicopters to prevent them from crashing into mountains
+* Fixed: unable to find all military locations on Chernarus (lowered default setting)
+* Fixed: removed barbed wire on roadblocks to prevent an issue with ACE
+
+Version 0.5.1
+=============
+* Added: dynamic air patrols.
+
+Version 0.5.0
+=============
+* Added: possibility to specify class names for static weapons and ammo boxes.
+* Added: map support for Kunduz and Zargabad
+* Added: new enemy camp
+* Added: new enemy location type: ambush
+* Added: support for ACE defusal kit
+* General code optimization
+
+Version 0.4.1
+=============
+* Changed: optimized vehicle patrol paths
+* Fixed: enemy locations would sometimes overlap with safe zones
+
+Version 0.4.0
+=============
+* Added: vanilla IEDs
+* Added: write debug messages to log file (dep_logging)
+* Added: on screen debug messages (dep_chat_logging)
+* Added: turn mines on or off (dep_mines)
+* Added: turn IEDs on or off (dep_ieds)
+* Fixed: sometimes the maximum number of ai per location was exceeded 
+
+Version 0.3.4
+=============
+* Added: precaching locations
+
+Version 0.3.3
+=============
+* Added: better support for non standard Arma 3 maps
+* Removed: CBA requirement
+
+Version 0.3.2
+=============
+* Added: respawn position is automatically added as safe zone if no safezone is defined
+* Added: car IEDs
+* Added: AI multiplier for on the fly modifying the maximum amount of enemies per location
+* Changed: IEDs have fake wires
+* Changed: civilian behaviour
+* Fixed: bug with world names being lower case when using Steam's Arma 3 server exe.
+
+Version 0.3.1
+=============
+* Fixed: locations can now be activated by UAV's
+* Changed: better enemy respawn positions
+* Changed: enemy static weapons and ammo boxes now belong to their respective side
+
+Version 0.3.0
+=============
+* Added: friendly side default West
+* Added: barracks structures
+* Added: parameter for amount of military zones
+* Changed: enemy side default East
+* Changed: CBA no longer required for maps Altis and Stratis
+* Changed: tweaked default settings for each map
+* Changed: vehicle damage is now saved for each damaged vehicle part instead of the overall damage number
+* Removed: mortar camp due to mortar gunners not responding
+* Fixed: DEP side is now automatically set to enemy
+* Fixed: vehicle damage event handler is now also added when restoring a location
+* Various small optimizations
+
+Version 0.2.1
+=============
+* Added: possibility to show map markers on enemy zones
+* Added: Safe zone markers in debug mode
+* Added: Custom script for mission fail
+
+Version 0.2.0
+=============
+* Changed: custom unit init code is compiled once at initialization of DEP instead of on each unit creation
+* Changed: piers are now blacklisted from enemy spawn positions
+* Added: possibility to fail the mission when too many civilians are killed
+* Added: civilians in vehicles
+* Fixed: objects don't get cleared up when players are inside
+
+Version 0.1.9
+=============
+* Fixed: error restoring vehicle crew
+
+Version 0.1.8
+=============
+* Changed: cache gets cleared when a location is clear
+* Added: various checks to prevent errors
+* Added: possibility to spawn civilians in urban environments
+
+Version 0.1.7
+=============
+* Added: multiple HC support
+
+Version 0.1.6
+=============
+* Changed: improved AI and groups counter
+* Added: optionally restrict players from using mortars
+
+Version 0.1.5
+=============
+* Added: proper crew for armored vehicles
+* Added: chances to spawn specific types of units instead of just random
+
+Version 0.1.4
+=============
+* Added: headless client support
+* Fixed: restore gunner positions because BIS changed something again
+
+Version 0.1.3
+=============
+* Changed: bunkers are spread out more
+
+Version 0.1.2
+=============
+* Changed: disable IED animation
+* Changed: DEP init merged into one file
+
+Version 0.1.1
+=============
+* Added: multiple safe zones
+* Changed: different system for placing bunkers
