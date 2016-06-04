@@ -171,7 +171,7 @@ switch (dep_side) do
 		if (isNil "dep_u_g_gl")           	then { dep_u_g_gl         = "CUP_I_GUE_Farmer"; };
         if (isNil "dep_u_g_marksman")   	then { dep_u_g_marksman 	= "CUP_I_GUE_Woodman"; };
 
-        if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= ["CUP_I_GUE_Soldier_01"; };		
+        if (isNil "dep_u_soldier")      	then { dep_u_soldier    	= "CUP_I_GUE_Soldier_01"; };		
 		
         if (isNil "dep_u_gl")           	then { dep_u_gl         	= "CUP_I_GUE_Soldier_GL"; };
         if (isNil "dep_u_ar")           	then { dep_u_ar         	= "CUP_I_GUE_Soldier_MG"; };
