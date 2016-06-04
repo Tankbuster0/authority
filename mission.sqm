@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3628;
+		nextID=3637;
 	};
 	class Camera
 	{
@@ -4975,7 +4975,6 @@ class Mission
 			name="dep_safezone_marker_2";
 			markerType="ELLIPSE";
 			type="ellipse";
-			colorName="ColorWEST";
 			a=600;
 			b=600;
 			id=1112;
