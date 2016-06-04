@@ -27,7 +27,7 @@ if not (fobdeployed) then
 		if not(isNull (driver fobveh)) then
 			{
 			diag_log "*** fdm refuses because there's a driver in fobveh";
-			"Can't deploy while there's a driver in the vehicle." remoteexec ["hint", fobveh];
+			{"Can't deploy while there's a driver in the vehicle." remoteexec ["hint", _x];} foreach crew fobveh;
 			}
 			else
 			{
