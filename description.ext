@@ -37,12 +37,6 @@ taskManagement_drawDist = 2000;
 enableTeamSwitch = 0;
 class CfgSounds
 {
-	class intro_music
-	{
-		name = "intro_music"; // Name for mission editor
-		sound[] = {\sound\intro_music.ogg, db+1, 1.0};
-		titles[] = {0, ""};
-	};
 
 };
 class cfgFunctions
