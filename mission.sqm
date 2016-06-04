@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=1119;
+		nextID=1120;
 	};
 	class MarkerIDProvider
 	{
@@ -16,7 +16,7 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3655;
+		nextID=3664;
 	};
 	class Camera
 	{
@@ -582,7 +582,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=60;
+		items=61;
 		class Item0
 		{
 			dataType="Group";
@@ -4962,6 +4962,7 @@ class Mission
 			name="dep_safezone_marker_1";
 			markerType="ELLIPSE";
 			type="ellipse";
+			alpha=0;
 			a=600;
 			b=600;
 			id=1111;
@@ -4973,6 +4974,7 @@ class Mission
 			name="dep_safezone_marker_2";
 			markerType="ELLIPSE";
 			type="ellipse";
+			alpha=0;
 			a=600;
 			b=600;
 			id=1112;
@@ -4984,6 +4986,7 @@ class Mission
 			name="dep_safezone_marker_3";
 			markerType="ELLIPSE";
 			type="ellipse";
+			alpha=0;
 			a=600;
 			b=600;
 			id=1113;
@@ -4996,6 +4999,7 @@ class Mission
 			name="dep_safezone_marker_4";
 			markerType="ELLIPSE";
 			type="ellipse";
+			alpha=0;
 			a=600;
 			b=600;
 			id=1114;
@@ -5007,6 +5011,7 @@ class Mission
 			name="dep_safezone_marker_5";
 			markerType="ELLIPSE";
 			type="ellipse";
+			alpha=0;
 			a=600;
 			b=600;
 			id=1116;
@@ -5014,13 +5019,27 @@ class Mission
 		class Item59
 		{
 			dataType="Marker";
-			position[]={15177,17.879326,16954};
-			name="dep_safezone_marker_7";
+			position[]={14662,17.91,16480};
+			name="dep_safezone_marker_6";
 			markerType="ELLIPSE";
 			type="ellipse";
+			alpha=0;
 			a=600;
 			b=600;
 			id=1118;
+		};
+		class Item60
+		{
+			dataType="Marker";
+			position[]={15221,16,16996};
+			name="dep_safezone_marker_7";
+			markerType="ELLIPSE";
+			type="ellipse";
+			alpha=0;
+			a=600;
+			b=600;
+			id=1119;
+			atlOffset=-1.2726402;
 		};
 	};
 	class Connections
