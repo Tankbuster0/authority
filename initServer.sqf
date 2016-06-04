@@ -7,8 +7,12 @@ opforcenter = createCenter opfor;
 independentcenter = createCenter independent;
 civcenter = createCenter civilian;
 logiccenter = createCenter sideLogic;
-blufor setFriend [opfor, 0.1];
-opfor setFriend [blufor, 0.1];
+blufor setFriend [opfor, 0.1];// blufor enemy to opfpr
+opfor setFriend [blufor, 0.1];// opfor enemy to opfor
+blufor setFriend [independent, 0.1]; //blufor enemy to indi
+independent setFriend [blufor, 0.1]; //indi enemy to blufor
+opfor setFriend [independent, 1]; //opfor friendly to indi
+independent setFriend [opfor, 1]; //indi freindly to opfor
 #include "server\global_variables.sqf";
 ["Initialize"] call BIS_fnc_dynamicGroups;
 mapsize  = getnumber (configfile/"CfgWorlds"/worldName/"mapSize");
