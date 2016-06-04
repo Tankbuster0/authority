@@ -32,7 +32,7 @@ sleep 0.5;
 if ((_pos distance previousmission) > 400) then
 	{
 	//0 = execVM "server\cleanupoldprimary.sqf";
-	remoteexec ["tky_fnc_cleanupoldprimary",2];
+	//remoteexec ["tky_fnc_cleanupoldprimary",2];
 	}
 	else
 	{

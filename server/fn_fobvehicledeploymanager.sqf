@@ -27,9 +27,6 @@ if not (fobdeployed) then
 		//hint "Deploying FOB";
 		"Deploying FOB." remoteExec ["hint", fobveh];
 		[fobveh, true] remoteexec ["lockdriver"];
-		//fobveh setHitPointDamage ["HitEngine", 1 ];
-		//["fobveh", ["hitengine" , 1] remoteexec ["setHitPointDamage", -2];
-		[(driver fobveh), ["eject", fobveh] ] remoteexec ["action", fobveh ];
 		sleep 2;
 		_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 		waitUntil {scriptDone _handle22};
