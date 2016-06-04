@@ -18,10 +18,10 @@
 
 private ["_unit","_group","_pos","_type"];
 _group  = _this select 0;
-_type1   = _this select 1;
+_type   = _this select 1;
 _pos    = _this select 2;
 
-_type = selectRandom _type1;
+
 _unit = objNull;
 if (!isNil "_group" && !isNil "_type" && !isNil "_pos") then
 {
