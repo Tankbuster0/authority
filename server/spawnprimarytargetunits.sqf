@@ -43,11 +43,11 @@ for "_count" from _start to _lc do
 		{
 		case 0: {
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_b_d30_cdf", _staticgrp ] call bis_fnc_spawnVehicle;
+				[_mypos, _mydir, "CUP_O_D30_AT_RU", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AA")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_b_zu23_cdf", _staticgrp ] call bis_fnc_spawnVehicle;
+				[_mypos, _mydir, "CUP_O_ZU23_RU", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;
