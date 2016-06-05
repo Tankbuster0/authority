@@ -4,7 +4,7 @@ _myscript = "cleanupoldprimary";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_nvc"];
 if (isNull previousmission) exitWith {diag_log "***cleanupoldprimary exits because previous mission is null!"};// ie, its the first target
-_nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
+_nvc = 0.75 * (["notveryclose",500] call BIS_fnc_getParamValue);
 {
 	if ((_x distance (getpos previousmission)) < _nvc ) then
 	{
