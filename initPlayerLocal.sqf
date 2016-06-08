@@ -20,24 +20,24 @@ endLoadingScreen;
 
 #include "\a3\functions_f_mp_mark\Revive\defines.hpp"
 
-systemChat "Saving initial loadout";
+//systemChat "Saving initial loadout";
 //Save initial loadout
 [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 
 //Save loadout when ever we exit an arsenal
 [ missionNamespace, "arsenalClosed", {
-	systemChat "Arsenal closed";
+	//systemChat "Arsenal closed";
 	[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 }] call BIS_fnc_addScriptedEventHandler;
 
 
 player addEventHandler [ "Respawn", {
 
-	systemChat "Respawning";
-	systemChat format[ "state %1", GET_STATE_STR(GET_STATE( player )) ];
+	//systemChat "Respawning";
+	//systemChat format[ "state %1", GET_STATE_STR(GET_STATE( player )) ];
 
 	if ( GET_STATE( player ) == STATE_RESPAWNED ) then {
-		systemChat "Died or Respawned via menu";
+		//systemChat "Died or Respawned via menu";
 		_templates = [];
 		{
 			{
@@ -46,14 +46,14 @@ player addEventHandler [ "Respawn", {
 		}forEach [ "respawntemplates", format[ "respawntemplates%1", str playerSide ] ];
 
 		if ( { "menuInventory" == _x }count _templates > 0 ) then {
-			systemChat "Respawning - saving menu inventory";
+			//systemChat "Respawning - saving menu inventory";
 			[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 		}else
 		{
 			h = [] spawn
 			{
 				sleep playerRespawnTime;
-				systemChat "Respawning - loading last saved";
+				//systemChat "Respawning - loading last saved";
 				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "( (typeof (vehicle player) isEqualTo 'CUP_B_Mastiff_HMG_GB_W' )  and (player isEqualTo (commander (vehicle player) ) ) and (not (isEngineOn (vehicle player))) ) "];
 				vehiclespawnerid = player addaction ["Make motorbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distance blubasedataterminal) < 2)"];
@@ -61,7 +61,7 @@ player addEventHandler [ "Respawn", {
 		};
 
 	}else{
-		systemChat "Incapacitated";
+		//systemChat "Incapacitated";
 	};
 }];
 //player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
