@@ -55,18 +55,6 @@ switch (true) do
 		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fpv";
 
-		// Place in standard inventory of Forward
-		{
-			_fn = _x;
-			_tp = CQBCleanupArr select _forEachIndex;
-			_tar = _tp select 0;
-			{
-				_n = (_tp select 1) select _forEachIndex;
-				_tmp = Forward call compile format [ "_this add%1CargoGlobal[%2,%3]", _fn, _tar, _n ];
-			} forEach _tar;
-
-		}forEach [ "backpack", "item", "magazine", "weapon" ];
-
 		forwardrespawning = false;
 		publicVariable "forwardrespawning";
 		};
