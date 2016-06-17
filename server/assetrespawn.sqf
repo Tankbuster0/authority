@@ -2,17 +2,15 @@
 _myscript = "assetrespawn.sqf";
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
 
-if (not isServer) exitWith {};
+if (not isServer) exitWith {[[_this select 0], "server\assetrespawn.sqf"] remoteexec ["execVM", 2]};
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
 if (isServer) then {diag_log "***assetrespawn runs on the server!"};
 if (isDedicated) then {diag_log "***assetrespawn runs on dedicated!"};
 if (hasInterface) then {diag_log "***assetrespawn runs on client!"};
 
-_newv = _this select 0;
-_oldv = _this select 1;
-diag_log format ["***assetrespawn gets newv %1 and oldv %2", _newv, _oldv];
-switch (_newv) do
+_oldv = _this select 0;
+switch (_oldv) do
 	{
 	case forward: {_typefpv = true; _typefob = false;};
 	case fobveh: {_typefpv = false; _typefob = true;};
@@ -38,7 +36,7 @@ if (_typefob) then
 // find the nearest current respawn to the old position
 _respawns = [west] call bis_fnc_getRespawnPositions;
 //diag_log format ["*** found some respawns %1", _respawns];
-_respawns2 = _respawns - [_newv];
+_respawns2 = _respawns - [_oldv];
 //diag_log format ["*** rspawns minus the old veh %1", _respawns2];
 _droppoint2 = [0,0,0];
 _testradius = 10;
