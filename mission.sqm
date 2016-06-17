@@ -4188,7 +4188,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="this addEventHandler [""killed"", ""nul = [_this select 0, _this select 0] execVM 'server\assetrespawn.sqf'""];";
+				init="this addEventHandler [""killed"", ""nul = [_this select 0] execVM 'server\assetrespawn.sqf'""];";
 				name="forward";
 			};
 			id=1008;
