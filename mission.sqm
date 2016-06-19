@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=1120;
+		nextID=1124;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3682;
+		nextID=3691;
 	};
 	class Camera
 	{
-		pos[]={8413.1426,160.83698,25134.352};
-		dir[]={0.65214223,-0.7367475,0.17881627};
-		up[]={0.71057153,0.67610419,0.19483702};
-		aside[]={0.26444292,-2.3737084e-007,-0.96442688};
+		pos[]={8345.7373,77.550941,25262.576};
+		dir[]={-0.42673567,-0.58451402,0.69012183};
+		up[]={-0.30741474,0.81137782,0.49715465};
+		aside[]={0.8505404,1.6103877e-007,0.52593011};
 	};
 };
 binarizationWanted=0;
@@ -2192,7 +2192,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8313,50.964577,25292};
-				angles[]={0.10230836,0,0.25436813};
+				angles[]={0.1023112,0,0.25436428};
 			};
 			id=444;
 			type="ACE_ModuleExplosive";
@@ -3222,7 +3222,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8308,52.616596,25321};
-				angles[]={0.090419561,0,0.14040335};
+				angles[]={0.090425514,0,0.14041173};
 			};
 			id=463;
 			type="ACE_moduleRepairSettings";
@@ -3262,7 +3262,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -3281,7 +3281,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -3704,7 +3704,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8341,57.090389,25302};
-				angles[]={5.93645,0,0.18196505};
+				angles[]={5.9364581,0,0.18196802};
 			};
 			id=579;
 			type="ACE_moduleMedicalSettings";
@@ -3877,7 +3877,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0.89999998;
+							value=0.80000001;
 						};
 					};
 				};
@@ -3972,7 +3972,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -3984,11 +3984,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8341,58.999393,25296};
+				position[]={8341,58.999882,25296};
 			};
 			id=580;
 			type="ACE_moduleBasicMedicalSettings";
-			atlOffset=3.2415123;
+			atlOffset=3.2420006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4006,7 +4006,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=0;
+							value=1;
 						};
 					};
 				};
@@ -4038,7 +4038,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8313.3887,53.099911,25316.803};
-				angles[]={6.2060065,0,0.10494626};
+				angles[]={6.206007,0,0.10494665};
 			};
 			id=659;
 			type="ACE_moduleAddSpareParts";
@@ -4078,7 +4078,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="forward";
+							value="";
 						};
 					};
 				};
@@ -4097,7 +4097,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=3;
+							value=0;
 						};
 					};
 				};
@@ -4110,7 +4110,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8313,53.187164,25321};
-				angles[]={0.11811461,0,0.1049457};
+				angles[]={0.11810643,0,0.10494665};
 			};
 			id=660;
 			type="ACE_moduleAddSpareParts";
@@ -4169,7 +4169,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -4193,7 +4193,7 @@ class Mission
 			};
 			id=1008;
 			type="CUP_B_BAF_Coyote_L2A1_W";
-			atlOffset=-7.6293945e-006;
+			atlOffset=-1.5258789e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4755,12 +4755,11 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8322.2822,52.785118,25323.666};
-				angles[]={0.25935686,0,0.0080009829};
+				position[]={8316,53.312782,25316};
+				angles[]={6.2060065,0,0.10494626};
 			};
 			id=1104;
 			type="ACE_moduleAssignRepairFacility";
-			atlOffset=-3.8146973e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4845,7 +4844,7 @@ class Mission
 			class PositionInfo
 			{
 				position[]={8338,55.743877,25300};
-				angles[]={5.9364495,0,0.21655035};
+				angles[]={5.9364405,0,0.21654299};
 			};
 			id=1107;
 			type="ACE_moduleAssignMedicalFacility";
