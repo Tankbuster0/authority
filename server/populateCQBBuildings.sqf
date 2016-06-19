@@ -221,6 +221,7 @@ _ballistradeCount = 0;
 ////////////////////////////////////////////////////
 // Occupy outskirt buildings.
 ////////////////////////////////////////////////////
+/* temporarly disabled this while we figure out how to stop it slowing down ar and mil base missions
 _radius = 20;
 
 // First index is buildingObj, second index is array of positions.
@@ -268,7 +269,7 @@ BLis = _buildingPosList;
 	}foreach _windowarray;// interate through each position within the building
 
 } forEach _buildingPosList;
-
+*/
 /*
 {
 	_grp = createGroup west;
