@@ -7,6 +7,7 @@ if ((typeOf (_this select 2)) != "CUP_B_BAF_Soldier_JTAC_MTP") then
 	[_this select 2, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink",_this select 2, false];
 } else {};
 BIS_supp_refresh = TRUE;
+
 if ((_this select 0) == forward) then
 	{
 	if (isNull (driver (_this select 0))) then //someone is getting out of the forward
@@ -14,7 +15,7 @@ if ((_this select 0) == forward) then
 		if (not isnull (group forward)) then //drivers seat is empty
 			{
 			//forward driver seat is empty but theres still other crew onboard
-			[(group forward), 2] remoteexec ["setGroupOwner", 2];
+			[(group forward), (owner (effectivecommander forward))] remoteexec ["setGroupOwner", 2];
 			}
 			else
 			{
@@ -31,7 +32,7 @@ if ((_this select 0) == fobveh) then //someone is getting out of the fobveh
 		if (not isnull (group fobveh)) then
 			{
 			//fobveh driverseat is empty but theres still other crew onboard
-			[(group fobveh), 2] remoteexec ["setGroupOwner", 2];
+			[(group fobveh), (owner (effectiveCommander forward))] remoteexec ["setGroupOwner", 2];
 			}
 			else
 			{
