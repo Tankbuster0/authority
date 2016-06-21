@@ -99,7 +99,7 @@ _cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-25,-10]), [],0, "F
 if (_droptype == forwardpointvehicleclassname) then
 	{
 	forward = _cargo;
-	_cargo addEventHandler ["killed", {nul = [_this select 0] execVM "server\assetrespawn.sqf"}];
+	_cargo addEventHandler ["killed", "nul = [_this select 0] execVM 'server\assetrespawn.sqf'"];
 	_cargo addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetout.sqf"}];
 	_cargo addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
 	_cargo addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];
@@ -112,7 +112,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	_cargo addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetout.sqf"}];
 	_cargo addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
 	_cargo addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];
-	_cargo addEventHandler ["killed", {nul = [_this select 0] execVM "server\assetrespawn.sqf"}];
+	_cargo addEventHandler ["killed", "nul = [_this select 0] execVM 'server\assetrespawn.sqf'"];
 	fobveh = _cargo;
 	[_cargo, "fobveh"] call fnc_setVehicleName;
 

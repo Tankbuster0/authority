@@ -1,9 +1,13 @@
 //by tankbuster
 _myscript = "assetrespawn.sqf";
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
-
-if (not isServer) exitWith {[[_this select 0], "server\assetrespawn.sqf"] remoteexec ["execVM", 2]};
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+if (not isServer) exitWith
+	{
+	diag_log "*** assetrespawn runs on a not server so will quit and exec remote to the server";
+	[[_this select 0], "server\assetrespawn.sqf"] remoteexec ["execVM", 2];
+	};
+
 private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
 if (isServer) then {diag_log "***assetrespawn runs on the server!"};
 if (isDedicated) then {diag_log "***assetrespawn runs on dedicated!"};
