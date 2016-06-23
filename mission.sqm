@@ -8,7 +8,7 @@ class EditorData
 	toggles=5;
 	class ItemIDProvider
 	{
-		nextID=1125;
+		nextID=1126;
 	};
 	class MarkerIDProvider
 	{
@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3700;
+		nextID=3709;
 	};
 	class Camera
 	{
-		pos[]={8319.7402,89.749954,25278.609};
-		dir[]={0.44863284,-0.78334224,0.43035617};
-		up[]={0.56530082,0.62158161,0.5422734};
-		aside[]={0.69228756,1.9864819e-007,-0.72168708};
+		pos[]={8290.3184,164.87401,25244.641};
+		dir[]={0.32960832,-0.86053866,0.38852385};
+		up[]={0.55669922,0.50937784,0.65620613};
+		aside[]={0.7626006,3.2184471e-007,-0.64695877};
 	};
 };
 binarizationWanted=0;
@@ -3896,7 +3896,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1.2;
+							value=1;
 						};
 					};
 				};
@@ -3915,7 +3915,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=2;
 						};
 					};
 				};
@@ -3972,7 +3972,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=2;
 						};
 					};
 				};
@@ -4813,11 +4813,10 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8346.6572,57.586853,25300.955};
+				position[]={8346.6572,57.586815,25300.955};
 			};
 			id=1124;
 			type="ACE_moduleAdvancedMedicalSettings";
-			atlOffset=3.8146973e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4835,7 +4834,7 @@ class Mission
 									"BOOL"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -4854,7 +4853,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -4892,7 +4891,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
@@ -4911,7 +4910,7 @@ class Mission
 									"SCALAR"
 								};
 							};
-							value=1;
+							value=0;
 						};
 					};
 				};
