@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3718;
+		nextID=3727;
 	};
 	class Camera
 	{
-		pos[]={8464.9063,158.19247,25180.373};
-		dir[]={-0.37944967,-0.73301518,-0.56468314};
-		up[]={-0.40885231,0.68016946,-0.6084379};
-		aside[]={-0.83008122,8.7899389e-007,0.55778915};
+		pos[]={8453.2227,155.7493,25163.715};
+		dir[]={-0.63719511,-0.51094586,-0.57713932};
+		up[]={-0.37876081,0.85954982,-0.34306243};
+		aside[]={-0.67137343,8.9267269e-007,0.74123621};
 	};
 };
 binarizationWanted=0;
@@ -582,7 +582,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=61;
+		items=60;
 		class Item0
 		{
 			dataType="Group";
@@ -2268,6 +2268,7 @@ class Mission
 			};
 			id=446;
 			type="ACE_ModuleHearing";
+			atlOffset=-7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2522,6 +2523,7 @@ class Mission
 			};
 			id=449;
 			type="ace_map_gestures_moduleSettings";
+			atlOffset=7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2632,6 +2634,7 @@ class Mission
 			};
 			id=450;
 			type="ace_map_gestures_moduleGroupSettings";
+			atlOffset=-7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2917,8 +2920,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8381.3672,100.03532,25151.316};
-				angles[]={0.15084518,0,0.371277};
+				position[]={8389,103.48992,25147};
+				angles[]={0.1871191,0,0.32893291};
 			};
 			id=454;
 			type="ace_nightvision_ModuleSettings";
@@ -3057,8 +3060,8 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8389.3672,103.0926,25150.316};
-				angles[]={0.15084559,0,0.32893291};
+				position[]={8396,105.80789,25144};
+				angles[]={0.13647936,0,0.20763075};
 			};
 			id=459;
 			type="ace_weather_ModuleSettings";
@@ -5123,59 +5126,6 @@ class Mission
 			};
 		};
 		class Item59
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={8318.7773,78.010033,25172.428};
-				angles[]={0.15995486,0,0.353793};
-			};
-			id=1127;
-			type="ACE_moduleAssignMedicRoles";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ACE_moduleAssignMedicRoles_EnableList";
-					expression="_this setVariable ['EnableList',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"STRING"
-								};
-							};
-							value="";
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ACE_moduleAssignMedicRoles_role";
-					expression="_this setVariable ['role',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=1;
-						};
-					};
-				};
-				nAttributes=2;
-			};
-		};
-		class Item60
 		{
 			dataType="Logic";
 			class PositionInfo
