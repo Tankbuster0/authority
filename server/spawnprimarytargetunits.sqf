@@ -39,7 +39,7 @@ for "_count" from _start to _lc do
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
-	switch ((floor (random 6))) do
+	switch ((floor (random 5))) do // <--- temp change to 5 so it cant make mortar while testing mortar helper. using the guys spawn at 79 and 83
 		{
 		case 0: {
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
@@ -157,19 +157,20 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 	// ^^^ mortar gunners have best spotdistance and spottime
 	[_x] spawn // mortar gunner helper
 		{
-			private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", _aeta];
+			private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags"];
 			_mygunner = _this select 0;
 			while {alive _mygunner} do
 
 				{
-				sleep 20;
-				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 500];
+				sleep 10;
+				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 700];
 				if ((count _nearblufors) > 0) then
 					{
 					_artytarget = (selectRandom _nearblufors);
 					_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
-					_aeta = _mygunner getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
-					diag_log format ["*** mortar guys told to fire!, is inrange %1 and ETA %2", _iroa, _aeta ];
+					_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
+					_amags = getArtilleryAmmo [(vehicle _mygunner)];
+					diag_log format ["*** mortar guys told to fire!, is inrange %1 and ETA %2 has %3", _iroa, _aeta, _amags ];
 					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 3 ];
 					};
 				};
