@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_allcompositionunits","_count","_staticgrpname","_grpname","_mypos","_mydir","_staticgrp","_veh","_patrolinf","_staticveh","_patrolveh","_statictanks","_vehdata","_removeenemyvests","_mygroup","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
+private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_allcompositionunits","_count","_staticgrpname","_grpname","_mypos","_mydir","_staticgrp","_veh","_patrolinf","_staticveh","_patrolveh","_statictanks","_vehdata","_removeenemyvests","_mygroup","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_mortar_gunners"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
@@ -30,7 +30,7 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 	{
 	_allcompositionunits = [];
 	};
-
+_mortar_gunners = [];
 for "_count" from _start to _lc do
 {
 	sleep 0.1;
@@ -66,9 +66,11 @@ for "_count" from _start to _lc do
 				_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
 				createVehicleCrew _veh;
+				_mortar_gunners pushback gunner _veh;
 				_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
 				_veh setdir (_mydir + random 15);
 				createVehicleCrew _veh;
+				_mortar_gunners pushback gunner _veh;
 				};
 		};
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
@@ -77,9 +79,11 @@ for "_count" from _start to _lc do
 	_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
 	createVehicleCrew _veh;
+	_mortar_gunners pushback gunner _veh;
 	_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
 	_veh setdir (_mydir + random 15);
 	createVehicleCrew _veh;
+	_mortar_gunners pushback gunner _veh;
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
 	// statics end
@@ -148,6 +152,27 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
+{
+
+	[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+	// ^^^ mortar gunners have best spotdistance and spottime
+	[] spawn // mortar gunner helper
+		{
+			private ["_nearblufors"];
+			while {alive _x} do
+
+				{
+				sleep 20;
+				_nearblufors = (position _x) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 500];
+				if (count _nearblufors > 0) then
+					{
+					diag_log format ["*** mortar guys told to fire!"];
+					_x doArtilleryFire [(position (selectRandom _nearblufors)), "8Rnd_82mm_Mo_shells", 3 ];
+					};
+				};
+
+		};
+} foreach _mortar_gunners;
 //createcivilians
 if (_pt_type isEqualTo 1) then
 		{
