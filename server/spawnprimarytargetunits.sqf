@@ -63,27 +63,30 @@ for "_count" from _start to _lc do
 				};
 		case 5: {
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
+				_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 				_veh setdir _mydir;
 				createVehicleCrew _veh;
 				mortar_gunners pushback gunner _veh;
-				_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
+				_veh = createVehicle ["O_Mortar_01_F", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
 				_veh setdir (_mydir + random 15);
 				createVehicleCrew _veh;
+				group (gunner _veh) setCombatMode "RED";
 				mortar_gunners pushback gunner _veh;
 				};
 		};
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
-	_veh = createVehicle ["CUP_O_2b14_82mm_RU", _mypos, [],0,"NONE"];
+	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
 	createVehicleCrew _veh;
 	mortar_gunners pushback gunner _veh;
-	_veh = createVehicle ["CUP_O_2b14_82mm_RU", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
+	group (gunner _veh) setCombatMode "RED";
+	_veh = createVehicle ["O_Mortar_01_F", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
 	_veh setdir (_mydir + random 15);
 	createVehicleCrew _veh;
 	mortar_gunners pushback gunner _veh;
+	group (gunner _veh) setCombatMode "RED";
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
 	// statics end
