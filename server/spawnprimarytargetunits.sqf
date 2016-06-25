@@ -173,7 +173,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 					_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
 					_aka = _mygunner knowsAbout _artytarget;
 					diag_log format ["*** mortar guys told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka ];
-					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 3 ];
+					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
 					};
 				};
 
