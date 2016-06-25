@@ -153,13 +153,14 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 		};
 } foreach allgroups;
 {
-
-	[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+	private ["_mygunner"];
+	_mygunner = _x;
+	[_mygunner, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
 	// ^^^ mortar gunners have best spotdistance and spottime
 	[] spawn // mortar gunner helper
 		{
 			private ["_nearblufors"];
-			while {alive _x} do
+			while {alive _mygunner} do
 
 				{
 				sleep 20;
@@ -167,7 +168,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 				if (count _nearblufors > 0) then
 					{
 					diag_log format ["*** mortar guys told to fire!"];
-					_x doArtilleryFire [(position (selectRandom _nearblufors)), "8Rnd_82mm_Mo_shells", 3 ];
+					_mygunner doArtilleryFire [(position (selectRandom _nearblufors)), "8Rnd_82mm_Mo_shells", 3 ];
 					};
 				};
 
