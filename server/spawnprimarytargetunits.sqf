@@ -162,11 +162,11 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 		{
 			private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
 			_mygunner = _this select 0;
-			while {alive _mygunner} do
+			while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
 				{
-				sleep 10;
-				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 700];
+				sleep 20 + (10 * random 5) ;
+				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 600];
 				if ((count _nearblufors) > 0) then
 					{
 					_artytarget = (selectRandom _nearblufors);
@@ -175,7 +175,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 					_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
 					_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
 					_aka = _mygunner knowsAbout _artytarget;
-					diag_log format ["*** mortar guys told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka ];
+					//diag_log format ["*** mortar guys told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka ];
 					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
 					};
 				};
