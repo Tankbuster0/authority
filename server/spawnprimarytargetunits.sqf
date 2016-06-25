@@ -153,19 +153,18 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 		};
 } foreach allgroups;
 {
-	private ["_mygunner"];
-	_mygunner = _x;
-	[_mygunner, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+	[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
 	// ^^^ mortar gunners have best spotdistance and spottime
-	[] spawn // mortar gunner helper
+	[_x] spawn // mortar gunner helper
 		{
-			private ["_nearblufors"];
+			private ["_nearblufors", "_mygunner"];
+			_mygunner = _this select 0;
 			while {alive _mygunner} do
 
 				{
 				sleep 20;
 				_nearblufors = (position _x) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 500];
-				if (count _nearblufors > 0) then
+				if ((count _nearblufors) > 0) then
 					{
 					diag_log format ["*** mortar guys told to fire!"];
 					_mygunner doArtilleryFire [(position (selectRandom _nearblufors)), "8Rnd_82mm_Mo_shells", 3 ];
