@@ -39,7 +39,7 @@ for "_count" from _start to _lc do
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
-	switch ((floor (random 5))) do // <--- temp change to 5 so it cant make mortar while testing mortar helper. using the guys spawn at 79 and 83
+	switch ((floor (random 5))) do
 		{
 		case 0: {
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
@@ -61,32 +61,28 @@ for "_count" from _start to _lc do
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "cup_o_kord_ru", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
-		case 5: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
-				_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
-				_veh setdir _mydir;
-				createVehicleCrew _veh;
-				mortar_gunners pushback gunner _veh;
-				_veh = createVehicle ["O_Mortar_01_F", ([_mypos, random 4, random 360] call bis_fnc_relPos), [],0,"NONE"];
-				_veh setdir (_mydir + random 15);
-				createVehicleCrew _veh;
-				group (gunner _veh) setCombatMode "RED";
-				mortar_gunners pushback gunner _veh;
-				};
+
 		};
+
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
 	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
-	createVehicleCrew _veh;
+	_mgunner = _staticgrp createUnit ["CUP_O_RU_Soldier", _mypos,[],0,"NONE"];
+	_mgunner moveInGunner _veh;
+	_mgunner assignAsGunner _veh;
 	mortar_gunners pushback gunner _veh;
 	group (gunner _veh) setCombatMode "RED";
+
 	_veh = createVehicle ["O_Mortar_01_F", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
 	_veh setdir (_mydir + random 15);
-	createVehicleCrew _veh;
+	_mgunner = _staticgrp createUnit ["CUP_O_RU_Soldier", _mypos,[],0,"NONE"];
+	_mgunner moveInGunner _veh;
+	_mgunner assignAsGunner _veh;
 	mortar_gunners pushback gunner _veh;
 	group (gunner _veh) setCombatMode "RED";
+
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
 	// statics end
@@ -166,16 +162,16 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 
 				{
 				sleep 20 + (10 * random 5) ;
-				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 600];
+				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 500];
 				if ((count _nearblufors) > 0) then
 					{
 					_artytarget = (selectRandom _nearblufors);
 					_mygunner reveal [_artytarget, 3];
-					_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
-					_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
-					_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
-					_aka = _mygunner knowsAbout _artytarget;
-					//diag_log format ["*** mortar guys told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka ];
+					//_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
+					//_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
+					//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
+					//_aka = _mygunner knowsAbout _artytarget;
+					//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
 					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
 					};
 				};
