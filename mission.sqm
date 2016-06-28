@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3727;
+		nextID=3736;
 	};
 	class Camera
 	{
-		pos[]={8453.2227,155.7493,25163.715};
-		dir[]={-0.63719511,-0.51094586,-0.57713932};
-		up[]={-0.37876081,0.85954982,-0.34306243};
-		aside[]={-0.67137343,8.9267269e-007,0.74123621};
+		pos[]={8449.9326,174.62276,25184.326};
+		dir[]={0.051010646,-0.79195738,-0.60858881};
+		up[]={0.066149451,0.61053425,-0.78920895};
+		aside[]={-0.99659437,1.2156393e-006,-0.083531447};
 	};
 };
 binarizationWanted=0;
@@ -4046,12 +4046,11 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="this addEventHandler [""killed"", ""nul = [_this select 0] execVM 'server\assetrespawn.sqf'""];";
 				name="forward";
 			};
 			id=1008;
 			type="CUP_B_BAF_Coyote_L2A1_W";
-			atlOffset=-1.5258789e-005;
+			atlOffset=-7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
