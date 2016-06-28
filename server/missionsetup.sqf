@@ -37,6 +37,10 @@ forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this
 forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 
+_nul = execVM "server\tky_fobveh_killed_eh.sqf";
+_nul = execVM "server\tky_forward_killed_eh.sqf";
+
+
 {
 	_tmp = Forward call compile format [ "get%1Cargo _this", _x ];
 	_unique = [];
