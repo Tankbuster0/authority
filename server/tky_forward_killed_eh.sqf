@@ -8,9 +8,9 @@ while {true} do
 	waitUntil {sleep 1; (not (isNull forward))};
 	if (not alive forward) then
 		{
-		[forward] execVM "server\assetrespawn.sqf"
-		;}
-	waitUntil {sleep 1; (not fprwardrespawning)}
+		[forward] execVM "server\assetrespawn.sqf";
+		};
+	waitUntil {sleep 1; (not forwardrespawning)};
 
 
 
