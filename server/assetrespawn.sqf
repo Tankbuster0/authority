@@ -66,7 +66,7 @@ switch (true) do
 		{
 		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fob";
-		fobrespawning = true;
+		fobrespawning = false;
 		publicVariable "fobrespawning";
 		};
 	default {diag_log "***default"};
