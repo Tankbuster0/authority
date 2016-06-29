@@ -10,7 +10,7 @@ while {true} do
 		{
 		[forward] execVM "server\assetrespawn.sqf"
 		;}
-
+	waitUntil {sleep 1; (not fprwardrespawning)}
 
 
 

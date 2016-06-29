@@ -11,7 +11,7 @@ while {true} do
 		[fobveh] execVM "server\assetrespawn.sqf"
 		;}
 
-
+	waitUntil {sleep 1; not fobrespawning;}
 
 
 
