@@ -9,9 +9,10 @@ while {true} do
 	if (not alive fobveh) then
 		{
 		[fobveh] execVM "server\assetrespawn.sqf";
+		sleep 120;
 		};
 
-	waitUntil {sleep 1; not fobrespawning};
+	//waitUntil {sleep 1; not fobrespawning};
 
 
 
