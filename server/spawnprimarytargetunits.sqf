@@ -24,7 +24,8 @@ if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 	_allcompositionunits = [_pt_pos, 0, _composition] call tky_fnc_t_objectsmapper;
 	sleep 0.05;
 	{
-	if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";}; }foreach _allcompositionunits;
+		if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";};
+	}foreach _allcompositionunits;
 	}
 	else
 	{
@@ -129,7 +130,7 @@ for "_count" from _start to _lc do
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
 	sleep 0.02;
-	 }foreach (_allcompositionunits + (units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
+	 }foreach (/*_allcompositionunits + */(units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 {
