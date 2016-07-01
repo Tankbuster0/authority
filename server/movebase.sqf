@@ -41,7 +41,7 @@ switch (cpt_name) do
 diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
-headmarker2 setMarkerType "Airhead";
+headmarker2 setMarkerText "Airhead";
 _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
 diag_log "*** returned from spawnairdrop";
 //sleep 10;
