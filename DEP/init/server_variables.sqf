@@ -60,7 +60,7 @@ if (isNil "dep_zone_markers")       then { dep_zone_markers     = []; };        
 if (isNil "dep_civ_fail_script")    then { dep_civ_fail_script 	= ""; };            // Code executed when too many civilians are killed
 if (isNil "dep_veh_pat_rad")    	then { dep_veh_pat_rad 		= 800; };           // Radius of vehicle patrol zones
 if (isNil "dep_map_margin")    		then { dep_map_margin 		= 400; };           // Distance in meters from the edges of the map where enemies can spawn
-if (isNil "dep_air_patrols")    	then { dep_air_patrols 		= 1; };           	// Number of patroling air vehicles
+if (isNil "dep_air_patrols")    	then { dep_air_patrols 		= 0; };           	// Number of patroling air vehicles
 if (isNil "dep_safe_zone") then
 {
     if (getMarkerColor "respawn_west" != "" && dep_own_side == west) then { dep_safe_zone = getMarkerPos "respawn_west"; };
