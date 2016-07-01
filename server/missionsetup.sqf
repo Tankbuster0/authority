@@ -26,7 +26,7 @@ headmarker1 setMarkerDir 45;
 headmarker2 = createMarker ["headmarker2", _newdrypos];
 headmarker2 setMarkerShape "ICON";
 headmarker2 setMarkerType "hd_dot";
-headmarker2 setMarkerText "Beachhead";
+headmarker2 setMarkerText "BEACHHEAD";
 
 _beachflag = "Flag_Blue_F" createVehicleLocal (_newdrypos);
 sleep 1;
