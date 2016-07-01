@@ -22,6 +22,7 @@ headmarker1 = createMarker ["headmarker1", _newdrypos];
 headmarker1 setMarkerShape "rectangle";
 headmarker1 setMarkerSize [5,5];
 headmarker1 setMarkerColor "colorwest";
+headmarker1 setMarkerDir 45;
 headmarker2 = createMarker ["headmarker2", _newdrypos];
 headmarker2 setMarkerShape "ICON";
 headmarker2 setMarkerType "hd_dot";
