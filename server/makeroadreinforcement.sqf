@@ -5,7 +5,7 @@ private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconv
 _cpt = _this select 0; // actually a logic
 // choose a town a couple of K away, away from other blufor towns
 _furthestdistsofar = 0; _furthestlocsofar = objNull; _pcst2 = [];
-_possibleconvoystartpoints = _cpt nearEntities ["Logic", 3000];
+_possibleconvoystartpoints = _cpt nearEntities ["Logic", 9000];
 {
 	if (((_x getVariable ["targetstatus", -1]) == 1) and ((_x distance _cpt) > 1500)) then {_pcst2 pushback _x}; //if the town being checked is a real town, enemy held and more than 1500m away, add it to the pcst2 array
 } foreach _possibleconvoystartpoints;
