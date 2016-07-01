@@ -20,7 +20,7 @@ ammobox attachTo [ammoboxpad];
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
 headmarker1 = createMarker ["headmarker1", _newdrypos];
 headmarker1 setMarkerShape "rectangle";
-headmarker1 setMarkerSize [5,5];
+headmarker1 setMarkerSize [6,7];
 headmarker1 setMarkerColor "colorwest";
 headmarker1 setMarkerDir 45;
 headmarker2 = createMarker ["headmarker2", _newdrypos];
