@@ -122,9 +122,6 @@ for "_count" from _start to _lc do
 		_statictanks = [_mypos, east, [_veh, _veh, _veh], [[0,10,0], [5,0,0], [10,0,0]]] call BIS_fnc_spawngroup;
 		sleep 0.05;
 	};
-	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
-	_vehdata = [_mypos, random 360, "CUP_O_2S6M_RU", east] call bis_fnc_spawnVehicle;// spawn another tunguska for fun :)
-	doStop (_vehdata select 0);
 	//heavy armour end
 	sleep 0.05;
 // add them all to cleanup arrays
