@@ -18,6 +18,14 @@ ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _newdrypos, [],0, "NONE"];
 ammobox setpos _newdrypos;
 ammobox attachTo [ammoboxpad];
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
+headmarker1 = createMarker ["headmarker1", _newdrypos];
+headmarker1 setMarkerShape "rectangle";
+headmarker1 setMarkerSize [5,5];
+headmarker1 setMarkerColor "colorwest";
+headmarker2 = createMarker ["headmarker2", _newdrypos];
+headmarker2 setMarkerShape "ICON";
+headmarker2 setMarkerType "hd_dot";
+headmarker2 setMarkerText "Beachhead";
 
 _beachflag = "Flag_Blue_F" createVehicleLocal (_newdrypos);
 sleep 1;
