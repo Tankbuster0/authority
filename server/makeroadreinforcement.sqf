@@ -5,7 +5,7 @@ private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconv
 _cpt = _this select 0; // actually a logic
 // choose a town a couple of K away, away from other blufor towns
 _furthestdistsofar = 0; _furthestlocsofar = objNull; _pcst2 = [];
-_possibleconvoystartpoints = _cpt nearEntities ["Logic", 5000];
+_possibleconvoystartpoints = _cpt nearEntities ["Logic", 4000];
 {
 	if (((_x getVariable ["targetstatus", -1]) == 1) and ((_x distance _cpt) > 1500)) then {_pcst2 pushback _x}; //if the town being checked is a real town, enemy held and more than 1500m away, add it to the pcst2 array
 } foreach _possibleconvoystartpoints;
@@ -49,6 +49,6 @@ _wp2 = _rrgroup addWaypoint [_cpt, 40];
 _wp2 setWaypointType "UNLOAD";
 _wp2 setWaypointBehaviour "SAFE";
 //_wp2 setWaypointScript "server\reinforcementsattack.sqf";
-_wp2 setWaypointStatements [ "true", "_nul = [this] execVM 'server\reinforcementsattack.sqf'"];
+_wp2 setWaypointStatements [ "true", "_nul = this execVM 'server\reinforcementsattack.sqf'"];
 //diag_log format ["*** mrr makes a truck at %1", _bcsp_name];
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
