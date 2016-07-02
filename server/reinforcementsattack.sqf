@@ -5,7 +5,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_mydude","_mypos","_mytarget","_targettobeattacked"];
 
 _mydude = _this select 0;
-diag_log format ["reinforcementsattack gets %1 ", _mydude];
+diag_log format ["reinforcementsattack gets %1 ", _this];
 if ((playersNumber west) > 0) then
 	{
 	_targettobeattacked = selectRandom ((position _mydude) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 800]);
