@@ -16,14 +16,14 @@ class EditorData
 	};
 	class LayerIndexProvider
 	{
-		nextID=3736;
+		nextID=3745;
 	};
 	class Camera
 	{
 		pos[]={8449.9326,174.62276,25184.326};
-		dir[]={0.051010646,-0.79195738,-0.60858881};
-		up[]={0.066149451,0.61053425,-0.78920895};
-		aside[]={-0.99659437,1.2156393e-006,-0.083531447};
+		dir[]={-0.56823695,-0.71726269,-0.40352371};
+		up[]={-0.58485037,0.696733,-0.41532132};
+		aside[]={-0.57904792,1.1964294e-006,0.81541151};
 	};
 };
 binarizationWanted=0;
@@ -50,8 +50,6 @@ addons[]=
 	"ace_weather",
 	"ace_cargo",
 	"ace_repair",
-	"ace_advanced_ballistics",
-	"ace_winddeflection",
 	"ace_medical",
 	"CUP_WheeledVehicles_Coyote",
 	"A3_Supplies_F_Heli_CargoNets",
@@ -68,7 +66,7 @@ class AddonsMetaData
 {
 	class List
 	{
-		items=33;
+		items=30;
 		class Item0
 		{
 			className="CUP_Creatures_Military_BAF";
@@ -112,140 +110,161 @@ class AddonsMetaData
 		class Item6
 		{
 			className="ace_map";
-			name="ace_map";
+			name="ACE3 - Map";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item7
 		{
 			className="ace_captives";
-			name="ace_captives";
+			name="ACE3 - Captives";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item8
 		{
 			className="ace_explosives";
-			name="ace_explosives";
+			name="ACE3 - Explosives";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item9
 		{
 			className="ace_hearing";
-			name="ace_hearing";
+			name="ACE3 - Hearing";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item10
 		{
 			className="ace_interaction";
-			name="ace_interaction";
+			name="ACE3 - Interaction";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item11
 		{
 			className="ace_map_gestures";
-			name="ace_map_gestures";
+			name="ACE3 - Map Gestures";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item12
 		{
 			className="ace_microdagr";
-			name="ace_microdagr";
+			name="ACE3 - MicroDAGR";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item13
 		{
 			className="ace_mk6mortar";
-			name="ace_mk6mortar";
+			name="ACE3 - Mk6 Mortar";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item14
 		{
 			className="ace_nametags";
-			name="ace_nametags";
+			name="ACE3 - Name Tags";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item15
 		{
 			className="ace_nightvision";
-			name="ace_nightvision";
+			name="ACE3 - Night Vision";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item16
 		{
 			className="ace_finger";
-			name="ace_finger";
+			name="ACE3 - Finger";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item17
 		{
 			className="ace_viewdistance";
-			name="ace_viewdistance";
+			name="ACE3 - View Distance";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item18
 		{
 			className="ace_weather";
-			name="ace_weather";
+			name="ACE3 - Weather";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item19
 		{
 			className="ace_cargo";
-			name="ace_cargo";
+			name="ACE3 - Cargo";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item20
 		{
 			className="ace_repair";
-			name="ace_repair";
+			name="ACE3 - Repair";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item21
 		{
-			className="ace_advanced_ballistics";
-			name="ace_advanced_ballistics";
+			className="ace_medical";
+			name="ACE3 - Medical";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
 		class Item22
-		{
-			className="ace_winddeflection";
-			name="ace_winddeflection";
-		};
-		class Item23
-		{
-			className="ace_medical";
-			name="ace_medical";
-		};
-		class Item24
 		{
 			className="CUP_WheeledVehicles_Coyote";
 			name="CUP_WheeledVehicles_Coyote";
 		};
-		class Item25
+		class Item23
 		{
 			className="A3_Supplies_F_Heli";
 			name="Arma 3 Helicopters - Ammoboxes and supplies";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item26
+		class Item24
 		{
 			className="ace_refuel";
-			name="ace_refuel";
+			name="ACE3 - Refuel";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
-		class Item27
+		class Item25
 		{
 			className="CUP_Weapons_AmmoBoxes";
 			name="CUP_Weapons_AmmoBoxes";
 		};
-		class Item28
+		class Item26
 		{
 			className="A3_Characters_F";
 			name="Arma 3 Alpha - Characters and Clothing";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item29
+		class Item27
 		{
 			className="A3_Armor_F_Gamma";
 			name="Arma 3 - Armored land vehicles";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
-		class Item30
-		{
-			className="ace_realisticnames";
-			name="ace_realisticnames";
-		};
-		class Item31
+		class Item28
 		{
 			className="ace_rearm";
-			name="ace_rearm";
+			name="ACE3 - Rearm";
+			author="ACE-Team";
+			url="http://ace3mod.com/";
 		};
-		class Item32
+		class Item29
 		{
 			className="A3_Props_F_Exp_A";
 			name="Arma 3 Nexus Update - Decorative and mission objects";
@@ -396,6 +415,10 @@ class Mission
 		forecastWind=0.099999994;
 		forecastWaves=0.099999994;
 		forecastLightnings=0.099999994;
+		rainForced=1;
+		lightningsForced=1;
+		wavesForced=1;
+		windForced=1;
 		year=2035;
 		month=6;
 		day=24;
@@ -582,7 +605,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=60;
+		items=58;
 		class Item0
 		{
 			dataType="Group";
@@ -3409,302 +3432,6 @@ class Mission
 			dataType="Logic";
 			class PositionInfo
 			{
-				position[]={8396.3672,105.56713,25146.316};
-				angles[]={0.13647936,0,0.20763075};
-			};
-			id=469;
-			type="ace_advanced_ballistics_ModuleSettings";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ace_advanced_ballistics_ModuleSettings_simulationRadius";
-					expression="_this setVariable ['simulationRadius',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3000;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ace_advanced_ballistics_ModuleSettings_barrelLengthInfluenceEnabled";
-					expression="_this setVariable ['barrelLengthInfluenceEnabled',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ace_advanced_ballistics_ModuleSettings_bulletTraceEnabled";
-					expression="_this setVariable ['bulletTraceEnabled',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ace_advanced_ballistics_ModuleSettings_simulationInterval";
-					expression="_this setVariable ['simulationInterval',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute4
-				{
-					property="ace_advanced_ballistics_ModuleSettings_disabledInFullAutoMode";
-					expression="_this setVariable ['disabledInFullAutoMode',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute5
-				{
-					property="ace_advanced_ballistics_ModuleSettings_simulateForEveryone";
-					expression="_this setVariable ['simulateForEveryone',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute6
-				{
-					property="ace_advanced_ballistics_ModuleSettings_simulateForSnipers";
-					expression="_this setVariable ['simulateForSnipers',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute7
-				{
-					property="ace_advanced_ballistics_ModuleSettings_simulateForGroupMembers";
-					expression="_this setVariable ['simulateForGroupMembers',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute8
-				{
-					property="ace_advanced_ballistics_ModuleSettings_ammoTemperatureEnabled";
-					expression="_this setVariable ['ammoTemperatureEnabled',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute9
-				{
-					property="ace_advanced_ballistics_ModuleSettings_enabled";
-					expression="_this setVariable ['enabled',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=10;
-			};
-		};
-		class Item34
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
-				position[]={8393.3672,103.63266,25153.316};
-				angles[]={0.1935457,0,0.20763104};
-			};
-			id=470;
-			type="ace_winddeflection_ModuleSettings";
-			class CustomAttributes
-			{
-				class Attribute0
-				{
-					property="ace_winddeflection_ModuleSettings_simulationInterval";
-					expression="_this setVariable ['simulationInterval',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=0.050000001;
-						};
-					};
-				};
-				class Attribute1
-				{
-					property="ace_winddeflection_ModuleSettings_enabled";
-					expression="_this setVariable ['enabled',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				class Attribute2
-				{
-					property="ace_winddeflection_ModuleSettings_simulationRadius";
-					expression="_this setVariable ['simulationRadius',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"SCALAR"
-								};
-							};
-							value=3000;
-						};
-					};
-				};
-				class Attribute3
-				{
-					property="ace_winddeflection_ModuleSettings_vehicleEnabled";
-					expression="_this setVariable ['vehicleEnabled',_value,true];";
-					class Value
-					{
-						class data
-						{
-							class type
-							{
-								type[]=
-								{
-									"BOOL"
-								};
-							};
-							value=0;
-						};
-					};
-				};
-				nAttributes=4;
-			};
-		};
-		class Item35
-		{
-			dataType="Logic";
-			class PositionInfo
-			{
 				position[]={8409.3672,105.9004,25150.316};
 				angles[]={0.13124064,0,0.017332481};
 			};
@@ -3981,7 +3708,7 @@ class Mission
 				nAttributes=14;
 			};
 		};
-		class Item36
+		class Item34
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4034,7 +3761,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item37
+		class Item35
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4050,7 +3777,7 @@ class Mission
 			};
 			id=1008;
 			type="CUP_B_BAF_Coyote_L2A1_W";
-			atlOffset=-7.6293945e-006;
+			atlOffset=-1.5258789e-005;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -4075,7 +3802,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item38
+		class Item36
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4135,7 +3862,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item39
+		class Item37
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4196,7 +3923,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item40
+		class Item38
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4231,7 +3958,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item41
+		class Item39
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4248,7 +3975,7 @@ class Mission
 			type="CUP_USBasicWeapons_EP1";
 			atlOffset=0.00029754639;
 		};
-		class Item42
+		class Item40
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4308,7 +4035,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item43
+		class Item41
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4320,7 +4047,7 @@ class Mission
 			id=1068;
 			type="SupportProvider_Artillery";
 		};
-		class Item44
+		class Item42
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4469,7 +4196,7 @@ class Mission
 				nAttributes=7;
 			};
 		};
-		class Item45
+		class Item43
 		{
 			dataType="Group";
 			side="West";
@@ -4549,7 +4276,7 @@ class Mission
 			};
 			id=1070;
 		};
-		class Item46
+		class Item44
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4608,7 +4335,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item47
+		class Item45
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -4642,7 +4369,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item48
+		class Item46
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4682,7 +4409,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item49
+		class Item47
 		{
 			dataType="Object";
 			class PositionInfo
@@ -4723,7 +4450,7 @@ class Mission
 				nAttributes=1;
 			};
 		};
-		class Item50
+		class Item48
 		{
 			dataType="Marker";
 			position[]={11513.618,22.982136,11690.579};
@@ -4735,7 +4462,7 @@ class Mission
 			b=600;
 			id=1111;
 		};
-		class Item51
+		class Item49
 		{
 			dataType="Marker";
 			position[]={21109,21.282658,7292};
@@ -4747,7 +4474,7 @@ class Mission
 			b=600;
 			id=1112;
 		};
-		class Item52
+		class Item50
 		{
 			dataType="Marker";
 			position[]={26873,13,24674};
@@ -4760,7 +4487,7 @@ class Mission
 			id=1113;
 			atlOffset=-8.7326298;
 		};
-		class Item53
+		class Item51
 		{
 			dataType="Marker";
 			position[]={9156,16.707327,21493};
@@ -4772,7 +4499,7 @@ class Mission
 			b=600;
 			id=1114;
 		};
-		class Item54
+		class Item52
 		{
 			dataType="Marker";
 			position[]={14240,21.334661,16123};
@@ -4784,7 +4511,7 @@ class Mission
 			b=600;
 			id=1116;
 		};
-		class Item55
+		class Item53
 		{
 			dataType="Marker";
 			position[]={14662,17.91,16480};
@@ -4796,7 +4523,7 @@ class Mission
 			b=600;
 			id=1118;
 		};
-		class Item56
+		class Item54
 		{
 			dataType="Marker";
 			position[]={15221,16,16996};
@@ -4809,7 +4536,7 @@ class Mission
 			id=1119;
 			atlOffset=-1.2726402;
 		};
-		class Item57
+		class Item55
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5071,7 +4798,7 @@ class Mission
 				nAttributes=13;
 			};
 		};
-		class Item58
+		class Item56
 		{
 			dataType="Logic";
 			class PositionInfo
@@ -5124,7 +4851,7 @@ class Mission
 				nAttributes=2;
 			};
 		};
-		class Item59
+		class Item57
 		{
 			dataType="Logic";
 			class PositionInfo
