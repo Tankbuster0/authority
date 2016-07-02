@@ -160,7 +160,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 
 				{
 				sleep 20 + (10 * random 5) ;
-				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 500];
+				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
 				if ((count _nearblufors) > 0) then
 					{
 					_artytarget = (selectRandom _nearblufors);
