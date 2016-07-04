@@ -59,7 +59,8 @@ opforpatrollandvehicles = ["CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR90_RU", "
 opforstaticlandvehicles =["CUP_O_Ural_ZU23_RU", "CUP_O_BM21_RU", "CUP_O_2S6M_RU"];
 opforradartypes = ["CUP_A2_76n6_clamshell_lower", "CUP_A2_76n6_clamshell_ep1"];
 opfortanks = ["CUP_O_T55_TK", "CUP_O_T72_RU"];
-opforhqvehicles = ["CUP_O_BTR90_HQ_RU", "CUP_B_BRDM2_HQ_CDF"];
+opforhqtypes = ["CUP_O_BTR90_HQ_RU", "CUP_B_BRDM2_HQ_CDF"];
+opforairsupporttypes = ["CUP_O_Ka50_RU", "CUP_O_Ka52_RU", "CUP_O_Mi8_SLA_2", "CUP_B_Mi24_P_RU", "CUP_O_Su25_RU_1", "CUP_O_Su25_RU_2", "CUP_O_Su25_RU_3", "CUP_O_SU34_AGM_RU","CUP_O_SU34_LGB_RU"];
 aaccomposition = [
 	["Land_HelipadCircle_F",[106.138,18.7334,0],0,1,0,[0.763851,7.67037],"","",true,false],
 	["Land_BagBunker_Large_F",[26.9893,-115.696,-0.0723171],322.314,1,0,[8.16878,-1.09966],"","",true,false],
