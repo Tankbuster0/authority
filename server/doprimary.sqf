@@ -112,7 +112,7 @@ pt_radar addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "Missi
 
 pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkilled.sqf"}];
 0 = execVM "server\airreinforcementmanager.sqf";
-
+0 = execVM "server\aiairsupportmanager.sqf";
 //stuff that needs to be check constantly runs here
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
