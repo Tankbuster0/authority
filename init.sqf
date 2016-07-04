@@ -18,9 +18,6 @@ forwardrespawning = false;
 fobrespawning = false;
 "fobmarker" setMarkerAlpha 0;
 "dropvehmarker" setMarkerAlpha 0;
-tky_super_hint = compilefinal "_parray = [_this, 0] call BIS_fnc_param;
-	_text = [_this ,1] call BIS_fnc_param;
-	{if (_x == player) then {hint _text; [playerSide, 'HQ'] sideChat _text;};}foreach _parray;"; call BIS_fnc_MP;
 
 execVM "functions.sqf";
 //execVM "intro.sqf";
