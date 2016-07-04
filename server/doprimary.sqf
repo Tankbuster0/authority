@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_airfieldfilternames","_foundairfields","_locs","_currentprimarytarget","_thisscript", "_ptarget", "_npt"];
+private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
 vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
 sleep 30;
 if (primarytargetcounter > 1) then
@@ -111,6 +111,21 @@ pt_radar = createVehicle [_radartype, _radarpos,[],0,"NONE"];
 pt_radar addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
 
 pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkilled.sqf"}];
+
+// hq vehicle controls opfor air support
+_hqtype = selectRandom opforhqtypes;
+
+_hqpos = [0,0,0];
+_testradius = 50;
+while {_hqpos in [[0,0,0], islandcentre] } do
+	{
+	_hqpos = [cpt_position, 25, _testradius, 7, 0, 0, 0] call BIS_fnc_findSafePos;
+	_testradius = _testradius * 2;
+	};
+pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
+
+
+
 0 = execVM "server\airreinforcementmanager.sqf";
 0 = execVM "server\aiairsupportmanager.sqf";
 //stuff that needs to be check constantly runs here
