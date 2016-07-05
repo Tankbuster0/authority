@@ -14,7 +14,8 @@ _nvc = 0.75 * (["notveryclose",500] call BIS_fnc_getParamValue);
 }foreach allDead;
 // ^^ finds and deletes all dead vehicles and men
 {
-	if ((faction _x) in  ["CUP_B_GB", "CUP_B_USMC", "CUP_B_US_Army"  ,"CUP_B_US_Navy", "CUP_B_CDF", "CUP_B_US", "CUP_B_CZ", "CUP_B_GER"]) then
+	if ([_x, true] call BIS_fnc_objectSide isEqualTo WEST) then
+
 	{
 	diag_log format ["*** cleanupoldprimary didnt delete %1 because it's friendly", typeof _x];
 	}
