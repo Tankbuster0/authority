@@ -33,11 +33,11 @@ _nvc = 0.75 * (["notveryclose",500] call BIS_fnc_getParamValue);
 } foreach (previousmission nearEntities [["Civilian_F", "CUP_Creatures_Civil_Chernarus_Base"], _nvc]);
 // ^^ finds and deletes civilian men. any in cars/tanks etc will have been ejected when their veh was deleted earlier.
 
-{deleteGroup _x} foreach allGroups;
+
 
 // Delete all CQB stuff (Mines, statics, etc)
 {
 	deleteVehicle _x;
 } forEach CQBCleanupArr;
-
+{deleteGroup _x} foreach allGroups;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
