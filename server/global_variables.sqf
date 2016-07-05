@@ -36,7 +36,7 @@ CQBCleanupArr = [];
 
 
 // Prizes for Prim Targets
-prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M163_USA"];
+prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M6LineBacker_USA_W"];
 
 // List of useable landmines
 aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives
