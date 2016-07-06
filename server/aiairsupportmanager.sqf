@@ -20,6 +20,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_wp1 setWaypointSpeed "NORMAL";
 	_wp1 setwaypointtype "SAD";
 	_wp1 setWaypointFormation "COLUMN";
+	if (_opforairsupportveh isKindOf "Plane") then {_opforairsupportveh flyInHeight 200} else {_opforairsupportveh flyInHeight 100};
 
 	_wp2 = _opforairsupportgroup addWaypoint [pt_radar , 0];
 	_wp2 setwaypointtype "COMBAT";
