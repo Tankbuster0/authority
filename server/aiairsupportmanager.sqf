@@ -21,11 +21,16 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_wp1 setwaypointtype "SAD";
 	_wp1 setWaypointFormation "COLUMN";
 	if (_opforairsupportveh isKindOf "Plane") then {_opforairsupportveh flyInHeight 200} else {_opforairsupportveh flyInHeight 100};
-
-	_wp2 = _opforairsupportgroup addWaypoint [pt_radar , 0];
-	_wp2 setwaypointtype "COMBAT";
+	_wp2 = _opforairsupportgroup addWaypoint [forward, 300];
+	_wp2 setWaypointBehaviour "COMBAT";
 	_wp2 setWaypointSpeed "NORMAL";
-	_wp2 setwaypointtype "CYCLE";
+	_wp2 setwaypointtype "SAD";
+	_wp2 setWaypointFormation "COLUMN";
+
+	_wp3 = _opforairsupportgroup addWaypoint [pt_radar , 0];
+	_wp3 setwaypointtype "COMBAT";
+	_wp3 setWaypointSpeed "NORMAL";
+	_wp3 setwaypointtype "CYCLE";
 	diag_log format [ "*** aasm spawn %1 at %2", _chosenveh, _startpos];
 	if (true) exitWith {};
 	};
