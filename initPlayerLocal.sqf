@@ -56,7 +56,7 @@ player addEventHandler [ "Respawn", {
 				//systemChat "Respawning - loading last saved";
 				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "( (typeof (vehicle player) isEqualTo 'CUP_B_Mastiff_HMG_GB_W' )  and (player isEqualTo (commander (vehicle player) ) ) and (not (isEngineOn (vehicle player))) ) "];
-				vehiclespawnerid = player addaction ["Make motorbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distance blubasedataterminal) < 2)"];
+				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distance blubasedataterminal) < 2)"];
 			};
 		};
 
