@@ -30,15 +30,6 @@ fobdeployed = true;
 publicVariable "fobdeployed";
 previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
 sleep 0.5;
-if ((_pos distance previousmission) > 400) then
-	{
-	//0 = execVM "server\cleanupoldprimary.sqf";
-	//remoteexec ["tky_fnc_cleanupoldprimary",2];
-	}
-	else
-	{
-	diag_log "*** buildfob says deploying too close to previous mission so not running cleanup";
-	};
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 
