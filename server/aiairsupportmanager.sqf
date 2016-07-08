@@ -17,7 +17,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_opforairsupportveh = _opforairsupport select 0;
 	_t_ehindex = _opforairsupportveh addeventhandler ["HandleDamage", {if ((_this select 4) isKindOf "MissileCore") then { 1; } else { _this select 2; }; }];
 	_opforairsupportveh setfuel 0.05;
-	_opforairsupportveh addEventHandler ["Fuel", "if ((_this select 1) == 0) then {(_this select 0) setdamage 1};"]
+	_opforairsupportveh addEventHandler ["Fuel", "if not(_this select 1) then {(_this select 0) setdamage 1};"];
 	_opforairsupportveh setVelocity [200 * (sin direction _opforairsupportveh), 200 * (cos direction _opforairsupportveh), 0];
 	_opforairsupportgroup setCombatMode "RED";
 	_wp1 = _opforairsupportgroup addWaypoint [primarytarget, 300];
@@ -37,6 +37,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_wp3 setWaypointSpeed "NORMAL";
 	_wp3 setwaypointtype "CYCLE";
 	diag_log format [ "*** aasm spawn %1 at %2", _chosenveh, _startpos];
+	//if (true) exitWith {};
 	};
 
 
