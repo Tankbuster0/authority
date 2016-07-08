@@ -16,6 +16,8 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	{_opforairsupportgroup reveal [_x,(random 4)];} foreach (allPlayers - entities "HeadlessClient_F");
 	_opforairsupportveh = _opforairsupport select 0;
 	_t_ehindex = _opforairsupportveh addeventhandler ["HandleDamage", {if ((_this select 4) isKindOf "MissileCore") then { 1; } else { _this select 2; }; }];
+	_opforairsupportveh setfuel 0.05;
+	_opforairsupportveh addEventHandler ["Fuel", "if ((_this select 1) == 0) then {(_this select 0) setdamage 1};"]
 	_opforairsupportveh setVelocity [200 * (sin direction _opforairsupportveh), 200 * (cos direction _opforairsupportveh), 0];
 	_opforairsupportgroup setCombatMode "RED";
 	_wp1 = _opforairsupportgroup addWaypoint [primarytarget, 300];
