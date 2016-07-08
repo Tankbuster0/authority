@@ -18,6 +18,7 @@ while {_spawnpos in [[0,0,0], islandcentre]} do // findsafepos not found a good 
 	};
 
 _runabout =  createVehicle ["B_Quadbike_01_F", _spawnpos, [], 0, "NONE"];
+_runabout addItemCargoGlobal ["ACE_bloodIV_500", 5];
 
 
 
