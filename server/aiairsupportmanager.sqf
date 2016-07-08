@@ -7,6 +7,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	{
 	//sleep 120 + ((random 60) * 5);
 	_opforairsupportgroup = createGroup east;
+	[_opforairsupportgroup [1,1,1,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
 	_startpos = primarytarget getrelpos [(4000 + ((random 8) * 500)), random 360 ];
 	_startpos set [2,800];
 	_chosenveh = selectRandom opforairsupporttypes;
