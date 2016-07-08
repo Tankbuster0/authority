@@ -5,7 +5,7 @@ private ["_opforairsupportgroup","_startpos","_chosenveh","_opforairsupport","_o
 
 while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	{
-	//sleep 120 + ((random 60) * 5);
+	sleep 600 + ((floor random 30) * 60); // 10 to 40 mins
 	_opforairsupportgroup = createGroup east;
 
 	_startpos = primarytarget getrelpos [(4000 + ((random 8) * 500)), random 360 ];
@@ -35,7 +35,6 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_wp3 setWaypointSpeed "NORMAL";
 	_wp3 setwaypointtype "CYCLE";
 	diag_log format [ "*** aasm spawn %1 at %2", _chosenveh, _startpos];
-	if (true) exitWith {};
 	};
 
 
