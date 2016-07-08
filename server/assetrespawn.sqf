@@ -47,7 +47,7 @@ _testradius = 10;
 _nearestblueflag = getpos ((nearestObjects [_oldv, ["Flag_Blue_F"], 7000]) select 0); // get the nearest blue flag position. there's 1 at the beach and another at each taken target.
 while {_droppoint2 in [[0,0,0], islandcentre] } do
 	{
-	_droppoint2 = [_nearestblueflag, 6, _testradius, 6, 0, 0, 0] call BIS_fnc_findSafePos;
+	_droppoint2 = [_nearestblueflag, 6, _testradius, 8, 0, 0, 0] call BIS_fnc_findSafePos;
 	_testradius = _testradius + 10;
 	};
 // ^^^ system that gets a good droppos without the possibility of findsafepos returning islandcentre (which is does when it fails)
