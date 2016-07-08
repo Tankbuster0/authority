@@ -7,11 +7,13 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	{
 	//sleep 120 + ((random 60) * 5);
 	_opforairsupportgroup = createGroup east;
-	[_opforairsupportgroup [1,1,1,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+
 	_startpos = primarytarget getrelpos [(4000 + ((random 8) * 500)), random 360 ];
 	_startpos set [2,800];
 	_chosenveh = selectRandom opforairsupporttypes;
 	_opforairsupport = [_startpos, (_startpos getdir primarytarget ), _chosenveh, _opforairsupportgroup] call BIS_fnc_spawnVehicle;
+	[_opforairsupportgroup, [1,1,1,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+	{_opforairsupportgroup reveal [_x,(random 4)];} foreach (allPlayers - entities "HeadlessClient_F");
 	_opforairsupportveh = _opforairsupport select 0;
 	_t_ehindex = _opforairsupportveh addeventhandler ["HandleDamage", {if ((_this select 4) isKindOf "MissileCore") then { 1; } else { _this select 2; }; }];
 	_opforairsupportveh setVelocity [200 * (sin direction _opforairsupportveh), 200 * (cos direction _opforairsupportveh), 0];
