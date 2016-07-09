@@ -40,7 +40,7 @@ switch (cpt_name) do
 	};
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 _airstripdata = [];
-for  "_i" from 1 to 20 do // get airstrip data
+for  "_i" from 1 to 10 do // get airstrip data
 	{
 	_secairstrip =  format ["Airstrip_%1", _i];
 	//diag_log format ["***mb @ 46 airstrip name is %1", _secairstrip];
@@ -51,19 +51,20 @@ for  "_i" from 1 to 20 do // get airstrip data
 		_ils1indata = _airstripilsindata select [0,2]; //take the first 2 numbers, it's the ilsIn1 entry. returns a 2d array
 		//diag_log format ["*** mb @ 52, _ilsindata is %1", _ils1indata];
 		_airstripdata pushback _ils1indata;// pushback it into a master array, so, this is a nested array of 2d positions
-		};
+
 	//diag_log format ["***mb @ 55. _airstripdata %1", _airstripdata];
-	_closestdistance = 99999999;
-	_closestone = [];
-		{
-			_mydistance = (_x distance _blubasedroppos);
-			diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
-			if (_mydistance <= _closestdistance) then
+		_closestdistance = 99999999;
+		_closestone = [];
 			{
-				_closestdistance = _mydistance;
-				_closestone = _x;
-			};
-		} foreach _airstripdata;
+				_mydistance = (_x distance _blubasedroppos);
+				diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
+				if (_mydistance <= _closestdistance) then
+				{
+					_closestdistance = _mydistance;
+					_closestone = _x;
+				};
+			} foreach _airstripdata;
+		};
 	};
 airhead_container_landing_point = _closestone;
 diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
