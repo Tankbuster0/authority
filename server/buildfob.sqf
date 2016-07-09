@@ -25,7 +25,7 @@ Using orientation of objects: yes
 	["Land_DataTerminal_01_F", [8, -6 ,0], 0,1,0, [0,0], "fobdataterminal", "", true, false],
 	["Land_TTowerSmall_2_F",[0.859131,-12.6907,0],0,1,0,[0,0],"","",true,false]
 ],0.0] call tky_fnc_t_objectsmapper;
-fobflagpole setFlagTexture "pics\wasp-inc_dirty_flag.paa";
+fobflagpole setFlagTexture "pics\hom_flag_white_stripe512.paa";
 fobdeployed = true;
 publicVariable "fobdeployed";
 previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
