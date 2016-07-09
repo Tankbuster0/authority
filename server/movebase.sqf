@@ -16,26 +16,31 @@ switch (cpt_name) do
 		{
 		_blubasedroppos = [11526.2,11812.8,0];
 		_composition = aac_blubase;
+		airhead_container_landing_point = [11703.3,11856.5];
 		};
 	case "Almyra airfield":
 		{
 		_blubasedroppos = [23231.6,18459.3,0];
 		_composition = almyra_blubase;
+		airhead_container_landing_point = [23031.6,18845.3];
 		};
 	case "Abdera airfield":
 		{
 		_blubasedroppos = [9186.27,21649,0];
 		_composition = abdera_blubase;
+		airhead_container_landing_point = [9168.44,21610.6];
 		};
 	case "Feres airfield":
 		{
 		_blubasedroppos = [20813.1,7243.86,0];
 		_composition = feres_blubase;
+		airhead_container_landing_point = [20825.6,7275.69];
 		};
-		case "Molos Airfield":
+	case "Molos Airfield":
 		{
 		_blubasedroppos = [26750.2,24615,0];
 		_composition = molos_blubase;
+		airhead_container_landing_point = [26801.7,24637.3];
 		};
 	};
 diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
