@@ -41,9 +41,9 @@ for "_q" from 1 to 3 do
 // Forward Set up
 _mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
 forward setVehiclePosition [_mypos, [],0, "NONE"];
-forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetout.sqf"}];
-forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetin.sqf"}];
-forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\handlefobgetseatchanged.sqf"}];
+forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
+forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetin.sqf"}];
+forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 
 {
