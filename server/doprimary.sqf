@@ -102,7 +102,7 @@ if ((primarytargetcounter > 1)) then
 				};
 			};
 		};
-		if (cpt_type==1) then {0 = execVM "server\roadreinforcementmanager.sqf";};
+		if (cpt_type==1) then {0 = execVM "server\PT_ai\ai_roadreinforcementmanager.sqf";};
 	};
 // air radar controls the opfor reinforcements that are bought in by helicopter
 _radarpos = [] call tky_fnc_findhighground;
