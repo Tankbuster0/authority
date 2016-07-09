@@ -126,8 +126,8 @@ pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
 
 
 
-0 = execVM "server\airreinforcementmanager.sqf";
-0 = execVM "server\aiairsupportmanager.sqf";
+0 = execVM "server\ai_chopperreinforcementmanager.sqf";
+0 = execVM "server\ai_airsupportmanager.sqf";
 //stuff that needs to be check constantly runs here
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
