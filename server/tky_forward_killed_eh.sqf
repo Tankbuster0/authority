@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "tky_forward killed _eh.sqf";
+_myscript = "tky_forward_killed_eh.sqf";
 // execvmd by init server
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
