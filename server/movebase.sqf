@@ -44,7 +44,7 @@ for  "_i" from 1 to 20 do // get airstrip data
 	{
 	_secairstrip =  format ["Airstrip_%1", _i];
 	_airportilsindata = getarray (configfile >> "CfgWorlds" >> worldName >> "SecondaryAirports" >> _secairstrip >> "ilsTaxiIn");
-	if ((count _airstripilsindata >) 0) then // we're looking at an existing airstrip
+	if ((count _airstripilsindata) > 0) then // we're looking at an existing airstrip
 		{
 		_ils1indata = _airstripilsindata select [0,2]; //take the first 2 numbers, it's the ilsIn1 entry. returns a 2d array
 		_airstripdata pushback _ils1indata;// pushback it into a master array, so, this is a nested array of 2d positions
