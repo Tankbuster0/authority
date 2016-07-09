@@ -8,7 +8,7 @@ deleteVehicle pt_radar;
 sleep 2;
 pt_radar =  createVehicle ["Land_Factory_Hopper_ruins_F", _pos, [],0, "CAN_COLLIDE"];
 pt_radar setdamage 1;
-format ["The primary target radar installation has been destroyed! The enemy now has no air support."] remoteexec ["hint", -2];
+format ["The primary target radar installation has been destroyed! The enemy now has no airborne reiforcements."] remoteexec ["hint", -2];
 
 
 
