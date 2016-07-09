@@ -1,5 +1,5 @@
 // by tankbuster
-_myscript = "makeroadreinforcement.sqf";
+_myscript = "ai_makeroadreinforcement.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh", "_bcsp_name"];
 _cpt = _this select 0; // actually a logic
@@ -24,9 +24,9 @@ _possibleconvoystartpoints = _cpt nearEntities ["Logic", 5000];
 //get a road section at the convoy start, put a vehicle there and give it a wp
 _bcsproad = [getpos _bestconvoystartpoint, 1000, []] call bis_fnc_nearestRoad;
 
-_mkr = createMarker ["mkr", (getpos _bestconvoystartpoint) ];
+/*_mkr = createMarker ["mkr", (getpos _bestconvoystartpoint) ];
 _mkr setMarkerShape "ICON";
-_mkr setMarkerType "hd_dot";
+_mkr setMarkerType "hd_dot";*/
 sleep 15;
 _rrgroup = createGroup east;
 _cveh = [(getpos _bcsproad), ([getpos _bcsproad, _cpt] call bis_fnc_dirTo), opfor_reinf_truck, _rrgroup] call tky_fnc_spawnandcrewvehicle;

@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "aiairsupportmanager";
+_myscript = "ai_airsupportmanager";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_opforairsupportgroup","_startpos","_chosenveh","_opforairsupport","_opforairsupportveh","_dir"];
 
