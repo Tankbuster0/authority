@@ -1,4 +1,4 @@
-_myscript = "handlefobgetseatchanged.sqf";
+_myscript = "fn_handlefobgetseatchanged.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 {
