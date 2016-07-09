@@ -1,6 +1,6 @@
 //by tankbuster
 //execvmd by assaultphasefinished
-_myscript = "reinforcementsattack";
+_myscript = "ai_reinforcementsattack";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_possibletargets","_radius","_mydude","_targettobeattacked", "_mydata4"];
 
