@@ -56,7 +56,7 @@ class cfgFunctions
 		};
 		class auth_server
 		{
-			file = "server";
+			file = "server\Functions";
 			class spawnandcrewvehicle {};
 			class mando_chute {};
 			class setfuel {};
