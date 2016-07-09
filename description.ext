@@ -47,7 +47,6 @@ class cfgFunctions
 		class auth_client
 		{
 			file = "client";
-			class hd {};
 			class curatorObjectPlaced {};
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
