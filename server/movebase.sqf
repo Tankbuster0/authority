@@ -38,6 +38,7 @@ switch (cpt_name) do
 		_composition = molos_blubase;
 		};
 	};
+// try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 _airstripdata = [];
 for  "_i" from 1 to 20 do // get airstrip data
 	{
