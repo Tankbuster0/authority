@@ -11,7 +11,7 @@ if (primarytargetcounter > 1) then
 	waitUntil {scriptDone _npt};
 	sleep 0.5;
 	primarytarget = nextpt;// <-- dont forget nextpt is a logic
-	_handle = [primarytarget] execVM "server\ai_spawnPTroadblocks.sqf";
+	_handle = [primarytarget] execVM "server\PT_ai\ai_spawnroadblocks.sqf";
 	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
 	}else
 	{
@@ -37,7 +37,7 @@ _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must
 waitUntil {sleep 0.05;scriptDone _handle1};
 
 // Spawn Enemy CQB
-_handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\ai_populateCQBBuildings.sqf";//
+_handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 waitUntil {sleep 0.05;scriptDone _handle1};
 
 
@@ -126,8 +126,8 @@ pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
 
 
 
-0 = execVM "server\ai_reinforcementChoppermanager.sqf";
-0 = execVM "server\ai_airsupportmanager.sqf";
+0 = execVM "server\PT_ai\ai_reinforcementChoppermanager.sqf";
+0 = execVM "server\PT_ai\ai_airsupportmanager.sqf";
 //stuff that needs to be check constantly runs here
 
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

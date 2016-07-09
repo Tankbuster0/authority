@@ -11,7 +11,7 @@ while {!roadblockscleared} do
 	if (roadblockscleared) exitwith {diag_log "*** rrm quits because all roadblockscleared"};
 	if ((west countSide allPlayers) > 0) then
 		{
-		_handle2 = [primarytarget] execVM "server\ai_makeroadreinforcement.sqf";// only make roadreinf if there are players
+		_handle2 = [primarytarget] execVM "server\PT_ai\ai_makeroadreinforcement.sqf";// only make roadreinf if there are players
 		//diag_log "****rrm calls mrr!";
 		reinforcementcounter = reinforcementcounter + 1;
 		};
