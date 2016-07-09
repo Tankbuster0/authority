@@ -11,7 +11,7 @@ if (primarytargetcounter > 1) then
 	waitUntil {scriptDone _npt};
 	sleep 0.5;
 	primarytarget = nextpt;// <-- dont forget nextpt is a logic
-	_handle = [primarytarget] execVM "server\spawnroadblocks.sqf";
+	_handle = [primarytarget] execVM "server\ai_spawnPTroadblocks.sqf";
 	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
 	}else
 	{
@@ -58,7 +58,7 @@ if (cpt_type == 1 || cpt_type == 4) then
 	trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 	trg2 setTriggerActivation  ["WEST SEIZED", "PRESENT", false];
 	trg2 setTriggerTimeout [5, 50, 120, true];
-	trg2 setTriggerStatements ["this", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\SurrenderSurvivors.sqf';", ""];
+	trg2 setTriggerStatements ["this", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\ai_surrenderSurvivorsmanager.sqf';", ""];
 } else
 {
 	// make trigger that senses when town is empty of enemies

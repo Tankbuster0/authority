@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "spawnroadblocks.sqf";
+_myscript = "ai_spawnPTroadblocks.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_mypos","_myradius","_mypos0","_myroadarray1","_road1","_road2","_mypos2","_mname","_mkr","_myroads","_rd1","_rd2","_foreachindex","_groups", "_totalenemies", "_objects", "_campgroup"];
 _currentprimarytarget = _this select 0;

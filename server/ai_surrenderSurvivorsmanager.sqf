@@ -26,7 +26,7 @@ _hasRebel = 0;
 				{
 					_r = false;
 				};
-				[_x,_r,_trigPos] execVM "server\Surrendered.sqf";
+				[_x,_r,_trigPos] execVM "server\ai_surrendered.sqf";
 				
 		} else 
 		{
@@ -46,7 +46,7 @@ _hasRebel = 0;
 				{
 					_r = false;
 				};
-				[_x,_r,_trigPos] execVM "server\Surrendered.sqf";
+				[_x,_r,_trigPos] execVM "server\ai_surrendered.sqf";
 				
 			} forEach _vehcrewlist;
 		};
