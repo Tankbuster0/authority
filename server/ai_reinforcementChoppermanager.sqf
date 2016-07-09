@@ -1,5 +1,5 @@
 //by tankbuster
-_myscript = "ai_chopperreinforcementmanager.sqf";
+_myscript = "ai_reinforcementChoppermanager.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};

@@ -37,7 +37,7 @@ _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must
 waitUntil {sleep 0.05;scriptDone _handle1};
 
 // Spawn Enemy CQB
-_handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\populateCQBBuildings.sqf";//
+_handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\ai_populateCQBBuildings.sqf";//
 waitUntil {sleep 0.05;scriptDone _handle1};
 
 
@@ -126,7 +126,7 @@ pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
 
 
 
-0 = execVM "server\ai_chopperreinforcementmanager.sqf";
+0 = execVM "server\ai_reinforcementChoppermanager.sqf";
 0 = execVM "server\ai_airsupportmanager.sqf";
 //stuff that needs to be check constantly runs here
 
