@@ -74,5 +74,5 @@ if ((typeOf player) == "CUP_B_BAF_Soldier_JTAC_MTP") then  {
 	BIS_supp_refresh = TRUE;
 };
 
-[] execVM "client\fn_playersetup.sqf";
+[] execVM "client\playersetup.sqf";
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
