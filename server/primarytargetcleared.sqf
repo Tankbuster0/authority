@@ -14,7 +14,7 @@ _nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750];
 if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
 
 if (primarytargetcounter isEqualTo 1) then {_droptype = fobvehicleclassname} else {_droptype = (selectRandom prizes)};//else choose prize vehicle
-
+if (_droptype isKindOf "Air") then (_pos = airhead_container_landing_point);// prize is an airvehicle which will be delivered containerised to a special landing point
 _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 
 {

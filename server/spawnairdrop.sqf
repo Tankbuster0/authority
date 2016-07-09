@@ -1,10 +1,10 @@
 _myscript = "spawnairdrop.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_cargo","_nul","_cargopos","_para","_underground","_movingtowardsend","_1pos","_2pos", "_thisaidropiteration"];
+private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", blufordropaircraft], // classname of delivering aircraft
-["_droptype", fobvehicleclassname],// classname of deliverd objects
+["_droptype", fobvehicleclassname],// classname of delivered object
 ["_spawnpoint", [0,0,0]]
 ]; // classname of delivered object
 _mytime = serverTime;
@@ -16,7 +16,7 @@ _droppos = [0,0,0]; _testradius = 4;
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
-		_droppos = [_requestedpos, 3,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
+		_droppos = [_requestedpos, 1,_testradius, 4, 0,50,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
@@ -77,7 +77,7 @@ waituntil {sleep 0.5; (((_dropveh distance2D _droppos) < 1000) or (serverTime > 
 if (serverTime > (_mytime + 90)) exitWith
 	{
 
-	{ _dropveh deleteVehicleCrew _x} foreach crew _dropveh;
+		{ _dropveh deleteVehicleCrew _x} foreach crew _dropveh;
 	deleteVehicle _dropveh;
 	while {(count (waypoints _dropgroup)) > 0} do
 		{
@@ -95,7 +95,18 @@ _dropveh flyinheight 150;
 waitUntil {(_dropveh distance2D _droppos) < 100};
 
 _smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
+
+if (_droptype isKindOf "Air") then
+	{
+		_eventualtype = _droptype;
+		_droptype = "Land_Cargo20_military_green_F";
+	}else
+	{
+		_eventualtype = "none";
+	};
 _cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-25,-10]), [],0, "FLY"];
+_cargo setvariable ["eventualtype", _eventualtype];
+//it need to be containerised because its an airvehicle
 if (_droptype == forwardpointvehicleclassname) then
 	{
 	forward = _cargo;
@@ -144,7 +155,13 @@ _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
-
+_myvalue = _cargo getVariable "eventualtype";
+if (_myvalue isKindOf "Air") then
+	{
+		_cargopos = getpos _cargo;
+		deletevehicle _cargo;
+		_cargo = createVehicle [_myvalue, _cargopos, [],0, "NONE"];
+	};
 _dropveh domove _startpos;
 _movingtowardsend = true;
 while {_movingtowardsend} do
