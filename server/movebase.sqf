@@ -2,7 +2,7 @@
 //execvmd by assaultphasefinished
 _myscript = "movebase";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_blubasedroppos","_composition","_handle", "_mypos"];
+private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airportilsindata","_airstripilsindata","_ils1indata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_mypos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
 
@@ -16,33 +16,50 @@ switch (cpt_name) do
 		{
 		_blubasedroppos = [11526.2,11812.8,0];
 		_composition = aac_blubase;
-		airhead_container_landing_point = [11703.3,11856.5];
 		};
 	case "Almyra airfield":
 		{
 		_blubasedroppos = [23231.6,18459.3,0];
 		_composition = almyra_blubase;
-		airhead_container_landing_point = [23031.6,18845.3];
 		};
 	case "Abdera airfield":
 		{
 		_blubasedroppos = [9186.27,21649,0];
 		_composition = abdera_blubase;
-		airhead_container_landing_point = [9168.44,21610.6];
 		};
 	case "Feres airfield":
 		{
 		_blubasedroppos = [20813.1,7243.86,0];
 		_composition = feres_blubase;
-		airhead_container_landing_point = [20825.6,7275.69];
 		};
 	case "Molos Airfield":
 		{
 		_blubasedroppos = [26750.2,24615,0];
 		_composition = molos_blubase;
-		airhead_container_landing_point = [26801.7,24637.3];
 		};
 	};
+_airstripdata = [];
+for  "_i" from 1 to 20 do // get airstrip data
+	{
+	_secairstrip =  format ["Airstrip_%1", _i];
+	_airportilsindata = getarray (configfile >> "CfgWorlds" >> worldName >> "SecondaryAirports" >> _secairstrip >> "ilsTaxiIn");
+	if ( count _airstripilsindata > 0) then // we're looking at an existing airstrip
+		{
+		_ils1indata = _airstripilsindata select [0,2]; //take the first 2 numbers, it's the ilsIn1 entry. returns an array
+		_airstripdata pushback _ils1indata;// nested array!
+		};
+	_closestdistance = 999999;
+	_closestone = [];
+		{
+			_mydistance = (_x distance _blubasedroppos)
+			if (_mydistance < _closestdistance) then
+			{
+				_closestdistance = _mydistance;
+				_closestdistance = _x;
+			};
+		} foreach _airstripdata;
+	};
+airhead_container_landing_point = _closestone;
 diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
