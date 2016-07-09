@@ -43,25 +43,25 @@ _airstripdata = [];
 for  "_i" from 1 to 20 do // get airstrip data
 	{
 	_secairstrip =  format ["Airstrip_%1", _i];
-	diag_log format ["***mb @ 46 airstrip name is %1", _secairstrip];
+	//diag_log format ["***mb @ 46 airstrip name is %1", _secairstrip];
 	_airstripilsindata = getarray (configfile >> "CfgWorlds" >> worldName >> "SecondaryAirports" >> _secairstrip >> "ilsTaxiIn");
-	diag_log format ["***mb @ 48. _airstripilsindata = %1", _airstripilsindata];
+	//diag_log format ["***mb @ 48. _airstripilsindata = %1", _airstripilsindata];
 	if ((count _airstripilsindata) > 0) then // we're looking at an existing airstrip
 		{
 		_ils1indata = _airstripilsindata select [0,2]; //take the first 2 numbers, it's the ilsIn1 entry. returns a 2d array
-		diag_log format ["*** mb @ 52, _airstripilsindata is %1", _airstripilsindata];
+		//diag_log format ["*** mb @ 52, _ilsindata is %1", _ils1indata];
 		_airstripdata pushback _ils1indata;// pushback it into a master array, so, this is a nested array of 2d positions
 		};
-	diag_log format ["***mb @ 55. _airstripdata %1", _airstripdata];
+	//diag_log format ["***mb @ 55. _airstripdata %1", _airstripdata];
 	_closestdistance = 99999999;
 	_closestone = [];
 		{
-			diag_log format ["*** mb @ 59. comparing %1 and %1", _x, _closestdistance];
 			_mydistance = (_x distance _blubasedroppos);
+			diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
 			if (_mydistance <= _closestdistance) then
 			{
 				_closestdistance = _mydistance;
-				_closestdistance = _x;
+				_closestone = _x;
 			};
 		} foreach _airstripdata;
 	};
