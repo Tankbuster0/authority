@@ -94,7 +94,7 @@ _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 _dropveh flyinheight 150;
 waitUntil {(_dropveh distance2D _droppos) < 100};
 
-_smoker1 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
+_smoker2 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 
 if (_droptype isKindOf "Air") then
 	{
@@ -149,7 +149,8 @@ sleep 1;
 waitUntil {(getposatl _cargo select 2) < 2};
 detach _cargo;
 detach _para;
-
+deleteVehicle _smoker1;
+deleteVehicle _smoker2;
 _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
@@ -158,6 +159,8 @@ if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = 
 _myvalue = _cargo getVariable "eventualtype";
 if (_myvalue isKindOf "Air") then
 	{
+		prizebox = _cargo;
+		[_cargo, _boxname] call fnc_setVehicleName;
 		_cargopos = getpos _cargo;
 		deletevehicle _cargo;
 		_cargo = createVehicle [_myvalue, _cargopos, [],0, "NONE"];
