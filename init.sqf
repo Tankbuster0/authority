@@ -16,6 +16,7 @@ dropveh = objNull;
 missionrunning = false; publicVariable "missionrunning";
 forwardrespawning = false;
 fobrespawning = false;
+airprizeawaitingassembly = false;
 "fobmarker" setMarkerAlpha 0;
 "dropvehmarker" setMarkerAlpha 0;
 
