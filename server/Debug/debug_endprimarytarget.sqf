@@ -5,7 +5,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 
 {
-	if(([_x, true] call BIS_fnc_objectSide) isEqualTo east) then
+	if((([_x, true] call BIS_fnc_objectSide) isEqualTo east) or (side _x isEqualTo east)) then
 		{
 			_x setdamage 1;
 		}
