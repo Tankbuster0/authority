@@ -82,7 +82,7 @@ if (count _naughtybaseobjects > 0) then
 		if not ((typename _x) in [forwardpointvehicleclassname, fobvehicleclassname]) then //things that must not be deleted
 			{
 		    deletevehicle _x;
-			diag_log format ["***removing _naughtybaseobject %1", _x];
+			diag_log format ["***removing _naughtybaseobject %1, %2", _x, typeOf _x];
 			};
 		} foreach _naughtybaseobjects;
 	};
