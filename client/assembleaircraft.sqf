@@ -3,6 +3,7 @@ _myscript = "assembleaircraft";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_containerobject","_mycaller","_prizeclass","_prizeclassscreenname","_sleep","_prizepos","_bestvisibility","_bestdir","_d","_testpos","_cansee","_prizevec"];
 params [_containerobject, _mycaller];
+diag_log format ["***aa gets %1, %2", _containerobject, _mycaller];
 _prizeclass = _containerobject getvariable "eventualtype";
 _prizeclassscreenname = [_prizeclass] call tky_fnc_getscreenname;
 _sleep = 20;
