@@ -100,6 +100,8 @@ if (_droptype isKindOf "Air") then
 	{
 		_eventualtype = _droptype;
 		_droptype = "Land_Cargo20_military_green_F";
+		airprizeawaitingassembly = true;
+		publicVariable "airprizeawaitingassembly";
 	}else
 	{
 		_eventualtype = "none";
@@ -156,6 +158,7 @@ _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
+/*
 _myvalue = _cargo getVariable "eventualtype";
 if (_myvalue isKindOf "Air") then
 	{
@@ -165,6 +168,7 @@ if (_myvalue isKindOf "Air") then
 		deletevehicle _cargo;
 		_cargo = createVehicle [_myvalue, _cargopos, [],0, "NONE"];
 	};
+*/
 _dropveh domove _startpos;
 _movingtowardsend = true;
 while {_movingtowardsend} do

@@ -18,7 +18,11 @@ if (primarytargetcounter isEqualTo 1) then
 		_droptype = fobvehicleclassname;
 	} else
 	{
+
+
 		_droptype = (selectRandom prizes);
+		while {airprizeawaitingassembly and (_droptype isKindOf "Air")} do
+			{_droptype = (selectRandom prizes);};
 	};//else choose prize vehicle
 if (_droptype isKindOf "Air") then
 	{
