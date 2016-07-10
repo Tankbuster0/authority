@@ -36,9 +36,9 @@ CQBCleanupArr = [];
 
 
 // Prizes for Prim Targets
-prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M6LineBacker_USA_W" ,
+//prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M6LineBacker_USA_W" ,
 "CUP_B_AH1_MR_BAF", "CUP_B_AW159_Hellfire_GB","CUP_B_CH47F_GB","CUP_B_F35B_AA_BAF", "CUP_B_F35B_CAS_BAF", "CUP_B_GR9_CAP_GB", "CUP_B_GR9_Mk82_GB"];
-
+prizes = ["CUP_B_AH1_MR_BAF", "CUP_B_AW159_Hellfire_GB","CUP_B_CH47F_GB","CUP_B_F35B_AA_BAF", "CUP_B_F35B_CAS_BAF", "CUP_B_GR9_CAP_GB", "CUP_B_GR9_Mk82_GB"];// remove after testing!
 // List of useable landmines
 aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives
 civs = ["CUP_C_C_Worker_01","CUP_C_C_Worker_02","CUP_C_C_Worker_03","CUP_C_C_Worker_04","CUP_C_C_Rocker_02","CUP_C_C_Woodlander_04","CUP_C_C_Worker_05","CUP_C_C_Woodlander_01","CUP_C_C_Woodlander_02","CUP_C_C_Woodlander_03",
