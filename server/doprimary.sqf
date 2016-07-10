@@ -71,7 +71,7 @@ if (cpt_type == 1 || cpt_type == 4) then
 trg3 = createTrigger ["EmptyDetector", cpt_position];
 trg3 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg3 setTriggerActivation  ["EAST", "NOT PRESENT", false];
-trg3 setTriggerStatements [( ((!(alive pt_hq))) and (!(alive pt_radar)) and (roadblockscleared) and (triggerActivated trg2)), "execVM 'server\assaultphasefinished.sqf'", ""];
+trg3 setTriggerStatements ["( ((!(alive pt_hq))) and (!(alive pt_radar)) and (roadblockscleared) and (triggerActivated trg2))", "execVM 'server\assaultphasefinished.sqf'", ""];
 // task stuff
 taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
