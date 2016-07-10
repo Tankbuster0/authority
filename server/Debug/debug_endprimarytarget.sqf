@@ -17,7 +17,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 		{
 			_x setdamage 1;
 		}
-}foreach (cpt_position nearentities (cpt_radius + 200));
+}foreach (cpt_position nearentities (cpt_radius + 300));
 if (cpt_type ==1 ) then
 	{
 	{_x setdamage 1} foreach roadblockgates;
