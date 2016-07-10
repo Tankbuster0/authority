@@ -57,7 +57,7 @@ for  "_i" from 1 to 10 do // get airstrip data
 		_closestone = [];
 			{
 				_mydistance = (_x distance _blubasedroppos);
-				diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
+				//diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
 				if (_mydistance <= _closestdistance) then
 				{
 					_closestdistance = _mydistance;
