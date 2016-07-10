@@ -58,7 +58,7 @@ player addEventHandler [ "Respawn", {
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "( (typeof (vehicle player) isEqualTo 'CUP_B_Mastiff_HMG_GB_W' )  and (player isEqualTo (commander (vehicle player) ) ) and (not (isEngineOn (vehicle player))) ) "];
 				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distance blubasedataterminal) < 2)"];
 				vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distance fobdataterminal) < 2)"];
-				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distance prizebox) < 3)"];
+				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distance prizebox) < 5)"];
 			};
 		};
 
