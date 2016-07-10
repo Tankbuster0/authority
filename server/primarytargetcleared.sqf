@@ -48,7 +48,7 @@ _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 	sleep 0.05;
 } foreach allGroups;
 [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
-sleep 180;
+if (serverName in testservernames) then {sleep 60;} else {sleep 180;};
 
 primarytargetcounter = primarytargetcounter + 1;
 
