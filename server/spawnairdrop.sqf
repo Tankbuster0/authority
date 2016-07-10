@@ -107,7 +107,7 @@ if (_droptype isKindOf "Air") then
 		_eventualtype = "none";
 	};
 _cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-25,-10]), [],0, "FLY"];
-_cargo setvariable ["eventualtype", _eventualtype];
+_cargo setvariable ["eventualtype", _eventualtype, true];
 //it need to be containerised because its an airvehicle
 if (_droptype == forwardpointvehicleclassname) then
 	{
@@ -159,8 +159,8 @@ _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
 
-_myvalue = _cargo getVariable "eventualtype";
-if (_myvalue isKindOf "Air") then
+//_myvalue = _cargo getVariable "eventualtype";
+if (_eventualtype isKindOf "Air") then
 	{
 		prizebox = _cargo;
 		[_cargo, "prizebox"] call fnc_setVehicleName;
