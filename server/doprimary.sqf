@@ -53,7 +53,7 @@ cpt_marker setMarkerColor "ColorRed";
 
 if (cpt_type == 1 || cpt_type == 4) then
 {
-	// make trigger that senses when town is empty of enemies
+	// make trigger that senses when airport or mil base is empty of enemies
 	trg2 = createTrigger ["EmptyDetector", cpt_position];
 	trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 	trg2 setTriggerActivation  ["WEST SEIZED", "PRESENT", false];
