@@ -33,8 +33,8 @@ sleep 1;
 for "_q" from 1 to 3 do
 	{
 	sleep 0.5;
-	_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
-	_mytruck = createVehicle ["CUP_B_LR_Transport_GB_W", _mypos,[],0,"NONE"];
+	_mypos = [_newdrypos, 3,30,4,0,20,0] call bis_fnc_findSafePos;
+	_mytruck = createVehicle ["B_LSV_01_armed_F", _mypos,[],0,"NONE"];
 	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
 

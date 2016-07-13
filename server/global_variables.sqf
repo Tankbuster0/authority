@@ -16,7 +16,7 @@ airdropcounter = 0;
 
 fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
 publicVariable "fobvehicleclassname";
-blufordropaircraft = "CUP_B_C130J_GB";
+blufordropaircraft = "B_T_VTOL_01_vehicle_F";
 cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "];
 
 // Variables for HeartandMind SideMission calc
@@ -37,7 +37,7 @@ CQBCleanupArr = [];
 
 // Prizes for Prim Targets
 prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M6LineBacker_USA_W" ,
-"CUP_B_AH1_MR_BAF", "CUP_B_AW159_Hellfire_GB","CUP_B_CH47F_GB","CUP_B_F35B_AA_BAF", "CUP_B_F35B_CAS_BAF", "CUP_B_GR9_CAP_GB", "CUP_B_GR9_Mk82_GB"];
+"CUP_B_AH1_MR_BAF", "CUP_B_AW159_Hellfire_GB","CUP_B_CH47F_GB","CUP_B_F35B_AA_BAF", "CUP_B_F35B_CAS_BAF", "CUP_B_GR9_CAP_GB", "CUP_B_GR9_Mk82_GB", "B_T_VTOL_01_armed_F"];
 
 // List of useable landmines
 aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives
