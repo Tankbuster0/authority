@@ -119,19 +119,20 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic setVariable ["targetradius", 250];
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
-	/*
-	_mname2 = format ["bmn%1", _foreachindex];
-	_mkr2 = createMarker [_mname2, getpos _x];
-	_mkr2 setMarkerShape "ELLIPSE";
-	_mkr2 setMarkerType "Empty";
-	_mkr2 setMarkerSize [250,250];
-	_mkr2 setMarkerBrush "Horizontal";
-	*/
+	if (testmode) then
+		{
+		_mname2 = format ["bmn%1", _foreachindex];
+		_mkr2 = createMarker [_mname2, getpos _x];
+		_mkr2 setMarkerShape "ELLIPSE";
+		_mkr2 setMarkerType "Empty";
+		_mkr2 setMarkerSize [250,250];
+		_mkr2 setMarkerBrush "Horizontal";
+		};
 	};
 	_basedata = ["Military Base", getpos _x, 250, 1, 3, -1];
 	targetdata pushback _basedata;
 } foreach _possiblebases;
-//diag_log format ["possible bases count %1", count _possiblebases];
+diag_log format ["possible bases count %1", count _possiblebases];
 //find airfields.
 foundairfields = [];
 _airportlogicgroup = createGroup logiccenter;
