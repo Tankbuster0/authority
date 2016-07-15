@@ -135,7 +135,7 @@ if (!(surfaceIsWater _bestpos) ) then
 //find airfields.
 foundairfields = [];
 _airportlogicgroup = createGroup logiccenter;
-_airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsize / 2];
+_airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal", "Airport"], mapsize / 2];
 		{
 		_llt = tolower (text _x);// lowercase location text
 		if  (
