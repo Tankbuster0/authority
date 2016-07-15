@@ -152,14 +152,15 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 			_ptarget setvariable ["targetstatus", 1];// enemy held
 			_ptarget setVariable ["targettype", 2];// type airfield
 			foundairfields pushback _ptarget;
-			/*
+		if (testmode) then
+			{
 			_mname2 = format ["amn%1", _foreachindex];
 			_mkr2 = createMarker [_mname2, getpos _x];
 			_mkr2 setMarkerShape "ELLIPSE";
 			_mkr2 setMarkerType "Empty";
 			_mkr2 setMarkerSize [300,300];
 			_mkr2 setMarkerBrush "DiagGrid";
-			*/
+			};
 			_airfielddata = [text _x, getpos _x,300,1,2,-1];
 			targetdata pushBack _airfielddata;
 			};
