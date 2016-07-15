@@ -254,14 +254,28 @@ if (worldName in ["Altis", "altis"]) then
 	};
 
 sleep 0.5;
+if not (testmode) then
+	{
+		for "_m" from 1 to 100 do
+			{
+			_mname =  format ["dep_safezone_marker_%1", _m]
+			_thismarkerpos = getMarkerPos _mname;
+			if ((_thismarkerpos select 0) isEqualTo 0 ) exitWith {};// no more markers, can quit loop.
+			_mname setMarkerAlpha 0; //marker exists and not testmode, so hide markers
+			};
+	};
+// ^^^^ hide dep safezone markers if not testmode
+
+
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
 sleep 0.5;
 _nul = execVM "server\tky_fobveh_killed_eh.sqf";
 _nul = execVM "server\tky_forward_killed_eh.sqf";
 _handle3 = [] execVM "server\doprimary.sqf";
-initserverfinished = true;
 
+
+initserverfinished = true;
 publicVariable "initserverfinished";
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
 
