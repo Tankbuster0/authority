@@ -11,7 +11,7 @@ _lc = (_pt_radius /75); //scales spawn levels according to radius
 _start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;
 if ((_start == 3) and (_pt_radius == 150)) then {_start = 2};
 _pt_radius = _pt_radius - 50;
-if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
+if ((worldname in ["Altis", "altis"]) and (_pt_type == 2)) then
 	{
 	switch (_pt_name) do
 		{
