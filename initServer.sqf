@@ -63,7 +63,7 @@ foundairfields = [];
 
 if (worldName in ["Altis", "altis"]) then
 	{
-
+		diag_log "*** mission uses existing targetdata file";
 		_airportlogicgroup = createGroup logiccenter;
 		_logicgroup = createGroup logiccenter;
 
@@ -248,6 +248,7 @@ if (worldName in ["Altis", "altis"]) then
 
 	}else
 	{
+		diag_log "*** mission doesn't find a targetdata file and runs gptl instead";
 		_handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 		waitUntil {scriptDone _handle1};
 	};
