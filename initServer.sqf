@@ -61,13 +61,13 @@ foundairfields = [];
 
 
 
-if (worldName in ["Altis", "altis"]) then
+if ((tolower worldName) in ["altis", "tanoa"]) then
 	{
 		diag_log "*** mission uses existing targetdata file";
 		_airportlogicgroup = createGroup logiccenter;
 		_logicgroup = createGroup logiccenter;
-
-		altisdata = (loadfile "targetdata\altis.txt") splitstring "\";
+		_loadfilename = format ["targetdata\%1.txt", (toLower worldName)];
+		altisdata = (loadfile _loadfilename) splitstring "\";
 		TESTOUTPUT = [];
 		//-------------------------
 		// BEWARE THE STRINGPARSER
