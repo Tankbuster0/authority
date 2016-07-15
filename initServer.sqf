@@ -258,7 +258,7 @@ if not (testmode) then
 	{
 		for "_m" from 1 to 100 do
 			{
-			_mname =  format ["dep_safezone_marker_%1", _m]
+			_mname =  format ["dep_safezone_marker_%1", _m];
 			_thismarkerpos = getMarkerPos _mname;
 			if ((_thismarkerpos select 0) isEqualTo 0 ) exitWith {};// no more markers, can quit loop.
 			_mname setMarkerAlpha 0; //marker exists and not testmode, so hide markers
