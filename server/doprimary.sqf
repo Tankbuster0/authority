@@ -3,7 +3,7 @@ _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
 vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
-sleep 30;
+sleep 300;
 if (primarytargetcounter > 1) then
 	{
 	// 2nd, 3rd , 4th targets, etc
