@@ -140,8 +140,10 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsi
 		_llt = tolower (text _x);// lowercase location text
 		if  (
 			     ((_llt find "airf")  > -1) or
-			     ((_llt find "Aéro")  > -1) ((_llt find "Airs")  > -1) or
-			     ((_llt find "Airb")  > -1)
+			     ((_llt find "Aéro")  > -1) or
+			     ((_llt find "Airs")  > -1) or
+			     ((_llt find "Airb")  > -1) or
+			     ((_llt find "Aerod")  > -1)
 		     )  then
 			{
 			_ptarget = _airportlogicgroup createUnit ["Logic", getpos _x, [], 0, "NONE"];
