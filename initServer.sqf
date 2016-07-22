@@ -266,7 +266,7 @@ if not (testmode) then
 	};
 // ^^^^ hide dep safezone markers if not testmode
 
-
+forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
 sleep 0.5;

@@ -34,13 +34,16 @@ for "_q" from 1 to 3 do
 	{
 	sleep 0.5;
 	_mypos = [_newdrypos, 3,30,4,0,20,0] call bis_fnc_findSafePos;
+	_mypos set [2,0.5];
 	_mytruck = createVehicle ["B_LSV_01_armed_F", _mypos,[],0,"NONE"];
 	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
 
 // Forward Set up
-_mypos = [_newdrypos, 3,30,3,0,20,0] call bis_fnc_findSafePos;
-forward setVehiclePosition [_mypos, [],0, "NONE"];
+_mypos = [_newdrypos, 2,30,4,0,0.5,0] call bis_fnc_findSafePos;
+_mypos set [2,0.5];
+forward setVehiclePosition [_mypos, [],0];
+
 forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
 forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetin.sqf"}];
 forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
@@ -132,9 +135,10 @@ publicVariable "BIS_supp_refresh";
 Arty setpos _gopos;
 Arty attachTo [frigate];
 
+forward allowdamage true;
 
 // authfrigate = createvehicle ["cup frigate", _fpos]
-
+forward setdamage 0;
 missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
