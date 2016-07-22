@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos"];
+private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 enableVehicleCrashes = false;
 _beachheadpos =[0,0,0];
@@ -10,12 +10,12 @@ fobdeployed = false;
 publicVariable "fobdeployed";
 _airfieldpos = getpos _airfield;
 _refuse = false;
-while {((_beachheadpos in [[0,0,0], islandcentre]) and (_refuse))} do
+while {((_beachheadpos in [[0,0,0], islandcentre]) or (_refuse))} do
 	{
-	_beachheadpos = [_airfieldpos,600,1100, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
+	_beachheadpos = [_airfieldpos,600,1000, 2.5, 0, 0.5, 1] call bis_fnc_findSafePos;
 	_dir = _beachheadpos getDir _airfieldpos;
 	_dist = _beachheadpos distance2D _airfieldpos;
-	if ((surfaceIsWater (_beachheadpos getrelPos [(_dist * .33), _dir])) and ((_beachheadpos getrelPos [(_dist * .66), _dir]) surfaceIsWater)) then {refuse = true;};
+	if ((surfaceIsWater (_beachheadpos getrelPos [(_dist * .33), _dir])) and (surfaceiswater (_beachheadpos getrelPos [(_dist * .66), _dir]))) then {refuse = true;};
 	};
 _beachheadpos set [2,0];
 ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _beachheadpos, [],0, "NONE"];
