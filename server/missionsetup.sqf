@@ -1,46 +1,50 @@
 //by tankbuster
 _myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_airfield","_newdrypos","_1pos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos"];
+private ["_airfield","_beachheadpos","_1pos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 enableVehicleCrashes = false;
-_newdrypos =[0,0,0];
+_beachheadpos =[0,0,0];
 roadreinforcementvehicles = [];
 fobdeployed = false;
 publicVariable "fobdeployed";
-_1pos = getpos _airfield;
-while {_newdrypos in [[0,0,0], islandcentre]} do
+_airfieldpos = getpos _airfield;
+_refuse = false;
+while {((_beachheadpos in [[0,0,0], islandcentre]) and (_refuse))} do
 	{
-	_newdrypos = [_1pos,600,1100, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
+	_beachheadpos = [_airfieldpos,600,1100, 2.5, 0, 4, 1] call bis_fnc_findSafePos;
+	_dir = _beachheadpos getDir _airfieldpos;
+	_dist = _beachheadpos distance2D _airfieldpos;
+	if ((surfaceIsWater (_beachheadpos getrelPos [(_dist * .33), _dir])) and ((_beachheadpos getrelPos [(_dist * .66), _dir]) surfaceIsWater)) then {refuse = true;};
 	};
-_newdrypos set [2,0];
-ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _newdrypos, [],0, "NONE"];
-ammobox setpos _newdrypos;
+_beachheadpos set [2,0];
+ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _beachheadpos, [],0, "NONE"];
+ammobox setpos _beachheadpos;
 ammobox attachTo [ammoboxpad];
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
-headmarker1 = createMarker ["headmarker1", _newdrypos];
+headmarker1 = createMarker ["headmarker1", _beachheadpos];
 headmarker1 setMarkerShape "rectangle";
 headmarker1 setMarkerSize [7,7];
 headmarker1 setMarkerColor "colorwest";
 headmarker1 setMarkerDir 45;
-headmarker2 = createMarker ["headmarker2", _newdrypos];
+headmarker2 = createMarker ["headmarker2", _beachheadpos];
 headmarker2 setMarkerShape "ICON";
 headmarker2 setMarkerType "hd_dot";
 headmarker2 setMarkerText "BEACHHEAD";
 
-_beachflag = "Flag_Blue_F" createVehicleLocal (_newdrypos);
+_beachflag = "Flag_Blue_F" createVehicleLocal (_beachheadpos);
 sleep 1;
 for "_q" from 1 to 3 do
 	{
 	sleep 0.5;
-	_mypos = [_newdrypos, 3,30,4,0,20,0] call bis_fnc_findSafePos;
+	_mypos = [_beachheadpos, 3,30,4,0,20,0] call bis_fnc_findSafePos;
 	_mypos set [2,0.5];
 	_mytruck = createVehicle ["B_LSV_01_armed_F", _mypos,[],0,"NONE"];
 	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
 
 // Forward Set up
-_mypos = [_newdrypos, 2,30,4,0,0.5,0] call bis_fnc_findSafePos;
+_mypos = [_beachheadpos, 2,30,4,0,0.5,0] call bis_fnc_findSafePos;
 _mypos set [2,0.5];
 forward setVehiclePosition [_mypos, [],0];
 
