@@ -149,33 +149,36 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
-{
-	[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
-	// ^^^ mortar gunners have best spotdistance and spottime
-	[_x] spawn // mortar gunner helper
+if (((west countSide allPlayers) > 1)) then
+	{
 		{
-			private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
-			_mygunner = _this select 0;
-			while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
-
+			[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+			// ^^^ mortar gunners have best spotdistance and spottime
+			[_x] spawn // mortar gunner helper
 				{
-				sleep 20 + (10 * random 5) ;
-				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
-				if ((count _nearblufors) > 0) then
-					{
-					_artytarget = (selectRandom _nearblufors);
-					_mygunner reveal [_artytarget, 3];
-					//_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
-					//_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
-					//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
-					//_aka = _mygunner knowsAbout _artytarget;
-					//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
-					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
-					};
-				};
+					private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
+					_mygunner = _this select 0;
+					while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
-		};
-} foreach mortar_gunners;
+						{
+						sleep 20 + (10 * random 5) ;
+						_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
+						if ((count _nearblufors) > 0) then
+							{
+							_artytarget = (selectRandom _nearblufors);
+							_mygunner reveal [_artytarget, 3];
+							//_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
+							//_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
+							//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
+							//_aka = _mygunner knowsAbout _artytarget;
+							//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
+							_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
+							};
+						};
+
+				};
+		} foreach mortar_gunners;
+	};
 //createcivilians
 if (_pt_type isEqualTo 1) then
 		{
