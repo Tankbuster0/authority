@@ -30,6 +30,7 @@ _nearlogics2 = _nearlogics - _removearray;
 /*
 pseudo code!
 if ((tolower worldName) isEqualTo "tanoa") then // allow island hopping for some target progressions
+// the hard code below is to find the logic for the town we want to force into the _nearlogic2 array
 	{
 		if (primarytargetname isEqualTo "Katoula") then
 			{add namuvaka logic to the _nearlogics2 array};
