@@ -32,15 +32,15 @@ pseudo code!
 if ((tolower worldName) isEqualTo "tanoa") then // allow island hopping for some target progressions
 	{
 		if (primarytargetname isEqualTo "Katoula") then
-			{add namuvaka to the _nearlogics2 array};
+			{add namuvaka logic to the _nearlogics2 array};
 		if (primarytargetname isEqualTo "Rautake") then
-			{add katkoula to _nearlogics2 array};
+			{add katkoula logic to _nearlogics2 array};
 		if (primarytargetname isEqualTo "Harcourt") then
-			{add kotomo to the _nearlogics2 array};
+			{add kotomo logic to the _nearlogics2 array};
 		if (primarytargetname isEqualTo "kotomo") then
-			{add harcourt to the _nearlogics2 array};
+			{add harcourt logic to the _nearlogics2 array};
 	};
-
+// above additions to the nearlogics2 array dont need to be distance sorted as that's done below
 */
 
 {
