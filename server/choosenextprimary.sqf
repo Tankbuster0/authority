@@ -8,18 +8,41 @@ _pos = _this select 0; _nearlogics2 = [];
 _mbi = ["militarybasesincluded", 1] call BIS_fnc_getParamValue;
 _nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
 _removearray = [];
-//_nearlogics = nearestObjects [_pos, ["Logic"], 7000];
 _nearlogics = _pos nearEntities ["Logic", 6000];
 
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
 	_tname = _x getVariable ["targetname", "Springfield"];
-	if ( (isNil "_tstatus") or (_tstatus != 1) or (((_mbi == 0) and (_ttype == 3) )) or ((_pos distance _x) < _nvc)) then {_removearray pushback _x};
+	_dir = _pos direction _x;
+	_dist = _pos distance _x;
+	if (
+		    (isNil "_tstatus") or
+		    (_tstatus != 1) or
+		    (((_mbi == 0) and (_ttype == 3) )) or
+		    ((_pos distance _x) < _nvc) or
+			((surfaceIsWater (_pos getrelPos [(_dist * .33), _dir])) and (surfaceiswater (_pos getrelPos [(_dist * .66), _dir])))
+		)
+		then {_removearray pushback _x};
 } forEach _nearlogics;
 _nearlogics2 = _nearlogics - _removearray;
 
-//_nearlogics2 = _nearlogics - _removearray;
+/*
+pseudo code!
+if ((tolower worldName) isEqualTo "tanoa") then // allow island hopping for some target progressions
+	{
+		if (primarytargetname isEqualTo "Katoula") then
+			{add namuvaka to the _nearlogics2 array};
+		if (primarytargetname isEqualTo "Rautake") then
+			{add katkoula to _nearlogics2 array};
+		if (primarytargetname isEqualTo "Harcourt") then
+			{add kotomo to the _nearlogics2 array};
+		if (primarytargetname isEqualTo "kotomo") then
+			{add harcourt to the _nearlogics2 array};
+	};
+
+*/
+
 {
 	_nearlogics2 set [_ForEachIndex, [ _x distance _pos, _x]];
 } foreach _nearlogics2;
