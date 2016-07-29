@@ -14,7 +14,7 @@ _nearlogics = _pos nearEntities ["Logic", 6000];
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
 	_tname = _x getVariable ["targetname", "Springfield"];
-	_dir = _pos direction _x;
+	_dir = _pos getdir _x;
 	_dist = _pos distance _x;
 	if (
 		    (isNil "_tstatus") or
