@@ -21,7 +21,7 @@ _nearlogics = _pos nearEntities ["Logic", 6000];
 		    (_tstatus != 1) or
 		    (((_mbi == 0) and (_ttype == 3) )) or
 		    ((_pos distance _x) < _nvc) or
-			((surfaceIsWater (_pos getrelPos [(_dist * .33), _dir])) and (surfaceiswater (_pos getrelPos [(_dist * .66), _dir])))
+			((surfaceIsWater (_pos getPos [(_dist * .33), _dir])) and (surfaceiswater (_pos getPos [(_dist * .66), _dir])))
 		)
 		then {_removearray pushback _x};
 } forEach _nearlogics;
