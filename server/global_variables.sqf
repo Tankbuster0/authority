@@ -464,6 +464,42 @@ aeroporto_de_tanoa_compostion =
 	["Land_Cargo_Tower_V4_F",[-151.01,-309.747,0],0,1,0,[0,0],"","",true,false]
 ];
 
+aeroporto_de_tanoa_blubase = /*
+Grab data:
+Mission: blubase_aeroporto_tanoa
+World: Tanoa
+Anchor position: [7053, 7337.05]
+Area size: 800
+Using orientation of objects: yes
+*/
+
+[
+	["CUP_A1_Heli_H_army",[-111.321,-78.666,0],217.773,1,0,[0,0],"blubasehelipad","",true,false],
+	["ClutterCutter_EP1",[-113.961,-75.9028,0],0,1,0,[0,0],"","",true,false],
+	["B_Slingload_01_Repair_F",[-115.601,-105.708,9.53674e-007],226.69,1,0.0051586,[-5.88112e-006,-1.51752e-005],"blubaserepairbox","",true,false],
+	["B_Slingload_01_Fuel_F",[-139.543,-80.9404,-1.43051e-005],226.69,1,0.00672271,[1.13647e-007,-6.58186e-006],"","",true,false],
+	["B_Slingload_01_Ammo_F",[-130.144,-97.9512,-1.43051e-005],315.911,1,0,[-5.63504e-007,1.8178e-005],"","",true,false],
+	["RoadCone_F",[-135.473,-91.0039,-6.67572e-006],226.692,1,0,[0.000918308,0.00257029],"terminalcone","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-125.735,-105.974,0],226.69,1,0,[0,0],"","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-138.019,-93.4414,0],226.69,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-138.693,-99.3301,-0.0120296],45.8466,1,0,[0,0],"","",true,false],
+	["cwa_Danger",[-147.425,-92.7808,-0.000526905],226.7,1,0,[1.04774,1.11181],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-138.537,-113.672,-0.07761],313.593,1,0,[0,0],"","",true,false],
+	["Land_MapBoard_F",[-144.97,-96.937,-0.00182247],73.6449,1,0,[0.375118,0.746077],"blubasewhiteboard","",true,false],
+	["Land_FieldToilet_F",[-147.636,-94.2773,0.000537872],226.691,1,0,[0.398335,1.09338],"","",true,false],
+	["CampEast_EP1",[-130.82,-116.407,0],226.69,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-146.078,-105.874,-0.0938554],317.423,1,0,[0,0],"","",true,false],
+	["Land_Axe_fire_F",[-149.334,-92.4497,-0.00265265],226.714,1,0,[0.38454,1.03319],"","",true,false],
+	["Land_Fire_burning",[-148.218,-94.6421,0.0178528],226.689,1,0,[0.399979,1.09259],"","",true,false],
+	["RoadCone_L_F",[-150.147,-98.2754,0.00519466],226.708,1,0,[-3.70443,0.56487],"ammoboxcone","",true,false],
+	["Land_Net_Fence_Gate_F",[-144.1,-107.943,0.0329018],226.69,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_5m_F",[-142.815,-109.434,-0.00788522],226.69,1,0,[0,0],"","",true,false],
+	["FlagCarrierBLUFOR_EP1",[-156.667,-97.627,0],226.69,1,0,[0,0],"baseflag","",true,false],
+	["Land_BagBunker_Small_F",[-139.395,-123.544,0],45.8268,1,0,[0,0],"","",true,false],
+	["MASH_EP1",[-147.629,-114.93,0.0112734],46.877,1,0,[2.04926,-3.17275],"","",true,false],
+	["Land_BagBunker_Small_F",[-155.638,-106.978,-0.0122399],45.8403,1,0,[1.37022,2.2885],"","",true,false]
+];
+
 st_george_composition = /*
 Grab data:
 Mission: TanoaAirportComp
@@ -494,6 +530,42 @@ Using orientation of objects: yes
 	["CUP_O_Ural_Reammo_RU",[143.042,-182.771,0.0676913],40.4315,1,0,[0.00618738,0.0199528],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-233.514,0.495605,0],200.742,1,0,[0,0],"","",true,false]
 ];
+st_george_blubase =
+/*
+Grab data:
+Mission: blubase_stgeorge
+World: Tanoa
+Anchor position: [11604, 3185.05]
+Area size: 800
+Using orientation of objects: yes
+*/
+
+[
+	["B_Slingload_01_Repair_F",[123.664,-37.8894,8.86917e-005],35.7597,1,0.0117588,[0.0049778,0.0041],"blubaserepairbox","",true,false],
+	["Land_Cargo_Patrol_V4_F",[133.541,-35.6646,0],35.7639,1,0,[0,0],"","",true,false],
+	["CampEast_EP1",[136.556,-24.4561,0.872571],35.7639,1,0,[0,0],"","",true,false],
+	["CUP_A1_Heli_H_army",[123.826,-63.7542,0],275.681,1,0,[0.380173,0.805451],"blubasehelipad","",true,false],
+	["Land_BagBunker_Small_F",[143.621,-15.8235,0.00999737],214.898,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[144.646,-25.6436,-2.86102e-006],122.665,1,0,[0,-0],"","",true,false],
+	["B_Slingload_01_Ammo_F",[139.408,-42.748,-3.8147e-006],124.983,1,0.0133406,[-5.45785e-006,2.61224e-005],"","",true,false],
+	["Land_New_WiredFence_10m_F",[147.528,-39.7307,-2.86102e-006],214.918,1,0,[0,0],"","",true,false],
+	["Land_Net_Fence_Gate_F",[151.171,-30.2771,0.000781059],35.7639,1,0,[0,0],"","",true,false],
+	["RoadCone_F",[145.943,-48.5266,3.33786e-006],35.7617,1,0.0197804,[0.000967092,0.00265898],"terminalcone","",true,false],
+	["Land_New_WiredFence_5m_F",[149.641,-29.0254,1.43051e-006],35.7639,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[153.583,-31.8745,0.0248203],126.495,1,0,[0,-0],"","",true,false],
+	["Land_Cargo_Patrol_V4_F",[147.979,-45.6409,0],35.7639,1,0,[0,0],"","",true,false],
+	["MASH_EP1",[153.418,-22.7249,1.09123],216.034,1,0,[0,0],"","",true,false],
+	["Land_MapBoard_F",[154.146,-40.9424,-0.00223207],242.666,1,0,[-0.330114,0.00269133],"blubasewhiteboard","",true,false],
+	["B_Slingload_01_Fuel_F",[151.901,-57.676,0.0302691],35.7791,1,0.0133303,[1.78849,-1.21493],"","",true,false],
+	["Land_FieldToilet_F",[157.271,-43.054,-3.29018e-005],35.7616,1,0,[0.00214665,-0.00121344],"","",true,false],
+	["Land_Fire_burning",[157.767,-42.53,0.40119],35.7639,1,0,[0,0],"","",true,false],
+	["cwa_Danger",[157.348,-44.5308,-0.000141621],35.7639,1,0,[0,0],"","",true,false],
+	["RoadCone_L_F",[158.967,-38.6213,0.00211954],35.7685,1,0,[0.00524912,0.00469826],"ammoboxcone","",true,false],
+	["Land_BagBunker_Small_F",[162.642,-28.9688,-0.00756311],214.86,1,0,[1.74604,-2.50581],"","",true,false],
+	["Land_Axe_fire_F",[159.277,-44.4705,-0.00337267],35.7639,1,0,[-3.81993e-005,1.01166e-005],"","",true,false],
+	["FlagCarrierBLUFOR_EP1",[165.493,-37.9961,0.0308247],35.7639,1,0,[0,0],"baseflag","",true,false]
+];
+
 
 la_rochelle_composition = /*
 Grab data:
@@ -520,6 +592,41 @@ Using orientation of objects: yes
 	["HeliH",[215.558,23.7432,0],341.626,1,0,[0.434647,-0.144371],"","",true,false],
 	["CUP_O_Mi24_P_RU",[216.317,21.5527,-0.494301],341.708,1,0,[4.05105,-0.23122],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-277.098,135.512,0],200.742,1,0,[0,0],"","",true,false]
+];
+
+la_rochelle_blubase =
+/*
+Grab data:
+Mission: blubase_larochelle
+World: Tanoa
+Anchor position: [11775, 13124]
+Area size: 800
+Using orientation of objects: yes
+*/
+
+[
+	["B_Slingload_01_Repair_F",[-70.8145,-11.6729,9.53674e-007],203.092,1,0.00540471,[-1.27715e-005,-1.75108e-005],"blubaserepairbox","",true,false],
+	["CUP_A1_Heli_H_army",[-75.5957,15.1289,0],194.175,1,0,[0,0],"blubasehelipad","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-80.001,-15.8994,0],203.092,1,0,[0,0],"","",true,false],
+	["CampEast_EP1",[-79.6816,-27.2998,0.121078],203.092,1,0,[0,0],"","",true,false],
+	["B_Slingload_01_Ammo_F",[-87.2881,-10.3223,0],292.314,1,0.00635913,[-1.97062e-006,2.26678e-005],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-88.6348,-28.1113,-1.90735e-006],289.996,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-94.5361,-14.999,-1.90735e-006],22.249,1,0,[0,0],"","",true,false],
+	["RoadCone_F",[-94.9473,-6.07422,8.58307e-006],203.09,1,0,[0.00202321,0.00392737],"terminalcone","",true,false],
+	["Land_Net_Fence_Gate_F",[-96.0186,-25.0225,9.53674e-007],203.092,1,0,[0,0],"","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-96.2734,-9.33105,0],203.092,1,0,[0,0],"","",true,false],
+	["B_Slingload_01_Fuel_F",[-98.0566,0.795898,0],203.092,1,0.00651541,[2.0393e-007,-2.59308e-006],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-98.7197,-23.9922,0.00152302],293.826,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_5m_F",[-94.251,-25.9072,9.53674e-007],203.092,1,0,[0,0],"","",true,false],
+	["MASH_EP1",[-96.3389,-31.9844,0.0810776],23.3654,1,0,[0,0],"","",true,false],
+	["Land_MapBoard_F",[-101.349,-15.3164,-0.00219822],49.9176,1,0,[-0.319585,-0.00123354],"blubasewhiteboard","",true,false],
+	["Land_FieldToilet_F",[-104.95,-13.9346,2.67029e-005],203.09,1,0,[-0.00067314,-0.00136902],"","",true,false],
+	["cwa_Danger",[-105.255,-12.4814,0.00432396],203.092,1,0,[0,0],"","",true,false],
+	["Land_Fire_burning",[-105.146,-14.5137,3.75686],203.092,1,0,[0,0],"","",true,false],
+	["RoadCone_L_F",[-105.468,-18.6387,0.00213146],203.093,1,0,[0.00735513,0.00219502],"ammoboxcone","",true,false],
+	["Land_Axe_fire_F",[-107.044,-12.9521,-0.00336075],203.092,1,0,[-1.18031e-005,-7.44843e-006],"","",true,false],
+	["Land_BagBunker_Small_F",[-106.926,-28.8418,0],16.968,1,0,[0,0],"","",true,false],
+	["FlagCarrierBLUFOR_EP1",[-111.686,-20.6318,2.86102e-006],203.092,1,0,[0,0],"baseflag","",true,false]
 ];
 
 bala_composition =
@@ -556,6 +663,44 @@ Using orientation of objects: yes
 	["Land_Cargo_Tower_V4_F",[-157.009,-141.252,0],35.441,1,0,[0,0],"","",true,false]
 ];
 
+
+bala_blubase =
+/*
+Grab data:
+Mission: blubase_bala
+World: Tanoa
+Anchor position: [2182, 3526.05]
+Area size: 800
+Using orientation of objects: yes
+*/
+
+[
+	["B_Slingload_01_Repair_F",[-31.5315,-65.5083,0],162.304,1,0.0598618,[-4.59328e-006,2.21992e-005],"blubaserepairbox","",true,false],
+	["CUP_A1_Heli_H_army",[-54.1174,-49.9053,0],153.387,1,0,[0,-0],"blubasehelipad","",true,false],
+	["ClutterCutter_EP1",[-57.7502,-51.0908,0],295.614,1,0,[0,0],"","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-35.7249,-74.708,0],162.304,1,0,[0,-0],"","",true,false],
+	["B_Slingload_01_Ammo_F",[-44.8862,-75.2468,-9.53674e-007],251.525,1,0.0404973,[-5.81259e-006,-4.53834e-005],"","",true,false],
+	["CampEast_EP1",[-28.5107,-83.7747,2.13077],162.3,1,0,[-1.11764,0.517588],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-47.3186,-83.5232,0.0119896],341.461,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-34.2854,-89.5483,-0.330708],249.207,1,0,[0,0],"","",true,false],
+	["RoadCone_F",[-53.46,-77.0339,6.67572e-006],162.314,1,0.0792187,[0.00208862,0.0039553],"terminalcone","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-52.3359,-80.3667,0],162.304,1,0,[0,-0],"","",true,false],
+	["Land_BagBunker_Small_F",[-25.7859,-94.6184,-0.0014019],341.441,1,0,[0.144046,-0.0483623],"","",true,false],
+	["Land_Net_Fence_Gate_F",[-41.938,-92.0781,0.229599],162.304,1,0,[0,-0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-44.6116,-93.0645,0.00152302],253.038,1,0,[0,0],"","",true,false],
+	["B_Slingload_01_Fuel_F",[-64.3948,-76.4443,-9.53674e-007],162.304,1,0,[-3.33903e-006,2.14627e-005],"","",true,false],
+	["Land_New_WiredFence_5m_F",[-39.9763,-91.5862,-0.018549],162.304,1,0,[0,-0],"","",true,false],
+	["Land_MapBoard_F",[-52.2693,-88.2134,-0.00218868],9.24914,1,0,[-0.31977,-0.00309329],"blubasewhiteboard","",true,false],
+	["MASH_EP1",[-37.1824,-98.3887,2.2115],342.58,1,0,[-0.0167437,0.96595],"","",true,false],
+	["cwa_Danger",[-57.0789,-88.6194,0.00432396],162.304,1,0,[0,-0],"","",true,false],
+	["Land_FieldToilet_F",[-55.8984,-89.5203,6.67572e-006],162.318,1,0,[0.00159434,-0.00119032],"","",true,false],
+	["Land_Fire_burning",[-55.6687,-90.0876,0.768212],162.304,1,0,[0,-0],"","",true,false],
+	["Land_Axe_fire_F",[-58.1257,-90.1438,-0.0033617],162.304,1,0,[1.33482e-005,-2.53113e-006],"","",true,false],
+	["RoadCone_L_F",[-53.2175,-93.4202,0.00213242],162.134,1,0,[-0.140877,0.0513603],"ammoboxcone","",true,false],
+	["Land_BagBunker_Small_F",[-47.7007,-102.116,0.00047493],341.441,1,0,[-0.048363,-0.144049],"","",true,false],
+	["FlagCarrierBLUFOR_EP1",[-56.623,-98.9912,0],162.304,1,0,[0,-0],"baseflag","",true,false]
+];
+
 tuvanaka_composition = /*
 Grab data:
 Mission: TanoaAirportComp
@@ -589,6 +734,42 @@ Using orientation of objects: yes
 	["HeliH",[322.691,208.271,0],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[208.94,329.509,0],0,1,0,[0,0],"","",true,false]
 ];
+
+tuvanaka_blubase = /*
+Grab data:
+Mission: blubase_tuvanaka
+World: Tanoa
+Anchor position: [2119, 13168]
+Area size: 800
+Using orientation of objects: yes
+*/
+
+[
+	["Land_BagBunker_Small_F",[-3.22974,138.388,0.000469208],350.956,1,0,[0,0],"","",true,false],
+	["CampEast_EP1",[6.11597,144.893,0],230.745,1,0,[0,0],"","",true,false],
+	["MASH_EP1",[-10.8135,148.475,0],51.0184,1,0,[0,0],"","",true,false],
+	["Land_Net_Fence_Gate_F",[-7.29761,154.493,0.000471115],230.745,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-2.19189,148.329,0.000468254],317.649,1,0,[0,0],"","",true,false],
+	["Land_Cargo_Patrol_V4_F",[11.1248,155.14,0.000469208],230.745,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_5m_F",[-6.14209,152.889,0.000470161],230.745,1,0,[0,0],"","",true,false],
+	["B_Slingload_01_Repair_F",[21.2227,154.62,4.76837e-006],230.744,1,0.00492431,[2.19853e-005,0.000375418],"blubaserepairbox","",true,false],
+	["Land_BagBunker_Small_F",[-18.8638,156.757,0.000470161],110.079,1,0,[0,-0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-1.3335,162.683,0.000468254],49.902,1,0,[0,0],"","",true,false],
+	["Land_New_WiredFence_10m_F",[-9.21265,156.659,0.00199318],321.479,1,0,[0,0],"","",true,false],
+	["B_Slingload_01_Ammo_F",[7.2583,163.462,-3.8147e-006],319.967,1,0.00671845,[-5.303e-007,2.2812e-005],"","",true,false],
+	["RoadCone_L_F",[-12.7051,164.532,0.0021286],230.744,1,0,[0.00776869,0.00189537],"ammoboxcone","",true,false],
+	["Land_MapBoard_F",[-7.51489,165.564,-0.00220585],77.773,1,0,[-0.31939,0.000975451],"blubasewhiteboard","",true,false],
+	["FlagCarrierBLUFOR_EP1",[-19.1382,165.652,0.000473022],230.745,1,0,[0,0],"baseflag","",true,false],
+	["Land_Cargo_Patrol_V4_F",[-0.240723,168.51,0.000469208],230.745,1,0,[0,0],"","",true,false],
+	["Land_Fire_burning",[-10.5061,168.037,1.79629],230.745,1,0,[0,0],"","",true,false],
+	["Land_FieldToilet_F",[-10.0635,168.459,3.8147e-005],230.747,1,0,[-0.00193614,0.000674775],"","",true,false],
+	["cwa_Danger",[-9.65918,169.888,0.00479412],230.745,1,0,[0,0],"","",true,false],
+	["Land_Axe_fire_F",[-11.4619,170.301,-0.00336361],230.749,1,0,[-0.000320164,7.18269e-005],"","",true,false],
+	["RoadCone_F",[2.44556,170.779,4.76837e-006],230.748,1,0,[0.00193905,0.00391166],"terminalcone","",true,false],
+	["B_Slingload_01_Fuel_F",[4.09375,176.502,-1.90735e-006],230.745,1,0.00665843,[-3.85053e-006,0.000246576],"","",true,false],
+	["CUP_A1_Heli_H_army",[27.4346,181.359,0],221.828,1,0,[0,0],"blubasehelipad","",true,false]
+];
+
 enemyskillsarray =
 
 	[
