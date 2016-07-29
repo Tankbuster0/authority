@@ -37,6 +37,31 @@ switch (cpt_name) do
 		_blubasedroppos = [26750.2,24615,0];
 		_composition = molos_blubase;
 		};
+	case "La Rochelle Aerodrome":
+		{
+		_blubasedroppos = [11689.1,13117.5,0];
+		_composition = la_rochelle_blubase;
+		};
+	case "Aéroport de Tanoa":
+		{
+		_blubasedroppos = [6920.95,7243.08,0];
+		_composition = aeroporto_de_tanoa_blubase;
+		};
+	case "Saint-George Airstrip":
+		{
+		_blubasedroppos = [11686.1,13110.6,0];
+		_composition = st_george_blubase;
+		};
+	case "Bala Airstrip":
+		{
+		_blubasedroppos = [2138.08,3446.05,0];
+		_composition = bala_blubase;
+		};
+	case "Tuvanaka Airbase":
+		{
+		_blubasedroppos = [2120.12,13330.4,0];
+		_composition = tuvanaka_blubase;
+		};
 	};
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 //first get all the secondary airstrips
