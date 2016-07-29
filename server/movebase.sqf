@@ -39,6 +39,7 @@ switch (cpt_name) do
 		};
 	};
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
+//first get all the secondary airstrips
 _airstripdata = [];
 for  "_i" from 1 to 10 do // get airstrip data
 	{
@@ -53,20 +54,28 @@ for  "_i" from 1 to 10 do // get airstrip data
 		_airstripdata pushback _ils1indata;// pushback it into a master array, so, this is a nested array of 2d positions
 
 	//diag_log format ["***mb @ 55. _airstripdata %1", _airstripdata];
-		_closestdistance = 99999999;
-		_closestone = [];
-			{
-				_mydistance = (_x distance _blubasedroppos);
-				//diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
-				if (_mydistance <= _closestdistance) then
-				{
-					_closestdistance = _mydistance;
-					_closestone = _x;
-				};
-			} foreach _airstripdata;
+
 		};
 	};
+// now add the ilsin1 of the islands main airfield...
+_airbaseilsindata = getarray (configFile >> "CfgWorlds" >> worldName >> "ilsTaxiIn");
+_ils1indata = _airbaseilsindata select [0,2];
+_airstripdata pushback _ils1indata;
+// find the nearest one
+_closestdistance = 99999999;
+_closestone = [];
+	{
+		_mydistance = (_x distance _blubasedroppos);
+		//diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
+		if (_mydistance <= _closestdistance) then
+		{
+			_closestdistance = _mydistance;
+			_closestone = _x;
+		};
+	} foreach _airstripdata;
+
 airhead_container_landing_point = _closestone;
+diag_log format ["***move base says nearest ilsin1 is at %1", _closestone];
 diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
