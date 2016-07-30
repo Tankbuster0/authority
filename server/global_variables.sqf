@@ -1,6 +1,6 @@
 // global_variable.includes
 //by tankbuster
-islandcentre = getarray (configFile >> "CfgWorlds" >> "Altis" >> "centerPosition");
+islandcentre = getarray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 publicVariable "islandcentre";
 
 testservernames = ["Tanky-Test"];
