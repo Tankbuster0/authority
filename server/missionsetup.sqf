@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse", "_tempobj"];
+private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 enableVehicleCrashes = false;
 _beachheadpos =[0,0,0];
@@ -13,17 +13,15 @@ _refuse = true;
 while {((_beachheadpos in [[0,0,0], islandcentre]) or (_refuse))} do
 	{
 	_beachheadpos = [_airfieldpos,600,1100, 2.5, 0, 0.5, 1] call bis_fnc_findSafePos;
-	_tempobj = "Sign_Arrow_F" createVehicleLocal _beachheadpos;
 	_dir = _beachheadpos getDir _airfieldpos;
 	_dist = _beachheadpos distance2D _airfieldpos;
-	if ((surfaceIsWater (_tempobj getRelPos [(_dist * .33), _dir])) or (surfaceiswater (_tempobj getRelPos [(_dist * .66), _dir]))) then
+	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .33), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .66), _dir]))) then
 		{
 		refuse = true;
-		diag_log format ["***ms finds beachhead has water betweem it and airbase"]
+		diag_log format ["***ms finds beachhead has water between it and airbase"]
 		}
 		else
 		{_refuse = false;};
-	deleteVehicle _tempobj;
 	};
 _beachheadpos set [2,0];
 ammoboxpad = createVehicle ["Land_HelipadEmpty_F", _beachheadpos, [],0, "NONE"];
