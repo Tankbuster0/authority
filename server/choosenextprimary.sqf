@@ -9,6 +9,7 @@ _mbi = ["militarybasesincluded", 1] call BIS_fnc_getParamValue;
 _nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
 _removearray = [];
 _nearlogics = _pos nearEntities ["Logic", 6000];
+sleep 0.1;
 if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", count _nearlogics]};
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
@@ -26,6 +27,7 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 		then {_removearray pushback _x};
 } forEach _nearlogics;
 _nearlogics2 = _nearlogics - _removearray;
+sleep 0.1;
 if (testmode) then {diag_log format ["***cnp @31 has %1 after rejections", count _nearlogics2];};
 /*
 pseudo code!
@@ -51,15 +53,17 @@ if ((tolower worldName) isEqualTo "tanoa") then // allow island hopping for some
 */
 _nearlogics2 = _nearlogics2 apply {[_x distance _pos, _x]};
 _nearlogics2 sort true;
+sleep 0.1;
 if (testmode) then
 	{
-		diag_format ["***cnp@ 56 has sorted"];
-		{diag_log format ["*** town name %1 is %2m from pos", ((_x select 1) getVariable "targetname"), (floor (_x select 0))   ] } foreach _nearlogics2;
+		diag_log "***cnp@ 56 has sorted";
+		{diag_log format ["*** cnp:  %1 is %2m from pos", ((_x select 1) getVariable "targetname"), (floor (_x select 0))   ] } foreach _nearlogics2;
 	};
 _nearlogics2 resize 2;
 _nextpt1 = selectRandom _nearlogics2;
 _nextpt = _nextpt1 select 1;
 nextpt = _nextpt;
+sleep 0.1;
 if (testmode) then {diag_log format ["***cnp chooses %1", nextpt getVariable "targetname"]};
 diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
 nextpt
