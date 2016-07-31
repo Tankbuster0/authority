@@ -46,11 +46,6 @@ if ((tolower worldName) isEqualTo "tanoa") then // allow island hopping for some
 // above additions to the nearlogics2 array dont need to be distance sorted as that's done below
 */
 
-/*
-{
-	_nearlogics2 set [_ForEachIndex, [ _x distance _pos, _x]];
-} foreach _nearlogics2;
-*/
 _nearlogics2 = _nearlogics2 apply {[_x distance _pos, _x]};
 _nearlogics2 sort true;
 sleep 0.1;
