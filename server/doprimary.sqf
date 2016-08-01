@@ -58,7 +58,7 @@ if (cpt_type == 1 || cpt_type == 4) then
 	trg2 = createTrigger ["EmptyDetector", cpt_position];
 	trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 	trg2 setTriggerActivation  ["WEST SEIZED", "PRESENT", false];
-	trg2 setTriggerTimeout [5, 50, 120, true];
+	trg2 setTriggerTimeout [5, 10, 20, true];
 	trg2 setTriggerStatements ["this or debugendmission", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\PT_ai\ai_surrenderSurvivorsmanager.sqf';", ""];
 } else
 {
