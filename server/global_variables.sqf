@@ -1,5 +1,5 @@
 // global_variable.includes
-//by tankbuster
+//by tankbuster.
 islandcentre = getarray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 publicVariable "islandcentre";
 debugendmission = false;
