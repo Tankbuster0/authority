@@ -12,7 +12,7 @@ _airfieldpos = getpos _airfield;
 _refuse = true;
 while {((_beachheadpos in [[0,0,0], islandcentre]) or (_refuse))} do
 	{
-	_beachheadpos = [_airfieldpos,600,1100, 2.5, 0, 0.5, 1] call bis_fnc_findSafePos;
+	_beachheadpos = [_airfieldpos,800,1500, 2.5, 0, 0.5, 1] call bis_fnc_findSafePos;
 	_dir = _beachheadpos getDir _airfieldpos;
 	_dist = _beachheadpos distance2D _airfieldpos;
 	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .33), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .66), _dir]))) then
@@ -42,16 +42,28 @@ _beachflag = "Flag_Blue_F" createVehicleLocal (_beachheadpos);
 sleep 1;
 for "_q" from 1 to 3 do
 	{
-	sleep 0.5;
-	_mypos = [_beachheadpos, 3,30,4,0,20,0] call bis_fnc_findSafePos;
-	_mypos set [2,0.5];
+	sleep 1;
+	_mypos = [0,0,0]; _testradius = 6;
+	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distance _mypos) < 5))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+	{
+		_mypos = [_beachheadpos, 4,_testradius, 6, 0,0.5,0] call bis_fnc_findSafePos;
+		_testradius = _testradius * 2;
+	};
+
 	_mytruck = createVehicle ["B_LSV_01_armed_F", _mypos,[],0,"NONE"];
 	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
 
 // Forward Set up
-_mypos = [_beachheadpos, 2,30,4,0,0.5,0] call bis_fnc_findSafePos;
-_mypos set [2,0.5];
+
+	_mypos = [0,0,0]; _testradius = 6;
+	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distance _mypos) < 5))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+	{
+		_mypos = [_beachheadpos, 4,_testradius, 6, 0,0.5,0] call bis_fnc_findSafePos;
+		_testradius = _testradius * 2;
+	};
+
+
 forward setVehiclePosition [_mypos, [],0];
 
 forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
