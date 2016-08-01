@@ -2,7 +2,7 @@
 //by tankbuster
 islandcentre = getarray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 publicVariable "islandcentre";
-
+debugendmission = false;
 testservernames = ["Tanky-Test"];
 
 opfor_reinf_truck_soldier = "CUP_O_RU_Soldier_GL_EMR";
@@ -10,11 +10,21 @@ opfor_reinf_truck =  "CUP_O_Ural_Open_RU";
 
 opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_Mi8_medevac_RU"];
 
-forwardpointvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
-
 airdropcounter = 0;
+switch (tolower worldName) do
+	{
+		case "altis" :
+			{
+			forwardpointvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
+			fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
+			};
+		case "tanoa" :
+			{
+			forwardpointvehicleclassname = "CUP_B_RG31_M2_OD_USMC";
+			fobvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
+			};
+	};
 
-fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
 publicVariable "fobvehicleclassname";
 blufordropaircraft = "B_T_VTOL_01_vehicle_F";
 cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "];
