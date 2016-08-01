@@ -42,7 +42,7 @@ _beachflag = "Flag_Blue_F" createVehicleLocal (_beachheadpos);
 sleep 1;
 for "_q" from 1 to 3 do
 	{
-	sleep 1;
+	sleep 0.5;
 	_mypos = [0,0,0]; _testradius = 6;
 	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distance _mypos) < 5))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
