@@ -48,16 +48,15 @@ if ((tolower worldName) isEqualTo "tanoa") then // allow island hopping for some
 
 _nearlogics2 = _nearlogics2 apply {[_x distance _pos, _x]};
 _nearlogics2 sort true;
+_nearlogics2 = _nearlogics2 apply {_x select 1};
 sleep 0.1;
 if (testmode) then
 	{
 		diag_log "***cnp@ 56 has sorted";
-		{diag_log format ["*** cnp:  %1 is %2m from pos", ((_x select 1) getVariable "targetname"), (floor (_x select 0))   ] } foreach _nearlogics2;
+		{diag_log format ["*** cnp:  %1 is %2m from pos", (_x getVariable "targetname"), (floor (_x distance _pos0))   ] } foreach _nearlogics2;
 	};
 _nearlogics2 resize 2;
-_nextpt1 = selectRandom _nearlogics2;
-_nextpt = _nextpt1 select 1;
-nextpt = _nextpt;
+nextpt selectRandom _nearlogics2;
 sleep 0.1;
 if (testmode) then {diag_log format ["***cnp chooses %1", nextpt getVariable "targetname"]};
 diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
