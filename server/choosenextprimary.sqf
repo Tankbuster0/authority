@@ -53,10 +53,10 @@ sleep 0.1;
 if (testmode) then
 	{
 		diag_log "***cnp@ 56 has sorted";
-		{diag_log format ["*** cnp:  %1 is %2m from pos", (_x getVariable "targetname"), (floor (_x distance _pos0))   ] } foreach _nearlogics2;
+		{diag_log format ["*** cnp:  %1 is %2m from pos", (_x getVariable "targetname"), (floor (_x distance _pos))   ] } foreach _nearlogics2;
 	};
 _nearlogics2 resize 2;
-nextpt selectRandom _nearlogics2;
+nextpt = selectRandom _nearlogics2;
 sleep 0.1;
 if (testmode) then {diag_log format ["***cnp chooses %1", nextpt getVariable "targetname"]};
 diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
