@@ -15,7 +15,7 @@ while {((_beachheadpos in [[0,0,0], islandcentre]) or (_refuse))} do
 	_beachheadpos = [_airfieldpos,800,1500, 2.5, 0, 0.5, 1] call bis_fnc_findSafePos;
 	_dir = _beachheadpos getDir _airfieldpos;
 	_dist = _beachheadpos distance2D _airfieldpos;
-	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .33), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .66), _dir]))) then
+	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .25), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .50), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .75), _dir]))) then
 		{
 		refuse = true;
 		diag_log format ["***ms finds beachhead has water between it and airbase"]
