@@ -35,7 +35,7 @@ mortar_gunners = [];
 for "_count" from _start to _lc do
 {
 	sleep 0.1;
-	//diag_log format ["***spu loop %1", _count];
+	diag_log format ["***spu %1 from %2 to %3 ", _count, _start, _lc];
 	_staticgrpname = format ["staticgrp%1", _count];
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
