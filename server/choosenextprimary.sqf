@@ -21,12 +21,28 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 		    (isNil "_tstatus") or
 		    (_tstatus != 1) or
 		    (((_mbi == 0) and (_ttype == 3) )) or
-		    ((_pos distance _x) < _nvc) or
-			((surfaceIsWater (_pos getPos [(_dist * .33), _dir])) or (surfaceiswater (_pos getPos [(_dist * .66), _dir])))
-		)
-		then {_removearray pushback _x};
+		    ((_pos distance _x) < _nvc)
+		) then
+		     	{
+		     	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .25), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .50), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .75), _dir]))) then
+		     		{
+		     		_removearray2 pushback _x;// make an array of all applicable targets that are in range, regardless on which island they are on
+		     		}
+		     		else
+		     		{
+		     		_removearray1 pushback _x;// make an array of all applicable targets that are in range AND on the same island
+		     		};
+		     };
+
+
 } forEach _nearlogics;
-_nearlogics2 = _nearlogics - _removearray;
+_nearlogics2 = _nearlogics - _removearray2;
+if (count _nearlogics2 < 2) then
+	{
+	_nearlogics2 = _nearlogics - _removearray1;
+	if (testmode) then {diag_log "*** cnp found too few potential targets on the same island as primary, so is allowing overseas targets to be chosen too";};
+	};
+// if removal of all non allowed targets (including those overseas) results in a choice of less than 2 targets, then leave the overseas ones in the results.
 sleep 0.1;
 if (testmode) then {diag_log format ["***cnp @31 has %1 after rejections", count _nearlogics2];};
 /*
