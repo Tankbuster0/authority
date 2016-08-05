@@ -43,7 +43,7 @@ if (count _onislandtargets > 1) then // if the relevant targets, minus overseas 
 	else
 	{
 	_finaltargetlist = _allpossibletargets;
-	if (testmode) then {diag_log format ["*** cnp says there's only %1 possible targets, so including overseas ones too, making a total of %2", _count _onislandtargets, _allpossibletargets];};
+	if (testmode) then {diag_log format ["*** cnp says there's only %1 possible targets, so including overseas ones too, making a total of %2", count _onislandtargets, _allpossibletargets];};
 	};
 
 // if removal of all non allowed targets (including those overseas) results in a choice of less than 2 targets, then leave the overseas ones in the results.
@@ -59,7 +59,7 @@ sleep 0.1;
 if (testmode) then
 	{
 		diag_log "***cnp@ 56 has sorted";
-		{diag_log format ["*** cnp:  %1 is %2m from pos", (_x getVariable "targetname"), (floor (_x distance _pos))   ] } foreach _sortedtargetlist;
+		{diag_log format ["*** cnp:  %1 is %2m from pos and %3 overseas", (_x getVariable "targetname"), (floor (_x distance _pos)), (if (_x in _overseastargets then {"is"} else {"isnt"})  ] } foreach _sortedtargetlist;
 	};
 _sortedtargetlist resize 2;
 nextpt = selectRandom _sortedtargetlist;
