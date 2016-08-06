@@ -15,7 +15,7 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 	_ttype = _x getVariable ["targettype", -1];
 	_tname = _x getVariable ["targetname", "Springfield"];
 	_dir = _pos getdir _x;
-	_dist = _pos distance _x;
+	_dist = _pos distance2d _x;
 	if (
 		    (isNil "_tstatus") or
 		    (_tstatus != 1) or
@@ -28,7 +28,7 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 _allpossibletargets = _nearlogics - _notlegittargets;
 if (testmode) then {diag_log format ["***@29 cnp removed %1 from the list because they are not legit targets", count _notlegittargets]};
 {
-	_dist = _pos distance _x;
+	_dist = _pos distance2d _x;
 	_dir = _pos getdir _x;
 	if ((surfaceIsWater (_pos getPos [(_dist * .25), _dir])) or (surfaceiswater (_pos getPos [(_dist * .50), _dir])) or (surfaceiswater (_pos getPos [(_dist * .75), _dir]))) then // this target is overseas
 		{
@@ -62,13 +62,16 @@ _allpossibletargets = _allpossibletargets apply {[_x distance _pos, _x]};
 _allpossibletargets sort true;
 _allpossibletargets = _allpossibletargets apply {_x select 1};
 */
-_sortedtargetlist = [_finaltargetlist, [] , {_x distanceSqr _pos}, "ASCEND"] call BIS_fnc_sortBy;
+if ((count _finaltargetlist) > 1) then
+	{_sortedtargetlist = [_finaltargetlist, [] , {_x distanceSqr _pos}, "ASCEND"] call BIS_fnc_sortBy;}
+	else
+	{_sortedtargetlist = _finaltargetlist;};
 
 sleep 0.1;
 if (testmode) then
 	{
 		diag_log "***cnp@ 61 has sorted";
-		{diag_log format ["*** cnp:  %1 is %2m from pos and %3 overseas", (_x getVariable "targetname"), (floor (_x distance _pos)), (if (_x in _overseastargets) then {"is"} else {"isnt"})  ] } foreach _sortedtargetlist;
+		{diag_log format ["*** cnp:  %1 is %2m from pos and %3 overseas", (_x getVariable "targetname"), (floor (_x distance2d _pos)), (if (_x in _overseastargets) then {"is"} else {"isnt"})  ] } foreach _sortedtargetlist;
 	};
 _sortedtargetlist resize 2;
 nextpt = selectRandom _sortedtargetlist;
