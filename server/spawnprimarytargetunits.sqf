@@ -1,22 +1,22 @@
 //by tankbuster
 _myscript = "spawnprimarytargetunits";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_allcompositionunits","_count","_staticgrpname","_grpname","_mypos","_mydir","_staticgrp","_veh","_patrolinf","_staticveh","_patrolveh","_statictanks","_vehdata","_removeenemyvests","_mygroup","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_microtown"];
+private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_allcompositionunits","_count","_staticgrpname","_grpname","_mypos","_mydir","_staticgrp","_veh","_patrolinf","_staticveh","_patrolveh","_statictanks","_vehdata","_removeenemyvests","_mygroup","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
 _pt_type = (_currentprimarytarget getVariable "targettype");
 _pt_name = (_currentprimarytarget getVariable "targetname");
 _lc = (_pt_radius /75); //scales spawn levels according to radius
-if (_pt_radius isEqualTo 75) then {_microtown = true} else {_microtown = false};
 _start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;
 if ((_start == 3) and (_pt_radius == 150)) then {_start = 2};
 _pt_radius = _pt_radius - 50;
-if ((worldname in ["Altis", "altis"]) and (_pt_type == 2)) then
+if ((worldname in ["Altis", "alits"]) and (_pt_type == 2)) then
 	{
 	switch (_pt_name) do
 		{
 		case "AAC airfield": {_composition = aaccomposition};
+		/*case "Almyra airfield": {_composition = almyracomposition};*/
 		case "Abdera airfield": {_composition = abderacomposition};
 		case "Feres airfield": {_composition = ferescomposition};
 		case "Molos Airfield":{_composition = moloscomposition};
@@ -35,7 +35,7 @@ mortar_gunners = [];
 for "_count" from _start to _lc do
 {
 	sleep 0.1;
-	diag_log format ["***spu %1 from %2 to %3 ", _count, _start, _lc];
+	//diag_log format ["***spu loop %1", _count];
 	_staticgrpname = format ["staticgrp%1", _count];
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
@@ -109,17 +109,14 @@ for "_count" from _start to _lc do
 
 	sleep 0.2;
 	// patrolling  apc /ifv group start
-	if not (_microtown) then
-		{
-		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
-		_veh = selectRandom opforpatrollandvehicles;
-		_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
-		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
-	};
+	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
+	_veh = selectRandom opforpatrollandvehicles;
+	_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+	nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
 	// patrolling  apc/ifv group end
 	sleep 0.05;
 	//heavy armour and shit start
-	if (((_pt_type == 1) and (cpt_radius > 150)) or (not _microtown)) then //tanks only spawn at big towns, not at bases or airfields
+	if ((_pt_type == 1) and (cpt_radius > 150)) then //tanks only spawn at big towns, not at bases or airfields
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
@@ -152,36 +149,33 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
-if (((west countSide allPlayers) > 1) or (not _microtown)) then
-	{
+{
+	[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+	// ^^^ mortar gunners have best spotdistance and spottime
+	[_x] spawn // mortar gunner helper
 		{
-			[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
-			// ^^^ mortar gunners have best spotdistance and spottime
-			[_x] spawn // mortar gunner helper
+			private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
+			_mygunner = _this select 0;
+			while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
+
 				{
-					private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
-					_mygunner = _this select 0;
-					while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
-
-						{
-						sleep 20 + (10 * random 5) ;
-						_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
-						if ((count _nearblufors) > 0) then
-							{
-							_artytarget = (selectRandom _nearblufors);
-							_mygunner reveal [_artytarget, 3];
-							//_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
-							//_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
-							//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
-							//_aka = _mygunner knowsAbout _artytarget;
-							//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
-							_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
-							};
-						};
-
+				sleep 20 + (10 * random 5) ;
+				_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
+				if ((count _nearblufors) > 0) then
+					{
+					_artytarget = (selectRandom _nearblufors);
+					_mygunner reveal [_artytarget, 3];
+					//_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
+					//_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
+					//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
+					//_aka = _mygunner knowsAbout _artytarget;
+					//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
+					_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
+					};
 				};
-		} foreach mortar_gunners;
-	};
+
+		};
+} foreach mortar_gunners;
 //createcivilians
 if (_pt_type isEqualTo 1) then
 		{
@@ -205,7 +199,7 @@ if (_pt_type isEqualTo 1) then
 			};
 		//driven cars
 		_dcar = [];
-		_dcarcount = (2 * _lc);
+		_dcarcount = (3 * _lc);
 		for "_i" from 1 to _dcarcount do
 			{
 			sleep 0.2;

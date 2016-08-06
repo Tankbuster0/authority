@@ -37,34 +37,8 @@ switch (cpt_name) do
 		_blubasedroppos = [26750.2,24615,0];
 		_composition = molos_blubase;
 		};
-	case "La Rochelle Aerodrome":
-		{
-		_blubasedroppos = [11689.1,13117.5,0];
-		_composition = la_rochelle_blubase;
-		};
-	case "Aéroport de Tanoa":
-		{
-		_blubasedroppos = [6920.95,7243.08,0];
-		_composition = aeroporto_de_tanoa_blubase;
-		};
-	case "Saint-George Airstrip":
-		{
-		_blubasedroppos = [11686.1,13110.6,0];
-		_composition = st_george_blubase;
-		};
-	case "Bala Airstrip":
-		{
-		_blubasedroppos = [2138.08,3446.05,0];
-		_composition = bala_blubase;
-		};
-	case "Tuvanaka Airbase":
-		{
-		_blubasedroppos = [2120.12,13330.4,0];
-		_composition = tuvanaka_blubase;
-		};
 	};
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
-//first get all the secondary airstrips
 _airstripdata = [];
 for  "_i" from 1 to 10 do // get airstrip data
 	{
@@ -79,28 +53,20 @@ for  "_i" from 1 to 10 do // get airstrip data
 		_airstripdata pushback _ils1indata;// pushback it into a master array, so, this is a nested array of 2d positions
 
 	//diag_log format ["***mb @ 55. _airstripdata %1", _airstripdata];
-
+		_closestdistance = 99999999;
+		_closestone = [];
+			{
+				_mydistance = (_x distance _blubasedroppos);
+				//diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
+				if (_mydistance <= _closestdistance) then
+				{
+					_closestdistance = _mydistance;
+					_closestone = _x;
+				};
+			} foreach _airstripdata;
 		};
 	};
-// now add the ilsin1 of the islands main airfield...
-_airbaseilsindata = getarray (configFile >> "CfgWorlds" >> worldName >> "ilsTaxiIn");
-_ils1indata = _airbaseilsindata select [0,2];
-_airstripdata pushback _ils1indata;
-// find the nearest one
-_closestdistance = 99999999;
-_closestone = [];
-	{
-		_mydistance = (_x distance _blubasedroppos);
-		//diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
-		if (_mydistance <= _closestdistance) then
-		{
-			_closestdistance = _mydistance;
-			_closestone = _x;
-		};
-	} foreach _airstripdata;
-
 airhead_container_landing_point = _closestone;
-diag_log format ["***move base says nearest ilsin1 is at %1", _closestone];
 diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
@@ -109,7 +75,7 @@ _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F",
 diag_log "*** returned from spawnairdrop";
 //sleep 10;
 diag_log "***clearing landing point";
-_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 30];
+_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 20];
 if (count _naughtybaseobjects > 0) then
 	{
 		{

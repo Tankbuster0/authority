@@ -8,7 +8,7 @@ private ["_mapsize","_mapcentre","_possibleprimaries","_pos","_primaries", "_rra
 _mapsize  = worldSize;
 _mapcentre = [_mapsize / 2, _mapsize / 2 ,0];
 _possibleprimaries = nearestLocations [_mapcentre, ["NameCityCapital", "NameCity", "NameVillage"], _mapsize /2];
-diag_log format ["***Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
+//diag_log format ["***Worldname %2 is %3. Possibleprimaries count = %1", count _possibleprimaries, worldName, _mapsize];
 _possibleprimariescount = count _possibleprimaries;
 _betterhousecount = []; _betterpos = [];
 // ======functions
@@ -65,17 +65,15 @@ _shifts = [/*[0,50],*/[-50,50],[-50,0],[-50,-50],[0,-50],[50,-50],[50,0], [50,50
 		_bestpos = _newpos;
 		};
 	}foreach _shifts;
-if (testmode) then
-	{
-	_mname2 = format ["smn%1", _foreachindex];
-	_mkr2 = createMarker [_mname2, _bestpos];
-	_mkr2 setMarkerShape "ELLIPSE";
-	_mkr2 setMarkerType "Empty";
-	_mkr2 setMarkerSize [_rrad,_rrad];
-	_mkr2 setMarkerText (str _rrad);
-	_mkr2 setMarkerBrush "Vertical";
-	};
-
+/*
+_mname2 = format ["smn%1", _foreachindex];
+_mkr2 = createMarker [_mname2, _bestpos];
+_mkr2 setMarkerShape "ELLIPSE";
+_mkr2 setMarkerType "Empty";
+_mkr2 setMarkerSize [_rrad,_rrad];
+_mkr2 setMarkerText (str _rrad);
+_mkr2 setMarkerBrush "Vertical";
+*/
 // create a game logic at each town position and store variables on it.
 if (!(surfaceIsWater _bestpos) or (!((text _x) isEqualTo "Sagonisi"))) then
 	{
@@ -119,33 +117,26 @@ if (!(surfaceIsWater _bestpos) ) then
 	_logic setVariable ["targetradius", 250];
 	_logic setvariable ["targetstatus", 1];
 	_logic setVariable ["targettype", 3];
-	if (testmode) then
-		{
-		_mname2 = format ["bmn%1", _foreachindex];
-		_mkr2 = createMarker [_mname2, getpos _x];
-		_mkr2 setMarkerShape "ELLIPSE";
-		_mkr2 setMarkerType "Empty";
-		_mkr2 setMarkerSize [250,250];
-		_mkr2 setMarkerBrush "Horizontal";
-		};
+	/*
+	_mname2 = format ["bmn%1", _foreachindex];
+	_mkr2 = createMarker [_mname2, getpos _x];
+	_mkr2 setMarkerShape "ELLIPSE";
+	_mkr2 setMarkerType "Empty";
+	_mkr2 setMarkerSize [250,250];
+	_mkr2 setMarkerBrush "Horizontal";
+	*/
 	};
 	_basedata = ["Military Base", getpos _x, 250, 1, 3, -1];
 	targetdata pushback _basedata;
 } foreach _possiblebases;
-diag_log format ["possible bases count %1", count _possiblebases];
+//diag_log format ["possible bases count %1", count _possiblebases];
 //find airfields.
 foundairfields = [];
 _airportlogicgroup = createGroup logiccenter;
-_airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal", "Airport"], mapsize / 2];
+_airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal"], mapsize / 2];
 		{
 		_llt = tolower (text _x);// lowercase location text
-		if  (
-			     ((_llt find "airf")  > -1) or
-			     ((_llt find "aéro")  > -1) or
-			     ((_llt find "airs")  > -1) or
-			     ((_llt find "airb")  > -1) or
-			     ((_llt find "aerod")  > -1)
-		     )  then
+		if  ((_llt find "airf") > -1) then
 			{
 			_ptarget = _airportlogicgroup createUnit ["Logic", getpos _x, [], 0, "NONE"];
 			_ptarget setVariable ["targetname", text _x];
@@ -153,15 +144,14 @@ _airfieldlocs = nearestLocations [mapcentre ,["NameVillage", "NameLocal", "Airpo
 			_ptarget setvariable ["targetstatus", 1];// enemy held
 			_ptarget setVariable ["targettype", 2];// type airfield
 			foundairfields pushback _ptarget;
-		if (testmode) then
-			{
+			/*
 			_mname2 = format ["amn%1", _foreachindex];
 			_mkr2 = createMarker [_mname2, getpos _x];
 			_mkr2 setMarkerShape "ELLIPSE";
 			_mkr2 setMarkerType "Empty";
 			_mkr2 setMarkerSize [300,300];
 			_mkr2 setMarkerBrush "DiagGrid";
-			};
+			*/
 			_airfielddata = [text _x, getpos _x,300,1,2,-1];
 			targetdata pushBack _airfielddata;
 			};
