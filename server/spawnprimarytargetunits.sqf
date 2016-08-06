@@ -43,7 +43,7 @@ for "_count" from _start to _lc do
 	switch ((floor (random 5))) do
 		{
 		case 0: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSquad")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "CUP_O_D30_AT_RU", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
@@ -76,14 +76,6 @@ for "_count" from _start to _lc do
 	mortar_gunners pushback gunner _veh;
 	group (gunner _veh) setCombatMode "RED";
 
-	_veh = createVehicle ["O_Mortar_01_F", ([_mypos, 4 + (random 4), random 360] call bis_fnc_relPos), [],0,"NONE"];
-	_veh setdir (_mydir + random 15);
-	_mgunner = _staticgrp createUnit ["CUP_O_RU_Soldier", _mypos,[],0,"NONE"];
-	_mgunner moveInGunner _veh;
-	_mgunner assignAsGunner _veh;
-	mortar_gunners pushback gunner _veh;
-	group (gunner _veh) setCombatMode "RED";
-
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.1;
 	// statics end
@@ -105,7 +97,7 @@ for "_count" from _start to _lc do
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 
 		_veh = selectRandom opforstaticlandvehicles;
-		_staticveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+		_staticveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_AT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
 
 	sleep 0.2;
 	// patrolling  apc /ifv group start
@@ -113,7 +105,7 @@ for "_count" from _start to _lc do
 		{
 		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opforpatrollandvehicles;
-		_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_MG", "CUP_O_RU_Soldier_AT","CUP_O_RU_Soldier_LAT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+		_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_AT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
 	};
 	// patrolling  apc/ifv group end
@@ -123,7 +115,7 @@ for "_count" from _start to _lc do
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
-		_statictanks = [_mypos, east, [_veh, _veh, _veh], [[0,10,0], [5,0,0], [10,0,0]]] call BIS_fnc_spawngroup;
+		_statictanks = [_mypos, east, [_veh, _veh], [[0,10,0], [5,0,0]] call BIS_fnc_spawngroup;
 		sleep 0.05;
 	};
 	//heavy armour end
@@ -188,7 +180,7 @@ if (_pt_type isEqualTo 1) then
 		//civs on foot
 		_townroadsx = _pt_pos nearRoads _pt_radius;
 		_townroads = _townroadsx call BIS_fnc_arrayShuffle;
-		_civcount = (2 * _lc);
+		_civcount = (1 * _lc);
 		_fciv = [];
 		while {count _townroads < _civcount} do {_townroads append _townroads};
 		for "_i" from 1 to _civcount do
@@ -205,7 +197,7 @@ if (_pt_type isEqualTo 1) then
 			};
 		//driven cars
 		_dcar = [];
-		_dcarcount = (2 * _lc);
+		_dcarcount = (1 * _lc);
 		for "_i" from 1 to _dcarcount do
 			{
 			sleep 0.2;
@@ -242,7 +234,7 @@ if (_pt_type isEqualTo 1) then
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 		_pcar = [];
-		_pcarcount = (3 * _lc);
+		_pcarcount = (2 * _lc);
 		for "_i" from 1 to _pcarcount do
 			{
 			sleep 0.2;
