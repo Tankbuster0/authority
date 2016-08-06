@@ -9,7 +9,6 @@ cpt_marker setMarkerColor "ColorBlue";
 _newflag = "Flag_Blue_F" createVehicleLocal (getpos cpt_flag);// replace the red flag with a LOCALLY NAMED blue one (so it's never deleted)
 deleteVehicle cpt_flag;// delete the globally named (but only created on server) red flag
 sleep 0.5;
-debugendmission = false;
 //find the player nearest to the new blue flag, and call the airdrop on him. If this is target 1, this must be the fob vehicle
 _nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750];
 if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
@@ -49,7 +48,7 @@ _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 	sleep 0.05;
 } foreach allGroups;
 [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
-if (serverName in testservernames) then {sleep 20;} else {sleep 180;};
+if (serverName in testservernames) then {sleep 60;} else {sleep 180;};
 
 primarytargetcounter = primarytargetcounter + 1;
 
