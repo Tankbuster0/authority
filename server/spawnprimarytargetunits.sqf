@@ -115,7 +115,7 @@ for "_count" from _start to _lc do
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
-		_statictanks = [_mypos, east, [_veh, _veh], [[0,10,0], [5,0,0]] call BIS_fnc_spawngroup;
+		_statictanks = [_mypos, east, [_veh, _veh], [[0,10,0], [5,0,0]] ]call BIS_fnc_spawngroup;
 		sleep 0.05;
 	};
 	//heavy armour end

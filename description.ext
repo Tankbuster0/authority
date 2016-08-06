@@ -152,7 +152,7 @@ class Params
 			class enemyspawnlevel {
 			title = "How many enemies in each target?";
 			values[] = {3,2,1};
-			default = 3;
+			default = 2;
 			texts[] = {"Few", "Normal", "Lots"};
 		};
 			class removeenemyvests {
