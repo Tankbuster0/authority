@@ -73,6 +73,6 @@ if (testmode) then
 _sortedtargetlist resize 2;
 nextpt = selectRandom _sortedtargetlist;
 sleep 0.1;
-if (testmode) then {diag_log format ["***cnp chooses %1", nextpt getVariable "targetname"]};
+if (testmode) then {diag_log format ["***cnp chooses %1 which is radius %2", (nextpt getVariable "targetname"), nextpt getVariable "targetradius"]};
 diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
 nextpt
