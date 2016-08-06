@@ -3,7 +3,8 @@ _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
 vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
-sleep 30;
+sleep 10;
+if !(testmode) then {sleep 60;};
 if (primarytargetcounter > 1) then
 	{
 	// 2nd, 3rd , 4th targets, etc
@@ -57,8 +58,8 @@ if (cpt_type == 1 || cpt_type == 4) then
 	trg2 = createTrigger ["EmptyDetector", cpt_position];
 	trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 	trg2 setTriggerActivation  ["WEST SEIZED", "PRESENT", false];
-	trg2 setTriggerTimeout [5, 50, 120, true];
-	trg2 setTriggerStatements ["this", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\PT_ai\ai_surrenderSurvivorsmanager.sqf';", ""];
+	trg2 setTriggerTimeout [5, 10, 20, true];
+	trg2 setTriggerStatements ["this or debugendmission", "diag_log '***target conquered'; _t = [thisList,position thisTrigger] execVM 'server\PT_ai\ai_surrenderSurvivorsmanager.sqf';", ""];
 } else
 {
 	// make trigger that senses when town is empty of enemies
