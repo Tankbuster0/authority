@@ -24,5 +24,5 @@ if (cpt_type ==1 ) then
 	};
 pt_radar setdamage 1;
 pt_hq setdamage 1;
-
+debugendmission = true;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
