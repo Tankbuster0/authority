@@ -144,7 +144,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
-if (((west countSide allPlayers) > 1) or (not _microtown)) then
+if (((west countSide allPlayers) > 1) and (not _microtown)) then
 	{
 		{
 			[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
