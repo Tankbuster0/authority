@@ -47,7 +47,7 @@ _testradius = 6;
 _nearestblueflag = getpos ((nearestObjects [_oldv, ["Flag_Blue_F"], 6000]) select 0); // get the nearest blue flag position. there's 1 at the beach and another at each taken target.
 
 
-while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distance _droppoint2) < 5))} do
+while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distanceSqr _droppoint2) < 2.2))} do
 	{
 		_droppoint2 = [_nearestblueflag, 4,_testradius, 7, 0,0.25,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;

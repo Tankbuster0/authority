@@ -12,7 +12,7 @@ _meadowdata = selectRandom _meadows;
 _mfpos = _meadowdata select 0;
 //^^ choose one to start with, then below, if it isnt good, keep choosing until it is.
 while
-	{(	((_mfpos distance fobveh) < 100) or ((_mfpos distance forward) < 100) or (_mfpos inArea format ["cpt_marker_%1", primarytargetcounter] )	)	}
+	{(	((_mfpos distanceSqr fobveh) < 10) or ((_mfpos distanceSqr forward) < 10) or (_mfpos inArea format ["cpt_marker_%1", primarytargetcounter] )	)	}
 		do //choose a position that isn't near the fobveh or the forward vehicle or inside the town marker
 		{
 		_meadowdata = selectRandom _meadows;

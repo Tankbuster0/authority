@@ -44,7 +44,7 @@ for "_q" from 1 to 3 do
 	{
 	sleep 0.5;
 	_mypos = [0,0,0]; _testradius = 6;
-	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distance _mypos) < 5))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distancesqr _mypos) < 2.2))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_mypos = [_beachheadpos, 4,_testradius, 6, 0,0.5,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
@@ -57,7 +57,7 @@ for "_q" from 1 to 3 do
 // Forward Set up
 
 	_mypos = [0,0,0]; _testradius = 6;
-	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distance _mypos) < 5))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+	while {((_mypos in [[0,0,0], islandcentre]) or (surfaceIsWater _mypos) or (((nearestObject [_mypos, "LandVehicle"]) distanceSqr _mypos) < 2.2))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_mypos = [_beachheadpos, 4,_testradius, 6, 0,0.5,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;

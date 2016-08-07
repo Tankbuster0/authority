@@ -108,7 +108,7 @@ if(!_exactPos)then{
 		_finding = 0;
 
 		while{_e1<(count REKA60padArray)}do{
-			if(((REKA60padArray select _e1) distance _targetPos)<15)then{_finding = 1;};
+			if(((REKA60padArray select _e1) distance _targetPos)<3.8)then{_finding = 1;};
 			_e1 = _e1 + 1;
 		};
 	};
@@ -143,9 +143,9 @@ if(_precise)then{_man setBehaviour "CARELESS";};
 	waitUntil {sleep 1; !alive _man || !canMove _heli || isNil "_man" || isNil "_heli"};
 	if (true) exitWith {
 		if (!isNil "_targetPos" && !isNil "REKA60padArray") then {
-			if ((_heli distance _targetPos) > 50)then{REKA60padArray = REKA60padArray - [_targetPos];};
+			if ((_heli distanceSqr _targetPos) > 7)then{REKA60padArray = REKA60padArray - [_targetPos];};
 		};
-		if(_heli distance _targetPos > 200)then{
+		if(_heli distanceSqr _targetPos > 14.1)then{
 			sleep 15;
 			deleteVehicle _man;
 			sleep 15;
@@ -181,7 +181,7 @@ if(_captive)then{
 	{ _x setCaptive true; }forEach units _grp2;
 };
 _heli doMove _targetPos;
-while { _heli distance _targetPos > 260 } do { sleep 4; };
+while { _heli distanceSqr _targetPos > 16.1 } do { sleep 4; };
 doStop _heli;
 _heli land "LAND"; //you can also try "GET OUT" (then it wont land, only hovers)
 _tsmoke = createVehicle ["SmokeShellPurple", [_targetPos select 0, _targetPos select 1, 0],[],0, "CAN_COLLIDE"];
@@ -240,9 +240,9 @@ if(_patrol)then{
 }else{
 	//If patrol is set to false, units will idle. Additionally you can set custom actions here:
 };
-while { (_heli distance _pos > 200) } do { sleep 4; };
-if ((_heli distance _targetPos) > 50)then{REKA60padArray = REKA60padArray - [_targetPos];};
-if((_heli distance _pos < 400))exitWith{
+while { (_heli distanceSqr _pos > 14.1) } do { sleep 4; };
+if ((_heli distanceSqr _targetPos) > 7)then{REKA60padArray = REKA60padArray - [_targetPos];};
+if((_heli distanceSqr _pos < 20))exitWith{
 	deleteVehicle _man;
 	deleteVehicle _heli;
 	deleteVehicle _helipad;

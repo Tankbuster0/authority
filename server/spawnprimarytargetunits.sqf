@@ -274,7 +274,7 @@ if (_pt_type isEqualTo 1) then
 				};
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
 			_nb = nearestBuilding _veh;
-			if ((_veh distance _nb) > 10) then
+			if ((_veh distancesqr _nb) > 3.1) then
 				{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
 				 else
 				{_dir = (getdir (nearestBuilding _veh));};
