@@ -9,10 +9,10 @@ _pt_type = (_currentprimarytarget getVariable "targettype");
 _pt_name = (_currentprimarytarget getVariable "targetname");
 _lc = (_pt_radius /75); //scales spawn levels according to radius
 if (_pt_radius isEqualTo 75) then {_microtown = true} else {_microtown = false};
-_start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;
+_start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;//default is 2
 if ((_start == 3) and (_pt_radius == 150)) then {_start = 2};
 _pt_radius = _pt_radius - 50;
-if ((worldname in ["Altis", "altis"]) and (_pt_type == 2)) then
+if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) then
 	{
 	switch (_pt_name) do
 		{
@@ -20,6 +20,11 @@ if ((worldname in ["Altis", "altis"]) and (_pt_type == 2)) then
 		case "Abdera airfield": {_composition = abderacomposition};
 		case "Feres airfield": {_composition = ferescomposition};
 		case "Molos Airfield":{_composition = moloscomposition};
+		case "Aéroport de Tanoa": {_composition = aeroporto_de_tanoa_compostion};
+		case "Saint-George Airstrip": {_composition = st_george_composition};
+		case "La Rochelle Aerodrome": {_composition = la_rochelle_composition};
+		case "Bala Airstrip": {_composition = bala_composition};
+		case "Tuvanaka Airbase": {_composition = tuvanaka_composition};
 		};
 	_allcompositionunits = [_pt_pos, 0, _composition] call tky_fnc_t_objectsmapper;
 	sleep 0.05;
@@ -208,7 +213,7 @@ if (_pt_type isEqualTo 1) then
 				{
 				sleep 0.05;
 				_road1 = (selectRandom _townroads);
-				_objs = (getpos _road1) nearEntities ["LandVehicle",5];
+				_objs = (getpos _road1) nearEntities ["LandVehicle",7];
 				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) > 1 ))  then {_roadnogood = false};
 				};
 			_road2 = (roadsConnectedTo _road1) select 0;
