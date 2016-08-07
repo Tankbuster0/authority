@@ -203,7 +203,9 @@ if (_pt_type isEqualTo 1) then
 		{
 		if (testmode) then {diag_log "**** sptu adds civilans on foot"};
 		//civs on foot
-		_townroadsx = _pt_pos nearRoads _pt_radius;
+		_townroadsx = _pt_pos nearRoads (_pt_radius + 75);// road find radius needs to be bigger than normal radius
+
+		if (count _townroadsx < 1) then {_townroadsx = _pt_pos nearRoads 125};
 		_townroads = _townroadsx call BIS_fnc_arrayShuffle;
 		_civcount = (1 * _lc);
 		_fciv = [];
@@ -262,24 +264,27 @@ if (_pt_type isEqualTo 1) then
 		if (testmode) then {diag_log "**** sptu adds civilian parked cars"};
 		_pcar = [];
 		_pcarcount = (2 * _lc);
-		for "_i" from 1 to _pcarcount do
+		if !(_microtown) then
 			{
-			sleep 0.2;
-			_roadnogood = true;
-			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
+			for "_i" from 1 to _pcarcount do
 				{
-				_road1 = (selectRandom _townroads);
-				_objs = (getpos _road1) nearEntities ["LandVehicle",7];
-				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
+				sleep 0.2;
+				_roadnogood = true;
+				while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
+					{
+					_road1 = (selectRandom _townroads);
+					_objs = (getpos _road1) nearEntities ["LandVehicle",7];
+					if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
+					};
+				_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
+				_nb = nearestBuilding _veh;
+				if ((_veh distancesqr _nb) > 3.1) then
+					{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
+					 else
+					{_dir = (getdir (nearestBuilding _veh));};
+				_veh setdir _dir;
+				_veh setpos (_veh modelToWorld [-5,0,-1.3]);
 				};
-			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
-			_nb = nearestBuilding _veh;
-			if ((_veh distancesqr _nb) > 3.1) then
-				{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
-				 else
-				{_dir = (getdir (nearestBuilding _veh));};
-			_veh setdir _dir;
-			_veh setpos (_veh modelToWorld [-5,0,-1.3]);
 			};
 	};
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
