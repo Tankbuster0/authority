@@ -46,7 +46,7 @@ if (_willingness > 0 && !(secondaryWeapon _unit isequalto "")) then
 	_unit action ["DropWeapon", _holder, secondaryWeapon _unit ];
 };
 sleep 2;
-if (_willingness > 1 && !(handgunWeapon _unit isequalto "")) then		
+if (_willingness > 1 && !(handgunWeapon _unit isequalto "")) then
 {
 	_unit action ["DropWeapon", _holder, handgunWeapon _unit ];
 };
@@ -74,55 +74,55 @@ _unit addEventHandler ["FiredNear", "if (_this select 2 < 7) then {[_this select
 _unit addEventHandler ["Hit", "[_this select 0,true] call ACE_captives_fnc_setSurrendered;"];
 _unit addEventHandler ["Killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {captivekillcounter = captivekillcounter +1};}];
 
-if (!_rebel) then 
+if (!_rebel) then
 {
 	_unit disableAI "TARGET";
 	_unit disableAI "AUTOTARGET";
 	//while {_unit distance _movePos > 15} do {sleep 2;};
 	//[_unit,true] call ACE_captives_fnc_setSurrendered;
-} 
-else 
+}
+else
 {
 	_t = random [20, 60, 90];
 	sleep _t;
-	
+
 	_unit setCaptive false;
 	[_unit,false] call ACE_captives_fnc_setSurrendered;
-	
+
 	_unit removeAllEventHandlers "Hit";
 	_unit removeAllEventHandlers "FiredNear";
 	_unit removeAllEventHandlers "Killed";
-	
-	if ( primaryWeapon _unit isequalto "" || handgunWeapon _unit isequalto "" ) then 
+
+	if ( primaryWeapon _unit isequalto "" || handgunWeapon _unit isequalto "" ) then
 	{
 		// Unit has no weapons on him.
 		_nw = nearestObject [_unit, "GroundWeaponHolder"];
 		if (_nw isEqualTo objNull) then
 		{
 			_unit addMagazines ["HandGrenade",3];
-			
-		} else 
+
+		} else
 		{
 			_unit setSpeedMode  "FULL";
 			_unit doMove (position _nw);
 			_unit setSpeedMode  "FULL";
-		
-			while {_unit distance _nw > 1} do {};
+
+			while {_unit distanceSqr _nw > 1} do {};
 			_unit action ["TakeWeapon", _nw, weaponCargo _nw select 0];
-			
+
 		};
-		
+
 		_unit setUnitPos "AUTO";
 		group _unit setBehaviour "COMBAT";
 		group _unit setCombatMode "RED";
-		
-	} else 
+
+	} else
 	{
 		//Unit has weapons, ready to fire.
 		_unit setUnitPos "AUTO";
 		group _unit setBehaviour "COMBAT";
 		group _unit setCombatMode "RED";
 	};
-	
-	
+
+
 };

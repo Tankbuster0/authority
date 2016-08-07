@@ -7,7 +7,7 @@ _cpt = _this select 0; // actually a logic
 _furthestdistsofar = 0; _furthestlocsofar = objNull; _pcst2 = [];
 _possibleconvoystartpoints = _cpt nearEntities ["Logic", 5000];
 {
-	if (((_x getVariable ["targetstatus", -1]) == 1) and ((_x distance _cpt) > 1500)) then {_pcst2 pushback _x}; //if the town being checked is a real town, enemy held and more than 1500m away, add it to the pcst2 array
+	if (((_x getVariable ["targetstatus", -1]) == 1) and ((_x distanceSqr _cpt) > 38)) then {_pcst2 pushback _x}; //if the town being checked is a real town, enemy held and more than 1500m away, add it to the pcst2 array
 } foreach _possibleconvoystartpoints;
 // found a bunch of enemyheld towns between 3k and 1.5k away. Now take the one that is furthest from blufor
 //find nearest blufor town
