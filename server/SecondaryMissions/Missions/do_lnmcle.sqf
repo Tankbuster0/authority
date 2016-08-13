@@ -30,12 +30,14 @@ for "_minecounter" from 1 to _numberofmines do
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	//_mine = _chosenmine createvehicle _realminepos;
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
+	_minecone setpos (getpos _mine);
 	_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
     _defuseHelper attachTo [_mine, [0,0,0]];
     _defuseHelper setVariable ["ACE_explosives_Explosive",_mine, true];
 	minearray pushback _mine;
-	diag_log format ["***made %3 at %2, number %1, planned position was %4", _minecounter, (getpos _mine), _chosenmine, _realminepos];
+	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _realminepos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
+  	_helper = createVehicle ["Sign_Arrow_F", getpos _mine, [],0, "CAN_COLLIDE"];
   	_m1 = createmarker [_minemarkername ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";

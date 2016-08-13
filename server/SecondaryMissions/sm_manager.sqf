@@ -10,7 +10,7 @@ _sm_hint = ceil (_sm_required /2);
 switch (_sm_hint) do
 	{
 	case 1: {
-			format ["Your team did very little damage during the assault and the locals are happy with your actions. You have just a few things to finish up before the town will be ours."] remoteexec ["hint", -2];
+			format ["Your guys did very little damage during the assault and the locals are happy with your actions. You have just a few things to finish up before the town will be ours."] remoteexec ["hint", -2];
 			};
 	case 2: {
 			format ["Your team did some damage during the assault. The population are fairly happy with your actions, so now you and your team must make amends by doing some small missions and jobs for them. Then the town will be ours and the enemy banished."] remoteexec ["hint", -2];
