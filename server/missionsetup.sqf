@@ -85,7 +85,7 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 //find a pos for the frigate
 _fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
 // if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
-_frigateposdata = selectBestPlaces [_mypos, 1000, "sea * waterDepth", 10,100];
+_frigateposdata = selectBestPlaces [_mypos, 2000, "sea * waterDepth", 10,500];
 // ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
 if (isNil {_frigateposdata}) then
 	{
@@ -97,7 +97,7 @@ if (isNil {_frigateposdata}) then
 		{
 		_mydata1 = (_frigateposdata select _l);
 		_raisedmypos = _mypos;
-		_raisedmypos set [2,30];
+		_raisedmypos set [2,10];
 		if (((_mydata1 select 1) > 30) and (not( terrainIntersect [(_mydata1 select 0), (_raisedmypos)] ) ) ) exitWith {_fpos = _mydata1 select 0};
 
 		};
