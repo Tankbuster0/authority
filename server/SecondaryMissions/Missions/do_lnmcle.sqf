@@ -5,7 +5,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
 //get a good place for minefield
 
-_myplaces = selectbestplaces [cpt_position, 1000, "meadow", 50,25];
+_myplaces = selectbestplaces [cpt_position, cpt_radius + 200, "meadow", 50,25];
 _meadows = _myplaces select {(_x select 1) == 1};
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 _meadowdata = selectRandom _meadows;
@@ -27,6 +27,8 @@ for "_minecounter" from 1 to _numberofmines do
 	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
+	_minecone hideObjectGlobal true;
+
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	//_mine = _chosenmine createvehicle _realminepos;
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
@@ -37,7 +39,11 @@ for "_minecounter" from 1 to _numberofmines do
 	minearray pushback _mine;
 	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _realminepos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
-  	_helper = createVehicle ["Sign_Arrow_F", getpos _mine, [],0, "CAN_COLLIDE"];
+  	if (testmode) then
+  		{
+  		_helper = createVehicle ["Sign_Arrow_F", getpos _mine, [],0, "CAN_COLLIDE"];
+  		_smcleanup pushback _helper;
+  		};
   	_m1 = createmarker [_minemarkername ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";
@@ -49,7 +55,7 @@ for "_minecounter" from 1 to _numberofmines do
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
-(format ["Local elders have told us there's a minefield %1the town. We need to defuse them.", _dirtohint]) remoteexec ["hint", -2];
+(format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.", _dirtohint, cpt_name, floor ((_mfpos distance2D cpt_position) - cpt_radius)]) remoteexec ["hint", -2];
 
 while {missionactive} do
 	{
