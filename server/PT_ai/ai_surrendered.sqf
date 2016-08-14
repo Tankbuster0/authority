@@ -4,7 +4,8 @@
 //Sometimes a unit is  a rebel
 // Params:	Unit - 0
 //			Rebel - 1
-
+_myscript = "ai_surrendered.sqf";
+diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 //DEBUG PROFILING
 _fnc_dump = {
 	player globalchat str _this;
@@ -126,3 +127,4 @@ else
 
 
 };
+diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
