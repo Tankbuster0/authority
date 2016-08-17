@@ -76,8 +76,12 @@ trg3 setTriggerStatements ["( (!(alive pt_radar)) and (roadblockscleared) and (t
 // task stuff
 taskname = "task" + str primarytargetcounter;
 [west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
-if ((primarytargetcounter == 1) or (cpt_type != 1) or (cpt_radius < 150)) then {roadblockscleared = true};
-if ((primarytargetcounter > 1)) then
+if (
+	    (primarytargetcounter == 1) or
+	    (cpt_type != 1) or
+	    (cpt_radius < 150)
+    ) then {roadblockscleared = true};
+if (primarytargetcounter > 1) then
 	{
 	if ((roadblockreturndata select 4) > 0) then // if this isnt the first target and it has roadblocks spawned
 		{
