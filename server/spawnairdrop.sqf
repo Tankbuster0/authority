@@ -117,8 +117,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
 	[forward, "[[[[],[]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AT"",""CUP_Stinger_M""],[25,25,25,25,20,25,20,20,15,20,20,10]],[[],[]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
 	[_cargo, "forward"] call fnc_setVehicleName;
-	["ace_wheel", forward, 4, false] call ace_cargo_fnc_addCargoItem;
-	_cargo addItemCargoGlobal ["ACE_bloodIV_500", 5];
+
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	{
@@ -128,8 +127,6 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	fobveh = _cargo;
 	[_cargo, "fobveh"] call fnc_setVehicleName;
 	[fobveh, "[[[[],[]],[[""SatchelCharge_Remote_Mag""],[20]],[[""ToolKit""],[10]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
-	["ace_wheel", fobveh, 2, false] call ace_cargo_fnc_addCargoItem;
-	_cargo addItemCargoGlobal ["ACE_bloodIV_500", 5];
 	};
 if (_cargo iskindof "Cargo_Base_F") then //
 	{
