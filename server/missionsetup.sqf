@@ -51,7 +51,6 @@ for "_q" from 1 to 3 do
 	};
 
 	_mytruck = createVehicle ["B_LSV_01_armed_F", _mypos,[],0,"NONE"];
-	["ace_wheel", _mytruck, 2, false] call ace_cargo_fnc_addCargoItem;
 	};
 
 // Forward Set up
