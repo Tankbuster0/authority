@@ -33,9 +33,9 @@ for "_minecounter" from 1 to _numberofmines do
 	//_mine = _chosenmine createvehicle _realminepos;
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
 	_minecone setpos (getpos _mine);
-	_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
+	//_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
     _defuseHelper attachTo [_mine, [0,0,0]];
-    _defuseHelper setVariable ["ACE_explosives_Explosive",_mine, true];
+    //_defuseHelper setVariable ["ACE_explosives_Explosive",_mine, true];
 	minearray pushback _mine;
 	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _realminepos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
