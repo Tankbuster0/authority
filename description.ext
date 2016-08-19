@@ -51,7 +51,6 @@ class cfgFunctions
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
 			class resetCuratorBuildlist {};
-			class addAceInterToCaptive {};
 			class addSupportRequester {};
 		};
 		class auth_server
