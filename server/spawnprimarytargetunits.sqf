@@ -179,7 +179,7 @@ if (((west countSide allPlayers) > 1) and (not _microtown)) then
 					while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
 						{
-						sleep 20 + (10 * random 5) ;
+						sleep 60 + (60 * random 5) ;
 						_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
 						if ((count _nearblufors) > 0) then
 							{
@@ -218,7 +218,14 @@ if (_pt_type isEqualTo 1) then
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
 			//_cfunit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
-			_cfunit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+			//_cfunit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+			_cfunit addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+						{
+						civkillcount = civkillcount +1;
+						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
+						};
+					}
+				];
 			nul = [_cfunit, (str primarytargetcounter)] execVM "server\UPS.sqf";
 			_fciv pushback _civfootgroup;
 			};
