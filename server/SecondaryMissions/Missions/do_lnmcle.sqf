@@ -48,7 +48,7 @@ for "_minecounter" from 1 to _numberofmines do
 
   	//_smcleanup pushback _defuseHelper;
 	_smcleanup pushback _mine;
-	_smcleanup pushback _minecone;
+	_smcleanup pushback improve_minecone;
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
