@@ -267,7 +267,7 @@ if (_pt_type isEqualTo 1) then
 				{
 				sleep 0.05;
 				_unit2 = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
-				_unit1 addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+				_unit2 addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
 						{
 						civkillcount = civkillcount +1;
 						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
