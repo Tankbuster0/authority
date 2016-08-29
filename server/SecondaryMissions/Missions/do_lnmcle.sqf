@@ -24,13 +24,11 @@ diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom aplandmines;
-	_realminepos = [_mfpos, (random 15), (random 360)] call BIS_fnc_relPos;
+	_realminepos = [_mfpos, (26 + random 124 ), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone hideObjectGlobal true;
-
 	diag_log format ["*** cone made at %1", getpos _minecone];
-	//_mine = _chosenmine createvehicle _realminepos;
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
 	_minecone setpos (getpos _mine);
 	//_defuseHelper = "ACE_DefuseObject" createVehicle (getPos _mine);
@@ -50,13 +48,13 @@ for "_minecounter" from 1 to _numberofmines do
 
   	//_smcleanup pushback _defuseHelper;
 	_smcleanup pushback _mine;
-	_smcleanup pushback  _minecone;
+	_smcleanup pushback _minecone;
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 _dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
-(format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.", _dirtohint, cpt_name, floor ((_mfpos distance2D cpt_position) - cpt_radius)]) remoteexec ["hint", -2];
-
+(format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.", _dirtohint, cpt_name, ([(((_mfpos distance2D cpt_position) - cpt_radius) + 24), 50] call BIS_fnc_roundNum ])) remoteexec ["hint", -2];
+//[(24+ 76), 50] call BIS_fnc_roundNum <- rounds to nearest 50m
 while {missionactive} do
 	{
 	sleep 3;
