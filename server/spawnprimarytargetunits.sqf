@@ -251,7 +251,14 @@ if (_pt_type isEqualTo 1) then
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
 			_veh setdir _dir;
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
-			_unit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+			_unit addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+						{
+						civkillcount = civkillcount +1;
+						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
+						};
+					}
+				];
+			//_unit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
 			_unit assignAsDriver _veh;
 			_unit moveInDriver _veh;
 			nul = [_unit, (str primarytargetcounter)] execVM "server\UPS.sqf";
@@ -260,7 +267,14 @@ if (_pt_type isEqualTo 1) then
 				{
 				sleep 0.05;
 				_unit2 = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
-				_unit2 addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+				_unit1 addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+						{
+						civkillcount = civkillcount +1;
+						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
+						};
+					}
+				];
+				//_unit2 addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
 				_unit2 moveInAny _veh;
 				};
 			_dcar pushback _dcargroup;
