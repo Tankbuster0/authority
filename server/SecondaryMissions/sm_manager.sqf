@@ -1,7 +1,6 @@
 //by tankbuster
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
-_myscript = "sm_manager";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_sm_required","_sm_hint","_smtypearray","_typeselected","_smmanagerhandle"];
 

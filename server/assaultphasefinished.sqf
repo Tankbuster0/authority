@@ -17,10 +17,11 @@ diag_log format ["****h&m = %1, ruinend %2 ruinstart %3 civkill %4 reinfcntr %5"
 sleep 3;
 cpt_marker setMarkerBrush "Cross";
 format ["Congratulations! You've driven the enemy from the AO."] remoteexec ["hint", -2];
+/*
 sleep 10;
 _handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
 waitUntil {sleep 1;scriptdone _handle2};
-
+*/
 nul =  execVM "server\primarytargetcleared.sqf";
 cpt_marker setMarkerBrush "Solid";
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
