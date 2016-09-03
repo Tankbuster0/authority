@@ -16,7 +16,7 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8426.1797,114.32635,25169.939};
+		pos[]={8419.2129,119.18534,25186.092};
 		dir[]={0.45020872,-0.33602145,-0.82730299};
 		up[]={0.16061917,0.941854,-0.2951532};
 		aside[]={-0.87837631,-6.6793291e-008,-0.47800303};
@@ -208,7 +208,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=0;
+					value=1;
 				};
 			};
 		};
@@ -303,7 +303,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=3;
+					value=10;
 				};
 			};
 		};
@@ -322,7 +322,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=20;
+					value=59.460785;
 				};
 			};
 		};
@@ -341,7 +341,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=6;
+					value=11;
 				};
 			};
 		};
@@ -360,7 +360,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=0;
+					value=2;
 				};
 			};
 		};
@@ -379,7 +379,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=0;
+					value=1;
 				};
 			};
 		};
@@ -415,7 +415,9 @@ class Mission
 	class Intel
 	{
 		briefingName="Coop 40 Authority Altis";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 933";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 955";
+		resistanceWest=0;
+		resistanceEast=1;
 		timeOfChanges=1800.0002;
 		startWeather=0.30000001;
 		startWind=0.1;
