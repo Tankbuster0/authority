@@ -132,6 +132,8 @@ class ScenarioData
 	{
 		gameType="Coop";
 	};
+	corpseLimit=5;
+	corpseRemovalMaxTime=40;
 };
 class CustomAttributes
 {
@@ -246,7 +248,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=0;
+					value=1;
 				};
 			};
 		};
@@ -341,7 +343,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=11;
+					value=16;
 				};
 			};
 		};
@@ -403,7 +405,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=0;
+					value=1;
 				};
 			};
 		};
