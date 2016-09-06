@@ -112,6 +112,7 @@ _pos = position frigate;
 _az =  getDir frigate;
 _gopos = [position frigate, -17.5, +_az] call BIS_fnc_relPos;
 _gopos = [_gopos select 0, _gopos select 1, (_gopos select 2) + 16.4];
+frigate setVehicleLock "LOCKED";
 
 // Take out advanced ammo types;
 Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
