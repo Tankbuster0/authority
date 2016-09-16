@@ -1466,7 +1466,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="JIPID = [fobbox, [west], west,""west""] call LARs_fnc_blacklistArsenal;";
+				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;";
 				name="fobbox";
 			};
 			id=41;
@@ -2023,7 +2023,7 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="JIPID = [ammobox, [west], west,""west""] call LARs_fnc_blacklistArsenal;";
+				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;";
 				name="ammobox";
 			};
 			id=60;
