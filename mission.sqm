@@ -1459,19 +1459,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8435.1621,102.62852,25166.16};
-				angles[]={0.2914567,0,6.1089697};
+				position[]={8435.1621,102.62856,25166.16};
+				angles[]={0.29145253,0,6.1089664};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="[""AmmoboxInit"", [this,true]] call BIS_fnc_arsenal;";
+				init="JIPID = [fobbox, [west], west,""west""] call LARs_fnc_blacklistArsenal;";
 				name="fobbox";
 			};
 			id=41;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.0080337524;
+			atlOffset=-0.0079956055;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2016,19 +2016,19 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8420.9531,107.46888,25148.457};
+				position[]={8420.9531,107.46924,25148.457};
 				angles[]={0.12599531,0,0.065240405};
 			};
 			side="Empty";
 			flags=4;
 			class Attributes
 			{
-				init="[""AmmoboxInit"", [this,true]] call BIS_fnc_arsenal;";
+				init="JIPID = [ammobox, [west], west,""west""] call LARs_fnc_blacklistArsenal;";
 				name="ammobox";
 			};
 			id=60;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.0023574829;
+			atlOffset=-0.0019989014;
 			class CustomAttributes
 			{
 				class Attribute0
