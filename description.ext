@@ -41,7 +41,7 @@ class CfgSounds
 };
 class cfgFunctions
 {
-	//#include "LARs\blacklistArsenal.cpp"
+	#include "LARs\blacklistArsenal.cpp"
 
 	class tky
 	{
