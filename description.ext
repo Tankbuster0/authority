@@ -39,6 +39,7 @@ class CfgSounds
 {
 
 };
+LARs_calculateSideGear = 1;
 class cfgFunctions
 {
 	#include "LARs\blacklistArsenal.cpp"

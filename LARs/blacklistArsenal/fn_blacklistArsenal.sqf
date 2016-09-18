@@ -82,7 +82,7 @@ _thread = _this spawn {
 	if !( _blackList isEqualType [] ) then {
 		_blackList = [ _blackList ];
 	};
-	
+
 	//If a list requires a side and calculateSideGear is not in use exit with error
 	if ( {
 		{
@@ -93,6 +93,7 @@ _thread = _this spawn {
 			};
 		}count _x > 0
 	}count[ _whiteList, _blackList ] > 0 && { isNil "LARs_sideGear" } ) exitWith {
+		[ "LARs_blacklist" ] call BIS_fnc_endLoadingScreen;
 		"SIDE used in white/blacklist - currently no side data, switch on LARs_calculateSideGear in description" call BIS_fnc_error;
 	};
 
