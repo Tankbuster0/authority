@@ -266,7 +266,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 	};
 
 sleep 0.5;
-/*
+
 if not (testmode) then
 	{
 		for "_m" from 1 to 100 do
@@ -278,7 +278,7 @@ if not (testmode) then
 			};
 	};
 // ^^^^ hide dep safezone markers if not testmode
-*/
+
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
