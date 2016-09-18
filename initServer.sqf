@@ -236,6 +236,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			if (_targetType == 2) then {
 				foundairfields pushback _logic;
 			};
+/*
 			if (testmode) then
 				{
 				_mname2 = format ["smn%1", _foreachindex];
@@ -246,6 +247,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				_mkr2 setMarkerText (str _foreachindex);
 				_mkr2 setMarkerBrush "Vertical";
 				};
+*/
 			//TESTOUTPUT pushBack _tempArr;
 
 			missionsetupprogress = 1;
@@ -264,6 +266,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 	};
 
 sleep 0.5;
+/*
 if not (testmode) then
 	{
 		for "_m" from 1 to 100 do
@@ -275,7 +278,7 @@ if not (testmode) then
 			};
 	};
 // ^^^^ hide dep safezone markers if not testmode
-
+*/
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
