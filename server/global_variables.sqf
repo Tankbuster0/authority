@@ -553,7 +553,7 @@ Using orientation of objects: yes
 [
 	["B_Slingload_01_Repair_F",[123.664,-37.8894,8.86917e-005],35.7597,1,0.0117588,[0.0049778,0.0041],"blubaserepairbox","",true,false],
 	["Land_Cargo_Patrol_V4_F",[133.541,-35.6646,0],35.7639,1,0,[0,0],"","",true,false],
-	["CampEast_EP1",[136.556,-24.4561,0.872571],35.7639,1,0,[0,0],"","",true,false],
+	["CampEast_EP1",[136.556,-24.4561,0.072571],35.7639,1,0,[0,0],"","",true,false],
 	["CUP_A1_Heli_H_army",[123.826,-63.7542,0],275.681,1,0,[0.380173,0.805451],"blubasehelipad","",true,false],
 	["Land_BagBunker_Small_F",[143.621,-15.8235,0.00999737],214.898,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[144.646,-25.6436,-2.86102e-006],122.665,1,0,[0,-0],"","",true,false],
