@@ -3,7 +3,6 @@ _myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
-_airfield = foundairfields select 1; // debugging a problem at saint-george
 enableVehicleCrashes = false;
 _beachheadpos =[0,0,0];
 roadreinforcementvehicles = [];
