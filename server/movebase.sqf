@@ -49,7 +49,7 @@ switch (cpt_name) do
 		};
 	case "Saint-George Airstrip":
 		{
-		_blubasedroppos = [11686.1,13110.6,0];
+		_blubasedroppos = [11740.6,3138.2,0.00143909]
 		_composition = st_george_blubase;
 		};
 	case "Bala Airstrip":
@@ -109,8 +109,8 @@ _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F",
 diag_log "*** returned from spawnairdrop";
 //sleep 10;
 diag_log "***clearing landing point";
-//_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 30];
-_naughtybaseobjects = _blubasedroppos nearobjects 20;
+_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 30];
+//_naughtybaseobjects = _blubasedroppos nearobjects 20;
 if (count _naughtybaseobjects > 0) then
 	{
 		{
