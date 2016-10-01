@@ -1,5 +1,5 @@
-/*  Copyright 2014 Fluit
-
+/*  Copyright 2016 Fluit
+    
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -21,25 +21,24 @@ _group  = _this select 0;
 _type   = _this select 1;
 _pos    = _this select 2;
 
-
 _unit = objNull;
 if (!isNil "_group" && !isNil "_type" && !isNil "_pos") then
 {
     _unit = _group createUnit [_type, _pos, [], 0, "NONE"];
 };
 
-if (_unit != objNull) then
+if (_unit != objNull) then 
 {
     _unit removeEventHandler ["killed", 0];
     _unit addEventHandler ["killed", {(_this select 0) execVM format ["%1functions\cleanup.sqf", dep_directory]}];
     _unit setVariable ["dep_position", getPosATL _unit];
-
-    if (typeName dep_unit_init == "CODE") then
+    
+    if (typeName dep_unit_init == "CODE") then 
     {
         //_unit spawn (compile dep_unit_init);
         _unit spawn dep_unit_init;
     };
 };
 
-sleep 0.1;
+sleep 0.1; 
 _unit;

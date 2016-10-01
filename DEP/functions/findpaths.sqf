@@ -14,19 +14,15 @@
     You should have received a copy of the GNU General Public License
     along with Dynamic Enemy Population.  If not, see <http://www.gnu.org/licenses/>.
 */
-// This file finds enterable houses in a given area.
-private ["_houses", "_pos", "_size", "_house", "_maxbuildingpos"];
-_pos = _this select 0;
-_size = _this select 1;
+// This file finds near paths, not real roads.
+params ['_pos','_radius'];
+private ["_bridge","_list"];
 
-_pos set [2, 0];
-
-_validhouses = [];
-_houses = nearestObjects [_pos, ["House"], _size];
-{	
-    _enterable = [_x] call dep_fnc_isenterable;
-    if (_enterable) then { 
-        _validhouses = _validhouses + [_x]; 
-    };    
-} foreach _houses;
-_validhouses;
+_list = [];
+{
+    _bridge = ["bridge", (getModelInfo _x) select 0] call BIS_fnc_inString;
+    if (!(isOnRoad getPos _x) && !_bridge) then {
+        _list pushBack _x;
+    };
+} forEach (_pos nearRoads _radius);
+_list;
