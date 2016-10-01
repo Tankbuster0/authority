@@ -35,7 +35,7 @@
  dep_debug = false;
  dep_logging = true;
  dep_chat_logging = false;
-// dep_safe_zone = [markerPos "dep_safezone_marker_1", markerPos "dep_safezone_marker_2", markerPos "dep_safezone_marker_3",markerPos "dep_safezone_marker_4",markerPos "dep_safezone_marker_5",markerPos "dep_safezone_marker_6"];
+ dep_safe_zone = [markerPos "dep_safezone_marker_1", markerPos "dep_safezone_marker_2", markerPos "dep_safezone_marker_3",markerPos "dep_safezone_marker_4",markerPos "dep_safezone_marker_5",markerPos "dep_safezone_marker_6"];
 // dep_safe_rad = 800;
 // dep_map_margin = 400;
 // dep_ieds = true;
