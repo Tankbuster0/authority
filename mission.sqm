@@ -362,7 +362,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=2;
+					value=1;
 				};
 			};
 		};
@@ -428,6 +428,10 @@ class Mission
 		forecastWind=0.1;
 		forecastWaves=0.1;
 		forecastLightnings=0.1;
+		rainForced=1;
+		lightningsForced=1;
+		wavesForced=1;
+		windForced=1;
 		year=2035;
 		month=6;
 		day=24;
@@ -1471,7 +1475,7 @@ class Mission
 			};
 			id=41;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.0079956055;
+			atlOffset=-0.0079879761;
 			class CustomAttributes
 			{
 				class Attribute0
