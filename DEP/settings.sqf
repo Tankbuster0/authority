@@ -70,7 +70,7 @@ dep_zone_markers = [];
 // *************************************************************
 
  dep_roadblocks = 7;
-// dep_bunkers = 5;
+// dep_bunkers = 5b
 dep_patrols = 4;
 // dep_forest_patrols = 0;
 dep_air_patrols = 3;
