@@ -1,4 +1,4 @@
-/*  Copyright 2014 Fluit
+/*  Copyright 2016 Fluit
     
     This file is part of Dynamic Enemy Population.
 
@@ -19,7 +19,8 @@
 _pos = _this select 0;
 _radius = _this select 1;
 
-_list = _pos nearRoads _radius;
+//_list = _pos nearRoads _radius;
+_list = [_pos, _radius] call dep_fnc_findroads;
 _smallestdistance = _radius;
 _road = objNull;
 {
