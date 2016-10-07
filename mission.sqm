@@ -1470,12 +1470,12 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;";
+				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;nul = this addAction [""CH View Distance settings"", CHVD_fnc_openDialog, [], -99, false, true];";
 				name="fobbox";
 			};
 			id=41;
 			type="B_CargoNet_01_ammo_F";
-			atlOffset=-0.0079879761;
+			atlOffset=-0.0079956055;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2027,7 +2027,8 @@ class Mission
 			flags=4;
 			class Attributes
 			{
-				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;";
+				ammo=0.41423199;
+				init="[""AmmoboxInit"",[this,true]] call BIS_fnc_arsenal;nul = this addAction [""CH View Distance settings"", CHVD_fnc_openDialog, [], -99, false, true];";
 				name="ammobox";
 			};
 			id=60;
