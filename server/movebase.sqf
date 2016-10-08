@@ -2,7 +2,7 @@
 //execvmd by assaultphasefinished
 _myscript = "movebase";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airportilsindata","_airstripilsindata","_ils1indata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_mypos"];
+private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airportilsindata","_airstripilsindata","_ils1indata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_mypos", "_candidatepos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
 
@@ -107,14 +107,28 @@ headmarker2 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerText "AIRHEAD";
 _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
 diag_log "*** returned from spawnairdrop";
-//sleep 10;
+sleep 5;
 diag_log "***clearing landing point";
 _naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40];
 //_naughtybaseobjects = _blubasedroppos nearobjects 20;
 if (count _naughtybaseobjects > 0) then
 	{
 		{
-		if not ((typename _x) in [forwardpointvehicleclassname, fobvehicleclassname]) then //things that must not be deleted
+		//if not ((typename _x) in [forwardpointvehicleclassname, fobvehicleclassname]) then //things that must not be deleted
+		if (_x in [fobveh, forward]) then
+			{
+			diag_log format ["*** leaving _naughtybaseobject %1, %2", _x, typeof _x];
+			//find safeplace and move the object
+			_candidatepos = [0,0,0];
+
+			while {_candidatepos in [[0,0,0], islandcentre]} do
+				{
+				_candidatepos = [_blubasedroppos, 40, 60, 5,0,0,0] call BIS_fnc_findSafePos;
+				};
+			diag_log format ["*** moving forward from %1 to %2, a distance of %3", getpos forward, _candidatepos, ((getpos forward) distance2d _candidatepos) ];
+			forward setVehiclePosition [_candidatepos, [],0,"NONE"];
+			}
+			else
 			{
 		    deletevehicle _x;
 			diag_log format ["***removing _naughtybaseobject %1, %2", _x, typeOf _x];
