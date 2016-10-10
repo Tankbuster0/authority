@@ -2,7 +2,7 @@
 //execvmd by assaultphasefinished
 _myscript = "movebase";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airportilsindata","_airstripilsindata","_ils1indata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_mypos", "_candidatepos"];
+private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
 
@@ -125,7 +125,7 @@ if (count _naughtybaseobjects > 0) then
 			//get a candidate position 45m in that direction , 45m from the centre of blubasedroppos
 			_candidatepos =  _blubasedroppos getpos [40, _dir1];
 			//now find a good empty spot nearby
-			_testradius = sizeOf (typeOf _x);
+			_testradius = 1;
 			_sizeof = sizeOf (typeOf _x);
 			_candidatepos2 = [0,0,0];
 			while {_candidatepos2 in [[0,0,0], islandcentre]} do
