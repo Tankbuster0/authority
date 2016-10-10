@@ -109,22 +109,31 @@ _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F",
 diag_log "*** returned from spawnairdrop";
 sleep 5;
 diag_log "***clearing landing point";
+waitUntil {sleep 1; not isnil "mycontainer"};
+waitUntil {sleep 0.5;(getposATL mycontainer select 2) < 20};
 _naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40];
 //_naughtybaseobjects = _blubasedroppos nearobjects 20;
 if (count _naughtybaseobjects > 0) then
 	{
 		{
-		//if not ((typename _x) in [forwardpointvehicleclassname, fobvehicleclassname]) then //things that must not be deleted
-		if (_x in [fobveh, forward]) then
+		if (_x in [fobveh, forward]) then //things that mustnt be deleted
 			{
 			diag_log format ["*** leaving _naughtybaseobject %1, %2", _x, typeof _x];
 			//find safeplace and move the object
-			_candidatepos = [0,0,0];
-
-			while {_candidatepos in [[0,0,0], islandcentre]} do
+			//get which direction the vehicle is from the centre
+			_dir1 = _blubasedroppos getdir _x;
+			//get a candidate position 45m in that direction , 45m from the centre of blubasedroppos
+			_candidatepos =  _blubasedroppos getpos [40, _dir1];
+			//now find a good empty spot nearby
+			_testradius = sizeOf (typeOf _x);
+			_sizeof = sizeOf (typeOf _x);
+			_candidatepos2 = [0,0,0];
+			while {_candidatepos2 in [[0,0,0], islandcentre]} do
 				{
-				_candidatepos = [_blubasedroppos, 40, 60, 5,0,0,0] call BIS_fnc_findSafePos;
+				_candidatepos2 = [_candidatepos, 0, _testradius,_sizeof, 0,0,0] call BIS_fnc_findSafePos;
+				_testradius = _testradius + _sizeof;
 				};
+
 			diag_log format ["*** moving forward from %1 to %2, a distance of %3", getpos forward, _candidatepos, ((getpos forward) distance2d _candidatepos) ];
 			forward setVehiclePosition [_candidatepos, [],0,"NONE"];
 			}
@@ -137,7 +146,7 @@ if (count _naughtybaseobjects > 0) then
 	};
 sleep 2;
 
-waitUntil {sleep 1; not isnil "mycontainer"};
+
 waitUntil {(getposATL mycontainer select 2) < 2};
 diag_log "***removing mycontainer and spawning composition";
 deletevehicle mycontainer;
