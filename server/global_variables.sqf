@@ -46,7 +46,7 @@ CQBCleanupArr = [];
 
 
 // Prizes for Prim Targets
-prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","B_MBT_01_TUSK_F","B_MBT_01_cannon_F","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M6LineBacker_USA_W" ,
+prizes = ["CUP_B_Ridgback_GMG_GB_W","CUP_B_FV510_GB_W","CUP_B_FV510_GB_W_SLAT","CUP_B_Challenger2_Woodland_BAF","CUP_B_FV432_Bulldog_GB_W", "CUP_B_M6LineBacker_USA_W" ,
 "CUP_B_AH1_MR_BAF", "CUP_B_AW159_Hellfire_GB","CUP_B_CH47F_GB","CUP_B_F35B_AA_BAF", "CUP_B_F35B_CAS_BAF", "CUP_B_GR9_CAP_GB", "CUP_B_GR9_Mk82_GB", "B_T_VTOL_01_armed_F"];
 
 // List of useable landmines
@@ -64,12 +64,12 @@ civs = ["CUP_C_C_Worker_01","CUP_C_C_Worker_02","CUP_C_C_Worker_03","CUP_C_C_Wor
 civcars =["C_Offroad_01_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad_stripped_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_Van_01_transport_F", "C_Van_01_box_F", "C_Van_01_fuel_F",
 		 "CUP_C_Datsun_Covered","CUP_C_Ural_Civ_03","CUP_C_Ural_Civ_02","CUP_C_Ural_Open_Civ_02","CUP_C_SUV_CIV","CUP_C_Ural_Open_Civ_01","CUP_C_Datsun_Plain","CUP_C_Datsun_Tubeframe","CUP_C_Golf4_white_Civ",
 		 "CUP_C_Golf4_yellow_Civ","CUP_C_Golf4_random_Civ","CUP_C_Octavia_CIV","CUP_C_Ural_Civ_01","CUP_C_Datsun_4seat","CUP_C_Datsun","CUP_C_Skoda_White_CIV","CUP_C_Skoda_Red_CIV","CUP_C_Skoda_Green_CIV",
-		 "CUP_C_Skoda_Blue_CIV","CUP_C_Golf4_red_Civ","CUP_C_Golf4_green_Civ","CUP_C_Golf4_blue_Civ","CUP_C_Golf4_black_Civ"];
+		 "CUP_C_Skoda_Blue_CIV","CUP_C_Golf4_red_Civ","CUP_C_Golf4_green_Civ","CUP_C_Golf4_blue_Civ","CUP_C_Golf4_black_Civ", "CUP_C_Ikarus_TKC"];
 
 opforpatrollandvehicles = ["CUP_O_BMP2_RU", "CUP_O_BMP3_RU", "CUP_O_BTR90_RU", "CUP_O_GAZ_Vodnik_AGS_RU", "CUP_O_GAZ_Vodnik_BPPU_RU", "CUP_O_Ural_ZU23_RU", "CUP_O_UAZ_MG_RU", "CUP_O_UAZ_METIS_RU", "CUP_O_BRDM2_SLA"];
 opforstaticlandvehicles =["CUP_O_Ural_ZU23_RU", "CUP_O_BM21_RU", "CUP_O_2S6M_RU"];
 opforradartypes = ["CUP_A2_76n6_clamshell_lower", "CUP_A2_76n6_clamshell_ep1"];
-opfortanks = ["CUP_O_T55_TK", "CUP_O_T72_RU"];
+opfortanks = ["CUP_O_T55_TK", "CUP_O_T72_RU", "CUP_O_T90_RU"];
 opforhqtypes = ["CUP_O_BTR90_HQ_RU", "CUP_B_BRDM2_HQ_CDF"];
 opforairsupporttypes = ["CUP_O_Ka50_RU", "CUP_O_Ka52_RU", "CUP_O_Mi8_SLA_2", "CUP_B_Mi24_P_RU", "CUP_O_Su25_RU_1", "CUP_O_Su25_RU_2", "CUP_O_Su25_RU_3", "CUP_O_SU34_AGM_RU","CUP_O_SU34_LGB_RU"];
 aaccomposition = [
