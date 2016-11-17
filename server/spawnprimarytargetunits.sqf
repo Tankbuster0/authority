@@ -125,7 +125,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// patrolling  apc/ifv group end
 	sleep 0.05;
 	//heavy armour and shit start
-	if (((_pt_type == 1) and (cpt_radius > 150)) or (not _microtown)) then //tanks only spawn at big towns, not at bases or airfields
+	if ((((_pt_type == 1) and (cpt_radius > 150)) or (not _microtown)) and ((random 5) > 4)) then //tanks only spawn at big towns, not at bases or airfields
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
@@ -135,7 +135,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	}
 	else
 	{
-		if (testmode) then {diag_log "**** sptu skips adding mbt becuase it's an airfield or a small town"};
+		if (testmode) then {diag_log "**** sptu skips adding mbt becuase it's an airfield or a small town or it was randomly not done"};
 	};
 	//heavy armour end
 	sleep 0.05;
