@@ -50,5 +50,5 @@ cur addEventHandler ["CuratorObjectPlaced", {[_this select 0, _this select 1] re
 cur addEventHandler ["CuratorObjectDeleted", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorObjectRemoved"];}];
 cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorSelectionChanged"];}];
 
-[] execVM "server\real_weather.sqf";
+//[] execVM "server\real_weather.sqf";
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
