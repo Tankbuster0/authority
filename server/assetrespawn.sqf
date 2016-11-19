@@ -44,19 +44,17 @@ _respawns2 = _respawns - [_oldv];
 //diag_log format ["*** rspawns minus the old veh %1", _respawns2];
 _droppoint2 = [0,0,0];
 _testradius = 2;
-//_nearestblueflag = getpos ((nearestObjects [_oldv, ["Flag_Blue_F"], 6000]) select 0);
+_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000, false]);
 
-_nearestbluflags = _oldv nearEntities ["Flag_Blue_F", 8000];
-diag_log format ["*** bluflags found %1 near oldv %2 which is pos %3", _nearestbluflags, _oldv, getpos _oldv];
-If (count _nearestbluflags > 1) then
+if ((count _nearestblueflags) < 1) then
 	{
-	_nearestblueflagssorted  =  [_nearestbluflags, [], {_x distanceSqr _oldv}, "ASCEND"] call BIS_fnc_sortBy;
-	_nearestblueflag = _nearestblueflagssorted select 0;
-	}
-	else
-	{
-	_nearestblueflag = _nearestbluflags select 0;
+		_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000], false);
+
 	};
+diag_log format ["*** bluflags found %1 near oldv %2 which is pos %3", _nearestbluflags, _oldv, getpos _oldv];
+
+	_nearestblueflag = _nearestbluflags select 0;
+
 diag_log format ["***nbf is %1", _nearestblueflag];
 // ^^^^ get the nearest blue flag position. there's 1 at the beach and another at each taken target.
 while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distanceSqr _droppoint2) < 2.2))} do
