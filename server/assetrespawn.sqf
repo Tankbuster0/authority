@@ -48,8 +48,17 @@ _testradius = 2;
 //_nearestblueflag = getpos ((nearestObjects [_oldv, ["Flag_Blue_F"], 6000]) select 0);
 
 _nearestbluflags = (position _oldv ) nearEntities ["Flag_Blue_F", 8000];
-_nearestblueflagssorted  =  [_nearestbluflags, [], {_x distanceSqr _oldv}, "ASCEND"] call BIS_fnc_sortBy;
-_nearestblueflag = _nearestblueflagssorted select 0;
+diag_log format ["*** bluflags found %1", _nearestbluflags];
+If (count _nearestbluflags > 1) then
+	{
+	_nearestblueflagssorted  =  [_nearestbluflags, [], {_x distanceSqr _oldv}, "ASCEND"] call BIS_fnc_sortBy;
+	_nearestblueflag = _nearestblueflagssorted select 0;
+	}
+	else
+	{
+	_nearestblueflag = _nearestbluflags select 0;
+	};
+diag_log format ["***nbf is %1", _nearestblueflag];
 // ^^^^ get the nearest blue flag position. there's 1 at the beach and another at each taken target.
 while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distanceSqr _droppoint2) < 2.2))} do
 	{
