@@ -155,14 +155,13 @@ _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
-
-//_myvalue = _cargo getVariable "eventualtype";
 if (_eventualtype isKindOf "Air") then
 	{
 		prizebox = _cargo;
 		[_cargo, "prizebox"] call fnc_setVehicleName;
 	};
-
+sleep 2;
+_cargo setvectorup (surfaceNormal (getpos cargo));
 _dropveh domove _startpos;
 _movingtowardsend = true;
 while {_movingtowardsend} do
