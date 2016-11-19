@@ -45,16 +45,13 @@ _respawns2 = _respawns - [_oldv];
 _droppoint2 = [0,0,0];
 _testradius = 2;
 _nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000, false]);
-
 if ((count _nearestblueflags) < 1) then
 	{
 		_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000], false);
 
 	};
 diag_log format ["*** bluflags found %1 near oldv %2 which is pos %3", _nearestbluflags, _oldv, getpos _oldv];
-
-	_nearestblueflag = _nearestbluflags select 0;
-
+_nearestblueflag = _nearestbluflags select 0;
 diag_log format ["***nbf is %1", _nearestblueflag];
 // ^^^^ get the nearest blue flag position. there's 1 at the beach and another at each taken target.
 while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distanceSqr _droppoint2) < 2.2))} do
