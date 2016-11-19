@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -14,7 +14,7 @@
     You should have received a copy of the GNU General Public License
     along with Dynamic Enemy Population.  If not, see <http://www.gnu.org/licenses/>.
 */
- 
+
 // SETTINGS
 _handle = [] execVM dep_directory+"settings.sqf";
 waitUntil{scriptDone _handle};
@@ -165,7 +165,7 @@ if (dep_housepop > 0) then
 		_starttime = time;
 		"Finding buildings" spawn dep_fnc_log;
 	};
-	_buildings = nearestObjects [dep_map_center, ["House"], dep_map_radius];
+	_buildings = nearestObjects [dep_map_center, ["House"], dep_map_radius, false];
 	_numbuildings = 0;
 
 	if (dep_debug) then {
@@ -178,8 +178,8 @@ if (dep_housepop > 0) then
 
 	while {_numbuildings < dep_housepop} do {
 		_building = _buildings call BIS_fnc_selectRandom;
-		if (count _buildings == 0) exitWith { 
-			["Not enough buildings, found %1 of %2.", _numbuildings, dep_housepop] spawn dep_fnc_log; 
+		if (count _buildings == 0) exitWith {
+			["Not enough buildings, found %1 of %2.", _numbuildings, dep_housepop] spawn dep_fnc_log;
 		};
 		_buildings = _buildings - [_building];
 		_pos = getPos _building;
@@ -302,13 +302,13 @@ if (dep_roadblocks > 0) then
 // *********************
 // AMBUSHES
 // *********************
-if (dep_ambushes > 0) then 
+if (dep_ambushes > 0) then
 {
 	if (dep_debug) then {
 		_starttime = time;
 		"Finding ambushes" spawn dep_fnc_log;
 	};
-	
+
     if (isNil "dep_roads") then { dep_roads = [dep_map_center, dep_map_radius] call dep_fnc_findroads; };
 	_fckit = false;
 	for [{_x=1}, {_x<=dep_ambushes}, {_x=_x+1}] do {
@@ -318,7 +318,7 @@ if (dep_ambushes > 0) then
 			if ((time - _starttime) > 20) exitWith {
 				_fckit = true;
 			};
-			
+
 			_road = dep_roads call BIS_fnc_selectRandom;
 			_pos = getPos _road;
 			_vegetation = [_pos, 20] call dep_fnc_vegetation;
@@ -339,7 +339,7 @@ if (dep_ambushes > 0) then
 					_valid = true;
 				};
 			};
-			
+
 			if (_valid) then {
 				_dir = [_road] call dep_fnc_roaddir;
 				_location = [];
@@ -441,13 +441,13 @@ if (dep_aa_camps > 0) then
 // *********************
 // PATROLS
 // *********************
-if (dep_patrols > 0) then 
+if (dep_patrols > 0) then
 {
 	if (dep_debug) then {
 		_starttime = time;
 		"Finding patrols" spawn dep_fnc_log;
 	};
-	
+
     if (isNil "dep_roads") then { dep_roads = [dep_map_center, dep_map_radius] call dep_fnc_findroads; };
 	_fckit = false;
 	for [{_x=1}, {_x<=dep_patrols}, {_x=_x+1}] do {
@@ -512,13 +512,13 @@ if (dep_patrols > 0) then
 // *********************
 // FOREST PATROLS
 // *********************
-if (dep_forest_patrols > 0) then 
+if (dep_forest_patrols > 0) then
 {
 	if (dep_debug) then {
 		_starttime = time;
 		"Finding forest patrols" spawn dep_fnc_log;
 	};
-	
+
     if (isNil "dep_paths") then { dep_paths = [dep_map_center, dep_map_radius] call dep_fnc_findpaths; };
 	_fckit = false;
 	for [{_x=1}, {_x<=dep_forest_patrols}, {_x=_x+1}] do {
@@ -584,7 +584,7 @@ if (dep_forest_patrols > 0) then
 // *********************
 // BUNKERS
 // *********************
-if (dep_bunkers > 0) then 
+if (dep_bunkers > 0) then
 {
 	if (dep_debug) then {
 		_starttime = time;
@@ -655,7 +655,7 @@ if (dep_debug) then {
 dep_roads = nil;
 
 // Place makers in debug mode
-if (dep_debug) then 
+if (dep_debug) then
 {
     for [{_x=0}, {_x<(count dep_locations)}, {_x=_x+1}] do {
         _location = dep_locations select _x;
@@ -675,9 +675,9 @@ if (dep_debug) then
             case "ambush":          { _m setMarkerColor "ColorBlack";};
         };
         _m setMarkerBrush "Solid";
-        _m setMarkerAlpha 0.7;  
+        _m setMarkerAlpha 0.7;
     };
-	
+
 	_pos = dep_map_center;
 	_m = createMarker ["dep_map_center", _pos];
 	_m setMarkerShape "ELLIPSE";
@@ -685,11 +685,11 @@ if (dep_debug) then
 	_m setMarkerSize [dep_map_radius, dep_map_radius];
 	_m setMarkerColor "ColorRed";
 	_m setMarkerAlpha 0.6;
-    
+
     // Safezone marker
-    if (count dep_safe_zone > 0) then 
+    if (count dep_safe_zone > 0) then
     {
-        if (typeName (dep_safe_zone select 0) == "ARRAY") then 
+        if (typeName (dep_safe_zone select 0) == "ARRAY") then
         {
             _zonenr = 0;
             {
@@ -710,11 +710,11 @@ if (dep_debug) then
             _m setMarkerAlpha 0.5;
         };
     };
-    
+
 	_debuginfo_space = (((dep_map_center select 0) / 3) / 5);
 	_debuginfo_x = _debuginfo_space;
 	_debuginfo_y = _debuginfo_space;
-	
+
 	_m = createMarker["dep_mrk_fps", [_debuginfo_x,_debuginfo_y]];
     _m setMarkerType "mil_dot";
 	_debuginfo_y = _debuginfo_y + _debuginfo_space;
@@ -730,17 +730,17 @@ if (dep_debug) then
 	_m = createMarker["dep_mrk_enemy_grps", [_debuginfo_x,_debuginfo_y]];
     _m setMarkerType "mil_dot";
 };
-if ((count dep_zone_markers) > 0) then 
+if ((count dep_zone_markers) > 0) then
 {
-    if ("all" in dep_zone_markers) then 
-    { 
-        dep_zone_markers = ["patrol","forpat","antiair","roadblock","town","roadpop","military","bunker","ambush"]; 
+    if ("all" in dep_zone_markers) then
+    {
+        dep_zone_markers = ["patrol","forpat","antiair","roadblock","town","roadpop","military","bunker","ambush"];
     };
     ["Placing markers on the following locations: %1", dep_zone_markers] spawn dep_fnc_log;
-    
+
     for [{_g=0}, {_g<(count dep_locations)}, {_g=_g+1}] do {
         _location = dep_locations select _g;
-        if ((_location select 1) in dep_zone_markers) then {            
+        if ((_location select 1) in dep_zone_markers) then {
             _location set [11, format ["depmarker-%1",_g]];
             dep_locations set [_g, _location];
             [_location] spawn dep_fnc_update_marker;
@@ -752,7 +752,7 @@ dep_num_loc = (count dep_locations);
 
 if (dep_precache) then
 {
-    for "_g" from 0 to (dep_num_loc - 1) do 
+    for "_g" from 0 to (dep_num_loc - 1) do
     {
         _location = dep_locations select _g;
         if ((_location select 1) == "antiair") then {
@@ -777,24 +777,24 @@ publicVariable "dep_ready";
 [] spawn dep_fnc_airpatrols;
 
 dep_countunits = false;
-while {true} do 
-{            
+while {true} do
+{
     dep_players = [];
-    if (isMultiplayer) then 
+    if (isMultiplayer) then
     {
         dep_players = playableUnits;
     } else {
         {
-            if ((side _x) == dep_own_side) then { 
+            if ((side _x) == dep_own_side) then {
                 dep_players = dep_players + [_x];
             };
         } forEach allUnits;
     };
-    
+
     // Dynamic max amount of ai at locations
     dep_num_players = count dep_players;
     dep_max_ai_loc = round (((dep_num_players * dep_aim_player) + 1) * dep_base_ai_loc);
-    
+
     // Also check connected UAV's
     _UAVs = [];
     {
@@ -802,7 +802,7 @@ while {true} do
         if !(isNull _uav) then { _UAVs = _UAVs + [_uav]; };
     } forEach dep_players;
     dep_players = dep_players + _UAVs;
-    
+
     // Get zones
     dep_zones = [];
     dep_hostile_zones = [];
@@ -820,7 +820,7 @@ while {true} do
             };
         };
     };
-            
+
     for "_g" from 0 to (dep_num_loc - 1) do {
         _location   = dep_locations select _g;
         _pos        = _location select 0;
@@ -835,7 +835,7 @@ while {true} do
         _tooclose   = false;
         _holding    = false;
         _blacklist  = false;
-        
+
         // Check if active location is clear
         if (_active && !_clear) then {
             _alive = 0;
@@ -845,7 +845,7 @@ while {true} do
                     if (alive _x) then { _alive = _alive + 1; };
                 } foreach (units _grp);
             } foreach _groups;
-            
+
             if (_enemies > 0) then {
                 if ((_alive / _enemies) < 0.1) then {
                     // If number of enemies alive below 10% concider this location clear.
@@ -871,14 +871,14 @@ while {true} do
                 ["Removed cleared location %1 from cache", _g] spawn dep_fnc_log;
             };
         };
-        
+
         // Check if location is close to blacklisted positions
         {
             if ((_pos distance _x) < (_radius * 2)) exitWith {_blacklist = true; };
         } foreach dep_act_bl;
-        
+
         // Check if at least 1 player is close
-        if (!_blacklist) then {            
+        if (!_blacklist) then {
             _closest = 999999;
             {
                 _speedok = true;
@@ -888,13 +888,13 @@ while {true} do
                     if (((getPos _x) select 2) > dep_act_height) then { _heightok = false; };
                     if ((speed _x) > dep_act_speed) then { _speedok = false; };
                 };
-                
+
                 if ((_speedok && _heightok)) then {
                     _distance = (getPos _x) distance _pos;
                     if (_distance < _closest) then { _closest = _distance; };
                 };
             } forEach dep_players;
-            
+
             if (_type == "antiair") then {
                 // Anti air locations have 3x greater activation distance
                 if (_closest < (_radius + (dep_act_dist * 3))) then { _close = true; };
@@ -904,11 +904,11 @@ while {true} do
 
             // Don't activate when players are too close
             if (_closest < (2 * _radius) && _type != "patrol") then { _tooclose = true; };
-            
+
             // Are players holding the location?
             if (_closest <= _radius) then { _holding = true; };
         };
-        
+
         // Should the location be respawned?
         if (!_close && _clear) then {
             _respawn_timeout = 0;
@@ -924,7 +924,7 @@ while {true} do
                 _all_zones = count dep_zones;
                 if (_all_zones > 0) then {
                     _respawn_timeout_multiplier = ((_clear_zones / _all_zones) + 1) ^ 2;
-                    //["timeout %1 multipl %2 result %3", _respawn_timeout, _respawn_timeout_multiplier, (_respawn_timeout * _respawn_timeout_multiplier)] spawn dep_fnc_log; 
+                    //["timeout %1 multipl %2 result %3", _respawn_timeout, _respawn_timeout_multiplier, (_respawn_timeout * _respawn_timeout_multiplier)] spawn dep_fnc_log;
                     _respawn_timeout = _respawn_timeout * _respawn_timeout_multiplier;
                 };
                 if ((time - (_location select 12)) > _respawn_timeout) then {
@@ -936,7 +936,7 @@ while {true} do
                     _loccache set [1, _location select 14];
                     if ((count _loccache) < 3) then { _loccache set [2, []]; };
                     dep_loc_cache set [_g , _loccache];
-                    
+
                     // Remove all objects
                     {
                         if !(isNull _x) then {
@@ -944,20 +944,20 @@ while {true} do
                         };
                     } forEach (_location select 8);
                     _location set [8, []];
-                    
+
                     [_location] spawn dep_fnc_update_marker;
                     dep_locations set [_g, _location];
                 };
             };
         };
-        
+
         // Players are holding a location
         if (_holding && _clear) then {
             // Reset the respawn timer
             _location set [12, time];
             dep_locations set [_g, _location];
         };
-        
+
         if (_close && !_clear) then {
             // Players are close and location not clear, should enemies be spawned?
             if (!dep_exceeded_group_limit && !dep_exceeded_ai_limit) then {
@@ -985,7 +985,7 @@ while {true} do
                 };
             };
         };
-        
+
         if (dep_countunits) then
         {
             dep_allgroups = [];
@@ -993,7 +993,7 @@ while {true} do
             dep_total_ai = 0;
             dep_total_civ = 0;
             {
-                if (side _x == dep_side) then { 
+                if (side _x == dep_side) then {
                     dep_allgroups = dep_allgroups + [_x];
                     _grp = _x;
                     {
@@ -1014,7 +1014,7 @@ while {true} do
             } forEach allGroups;
             //["Total AI: %1 Total groups %2", dep_total_ai, (count dep_allgroups)] spawn dep_fnc_log;
             dep_countunits = false;
-            
+
             if (dep_total_ai >= dep_max_ai_tot) then {
                 dep_exceeded_ai_limit = true;
                 ["AI limit of %1 reached!", dep_max_ai_tot, dep_total_ai] spawn dep_fnc_log;
@@ -1030,7 +1030,7 @@ while {true} do
         };
         sleep 0.02;
     };
-    
+
     _fps = diag_fps;
     if (dep_debug) then {
         "dep_mrk_totalai" setMarkerText format["# %2 enemies: %1", dep_total_ai, dep_side];
