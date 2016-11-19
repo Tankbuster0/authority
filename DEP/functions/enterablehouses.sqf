@@ -22,7 +22,7 @@ _size = _this select 1;
 _pos set [2, 0];
 
 _validhouses = [];
-_houses = nearestObjects [_pos, ["House"], _size, false];
+_houses = nearestObjects [_pos, ["House"], _size/*, false*/];
 {
     _enterable = [_x] call dep_fnc_isenterable;
     if (_enterable) then {

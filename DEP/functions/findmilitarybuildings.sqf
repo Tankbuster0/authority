@@ -28,10 +28,10 @@ switch (dep_worldname) do {
     case "tanoa";
     case "stratis";
     case "altis": {
-        _buildings = nearestObjects [_pos, ["Cargo_HQ_base_F","Cargo_House_base_F","Cargo_Tower_base_F"], _radius, false];
+        _buildings = nearestObjects [_pos, ["Cargo_HQ_base_F","Cargo_House_base_F","Cargo_Tower_base_F"], _radius/*, false*/];
     };
     default {
-        _allbuildings = nearestObjects [_pos, ["House"], _radius, false];
+        _allbuildings = nearestObjects [_pos, ["House"], _radius/*, false*/];
         _keywords = ["mil_","_fort","hangar"];
 
         {

@@ -22,7 +22,7 @@ _size = _this select 1;
 
 _pos set [2, 0];
 _keywords = ["t_"];
-_objects = nearestObjects [_pos, [], _size, false];
+_objects = nearestObjects [_pos, [], _size/*, false*/];
 _validobjects = [];
 {
 	_ok = false;

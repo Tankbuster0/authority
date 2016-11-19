@@ -165,7 +165,7 @@ if (dep_housepop > 0) then
 		_starttime = time;
 		"Finding buildings" spawn dep_fnc_log;
 	};
-	_buildings = nearestObjects [dep_map_center, ["House"], dep_map_radius, false];
+	_buildings = nearestObjects [dep_map_center, ["House"], dep_map_radius/*, false*/];
 	_numbuildings = 0;
 
 	if (dep_debug) then {

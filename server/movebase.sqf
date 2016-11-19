@@ -111,7 +111,7 @@ sleep 5;
 diag_log "***clearing landing point";
 waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {sleep 0.5;(getposATL mycontainer select 2) < 20};
-_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40, false];
+_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40/*, false*/];
 //_naughtybaseobjects = _blubasedroppos nearobjects 20;
 if (count _naughtybaseobjects > 0) then
 	{
