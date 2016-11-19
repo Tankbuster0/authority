@@ -12,7 +12,7 @@ _possibleconvoystartpoints = _cpt nearEntities ["Logic", 5000];
 // found a bunch of enemyheld towns between 3k and 1.5k away. Now take the one that is furthest from blufor
 //find nearest blufor town
 {
-	_nearestblufors = nearestobjects [_x, ["Flag_Blue_F"], 5000];
+	_nearestblufors = nearestobjects [_x, ["Flag_Blue_F"], 5000, false];
 	if (_nearestblufors isEqualTo []) exitWith {_bestconvoystartpoint = _x};
 	_data1 = _nearestblufors select 0;
 	if ((_data1 distance _x) > _furthestdistsofar) then
