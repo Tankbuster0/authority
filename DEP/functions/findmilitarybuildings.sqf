@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 private ["_pos","_radius","_allbuildings","_buildings","_building","_checkenterable","_ok","_keywords"];
 _pos                = _this select 0;
 _radius             = _this select 1;
-_checkenterable     = if (count _this > 2) then { _this select 2 } else { true }; 
+_checkenterable     = if (count _this > 2) then { _this select 2 } else { true };
 
 _allbuildings = [];
 _buildings = [];
@@ -28,29 +28,29 @@ switch (dep_worldname) do {
     case "tanoa";
     case "stratis";
     case "altis": {
-        _buildings = nearestObjects [_pos, ["Cargo_HQ_base_F","Cargo_House_base_F","Cargo_Tower_base_F"], _radius];
+        _buildings = nearestObjects [_pos, ["Cargo_HQ_base_F","Cargo_House_base_F","Cargo_Tower_base_F"], _radius, false];
     };
     default {
-        _allbuildings = nearestObjects [_pos, ["House"], _radius];
+        _allbuildings = nearestObjects [_pos, ["House"], _radius, false];
         _keywords = ["mil_","_fort","hangar"];
 
         {
             _ok = false;
             _building = _x;
-            
-            // Check if it's a military building    
+
+            // Check if it's a military building
             {
                 /*_result = [(toLower str _building), _x] call CBA_fnc_find;
                 if (_result >= 0) exitWith { _ok = true;  };*/
                 _result = [_x, (str _building)] call BIS_fnc_inString;
                 if (_result) exitWith { _ok = true;  };
             }forEach _keywords;
-            
+
             // Check if it's enterable
             if (_ok && _checkenterable) then {
                 _ok = [_building] call dep_fnc_isenterable;
             };
-            
+
             // Add it to the array
             if (_ok) then {
                 _buildings = _buildings + [_building];

@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -21,5 +21,5 @@ _size = _this select 1;
 
 _pos set [2, 0];
 _classnames = ["Land_Bridge_HighWay_PathLod_F", "Land_Bridge_Concrete_PathLod_F", "Land_Bridge_Asphalt_PathLod_F", "Land_Bridge_01_PathLod_F"];
-_bridges = nearestObjects [_pos, _classnames, _size];
+_bridges = nearestObjects [_pos, _classnames, _size, false];
 _bridges;
