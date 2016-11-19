@@ -9,7 +9,6 @@ if (not isServer) exitWith
 	[[_this select 0], "server\assetrespawn.sqf"] remoteexec ["execVM", 2];
 	};
 
-private ["_oldv","_newv","_respawns","_droppoint","_forget","_nul", "_typefpv", "_typefob", "_droppoint2"];
 if (isServer) then {diag_log "***assetrespawn runs on the server!"};
 if (isDedicated) then {diag_log "***assetrespawn runs on dedicated!"};
 if (hasInterface) then {diag_log "***assetrespawn runs on client!"};
@@ -47,8 +46,8 @@ _droppoint2 = [0,0,0];
 _testradius = 2;
 //_nearestblueflag = getpos ((nearestObjects [_oldv, ["Flag_Blue_F"], 6000]) select 0);
 
-_nearestbluflags = (position _oldv ) nearEntities ["Flag_Blue_F", 8000];
-diag_log format ["*** bluflags found %1", _nearestbluflags];
+_nearestbluflags = _oldv nearEntities ["Flag_Blue_F", 8000];
+diag_log format ["*** bluflags found %1 near oldv %2 which is pos %3", _nearestbluflags, _oldv, getpos _oldv];
 If (count _nearestbluflags > 1) then
 	{
 	_nearestblueflagssorted  =  [_nearestbluflags, [], {_x distanceSqr _oldv}, "ASCEND"] call BIS_fnc_sortBy;
