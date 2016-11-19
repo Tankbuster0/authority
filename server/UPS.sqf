@@ -59,7 +59,7 @@ if (isNil("KRON_UPS_INIT")) then {
 	// find a random position within a radius
 	KRON_randomPos = {private["_cx","_cy","_rx","_ry","_cd","_sd","_ad","_tx","_ty","_xout","_yout"];_cx=_this select 0; _cy=_this select 1; _rx=_this select 2; _ry=_this select 3; _cd=_this select 4; _sd=_this select 5; _ad=_this select 6; _tx=random (_rx*2)-_rx; _ty=random (_ry*2)-_ry; _xout=if (_ad!=0) then {_cx+ (_cd*_tx - _sd*_ty)} else {_cx+_tx}; _yout=if (_ad!=0) then {_cy+ (_sd*_tx + _cd*_ty)} else {_cy+_ty}; [_xout,_yout]};
 	// find any building (and its possible building positions) near a position
-	KRON_PosInfo = {private["_pos","_lst","_bld","_bldpos"];_pos=_this select 0; _lst= nearestObjects [_pos,["House","vbs2_house"],20, false]; if (count _lst==0) then {_bld=0;_bldpos=0} else {_bld=_lst select 0; _bldpos=[_bld] call KRON_BldPos}; [_bld,_bldpos]};
+	KRON_PosInfo = {private["_pos","_lst","_bld","_bldpos"];_pos=_this select 0; _lst= nearestObjects [_pos,["House","vbs2_house"],20/*, false*/]; if (count _lst==0) then {_bld=0;_bldpos=0} else {_bld=_lst select 0; _bldpos=[_bld] call KRON_BldPos}; [_bld,_bldpos]};
 	/// find the highest building position
 	KRON_BldPos = {private ["_bld","_bi","_bldpos","_maxZ","_bp","_bz","_higher"];_bld=_this select 0;_maxZ=0;_bi=0;_bldpos=0;while {_bi>=0} do {_bp = _bld BuildingPos _bi;if ((_bp select 0)==0) then {_bi=-99} else {_bz=_bp select 2; _higher = ((_bz>_maxZ) || ((abs(_bz-_maxZ)<.5) && (random 1>.5))); if ((_bz>4) && _higher) then {_maxZ=_bz; _bldpos=_bi}};_bi=_bi+1};_bldpos};
 	KRON_OnRoad = {private["_pos","_car","_tries","_lst"];_pos=_this select 0; _car=_this select 1; _tries=_this select 2; _lst=_pos nearRoads 4; if ((count _lst!=0) && (_car || !(surfaceIsWater _pos))) then {_tries=99}; (_tries+1)};

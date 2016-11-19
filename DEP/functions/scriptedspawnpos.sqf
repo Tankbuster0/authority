@@ -20,7 +20,7 @@ _pos  = _this select 0;
 _range  = _this select 1;
 _delete = if ((count _this) > 2) then { _this select 2 } else { false };
 
-_arrows = nearestObjects [_pos, ["Sign_Arrow_Blue_F"], _range, false];
+_arrows = nearestObjects [_pos, ["Sign_Arrow_Blue_F"], _range/*, false*/];
 _spawnpos = [];
 {
 	_spawnpos = _spawnpos + [(getPosATL _x)];

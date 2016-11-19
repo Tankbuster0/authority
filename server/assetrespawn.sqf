@@ -44,10 +44,10 @@ _respawns2 = _respawns - [_oldv];
 //diag_log format ["*** rspawns minus the old veh %1", _respawns2];
 _droppoint2 = [0,0,0];
 _testradius = 2;
-_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000, false]);
+_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000/*, false*/]);
 if ((count _nearestblueflags) < 1) then
 	{
-		_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000], false);
+		_nearestblueflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000]/*, false*/);
 
 	};
 diag_log format ["*** bluflags found %1 near oldv %2 which is pos %3", _nearestbluflags, _oldv, getpos _oldv];
