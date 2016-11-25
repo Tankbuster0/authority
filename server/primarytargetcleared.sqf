@@ -8,6 +8,7 @@ nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorBlue";
 _newflag = "Flag_Blue_F" createVehicleLocal (getpos cpt_flag);// replace the red flag with a LOCALLY NAMED blue one (so it's never deleted)
 deleteVehicle cpt_flag;// delete the globally named (but only created on server) red flag
+blueflags pushBack _newflag;
 sleep 0.5;
 debugendmission = false;
 //find the player nearest to the new blue flag, and call the airdrop on him. If this is target 1, this must be the fob vehicle

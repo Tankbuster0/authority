@@ -34,6 +34,7 @@ heartandmindscore = 0;
 civkillcount = 0;
 reinforcementcounter = 0;
 captivekillcounter = 0;
+blueflags = [];
 
 // CQB Arrs
 // CQB Center Troops
