@@ -161,7 +161,7 @@ if (_eventualtype isKindOf "Air") then
 		[_cargo, "prizebox"] call fnc_setVehicleName;
 	};
 sleep 2;
-_cargo setvectorup (surfaceNormal (getpos cargo));
+_cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
 _movingtowardsend = true;
 while {_movingtowardsend} do
