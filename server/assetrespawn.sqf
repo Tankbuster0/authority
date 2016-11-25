@@ -1,6 +1,6 @@
 //by tankbuster
 _myscript = "assetrespawn.sqf";
-private ["_myscript","_oldv","_newv","_respawns","_droppoint","_forget","_nul","_typefpv","_typefob","_droppoint2","_respawns2","_testradius","_nearestblueflag","_nearestbluflags","_nearestblueflagssorted"];
+private ["_myscript","_oldv","_newv","_respawns","_droppoint","_forget","_nul","_typefpv","_typefob","_droppoint2","_respawns2","_testradius","_nearestblueflag","_nearestbluflags","_nearestblueflagssorted", "_sortedblueflags"];
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 if (not isServer) exitWith
@@ -37,13 +37,20 @@ if (_typefob) then
 	};
 _respawns = [west] call bis_fnc_getRespawnPositions;
 _respawns2 = _respawns - [_oldv];
-
-_nearestbluflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000/*, false*/]);
+if ((count blueflags) > 1) then
+	{
+	_sortedblueflags = [blueflags, [],{_oldv distanceSqr _x}, "ASCEND" ];
+	blueflags = _sortedblueflags;
+	};
+_nearestblueflag = blueflags select 0;
+/*
+_nearestbluflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000]);
 if ((count _nearestbluflags) < 1) then
 	{
-		_nearestbluflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000]/*, false*/);
+		_nearestbluflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000]);
 	};
 _nearestblueflag = _nearestbluflags select 0;
+*/
 // ^^^^ get the nearest blue flag position. there's 1 at the beach and another at each taken target.
 _droppoint2 = [0,0,0];
 _testradius = 2;
