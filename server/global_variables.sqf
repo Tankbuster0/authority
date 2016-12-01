@@ -15,8 +15,8 @@ switch (tolower worldName) do
 	{
 		case "altis" :
 			{
-			forwardpointvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
-			fobvehicleclassname = "CUP_B_Mastiff_HMG_GB_W";
+			forwardpointvehicleclassname = "CUP_B_RG31_M2_OD_USMC";
+			fobvehicleclassname = "CUP_B_BAF_Coyote_L2A1_W";
 			};
 		case "tanoa" :
 			{
@@ -26,6 +26,7 @@ switch (tolower worldName) do
 	};
 
 publicVariable "fobvehicleclassname";
+publicVariable "forwardpointvehicleclassname";
 blufordropaircraft = "B_T_VTOL_01_vehicle_F";
 cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "];
 
