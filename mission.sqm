@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=89;
+		nextID=91;
 	};
 	class MarkerIDProvider
 	{
@@ -42,9 +42,9 @@ addons[]=
 	"A3_Modules_F_ObjectModifiers",
 	"A3_Modules_F_Supports",
 	"A3_Ui_F",
-	"A3_Soft_F_MRAP_01",
 	"A3_Weapons_F_Ammoboxes",
-	"A3_Supplies_F_Exp_Ammoboxes"
+	"A3_Supplies_F_Exp_Ammoboxes",
+	"A3_Soft_F_Exp_LSV_01"
 };
 class AddonsMetaData
 {
@@ -137,15 +137,15 @@ class AddonsMetaData
 		};
 		class Item12
 		{
-			className="A3_Soft_F";
-			name="Arma 3 Alpha - Unarmored Land Vehicles";
+			className="A3_Supplies_F_Exp";
+			name="Arma 3 Apex - Ammoboxes and Supplies";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
 		class Item13
 		{
-			className="A3_Supplies_F_Exp";
-			name="Arma 3 Apex - Ammoboxes and Supplies";
+			className="A3_Soft_F_Exp";
+			name="Arma 3 Apex - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
@@ -2160,24 +2160,6 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8447.1631,109.06186,25117.4};
-				angles[]={0.059934605,0,6.0463791};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				name="forward";
-			};
-			id=86;
-			type="B_MRAP_01_F";
-			atlOffset=0.10500336;
-		};
-		class Item24
-		{
-			dataType="Object";
-			class PositionInfo
-			{
 				position[]={8440.5098,107.44786,25127.105};
 				angles[]={0.16125098,0,5.9200344};
 			};
@@ -2189,7 +2171,7 @@ class Mission
 			id=87;
 			type="Box_NATO_Wps_F";
 		};
-		class Item25
+		class Item24
 		{
 			dataType="Object";
 			class PositionInfo
@@ -2205,6 +2187,24 @@ class Mission
 			};
 			id=88;
 			type="Box_IED_Exp_F";
+		};
+		class Item25
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8447.1563,109.03281,25117.4};
+				angles[]={0.059934605,0,6.0463791};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="forward";
+			};
+			id=89;
+			type="B_LSV_01_armed_F";
+			atlOffset=0.10500336;
 		};
 	};
 	class Connections

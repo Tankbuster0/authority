@@ -74,7 +74,7 @@ if(isNil("LV_vehicleInit"))then{LV_vehicleInit = compile preprocessFile "LV\LV_f
 //Unit arrays:ADJ REV 21 JON
 _BLUmen = ["B_soldier_AR_F","B_soldier_exp_F","B_Soldier_GL_F","B_soldier_M_F","B_medic_F","B_Soldier_F","B_soldier_repair_F","B_soldier_LAT_F","B_Soldier_SL_F","B_Soldier_lite_F","B_Soldier_TL_F"];
 _OPFmen = ["CUP_O_MVD_Soldier_TL","CUP_O_MVD_Soldier_MG","CUP_O_MVD_Soldier_AT", "CUP_O_MVD_Soldier_GL", "CUP_O_MVD_Sniper","CUP_O_MVD_Soldier_Marksman","CUP_O_MVD_Soldier_GL","CUP_O_MVD_Soldier_GL","CUP_O_MVD_Soldier_TL","CUP_O_MVD_Soldier_MG","CUP_O_MVD_Soldier_AT", "CUP_O_MVD_Soldier_GL", "CUP_O_MVD_Sniper","CUP_O_MVD_Soldier_Marksman","CUP_O_MVD_Soldier_GL","CUP_O_MVD_Soldier_GL","CUP_O_MVD_Soldier_TL","CUP_O_MVD_Soldier_MG","CUP_O_MVD_Soldier_AT", "CUP_O_MVD_Soldier_GL", "CUP_O_MVD_Sniper","CUP_O_MVD_Soldier_Marksman","CUP_O_MVD_Soldier_GL","CUP_O_MVD_Soldier_GL"];
-_chopperTypes = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_Mi8_medevac_RU"];//"O_HelO_Heli_Transport_04_bench_F"
+_chopperTypes = ["CUP_O_Mi8_SLA_1","O_T_VTOL_02_infantry_F","O_T_VTOL_02_vehicle_F","O_Heli_Transport_04_medevac_F"];//"O_HelO_Heli_Transport_04_bench_F"
 //Side related group creation:
 switch(_side)do{
 	case 1:{
