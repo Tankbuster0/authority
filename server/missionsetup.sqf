@@ -106,7 +106,7 @@ if (isNil {_frigateposdata}) then
 
 //Make stuff
 // Frig
-frigate = createVehicle ["CUP_B_Frigate_ANZAC", _fpos, [], 0, "NONE"];
+frigate = createVehicle ["C_Boat_Civil_04_F", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
 frigate setCaptive true;
 // Arty Vehicle

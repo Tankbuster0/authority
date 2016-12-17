@@ -148,7 +148,7 @@ while { count _buildingPosList < _possibleCenterBuildingCount} do
 			if (random 100 > (100 - _chanceOfOccupiedStaticMG)) then
 			{
 				//Fun easteregg :D
-				_unit = ["CUP_O_DSHKM_ChDKZ", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateStatic;
+				_unit = ["O_HMG_01_high_F", _x select 0, _watchpos , _grp, false] call AM_fnc_CreateStatic;
 			}else{
 				_unit = [selectRandom opfor_CQB_soldier, _x select 0, _watchpos , _grp, false] call AM_fnc_CreateUnit;
 			};

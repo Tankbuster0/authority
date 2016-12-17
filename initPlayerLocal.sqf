@@ -71,7 +71,7 @@ player addEventHandler [ "Respawn", {
 
 // Arty JIP stuff
 /*
-if ((typeOf player) == "CUP_B_BAF_Soldier_JTAC_MTP") then  {
+if ( player == "alpha_1") then  {
 	player synchronizeObjectsAdd [SupportReq];
 	[player, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
 	BIS_supp_refresh = TRUE;

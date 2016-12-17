@@ -115,7 +115,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
 	_cargo addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetin.sqf"}];
 	_cargo addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
-	[forward, "[[[[],[]],[[""CUP_30Rnd_556x45_Stanag"",""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""CUP_30Rnd_556x45_G36"",""CUP_Javelin_M"",""CUP_MAAWS_HEAT_M"",""CUP_MAAWS_HEDP_M"",""CUP_SMAW_HEDP_M"",""Titan_AA"",""Titan_AT"",""CUP_Stinger_M""],[25,25,25,25,20,25,20,20,15,20,20,10]],[[],[]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
+	[forward, "[[[[],[]],[[""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""20Rnd_556x45_UW_mag"",""NLAW_F"",""NLAW_F"",""130Rnd_338_Mag"",""Titan_AT"",""Titan_AA"",""Titan_AT"",""Titan_AA""],[25,25,25,20,25,20,20,15,20,20,10]],[[],[]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
 	[_cargo, "forward"] call fnc_setVehicleName;
 
 	};
