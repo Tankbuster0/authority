@@ -5,10 +5,10 @@ publicVariable "islandcentre";
 debugendmission = false;
 testservernames = ["Tanky-Test"];
 
-opfor_reinf_truck_soldier = "CUP_O_RU_Soldier_GL_EMR";
-opfor_reinf_truck =  "CUP_O_Ural_Open_RU";
+opfor_reinf_truck_soldier = "O_Soldier_GL_F";
+opfor_reinf_truck =  "O_Truck_03_transport_F";
 
-opfor_reinf_helos = ["CUP_O_Mi8_SLA_1","CUP_O_Mi8_SLA_2","CUP_O_MI6T_RU","CUP_O_Mi8_medevac_RU"];
+opfor_reinf_helos = ["O_Heli_Light_02_F","O_Heli_Transport_04_covered_F","O_T_VTOL_02_infantry_F","CUP_O_Mi8_medevac_RU"];
 
 airdropcounter = 0;
 switch (tolower worldName) do
