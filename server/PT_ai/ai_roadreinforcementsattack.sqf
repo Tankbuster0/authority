@@ -15,7 +15,7 @@ if ((playersNumber west) > 0) then
 	_radius = 1000;
 	while {_possibletargets isEqualTo []} do
 		{
-		_possibletargets =  (position _mydude) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", _radius];
+		_possibletargets =  (position _mydude) nearEntities ["SoldierWB", _radius];
 		_radius = _radius + 1000;
 		};
 	_possibletargets = _possibletargets apply { [_x distance _mydude, _x] } ;

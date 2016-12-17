@@ -112,8 +112,8 @@ dep_ground_vehicles = ["I_C_Offroad_02_unarmed_F","I_C_Van_01_transport_F","I_G_
 dep_air_vehicles     = ["I_C_Plane_Civil_01_F","I_Heli_light_03_F","I_C_Heli_Light_01_civil_F","I_Heli_Transport_02_F","I_Heli_light_03_F","I_Heli_light_03_unarmed_F","O_Heli_Light_02_unarmed_F"];
 
 // Static weapons
- dep_static_aa       = "CUP_I_ZU23_NAPA";
- dep_static_at       = "CUP_I_SPG9_NAPA";
- dep_static_hmg      = "CUP_I_DSHKM_NAPA";
- dep_static_gmg      = "CUP_I_DSHKM_NAPA";
- dep_static_hmg_tri  = "CUP_I_DSHKM_NAPA";
+ dep_static_aa       = "O_static_AA_F";
+ dep_static_at       = "O_static_AA_F";
+ dep_static_hmg      = "O_HMG_01_high_F";
+ dep_static_gmg      = "O_GMG_01_high_F";
+ dep_static_hmg_tri  = "O_HMG_01_high_F";

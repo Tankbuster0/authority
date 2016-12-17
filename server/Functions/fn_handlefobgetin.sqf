@@ -1,9 +1,9 @@
 _myscript = "handlefobgetin.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
-if (!isNull(commander (_this select 0))) then 
+if (!isNull(commander (_this select 0))) then
 {
-	if ((_this select 2)  == (commander (_this select 0)) && ((typeOf (_this select 2)) != "CUP_B_BAF_Soldier_JTAC_MTP") ) then 
+	if ((_this select 2)  == (commander (_this select 0)) && ((typeOf (_this select 2)) != "B_soldier_f") ) then
 	{
 		hint format ["Getting in %1",_this select 2];
 		//(_this select 2) synchronizeObjectsAdd [SupportReq];

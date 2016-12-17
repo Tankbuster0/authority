@@ -49,24 +49,24 @@ for "_count" from _start to _lc do
 	switch ((floor (random 5))) do
 		{
 		case 0: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "CUP_O_D30_AT_RU", _staticgrp ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "O_static_AT_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AA")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "CUP_O_ZU23_RU", _staticgrp ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_AA")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "O_static_AA_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_o_metis_ru", _staticgrp ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_AT")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "O_static_AT_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 3: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_o_kord_high_ru", _staticgrp ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "O_HMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 4: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;
-				[_mypos, _mydir, "cup_o_kord_ru", _staticgrp ] call bis_fnc_spawnVehicle;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+				[_mypos, _mydir, "O_GMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 
 		};
@@ -78,7 +78,7 @@ for "_count" from _start to _lc do
 if (testmode) then {diag_log "**** sptu adds a mortar"};
 	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
-	_mgunner = _staticgrp createUnit ["CUP_O_RU_Soldier", _mypos,[],0,"NONE"];
+	_mgunner = _staticgrp createUnit ["O_support_Mort_F", _mypos,[],0,"NONE"];
 	_mgunner moveInGunner _veh;
 	_mgunner assignAsGunner _veh;
 	mortar_gunners pushback gunner _veh;
@@ -92,10 +92,10 @@ if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,50,0] call bis_fnc_findSafePos;
 	switch ((floor (random 4))) do
 		{
-		case 0: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection")] call BIS_fnc_spawnGroup;};
-		case 1: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_AT")] call BIS_fnc_spawnGroup;};
-		case 2: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_SniperTeam")] call BIS_fnc_spawnGroup;};
-		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "CUP_O_RU" >> "Infantry" >> "CUP_O_RU_InfSection_MG")] call BIS_fnc_spawnGroup;};
+		case 0: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;};
+		case 1: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_AT")] call BIS_fnc_spawnGroup;};
+		case 2: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_ReconSquad")] call BIS_fnc_spawnGroup;};
+		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_MG")] call BIS_fnc_spawnGroup;};
 		};
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
@@ -105,7 +105,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 
 		_veh = selectRandom opforstaticlandvehicles;
-		_staticveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_AT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+		_staticveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 
 	sleep 0.2;
 	// patrolling  apc /ifv group start
@@ -113,7 +113,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 		{
 		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
 		_veh = selectRandom opforpatrollandvehicles;
-		_patrolveh = [_mypos, east, [_veh, "CUP_O_RU_Soldier_SL", "CUP_O_RU_Soldier_AT", "CUP_O_RU_Soldier_GL"]] call BIS_fnc_spawngroup;
+		_patrolveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
 		if (testmode) then {diag_log "**** sptu adds patyrolling apc/ifv because not microtown"};
 		}
@@ -180,7 +180,7 @@ if (((west countSide allPlayers) > 1) and (not _microtown)) then
 
 						{
 						sleep 60 + (60 * random 5) ;
-						_nearblufors = (position _mygunner) nearEntities ["CUP_Creatures_Military_BAF_Soldier_Base", 400];
+						_nearblufors = (position _mygunner) nearEntities ["B_Soldier_base_f", 400];
 						if ((count _nearblufors) > 0) then
 							{
 							_artytarget = (selectRandom _nearblufors);
@@ -190,7 +190,7 @@ if (((west countSide allPlayers) > 1) and (not _microtown)) then
 							//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
 							//_aka = _mygunner knowsAbout _artytarget;
 							//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
-							_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 2 ];
+							_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 1 ];
 							};
 						};
 
