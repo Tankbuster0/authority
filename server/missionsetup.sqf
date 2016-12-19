@@ -52,7 +52,7 @@ for "_q" from 1 to 3 do
 		_testradius = _testradius * 2;
 	};
 
-	_mytruck = createVehicle ["B_LSV_01_armed_F", _mypos,[],0,"NONE"];
+	_mytruck = createVehicle ["B_Quadbike_01_F", _mypos,[],0,"NONE"];
 	};
 
 // Forward Set up
