@@ -8,7 +8,7 @@ class EditorData
 	toggles=513;
 	class ItemIDProvider
 	{
-		nextID=91;
+		nextID=92;
 	};
 	class MarkerIDProvider
 	{
@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8484.2129,143.53943,25194.549};
-		dir[]={-0.68823236,-0.52724838,-0.49845451};
-		up[]={-0.42703563,0.84969842,-0.30928195};
-		aside[]={-0.58660579,5.33415e-007,0.80994707};
+		pos[]={8505.7158,181.36652,25227.574};
+		dir[]={-0.4607546,-0.63564861,-0.61949849};
+		up[]={-0.37935665,0.77196509,-0.51005769};
+		aside[]={-0.80245101,4.7530921e-007,0.59682834};
 	};
 };
 binarizationWanted=0;
@@ -44,13 +44,14 @@ addons[]=
 	"A3_Ui_F",
 	"A3_Weapons_F_Ammoboxes",
 	"A3_Supplies_F_Exp_Ammoboxes",
-	"A3_Soft_F_Exp_LSV_01"
+	"A3_Soft_F_Exp_LSV_01",
+	"A3_Soft_F_MRAP_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=14;
+		items=15;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -149,6 +150,13 @@ class AddonsMetaData
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
+		class Item14
+		{
+			className="A3_Soft_F";
+			name="Arma 3 Alpha - Unarmored Land Vehicles";
+			author="Bohemia Interactive";
+			url="http://www.arma3.com";
+		};
 	};
 };
 randomSeed=11790110;
@@ -159,8 +167,13 @@ class ScenarioData
 	{
 		gameType="Coop";
 	};
-	corpseLimit=5;
-	corpseRemovalMaxTime=40;
+	wreckManagerMode=3;
+	wreckRemovalMaxTime=411.59161;
+	corpseManagerMode=1;
+	corpseLimit=100;
+	corpseRemovalMinTime=60.000004;
+	corpseRemovalMaxTime=340;
+	minPlayerDistance=200;
 };
 class CustomAttributes
 {
@@ -294,7 +307,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=3;
+					value=1.5;
 				};
 			};
 		};
@@ -370,7 +383,7 @@ class CustomAttributes
 							"SCALAR"
 						};
 					};
-					value=20.348606;
+					value=30.000002;
 				};
 			};
 		};
@@ -469,7 +482,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=26;
+		items=27;
 		class Item0
 		{
 			dataType="Group";
@@ -1422,8 +1435,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8474.0586,107.89081,25117.123};
-						angles[]={0.1023112,0,0.18325958};
+						position[]={8476.6045,108.18685,25123.734};
+						angles[]={6.1861587,0,0.089096971};
 					};
 					side="West";
 					flags=6;
@@ -1462,8 +1475,8 @@ class Mission
 					dataType="Object";
 					class PositionInfo
 					{
-						position[]={8474.0586,107.89081,25117.123};
-						angles[]={0.1023112,0,0.18325958};
+						position[]={8476.6045,108.18685,25123.734};
+						angles[]={6.1861587,0,0.089096971};
 					};
 					side="West";
 					flags=4;
@@ -1541,8 +1554,8 @@ class Mission
 			dataType="Object";
 			class PositionInfo
 			{
-				position[]={8473.5342,110.72065,25117.363};
-				angles[]={0.1023112,0,0.18325958};
+				position[]={8476.0801,111.01669,25123.975};
+				angles[]={6.1861587,0,0.089096971};
 			};
 			side="West";
 			flags=6;
@@ -2205,6 +2218,47 @@ class Mission
 			id=89;
 			type="B_LSV_01_armed_F";
 			atlOffset=0.10500336;
+		};
+		class Item26
+		{
+			dataType="Object";
+			class PositionInfo
+			{
+				position[]={8443.1748,100.80945,25172.943};
+				angles[]={0.24308947,0,6.1167336};
+			};
+			side="Empty";
+			flags=4;
+			class Attributes
+			{
+				name="truck2";
+			};
+			id=91;
+			type="B_MRAP_01_F";
+			atlOffset=7.6293945e-006;
+			class CustomAttributes
+			{
+				class Attribute0
+				{
+					property="ammoBox";
+					expression="[_this,_value] call bis_fnc_initAmmoBox;";
+					class Value
+					{
+						class data
+						{
+							class type
+							{
+								type[]=
+								{
+									"STRING"
+								};
+							};
+							value="[[[[""arifle_MX_F""],[2]],[[""100Rnd_65x39_caseless_mag"",""HandGrenade"",""1Rnd_SmokeBlue_Grenade_shell"",""SmokeShellBlue"",""30Rnd_65x39_caseless_mag_Tracer"",""SatchelCharge_Remote_Mag"",""Titan_AA"",""Titan_AT""],[6,10,10,4,30,5,10,20]],[[""FirstAidKit""],[10]],[[],[]]],false]";
+						};
+					};
+				};
+				nAttributes=1;
+			};
 		};
 	};
 	class Connections
