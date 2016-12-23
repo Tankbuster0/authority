@@ -24,7 +24,7 @@ switch (tolower worldName) do
 			};
 		case "tanoa" :
 			{
-			forwardpointvehicleclassname = "B_LSV_01_armed_F";
+			forwardpointvehicleclassname = "B_CTRG_LSV_01_light_F";
 			fobvehicleclassname = "B_MRAP_01_F";
 			opforpatrollandvehicles = ["O_T_APC_Tracked_02_cannon_F", "O_T_APC_Wheeled_02_rcws_F", "O_T_MRAP_02_gmg_F", "O_T_MRAP_02_hmg_F", "O_T_LSV_02_armed_F"];
 			opforstaticlandvehicles =["O_T_APC_Tracked_02_AA_ghex_F", "O_T_APC_Tracked_02_cannon_ghex_F"];

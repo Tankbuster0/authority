@@ -82,7 +82,7 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 	}forEach _tmp;
 	CQBCleanupArr pushBack _unique;
 }forEach [ "backpack", "item", "magazine", "weapon" ];
-
+/*
 //find a pos for the frigate
 _fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
 // if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
@@ -106,6 +106,8 @@ if (isNil {_frigateposdata}) then
 
 //Make stuff
 // Frig
+
+
 frigate = createVehicle ["C_Boat_Civil_04_F", _fpos, [], 0, "NONE"];
 frigate setdir (random 360);
 frigate setCaptive true;
@@ -115,7 +117,7 @@ _az =  getDir frigate;
 _gopos = [position frigate, -17.5, +_az] call BIS_fnc_relPos;
 _gopos = [_gopos select 0, _gopos select 1, (_gopos select 2) + 16.4];
 frigate setVehicleLock "LOCKED";
-
+*/
 // Take out advanced ammo types;
 Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_AT_mine",[0]];
@@ -158,9 +160,10 @@ BIS_supp_refresh = TRUE;
 publicVariable "BIS_supp_refresh";
 */
 _id = addMissionEventHandler ["HandleDisconnect", {_this execVM "server\cleanupemptyserver.sqf"}];
+/*
 Arty setpos _gopos;
 Arty attachTo [frigate];
-
+*/
 forward allowdamage true;
 
 // authfrigate = createvehicle ["cup frigate", _fpos]
