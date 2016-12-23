@@ -157,7 +157,7 @@ BIS_supp_refresh = TRUE;
 
 publicVariable "BIS_supp_refresh";
 */
-_id = addMissionEventHandler ["HandleDisconnect", {_this execVM "server/cleanupemptyserver.sqf"}];
+_id = addMissionEventHandler ["HandleDisconnect", {_this execVM "server\cleanupemptyserver.sqf"}];
 Arty setpos _gopos;
 Arty attachTo [frigate];
 
