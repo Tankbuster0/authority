@@ -16,7 +16,7 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8505.7158,181.36652,25227.574};
+		pos[]={8468.0098,142.6879,25158.475};
 		dir[]={-0.4607546,-0.63564861,-0.61949849};
 		up[]={-0.37935665,0.77196509,-0.51005769};
 		aside[]={-0.80245101,4.7530921e-007,0.59682834};
@@ -44,14 +44,13 @@ addons[]=
 	"A3_Ui_F",
 	"A3_Weapons_F_Ammoboxes",
 	"A3_Supplies_F_Exp_Ammoboxes",
-	"A3_Soft_F_Exp_LSV_01",
-	"A3_Soft_F_MRAP_01"
+	"A3_Soft_F_Exp_LSV_01"
 };
 class AddonsMetaData
 {
 	class List
 	{
-		items=15;
+		items=14;
 		class Item0
 		{
 			className="A3_Characters_F";
@@ -147,13 +146,6 @@ class AddonsMetaData
 		{
 			className="A3_Soft_F_Exp";
 			name="Arma 3 Apex - Unarmored Land Vehicles";
-			author="Bohemia Interactive";
-			url="http://www.arma3.com";
-		};
-		class Item14
-		{
-			className="A3_Soft_F";
-			name="Arma 3 Alpha - Unarmored Land Vehicles";
 			author="Bohemia Interactive";
 			url="http://www.arma3.com";
 		};
@@ -482,7 +474,7 @@ class Mission
 	};
 	class Entities
 	{
-		items=27;
+		items=26;
 		class Item0
 		{
 			dataType="Group";
@@ -1548,6 +1540,7 @@ class Mission
 				};
 			};
 			id=34;
+			atlOffset=-0.069381714;
 		};
 		class Item3
 		{
@@ -1565,6 +1558,7 @@ class Mission
 			};
 			id=35;
 			type="B_MBT_01_arty_F";
+			atlOffset=-0.069381714;
 		};
 		class Item4
 		{
@@ -2218,24 +2212,6 @@ class Mission
 			id=89;
 			type="B_LSV_01_armed_F";
 			atlOffset=0.10500336;
-		};
-		class Item26
-		{
-			dataType="Object";
-			class PositionInfo
-			{
-				position[]={8443.1748,100.80945,25172.943};
-				angles[]={0.24308947,0,6.1167336};
-			};
-			side="Empty";
-			flags=4;
-			class Attributes
-			{
-				name="truck2";
-			};
-			id=91;
-			type="B_MRAP_01_F";
-			atlOffset=7.6293945e-006;
 			class CustomAttributes
 			{
 				class Attribute0
@@ -2253,7 +2229,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""arifle_MX_F""],[2]],[[""100Rnd_65x39_caseless_mag"",""HandGrenade"",""1Rnd_SmokeBlue_Grenade_shell"",""SmokeShellBlue"",""30Rnd_65x39_caseless_mag_Tracer"",""SatchelCharge_Remote_Mag"",""Titan_AA"",""Titan_AT""],[6,10,10,4,30,5,10,20]],[[""FirstAidKit""],[10]],[[],[]]],false]";
+							value="[[[[""MineDetector"",""launch_O_Titan_F"",""launch_B_Titan_short_tna_F""],[1,3,3]],[[""30Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""SmokeShellBlue"",""3Rnd_HE_Grenade_shell"",""30Rnd_65x39_caseless_mag_Tracer"",""Laserbatteries"",""SatchelCharge_Remote_Mag"",""Titan_AP"",""Titan_AT""],[16,10,5,20,20,6,15,15,15]],[[""FirstAidKit"",""ItemMap"",""Medikit""],[20,1,5]],[[],[]]],false]";
 						};
 					};
 				};
