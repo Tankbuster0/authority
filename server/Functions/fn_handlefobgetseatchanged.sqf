@@ -2,7 +2,7 @@ _myscript = "fn_handlefobgetseatchanged.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
 {
-	if ( _x != "alpha_1") then
+	if ((format ["%1",_x]) != "alpha_1") then
 	{
 		_x synchronizeObjectsRemove  [SupportReq];
 		[_x, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink", _x, false];
