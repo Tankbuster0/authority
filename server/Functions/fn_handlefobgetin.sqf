@@ -1,9 +1,10 @@
 _myscript = "handlefobgetin.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
-if (!isNull(commander (_this select 0))) then
+if (!isNull(effectivecommander (_this select 0))) then // if the vehicle has a commander
 {
 	if ((_this select 2)  == (commander (_this select 0)) && ((typeOf (_this select 2)) != "B_soldier_f") ) then
+	// ^^ the guy who got in is the vehicle commander and is NOT a basic blufor soldier
 	{
 		hint format ["Getting in %1",_this select 2];
 		//(_this select 2) synchronizeObjectsAdd [SupportReq];

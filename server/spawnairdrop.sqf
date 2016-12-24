@@ -115,7 +115,10 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
 	_cargo addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetin.sqf"}];
 	_cargo addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
-	[forward, "[[[[],[]],[[""30Rnd_556x45_Stanag"",""30Rnd_65x39_caseless_green"",""20Rnd_762x51_Mag"",""20Rnd_556x45_UW_mag"",""NLAW_F"",""NLAW_F"",""130Rnd_338_Mag"",""Titan_AT"",""Titan_AA"",""Titan_AT"",""Titan_AA""],[25,25,25,20,25,20,20,15,20,20,10]],[[],[]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
+
+	[forward,"[[[[""MineDetector"",""launch_O_Titan_F"",""launch_B_Titan_short_tna_F""],[1,3,3]],[[""30Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""SmokeShellBlue"",""3Rnd_HE_Grenade_shell"",""30Rnd_65x39_caseless_mag_Tracer"",""Laserbatteries"",""SatchelCharge_Remote_Mag"",""Titan_AP"",""Titan_AT""],[16,10,5,20,20,6,15,15,15]],[[""FirstAidKit"",""ItemMap"",""Medikit""],[20,1,5]],[[],[]]],false]"] call BIS_fnc_initAmmoBox;
+
+	// ^^^ same as put in the sqm, don't forget to change both when changing this!!!
 	[_cargo, "forward"] call fnc_setVehicleName;
 
 	};
