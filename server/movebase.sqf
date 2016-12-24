@@ -156,6 +156,7 @@ _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
 ammoboxpad setpos _mypos;
 baseflag setFlagTexture "pics\hom_flag_white_stripe512.paa";
+blueflags pushback baseflag;
 _mypos = getpos terminalcone;
 deleteVehicle terminalcone;
 blubasedataterminal setpos _mypos;
