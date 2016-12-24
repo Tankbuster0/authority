@@ -39,19 +39,11 @@ _respawns = [west] call bis_fnc_getRespawnPositions;
 _respawns2 = _respawns - [_oldv];
 if ((count blueflags) > 1) then
 	{
-	_sortedblueflags = [blueflags, [],{_oldv distanceSqr _x}, "ASCEND" ];
+	_sortedblueflags = [blueflags, [],{_oldv distanceSqr _x}, "ASCEND" ] call BIS_fnc_sortby;
 	blueflags = _sortedblueflags;
 	};
 _nearestblueflag = blueflags select 0;
-/*
-_nearestbluflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 2000]);
-if ((count _nearestbluflags) < 1) then
-	{
-		_nearestbluflags = (nearestObjects [_oldv, ["Flag_Blue_F"], 6000]);
-	};
-_nearestblueflag = _nearestbluflags select 0;
-*/
-// ^^^^ get the nearest blue flag position. there's 1 at the beach and another at each taken target.
+
 _droppoint2 = [0,0,0];
 _testradius = 2;
 while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distanceSqr _droppoint2) < 2.2))} do
