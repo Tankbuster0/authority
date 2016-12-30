@@ -1,11 +1,9 @@
 _myscript = "handlefobgetout.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 unassignCurator cur;
-if ((format ["%1",(_this select 2)]) != "alpha_1") then
-{
-	//
-	[_this select 2, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink",_this select 2, false];
-} else {};
+
+	// remove arty comms for anyone getting out of vehicle
+[_this select 2, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink",_this select 2, false];
 BIS_supp_refresh = TRUE;
 
 if ((_this select 0) == forward) then
