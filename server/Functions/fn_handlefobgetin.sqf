@@ -1,15 +1,16 @@
 _myscript = "handlefobgetin.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-
-if (!isNull(effectivecommander (_this select 0))) then // if the vehicle has a commander
+params ["_veh", "_seat", "_unit"];
+diag_log format ["***hfgin gets _veh %1_seat %2, _unit %3", _veh, _seat, _unit];
+if (_seat isEqualTo "cargo") then // player is getting into cargo seat
 {
-	if ((_this select 2)  == (commander (_this select 0)) && ((typeOf (_this select 2)) != "B_soldier_f") ) then
-	// ^^ the guy who got in is the vehicle commander and is NOT a basic blufor soldier
+	if !(isEngineOn _veh ) then
+	// ^^ the guy who got in is in cargo seat and vehicle is off
 	{
-		hint format ["Getting in %1",_this select 2];
-		//(_this select 2) synchronizeObjectsAdd [SupportReq];
-		//[_this select 2, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
-		//(_this select 2) remoteExecCall ["tky_fnc_addSupportRequester",_this select 2, false];
-	} else {};
-} else {};
+		hint format ["***%1 getting in %2 seat of %3. adding arty comms", _unit, _seat, _veh];
+		(_unit) synchronizeObjectsAdd [SupportReq];
+		[_unit, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
+		(_unit) remoteExecCall ["tky_fnc_addSupportRequester",_this select 2, false];
+	} else {diag_log "***hfgin says someone got in cargo, but engine was on"};
+} else {diag_log "*** hfgin says someone got in a seat other than cargo"};
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
