@@ -1,23 +1,21 @@
 _myscript = "fn_handlefobgetseatchanged.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 
-{
-	if ((format ["%1",_x]) != "alpha_1") then
-	{
-		_x synchronizeObjectsRemove  [SupportReq];
-		[_x, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink", _x, false];
-	} else {};
-}forEach crew (_this select 0);
+params ["_veh", "_seat1", "_seat2"];
+diag_log format ["***hfgsc gets vehicle = %1, seat1 = %2 and seat2 = %3", _veh, _seat1, _seat2];
 
-if (!isnull (commander (_this select 0)) ) then
-{
-	_cmd = commander (_this select 0);
-	if ( _cmd != "alpha_1") then
+if (((assignedVehicleRole _seat1) select 0)  isEqualTo "cargo" and (!(isEngineOn _veh))) then // they've switched into a cargo seat
 	{
-		_cmd synchronizeObjectsAdd [SupportReq];
-		[_cmd, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_addSupportLink",_cmd, false];
-	} else {};
-} else {};
+		(_seat1) synchronizeObjectsAdd [SupportReq];
+		[_seat1, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
+		(_seat1) remoteExecCall ["tky_fnc_addSupportRequester",_seat1, false];
+	};
+if (!(((assignedVehicleRole _seat1) select 0) isEqualTo "cargo")) then //they've switched into a non cargo seat
+	{
+		[_seat1, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink",_seat1, false];
+	};
+
+
 BIS_supp_refresh = TRUE;
 //removeAllActions fobveh;
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
