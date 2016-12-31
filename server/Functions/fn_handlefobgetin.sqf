@@ -11,6 +11,7 @@ if (_seat isEqualTo "cargo") then // player is getting into cargo seat
 		(_unit) synchronizeObjectsAdd [SupportReq];
 		[_unit, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
 		(_unit) remoteExecCall ["tky_fnc_addSupportRequester",_unit, false];
+		BIS_supp_refresh = TRUE;
 	} else {diag_log "***hfgin says someone got in cargo, but engine was on"};
 } else {diag_log "*** hfgin says someone got in a seat other than cargo"};
 diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
