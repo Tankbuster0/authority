@@ -166,7 +166,7 @@ if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 		};
 } foreach allgroups;
 if (testmode) then {diag_log "**** sptu might start nasty mortar helper"};
-if (((west countSide allPlayers) > 1) and (not _microtown)) then
+if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //and false temporarily turns off this to see if we need it. Old mortars were to powerful
 	{
 		if (testmode) then {diag_log "**** sptu does actually start nasty mortar helper"};
 		{
@@ -185,11 +185,6 @@ if (((west countSide allPlayers) > 1) and (not _microtown)) then
 							{
 							_artytarget = (selectRandom _nearblufors);
 							_mygunner reveal [_artytarget, 3];
-							//_iroa = (position _artytarget) inRangeOfArtillery [[_mygunner], "8Rnd_82mm_Mo_shells"];
-							//_aeta = (vehicle _mygunner) getArtilleryETA [position _artytarget, "8Rnd_82mm_Mo_shells"];
-							//_amags = "8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]);
-							//_aka = _mygunner knowsAbout _artytarget;
-							//diag_log format ["*** mortar guys at %5 told to fire!, is inrange %1 and ETA %2 has ammo %3 and has %4 knowledge of target", _iroa, _aeta, _amags, _aka, (position _mygunner) ];
 							_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 1 ];
 							};
 						};
