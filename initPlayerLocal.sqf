@@ -33,7 +33,8 @@ endLoadingScreen;
 
 
 player addEventHandler [ "Respawn", {
-
+	[SupportReq, ArtySupport] call BIS_fnc_removeSupportLink;
+	BIS_supp_refresh = TRUE;
 	//systemChat "Respawning";
 	//systemChat format[ "state %1", GET_STATE_STR(GET_STATE( player )) ];
 
