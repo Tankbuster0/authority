@@ -119,7 +119,8 @@ if (_droptype == forwardpointvehicleclassname) then
 	_cargo addEventHandler ["Engine", {_nul = [_this select 0, _this select 1] execVM "server\functions\fn_handlefobengine.sqf"}];
 */
 
-	[forward,"[[[[""MineDetector"",""launch_O_Titan_F"",""launch_B_Titan_short_tna_F""],[1,3,3]],[[""30Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""SmokeShellBlue"",""3Rnd_HE_Grenade_shell"",""30Rnd_65x39_caseless_mag_Tracer"",""Laserbatteries"",""SatchelCharge_Remote_Mag"",""Titan_AP"",""Titan_AT""],[16,10,5,20,20,6,15,15,15]],[[""FirstAidKit"",""ItemMap"",""Medikit""],[20,1,5]],[[],[]]],false]"] call BIS_fnc_initAmmoBox;
+
+	[forward,"[[[[""MineDetector"",""launch_O_Titan_F"",""launch_B_Titan_short_tna_F""],[1,3,3]],[[""30Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""SmokeShellBlue"",""3Rnd_HE_Grenade_shell"",""30Rnd_65x39_caseless_mag_Tracer"",""Laserbatteries"",""SatchelCharge_Remote_Mag"",""Titan_AP"",""Titan_AT""],[16,10,5,20,20,6,8,10,10]],[[""FirstAidKit"",""ItemMap"",""Medikit"",""Laserdesignator_02_ghex_F"",""ItemRadio"",""ToolKit""],[15,1,5,2,2,2]],[[],[]]],false]"] call BIS_fnc_initAmmoBox;
 
 	// ^^^ same as put in the sqm, don't forget to change both when changing this!!!
 	[_cargo, "forward"] call fnc_setVehicleName;
