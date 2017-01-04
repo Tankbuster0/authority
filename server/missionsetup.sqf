@@ -66,11 +66,13 @@ for "_q" from 1 to 3 do
 
 
 forward setVehiclePosition [_mypos, [],0];
-
+/*
 forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
 forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetin.sqf"}];
 forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
 forward addEventHandler ["Engine", {_nul = [_this select 0, _this select 1] execVM "server\functions\fn_handlefobengine.sqf"}];
+*/
+// ^^^ removed to test client side arty permission system in tky_supportmanager
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 
 {
