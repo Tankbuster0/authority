@@ -4,13 +4,13 @@ while {true} do
 	{
 		if !(alive player) exitWith {};
 		sleep 2;
-		if !(SupportReq in synchronizedObjects) then //if he doesnt already have arty
+		if !(SupportReq in synchronizedObjects player) then //if he doesnt already have arty
 		{
-			if !(engineon vehicle player ) then // and the engine is off
+			if !(isEngineOn vehicle player ) then // and the engine is off
 				{
 					if ((player in forward ) or (player in fobveh)) then //and hes in forward or fobveh
 						{
-							if (((assignedVehicleRole player) select 0) is isEqualTo "cargo" ) then // and hes in cargo seat
+							if (((assignedVehicleRole player) select 0) isEqualTo "cargo" ) then // and hes in cargo seat
 							{
 								(player) synchronizeObjectsAdd [SupportReq];
 								[player, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
@@ -20,7 +20,7 @@ while {true} do
 				}
 				else
 				{
-					if (SupportReq in synchronizedObjects) then //he does have arty but it should be removed..
+					if (SupportReq in synchronizedObjects player) then //he does have arty but it should be removed..
 					{
 						[_this select 2, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink",_this select 2, false];
 						[SupportReq, ArtySupport] call BIS_fnc_removeSupportLink;
