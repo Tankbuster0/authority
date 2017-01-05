@@ -128,7 +128,7 @@ if(_grpSize > (getNumber (configFile >> "CfgVehicles" >> _heliT >> "transportSol
 }else{
 	_vehSpots = _grpSize;
 };
-_man1 = _men selectRandom _men;
+_man1 = selectRandom _men;
 _man = _grp1 createUnit ["O_helipilot_F", _pos, [], 0, "NONE"];
 _man moveInDriver _heli;
 _man assignAsDriver _heli;
