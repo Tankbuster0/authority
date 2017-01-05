@@ -30,7 +30,7 @@ ammobox attachTo [ammoboxpad];
 ammoboxrespawnid = [west, ammobox, "Main Ammobox"] call BIS_fnc_addrespawnposition;
 headmarker1 = createMarker ["headmarker1", _beachheadpos];
 headmarker1 setMarkerShape "rectangle";
-headmarker1 setMarkerSize [7,7];
+headmarker1 setMarkerSize [11,11];
 headmarker1 setMarkerColor "colorwest";
 headmarker1 setMarkerDir 45;
 headmarker2 = createMarker ["headmarker2", _beachheadpos];
@@ -168,7 +168,7 @@ Arty setpos _gopos;
 Arty attachTo [frigate];
 */
 forward allowdamage true;
-
+_nul = execVM "server\replacequads.sqf";
 // authfrigate = createvehicle ["cup frigate", _fpos]
 forward setdamage 0;
 missionrunning = true; publicVariable "missionrunning";
