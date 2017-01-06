@@ -58,6 +58,7 @@ CQBCleanupArr = [];
 // Prizes for Prim Targets
 prizes = ["B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","B_T_APC_Tracked_01_AA_F","B_MBT_01_cannon_F","B_MRAP_01_gmg_F", "B_MRAP_01_hmg_F" ,
 "B_Plane_CAS_01_F", "B_Heli_Transport_01_camo_F","B_Heli_Light_01_armed_F","B_Heli_Transport_03_F", "B_Heli_Attack_01_F", "B_T_VTOL_01_armed_F"];
+//prizes = ["B_Plane_CAS_01_F", "B_Heli_Transport_01_camo_F","B_Heli_Light_01_armed_F","B_Heli_Transport_03_F", "B_Heli_Attack_01_F", "B_T_VTOL_01_armed_F"];
 
 // List of useable landmines
 aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives
