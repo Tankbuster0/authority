@@ -69,17 +69,12 @@ _airstripdata = [];
 for  "_i" from 1 to 10 do // get airstrip data
 	{
 	_secairstrip =  format ["Airstrip_%1", _i];
-	//diag_log format ["***mb @ 46 airstrip name is %1", _secairstrip];
+
 	_airstripilsindata = getarray (configfile >> "CfgWorlds" >> worldName >> "SecondaryAirports" >> _secairstrip >> "ilsTaxiIn");
-	//diag_log format ["***mb @ 48. _airstripilsindata = %1", _airstripilsindata];
 	if ((count _airstripilsindata) > 0) then // we're looking at an existing airstrip
 		{
 		_ils1indata = _airstripilsindata select [0,2]; //take the first 2 numbers, it's the ilsIn1 entry. returns a 2d array
-		//diag_log format ["*** mb @ 52, _ilsindata is %1", _ils1indata];
 		_airstripdata pushback _ils1indata;// pushback it into a master array, so, this is a nested array of 2d positions
-
-	//diag_log format ["***mb @ 55. _airstripdata %1", _airstripdata];
-
 		};
 	};
 // now add the ilsin1 of the islands main airfield...
@@ -91,7 +86,6 @@ _closestdistance = 99999999;
 _closestone = [];
 	{
 		_mydistance = (_x distance _blubasedroppos);
-		//diag_log format ["*** mb @ 60. comparing %1 and %1", _mydistance, _closestdistance];
 		if (_mydistance <= _closestdistance) then
 		{
 			_closestdistance = _mydistance;
@@ -100,19 +94,14 @@ _closestone = [];
 	} foreach _airstripdata;
 
 airhead_container_landing_point = _closestone;
-diag_log format ["***move base says nearest ilsin1 is at %1", _closestone];
-diag_log format ["***movebase is at %1, pos = %2,", cpt_name, _blubasedroppos];
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerText "AIRHEAD";
 _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
-diag_log "*** returned from spawnairdrop";
 sleep 5;
-diag_log "***clearing landing point";
 waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {sleep 0.5;(getposATL mycontainer select 2) < 20};
 _naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40/*, false*/];
-//_naughtybaseobjects = _blubasedroppos nearobjects 20;
 if (count _naughtybaseobjects > 0) then
 	{
 		{
@@ -134,21 +123,16 @@ if (count _naughtybaseobjects > 0) then
 				_testradius = _testradius + _sizeof;
 				};
 
-			diag_log format ["*** moving forward from %1 to %2, a distance of %3", getpos forward, _candidatepos, ((getpos forward) distance2d _candidatepos) ];
 			forward setVehiclePosition [_candidatepos, [],0,"NONE"];
 			}
 			else
 			{
 		    deletevehicle _x;
-			diag_log format ["***removing _naughtybaseobject %1, %2", _x, typeOf _x];
 			};
 		} foreach _naughtybaseobjects;
 	};
 sleep 2;
-
-
 waitUntil {(getposATL mycontainer select 2) < 2};
-diag_log "***removing mycontainer and spawning composition";
 deletevehicle mycontainer;
 blubaseobjects = [cpt_position, 0, _composition] call tky_fnc_t_objectsmapper;
 {_x setdamage 0;} foreach blubaseobjects;
