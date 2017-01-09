@@ -123,6 +123,8 @@ if (_droptype == forwardpointvehicleclassname) then
 
 	// ^^^ same as put in the sqm, don't forget to change both when changing this!!!
 	[_cargo, "forward"] call fnc_setVehicleName;
+	forward setObjectTextureGlobal [0,"a3\soft_f_exp\lsv_01\data\nato_lsv_01_dazzle_co.paa"];
+	[forward,nil,["HideDoor1",0,"HideDoor2",1,"HideDoor3",0,"HideDoor4",1]] call bis_fnc_initVehicle;
 
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
