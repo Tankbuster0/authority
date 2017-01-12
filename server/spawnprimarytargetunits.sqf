@@ -150,23 +150,26 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 {
-	if (side _x == east) then
+	if (side _x isEqualTo east) then
 		{
 		_mygroup = _x;
 		[_mygroup, true, true] call tky_fnc_tc_setskill;
 		if (_removeenemyvests > 0) then
 			{
 				{
-				if ((_removeenemyvests == 2) or ((_removeenemyvests == 1) and (random 1 > 0.8))) then
-					{
-					removeVest _x;
-					}
+				if (_removeenemyvests < 0)  then
+				    {
+				    if (random 1 > 0.5) then
+						{
+						removeVest _x;
+						};
+					};
 				} foreach units _mygroup;
 			};
 		};
 } foreach allgroups;
 if (testmode) then {diag_log "**** sptu might start nasty mortar helper"};
-if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //and false temporarily turns off this to see if we need it. Old mortars were to powerful
+if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //and false temporarily turns off this to see if we need it. Old mortars were too powerful
 	{
 		if (testmode) then {diag_log "**** sptu does actually start nasty mortar helper"};
 		{
