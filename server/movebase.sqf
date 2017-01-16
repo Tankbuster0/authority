@@ -5,7 +5,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
-
+_scriptime = time;
 
 //get the position for the airdrop.
 
@@ -100,8 +100,8 @@ headmarker2 setMarkerText "AIRHEAD";
 _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
 sleep 5;
 waitUntil {sleep 1; not isnil "mycontainer"};
-waitUntil {sleep 0.5;(getposATL mycontainer select 2) < 20};
-_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40/*, false*/];
+waitUntil {sleep 1;(((getposATL mycontainer select 2) < 20) or (time > _scriptime = 120))};
+_naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40, false];
 if (count _naughtybaseobjects > 0) then
 	{
 		{
