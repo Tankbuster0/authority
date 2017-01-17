@@ -9,6 +9,12 @@ while {true} do
 	if (not alive fobveh) then
 		{
 		[fobveh] execVM "server\assetrespawn.sqf";
+		if (fobdeployed) then
+			{
+				[] call tky_fnc_fobvehicledeploymanager;
+				format ["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] remoteexec ["hint", -2];
+			};
+
 		sleep 120;
 		};
 
