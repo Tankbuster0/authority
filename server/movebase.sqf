@@ -100,7 +100,7 @@ headmarker2 setMarkerText "AIRHEAD";
 _handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
 sleep 5;
 waitUntil {sleep 1; not isnil "mycontainer"};
-waitUntil {sleep 1;(((getposATL mycontainer select 2) < 20) or (time > _scriptime = 120))};
+waitUntil {sleep 1;(((getposATL mycontainer select 2) < 20) or (time > _scriptime + 120))};
 _naughtybaseobjects = nearestobjects [_blubasedroppos, [], 40, false];
 if (count _naughtybaseobjects > 0) then
 	{
