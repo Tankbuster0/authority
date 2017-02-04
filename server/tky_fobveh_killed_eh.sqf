@@ -6,7 +6,7 @@ diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 while {true} do
 	{
 	waitUntil {sleep 10; (not (isNull fobveh))};
-	if (not alive fobveh) then
+	if ((not alive fobveh) or (((getPosASL fobveh) select 2) < -4)) then
 		{
 		[fobveh] execVM "server\assetrespawn.sqf";
 		if (fobdeployed) then
