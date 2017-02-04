@@ -123,7 +123,7 @@ pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
 _higherhqpos = [_hqpos select 0, _hqpos select 1, 10 ];
 _hqnet = createVehicle ["Land_IRMaskingCover_01_F", _higherhqpos, [] ,0, "CAN_COLLIDE" ];
 _hqnet allowdamage false;
-pt_hq addEventHandler ["HandleDamage", {[_this select 0] execVM "server\pt_hqkilled.sqf"}]
+pt_hq addEventHandler ["HandleDamage", {[_this select 0] execVM "server\pt_hqkilled.sqf"}];
 if (_hqtype isKindOf "Car") then
 	{
 		_hqnet setdir 90;
