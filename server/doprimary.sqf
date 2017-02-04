@@ -111,16 +111,29 @@ pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkil
 // hq vehicle controls opfor air support
 _hqtype = selectRandom opforhqtypes;
 
+
 _hqpos = [0,0,0];
 _testradius = 50;
 while {_hqpos in [[0,0,0], islandcentre] } do
 	{
-	_hqpos = [cpt_position, 25, _testradius, 7, 0, 0, 0] call BIS_fnc_findSafePos;
+	_hqpos = [cpt_position, 10, _testradius, 23, 0, 0, 0] call BIS_fnc_findSafePos;
 	_testradius = _testradius * 2;
 	};
 pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
-
-
+_higherhqpos = [_hqpos select 0, _hqpos select 1, 10 ];
+_hqnet = createVehicle ["Land_IRMaskingCover_01_F", _higherhqpos, [] ,0, "CAN_COLLIDE" ];
+_hqnet allowdamage false;
+pt_hq addEventHandler ["HandleDamage", {[_this select 0] execVM "server\pt_hqkilled.sqf"}]
+if (_hqtype isKindOf "Car") then
+	{
+		_hqnet setdir 90;
+	};
+if (_hqtype isKindOf "Building") then
+	{
+		_hqnet setdir 180;
+	};
+[_hqnet, 0] call BIS_fnc_setHeight;
+_hqnet allowdamage true;
 
 0 = execVM "server\PT_ai\ai_reinforcementChoppermanager.sqf";
 0 = execVM "server\PT_ai\ai_airsupportmanager.sqf";

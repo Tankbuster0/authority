@@ -20,7 +20,7 @@ switch (tolower worldName) do
 			opforpatrollandvehicles = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F", "O_MRAP_02_gmg_F", "O_MRAP_02_hmg_F", "O_LSV_02_armed_F"];
 			opforstaticlandvehicles =["O_APC_Tracked_02_AA_ghex_F", "O_APC_Tracked_02_cannon_ghex_F"];
 			opfortanks = ["O_MBT_02_cannon_F"];
-			opforhqtypes = ["O_Truck_03_covered_F", "Land_Pod_Heli_Transport_04_box_F"];
+			opforhqtypes = ["O_Truck_03_covered_F", "Land_Cargo_House_V4_F"];
 			};
 		case "tanoa" :
 			{
@@ -29,7 +29,7 @@ switch (tolower worldName) do
 			opforpatrollandvehicles = ["O_T_APC_Tracked_02_cannon_F", "O_T_APC_Wheeled_02_rcws_F", "O_T_MRAP_02_gmg_F", "O_T_MRAP_02_hmg_F", "O_T_LSV_02_armed_F"];
 			opforstaticlandvehicles =["O_T_APC_Tracked_02_AA_ghex_F", "O_T_APC_Tracked_02_cannon_ghex_F"];
 			opfortanks = ["O_T_MBT_02_cannon_ghex_F"];
-			opforhqtypes = ["O_T_Truck_03_covered_ghex_F", "Land_Pod_Heli_Transport_04_box_F"];
+			opforhqtypes = ["O_T_Truck_03_covered_ghex_F", "Land_Cargo_House_V4_F"];
 			};
 	};
 
