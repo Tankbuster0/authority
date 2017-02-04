@@ -8,6 +8,7 @@ while {true} do
 	waitUntil {sleep 10; (not (isNull forward))};
 	if ((not alive forward) or (((getPosASL forward) select 2) < -4)) then
 		{
+		forward setdamage 1;
 		[forward] execVM "server\assetrespawn.sqf";
 		sleep 120;
 		};

@@ -8,6 +8,7 @@ while {true} do
 	waitUntil {sleep 10; (not (isNull fobveh))};
 	if ((not alive fobveh) or (((getPosASL fobveh) select 2) < -4)) then
 		{
+		fobveh setdamage 1;
 		[fobveh] execVM "server\assetrespawn.sqf";
 		if (fobdeployed) then
 			{
