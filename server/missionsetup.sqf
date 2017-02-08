@@ -1,4 +1,4 @@
-//by tankbuster
+f//by tankbuster
 _myscript = "missionsetup";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse"];
@@ -18,7 +18,6 @@ while {((_beachheadpos in [[0,0,0], islandcentre]) or (_refuse))} do
 	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .25), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .50), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .75), _dir]))) then
 		{
 		refuse = true;
-		diag_log format ["***ms finds beachhead has water between it and airbase"]
 		}
 		else
 		{_refuse = false;};
@@ -40,7 +39,6 @@ headmarker2 setMarkerText "BEACHHEAD";
 
 _beachflag = "Flag_Blue_F" createVehicleLocal (_beachheadpos);
 blueflags pushback _beachflag;
-diag_log format ["***ms creates %1 at %2", _beachflag, getpos _beachflag];
 sleep 1;
 for "_q" from 1 to 3 do
 	{
