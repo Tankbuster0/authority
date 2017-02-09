@@ -1,13 +1,6 @@
-[] spawn {
-if (missionNamespace getVariable ["CHVD_loadingDialog",false]) exitWith {true};
-
-if (isNull (findDisplay 2900)) then {
-	_dialog = createDialog "CHVD_dialog";
-	if (!_dialog) exitWith {systemChat "CH View Distance: Error: can't open dialog."};
-};
-
+_dialog = createDialog "CHVD_dialog";
+if (!_dialog) exitWith {systemChat "Error: Can't open 'CH View Distance' dialog."};
 disableSerialization;
-CHVD_loadingDialog = true;
 
 {
 	ctrlSetText _x;
@@ -23,49 +16,11 @@ CHVD_loadingDialog = true;
 } forEach [[1900,CHVD_foot,CHVD_maxView,1901,CHVD_footObj,CHVD_maxObj],[1902,CHVD_car,CHVD_maxView,1903,CHVD_carObj,CHVD_maxObj],[1904,CHVD_air,CHVD_maxView,1905,CHVD_airObj,CHVD_maxObj]];
 
 {
-	_ctrl = ((findDisplay 2900) displayCtrl (_x select 0));
-	
-	_textDisabled = if (isLocalized "STR_chvd_disabled") then {localize "STR_chvd_disabled"} else {"Disabled"};
-	_ctrl lbAdd _textDisabled;
-	
-	_textDynamic = if (isLocalized "STR_chvd_dynamic") then {localize "STR_chvd_dynamic"} else {"Dynamic"};
-	_ctrl lbAdd _textDynamic;
-	
-	_textFov = if (isLocalized "STR_chvd_fov") then {localize "STR_chvd_fov"} else {"FOV"};
-	_ctrl lbAdd _textFov;
-	
-	_mode = call compile ("CHVD_" + (_x select 1) + "SyncMode");
-	_ctrl lbSetCurSel _mode;
-	//call compile format ["systemChat '%1 %2'",_ctrl, _x select 1];
-	
-	_handle = _ctrl ctrlSetEventHandler ["LBSelChanged", 
-		format ["[_this select 1, '%1',%2,%3,%4] call CHVD_fnc_onLBSelChanged_syncmode", _x select 1, _x select 2, _x select 3, _x select 4]
-	];
-} forEach [[1404,"foot",1410,1901,1007], [1406,"car",1409,1903,1014], [1408,"air",1411,1905,1018]];
+	((finddisplay 2900) displayCtrl (_x select 0)) cbSetChecked (_x select 1);
+} forEach [[2800,CHVD_footSyncObj],[2801,CHVD_carSyncObj],[2802,CHVD_airSyncObj]];
 
 {
-	_ctrl = _x select 0;
-	_mode = call compile ("CHVD_" + (_x select 1) + "SyncMode");
-
-	switch (_mode) do {
-		case 1: {
-			_percentage = call compile ("CHVD_" + (_x select 1) + "SyncPercentage");
-			ctrlSetText [_ctrl, format ["%1",_percentage * 100] + "%"];
-			ctrlEnable [_ctrl, true];
-		};
-		default {
-			ctrlEnable [_ctrl, false];
-		};
-		
-	};
-	_ctrlDisplay = (findDisplay 2900) displayCtrl _ctrl;
-	_handle = _ctrlDisplay ctrlSetEventHandler ["keyDown", 
-		format ["[_this select 0, '%1',%2,%3] call CHVD_fnc_onEBinput_syncmode", _x select 1, _x select 2, _x select 3]
-	];
-} forEach [[1410,"foot",1901,1007], [1409,"car",1903,1014], [1411,"air",1905,1018]];
-
-{
-	_ctrl = ((findDisplay 2900) displayCtrl (_x select 0));
+	_ctrl = ((finddisplay 2900) displayCtrl (_x select 0));
 	if (CHVD_allowNoGrass) then {
 		_textLow = if (isLocalized "STR_chvd_low") then {localize "STR_chvd_low"} else {"Low"};
 		_ctrl lbAdd _textLow;
@@ -86,13 +41,14 @@ CHVD_loadingDialog = true;
 } forEach [[1500,CHVD_footTerrain],[1501,CHVD_carTerrain],[1502,CHVD_airTerrain]];
 
 {
-	_ctrl = ((findDisplay 2900) displayCtrl (_x select 0));
+	_ctrl = ((finddisplay 2900) displayCtrl (_x select 0));
 	_handle = _ctrl ctrlSetEventHandler ["LBSelChanged", 
 		format ["[_this select 1, '%1', %2] call CHVD_fnc_onLBSelChanged", _x select 1, _x select 2]
 	];
 } forEach [[1500,"CHVD_footTerrain",1400],[1501,"CHVD_carTerrain",1401],[1502,"CHVD_airTerrain",1402]];
 
-if (CHVD_footSyncMode isEqualTo 1) then {
+
+if (CHVD_footSyncObj) then {
 	ctrlEnable [1901,false];
 	ctrlEnable [1007,false];
 } else {	
@@ -100,7 +56,7 @@ if (CHVD_footSyncMode isEqualTo 1) then {
 	ctrlEnable [1007,true];
 };
 
-if (CHVD_carSyncMode isEqualTo 1) then {
+if (CHVD_carSyncObj) then {
 	ctrlEnable [1903,false];
 	ctrlEnable [1014,false];
 } else {	
@@ -108,13 +64,10 @@ if (CHVD_carSyncMode isEqualTo 1) then {
 	ctrlEnable [1014,true];
 };
 
-if (CHVD_airSyncMode isEqualTo 1) then {
+if (CHVD_airSyncObj) then {
 	ctrlEnable [1905,false];
 	ctrlEnable [1018,false];
 } else {	
 	ctrlEnable [1905,true];
 	ctrlEnable [1018,true];
-};
-
-CHVD_loadingDialog = false;
 };

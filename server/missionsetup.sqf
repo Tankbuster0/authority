@@ -18,7 +18,7 @@ while {((_beachheadpos in [[0,0,0], islandcentre]) or (_refuse))} do
 	if ((surfaceIsWater (_beachheadpos getPos [(_dist * .25), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .50), _dir])) or (surfaceiswater (_beachheadpos getPos [(_dist * .75), _dir]))) then
 		{
 		refuse = true;
-		diag_log format ["***ms finds beachhead has water between it and airbase"];
+		diag_log format ["***ms finds beachhead has water between it and airbase"]
 		}
 		else
 		{_refuse = false;};
