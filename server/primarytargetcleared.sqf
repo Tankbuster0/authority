@@ -14,7 +14,7 @@ debugendmission = false;
 //find the player nearest to the new blue flag, and call the airdrop on him. If this is target 1, this must be the fob vehicle
 _nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750/*, false*/];
 if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
-
+deleteVehicle hq_fire;
 if (primarytargetcounter isEqualTo 1) then
 	{
 		_droptype = fobvehicleclassname;
