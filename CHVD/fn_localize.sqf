@@ -28,9 +28,9 @@ if (isLocalized "STR_chvd_terrain") then {
 	(_display displayCtrl 1019) ctrlSetText (localize "STR_chvd_terrain");
 };
 if (isLocalized "STR_chvd_sync") then {
-	(_display displayCtrl 1403) ctrlSetText (localize "STR_chvd_sync");
-	(_display displayCtrl 1405) ctrlSetText (localize "STR_chvd_sync");
-	(_display displayCtrl 1407) ctrlSetText (localize "STR_chvd_sync");
+	(_display displayCtrl 1009) ctrlSetText (localize "STR_chvd_sync");
+	(_display displayCtrl 1004) ctrlSetText (localize "STR_chvd_sync");
+	(_display displayCtrl 1020) ctrlSetText (localize "STR_chvd_sync");
 };
 if (isLocalized "STR_chvd_close") then {
 	(_display displayCtrl 1612) ctrlSetText (localize "STR_chvd_close");
