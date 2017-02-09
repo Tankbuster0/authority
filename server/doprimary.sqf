@@ -121,19 +121,21 @@ while {_hqpos in [[0,0,0], islandcentre] } do
 	};
 pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
 _higherhqpos = [_hqpos select 0, _hqpos select 1, 10 ];
-_hqnet = createVehicle ["Land_IRMaskingCover_01_F", _higherhqpos, [] ,0, "CAN_COLLIDE" ];
-_hqnet allowdamage false;
-pt_hq addEventHandler ["HandleDamage", {[_this select 0] execVM "server\pt_hqkilled.sqf"}];
+
+hqnet = createVehicle ["Land_IRMaskingCover_01_F", _higherhqpos, [] ,0, "CAN_COLLIDE" ];
+hqnet allowdamage false;
+pt_hq addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
+pt_hq addEventHandler ["Killed", {[_this select 0] execVM "server\pt_hqkilled.sqf"}];
 if (_hqtype isKindOf "Car") then
 	{
-		_hqnet setdir 90;
+		hqnet setdir 90;
 	};
 if (_hqtype isKindOf "Building") then
 	{
-		_hqnet setdir 180;
+		hqnet setdir 180;
 	};
-[_hqnet, 0] call BIS_fnc_setHeight;
-_hqnet allowdamage true;
+[hqnet, 0] call BIS_fnc_setHeight;
+hqnet allowdamage true;
 
 0 = execVM "server\PT_ai\ai_reinforcementChoppermanager.sqf";
 0 = execVM "server\PT_ai\ai_airsupportmanager.sqf";
