@@ -1,6 +1,7 @@
 // by tankbuster
 _myscript = "pt_radarkilled";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+pt_radar removeAllEventHandlers "Killed";
 sleep 0.5;
 _pos = getpos pt_radar;
 [pt_radar] call BIS_fnc_effectKilledAirDestruction;
