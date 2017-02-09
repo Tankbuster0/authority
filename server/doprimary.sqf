@@ -116,7 +116,7 @@ _hqpos = [0,0,0];
 _testradius = 50;
 while {_hqpos in [[0,0,0], islandcentre] } do
 	{
-	_hqpos = [cpt_position, 10, _testradius, 23, 0, 0, 0] call BIS_fnc_findSafePos;
+	_hqpos = [cpt_position, 10, _testradius, 23, 0, 0.2, 0] call BIS_fnc_findSafePos;
 	_testradius = _testradius * 2;
 	};
 pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
