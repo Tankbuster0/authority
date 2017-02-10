@@ -6,10 +6,10 @@ if not (fobdeployed) then
 	diag_log format ["*** fdm says fob not deployed"];
 	//fob deploy requested
 	_candidatepos = (position fobveh) isFlatEmpty
-	[5,// nothing within this distance
+	[4,// nothing within this distance
 	-1,// biki says set this to -1
 	0.75,// max gradient (upto about 27degrees)
-	5,// how far to check gradient
+	4,// how far to check gradient
 	0,// cannot be water
 	false,// ignore shoreline detection
 	 objNull// ignore unit in object detection
