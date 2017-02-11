@@ -1,8 +1,8 @@
 //by tankbuster
 _myscript = "tky_super_islflatempty";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
-_deniednotflat = false
-	sleep 1;
+_deniednotflat = false;
+sleep 1;
 _deniednotflat =  !((position fobveh) isFlatEmpty
 [-1,// min radius
 -1, //mode, must be -1
@@ -18,16 +18,17 @@ _nobjs1 = fobveh nearObjects 10;
 _nobjs2 = _nobjs1 - [fobveh]; //take out the vehicle
 _nobjs3 = (_nobjs2 select { (sizeof (typeof _x) > 1.5)});
 diag_log format ["sfe nearobjects finds %1 objects nearby, but has removed %2 of them becuase they are tiny", count _nobjs1, (count _nobjs3 - count _nobjs2) ];
-if !(_nobjs3 is isEqualTo []) then
+if !(_nobjs3 isEqualTo []) then
 	{
 		{
 			diag_log format ["sfe finds a nearby %1, %2", _x, typeOf _x];
 		}foreach _nobjs3;
-
 	}
 	else
-	{diag_log format ["sfe finds no nearby objects"]};
-_dirs [
+	{
+		diag_log format ["sfe finds no nearby objects"];
+	};
+_dirs = [
 [0,5,1], //forward
 [5,5,1], //45 deg
 [5,0,1], // 90deg right
