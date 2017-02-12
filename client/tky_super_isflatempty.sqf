@@ -29,14 +29,22 @@ if !(_nobjs3 isEqualTo []) then
 		diag_log format ["sfe finds no nearby objects"];
 	};
 _dirs = [
-[0,5,1], //forward
-[5,5,1], //45 deg
-[5,0,1], // 90deg right
-[5,-5,1], //135 back right
-[0,5,1], // back 180
-[-5,-5,1] //back left 225
-[-5,0,1] //left 270
-[-5,5,1] // front left 305
+[0,5,0.5],
+[0,5,2], //forward low
+[5,5,0.5],
+[5,5,2], //45 deg
+[5,0,0.5],
+[5,0,2], // 90deg right
+[5,-5,0.5],
+[5,-5,2], //135 back right
+[0,-5,0.5],
+[0,-5,2], // back 180
+[-5,-5,0.5],
+[-5,-5,2], //back left 225
+[-5,0,0.5], //left 270
+[-5,0,2],
+[-5,5,0.5],
+[-5,5,2] // front left 305
 ];
 _visiontotal = 0;
 _cvscore = 0;
