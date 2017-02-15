@@ -170,7 +170,7 @@ _id2 = addMissionEventHandler ["PlayerConnected", {	if ((west countSide allPlaye
 //_id2 = addMissionEventHandler ["PlayerConnected", {	diag_log format  ["*** playerconnected EH says %1 players in mission when someone connects", (west countside allplayers)];}];
 // might need to change the <1 depending on how quick allplayers updated. if the player connecting counts as an allplayer, this wont work
 //we are trying to trigger when first player joins an empty server.
-/*
+/*WORKING
 Arty setpos _gopos;
 Arty attachTo [frigate];
 */
