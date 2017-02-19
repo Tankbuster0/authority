@@ -38,6 +38,7 @@ for "_i" from 0 to 359 step 15 do
 	_endpos1 = fobveh getRelPos [6, _i];
 	_endpos1 set [2, 1];
 	_endpos2 = ATLToASL _endpos1;
+	_objs = [];
 	//_objs = lineIntersectsObjs [_begpos2, _endpos2, objNull, fobveh, false , 32];
 	_helperend = createVehicle ["Sign_Sphere10cm_F", _endpos2, [],0, "CAN_COLLIDE"];
 	// create a helper object so we can visualise and confirm the endpos is working as expected
