@@ -29,15 +29,17 @@ if !(_nobjs3 isEqualTo []) then
 	{
 		diag_log format ["###sife finds no nearby objects that might impede deployment"];
 	};
+	_begpos1 = getPos fobveh; //asl position of the fobveh.. pretty close to the ground
+	_begpos1 set [2,1];// lift it a meter
+	_begpos2 = ATLToASL _begpos1;//convert it to asl
+	_helperbeg = createVehicle ["Sign_Sphere25cm_F", _endpos2, [],0, "CAN_COLLIDE"];
 for "_i" from 0 to 359 step 15 do
 {
-	_begpos1 = getPos fobveh; //asl position of the fobveh.. pretty close to the ground
-	_begpos1 set [2,1];
-	_begpos2 = ATLToASL _begpos1;
 	_endpos1 = fobveh getRelPos [6, _i];
 	_endpos1 set [2, 1];
 	_endpos2 = ATLToASL _endpos1;
-	_objs = lineIntersectsObjs [_begpos2, _endpos2, objNull, fobveh, false , 32];
+	//_objs = lineIntersectsObjs [_begpos2, _endpos2, objNull, fobveh, false , 32];
+	_helperend = createVehicle ["Sign_Sphere10cm_F", _endpos2, [],0, "CAN_COLLIDE"];
 	// create a helper object so we can visualise and confirm the endpos is working as expected
 	if (_objs isEqualTo []) then
 		{
