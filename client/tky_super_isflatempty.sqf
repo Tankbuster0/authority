@@ -29,19 +29,20 @@ if !(_nobjs3 isEqualTo []) then
 	{
 		diag_log format ["###sife finds no nearby objects that might impede deployment"];
 	};
-	_begpos1 = getPos fobveh; //asl position of the fobveh.. pretty close to the ground
-	_begpos1 set [2,1];// lift it a meter
+	_begpos0 = getPos fobveh; //asl position of the fobveh.. pretty close to the ground
+	_begpos1 = fobveh modelToWorld [0,-1,-0.5]; // move it back a little because the centre is too far forward and move it up off the ground a little
+	//_begpos1 set [2,1];// lift it a meter
 	_begpos2 = ATLToASL _begpos1;//convert it to asl
-	_helperbeg = createVehicle ["Sign_Sphere25cm_F", _endpos2, [],0, "CAN_COLLIDE"];
+
 for "_i" from 0 to 359 step 15 do
 {
-	_endpos1 = fobveh getRelPos [6, _i];
-	_endpos1 set [2, 1];
+	_endpos1 = _begpos1 getpos [6, _i];
+	//_endpos1 set [2, 1];
 	_endpos2 = ATLToASL _endpos1;
 	_objs = [];
 	//_objs = lineIntersectsObjs [_begpos2, _endpos2, objNull, fobveh, false , 32];
-	_helperend = createVehicle ["Sign_Sphere10cm_F", _endpos2, [],0, "CAN_COLLIDE"];
-	// create a helper object so we can visualise and confirm the endpos is working as expected
+	_helperend = createVehicle ["Sign_Sphere10cm_F", _endpos1, [],0, "CAN_COLLIDE"];// note, createvehicle uses atl, not asl
+		// create a helper object so we can visualise and confirm the endpos is working as expected
 	if (_objs isEqualTo []) then
 		{
 		// nothing found
@@ -52,6 +53,7 @@ for "_i" from 0 to 359 step 15 do
 		diag_log format ["### sife finds a %1, %2 at %3 which is %4 from the fob", _foundobj, typeOf _foundobj, getpos _foundobj, (_foundobj distance fobveh) ];
 		};
 };
+	_helperbeg = createVehicle ["Sign_Sphere25cm_F", _begpos1, [],0, "CAN_COLLIDE"];
 
 
 
