@@ -3,7 +3,6 @@ _myscript = "tky_super_islflatempty";
 private ["_allowed_nearobjs","_allowed_notflat","_allowed_outdoors","_allowed_lineintersects","_allowed_deploy","_buildingobjs","_house","_nobjs1","_nobjs2","_nobjs3","_begpos0","_begpos1","_begpos2","_intersectobjectscount","_objs1","_objs2","_objs","_endpos1","_endpos2","_endpos3","_endpos4","_foundobj","_tc","_reasonstring"];
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 _allowed_nearobjs = false;_allowed_notflat = false;_allowed_outdoors = true;_allowed_lineintersects =false;_allowed_deploy = false;
-sleep 0.2;
 _allowed_notflat =  !((position fobveh) isFlatEmpty
 [-1,// min radius
 -1, //mode, must be -1
