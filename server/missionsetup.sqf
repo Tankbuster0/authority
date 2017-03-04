@@ -127,7 +127,6 @@ frigate setVehicleLock "LOCKED";
 // Take out advanced ammo types;
 Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_AT_mine",[0]];
-Arty removeMagazineTurret ["2Rnd_155mm_Mo_guided",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_mine",[0]];
 
 // Support Arty Frig
@@ -176,6 +175,7 @@ Arty attachTo [frigate];
 */
 forward allowdamage true;
 _nul = execVM "server\replacequads.sqf";
+_nul = execVM "server\reloadarty.sqf";
 // authfrigate = createvehicle ["cup frigate", _fpos]
 forward setdamage 0;
 missionrunning = true; publicVariable "missionrunning";
