@@ -60,7 +60,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 		{
 			// Get First Element and transform it into numbers, Also get rid of first brackets
 			_currentN = toArray ([[_x,1] call BIS_fnc_trimString,0,-1] call BIS_fnc_trimString);
-
 			// This will be used to check where we are.
 			// 1 is at position
 			// 2 is at radius
@@ -68,11 +67,11 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			// 4 is at type
 			// 5 is at ruin count
 			_arrayState = 0;
-
 			// Variables for the gameLogic
 			_targetName= "";
 			_targetLocation = [0,0,0];
 			_targetRadius = 0;
+			_targetlandmassId = 0;
 			_targetStatus = 0;
 			_targetType = 0;
 			_targetRuinCount = 0;
@@ -93,6 +92,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			_tnF = false;
 
 			_radiusString = "";
+			_landmassidstring = "";
 			_statusString = "";
 			_typeString = "";
 			_ruincountString = "";
@@ -161,15 +161,30 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 					};
 				};
 
-				// Status Shite --------------------------------------------------
+
+				// Landmass ID Shite --------------------------------------------------
 				if (_arrayState == 3) then {
+					if (_tnF) then {
+						_landmassidstring = _landmassidstring + (toString [_x]);
+					};
+					if (_x == 44) then {
+						if (!_tnF) then {_tnF = true;}
+						else {
+							_arrayState = 4;
+							_targetlandmassId = parseNumber _statusString;
+							_tnF = false;
+						};
+					};
+				};
+				// Status Shite --------------------------------------------------
+				if (_arrayState == 4) then {
 					if (_tnF) then {
 						_statusString = _statusString + (toString [_x]);
 					};
 					if (_x == 44) then {
 						if (!_tnF) then {_tnF = true;}
 						else {
-							_arrayState = 4;
+							_arrayState = 5;
 							_targetStatus = parseNumber _statusString;
 							_tnF = false;
 						};
@@ -177,14 +192,14 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				};
 
 				// Type Shite --------------------------------------------------
-				if (_arrayState == 4) then {
+				if (_arrayState == 5) then {
 					if (_tnF) then {
 						_typeString = _typeString + (toString [_x]);
 					};
 					if (_x == 44) then {
 						if (!_tnF) then {_tnF = true;}
 						else {
-							_arrayState = 5;
+							_arrayState = 6;
 							_targetType = parseNumber _typeString;
 							_tnF = false;
 						};
@@ -192,7 +207,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				};
 
 				// Ruin Shite --------------------------------------------------
-				if (_arrayState == 5) then {
+				if (_arrayState == 6) then {
 					if (_tnF) then {
 						_ruincountString = _ruincountString + (toString [_x]);
 						_targetRuinCount = parseNumber _ruincountString;
@@ -210,6 +225,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			};
 			_logic setVariable ["targetname", _targetName];
 			_logic setVariable ["targetradius", _targetRadius];
+			_logic setVariable ["targetlandmassid", _targetlandmassId];
 			_logic setvariable ["targetstatus", _targetStatus];
 			_logic setVariable ["targettype", _targetType];
 			_logic setVariable ["targetruincount", _targetRuinCount];
