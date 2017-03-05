@@ -63,9 +63,10 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			// This will be used to check where we are.
 			// 1 is at position
 			// 2 is at radius
-			// 3 is at status
-			// 4 is at type
-			// 5 is at ruin count
+			// 3 is at landmassid
+			// 4 is at status
+			// 5 is at type
+			// 6 is at ruin count
 			_arrayState = 0;
 			// Variables for the gameLogic
 			_targetName= "";
@@ -75,7 +76,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			_targetStatus = 0;
 			_targetType = 0;
 			_targetRuinCount = 0;
-
 			// Flag to check when we reached a '"', this means that the name will be coming up until the next '"'
 			_isName = false;
 			// Flag to check we have reached location bit
@@ -87,18 +87,14 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			_locationX = 0;
 			_locationY = 0;
 			_locationDone = false;
-
 			// Generic helper flag for the last 4 properties
 			_tnF = false;
-
 			_radiusString = "";
 			_landmassidstring = "";
 			_statusString = "";
 			_typeString = "";
 			_ruincountString = "";
-
-			{
-				// Name shite ------------------------------------------------------
+			{	// Name shite ------------------------------------------------------
 				if (_arrayState == 0) then {
 					if (_isName && (_x != 34)) then {_targetName = _targetName + (toString [_x]);};
 					if ((_x == 34)) then {
@@ -118,7 +114,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 						_locationYF = false;
 						_arrayState = 2; // We are now at Radius
 					}; //91 is ']'
-
 					if (_isLocation) then {
 						if (_x == 44) then {
 							if (_locationYF) then // Second "," we now have X and Y and are at Z which is 0 anyway
@@ -130,7 +125,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 								_locationXF = false;
 								_locationYF = true;
 							};
-
 						}; // 44 is ","
 						if (_locationXF) then {_locationXString = _locationXString + (toString [_x]);};
 						if (_locationYF && (_x != 44)) then {_locationYString = _locationYString + (toString [_x]);};
@@ -142,10 +136,8 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 								_targetLocation = [_locationX, _locationY, 0];
 								_locationDone = true;
 					};
-
 					if (_x == 91) then {_isLocation = true;}; //91 is '['
 				};
-
 				// Radius Shite --------------------------------------------------
 				if (_arrayState == 2) then {
 					if (_tnF) then {
@@ -160,8 +152,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 						};
 					};
 				};
-
-
 				// Landmass ID Shite --------------------------------------------------
 				if (_arrayState == 3) then {
 					if (_tnF) then {
@@ -190,7 +180,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 						};
 					};
 				};
-
 				// Type Shite --------------------------------------------------
 				if (_arrayState == 5) then {
 					if (_tnF) then {
@@ -218,7 +207,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				};
 
 			} foreach _currentN;
-
 			_logic = _logicgroup createUnit ["Logic", _targetLocation, [], 0, "NONE"];
 			if (_targetType == 2) then {
 				_logic = _airportlogicgroup createUnit ["Logic", _targetLocation, [], 0, "NONE"];
@@ -246,10 +234,8 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				};
 */
 			//TESTOUTPUT pushBack _tempArr;
-
 			missionsetupprogress = 1;
 			publicVariable "missionsetupprogress";
-
 		} foreach altisdata;
 		//-------------------------
 		// REJOICE THE STRINGPARSER
