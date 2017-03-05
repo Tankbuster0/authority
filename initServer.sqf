@@ -161,7 +161,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 						if (!_tnF) then {_tnF = true;}
 						else {
 							_arrayState = 4;
-							_targetlandmassId = parseNumber _statusString;
+							_targetlandmassId = parseNumber _landmassidstring;
 							_tnF = false;
 						};
 					};
