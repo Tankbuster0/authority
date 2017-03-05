@@ -22,7 +22,6 @@ sleep 0.5;
 primarytargetcounter = 1;
 previousmission = locationNull;
 foundairfields = [];
-
 [] spawn //moving markers on forward and fob
 	{
 	while {true} do
@@ -35,11 +34,7 @@ foundairfields = [];
 			    {"forwardmarker" setMarkerAlpha 1}
 			    else
 			    {"fowardmarker" setMarkerAlpha 0};
-
-
-
 			 };
-
 		if (not isnull fobveh) then
 			{
 			"fobmarker" setMarkerPos getpos fobveh;
@@ -48,20 +43,8 @@ foundairfields = [];
 			    else
 			    {"fobmarker" setMarkerAlpha 0};
 		   };
-		/*
-		if (not isNull dropveh) then
-			{
-			"dropvehmarker" setmarkerpos getpos dropveh;
-			"dropvehmarker" setMarkerAlpha 1;
-			}
-			else
-			{"dropvehmarker" setMarkerAlpha 0};
-		*/
 		};
 	};
-
-
-
 if ((tolower worldName) in ["altis", "tanoa"]) then
 	{
 		diag_log "*** mission uses existing targetdata file";
@@ -74,9 +57,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 		// BEWARE THE STRINGPARSER
 		//-------------------------
 		// I'M SO SORRY TANKY
-
 		{
-
 			// Get First Element and transform it into numbers, Also get rid of first brackets
 			_currentN = toArray ([[_x,1] call BIS_fnc_trimString,0,-1] call BIS_fnc_trimString);
 
@@ -266,7 +247,6 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 	};
 
 sleep 0.5;
-
 if not (testmode) then
 	{
 		for "_m" from 1 to 100 do
@@ -278,7 +258,6 @@ if not (testmode) then
 			};
 	};
 // ^^^^ hide dep safezone markers if not testmode
-
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
 waitUntil {scriptDone _handle2};
