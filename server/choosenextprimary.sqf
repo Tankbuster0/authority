@@ -17,7 +17,7 @@ _btargetsonthisisland = 0; _rtargetsonthisisland = 0;_alltargetsonthisisland;
 {
 	if (_x getVariable "targetlandmassid" isEqualTo cpt_island) then
 		{
-			_thisstatus = (getVariable ["targetstatus", -1] );
+			_thisstatus = (_x getVariable ["targetstatus", -1] );
 			if (_thisstatus isEqualTo 1) then {_rtargetsonthisisland = _rtargetsonthisisland + 1};
 			if (_thisstatus isEqualTo 2) then {_btargetsonthisisland = _btargetsonthisisland + 1};
 			_alltargetsonthisisland = _alltargetsonthisisland + 1;
