@@ -1,15 +1,31 @@
 // by tankbuster
 // takes a position and returns a logic
 _myscript = "choosenextprimary.sqf";
-private ["_pos","_allpossibletargets","_mbi","_nvc","_notlegittargets","_overseastargets","_nearlogics","_tstatus","_ttype","_tname","_dir","_dist","_onislandtargets","_finaltargetlist","_sortedtargetlist"];
+private ["_pos","_allpossibletargets","_mbi","_nvc","_notlegittargets","_overseastargets","_logics","_tstatus","_ttype","_tname","_dir","_dist","_onislandtargets","_finaltargetlist","_sortedtargetlist"];
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
-_pos = _this select 0; _allpossibletargets = [];
+_pos = _this select 0;// position of the old target
+_allpossibletargets = [];
 _mbi = ["militarybasesincluded", 1] call BIS_fnc_getParamValue;
 _nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
 _notlegittargets = []; _overseastargets = [];
-_nearlogics = _pos nearEntities ["Logic", 6000];
+_logics = entities "Logic";
 sleep 0.1;
-if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", count _nearlogics]};
+//count how many remaining targets on this island
+
+_btargetsonthisisland = 0; _rtargetsonthisisland = 0;_alltargetsonthisisland;
+
+{
+	if (_x getVariable "targetlandmassid" isEqualTo cpt_island) then
+		{
+			_thisstatus = (getVariable ["targetstatus", -1] );
+			if (_thisstatus isEqualTo 1) then {_rtargetsonthisisland = _rtargetsonthisisland + 1};
+			if (_thisstatus isEqualTo 2) then {_btargetsonthisisland = _btargetsonthisisland + 1};
+			_alltargetsonthisisland = _alltargetsonthisisland + 1;
+		}
+} forEach _logics;
+diag_log format ["***cnp says %1 targets on this island, of which %2 are friendly and %3 are enemy", count _alltargetsonthisisland, _btargetsonthisisland, _rtargetsonthisisland];
+
+if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", count _logics]};
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
@@ -20,12 +36,20 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 		    (isNil "_tstatus") or
 		    (_tstatus != 1) or
 		    ((_mbi == 0) and (_ttype == 3) ) or
-		    ((_pos distance _x) < _nvc)
+		    ((_pos distance2D _x) < _nvc)
 		) then
 				{_notlegittargets pushback _x;};
+} forEach _logics;
+_allpossibletargets = _logics - _notlegittargets;
 
-} forEach _nearlogics;
-_allpossibletargets = _nearlogics - _notlegittargets;
+{
+	if (_x getVariable "targetlandmassid" isEqualTo cpt_island) then
+		{
+			if (_x getVariable "targetstatus" )
+		}
+} forEach _allpossibletargets;
+
+
 if (testmode) then {diag_log format ["***@29 cnp removed %1 from the list because they are not legit targets", count _notlegittargets]};
 {
 	_dist = _pos distance2d _x;
@@ -38,7 +62,7 @@ if (testmode) then {diag_log format ["***@29 cnp removed %1 from the list becaus
 			diag_log format ["*** cnp says %1 is overseas", (_x getVariable ["targetname", "default"]) ];
 			};
 		};
-
+	if
 } foreach _allpossibletargets;
 
 if (testmode) then {diag_log format ["***cnp says of the %1 possible targets, %2 of them are overseas", count _allpossibletargets, count _overseastargets ];};
