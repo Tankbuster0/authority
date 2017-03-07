@@ -30,6 +30,7 @@ cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
 cpt_name = (nextpt getVariable "targetname");
+cpt_island = (nextpt getVariable "targetlandmassid");
 
 primarytarget = nextpt;
 
