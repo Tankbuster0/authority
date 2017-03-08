@@ -42,13 +42,6 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 } forEach _logics;
 _allpossibletargets = _logics - _notlegittargets;
 
-{
-	if (_x getVariable "targetlandmassid" isEqualTo cpt_island) then
-		{
-			if (_x getVariable "targetstatus" )
-		}
-} forEach _allpossibletargets;
-
 
 if (testmode) then {diag_log format ["***@29 cnp removed %1 from the list because they are not legit targets", count _notlegittargets]};
 {
