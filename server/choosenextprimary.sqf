@@ -12,7 +12,7 @@ _logics = entities "Logic";
 sleep 0.1;
 //count how many remaining targets on this island
 
-_btargetsonthisisland = 0; _rtargetsonthisisland = 0;_alltargetsonthisisland;
+_btargetsonthisisland = 0; _rtargetsonthisisland = 0;_alltargetsonthisisland = 0;
 
 {
 	if (_x getVariable "targetlandmassid" isEqualTo cpt_island) then
@@ -23,7 +23,7 @@ _btargetsonthisisland = 0; _rtargetsonthisisland = 0;_alltargetsonthisisland;
 			_alltargetsonthisisland = _alltargetsonthisisland + 1;
 		}
 } forEach _logics;
-diag_log format ["***cnp says %1 targets on this island, of which %2 are friendly and %3 are enemy", count _alltargetsonthisisland, _btargetsonthisisland, _rtargetsonthisisland];
+diag_log format ["***cnp says %1 targets on this island, of which %2 are friendly and %3 are enemy", _alltargetsonthisisland, _btargetsonthisisland, _rtargetsonthisisland];
 
 if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", count _logics]};
 {
@@ -55,7 +55,7 @@ if (testmode) then {diag_log format ["***@29 cnp removed %1 from the list becaus
 			diag_log format ["*** cnp says %1 is overseas", (_x getVariable ["targetname", "default"]) ];
 			};
 		};
-	if
+
 } foreach _allpossibletargets;
 
 if (testmode) then {diag_log format ["***cnp says of the %1 possible targets, %2 of them are overseas", count _allpossibletargets, count _overseastargets ];};
