@@ -35,8 +35,17 @@ _groups = [];
 _civilians = [];
 _totalenemies = 0;
 
-//_rubble_pool = ["Land_Tyres_F","Land_GarbageBags_F","Land_JunkPile_F","Land_GarbageContainer_closed_F","Land_GarbageContainer_open_F","Land_WoodenBox_F"];
-_rubble_pool = ["Land_GarbageHeap_01_F","Land_GarbageBags_F","Land_JunkPile_F","Land_GarbageHeap_02_F","Land_GarbageHeap_03_F","Land_GarbageHeap_04_F"];
+if ((_location select 1) == "antiair") then {
+    _result = [];
+    if ((random 1) <= 0.5) then {
+        _result = [_pos, random 360] call dep_fnc_aacamp1;
+    } else {
+        _result = [_pos, random 360] call dep_fnc_aacamp2;
+    };
+    _totalenemies = _totalenemies + (_result select 0);
+    _groups = _groups + (_result select 1);
+    _objects = _objects + (_result select 2);
+};
 
 if ((_location select 1) == "roadblock") then {
     _result = [];
@@ -58,6 +67,13 @@ if ((_location select 1) == "forpat") then {
     _objects = _objects + (_result select 2);
 };
 
+if ((_location select 1) == "mortar") then {
+    _result = [_pos, random 360] call dep_fnc_mortarcamp;
+    _totalenemies = _totalenemies + (_result select 0);
+    _groups = _groups + (_result select 1);
+    _objects = _objects + (_result select 2);
+};
+
 if ((_location select 1) == "bunker") then {
     _result = [];
     _type = ["at","barracks1","barracks2","ins_camp1"] call BIS_fnc_selectRandom;
@@ -66,7 +82,7 @@ if ((_location select 1) == "bunker") then {
         case "at": {        _result = [_pos, random 360] call dep_fnc_atcamp; };
         case "barracks1": { _result = [_pos, random 360] call dep_fnc_barracks1; };
         case "barracks2": { _result = [_pos, random 360] call dep_fnc_barracks2; };
-        case "mortar": {    _result = [_pos, random 360] call dep_fnc_mortarcamp; };
+        //case "mortar": {    _result = [_pos, random 360] call dep_fnc_mortarcamp; };
         case "ins_camp1": { _result = [_pos, random 360] call dep_fnc_insurgentcamp1; };
     };
     _totalenemies = _totalenemies + (_result select 0);
@@ -87,12 +103,14 @@ if ((_location select 1) == "ambush") then {
     _objects = _objects + (_result select 2);
 };
 
-// Spawn units
-if !((_location select 1) in ["patrol","forpat","bunker","roadblock", "ambush"]) then {
+// Spawn units 
+if ((_location select 1) in ["roadpop","town"]) then {
     _validhouses = [_pos, _size] call dep_fnc_enterablehouses;
-    _enemyamount = 1;
-    while {_enemyamount < 2} do {
-        _enemyamount = round random dep_max_ai_loc;
+    _enemyamount = 2;
+    if ((_location select 1) == "town") then {
+        _enemyamount = dep_max_ai_loc; // Max amount of enemies in towns
+    } else {
+        _enemyamount = round((dep_max_ai_loc / 2) + (random (dep_max_ai_loc / 2)));
     };
     _spawnpositions = [];
     {
@@ -113,13 +131,7 @@ if !((_location select 1) in ["patrol","forpat","bunker","roadblock", "ambush"])
             _spawnpos = _pos findEmptyPosition [0,_size];
             if ((count _spawnpos) == 0) then { _spawnpos = _pos; };
         };
-        _soldiername = "";
-        if ((_location select 1) == "military") then {
-            _soldiername = dep_mil_units call BIS_fnc_selectRandom;
-        } else {
-            _soldiername = dep_guer_units call BIS_fnc_selectRandom;
-        };
-        
+        _soldiername = dep_guer_units call BIS_fnc_selectRandom;
         _soldier = [_depgroup, _soldiername, _spawnpos] call dep_fnc_createunit;
         _totalenemies = _totalenemies + 1;
         _soldier setDir (random 360); 
@@ -135,22 +147,19 @@ if !((_location select 1) in ["patrol","forpat","bunker","roadblock", "ambush"])
     sleep 0.5;
     
     // Civilians
-    if (dep_civilians && (_location select 1) in ["roadpop"]) then
-    {
-        if ((count _validhouses) > 10) then
-        {
-            _numciv = 4 + (round random 4);
-            
+    if (dep_civilians) then {
+        if ((count _validhouses) > 10) then {
             _civgroup = createGroup civilian;
             _civilians = _civilians + [_civgroup];
-            for "_e" from 1 to _numciv do {
+            for "_e" from 1 to (4 + (round random 4)) do {
                 _newpos = _pos findEmptyPosition [0, 50];
-                if ((count _newpos) >= 2) then 
-                {
+                if ((count _newpos) == 3) then {
                     _unit = [_civgroup, (dep_civ_units call bis_fnc_selectRandom), _newpos] call dep_fnc_createcivilian;
                 };
             };
-            _newpos = [_pos, 10, (random 360)] call BIS_fnc_relPos;
+            _newpos = _validhouses call BIS_fnc_selectRandom;
+            _newpos = getPos _newpos;
+            //_newpos = [_pos, 10, (random 360)] call BIS_fnc_relPos;
             _wp = _civgroup addWaypoint [_newpos, 1];
             _wp setWaypointBehaviour "CARELESS";
             _wp setWaypointCombatMode "BLUE";
@@ -162,39 +171,59 @@ if !((_location select 1) in ["patrol","forpat","bunker","roadblock", "ambush"])
     };
 };
 
-if (_location select 1 == "military") then {
-    if ((random 1) < 0.7) then {
-        _depgroup = createGroup dep_side;
-        _groups = _groups + [_depgroup];
-        _enemyamount = 6;
-        _totalenemies = _totalenemies + _enemyamount;
-        
-        for "_e" from 1 to _enemyamount do {				
-            _soldiername = dep_mil_units call BIS_fnc_selectRandom;
-            _newpos = _pos findEmptyPosition [0,20];
-            _soldier = [_depgroup, _soldiername, _newpos] call dep_fnc_createunit;
-            _soldier setDir (random 360);
+if ((_location select 1) == "town") then {
+    // Vehicles in towns
+    _patrolradius = _size * 1.25;
+    _list = [_pos, _patrolradius] call dep_fnc_findroads;
+    if ((count _list) > 10) then {
+        _numvehicles = round random (dep_veh_chance * 5);
+        for "_z" from 1 to _numvehicles do {
+            _road = _list call BIS_fnc_selectRandom;
+            _dir = [_road] call dep_fnc_roaddir;
+            _vehname = dep_ground_vehicles call BIS_fnc_selectRandom;
+            _veh = _vehname createVehicle (getPos _road);
+            _veh setDir _dir;
+            _objects = _objects + [_veh];
+            [_veh] spawn dep_fnc_vehicledamage;
+            _depgroup = [_veh] call dep_fnc_vehicle_fill;
+            _groups = _groups + [_depgroup];
+            nill = [_pos, _depgroup, _patrolradius] call dep_fnc_vehiclepatrol;
         };
-        [_depgroup] spawn dep_fnc_enemyspawnprotect;
-        [_depgroup, (_location select 2)] spawn dep_fnc_unitpatrol;
     };
-    _rng = round random 2;
-    _ammoboxes = [];
-    switch (dep_side) do 
+};
+
+if ((_location select 1) == "military") then {
+    _depgroup = createGroup dep_side;
+    _groups = _groups + [_depgroup];
+    _enemyamount = (dep_max_ai_loc / 2) + (round random (dep_max_ai_loc / 2));
+    _totalenemies = _totalenemies + _enemyamount;
+    
+    for "_e" from 1 to _enemyamount do {				
+        _soldiername = dep_mil_units call BIS_fnc_selectRandom;
+        _newpos = _pos findEmptyPosition [0, 50, _soldiername];
+        _soldier = [_depgroup, _soldiername, _newpos] call dep_fnc_createunit;
+        _soldier setDir (random 360);
+    };
+    [_depgroup] spawn dep_fnc_enemyspawnprotect;
+    [_depgroup, _size, _pos] spawn dep_fnc_unitpatrol;
+
+    _validhouses = [_pos, _size] call dep_fnc_findmilitarybuildings;
+    _spawnpositions = [];
     {
-        case east: {
-            _ammoboxes = ["O_supplyCrate_F", "Box_East_Ammo_F", "Box_East_Support_F"];
+        _temp = _x call dep_fnc_buildingpositions;
+        _spawnpositions = _spawnpositions + _temp;
+    } forEach _validhouses;
+    _spawnpositions = _spawnpositions call dep_fnc_shuffle;
+    for "_y" from 0 to (round random 2) do {
+        _newpos = [];
+        if ((count _spawnpositions) > 0) then {
+            _newpos = _spawnpositions call BIS_fnc_selectRandom;
+            _spawnpositions = _spawnpositions - [_newpos];
+        } else {
+            _newpos = _pos findEmptyPosition [0, _size, dep_box_ord];
+            if ((count _newpos) == 0) then { _newpos = _pos; };
         };
-        case west: {
-            _ammoboxes = ["B_supplyCrate_F", "Box_NATO_Ammo_F", "Box_NATO_Support_F"];
-        };
-        default {
-            _ammoboxes = ["IG_supplyCrate_F", "Box_IND_Ammo_F", "Box_IND_Support_F"];
-        };
-    };
-    for "_y" from 1 to _rng do {
-        _newpos = _pos findEmptyPosition [0, _size];
-        _ammo = (_ammoboxes call BIS_fnc_selectRandom) createVehicle _newpos;
+        _ammo = createVehicle [([dep_box_weapons,dep_box_special,dep_box_launchers,dep_box_ammo,dep_box_ord] call BIS_fnc_selectRandom), _newpos, [], 0, "CAN_COLLIDE"];
         _ammo setDir (random 360);
     };
 };
@@ -226,8 +255,7 @@ if (dep_mines) then {
 
 // Spawn vehicles and patroling squad
 if ((_location select 1) in ["patrol"]) then {
-    _soldiername = "";
-    //_list = _pos nearRoads dep_veh_pat_rad;
+    /*_soldiername = "";
     _list = [_pos, dep_veh_pat_rad] call dep_fnc_findroads;
     if (count _list > 10) then {
         _numvehicles = round random (dep_veh_chance * 10);
@@ -312,7 +340,7 @@ if ((_location select 1) in ["patrol"]) then {
                 _return = [_pos, _civgroup] call dep_fnc_vehiclepatrol;
             };
         };
-    };
+    };*/
     
     _depgroup = createGroup dep_side;
     _groups = _groups + [_depgroup];
@@ -356,7 +384,7 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
 				};
 				case "rubble": {
 					_iedpos = [_iedpos, (5 + (round random 2)), _dir + 90] call BIS_fnc_relPos;
-					_ied = (_rubble_pool call BIS_fnc_selectRandom) createVehicle _iedpos;
+					_ied = (dep_clutter call BIS_fnc_selectRandom) createVehicle _iedpos;
 					_ied setDir (_dir + 90);
 				};
 				default {

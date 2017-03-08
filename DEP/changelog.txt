@@ -1,3 +1,23 @@
+Version 0.6.2
+=============
+* Added: mortar camp
+* Added: log number of zones per type while initializing
+* Changed: reduced forest patrol spacing
+* Changed: forest patrol enemy amount
+* Changed: roadblocks can spawn closer to other zones
+* Changed: improved AA camp placement
+* Fixed: time limit for finding zones was not always respected
+
+Version 0.6.1
+=============
+* Added: enemy presence modifier (set dep_enemy_presence to 0.5 to spawn only half of the zones)
+* Added: military zones for Tanoa
+* Added: vehicles in occupied "towns"
+* Changed: different AA camp
+* Changed: patrolling vehicles are more dynamic
+* Fixed: possible undefined variable
+* Fixed: air patrols now actually attack
+
 Version 0.6.0
 =============
 * Added: Tanoa map support
