@@ -30,13 +30,15 @@ if (testmode) then {diag_log format ["***@12 cnp has %1 logics to choose from", 
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
 	_tname = _x getVariable ["targetname", "Springfield"];
+	_tlmass = _x getVariable ["targetlandmassid", -1];
 	_dir = _pos getdir _x;
 	_dist = _pos distance2d _x;
 	if (
 		    (isNil "_tstatus") or
 		    (_tstatus != 1) or
 		    ((_mbi == 0) and (_ttype == 3) ) or
-		    ((_pos distance2D _x) < _nvc)
+		    ((_pos distance2D _x) < _nvc) or
+		    (_tlmass != cpt_island)
 		) then
 				{_notlegittargets pushback _x;};
 } forEach _logics;
