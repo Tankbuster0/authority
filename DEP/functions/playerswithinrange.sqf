@@ -1,4 +1,4 @@
-/*  Copyright 2016 Fluit
+/*  Copyright 2017 Fluit
     
     This file is part of Dynamic Enemy Population.
 
@@ -14,19 +14,16 @@
     You should have received a copy of the GNU General Public License
     along with Dynamic Enemy Population.  If not, see <http://www.gnu.org/licenses/>.
 */
-// This file finds enterable houses in a given area.
-private ["_houses", "_pos", "_size", "_house", "_maxbuildingpos"];
-_pos = _this select 0;
-_size = _this select 1;
+// This file checks if a position is within range of any player
 
-_pos set [2, 0];
+private ["_pos","_distance","_inrange"];
+_pos        = _this select 0;
+_distance   = _this select 1;
+_inrange    = false;
 
-_validhouses = [];
-_houses = nearestObjects [_pos, ["House"], _size];
-{	
-    _enterable = [_x] call dep_fnc_isenterable;
-    if (_enterable) then { 
-        _validhouses = _validhouses + [_x]; 
-    };    
-} foreach _houses;
-_validhouses;
+{
+    if ((_x distance _pos) <= _distance) exitWith {
+        _inrange = true;
+    };
+} forEach dep_players;
+_inrange;

@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-
+    
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -22,14 +22,14 @@ _size = _this select 1;
 
 _pos set [2, 0];
 _keywords = ["b_", "t_"];
-_objects = nearestObjects [_pos, [], _size/*, false*/];
+_objects = nearestObjects [_pos, [], _size];
 _validobjects = [];
 {
 	_ok = false;
-	_object = _x;
+	_object = _x;   
 	{
 		_result = [_x, (str _object)] call BIS_fnc_inString;
 		if (_result) exitWith { _validobjects = _validobjects + [_object];  };
 	} forEach _keywords;
-} forEach _objects;
+} forEach _objects;		
 _validobjects;

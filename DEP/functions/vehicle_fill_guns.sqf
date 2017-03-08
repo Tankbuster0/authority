@@ -14,19 +14,19 @@
     You should have received a copy of the GNU General Public License
     along with Dynamic Enemy Population.  If not, see <http://www.gnu.org/licenses/>.
 */
-// This file finds enterable houses in a given area.
-private ["_houses", "_pos", "_size", "_house", "_maxbuildingpos"];
-_pos = _this select 0;
-_size = _this select 1;
+// This file fills a vehicle's gun slots
 
-_pos set [2, 0];
-
-_validhouses = [];
-_houses = nearestObjects [_pos, ["House"], _size];
-{	
-    _enterable = [_x] call dep_fnc_isenterable;
-    if (_enterable) then { 
-        _validhouses = _validhouses + [_x]; 
-    };    
-} foreach _houses;
-_validhouses;
+private ["_vehicle","_group","_unit","_unitname"];
+_vehicle = _this select 0;
+_group = _this select 1;
+_unitname = "";
+if (_vehicle isKindOf "Tank" || _vehicle isKindOf "Wheeled_APC_F") then {
+    _unitname = dep_u_veh_crew;
+} else {
+    _unitname = dep_guer_units call BIS_fnc_selectRandom;
+};
+for "_y" from 1 to (_vehicle emptyPositions "Gunner") do {
+    _unit = [_group, _unitname, (getPos _vehicle) findEmptyPosition[0, 30]] call dep_fnc_createunit;
+    _unit assignAsGunner _vehicle;
+    _unit moveInGunner _vehicle;
+};
