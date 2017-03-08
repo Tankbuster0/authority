@@ -10,7 +10,7 @@ if (worldName == "Altis") then
 	_location setText "Abdera airfield";
 	};
 testmode = false;
-if (serverName in ["Tanky-Test"]) then {testmode = true;}; testmode = false;
+if (serverName in ["Tanky-Test", "TankyTest"]) then {testmode = true;};
 publicVariable "testmode";
 //initserverfinished = false;
 fobveh = objNull;
