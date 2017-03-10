@@ -33,21 +33,17 @@ if (_droptype isKindOf "Air") then
 _nul = [_pos, blufordropaircraft, _droptype ] execVM "server\spawnairdrop.sqf";
 
 {
-	sleep 0.05;
 	_veh = _x;
 	{
 		_veh deleteVehicleCrew _x;
-		sleep 0.05;
 	} foreach crew _veh;
 	deletevehicle _x;
 } foreach vehiclecleanup;
 {
 	deletevehicle _x;
-	sleep 0.05;
 } foreach mancleanup;
 {
 	deleteGroup _x;
-	sleep 0.05;
 } foreach allGroups;
 [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 if (serverName in testservernames) then {sleep 40;} else {sleep 180;};
