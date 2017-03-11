@@ -68,7 +68,7 @@ _sortedlogics = [_logics, [] , {_x distanceSqr _droppos}, "ASCEND"] call BIS_fnc
 _nearestlogic = _sortedlogics select 0;
 _hintdroppostext = switch (true) do
 {
-	case (_nearestlogic isKindOf "Logic"): {"at " + (_nearestlogic getvariable "targetname", "unknown!!") };
+	case (_nearestlogic isKindOf "Logic"): {"at " + (_nearestlogic getvariable ["targetname", "unknown!!"]) };
 	case (_nearestlogic isKindOf forwardpointvehicleclassname): {"near the forward vehicle" };
 	case ((_nearestlogic isKindOf fobvehicleclassname) and (fobdeployed)): {"near the FOB"};
 	case ((_nearestlogic isKindOf fobvehicleclassname) and (!(fobdeployed))): {"near the FOB vehicle"};
