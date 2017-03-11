@@ -3,7 +3,7 @@
 islandcentre = getarray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 publicVariable "islandcentre";
 debugendmission = false;
-testservernames = ["Tanky-Test"];
+testservernames = ["Tanky-Test", "Tanky test"];
 
 opfor_reinf_truck_soldier = "O_Soldier_GL_F";
 opfor_reinf_truck =  "O_Truck_03_transport_F";
