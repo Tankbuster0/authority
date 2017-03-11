@@ -22,6 +22,7 @@ if (cpt_type ==1 ) then
 	{
 	{_x setdamage 1} foreach roadblockgates;
 	};
+roadblockscleared = true
 pt_radar setdamage 1;
 pt_hq setdamage 1;
 debugendmission = true;
