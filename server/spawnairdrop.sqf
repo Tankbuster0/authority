@@ -20,7 +20,7 @@ if (_droptype isKindOf "Air") then
 	else
 	{
 	_objdist = 5;
-	}
+	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
