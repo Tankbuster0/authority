@@ -79,7 +79,7 @@ _dwp2 setWaypointSpeed "NORMAL";
 _dwp2 setWaypointCompletionRadius 2000;
 _dwp2 setWaypointScript "deleteVehiclecrew _dropveh; deleteVehicle _dropveh;'_dropvehmarker' setMarkerAlpha 0; ";
 
-waituntil {sleep 0.5; (((_dropveh distance2D _droppos) < 1000) or (serverTime > (_mytime + 90))) };
+waituntil {sleep 0.5; (((_dropveh distance2D _droppos) < 500) or (serverTime > (_mytime + 90))) };
 if (serverTime > (_mytime + 90)) exitWith
 	{
 
