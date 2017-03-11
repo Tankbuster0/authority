@@ -10,7 +10,13 @@ if (primarytargetcounter isEqualTo 1) then
 
 if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary target cleared
 	{
-	if (testmode) then {sleep 10} else {sleep 30};
+	if (testmode) then
+		{
+		sleep 10;
+		} else
+		{
+		sleep 30;
+		};
 	nul = execVM "server\primarytargetcleared.sqf";
 	};
 _ruinstartcount = nextpt getVariable "targetruincount";
