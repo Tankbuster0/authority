@@ -61,7 +61,19 @@ _dropveh = (_veh select 0);
 _dropveh setVelocity [200 * (sin _dir), 200 * (cos _dir), 0];
 _dropveh setcaptive true;
 _dropveh flyInHeight 150;
-
+_hintcargotext = gettext  (configFile >> "cfgVehicles" >> _droptype >> "displayname");
+_logics = _droppos nearEntities ["Logic", 2000];
+_logics pushback fobveh; _logics pushBack forward;
+_sortedlogics = [_logics, [] , {_x distanceSqr _droppos}, "ASCEND"] call BIS_fnc_sortBy;
+_nearestlogic = _sortedlogics select 0;
+_hintdroppostext = switch (true) do
+{
+	case (_nearestlogic isKindOf "Logic"): {"at " + (_nearestlogic getvariable "targetname", "unknown!!") };
+	case (_nearestlogic isKindOf forwardpointvehicleclassname): {"near the forward vehicle" };
+	case ((_nearestlogic isKindOf fobvehicleclassname) and (fobdeployed)): {"near the FOB"};
+	case ((_nearestlogic isKindOf fobvehicleclassname) and (!(fobdeployed))): {"near the FOB vehicle"};
+};
+ format ["A %1 is being airdropped %2 for your team.", _hintcargotext, _hintdroppostext] remoteexec ["hint", -2];
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
