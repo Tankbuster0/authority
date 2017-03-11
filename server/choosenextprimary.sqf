@@ -57,7 +57,7 @@ if (testmode) then
 	};
 _sortedtargetlist resize 2;
 nextpt = selectRandom _sortedtargetlist;
-if ((nextpt getVariable ["landmassid", -1] ) != cpt_island) then
+if ((nextpt getVariable ["targetlandmassid", -1] ) != cpt_island) then
 	{// island hopping. give players a blackfish veh transport
 		_nul7 = [(getMarkerPos "headmarker2"), blufordropaircraft, "B_T_VTOL_01_vehicle_F", [0,0,200] ] execVM "server\spawnairdrop.sqf";
 		format ["The next target is on a different island. There's a Blackfish vehicle transport being dropped in a container at the airhead."] remoteexec ["hint", -2];
