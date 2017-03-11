@@ -39,7 +39,7 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 mortar_gunners = [];
 for "_count" from _start to _lc do
 {
-	sleep 0.1;
+	sleep 0.05;
 	diag_log format ["***spu %1 from %2 to %3 ", _count, _start, _lc];
 	_staticgrpname = format ["staticgrp%1", _count];
 	// statics start
@@ -85,7 +85,7 @@ if (testmode) then {diag_log "**** sptu adds a mortar"};
 	group (gunner _veh) setCombatMode "RED";
 
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
-	sleep 0.1;
+	sleep 0.05;
 	// statics end
 if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	// patrolling infantry start
@@ -99,7 +99,7 @@ if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 		};
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
-	sleep 0.1;
+	sleep 0.05;
 if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,50,0] call bis_fnc_findSafePos;
@@ -107,7 +107,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 		_veh = selectRandom opforstaticlandvehicles;
 		_staticveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 
-	sleep 0.2;
+	sleep 0.05;
 	// patrolling  apc /ifv group start
 	if not (_microtown) then
 		{
@@ -210,7 +210,7 @@ if (_pt_type isEqualTo 1) then
 		while {count _townroads < _civcount} do {_townroads append _townroads};
 		for "_i" from 1 to _civcount do
 			{
-			sleep 0.2;
+			sleep 0.05;
 			_civfootgroup = format ["civftgrp%1", _i];
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
@@ -233,7 +233,7 @@ if (_pt_type isEqualTo 1) then
 		_dcarcount = (1 * _lc);
 		for "_i" from 1 to _dcarcount do
 			{
-			sleep 0.2;
+			sleep 0.05;
 			_dcargroup = format ["civcrgrp%1", _i];
 			_dcargroup = createGroup civilian;
 			_roadnogood = true;
@@ -287,7 +287,7 @@ if (_pt_type isEqualTo 1) then
 			{
 			for "_i" from 1 to _pcarcount do
 				{
-				sleep 0.2;
+				sleep 0.05;
 				_roadnogood = true;
 				while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 					{
