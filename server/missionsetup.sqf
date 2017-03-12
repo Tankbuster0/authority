@@ -37,10 +37,8 @@ headmarker2 = createMarker ["headmarker2", _beachheadpos];
 headmarker2 setMarkerShape "ICON";
 headmarker2 setMarkerType "hd_dot";
 headmarker2 setMarkerText "BEACHHEAD";
-
-_beachflag = "Flag_Blue_F" createVehicleLocal (_beachheadpos);
-blueflags pushback _beachflag;
-//diag_log format ["***ms creates %1 at %2", _beachflag, getpos _beachflag];
+beachflag = "Flag_Blue_F" createVehicleLocal (_beachheadpos);
+blueflags pushback beachflag;
 sleep 1;
 for "_q" from 1 to 3 do
 	{
