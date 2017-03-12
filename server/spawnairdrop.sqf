@@ -64,8 +64,8 @@ _dropveh flyInHeight 150;
 _hintcargotext = gettext  (configFile >> "cfgVehicles" >> _droptype >> "displayname");
 _logics = _droppos nearEntities ["Logic", 2000];
 _logics = _logics select {((_x getvariable ["targetstatus" , -1]) > 0)}; //only get logics with a targetstatus variable
-_logics pushback fobveh; _logics pushBack forward; // add vehicles becuase they might make a useful reference for players
-//_logics pushback headmarker2; //had to remove this as it pushed a string into the logics array, which couldnt be sorted below.
+_logics pushback fobveh;  // add fobv becuase they might make a useful reference for players
+_logics pushback beachflag;
 {diag_log format ["*** %1 is %2", _x, typeName _x]} foreach _logics;
 _sortedlogics = [_logics, [] , {_x distanceSqr _droppos}, "ASCEND"] call BIS_fnc_sortBy;
 _nearestlogic = _sortedlogics select 0;
@@ -75,8 +75,7 @@ _hintdroppostext = switch (true) do
 	case (_nearestlogic isKindOf forwardpointvehicleclassname): {"near the forward vehicle" };
 	case ((_nearestlogic isKindOf fobvehicleclassname) and (fobdeployed)): {"near the FOB"};
 	case ((_nearestlogic isKindOf fobvehicleclassname) and (!(fobdeployed))): {"near the FOB vehicle"};
-	case ((markertext _nearestlogic ) isEqualTo "BEACHHEAD"): {"at the beachhead."}; // unused as markers are in the logic array
-	case ((markertext _nearestlogic ) isEqualTo "AIRHEAD"): {"at the airbase."};// as above
+	case (_nearestlogic isKindOf "FlagCarrier"): {"at the beachhead."};
 };
  format ["A %1 is being airdropped %2 for your team.", _hintcargotext, _hintdroppostext] remoteexec ["hint", -2];
 _dwp = _dropgroup addWaypoint [_droppos, 0];
