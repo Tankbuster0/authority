@@ -54,7 +54,7 @@ _dropveh = (_veh select 0);
 	while {not isNull (_this select 0)} do
 		{
 		(_this select 1) setMarkerPos (getpos (_this select 0));
-		sleep 0.5;
+		sleep 1;
 		};
 	};
 // ^^ marker to follow the c130
