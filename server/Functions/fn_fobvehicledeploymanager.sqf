@@ -101,7 +101,7 @@ if not (fobdeployed) then
 			cur addCuratorEditingArea [1,(position fobveh),50];
 			cur addCuratorCameraArea [1,(position fobveh),50];
 			// Hint press button to get in zeus mode
-			"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (commander fobveh)];
+			"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (effectiveCommander fobveh)];
 			fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
 			sleep 5;
 			nul = execVM "server\Functions\fn_cleanupoldprimary.sqf";
