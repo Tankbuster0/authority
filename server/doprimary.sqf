@@ -18,7 +18,7 @@ if (primarytargetcounter > 1) then
 	{
 	roadblockscleared = true;// this is the first target, no roadblocks so set it to true so it's ignored
 	};
-
+if (testmode) then {diag_log format ["### line 21 fps = %1 and minfps = %2"], diag_fps, diag_fpsmin};
 //Reset goodguy scores.
 reinforcementcounter = 0;
 heartandmindscore = 0;
@@ -31,13 +31,13 @@ cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
 cpt_name = (nextpt getVariable "targetname");
 cpt_island = (nextpt getVariable "targetlandmassid");
-
+if (testmode) then {diag_log format ["### line 34 fps = %1 and minfps = %2"], diag_fps, diag_fpsmin};
 primarytarget = nextpt;
 
 // Spawn Enemy Horde.
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 waitUntil {sleep 0.05;scriptDone _handle1};
-
+if (testmode) then {diag_log format ["### line 40 fps = %1 and minfps = %2"], diag_fps, diag_fpsmin};
 // Spawn Enemy CQB
 _handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 waitUntil {sleep 0.05;scriptDone _handle1};
@@ -45,14 +45,14 @@ waitUntil {sleep 0.05;scriptDone _handle1};
 
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
-
+if (testmode) then {diag_log format ["### line 48 fps = %1 and minfps = %2"], diag_fps, diag_fpsmin};
 // create a marker
 cpt_marker = createMarker [("cpt_marker_" + str primarytargetcounter), cpt_position];
 cpt_marker setMarkerShape "ELLIPSE";
 cpt_marker setMarkerType "Flag";
 cpt_marker setMarkerSize [cpt_radius,cpt_radius];
 cpt_marker setMarkerColor "ColorRed";
-
+if (testmode) then {diag_log format ["### line 55 fps = %1 and minfps = %2"], diag_fps, diag_fpsmin};
 
 // make trigger that senses when town is empty of enemies
 trg2 = createTrigger ["EmptyDetector", cpt_position];
