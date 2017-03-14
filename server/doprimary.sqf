@@ -37,7 +37,7 @@ primarytarget = nextpt;
 // Spawn Enemy Horde.
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 waitUntil {sleep 0.05;scriptDone _handle1};
-
+__tky_debug;
 // Spawn Enemy CQB
 _handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 waitUntil {sleep 0.05;scriptDone _handle1};
