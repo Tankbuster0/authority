@@ -20,7 +20,7 @@ airprizeawaitingassembly = false;
 "fobmarker" setMarkerAlpha 0;
 "dropvehmarker" setMarkerAlpha 0;
 execVM "functions.sqf";
-
+execVM "server\functions\KRON_Strings.sqf";
 // Arty Support Stuff
 ArtySupport synchronizeObjectsAdd [SupportReq];
 SupportReq synchronizeObjectsAdd [ArtySupport];
