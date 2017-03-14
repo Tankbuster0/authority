@@ -1,6 +1,7 @@
 //by tankbuster
 //execvd'd by initserver
 // finds towns, improves their centre location and radius, also finds military bases and airfields and makes a logic at all of them.
+ #include "..\includes.sqf"
 _myscript = "getprimarytargetlocations";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 targetdata =[]; _starttime = time;

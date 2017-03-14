@@ -1,4 +1,5 @@
 //by tankbuster
+#include "..\includes.sqf"
 _myscript = "spawnprimarytargetunits";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_start","_composition","_allcompositionunits","_count","_staticgrpname","_grpname","_mypos","_mydir","_staticgrp","_veh","_patrolinf","_staticveh","_patrolveh","_statictanks","_vehdata","_removeenemyvests","_mygroup","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_microtown"];
@@ -147,6 +148,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	sleep 0.02;
 	 }foreach (/*_allcompositionunits + */(units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
+__tky_debug;
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 {
