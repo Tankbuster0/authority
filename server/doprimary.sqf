@@ -1,4 +1,5 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "doprimary.sqf";
 diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
 private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
@@ -41,7 +42,7 @@ if (testmode) then {diag_log format ["### line 40 fps = %1 and minfps = %2"], di
 // Spawn Enemy CQB
 _handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 waitUntil {sleep 0.05;scriptDone _handle1};
-
+__tky_debug;
 
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
@@ -111,7 +112,7 @@ pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkil
 
 // hq vehicle controls opfor air support
 _hqtype = selectRandom opforhqtypes;
-
+__tky_debug;
 
 _hqpos = [0,0,0];
 _testradius = 50;
