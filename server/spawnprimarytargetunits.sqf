@@ -75,7 +75,7 @@ for "_count" from _start to _lc do
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,50,0] call bis_fnc_findSafePos;
 	_mydir = [_pt_pos, _mypos] call BIS_fnc_dirTo;
-
+__tky_debug;
 if (testmode) then {diag_log "**** sptu adds a mortar"};
 	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
@@ -199,6 +199,7 @@ if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //a
 	};
 //createcivilians
 if (testmode) then {diag_log "**** sptu starts cvilian stuff"};
+__tky_debug;
 if (_pt_type isEqualTo 1) then
 		{
 		if (testmode) then {diag_log "**** sptu adds civilans on foot"};
