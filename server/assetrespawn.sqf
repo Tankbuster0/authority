@@ -1,8 +1,9 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "assetrespawn.sqf";
 private ["_myscript","_oldv","_newv","_respawns","_droppoint","_forget","_nul","_typefpv","_typefob","_droppoint2","_respawns2","_testradius","_nearestblueflag","_nearestbluflags","_nearestblueflagssorted", "_sortedblueflags"];
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 if (not isServer) exitWith
 	{
 	diag_log "*** assetrespawn runs on a not server so will quit and exec remote to the server";
@@ -73,4 +74,4 @@ switch (true) do
 	default {diag_log "***default"};
 	};
 sleep 8;
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

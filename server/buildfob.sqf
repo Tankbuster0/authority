@@ -1,4 +1,5 @@
 // by tankbuster
+ #include "..\includes.sqf"
 _myscript = "buildfob.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_pos","_dir","_mypos","_testradius","_droppos","_hpad"];
@@ -30,5 +31,5 @@ publicVariable "fobdeployed";
 previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
 sleep 0.5;
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends
 

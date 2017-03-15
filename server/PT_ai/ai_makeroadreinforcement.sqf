@@ -1,4 +1,5 @@
 // by tankbuster
+ #include "..\includes.sqf"
 _myscript = "ai_makeroadreinforcement.sqf";
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_cpt","_furthestdistsofar","_furthestlocsofar","_pcst2","_possibleconvoystartpoints","_mn","_mkr","_nearestblufors","_bestconvoystartpoint","_data1","_bcsproad","_cveh","_rrgroup","_z","_unit","_cevh", "_bcsp_name"];
@@ -51,4 +52,4 @@ _wp2 setWaypointBehaviour "SAFE";
 //_wp2 setWaypointScript "server\PT_ai\ai_roadreinforcementsattack.sqf";
 _wp2 setWaypointStatements [ "true", "_nul = this execVM 'server\PT_ai\ai_roadreinforcementsattack.sqf'"];
 //diag_log format ["*** mrr makes a truck at %1", _bcsp_name];
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

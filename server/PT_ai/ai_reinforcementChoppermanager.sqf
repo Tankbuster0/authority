@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "ai_reinforcementChoppermanager.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {(alive pt_radar)} do
@@ -23,4 +24,4 @@ while {(alive pt_radar)} do
 
 
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

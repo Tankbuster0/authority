@@ -1,5 +1,7 @@
+ #include "..\includes.sqf"
 _myscript = "spawnairdrop.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+
+__tky_starts;
 private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land

@@ -1,3 +1,4 @@
+ #include "..\includes.sqf"
 _group=group (_this select 0);
 _group setBehaviour "Combat";
 _group setSpeedMode "Normal";

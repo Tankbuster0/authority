@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "tky_supportmanager.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 while {true} do
 	{
 		sleep 3;
@@ -28,5 +29,5 @@ while {true} do
 		};
 	};
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends
 

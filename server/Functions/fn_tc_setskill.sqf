@@ -1,5 +1,5 @@
 // by Tankbuster
-
+ #include "..\includes.sqf"
 private ["_variation", "_dudes", "_skills", "_variationflag"];
 /* Incoming params
 0 = units. Can accept a group or a single unit object

@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "assembleaircraft";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_containerobject","_mycaller","_prizeclass","_prizeclassscreenname","_sleep","_prizepos","_bestvisibility","_bestdir","_d","_testpos","_cansee","_prizevec"];
 _mycaller = _this select 0;
 _prizeclass = prizebox getvariable "eventualtype";
@@ -34,4 +35,4 @@ _prizevec setdir _bestdir;
 airprizeawaitingassmbly = false;
 publicVariable "airprizeawaitingassmbly";
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

@@ -15,7 +15,7 @@
 	Returns:
 	Created objects (Array)
 */
-
+ #include "..\includes.sqf"
 private ["_pos", "_azi", "_objs", "_rdm"];
 _pos = _this param [0, [0, 0], [[]]];
 _azi = _this param [1, 0, [-1]];

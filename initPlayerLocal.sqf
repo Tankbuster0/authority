@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "initplayerlocal.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 [ missionNamespace, "arsenalClosed",
@@ -80,4 +81,4 @@ if ( player == "alpha_1") then  {
 };
 */
 [] execVM "client\playersetup.sqf";
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

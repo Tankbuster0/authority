@@ -3,7 +3,7 @@
 
 // Input: Position
 // Outpur: True if inside, false if outside.
-
+ #include "..\includes.sqf"
 params ["_position"];
 private ["_buildingPosCeiling", "_intersect", "_inside"];
 

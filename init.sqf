@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "init.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+
 if (worldName == "Altis") then
 	{
 	_location = createlocation ["NameLocal",  [20983,7242,25.656], 100,100];
@@ -20,7 +21,6 @@ airprizeawaitingassembly = false;
 "fobmarker" setMarkerAlpha 0;
 "dropvehmarker" setMarkerAlpha 0;
 execVM "functions.sqf";
-execVM "server\functions\KRON_Strings.sqf";
 // Arty Support Stuff
 ArtySupport synchronizeObjectsAdd [SupportReq];
 SupportReq synchronizeObjectsAdd [ArtySupport];
@@ -46,4 +46,3 @@ cur addEventHandler ["CuratorObjectDeleted", {[_this select 0, _this select 1] r
 cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorSelectionChanged"];}];
 
 //[] execVM "server\real_weather.sqf";
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];

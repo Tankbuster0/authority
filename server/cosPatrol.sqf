@@ -1,3 +1,4 @@
+ #include "..\includes.sqf"
 private ["_waypoints","_findWps"];
 _grpArray=(_this select 0);
 _grpArrayTwo=(_this select 1);

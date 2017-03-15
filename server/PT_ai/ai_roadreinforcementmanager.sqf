@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "ai_roadreinforcementmanager.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {!roadblockscleared} do
@@ -16,4 +17,4 @@ while {!roadblockscleared} do
 		reinforcementcounter = reinforcementcounter + 1;
 		};
 };
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

@@ -6,9 +6,9 @@
 
 //Input: Position of center of preferred area.
 //		 Radius of Target.
-
+ #include "..\includes.sqf"
 _myscript = "ai_populateCQBBuildings.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 
 AM_fnc_checkInside = compile preprocessFile "Server\BuildingOccupation\isInsideBuilding.sqf";
 //AM_fnc_isWindowPos = compile preprocessFile "BuildingOccupation\isWindowPos.sqf";
@@ -326,4 +326,4 @@ while { count _outskirtBuildings < _possibleOutskirtBuildingCount} do
 };
 */
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

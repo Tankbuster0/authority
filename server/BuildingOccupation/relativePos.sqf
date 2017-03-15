@@ -1,5 +1,6 @@
 // by Zapat and Tankbuster
 //Edited by SPUn
+ #include "..\includes.sqf"
 _myscript = "fn_p_relativePos.sqf";
 
 private ["_p1", "_dir","_dst","_r","_alt"];

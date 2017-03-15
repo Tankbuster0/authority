@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "assaultphasefinished.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_ruinstartcount","_ruinendcount","_heartandmindscore","_sm_required","_sm_hint","_smmhandle", "_handle2", "_handle4"];
 if (primarytargetcounter isEqualTo 1) then
 	{
@@ -34,4 +35,4 @@ waitUntil {sleep 1;scriptdone _handle2};
 */
 nul =  execVM "server\primarytargetcleared.sqf";
 cpt_marker setMarkerBrush "Solid";
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

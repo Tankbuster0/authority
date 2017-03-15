@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "ai_spawnroadblocks.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_mypos","_myradius","_mypos0","_myroadarray1","_road1","_road2","_mypos2","_mname","_mkr","_myroads","_rd1","_rd2","_foreachindex","_groups", "_totalenemies", "_objects", "_campgroup"];
 _currentprimarytarget = _this select 0;
 roadblockgates =[];
@@ -153,4 +154,4 @@ for "_i" from 0 to 355 step 5 do
 	};
 } foreach _myroadarray1;
 roadblockreturndata = [_totalenemies, _groups, _objects, _campgroup, (count _myroadarray1)];
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

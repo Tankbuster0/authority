@@ -1,6 +1,6 @@
 //by tankbuster
 _myscript = "do_lnmcle";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 //land mine clearance mission
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
 //get a good place for minefield
@@ -72,4 +72,4 @@ for "_zz" from 0 to _numberofmines do
 	deleteMarker format ["mine%1", _zz];
 	};
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

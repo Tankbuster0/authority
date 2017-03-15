@@ -1,7 +1,7 @@
 //by tankbuster
  #include "..\includes.sqf"
 _myscript = "doprimary.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
 vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
 sleep 20;
@@ -142,4 +142,4 @@ hqnet allowdamage true;
 0 = execVM "server\PT_ai\ai_airsupportmanager.sqf";
 //stuff that needs to be check constantly runs here
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

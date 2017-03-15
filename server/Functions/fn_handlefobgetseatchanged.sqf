@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "fn_handlefobgetseatchanged.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 
 params ["_veh", "_seat1", "_seat2"];
 diag_log format ["***hfgsc gets vehicle = %1, seat1 = %2 and seat2 = %3", _veh, _seat1, _seat2];
@@ -18,4 +19,4 @@ if (!(((assignedVehicleRole _seat1) select 0) isEqualTo "cargo")) then //they've
 
 BIS_supp_refresh = TRUE;
 //removeAllActions fobveh;
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

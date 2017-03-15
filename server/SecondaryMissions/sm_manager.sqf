@@ -1,7 +1,7 @@
 //by tankbuster
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_sm_required","_sm_hint","_smtypearray","_typeselected","_smmanagerhandle"];
 
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
@@ -68,4 +68,4 @@ for "mycounter" from 1 to _sm_required do
 
 
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends
