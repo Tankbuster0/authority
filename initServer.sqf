@@ -1,5 +1,3 @@
- #include "..\includes.sqf"
-_myscript = "initserver.sqf";
 initserverfinished = false; publicVariable "initserverfinished";
 missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 0.5;

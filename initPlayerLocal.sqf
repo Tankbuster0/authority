@@ -1,6 +1,5 @@
- #include "..\includes.sqf"
 _myscript = "initplayerlocal.sqf";
-__tky_starts;
+
 
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 [ missionNamespace, "arsenalClosed",
@@ -81,4 +80,3 @@ if ( player == "alpha_1") then  {
 };
 */
 [] execVM "client\playersetup.sqf";
-__tky_ends
