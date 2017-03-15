@@ -12,7 +12,7 @@ _mbi = ["militarybasesincluded", 1] call BIS_fnc_getParamValue;
 _nvc = ["notveryclose",500] call BIS_fnc_getParamValue;
 _notlegittargets = []; _overseastargets = [];
 //_logics = entities "Logic";
-_logics = nearEntities ["Logic", 6000];
+_logics = _pos nearEntities ["Logic", 6000];
 sleep 0.1;
 //count how many remaining targets on this island
 __tky_debug;
