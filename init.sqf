@@ -1,4 +1,3 @@
- #include "..\includes.sqf"
 _myscript = "init.sqf";
 
 if (worldName == "Altis") then
