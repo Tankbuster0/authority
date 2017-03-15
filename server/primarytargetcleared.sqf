@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "primarytargetcleared.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 
 private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh"];
 previousmission = nextpt; // remember the old target in this variable to use in later cleanup scripts
@@ -52,4 +53,4 @@ primarytargetcounter = primarytargetcounter + 1;
 
 _nul = execVM "server\doprimary.sqf";
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

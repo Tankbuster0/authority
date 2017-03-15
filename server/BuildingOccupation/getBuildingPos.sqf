@@ -1,5 +1,6 @@
 // by Zapat and Tankbuster
 //Edited by SPUn
+ #include "..\includes.sqf"
 _myscript = "fn_p_buildingPos.sqf";
 	/*
 	   returns a list of all available building positions

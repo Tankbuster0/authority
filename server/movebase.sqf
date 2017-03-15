@@ -1,7 +1,8 @@
 //by tankbuster
 //execvmd by assaultphasefinished
+ #include "..\includes.sqf"
 _myscript = "movebase";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
@@ -149,4 +150,4 @@ blubasedataterminal setpos _mypos;
 
 
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

@@ -5,7 +5,7 @@
 
    Moves a chute to the landing position
 */
-
+ #include "..\includes.sqf"
 private ["_man","_chuto","_target_pos","_deg_sec","_dir","_ang","_posc","_dif","_difabs","_turn","_hspd","_max_spd","_deltatime","_timeold","_vh","_vz","_acc","_cone","_detached","_pos_man","_helper1","_rad","_is_ammo","_pos_conex"];
 _helper1 = objNull;
 _man = [_this, 0] call BIS_fnc_param;

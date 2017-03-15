@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "missionsetup";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse"];
 _airfield = foundairfields call bis_fnc_selectRandom;//choose a random airfield
 enableVehicleCrashes = false;
@@ -178,5 +179,5 @@ _nul = execVM "server\reloadarty.sqf";
 forward setdamage 0;
 missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends
 nextpt

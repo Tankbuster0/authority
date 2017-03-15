@@ -1,7 +1,8 @@
 //by tankbuster
 //execvmd by assaultphasefinished
+ #include "..\includes.sqf"
 _myscript = "cleanupemptyserver";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 sleep 10;
 diag_log "***cues runs. deleting deads etc";
 if (count (allPlayers - (entities "HeadlessClient_F")) < 1) then
@@ -14,4 +15,4 @@ else
 {
 	diag_log "***cues quits because server not empty";
 };
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

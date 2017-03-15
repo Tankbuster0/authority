@@ -1,5 +1,6 @@
 // by Zapat and Tankbuster
 //Edited by SPUn
+ #include "..\includes.sqf"
 _myscript = "fn_p_getWindowPos.sqf";
 /*
 		function returns the window positions of a house

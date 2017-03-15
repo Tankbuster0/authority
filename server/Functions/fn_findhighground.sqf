@@ -1,5 +1,6 @@
 //finds a random highground position in or near the current primary target
 // by tankbuster
+ #include "..\includes.sqf"
 private ["_max","_highestpossofar","_y","_cpos","_highobject","_dif"];
 _max = 0;
 _highestpossofar = cpt_position;

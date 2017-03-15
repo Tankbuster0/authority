@@ -35,8 +35,9 @@
 	ID 			= 	number (if you want to delete units this script creates, you'll need ID number for them)							DEFAULT: nil
 	EXAMPLE: 	nul = [player,false,2,3,false,true,player,"random",1000,true,false,8,0.75,nil,nil,33] execVM "reinforcementChopper.sqf";
 */
+ #include "..\includes.sqf"
 _myscript = "ai_reinforcementchopper.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_captive","_patrol","_heliT","_chopperTypes","_chopperType","_setInit2","_setInit","_c0","_customInit","_tPos","_exactPos","_skls","_skills","_grpSize","_cycle","_precise","_man2","_direction","_distance","_targetM","_i2","_heliPad","_targetPos","_side","_targetMarker","_BLUmen","_OPFmen","_men","_hq","_grp1","_grp2","_man1","_man","_dir","_range","_pos","_heli","_vehSpots","_i","_wp1"];
 //Extra options:
 _doorHandling = true;
@@ -247,4 +248,4 @@ if((_heli distanceSqr _pos < 20))exitWith{
 	deleteVehicle _heli;
 	deleteVehicle _helipad;
 };
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

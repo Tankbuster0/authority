@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "handlefobgetin.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 params ["_veh", "_seat", "_unit"];
 diag_log format ["***hfgin gets _veh %1_seat %2, _unit %3", _veh, _seat, _unit];
 if (_seat isEqualTo "cargo") then // player is getting into cargo seat
@@ -14,4 +15,4 @@ if (_seat isEqualTo "cargo") then // player is getting into cargo seat
 		BIS_supp_refresh = TRUE;
 	} else {diag_log "***hfgin says someone got in cargo, but engine was on"};
 } else {diag_log "*** hfgin says someone got in a seat other than cargo"};
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

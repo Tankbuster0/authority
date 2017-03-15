@@ -1,7 +1,7 @@
 //by tankbuster
-
+ #include "..\includes.sqf"
 _myscript = "cleanupoldprimary";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_nvc"];
 if (isNull previousmission) exitWith {diag_log "***cleanupoldprimary exits because previous mission is null!"};// ie, its the first target
 _nvc = 0.75 * (["notveryclose",500] call BIS_fnc_getParamValue);
@@ -40,4 +40,4 @@ _nvc = 0.75 * (["notveryclose",500] call BIS_fnc_getParamValue);
 	deleteVehicle _x;
 } forEach CQBCleanupArr;
 {deleteGroup _x} foreach allGroups;
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

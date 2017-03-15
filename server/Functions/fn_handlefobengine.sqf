@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "handlefobengine.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 params ["_veh", "_ison"];
 diag_log format ["***hfe gets _vehicle is %1, engine is %2", _veh, _ison];
 if (_ison) then //engine just been turned on. remove arty from all cargo crew in the vehicle
@@ -27,7 +28,7 @@ else //engine just been turned off, give arty to all cargo crew in the vehicle
 		} foreach (crew _veh);
 	};
 BIS_supp_refresh = TRUE;
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends
 
 
 

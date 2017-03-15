@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "ai_airsupportmanager";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_opforairsupportgroup","_startpos","_chosenveh","_opforairsupport","_opforairsupportveh","_dir"];
 
 while {(alive pt_hq) and ((playersNumber west) > 0)} do
@@ -42,4 +43,4 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 
 
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

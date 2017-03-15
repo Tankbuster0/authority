@@ -1,6 +1,7 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "reloadarty";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 while {((alive arty) and (canfire arty))} do
 	{
 	sleep 5;
@@ -33,4 +34,4 @@ while {((alive arty) and (canfire arty))} do
 		};
 	};
 diag_log "reloadarty quits because arty unit is dead or can't fire";
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

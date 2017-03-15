@@ -1,5 +1,6 @@
+ #include "..\includes.sqf"
 _myscript = "handlefobgetout.sqf";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 unassignCurator cur;
 
 	// remove arty comms for anyone getting out of vehicle
@@ -41,4 +42,4 @@ if ((_this select 0) == fobveh) then //someone is getting out of the fobveh
 		};
 	};
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

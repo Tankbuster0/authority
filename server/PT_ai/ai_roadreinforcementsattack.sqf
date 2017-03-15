@@ -1,7 +1,8 @@
 //by tankbuster
 //execvmd by assaultphasefinished
+ #include "..\includes.sqf"
 _myscript = "ai_makeroadreinforcementsattack";
-diag_log format ["*** %1 starts %2,%3", _myscript, diag_tickTime, time];
+__tky_starts;
 private ["_possibletargets","_radius","_mydude","_targettobeattacked", "_mydata4"];
 
 _mydude = _this;;
@@ -32,4 +33,4 @@ if ((playersNumber west) > 0) then
 	[(group _mydude), position forward] call BIS_fnc_taskAttack;
 	};
 
-diag_log format ["*** %1 ends %2,%3", _myscript, diag_tickTime, time];
+__tky_ends

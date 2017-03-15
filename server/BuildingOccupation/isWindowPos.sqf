@@ -3,7 +3,7 @@
 
 // Input: Building Position
 // Output: [[Lookout direction, Quality of lookout], [L..,Q..]]
-
+ #include "..\includes.sqf"
 AM_fnc_checkInside = compile preprocessFile "Server\BuildingOccupation\isInsideBuilding.sqf";
 
 params ["_buildPos"];
@@ -15,9 +15,9 @@ _cansee = false;
 _return = [0,0];
 for "_dir" from 1 to 360 step 45 do
 {
-	
+
 	_counterPosASL =  [(_samplePosASL select 0) + sin _dir * _checkDist,(_samplePosASL select 1) + cos _dir * _checkDist,_samplePosASL select 2];
-	if (! ([_counterPosASL] call AM_fnc_checkInside) ) then 
+	if (! ([_counterPosASL] call AM_fnc_checkInside) ) then
 	{
 		_cansee = [objNull, "FIRE"] checkVisibility [_samplePosASL, _counterPosASL];
 		_rDir = [_samplePosASL,_counterPosASL] call BIS_fnc_dirTo;
