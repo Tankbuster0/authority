@@ -66,7 +66,7 @@ switch (true) do
 		};
 	case _typefob:
 		{
-		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname, [0,0,200],"A replacement vehicle is being delivered." ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname, [0,0,200],"This is to replace the vehicle that's just been destroyed." ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fob";
 		fobrespawning = false;
 		publicVariable "fobrespawning";
