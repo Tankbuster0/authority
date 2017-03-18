@@ -7,7 +7,8 @@ params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", blufordropaircraft], // classname of delivering aircraft
 ["_droptype", fobvehicleclassname],// classname of delivered object
-["_spawnpoint", [0,0,0]]
+["_spawnpoint", [0,0,0]],
+["_airdroptext", ""]
 ]; // classname of delivered object
 _mytime = serverTime;
 airdropcounter = airdropcounter +1;
@@ -79,7 +80,7 @@ _hintdroppostext = switch (true) do
 	case ((_nearestlogic isKindOf fobvehicleclassname) and (!(fobdeployed))): {"near the FOB vehicle"};
 	case (_nearestlogic isKindOf "FlagCarrier"): {"at the beachhead."};
 };
- format ["A %1 is being airdropped %2 for your team.", _hintcargotext, _hintdroppostext] remoteexec ["hint", -2];
+ format ["A %1 is being airdropped %2 for your team. %2", _hintcargotext, _hintdroppostext, _airdroptext] remoteexec ["hint", -2];
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
