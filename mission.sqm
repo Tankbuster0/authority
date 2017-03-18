@@ -449,7 +449,7 @@ class Mission
 	class Intel
 	{
 		briefingName="Coop 40 Authority Altis";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 1155";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 1180";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
