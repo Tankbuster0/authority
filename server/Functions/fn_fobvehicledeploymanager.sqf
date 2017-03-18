@@ -97,7 +97,7 @@ if not (fobdeployed) then
 			sleep 0.5;
 			fobbox setpos (position fobboxlocator);
 			// Make editing area for curator
-			(commander fobveh) assignCurator cur;
+			(effectiveCommander fobveh) assignCurator cur;
 			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
 			cur addCuratorEditingArea [1,(position fobveh),50];
 			cur addCuratorCameraArea [1,(position fobveh),50];
