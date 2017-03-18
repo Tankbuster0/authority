@@ -3,12 +3,13 @@
 _myscript = "assaultphasefinished.sqf";
 __tky_starts;
 private ["_ruinstartcount","_ruinendcount","_heartandmindscore","_sm_required","_sm_hint","_smmhandle", "_handle2", "_handle4"];
+/*
 if (primarytargetcounter isEqualTo 1) then
 	{
 	_handle4 = execVM "server\movebase.sqf";
 	waitUntil {sleep 1;scriptDone _handle4};
 	};
-
+*/
 if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary target cleared
 	{
 	if (testmode) then
@@ -20,6 +21,16 @@ if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary t
 		};
 	nul = execVM "server\primarytargetcleared.sqf";
 	};
+
+
+if (primarytargetcounter isEqualTo 1) then
+	{
+	_handle4 = execVM "server\movebase.sqf";
+	waitUntil {sleep 1;scriptDone _handle4};
+	};
+
+
+
 _ruinstartcount = nextpt getVariable "targetruincount";
 _ruinendcount = (count (cpt_position nearObjects ["Ruins", cpt_radius]));
 heartandmindscore = (_ruinendcount - _ruinstartcount) + civkillcount + reinforcementcounter + captivekillcounter;// plus a point if captive opfor are killed
