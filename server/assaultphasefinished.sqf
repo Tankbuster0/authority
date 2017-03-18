@@ -13,10 +13,10 @@ if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary t
 	{
 	if (testmode) then
 		{
-		sleep 10;
+		sleep 1; //used to be 10
 		} else
 		{
-		sleep 30;
+		sleep 1;//used to be 10
 		};
 	nul = execVM "server\primarytargetcleared.sqf";
 	};
