@@ -3,7 +3,7 @@
 _myscript = "primarytargetcleared.sqf";
 __tky_starts;
 
-private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh"];
+private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh", "_txt"];
 previousmission = nextpt; // remember the old target in this variable to use in later cleanup scripts
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorBlue";
@@ -28,9 +28,10 @@ if (primarytargetcounter isEqualTo 1) then
 if (_droptype isKindOf "Air") then
 	{
 		_pos = airhead_container_landing_point;
-	};// prize is an airvehicle which will be delivered containerised to a special landing point
-_nul = [_pos, blufordropaircraft, _droptype, [0,0,0], "Your bonus vehicle is an aircraft and is being delivered packed into a container. " ] execVM "server\spawnairdrop.sqf";
-
+		_txt = "Your bonus vehicle is an aircraft and is being delivered packed into a container.";
+	}else// prize is an airvehicle which will be delivered containerised to a special landing point
+	{_txt = "This is your prize for clearing the primary target";};
+_nul = [_pos, blufordropaircraft, _droptype, [0,0,0],_txt] execVM "server\spawnairdrop.sqf";
 {
 	_veh = _x;
 	{
