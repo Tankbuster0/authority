@@ -98,7 +98,7 @@ airhead_container_landing_point = _closestone;
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerText "AIRHEAD";
-_handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,0]] execVM "server\spawnairdrop.sqf";
+_handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,200]] execVM "server\spawnairdrop.sqf";
 sleep 5;
 waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {sleep 1;(((getposATL mycontainer select 2) < 20) or (time > _scriptime + 120))};
