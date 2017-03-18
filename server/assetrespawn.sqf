@@ -58,7 +58,7 @@ switch (true) do
 	{
 	case _typefpv:
 		{
-		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname, "This is to replace the vehicle that's just been destroyed." ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fpv";
 
 		forwardrespawning = false;
@@ -66,7 +66,7 @@ switch (true) do
 		};
 	case _typefob:
 		{
-		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname, "A replacement vehicle is being delivered." ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fob";
 		fobrespawning = false;
 		publicVariable "fobrespawning";

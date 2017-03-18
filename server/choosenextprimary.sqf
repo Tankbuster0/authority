@@ -63,8 +63,8 @@ nextpt = selectRandom _sortedtargetlist;
 __tky_debug;
 if ((nextpt getVariable ["targetlandmassid", -1] ) != cpt_island) then
 	{// island hopping. give players a blackfish veh transport
-		_nul7 = [(getMarkerPos "headmarker2"), blufordropaircraft, "B_T_VTOL_01_vehicle_F", [0,0,200] ] execVM "server\spawnairdrop.sqf";
-		format ["The next target is on a different island. There's a Blackfish vehicle transport being dropped in a container at the airhead."] remoteexec ["hint", -2];
+		_nul7 = [(getMarkerPos "headmarker2"), blufordropaircraft, "B_T_VTOL_01_vehicle_F", [0,0,200] , "Because the next target is on a different island, you are being given a transport aircraft"] execVM "server\spawnairdrop.sqf";
+		//format ["The next target is on a different island. There's a Blackfish vehicle transport being dropped in a container at the airhead."] remoteexec ["hint", -2];
 	};
 sleep 0.1;
 __tky_debug;
