@@ -179,5 +179,6 @@ _nul = execVM "server\reloadarty.sqf";
 forward setdamage 0;
 missionrunning = true; publicVariable "missionrunning";
 nextpt = _airfield;
+previousmission = nextpt;
 __tky_ends
 nextpt

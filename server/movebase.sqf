@@ -98,7 +98,7 @@ airhead_container_landing_point = _closestone;
 headmarker1 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerPos _blubasedroppos;
 headmarker2 setMarkerText "AIRHEAD";
-_handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,200]] execVM "server\spawnairdrop.sqf";
+_handle = [_blubasedroppos, blufordropaircraft, "Land_Cargo40_military_green_F", [0,0,200], "This will assemble itself into your Airhead."] execVM "server\spawnairdrop.sqf";
 sleep 5;
 waitUntil {sleep 1; not isnil "mycontainer"};
 waitUntil {sleep 1;(((getposATL mycontainer select 2) < 20) or (time > _scriptime + 120))};
@@ -135,7 +135,7 @@ if (count _naughtybaseobjects > 0) then
 sleep 2;
 waitUntil {(getposATL mycontainer select 2) < 2};
 deletevehicle mycontainer;
-blubaseobjects = [cpt_position, 0, _composition] call tky_fnc_t_objectsmapper;
+blubaseobjects = [getpos previousmission, 0, _composition] call tky_fnc_t_objectsmapper;
 {_x setdamage 0;} foreach blubaseobjects;
 _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
