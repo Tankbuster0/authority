@@ -3,13 +3,13 @@
 _myscript = "assaultphasefinished.sqf";
 __tky_starts;
 private ["_ruinstartcount","_ruinendcount","_heartandmindscore","_sm_required","_sm_hint","_smmhandle", "_handle2", "_handle4"];
-/*
+
 if (primarytargetcounter isEqualTo 1) then
 	{
 	_handle4 = execVM "server\movebase.sqf";
-	waitUntil {sleep 1;scriptDone _handle4};
+	sleep 10;
 	};
-*/
+
 if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary target cleared
 	{
 	if (testmode) then
@@ -23,11 +23,6 @@ if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary t
 	};
 
 
-if (primarytargetcounter isEqualTo 2) then //ought to be 1 but is 2 because this has alread been incremented by now. ugly, i know, but it works
-	{
-	_handle4 = execVM "server\movebase.sqf";
-	waitUntil {sleep 1;scriptDone _handle4};
-	};
 
 
 
