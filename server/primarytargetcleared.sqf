@@ -29,7 +29,7 @@ if (_droptype isKindOf "Air") then
 	{
 		_pos = airhead_container_landing_point;
 	};// prize is an airvehicle which will be delivered containerised to a special landing point
-_nul = [_pos, blufordropaircraft, _droptype, "Your bonus vehicle is an aircraft and is being delivered packed into a container. " ] execVM "server\spawnairdrop.sqf";
+_nul = [_pos, blufordropaircraft, _droptype, [0,0,0], "Your bonus vehicle is an aircraft and is being delivered packed into a container. " ] execVM "server\spawnairdrop.sqf";
 
 {
 	_veh = _x;
