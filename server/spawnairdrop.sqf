@@ -11,6 +11,7 @@ params [
 ["_airdroptext", ""]
 ]; // classname of delivered object
 _mytime = serverTime;
+diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext];
 airdropcounter = airdropcounter +1;
 if (airdropcounter isEqualTo 27) then {airdropcounter =1};
 _thisaidropiteration = airdropcounter;
