@@ -146,8 +146,4 @@ blueflags pushback baseflag;
 _mypos = getpos terminalcone;
 deleteVehicle terminalcone;
 blubasedataterminal setpos _mypos;
-
-
-
-
 __tky_ends

@@ -13,7 +13,7 @@ blueflags pushBack _newflag;
 sleep 0.5;
 debugendmission = false;
 //find the player nearest to the new blue flag, and call the airdrop on him. If this is target 1, this must be the fob vehicle
-_nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750/*, false*/];
+_nearestplayers = nearestobjects [(getpos _newflag), ["SoldierWB"], 750, false];
 if ((count _nearestplayers) < 1) then {_pos = (getpos _newflag)} else {_pos = (getpos (_nearestplayers select 0))};
 deleteVehicle pt_fire;
 if (primarytargetcounter isEqualTo 1) then
@@ -21,8 +21,6 @@ if (primarytargetcounter isEqualTo 1) then
 		_droptype = fobvehicleclassname;
 	} else
 	{
-
-
 		_droptype = (selectRandom prizes);
 		while {airprizeawaitingassembly and (_droptype isKindOf "Air")} do
 			{_droptype = (selectRandom prizes);};
