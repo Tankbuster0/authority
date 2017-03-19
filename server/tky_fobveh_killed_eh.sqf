@@ -9,6 +9,7 @@ while {true} do
 	waitUntil {sleep 10; (not (isNull fobveh))};
 	if ((not alive fobveh) or (((getPosASL fobveh) select 2) < -2.5)) then
 		{
+		fobvehrespawncounter = fobvehrespawncounter + 1;
 		fobveh setdamage 1;
 		[fobveh] execVM "server\assetrespawn.sqf";
 		if (fobdeployed) then
