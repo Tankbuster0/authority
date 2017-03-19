@@ -81,6 +81,7 @@ _hintdroppostext = switch (true) do
 	case ((_nearestlogic isKindOf fobvehicleclassname) and (!(fobdeployed))): {"near the FOB vehicle"};
 	case (_nearestlogic isKindOf "FlagCarrier"): {"at the beachhead "};
 };
+if ((fobvehrespawncounter  < 1) and (_droptype isEqualTo fobvehicleclassname)) then {_airdroptext = "This will be your FOB vehicle. In a wide enough open space, it can deploy into a small FOB."};
  format ["A %1 is being airdropped %2 for your team. %3", _hintcargotext, _hintdroppostext, _airdroptext] remoteexec ["hint", -2];
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
