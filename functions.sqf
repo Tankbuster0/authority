@@ -53,6 +53,18 @@ fnc_setVehicleName =
 	[_veh, _name] remoteExec ["setVehicleVarName", 0, _veh];
 };
 
+fnc_usefirstemptyinhintqueue =
+	{
+	private ["_i"];
+	params ["tky_text"];
+	//if (hintqueue select 0) isEqualTo "" then {(hintqueue select 0) = tky_text};
+	//can this be done in a loop?
+	for "_i" from 0 to 5 do
+		{
+		if ((hintqueue select _i) isEqualTo "") exitWith {(hintqueue select _i) = tky_text};
+		};
+	};
+
 /*
 example
 _veh = createVehicle ["I_UAV_02_F", [24068.07,18587.05,3.19], [], 0, "NONE"];
