@@ -8,10 +8,9 @@ private [];
 while {true} do
 	{
 	waitUntil 	{sleep 2;(hintqueue select 0) != "" };
-	format ["%1", hintqueue select 0] remoteexec ["hint", -2];
-	sleep 25;
-	_mydata = [hintqueue] call BIS_fnc_arrayShift;
+	format ["%1", [hintqueue] call BIS_fnc_arrayShift;] remoteexec ["hint", -2];
 	hintqueue set [5,""];
+	sleep 25;
 	};
 
 
