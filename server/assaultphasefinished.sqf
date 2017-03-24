@@ -33,7 +33,8 @@ diag_log format ["****h&m = %1, ruinend %2 ruinstart %3 civkill %4 reinfcntr %5"
 
 sleep 1;
 cpt_marker setMarkerBrush "Cross";
-format ["Congratulations! You've driven the enemy from the AO."] remoteexec ["hint", -2];
+//format ["Congratulations! You've driven the enemy from the AO."] remoteexec ["hint", -2];
+["Congratulations, you've driven the enemy from the AO."] call tky_fnc_t_usefirstemptyinhintqueue;
 /*
 sleep 10;
 _handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";

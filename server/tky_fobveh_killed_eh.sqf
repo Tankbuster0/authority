@@ -15,7 +15,8 @@ while {true} do
 		if (fobdeployed) then
 			{
 				[] call tky_fnc_fobvehicledeploymanager;
-				format ["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] remoteexec ["hint", -2];
+				//format ["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] remoteexec ["hint", -2];
+				["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] call tky_fnc_t_usefirstemptyinhintqueue;
 			};
 
 		sleep 120;

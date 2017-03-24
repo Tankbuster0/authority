@@ -84,7 +84,8 @@ _hintdroppostext = switch (true) do
 if (_droptype isEqualTo fobvehicleclassname) then {_hintcargotext = "FOB vehicle (an unarmed Hunter)"};
 if (_droptype isEqualTo forwardpointvehicleclassname) then {_hintcargotext = "Forward vehicle (Prowler)"};
 if ((fobvehrespawncounter  < 1) and (_droptype isEqualTo fobvehicleclassname)) then {_airdroptext = "This will be your FOB vehicle. In a wide enough open space, it can deploy into a small FOB."};
- format ["A %1 is being airdropped %2 for your team. %3", _hintcargotext, _hintdroppostext, _airdroptext] remoteexec ["hint", -2];
+ //format ["A %1 is being airdropped %2 for your team. %3", _hintcargotext, _hintdroppostext, _airdroptext] remoteexec ["hint", -2];
+ [format ["A %1 is being airdropped %2 for your team. %3", _hintcargotext, _hintdroppostext, _airdroptext]] call tky_fnc_t_usefirstemptyinhintqueue;
 _dwp = _dropgroup addWaypoint [_droppos, 0];
 _dwp setWaypointBehaviour "CARELESS";
 _dwp setWaypointSpeed "NORMAL";
