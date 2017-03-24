@@ -3,7 +3,7 @@
 _myscript = "makediary";
 __tky_starts;
 player createDiarySubject ["auththemission", "Authority: The Mission"];// subject mission stuff
-player createDiaryRecord ["auththemission", ["The Mission", "Your team has been put ashore with limited assets. You are to take targets from the enemy as directed. <br /> There are civilans here. This is their home, respect them and it. <br />You can expect to encounter enemies all over the island, not just in the area of operations. Engage and prosecute them."]]
+player createDiaryRecord ["auththemission", ["The Mission", "Your team has been put ashore with limited assets. You are to take targets from the enemy as directed. <br /> There are civilans here. This is their home, respect them and it. <br />You can expect to encounter enemies all over the island, not just in the area of operations. Engage and prosecute them."]];
 //
 player createDiarySubject ["yourstuff", "Your vehicles and bases."];// subject your stuff
 player createDiaryRecord ["yourstuff", ["The Beachhead","The beachhead has an ammocache some quads and a Prowler, known as the Forward Vehicle. You can respawn at the beachhead. From here, you will assault and secure the nearby airfield. Then the Airhead will replace the Beachhead as your main base.<br />"]];
