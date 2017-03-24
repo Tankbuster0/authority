@@ -1,7 +1,7 @@
 
 _myscript = "fnc_usefirstemptyinhintqueue";
 
-	private ["_i", "_tky_text"];
+	private ["_i"];
 	params ["_tky_text"];
 	for "_i" from 0 to 5 do
 		{
