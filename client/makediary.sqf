@@ -1,0 +1,14 @@
+//by tankbuster
+ #include "..\includes.sqf"
+_myscript = "makediary";
+__tky_starts;
+player createDiarySubject ["auththemission", "Authority: The Mission"];
+player createDiaryRecord ["auththemission", ["The Mission", "Your team has been put ashore with limited assets. You are to take targets from the enemy as directed. <br /> There are civilans here. This is their home, respect them and it. <br />You can expect to encounter enemies all over the island, not just in the area of operations. Engage and prosecute them."]]
+//
+player createDiarySubject ["yourstuff", "Your vehicles and bases."];
+player createDiaryRecord ["yourstuff", ["The Beachhead","The beachhead has an ammocache some quads and a Prowler, known as the Forward Vehicle. You can respawn at the beachhead. From here, you will assault and secure the nearby airfield. Then the Airhead will replace the Beachhead as your main base.<br />"]];
+player createDiaryRecord ["yourstuff", ["The Airhead", "Once you've taken it, the airfield will become your main base, known as The Airhead. A large container will be dropped here that will unpack itself into the Airhead assets. You will have an ammobox, a spawnpoint, a jail and a helipad where you can service your aircraft. There is also 3 containers that can rearm, refuel and repair other vehicles.<br /> The FOB vehicle will be airdrop delivered here too. "]];
+player createDiaryRecord ["yourstuff", ["The Forward Vehicle","The Forward vehicle is a Prower LSV, It is light, fast and armed with .50 machine gun. It has a small inventory of usefull gear, mostly magazines and rockets. If you're in the backseat and the engine is off, you can access the artillery system. If it's destroyed, a replacement will be airdropped to you. It's a spawnpoint."]];
+player createDiaryRecord ["yourstuff", ["The FOB Vehicle", "The FOB vehicle is an unarmed Hunter MRAP and is delivered by airdrop once you have taken the airbase. Like the Prowler, you can access the artillery system from the back seat if the engine is off. <br />If the FOB Vehicle is in a flat and open enough area, it can be deployed (again from the backseat with engine off) into a small FOB. It will be replaced by airdrop if it is destroyed. "] ];
+player createDiaryRecord ["yourstuff", ["Deploying the FOB", "Drive the FOB vehicle into a wideopen and flat enough space and you can deploy the FOB. When it deploys, a small number of assets are made close by; another ammocache, a spawn point and a medic tent. The player who deploys it has access to the Zeus interface and can make a few other assets such as static weapons, sandbags and another helipad."]];
+__tky_ends
