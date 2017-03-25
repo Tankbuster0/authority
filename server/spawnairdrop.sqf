@@ -39,7 +39,7 @@ _mkrnumber setMarkerText ("Charlie Juliet " + (_thisaidropiteration call BIS_fnc
 // create the drop veh;
 _dropgroup = createGroup west;
 _spawndir = floor (random 360);
-if (_spawnpoint isEqualTo [0,0,0]) then
+if ((_spawnpoint select 0) isEqualTo 0) then
 	{
 	_startpos = [_droppos, (4000 + random 4000), _spawndir] call bis_fnc_relPos;
 	} else
