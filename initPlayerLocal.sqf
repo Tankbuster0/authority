@@ -64,12 +64,4 @@ player addEventHandler [ "Respawn", {
 }];
 //player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
 
-// Arty JIP stuff
-/*
-if ( player == "alpha_1") then  {
-	player synchronizeObjectsAdd [SupportReq];
-	[player, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
-	BIS_supp_refresh = TRUE;
-};
-*/
 [] execVM "client\playersetup.sqf";

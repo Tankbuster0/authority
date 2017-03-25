@@ -10,6 +10,7 @@ if (count (allPlayers - (entities "HeadlessClient_F")) < 1) then
 	{deleteVehicle _x } foreach allDeadMen;
 	sleep 1;
 	{deletegroup _x} foreach allGroups;
+	{if (!(alive _x)) then {deleteVehicle _x}} foreach entities [[fobvehicleclassname, forwardpointvehicleclassname], [], false, false];
 }
 else
 {
