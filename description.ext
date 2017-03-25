@@ -39,11 +39,9 @@ class CfgSounds
 {
 
 };
-LARs_calculateSideGear = 1;
 #include "CHVD\dialog.hpp"
 class cfgFunctions
 {
-	#include "LARs\blacklistArsenal.cpp"
 	#include "CHVD\CfgFunctions.hpp"
 	class tky
 	{
