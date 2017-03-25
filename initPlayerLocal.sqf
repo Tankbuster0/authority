@@ -25,13 +25,6 @@ endLoadingScreen;
 //Save initial loadout
 [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 
-//Save loadout when ever we exit an arsenal
-[ missionNamespace, "arsenalClosed", {
-	//systemChat "Arsenal closed";
-	[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
-}] call BIS_fnc_addScriptedEventHandler;
-
-
 player addEventHandler [ "Respawn", {
 	[SupportReq, ArtySupport] call BIS_fnc_removeSupportLink;
 	BIS_supp_refresh = TRUE;
