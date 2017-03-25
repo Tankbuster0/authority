@@ -1,5 +1,6 @@
 _myscript = "initplayerlocal.sqf";
 
+
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 [ missionNamespace, "arsenalClosed",
 	{
@@ -23,14 +24,13 @@ endLoadingScreen;
 //systemChat "Saving initial loadout";
 //Save initial loadout
 [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
-/*
+
 //Save loadout when ever we exit an arsenal
 [ missionNamespace, "arsenalClosed", {
 	//systemChat "Arsenal closed";
 	[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 }] call BIS_fnc_addScriptedEventHandler;
-*/
-// ^^^apparently, this code is duplicated at lines 5 to 10.
+
 
 player addEventHandler [ "Respawn", {
 	[SupportReq, ArtySupport] call BIS_fnc_removeSupportLink;
@@ -58,6 +58,7 @@ player addEventHandler [ "Respawn", {
 				//systemChat "Respawning - loading last saved";
 				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,false, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] ) and (not (isEngineOn (vehicle player))) ) "];
+				//fobdeployactionid2 = player addaction ["New deploy checks", "client\tky_super_isflatempty.sqf", "", 0,false,false, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] )  ) "];
 				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distanceSqr blubasedataterminal) < 2)"];
 				vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distanceSqr fobdataterminal) < 2)"];
 				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr prizebox) < 8)"];
@@ -70,5 +71,12 @@ player addEventHandler [ "Respawn", {
 }];
 //player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
 
-
+// Arty JIP stuff
+/*
+if ( player == "alpha_1") then  {
+	player synchronizeObjectsAdd [SupportReq];
+	[player, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
+	BIS_supp_refresh = TRUE;
+};
+*/
 [] execVM "client\playersetup.sqf";
