@@ -26,7 +26,7 @@ if (_droptype isKindOf "Air") then
 	_objdist = 6;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
-while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+while {(_droppos in [[0,0,0], islandcentre]) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, "headmarker1"] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
