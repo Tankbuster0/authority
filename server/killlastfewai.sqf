@@ -9,7 +9,7 @@ while {not (triggerActivated trg3)} do
 	if ((east countside _lrai) < 3) then
 	{
 		diag_log format ["klfa finds %1 ai left and kills them", (east countside _lrai)];
-		{setdamage 1;}foreach _lrai;
+		{_X setdamage 1;}foreach _lrai;
 
 	};
 
