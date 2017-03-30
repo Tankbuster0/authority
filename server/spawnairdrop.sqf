@@ -29,8 +29,8 @@ if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedp
 while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
 		_mpos = getmarkerpos "headmarker2";
-		_blacklisttopleft = [((_mpos select 0) + 15), ((_mpos select 1) - 15), 0];
-		_blacklistbottomright = [((_mpos select 0) -15), ((_mpos select 1) + 15),0];
+		_blacklisttopleft = [((_mpos select 0) - 15), ((_mpos select 1) + 15), 0];
+		_blacklistbottomright = [((_mpos select 0) + 15), ((_mpos select 1) - 15),0];
 		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, [_blacklisttopleft,_blacklistbottomright]] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
