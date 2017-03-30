@@ -2,7 +2,7 @@
 _myscript = "spawnairdrop.sqf";
 
 __tky_starts;
-private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist"];
+private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist", "_mpos", "_blacklisttopleft", "_blacklistbottomright"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", blufordropaircraft], // classname of delivering aircraft
@@ -28,7 +28,10 @@ if (_droptype isKindOf "Air") then
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
-		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, "headmarker1"] call bis_fnc_findSafePos;
+		_mpos = getmarkerpos "headmarker2";
+		_blacklisttopleft = [((_mpos select 0) + 15), ((_mpos select 1) - 15), 0];
+		_blacklistbottomright = [((_mpos select 0) -15), ((_mpos select 1) + 15),0];
+		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, [_blacklisttopleft,_blacklistbottomright]] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
