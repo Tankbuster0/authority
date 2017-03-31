@@ -11,6 +11,7 @@ opfor_reinf_truck =  "O_Truck_03_transport_F";
 opfor_reinf_helos = ["O_Heli_Light_02_F","O_Heli_Transport_04_covered_F","O_T_VTOL_02_infantry_F"];
 champyisgay = true;
 airdropcounter = 0;
+prizecounter = 0;
 switch (tolower worldName) do
 	{
 		case "altis" :
