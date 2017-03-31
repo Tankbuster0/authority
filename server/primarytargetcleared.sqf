@@ -23,7 +23,8 @@ if (primarytargetcounter isEqualTo 1) then
 	{
 		_droptype = (selectRandom prizes);
 		while {airprizeawaitingassembly and (_droptype isKindOf "Air")} do
-			{_droptype = (selectRandom prizes);};
+			{_droptype = (selectRandom prizes);};// if there's an aircraft awaiting assembly and another aircraft is chosen as prize, keep chosing.
+		prizecounter = prizecounter + 1;
 	};//else choose prize vehicle
 if (_droptype isKindOf "Air") then
 	{

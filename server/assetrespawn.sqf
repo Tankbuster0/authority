@@ -1,7 +1,7 @@
 //by tankbuster
  #include "..\includes.sqf"
 _myscript = "assetrespawn.sqf";
-private ["_myscript","_oldv","_newv","_respawns","_droppoint","_forget","_nul","_typefpv","_typefob","_droppoint2","_respawns2","_testradius","_nearestblueflag","_nearestbluflags","_nearestblueflagssorted", "_sortedblueflags"];
+private ["_myscript","_oldv","_newv","_respawns","_droppoint","_forget","_nul","_typebf","_typefpv","_typefob","_droppoint2","_respawns2","_testradius","_nearestblueflag","_nearestbluflags","_nearestblueflagssorted", "_sortedblueflags"];
 // execvmd by the vehiclerespawn module or the mpkilled eh on the vehicles
 __tky_starts;
 if (not isServer) exitWith
@@ -17,9 +17,10 @@ if (hasInterface) then {diag_log "***assetrespawn runs on client!"};
 _oldv = _this select 0;
 switch (_oldv) do
 	{
-	case forward: {_typefpv = true; _typefob = false;};
-	case fobveh: {_typefpv = false; _typefob = true;};
-	default {_typefpv = false; _typefob = false};
+	case forward: {_typebf = false; _typefpv = true; _typefob = false;};
+	case fobveh: {_typebf = false; _typefpv = false; _typefob = true;};
+	case bf {_typebf = true; _typefpv = false; _typefob = false};
+	default {_typebf = false; _typefpv = false; _typefob = false};
 	};
 if (_typefpv) then
 	{
@@ -35,6 +36,13 @@ if (_typefob) then
 		{
 		fobrespawnpositionid call bis_fnc_removeRespawnPosition;
 		};//if the fob is deployed, remove its respawn id
+	};
+if (_typebf) then
+	{
+	bfrespawning = true;
+	publicVariable "bfrespawning";
+
+
 	};
 _respawns = [west] call bis_fnc_getRespawnPositions;
 _respawns2 = _respawns - [_oldv];
@@ -58,7 +66,7 @@ switch (true) do
 	{
 	case _typefpv:
 		{
-		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname, [0,0,200], "This is to replace the vehicle that's just been destroyed." ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname, [0,0,0],"This is to replace the vehicle that's just been destroyed.", "" ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fpv";
 
 		forwardrespawning = false;
@@ -66,11 +74,18 @@ switch (true) do
 		};
 	case _typefob:
 		{
-		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname, [0,0,200],"This is to replace the vehicle that's just been destroyed." ] execVM "server\spawnairdrop.sqf";
+		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname, [0,0,0],"This is to replace the vehicle that's just been destroyed.", "" ] execVM "server\spawnairdrop.sqf";
 		diag_log "***ar calls a fob";
 		fobrespawning = false;
 		publicVariable "fobrespawning";
 		};
+	case _typebf:
+		{
+		_nul = [_droppoint2, blufordropaircraft, blufordropaircraft, [0,0,0], "This is to replace the aircraft that's just been lost", "" ] execVM "server\spawnairdrop.sqf";
+		diag_log "***ar calls a blackfish";
+		bfrespawning = false;
+		publicVariable "bfrespawning";
+		}
 	default {diag_log "***default"};
 	};
 sleep 8;
