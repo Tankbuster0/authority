@@ -32,7 +32,7 @@ deletevehicle prizebox;
 sleep 1;
 _prizevec = createVehicle [_prizeclass, _prizepos, [],0,"NONE"];
 _prizevec setdir _bestdir;
-if (_prizeclass isEqualTo (blufordropaircraft) then
+if (_prizeclass isEqualTo blufordropaircraft) then
 	{
 	[_prizevec, "bf"] call fnc_setvehiclename;
 	};
