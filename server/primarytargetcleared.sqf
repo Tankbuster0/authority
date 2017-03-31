@@ -28,7 +28,7 @@ if (primarytargetcounter isEqualTo 1) then
 	};//else choose prize vehicle
 if (_droptype isKindOf "Air") then
 	{
-		_pos = getpos blubasehelipad;;
+		_pos = blubasehelipad;;
 		_txt = "Your bonus vehicle is an aircraft and is being delivered packed into a container.";
 	}else// prize is an airvehicle which will be delivered containerised to a special landing point
 	{_txt = "This is your prize for clearing the primary target";};
