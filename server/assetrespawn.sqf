@@ -19,7 +19,7 @@ switch (_oldv) do
 	{
 	case forward: {_typebf = false; _typefpv = true; _typefob = false;};
 	case fobveh: {_typebf = false; _typefpv = false; _typefob = true;};
-	case bf {_typebf = true; _typefpv = false; _typefob = false};
+	case bf: {_typebf = true; _typefpv = false; _typefob = false};
 	default {_typebf = false; _typefpv = false; _typefob = false};
 	};
 if (_typefpv) then
@@ -85,7 +85,7 @@ switch (true) do
 		diag_log "***ar calls a blackfish";
 		bfrespawning = false;
 		publicVariable "bfrespawning";
-		}
+		};
 	default {diag_log "***default"};
 	};
 sleep 8;
