@@ -32,7 +32,7 @@ while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdi
 		_mpos = getmarkerpos "headmarker2";
 		_blacklisttopleft = [((_mpos select 0) - 20), ((_mpos select 1) + 20), 0];
 		_blacklistbottomright = [((_mpos select 0) + 20), ((_mpos select 1) - 20),0];
-		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, [_blacklisttopleft,_blacklistbottomright],[]] call bis_fnc_findSafePos;
+		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
 if (typeName _inpos isEqualTo "OBJECT") then {_droppos = getpos _inpos};
@@ -196,7 +196,7 @@ if (_eventualtype isKindOf "Air") then
 		prizebox = _cargo;
 		[_cargo, "prizebox"] call fnc_setVehicleName;
 	};
-if (_eventualtype in prizes) then [_cargo, (format ["prize#1", prizecounter])] call fnc_setvehiclename;
+if (_eventualtype in prizes) then {[_cargo, (format ["prize#1", prizecounter])] call fnc_setvehiclename;};
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
