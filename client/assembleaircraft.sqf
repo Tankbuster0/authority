@@ -35,7 +35,13 @@ _prizevec setdir _bestdir;
 if (_prizeclass isEqualTo blufordropaircraft) then
 	{
 	[_prizevec, "bf"] call fnc_setvehiclename;
-	};
+	}
+	else
+	{
+	[_prizevec, (format ["prize%1", prizecounter])] call fnc_setvehiclename;
+	}
+
+	;
 airprizeawaitingassmbly = false;
 publicVariable "airprizeawaitingassmbly";
 
