@@ -20,11 +20,11 @@ _thisaidropiteration = airdropcounter;
 _droppos = islandcentre; _testradius = 4;
 if (_droptype isKindOf "Air") then
 	{
-	_objdist = 14;
+	_objdist = 20;
 	}
 	else
 	{
-	_objdist = 6;
+	_objdist = 9;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
@@ -196,6 +196,7 @@ if (_eventualtype isKindOf "Air") then
 		prizebox = _cargo;
 		[_cargo, "prizebox"] call fnc_setVehicleName;
 	};
+if (_eventualtype in prizes) then [_cargo, (format ["prize#1", prizecounter])] call fnc_setvehiclename;
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
