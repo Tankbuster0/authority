@@ -54,8 +54,8 @@ player addEventHandler [ "Respawn", {
 				//fobdeployactionid2 = player addaction ["New deploy checks", "client\tky_super_isflatempty.sqf", "", 0,false,false, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] )  ) "];
 				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distanceSqr blubasedataterminal) < 2)"];
 				vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distanceSqr fobdataterminal) < 2)"];
-				prizeboxactionid = player addaction ["Assemble Prize Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr prizebox) < 8)"];
-				bfboxactionid = player addaction ["Assemble Blackfish", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr bfbox) < 8)"];
+				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr prizebox) < 8)"];
+				bfboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr bfbox) < 8)"];
 			};
 		};
 

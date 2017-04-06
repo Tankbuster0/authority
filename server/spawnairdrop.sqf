@@ -2,22 +2,21 @@
 _myscript = "spawnairdrop.sqf";
 
 __tky_starts;
-private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist", "_mpos", "_blacklisttopleft", "_blacklistbottomright"];
+private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", blufordropaircraft], // classname of delivering aircraft
 ["_droptype", fobvehicleclassname],// classname of delivered object
-["_spawnpoint", [0,0,0]],// send 0,0,0 to have sad choose a nearby place at random
-["_airdroptext", ""],// text to be shonw to players when aircraft spawns
-["_vecname", ""] //vehicle name that will be public'd
-];
+["_spawnpoint", [0,0,0]],
+["_airdroptext", ""]
+]; // classname of delivered object
 _mytime = serverTime;
 diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext];
 airdropcounter = airdropcounter +1;
 if (airdropcounter isEqualTo 27) then {airdropcounter =1};
 _thisaidropiteration = airdropcounter;
 // find a good place to land the cargo
-_droppos = islandcentre; _testradius = 4;
+_droppos = [0,0,0]; _testradius = 4;
 if (_droptype isKindOf "Air") then
 	{
 	_objdist = 14;
@@ -27,12 +26,9 @@ if (_droptype isKindOf "Air") then
 	_objdist = 6;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
-while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
+while {(_droppos in [[0,0,0], islandcentre]) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
-		_mpos = getmarkerpos "headmarker2";
-		_blacklisttopleft = [((_mpos select 0) - 15), ((_mpos select 1) + 15), 0];
-		_blacklistbottomright = [((_mpos select 0) + 15), ((_mpos select 1) - 15),0];
-		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, [_blacklisttopleft,_blacklistbottomright]] call bis_fnc_findSafePos;
+		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, "headmarker1"] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
@@ -87,7 +83,6 @@ _hintdroppostext = switch (true) do
 };
 if (_droptype isEqualTo fobvehicleclassname) then {_hintcargotext = "FOB vehicle (an unarmed Hunter)"};
 if (_droptype isEqualTo forwardpointvehicleclassname) then {_hintcargotext = "Forward vehicle (Prowler)"};
-
 if ((fobvehrespawncounter  < 1) and (_droptype isEqualTo fobvehicleclassname)) then {_airdroptext = "This will be your FOB vehicle. In a wide enough open space, it can deploy into a small FOB."};
  //format ["A %1 is being airdropped %2 for your team. %3", _hintcargotext, _hintdroppostext, _airdroptext] remoteexec ["hint", -2];
  [format ["A %1 is being airdropped %2 for your team. %3", _hintcargotext, _hintdroppostext, _airdroptext]] call tky_fnc_t_usefirstemptyinhintqueue;
