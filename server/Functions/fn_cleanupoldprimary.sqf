@@ -30,7 +30,7 @@ _nvc = 0.75 * (["notveryclose",500] call BIS_fnc_getParamValue);
 {
 	deleteVehicle _x;
 	diag_log format ["*** cleanupoldprimary deletes some old civilan %1", typeof _x];
-} foreach (previousmission nearEntities [["Civilian_F, GroundWeaponHolder", "WeaponHolderSimulatd"], _nvc]);
+} foreach (previousmission nearEntities [["Civilian_F", "GroundWeaponHolder", "WeaponHolderSimulated"], _nvc]);
 // ^^ finds and deletes civilian men and discardded weapons and ammo. any in cars/tanks etc will have been ejected when their veh was deleted earlier.
 
 
