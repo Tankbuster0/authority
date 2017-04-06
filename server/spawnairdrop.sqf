@@ -19,16 +19,16 @@ _thisaidropiteration = airdropcounter;
 _droppos = [0,0,0]; _testradius = 4;
 if (_droptype isKindOf "Air") then
 	{
-	_objdist = 14;
+	_objdist = 12;
 	}
 	else
 	{
-	_objdist = 6;
+	_objdist = 5;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
-while {(_droppos in [[0,0,0], islandcentre]) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
+while {_droppos in [[0,0,0], islandcentre]} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to reauested pos
 	{
-		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, "headmarker1"] call bis_fnc_findSafePos;
+		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
@@ -39,7 +39,7 @@ _mkrnumber setMarkerText ("Charlie Juliet " + (_thisaidropiteration call BIS_fnc
 // create the drop veh;
 _dropgroup = createGroup west;
 _spawndir = floor (random 360);
-if ((_spawnpoint select 0) isEqualTo 0) then
+if (_spawnpoint isEqualTo [0,0,0]) then
 	{
 	_startpos = [_droppos, (4000 + random 4000), _spawndir] call bis_fnc_relPos;
 	} else
