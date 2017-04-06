@@ -14,27 +14,27 @@ params [
 _mytime = serverTime;
 diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext];
 airdropcounter = airdropcounter +1;
-if !(_airtype isKindOf "Air") then {_airtype = blufordropaircraft};
 if (airdropcounter isEqualTo 27) then {airdropcounter =1};
 _thisaidropiteration = airdropcounter;
 // find a good place to land the cargo
 _droppos = islandcentre; _testradius = 4;
 if (_droptype isKindOf "Air") then
 	{
-	_objdist = 20;
+	_objdist = 14;
 	}
 	else
 	{
-	_objdist = 7;
+	_objdist = 6;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
-while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0) or (count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist]))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
+while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
 	{
 		_mpos = getmarkerpos "headmarker2";
-		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,0.3,0] call bis_fnc_findSafePos;
+		_blacklisttopleft = [((_mpos select 0) - 15), ((_mpos select 1) + 15), 0];
+		_blacklistbottomright = [((_mpos select 0) + 15), ((_mpos select 1) - 15),0];
+		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,50,0, [_blacklisttopleft,_blacklistbottomright]] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
-if (typeName _inpos isEqualTo "OBJECT") then {_droppos = getpos _inpos};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
 _mkr = createMarker [_mkrnumber, (_droppos) ];
 _mkr setMarkerShape "ICON";
@@ -74,6 +74,7 @@ _logics = _droppos nearEntities ["Logic", 2000];
 _logics = _logics select {((_x getvariable ["targetstatus" , -1]) > 0)}; //only get logics with a targetstatus variable
 _logics pushback fobveh;  // add fobv becuase they might make a useful reference for players
 _logics pushback beachflag;
+{diag_log format ["*** %1 is %2", _x, typeName _x]} foreach _logics;
 _sortedlogics = [_logics, [] , {_x distanceSqr _droppos}, "ASCEND"] call BIS_fnc_sortBy;
 _nearestlogic = _sortedlogics select 0;
 _hintdroppostext = switch (true) do
@@ -189,19 +190,11 @@ _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
-if (_eventualtype isEqualTo blufordropaircraft) then
+if (_eventualtype isKindOf "Air") then
 	{
-		bfbox = _cargo;
-		[_cargo, "bfbox"] call fnc_setVehicleName;
-	}else
-	{
-	if (_eventualtype isKindOf "Air") then
-		{
-			prizebox = _cargo;
-			[_cargo, "prizebox"] call fnc_setVehicleName;
-		};
+		prizebox = _cargo;
+		[_cargo, "prizebox"] call fnc_setVehicleName;
 	};
-if (_eventualtype in prizes) then {[_cargo, (format ["prize#1", prizecounter])] call fnc_setvehiclename;};
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
