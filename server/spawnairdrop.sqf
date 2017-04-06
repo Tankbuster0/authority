@@ -189,10 +189,17 @@ _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
 if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
-if (_eventualtype isKindOf "Air") then
+if (_eventualtype isEqualTo blufordropaircraft) then
 	{
-		prizebox = _cargo;
-		[_cargo, "prizebox"] call fnc_setVehicleName;
+		bfbox = _cargo;
+		[_cargo, "bfbox"] call fnc_setVehicleName;
+	}else
+	{
+	if (_eventualtype isKindOf "Air") then
+		{
+			prizebox = _cargo;
+			[_cargo, "prizebox"] call fnc_setVehicleName;
+		};
 	};
 if (_eventualtype in prizes) then {[_cargo, (format ["prize#1", prizecounter])] call fnc_setvehiclename;};
 sleep 2;
