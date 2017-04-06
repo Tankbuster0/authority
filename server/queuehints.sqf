@@ -11,7 +11,7 @@ while {true} do
 	_mytext = [hintqueue] call BIS_fnc_arrayShift;
 	format ["%1", _mytext] remoteexec ["hint", -2];
 	hintqueue set [5,""];
-	sleep ((count _mytext /4) min 25);
+	sleep ((count _mytext /2) min 25);
 	};
 
 
