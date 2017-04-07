@@ -23,11 +23,12 @@ if (primarytargetcounter isEqualTo 1) then
 	{
 		_droptype = (selectRandom prizes);
 		while {airprizeawaitingassembly and (_droptype isKindOf "Air")} do
-			{_droptype = (selectRandom prizes);};
+			{_droptype = (selectRandom prizes);};// if there's an aircraft awaiting assembly and another aircraft is chosen as prize, keep chosing.
+		prizecounter = prizecounter + 1;
 	};//else choose prize vehicle
 if (_droptype isKindOf "Air") then
 	{
-		_pos = airhead_container_landing_point;
+		_pos = blubasehelipad;;
 		_txt = "Your bonus vehicle is an aircraft and is being delivered packed into a container.";
 	}else// prize is an airvehicle which will be delivered containerised to a special landing point
 	{_txt = "This is your prize for clearing the primary target";};
