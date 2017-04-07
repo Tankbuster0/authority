@@ -30,8 +30,7 @@ if (_droptype isKindOf "Air") then
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {(
 		(_droppos isEqualTo islandcentre) or
-		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist, false])) > 0) or
-		((count (_droppos nearEntities _objdist)) > 0)
+		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist, false])) > 0)
 		)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
 	{
 		_mpos = getmarkerpos "headmarker2";
