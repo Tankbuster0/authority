@@ -28,12 +28,18 @@ if (_droptype isKindOf "Air") then
 	_objdist = 7;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
-while {(_droppos isEqualTo islandcentre) or (count (_droppos nearEntities _objdist) > 0) or (count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist]))} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
+while {(
+		(_droppos isEqualTo islandcentre) or
+		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist, false])) > 0) or
+		((count (_droppos nearEntities _objdist)) > 0)
+		)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
 	{
 		_mpos = getmarkerpos "headmarker2";
 		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,0.3,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
+//or		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist], false)) > 0)
+// ((count (_droppos nearEntities _objdist)) > 0)
 if (typeName _inpos isEqualTo "OBJECT") then {_droppos = getpos _inpos};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
 _mkr = createMarker [_mkrnumber, (_droppos) ];
