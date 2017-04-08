@@ -127,6 +127,7 @@ else
 		fobveh setHitPointDamage ["HitEngine", 0 ];
 		fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
 		publicVariable "fobdeployed";
+		blueflags = blueflags - [fobflagpole];
 		// Remove Editing Area and curator owner
 		cur removeCuratorEditingArea 1;
 		cur removeCuratorCameraArea  1;
