@@ -25,7 +25,7 @@ if (_droptype isKindOf "Air") then
 	}
 	else
 	{
-	_objdist = 7;
+	_objdist = 9;
 	};
 if (typeName _inpos == "ARRAY" ) then {_requestedpos = _inpos} else {_requestedpos = (getpos _inpos)};
 while {(
