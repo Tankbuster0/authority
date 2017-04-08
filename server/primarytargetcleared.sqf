@@ -25,6 +25,7 @@ if (primarytargetcounter isEqualTo 1) then
 		while {airprizeawaitingassembly and (_droptype isKindOf "Air")} do
 			{_droptype = (selectRandom prizes);};// if there's an aircraft awaiting assembly and another aircraft is chosen as prize, keep chosing.
 		prizecounter = prizecounter + 1;
+		publicVariable "prizecounter";
 	};//else choose prize vehicle
 if (_droptype isKindOf "Air") then
 	{
