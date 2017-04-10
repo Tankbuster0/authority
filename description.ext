@@ -41,6 +41,9 @@ class CfgSounds
 };
 
 #include "CHVD\dialog.hpp"
+#include "gvs\colors_include.hpp"
+#include "gvs\control_include.hpp"
+#include "gvs\stc_include.hpp"
 
 class cfgFunctions
 {
