@@ -162,7 +162,7 @@ _distanceToExit = str (_maxDistance - _currentDist);
 if (_gtfo == 1 or (str _list) == "[]" or _currentDist > _maxDistance or (getPos _oVehicle select 2) > _maxHeight or (str _oVehicle) == "any") exitWith
 {
 	sleep 1;
-	call compile format ["%1 = 0", _triggerVariable];
+	call compile format ["%1 = false", _triggerVariable];
 	call compile format ["publicVariable '%1'", _triggerVariable];
 };
 
@@ -249,7 +249,7 @@ func_Abort =
     _msg = _msg + (["Servicing Aborted...",RGB_RED] call stc_Title);
     [_display_Classname, _display_ControlID, _msg] call stc_DisplayWrite;
     sleep 1;
-    call compile format ["%1 = 0", _triggerVariable];
+    call compile format ["%1 = false", _triggerVariable];
 	call compile format ["publicVariable '%1'", _triggerVariable];
     [_display_Layer] call stc_DisplayHide;
     sleep 0.1;
