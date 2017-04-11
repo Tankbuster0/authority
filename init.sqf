@@ -43,5 +43,6 @@ cur addEventHandler ["CuratorObjectPlaced", {[_this select 0, _this select 1] re
 // BIS done goofed, this eventhandler does not give its deleted object making my job a lot god damn more difficult
 cur addEventHandler ["CuratorObjectDeleted", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorObjectRemoved"];}];
 cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorSelectionChanged"];}];
+_nul = execVM "gvs\gvs_init.sqf";
  //[] execVM "server\zerowatcher.sqf";
 //[] execVM "server\real_weather.sqf";
