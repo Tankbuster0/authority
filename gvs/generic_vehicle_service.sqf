@@ -107,6 +107,10 @@
 
 =================================================================================================================*/
 
+ #include "..\includes.sqf"
+_myscript = "generic_vehicle_Service";
+__tky_starts
+
 #include "colors_include.hpp"
 scopeName "main";
 
@@ -437,3 +441,4 @@ if (_abort == 0) then
     sleep 0.1;
 
 };
+__tky_ends
