@@ -5,7 +5,7 @@
 params [
 ["_cur", ""],
 ["_obj", ""]];
-
+fobjects pushback _obj;
 if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 
 	// Remove Helipad out of list
@@ -19,9 +19,8 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 			switch (_x) do {
 				case "B_static_AA_F": {[true,0.3]};
 				case "B_HMG_01_high_F": {[true,0.5]};
-				case "B_static_AA_F": {[true,0.1]};
 				case "B_Mortar_01_F": {[true,0.2]};
-				case "Land_BagBunker_Small_F": {[true,0.]};
+				case "Land_BagBunker_Small_F": {[true,0]};
 				case "Land_BagFence_Corner_F": {[true,0]};
 				case "Land_BagFence_End_F": {[true,0]};
 				case "Land_BagFence_Long_F": {[true,0]};
@@ -40,6 +39,13 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 
 	"Deploying Helipad." remoteExec ["hint", _cur];
 	FOBHelipad = _obj;
+	_con = "(!fobserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
+	_act = "fobserviceinuse = true; publicVariable 'airheadserviceinuse'; [['airheadserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
+	_fgvst = createTrigger ["EmptyDetector", getpos FOBhelipad, true];
+	_fgvst setTriggerArea [8,8,0,true];
+	_fgvst setTriggerActivation ["ANY", "PRESENT", true];
+	_fgvst setTriggerStatements [_con, _act, ""];
+	fobjects pushback _fgvst;
 
 };
 /*

@@ -42,4 +42,6 @@ VEHICLE_TURRET_RELOAD = [];
 };
 airheadserviceinuse = false;
 publicVariable "airheadserviceinuse";
+fobserviceinuse = false;
+publicVariable "fobserviceinuse";
 __tky_ends
