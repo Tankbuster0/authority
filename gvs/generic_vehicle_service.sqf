@@ -149,7 +149,7 @@ _per_magazine_time = if (count _this > 8) then { _this select 8 } else { 1 };
 
 //diag_log format ["vehicle = %1, player = %2", str (vehicle player), str player];
 //       [(format ["vehicle = %1, player = %2", str (vehicle player), str player]), "cba_network", [true, false, true]] call CBA_fnc_debug;
-
+diag_log format ["*** gvs gets trigger %1, list %2, _oVehicle %3, triggerpos %4, mxdist %5, mxheight %6, startdelay %7, fueltime %8, reptime %9, magto,e %10", _triggerVariable, _list,_oVehicle, _triggerPos, _maxDistance, _maxHeight, _serviceStartDelay, _per_fuel_time, _per_repair_time, _per_magazine_time];
 {
 	if ((player == (driver _x)) or (([str ((uavControl _x) select 0), str player] call String_Search) != -1)) then {_oVehicle = _x};
 }forEach _list;
@@ -168,6 +168,7 @@ if (_gtfo == 1 or (str _list) == "[]" or _currentDist > _maxDistance or (getPos 
 	sleep 1;
 	call compile format ["%1 = false", _triggerVariable];
 	call compile format ["publicVariable '%1'", _triggerVariable];
+  __tky_ends
 };
 
 func_GetTurretMagazines =
@@ -435,7 +436,7 @@ if (_abort == 0) then
     ["ServiceExit.ogg", _oVehicle, 30] spawn Sound_Once3D;
     _oVehicle setdamage 0;
     sleep 10;
-    call compile format ["%1 = 0", _triggerVariable];
+    call compile format ["%1 = false", _triggerVariable];
 	call compile format ["publicVariable '%1'", _triggerVariable];
     [_display_Layer] call stc_DisplayHide;
     sleep 0.1;

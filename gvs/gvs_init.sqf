@@ -16,6 +16,7 @@
  #include "..\includes.sqf"
 _myscript = "gvs_init";
 __tky_starts
+
 #include "colors_include.hpp"
 
 call compile preProcessFile "gvs\cfg_lookup.sqf";
@@ -39,5 +40,6 @@ VEHICLE_TURRET_RELOAD = [];
 	_turretPlayer = _this select 1 select 1;
 	if (_turretPlayer == player) then {_oVehicle setVehicleAmmo 1}
 };
-
+airheadserviceinuse = false;
+publicVariable "airheadserviceinuse";
 __tky_ends

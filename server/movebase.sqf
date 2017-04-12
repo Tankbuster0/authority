@@ -147,9 +147,10 @@ blueflags = blueflags - [beachflag];// removes beachhead flag from array so that
 _mypos = getpos terminalcone;
 deleteVehicle terminalcone;
 blubasedataterminal setpos _mypos;
-_con = "(not airheadserviceinuse) and ({(player  isEqualTo (driver _x)) and  (_x in allbluvehicles)} count thislist isEqualTo 1)" ;
-_act = "airheadserviceinuse = true; publicVariable 'airheadserviceinuse'; _nul = ['airheadserviceinuse', thislist, getpos thistrigger, 0,6,1,8,2,6,8] execVM 'gvs\generic_vehicle_service.sqf'";
-_ahgvst = createTrigger ["EmptyDetector", getpos blubasehelipad, true];
+_con = "(not airheadserviceinuse) and ({(player == (driver _x)) and  ((typeof _x) in allbluvehicles)} count thislist isEqualTo 1)" ;
+_con = "(!airheadserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
+_act = "airheadserviceinuse = true; publicVariable 'airheadserviceinuse'; _nul = ['airheadserviceinuse', thislist, getpos thistrigger] execVM 'gvs\generic_vehicle_service.sqf'";
+_ahgvst = createTrigger ["EmptyDetector", getpos blubasehelipad, false];
 _ahgvst setTriggerArea [8,8,0,true];
 _ahgvst setTriggerActivation ["ANY", "PRESENT", true];
 _ahgvst setTriggerStatements [_con, _act, ""];
