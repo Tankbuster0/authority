@@ -76,6 +76,10 @@ class cfgFunctions
 		};
 	};
 };
+class RscTitles
+{
+	#include "gvs\stc_include_alt.hpp"
+};
 //class CfgRemoteExecCommands {};
 
 //params
