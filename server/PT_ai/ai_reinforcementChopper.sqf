@@ -97,9 +97,9 @@ if(!_exactPos)then{
 	while{_finding > 0}do{
 		_tPos = [];
 		while{count _tPos < 1}do{
-			_spot = [_targetPos, _ra] call LV_RandomSpot;
+			//_spot = [_targetPos, _ra] call LV_RandomSpot;
 			//_tPos = _spot isflatempty [12,0,0.3,4,0,false,objnull];
-			_tPos = [_targetPos,0,(50+_ra),8,0,0.4,0] call BIS_fnc_findSafePos;
+			_tPos = [_targetPos,0,(50+_ra),8,0,0.25,0] call BIS_fnc_findSafePos;
 			_ra = _ra + 10;
 		};
 		sleep 0.001;
@@ -114,7 +114,7 @@ if(!_exactPos)then{
 	};
 	REKA60padArray set [(count REKA60padArray), _targetPos];
 };
-_heliT = _chopperTypes select (_chopperType - 1);
+_heliT = selectRandom _chopperTypes;
 _heliPad = createVehicle ["Land_helipadEmpty_F", _targetPos, [], 0, "NONE"];
 if(typeName _direction isEqualTo "STRING")then{_dir = random 360;}else{_dir = _direction;};
 _range = _distance;
