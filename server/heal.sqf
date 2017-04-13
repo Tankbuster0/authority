@@ -1,6 +1,6 @@
 //[this, 10, 0.01, 2] execVM "heal.sqf";
 //heal.sqf by coding and tankbuster
-private["_obj","_radius","_healPerSleep","_damage","_sleepTime", _actualheal];
+private["_obj","_radius","_healPerSleep","_damage","_sleepTime", "_actualheal"];
 _obj = _this select 0;
 _radius = _this select 1;
 _healPerSleep = _this select 2;
@@ -32,7 +32,7 @@ if (isServer) then
 				{
 					"You have finished healing. Soldier on!" remoteExec ["hint", _x];
 					sleep 4;
-					" hint" remoteExec ["hint", _x];
+					"" remoteExec ["hint", _x];
 				}
 			};
 		}
