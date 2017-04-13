@@ -138,7 +138,7 @@ if (_hqtype isKindOf "Building") then
 [hqnet, 0] call BIS_fnc_setHeight;
 hqnet allowdamage true;
 
-0 = execVM "server\PT_ai\ai_reinforcementChoppermanager.sqf";
+//0 = execVM "server\PT_ai\ai_reinforcementChoppermanager.sqf";
 0 = execVM "server\PT_ai\ai_airsupportmanager.sqf";
 0 = execVM "server\killlastfewai.sqf";
 //stuff that needs to be check constantly runs here
