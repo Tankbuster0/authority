@@ -22,7 +22,7 @@ if(isNil("_runningAlready"))then{//and if not, then mark it up as started
 	_doorPositions = [];
 	_bdCfg = (configFile >> "cfgVehicles" >> (typeOf _building) >> "UserActions"); //get config for doors
 	if ((count _bdCfg) <= 0) exitwith {}; //if none, exit
-
+	
 	for "_i" from 0 to ((count _bdCfg) - 1) step 3 do{ //gather doop positions from the config data:
 		if (_i >= (count _bdCfg)) exitwith {};
 		_sel = _bdCfg select _i;
@@ -42,14 +42,14 @@ while{(_unit in _inUnits)}do{ //run as long as there's AI's inside (count _inUni
 	_avoidDoors = (_building getVariable "AvoidDoors"); //door aims which player MAY HAVE caused, are stored in this
 	if(isNil("_avoidDoors"))then{_avoidDoors = [];};
 	for "_i" from 1 to (count _doorPositions) step 1 do { //save the anim numbers and phase values in data array +add positions along
-		if(_building animationPhase "door_"  + str _i + "_rot" isEqualTo 1)then{
+		if(_building animationPhase "door_"  + str _i + "_rot" == 1)then{
 			_doors set[(count _doors),[_i,1,(_doorPositions select (_i - 1))]];
 		}else{
 			_doors set[(count _doors),[_i,0,(_doorPositions select (_i - 1))]];
 		};
 	};
 	sleep 0.2;
-	_bDoors = (_building getVariable "Doors");
+	_bDoors = (_building getVariable "Doors"); 
 //hint format["%1",_bDoors];
 	if(isNil("_bDoors"))then{ //if animation phase values has not been saved already,
 		_building setVariable ["Doors", _doors, false]; //save them in building so we can compare them on next loop
@@ -65,17 +65,17 @@ while{(_unit in _inUnits)}do{ //run as long as there's AI's inside (count _inUni
 					{ //check if player is <3m away from the opened door and if so, skip the door closing
 						if((_x distance ((_doors select (_n - 1)) select 2))<3)then{_goodToClose = false;};
 					}forEach _players;
-
+					
 					//also skip if current unit is over 3m far from current door
 					if((_unit distance ((_doors select (_n - 1)) select 2))>3)then{_goodToClose = false;};
-
+					
 					if(_goodToClose)then{ //if door is still in avoid-array, but good to go, remove it from the array
 						if(_n in _avoidDoors)then{
 							_avoidDoors = _avoidDoors - [_n];
 							_building setVariable ["AvoidDoors", _avoidDoors, false];
 						};
 					};
-
+					
 					if(_goodToClose)then{
 						if(!(_n in _avoidDoors))then{ //if anim is not possibly player-caused -> invert animation:
 							[_unit,_building,_doors,_n,_v] spawn {
@@ -125,7 +125,7 @@ while{(_unit in _inUnits)}do{ //run as long as there's AI's inside (count _inUni
 };
 
 //reset stuff when there's no AI units inside this building anymore:
-if((count _inUnits) isEqualTo 0)then{
+if((count _inUnits)==0)then{
 	_building setVariable ["RunningAlready", nil, false];
 	_building setVariable ["AvoidDoors", nil, false];
 	_building setVariable ["Doors", nil, false];
