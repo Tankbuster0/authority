@@ -2,7 +2,7 @@
 /*
 	0: filters (array) : classes from config_aissp.hpp ("ALL" includes all default presets)
 	1: request (array)
-		0: side = 
+		0: side =
 			1 = blufor
 			2 = opfor
 			3 = independent
@@ -23,7 +23,7 @@ _request = param [1,[],[]];
 _results = [];
 
 _side = _request param [0,0,[1,2,3]];
-_type = _request param [1,0,[1,2,3,4,5,6,7]]; 
+_type = _request param [1,0,[1,2,3,4,5,6,7]];
 
 _BLUcars = [];
 _BLUhelis = [];
@@ -58,8 +58,8 @@ _CIVdivers = [];
 _CIVtanks = [];
 
 _i = 0;
-for "_i" from 0 to (count _filters - 1) do {
-    if(_filters select _i == "ALL")then{
+for "_i" from 0 to ((count _filters) - 1) do {
+    if((_filters select _i) == "ALL")then{
         _BLUcars set[count _BLUcars, getArray (getMissionConfig "aissp_configs" >> "config_aissp" >> "classPresets" >> "BLU_F" >> "cars")];
         _BLUcars set[count _BLUcars, getArray (getMissionConfig "aissp_configs" >> "config_aissp" >> "classPresets" >> "BLU_CTRG" >> "cars")];
         _BLUcars set[count _BLUcars, getArray (getMissionConfig "aissp_configs" >> "config_aissp" >> "classPresets" >> "BLU_G_F" >> "cars")];
@@ -200,7 +200,7 @@ for "_i" from 0 to (count _filters - 1) do {
         };
     };
 };
-			
+
 switch(_side)do{
 	case 1:{
 		switch(_type)do{
