@@ -79,16 +79,15 @@ _chopperTypes = ["O_T_VTOL_02_infantry_F","O_T_VTOL_02_vehicle_F","O_Heli_Transp
 //Side related group creation:
 switch(_side)do{
 	case 1:{
-		_hq = createCenter west;
 		_grp1 = createGroup west;
 		if(isNil("_grp2"))then{_grp2 = createGroup west;}else{_grp2 = _grp2;};
 		_men = _BLUmen;
 	};
 	case 2:{
-		_hq = createCenter east;
 		_grp1 = createGroup east;
 		if(isNil("_grp2"))then{_grp2 = createGroup east;}else{_grp2 = _grp2;};
 		_men = _OPFmen;
+		diag_log format ["*** aireinfchopper chooses east side and men is %1", _men];
 	};
 };
 //If *exact* is false, find landing spot which is not close another ones:
@@ -129,7 +128,6 @@ if(_grpSize > (getNumber (configFile >> "CfgVehicles" >> _heliT >> "transportSol
 }else{
 	_vehSpots = _grpSize;
 };
-_man1 = selectRandom _men;
 _man = _grp1 createUnit ["O_helipilot_F", _pos, [], 0, "NONE"];
 _man moveInDriver _heli;
 _man assignAsDriver _heli;
