@@ -24,7 +24,8 @@ Using orientation of objects: yes
 	["Land_FireExtinguisher_F",[-4.06494,-4.20898,0.000127792],359.79,1,0,[-0.0478408,0.0883972],"","",true,false],
 	["Sign_Sphere25cm_F",[6.32104,-2.87207,0],0,1,0,[0,0],"fobboxlocator","",true,false],
 	["Land_DataTerminal_01_F", [8, -4 ,0], 0,1,0, [0,0], "fobdataterminal", "", true, false],
-	["Land_TTowerSmall_2_F",[0.859131,-6.6907,0],0,1,0,[0,0],"","",true,false]
+	["Land_TTowerSmall_2_F",[0.859131,-6.6907,0],0,1,0,[0,0],"","",true,false],
+	["Land_TentDome_F", [3,3,0],0,1,0,[0,0], "fobmash", "", true, false]
 ],0.0] call tky_fnc_t_objectsmapper;
 fobflagpole setFlagTexture "pics\hom_flag_white_stripe512.paa";
 fobdeployed = true;

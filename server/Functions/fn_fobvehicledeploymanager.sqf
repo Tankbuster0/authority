@@ -96,6 +96,7 @@ if not (fobdeployed) then
 			waitUntil {scriptDone _handle22};
 			sleep 0.5;
 			fobbox setpos (position fobboxlocator);
+			healhandle = [fobmash,10, 0.01, 2] execVM "heal.sqf";
 			// Make editing area for curator
 			(effectiveCommander fobveh) assignCurator cur;
 			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
@@ -136,6 +137,7 @@ else
 		fobbox setpos (getpos fobboxsecretlocation);
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
+		terminate healhandle;
 		sleep 2;
 		};
 };

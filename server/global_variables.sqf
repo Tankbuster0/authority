@@ -490,7 +490,7 @@ Using orientation of objects: yes
 	["Land_New_WiredFence_5m_F",[-142.815,-109.434,-0.00788522],226.69,1,0,[0,0],"","",true,false],
 	["Flag_UK_F",[-156.667,-97.627,0],226.69,1,0,[0,0],"baseflag","",true,false],
 	["Land_BagBunker_Small_F",[-139.395,-123.544,0],45.8268,1,0,[0,0],"","",true,false],
-	["Land_TentDome_F",[-147.629,-114.93,0.0112734],46.877,1,0,[2.04926,-3.17275],"","",true,false],
+	["Land_TentDome_F",[-147.629,-114.93,0.0112734],46.877,1,0,[2.04926,-3.17275],"blubasemash","",true,false],
 	["Land_BagBunker_Small_F",[-155.638,-106.978,-0.0122399],45.8403,1,0,[1.37022,2.2885],"","",true,false]
 ];
 
@@ -548,7 +548,7 @@ Using orientation of objects: yes
 	["Land_New_WiredFence_5m_F",[149.641,-29.0254,1.43051e-006],35.7639,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[153.583,-31.8745,0.0248203],126.495,1,0,[0,-0],"","",true,false],
 	["Land_Cargo_Patrol_V4_F",[147.979,-45.6409,0],35.7639,1,0,[0,0],"","",true,false],
-	["Land_TentDome_F",[153.418,-22.7249,0.09123],216.034,1,0,[0,0],"","",true,false],
+	["Land_TentDome_F",[153.418,-22.7249,0.09123],216.034,1,0,[0,0],"blubasemash","",true,false],
 	["Land_MapBoard_F",[154.146,-40.9424,-0.00223207],242.666,1,0,[-0.330114,0.00269133],"blubasewhiteboard","",true,false],
 	["B_Slingload_01_Fuel_F",[151.901,-57.676,0.0302691],35.7791,1,0.0133303,[1.78849,-1.21493],"","",true,false],
 	["Land_FieldToilet_F",[157.271,-43.054,-3.29018e-005],35.7616,1,0,[0.00214665,-0.00121344],"","",true,false],
@@ -650,7 +650,7 @@ Using orientation of objects: yes
 	["B_Slingload_01_Fuel_F",[-98.0566,0.795898,0],203.092,1,0.00651541,[2.0393e-007,-2.59308e-006],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-98.7197,-23.9922,0.00152302],293.826,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-94.251,-25.9072,9.53674e-007],203.092,1,0,[0,0],"","",true,false],
-	["Land_TentDome_F",[-96.3389,-31.9844,0.0810776],23.3654,1,0,[0,0],"","",true,false],
+	["Land_TentDome_F",[-96.3389,-31.9844,0.0810776],23.3654,1,0,[0,0],"blubasemash","",true,false],
 	["Land_MapBoard_F",[-101.349,-15.3164,-0.00219822],49.9176,1,0,[-0.319585,-0.00123354],"blubasewhiteboard","",true,false],
 	["Land_FieldToilet_F",[-104.95,-13.9346,2.67029e-005],203.09,1,0,[-0.00067314,-0.00136902],"","",true,false],
 	["Land_Sign_WarningUnexplodedAmmo_F",[-105.255,-12.4814,0.00432396],203.092,1,0,[0,0],"","",true,false],
@@ -722,7 +722,7 @@ Using orientation of objects: yes
 	["B_Slingload_01_Fuel_F",[-64.3948,-76.4443,-9.53674e-007],162.304,1,0,[-3.33903e-006,2.14627e-005],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-39.9763,-91.5862,-0.018549],162.304,1,0,[0,-0],"","",true,false],
 	["Land_MapBoard_F",[-52.2693,-88.2134,-0.00218868],9.24914,1,0,[-0.31977,-0.00309329],"blubasewhiteboard","",true,false],
-	["Land_TentDome_F",[-37.1824,-98.3887,0.2115],342.58,1,0,[-0.0167437,0.96595],"","",true,false],
+	["Land_TentDome_F",[-37.1824,-98.3887,0.2115],342.58,1,0,[-0.0167437,0.96595],"blubasemash","",true,false],
 	["Land_Sign_WarningUnexplodedAmmo_F",[-57.0789,-88.6194,0.00432396],162.304,1,0,[0,-0],"","",true,false],
 	["Land_FieldToilet_F",[-55.8984,-89.5203,6.67572e-006],162.318,1,0,[0.00159434,-0.00119032],"","",true,false],
 	["Land_Fire_burning",[-55.6687,-90.0876,0.768212],162.304,1,0,[0,-0],"","",true,false],
@@ -778,7 +778,7 @@ Using orientation of objects: yes
 [
 	["Land_BagBunker_Small_F",[-3.22974,138.388,0.000469208],350.956,1,0,[0,0],"","",true,false],
 	["Land_Cargo_House_V1_F",[6.11597,144.893,0],230.745,1,0,[0,0],"","",true,false],
-	["Land_TentDome_F",[-10.8135,148.475,0],51.0184,1,0,[0,0],"","",true,false],
+	["Land_TentDome_F",[-10.8135,148.475,0],51.0184,1,0,[0,0],"blubasemash","",true,false],
 	["Land_Net_Fence_Gate_F",[-7.29761,154.493,0.000471115],230.745,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-2.19189,148.329,0.000468254],317.649,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V4_F",[11.1248,155.14,0.000469208],230.745,1,0,[0,0],"","",true,false],
