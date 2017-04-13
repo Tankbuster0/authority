@@ -87,7 +87,6 @@ switch(_side)do{
 		_grp1 = createGroup east;
 		if(isNil("_grp2"))then{_grp2 = createGroup east;}else{_grp2 = _grp2;};
 		_men = _OPFmen;
-		diag_log format ["*** aireinfchopper chooses east side and men is %1", _men];
 	};
 };
 //If *exact* is false, find landing spot which is not close another ones:
@@ -99,7 +98,8 @@ if(!_exactPos)then{
 		_tPos = [];
 		while{count _tPos < 1}do{
 			_spot = [_targetPos, _ra] call LV_RandomSpot;
-			_tPos = _spot isflatempty [12,0,0.3,4,0,false,objnull];
+			//_tPos = _spot isflatempty [12,0,0.3,4,0,false,objnull];
+			_tPos = [_targetPos,0,(50+_ra),8,0,0.4,0] call BIS_fnc_findSafePos;
 			_ra = _ra + 10;
 		};
 		sleep 0.001;
