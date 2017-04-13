@@ -154,7 +154,7 @@ if(_precise)then{_man setBehaviour "CARELESS";};
 };
 _i = 1;
 for "_i" from 1 to _vehSpots do {
-	__tky_debug
+	_dude = 157;
 	_man1 = selectRandom _men;
 	_man2 = _grp2 createUnit [_man1, _pos, [], 0, "NONE"];
 	if(typeName _skills != "STRING")then{_skls = [_man2,_skills] call LV_ACskills;};
@@ -165,8 +165,8 @@ for "_i" from 1 to _vehSpots do {
 };
 if((_vehSpots isEqualTo 0)&&(_grpSize > 0))then
 {
-
-	_man1 = _men selectRandom _men;
+	_dude = 168;
+	_man1 = selectRandom _men;
 	_man2 = _grp2 createUnit [_man1, _pos, [], 0, "NONE"];
 	if(typeName _skills != "STRING")then{_skls = [_man2,_skills] call LV_ACskills;};
 	_man2 moveInTurret [_heli, [0]];
