@@ -31,6 +31,7 @@ fobflagpole setFlagTexture "pics\hom_flag_white_stripe512.paa";
 fobdeployed = true;
 blueflags pushback fobflagpole;
 publicVariable "fobdeployed";
+publicVariable "fobjects";
 //previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
 sleep 0.5;
 

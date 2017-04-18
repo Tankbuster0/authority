@@ -123,6 +123,8 @@ else
 		"Removing FOB" remoteexec ["hint", fobveh];
 		sleep 2;
 		{deleteVehicle _x} foreach fobjects;
+		fobjects = [];
+		publicVariable "fobjects";
 		fobdeployed = false;
 		[fobveh, false] remoteexec ["lockdriver"];
 		fobveh setHitPointDamage ["HitEngine", 0 ];

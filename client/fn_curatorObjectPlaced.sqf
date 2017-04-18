@@ -46,7 +46,7 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 	_fgvst setTriggerActivation ["ANY", "PRESENT", true];
 	_fgvst setTriggerStatements [_con, _act, ""];
 	fobjects pushback _fgvst;
-
+publicVariable "fobjects";
 };
 /*
 switch (typeOf _obj) do {
