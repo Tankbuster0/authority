@@ -4,8 +4,8 @@ _myscript = "tky_aireinforcementchopper";
 __tky_starts;
 
 params[
-	["_helitype", selectRandom opfor_reinf_helos],// supply a classname or one will be chosen
 	["_landingpos", cpt_position],// send a helipad object for accurate landing on it, else send a position
+	["_helitype", selectRandom opfor_reinf_helos],// supply a classname or one will be chosen
 	["_cargocount", 99]// number of soldiers in cargo
 
 	];
