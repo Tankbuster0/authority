@@ -17,8 +17,15 @@ while {(alive pt_radar)} do
 
 	if (((west countSide allPlayers) > 1)) then
 		{
-		nul = [cpt_position, false,2,1,false, true, player,"random", 600, true, false,20,[0.25,0.25,0.8,0.45,0.6,0.45,0.45,0.55,1,0.55],nil,nil,nil] execVM "server\PT_ai\ai_reinforcementChopper.sqf";// only make airreinf if there are playerd
-
+		//nul = [cpt_position, false,2,1,false, true, player,"random", 600, true, false,20,[0.25,0.25,0.8,0.45,0.6,0.45,0.45,0.55,1,0.55],nil,nil,nil] execVM "server\PT_ai\ai_reinforcementChopper.sqf";// only make airreinf if there are playerd
+		_lpos = islandcentre
+		_testradius = 16;
+		while {_lpos isEqualTo islandcentre } do
+			{
+			_lpos = [cpt_position, 1, _testradius, 20, 0, 0.25, 0] call BIS_fnc_findSafePos;
+			_testradius = _testradius * 2;
+			};
+		_nul = [] execVM "server\PT_ai\tky_aireinforcementchopper.sqf";
 		reinforcementcounter = reinforcementcounter + 1;
 		};
 };
