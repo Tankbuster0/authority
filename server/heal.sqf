@@ -10,7 +10,7 @@ if (isServer) then
 	while {true} do
 	{
 		{
-			if (alive _x) then
+			if ((alive _x) and (speed _x < 0.5) and (damage _x < 0.9)) then
 			{
 				if ({(_x getUnitTrait "medic") and (alive _x) and (incapacitatedstate _x == "")} count (_obj nearentities [["SoldierWB"], 4]) > 0)then
 					{_actualheal = _healPerSleep * 2;}
