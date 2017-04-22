@@ -75,7 +75,8 @@ if(isNil("LV_vehicleInit"))then{LV_vehicleInit = compile preprocessFile "LV\LV_f
 //Unit arrays:ADJ REV 21 JON
 _BLUmen = ["B_soldier_AR_F","B_soldier_exp_F","B_Soldier_GL_F","B_soldier_M_F","B_medic_F","B_Soldier_F","B_soldier_repair_F","B_soldier_LAT_F","B_Soldier_SL_F","B_Soldier_lite_F","B_Soldier_TL_F"];
 _OPFmen = ["O_T_Recon_TL_F","O_V_Soldier_LAT_ghex_F","O_T_Recon_LAT_F", "O_V_Soldier_ghex_F", "O_T_Sniper_F", "O_T_Sniper_F","O_V_Soldier_ghex_F","O_V_Soldier_ghex_F"];
-_chopperTypes = ["O_T_VTOL_02_infantry_F","O_T_VTOL_02_vehicle_F","O_Heli_Transport_04_medevac_F"];//"O_HelO_Heli_Transport_04_bench_F"
+diag_log format ["***airc says opfmen is %1", _OPFmen];
+_chopperTypes = [/*"O_T_VTOL_02_infantry_F","O_T_VTOL_02_vehicle_F",*/"O_Heli_Transport_04_bench_F", "O_Heli_Light_02_F", "O_HelO_Heli_Transport_04_covered_F"];//"O_HelO_Heli_Transport_04_bench_F"
 //Side related group creation:
 switch(_side)do{
 	case 1:{
@@ -129,11 +130,15 @@ if(_grpSize > (getNumber (configFile >> "CfgVehicles" >> _heliT >> "transportSol
 }else{
 	_vehSpots = _grpSize;
 };
+diag_log format ["***airc says _men %1 and is type %2", _men, typeName _men];
 _man1 = selectRandom _men;
+diag_log format ["***airc says _man1 is %1", _man1];
+diag_log format ["** spacer to try to track down the error"];
+_qr = 4;
+_qw = -1;
 _man = _grp1 createUnit ["O_helipilot_F", _pos, [], 0, "NONE"];
 _man moveInDriver _heli;
 _man assignAsDriver _heli;
-_hcrew = [_heli, _grp2] call bis_fnc_spawnCrew;
 _man setUnitRank "SERGEANT";
 if(_precise)then{_man setBehaviour "CARELESS";};
 [_man,_heli,_targetPos] spawn {
@@ -166,6 +171,8 @@ for "_i" from 1 to _vehSpots do {
 };
 if((_vehSpots isEqualTo 0)&&(_grpSize > 0))then{
 	_man1 = _men selectRandom _men;
+	_mystring = "line 175";
+	diag_log format ["*** 176 airc says man1 is %1 and typename %2 ", _man1, typename _man1];
 	_man2 = _grp2 createUnit [_man1, _pos, [], 0, "NONE"];
 	if(typeName _skills != "STRING")then{_skls = [_man2,_skills] call LV_ACskills;};
 	_man2 moveInTurret [_heli, [0]];
@@ -185,6 +192,7 @@ _heli doMove _targetPos;
 while { _heli distanceSqr _targetPos > 16.1 } do { sleep 4; };
 doStop _heli;
 _heli land "LAND"; //you can also try "GET OUT" (then it wont land, only hovers)
+_heli landat _helipad;
 _tsmoke = createVehicle ["SmokeShellPurple", [_targetPos select 0, _targetPos select 1, 0],[],0, "CAN_COLLIDE"];
 _helipad setpos getpos _tsmoke;
 while { (getPos _heli) select 2 > 1 } do { sleep 2; };

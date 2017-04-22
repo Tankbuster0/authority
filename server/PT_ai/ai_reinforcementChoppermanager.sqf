@@ -6,7 +6,8 @@ _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {(alive pt_radar)} do
 {
-	sleep 1800 + random 900;
+	//sleep 1800 + random 900;
+	sleep 60;
 
 	//diag_log "*** arm finished sleeping. now checking if target moved on and radar still up";
 
