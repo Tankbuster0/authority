@@ -55,7 +55,7 @@ params [
 if (_checkPos isEqualType objNull) then {_checkPos = getPos _checkPos};
 
 /// --- validate input
-#include "..\paramsCheck.inc"
+#include "functions_f\paramsCheck.inc"
 #define arr1 [_checkPos,_minDistance,_maxDistance,_objectProximity,_waterMode,_maxGradient,_shoreMode,_posBlacklist,_defaultPos]
 #define arr2 [[],0,0,0,0,0,0,[],[]]
 paramsCheck(arr1,isEqualTypeParams,arr2)
