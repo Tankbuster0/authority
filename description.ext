@@ -73,6 +73,7 @@ class cfgFunctions
 			class cleanupoldprimary {};
 			class fobvehicledeploymanager {};
 			class t_objectsmapper {};
+			class tky_super_findsafepos {};
 		};
 	};
 };
