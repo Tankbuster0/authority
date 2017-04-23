@@ -57,7 +57,7 @@ for "_i" from 0 to 355 step 5 do
 	_gate animate ["Door_1_rot",1,true];
 	roadblockgates pushback _gate;
 	vehiclecleanup pushback _gate;
-
+	diag_log format ["***aisrb makes roadblock number %1 of %4 at %2 which is %3 from primary target", _foreachindex, _pos, (_pos distance2D cpt_position), count _myroadarray1];
 	_gate setDir _dir;
 	if ((random 1) < 0.7) then
 	{
