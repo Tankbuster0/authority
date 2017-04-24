@@ -121,7 +121,7 @@ for "_i" from 1 to 3000 do
 	{
 		if (_this isFlatEmpty [-1, -1, _maxGradient, _objectProximity, _waterMode, _shoreMode] isEqualTo []) exitWith {}; // true & exits if ife fails because not flat/empty
 		if (_checkProximity && {!(nearestTerrainObjects [_this, [], _objectProximity, false] isEqualTo [])}) exitWith {}; // true & exits if nto says nothing nearby
-		if ((lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), ATLToASL _this, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", "_house"]) exitWith {}; // true & exits if indoors
+		//if ((lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), objNull, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", "_house"]) exitWith {}; // true & exits if indoors
 		if (_checkBlacklist && {{if (_this inArea _x) exitWith {true}; false} forEach _posBlacklist}) exitWith {};
 		_this select [0, 2] breakOut "main";
 	};
