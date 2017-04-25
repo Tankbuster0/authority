@@ -38,7 +38,7 @@ while {(
 		_droppos = [_requestedpos, 1,_testradius, _objdist, 0,0.3,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
-//or		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist], false)) > 0)
+//or		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist], true)) > 0)
 // ((count (_droppos nearEntities _objdist)) > 0)
 if (typeName _inpos isEqualTo "OBJECT") then {_droppos = getpos _inpos};
 _mkrnumber = format ["ad%1", _thisaidropiteration];
