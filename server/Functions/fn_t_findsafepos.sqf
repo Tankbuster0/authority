@@ -1,6 +1,6 @@
 /*
 	Author:
-		Joris-Jan van 't Land, optimised by Killzone_Kid
+		Joris-Jan van 't Land, optimised by Killzone_Kid, expanded by tankbuster
 
 	Description:
 		Function to generate position in the world according to several parameters.
@@ -48,7 +48,8 @@ params [
 	["_maxGradient",0],
 	["_shoreMode",0],
 	["_posBlacklist",[]],
-	["_defaultPos",[]]
+	["_defaultPos",[]],
+	["_outsideMode", 0]
 ];
 
 // support object for center pos as well
@@ -121,7 +122,7 @@ for "_i" from 1 to 3000 do
 	{
 		if (_this isFlatEmpty [-1, -1, _maxGradient, _objectProximity, _waterMode, _shoreMode] isEqualTo []) exitWith {}; // true & exits if ife fails because not flat/empty
 		if (_checkProximity && {!(nearestTerrainObjects [_this, [], _objectProximity, false] isEqualTo [])}) exitWith {}; // true & exits if nto says nothing nearby
-		//if ((lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), objNull, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", "_house"]) exitWith {}; // true & exits if indoors
+		if (_outsideMode && {(lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), objNull, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", ""]} ) exitWith {}; // true & exits if indoors
 		if (_checkBlacklist && {{if (_this inArea _x) exitWith {true}; false} forEach _posBlacklist}) exitWith {};
 		_this select [0, 2] breakOut "main";
 	};
