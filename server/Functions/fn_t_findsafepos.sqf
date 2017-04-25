@@ -32,6 +32,10 @@
 				(_this select 8) select 0: ARRAY - default position on land
 				(_this select 8) select 1: ARRAY - default position on water
 
+		9: (Optional) number - Outside mode:
+				0 - Can be in a building
+				1 - Will not be in a building
+
 	Returns:
 		Coordinate array with a position solution.
 
