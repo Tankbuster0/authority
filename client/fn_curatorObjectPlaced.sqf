@@ -40,7 +40,7 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 	"Deploying Helipad." remoteExec ["hint", _cur];
 	FOBHelipad = _obj;
 	_con = "(!fobserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
-	_act = "fobserviceinuse = true; publicVariable 'fobserviceinuse'; [['airheadserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
+	_act = "fobserviceinuse = true; publicVariable 'fobserviceinuse'; [['fobserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
 	_fgvst = createTrigger ["EmptyDetector", getpos FOBhelipad, false];
 	_fgvst setTriggerArea [8,8,0,true];
 	_fgvst setTriggerActivation ["ANY", "PRESENT", true];
