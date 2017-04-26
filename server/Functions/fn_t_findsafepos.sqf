@@ -135,7 +135,7 @@ for "_i" from 1 to 3000 do
 		if (_this isFlatEmpty [-1, -1, _maxGradient, _objectProximity, _waterMode, _shoreMode] isEqualTo []) exitWith {}; // true & exits if ife fails because not flat/empty
 		if (_checkProximity && {!(nearestTerrainObjects [_this, [], _objectProximity, false] isEqualTo [])}) exitWith {}; // true & exits if nto says nothing nearby
 		if (_outsideMode && {(lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), objNull, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", ""]} ) exitWith {}; // true & exits if indoors
-		if (_strictMode < 0 && {count (nearestObjects [_this, ["AllVehicles", "Ruins_F", "House_f", "Wall_F","BagBunker_base_f"], _objectProximity, true]) > 0 }) exitWith {}; //true & exits if vehicles, houses, ruins or bunkers nearby
+		if (_strictMode > 0 && {count (nearestObjects [_this, ["AllVehicles", "Ruins_F", "House_f", "Wall_F","BagBunker_base_f"], _objectProximity, true]) > 0 }) exitWith {}; //true & exits if vehicles, houses, ruins or bunkers nearby
 		if (_checkBlacklist && {{if (_this inArea _x) exitWith {true}; false} forEach _posBlacklist}) exitWith {};
 		_this select [0, 2] breakOut "main";
 	};
