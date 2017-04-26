@@ -24,17 +24,24 @@
 				0 - does not have to be at a shore
 				1 - must be at a shore
 
-		7: (Optional) ARRAY - blacklist (Array of Arrays):
+		7: (Optional) number - Outside mode:
+				0 - Can be in a building
+				1 - Will not be in a building
+
+		8: (Optional) number -Strict mode:
+				0 - Off. Uses existing nearestTerrainObjects system
+				1 - On. Uses nearestObjects system (use big radii with caution)
+				2 - On. Uses lineintersects system.
+				3 - On. Uses 1 and 2.
+
+		8: (Optional) ARRAY - blacklist (Array of Arrays):
 				(_this select 7) select 0: ARRAY - top-left coordinates of blacklisted area
 				(_this select 7) select 1: ARRAY - bottom-right coordinates of blacklisted area
 
-		8: (Optional) ARRAY - default positions (Array of Arrays):
+		9: (Optional) ARRAY - default positions (Array of Arrays):
 				(_this select 8) select 0: ARRAY - default position on land
 				(_this select 8) select 1: ARRAY - default position on water
 
-		9: (Optional) number - Outside mode:
-				0 - Can be in a building
-				1 - Will not be in a building
 
 	Returns:
 		Coordinate array with a position solution.
@@ -51,9 +58,10 @@ params [
 	["_waterMode",0],
 	["_maxGradient",0],
 	["_shoreMode",0],
+	["_outsideMode", 0],
+	["_strictMode", 0],
 	["_posBlacklist",[]],
-	["_defaultPos",[]],
-	["_outsideMode", 0]
+	["_defaultPos",[]]
 ];
 
 // support object for center pos as well
@@ -61,8 +69,8 @@ if (_checkPos isEqualType objNull) then {_checkPos = getPos _checkPos};
 
 /// --- validate input
 #include "\a3\functions_f\paramsCheck.inc"
-#define arr1 [_checkPos,_minDistance,_maxDistance,_objectProximity,_waterMode,_maxGradient,_shoreMode,_posBlacklist,_defaultPos]
-#define arr2 [[],0,0,0,0,0,0,[],[]]
+#define arr1 [_checkPos,_minDistance,_maxDistance,_objectProximity,_waterMode,_maxGradient,_shoreMode, _outsideMode, _strictMode, _posBlacklist,_defaultPos]
+#define arr2 [[],0,0,0,0,0,0,0,0,[],[]]
 paramsCheck(arr1,isEqualTypeParams,arr2)
 
 private _defaultMaxDistance = worldSize / 2;
@@ -127,6 +135,7 @@ for "_i" from 1 to 3000 do
 		if (_this isFlatEmpty [-1, -1, _maxGradient, _objectProximity, _waterMode, _shoreMode] isEqualTo []) exitWith {}; // true & exits if ife fails because not flat/empty
 		if (_checkProximity && {!(nearestTerrainObjects [_this, [], _objectProximity, false] isEqualTo [])}) exitWith {}; // true & exits if nto says nothing nearby
 		if (_outsideMode && {(lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), objNull, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", ""]} ) exitWith {}; // true & exits if indoors
+		if (_strictMode < 0 && {count (nearestObjects [_this, ["AllVehicles", "Ruins_F", "House_f", "Wall_F","BagBunker_base_f"], _objectProximity, true]) > 0 }) exitWith {}; //true & exits if vehicles, houses, ruins or bunkers nearby
 		if (_checkBlacklist && {{if (_this inArea _x) exitWith {true}; false} forEach _posBlacklist}) exitWith {};
 		_this select [0, 2] breakOut "main";
 	};
