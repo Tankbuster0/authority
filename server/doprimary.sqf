@@ -85,7 +85,7 @@ if (primarytargetcounter > 1) then
 					{
 					if ((_x animationPhase "Door_1_rot" == 0) or (!alive _x) or ((damage _x) > 0.8)) then {deadgatecount = deadgatecount +1};
 					} foreach roadblockgates;
-				if (deadgatecount == (count roadblockgates)) then
+				if (deadgatecount > (count roadblockgates)) then
 					{
 					roadblockscleared = true;
 					diag_log format ["*** spawned monitor script within doprimary says deadgate count %1 == roadblockgate count %2 and so has set roadblockscleared flag to true", deadgatecount, count roadblockgates];
