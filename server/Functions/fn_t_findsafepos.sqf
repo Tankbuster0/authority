@@ -1,14 +1,11 @@
 /*
 	Author:
 		Joris-Jan van 't Land, optimised by Killzone_Kid, expanded by tankbuster
-
 	Description:
 		Function to generate position in the world according to several parameters.
-
 	Parameters:
 		0: (Optional) ARRAY - center position
 				Note: passing [] (empty Array), the world's "safePositionAnchor" entry will be used.
-
 		1: (Optional) NUMBER - minimum distance from the center position
 		2: (Optional) NUMBER - maximum distance from the center position
 				Note: passing -1, the world's "safePositionRadius" entry will be used.
@@ -18,38 +15,28 @@
 				0 - cannot be in water
 				1 - can either be in water or not
 				2 - must be in water
-
 		5: (Optional) NUMBER - maximum terrain gradient (hill steepness)
 		6: (Optional) NUMBER - shore mode:
 				0 - does not have to be at a shore
 				1 - must be at a shore
-
 		7: (Optional) number - Outside mode:
 				0 - Can be in a building
 				1 - Will not be in a building
-
 		8: (Optional) number -Strict mode:
 				0 - Off. Uses existing nearestTerrainObjects system
 				1 - On. Uses nearestObjects system (use big radii with caution)
 				2 - On. Uses lineintersects system.
 				3 - On. Uses 1 and 2.
-
 		8: (Optional) ARRAY - blacklist (Array of Arrays):
 				(_this select 7) select 0: ARRAY - top-left coordinates of blacklisted area
 				(_this select 7) select 1: ARRAY - bottom-right coordinates of blacklisted area
-
 		9: (Optional) ARRAY - default positions (Array of Arrays):
 				(_this select 8) select 0: ARRAY - default position on land
 				(_this select 8) select 1: ARRAY - default position on water
-
-
 	Returns:
 		Coordinate array with a position solution.
-
 */
-
 scopeName "main";
-
 params [
 	["_checkPos",[]],
 	["_minDistance",0],
@@ -63,51 +50,40 @@ params [
 	["_posBlacklist",[]],
 	["_defaultPos",[]]
 ];
-
 // support object for center pos as well
 if (_checkPos isEqualType objNull) then {_checkPos = getPos _checkPos};
-
 /// --- validate input
 #include "\a3\functions_f\paramsCheck.inc"
 #define arr1 [_checkPos,_minDistance,_maxDistance,_objectProximity,_waterMode,_maxGradient,_shoreMode, _outsideMode, _strictMode, _posBlacklist,_defaultPos]
 #define arr2 [[],0,0,0,0,0,0,0,0,[],[]]
 paramsCheck(arr1,isEqualTypeParams,arr2)
-
 private _defaultMaxDistance = worldSize / 2;
 private _defaultCenterPos = [_defaultMaxDistance, _defaultMaxDistance, 0];
-
 private _fnc_defaultPos =
 {
 	_defaultPos = _defaultPos param [parseNumber _this, []];
 	if !(_defaultPos isEqualTo []) exitWith {_defaultPos};
-
 	_defaultPos = getArray (configFile >> "CfgWorlds" >> worldName >> "Armory" >> ["positionStart", "positionStartWater"] select _this);
 	if !(_defaultPos isEqualTo []) exitWith {_defaultPos};
-
 	_defaultPos = getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 	if !(_defaultPos isEqualTo []) exitWith {_defaultPos};
-
 	_defaultCenterPos
 };
-
 if (_checkPos isEqualTo []) then
 {
 	_checkPos = getArray (configFile >> "CfgWorlds" >> worldName >> "safePositionAnchor");
 	if (_checkPos isEqualTo []) then {_checkPos = _defaultCenterPos};
 };
-
 if (_maxDistance < 0) then
 {
 	_maxDistance = getNumber (configFile >> "CfgWorlds" >> worldName >> "safePositionRadius");
 	if (_maxDistance <= 0) then {_maxDistance = _defaultMaxDistance};
 };
-
 private _checkProximity = _objectProximity > 0;
 private _checkBlacklist = !(_posBlacklist isEqualTo []);
 private _deltaDistance = _maxDistance - _minDistance;
-
-_shoreMode = _shoreMode != 0;
-
+if (_outsideMode isEqualTo 1 ) then {_outsideMode = true} else {_outsideMode = false};
+ _shoreMode = _shoreMode != 0;
 if (_checkBlacklist) then
 {
 	_posBlacklist = _posBlacklist apply
@@ -127,7 +103,6 @@ if (_checkBlacklist) then
 		};
 	};
 };
-
 for "_i" from 1 to 3000 do
 {
 	_checkPos getPos [_minDistance + random _deltaDistance, random 360] call
@@ -135,11 +110,10 @@ for "_i" from 1 to 3000 do
 		if (_this isFlatEmpty [-1, -1, _maxGradient, _objectProximity, _waterMode, _shoreMode] isEqualTo []) exitWith {}; // true & exits if ife fails because not flat/empty
 		if (_checkProximity && {!(nearestTerrainObjects [_this, [], _objectProximity, false] isEqualTo [])}) exitWith {}; // true & exits if nto says nothing nearby
 		if (_outsideMode && {(lineIntersectsSurfaces [(ATLToASL _this), ((ATLToASL _this) vectorAdd [0,0,50]), objNull, objNull, true,1, "GEOM", "NONE"] ) select 0 params ["","","", ""]} ) exitWith {}; // true & exits if indoors
-		if (_strictMode > 0 && {count (nearestObjects [_this, ["AllVehicles", "Ruins_F", "House_f", "Wall_F","BagBunker_base_f"], _objectProximity, true]) > 0 }) exitWith {}; //true & exits if vehicles, houses, ruins or bunkers nearby
+		if (_strictMode isEqualTo 1 && {count ((nearestObjects [_this, ["AllVehicles", "Ruins_F", "House_f", "Wall_F","BagBunker_base_f"], _objectProximity, true])) > 0 }) exitWith {}; //true & exits if vehicles, houses, ruins or bunkers nearby
 		if (_checkBlacklist && {{if (_this inArea _x) exitWith {true}; false} forEach _posBlacklist}) exitWith {};
 		_this select [0, 2] breakOut "main";
 	};
 };
-
 // search failed, try default position
 (_waterMode != 0) call _fnc_defaultPos
