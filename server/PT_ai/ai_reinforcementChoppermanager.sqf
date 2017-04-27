@@ -7,8 +7,8 @@ _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {(alive pt_radar)} do
 {
-	//sleep 1800 + random 900;
-	sleep 30;
+	sleep 1800 + random 900;
+	//sleep 30;
 
 	diag_log "*** arcm finished sleeping. now checking if target moved on and radar still up";
 
