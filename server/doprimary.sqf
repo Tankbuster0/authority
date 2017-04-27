@@ -88,6 +88,7 @@ if (primarytargetcounter > 1) then
 				if (deadgatecount == (count roadblockgates)) then
 					{
 					roadblockscleared = true;
+					diag_log format ["*** spawned monitor script within doprimary says deadgate count %1 == roadblockgate count %2 and so has set roadblockscleared flag to true", deadgatecount, count roadblockgates];
 						{
 						_mytruck = _x;
 						{_mytruck deleteVehicleCrew _x}foreach (crew _mytruck);
