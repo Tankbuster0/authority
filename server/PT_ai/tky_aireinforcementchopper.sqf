@@ -45,7 +45,7 @@ for "_n" from 1 to _cspots do
 				}
 				else
 				{
-				diag_log ["*** tarc says _rheli is now UNSTALLED and is at speed %1 and %1 from landing pos and %3 from where we last saw it", speed _s_rheli, _s_rheli distance2D _s_landingpos, _s_rheli distance2D _checkstalledpos];
+				diag_log format  ["*** tarc says _rheli is now UNSTALLED and is at speed %1 and %1 from landing pos and %3 from where we last saw it", speed _s_rheli, _s_rheli distance2D _s_landingpos, _s_rheli distance2D _checkstalledpos];
 				};
 			};
 		};
@@ -60,13 +60,24 @@ doStop (_rheli);
 diag_log format ["***tarc says chopper stopped"];
 if (typeName _landingpos isEqualTo "OBJECT") then {(_rheli) landAt _landingpos} else {(_rheli) land "LAND"};
 diag_log format ["***tarc says chopper told to land."];
+waitUntil {sleep 0.5; ((getpos _rheli select 2) < 5)};
 _helicargogroup leaveVehicle (_rheli);
+(_rheli animateDoor ['Door_4_source', 1]);
+(_rheli animateDoor ['Door_5_source', 1]);
+(_rheli animateDoor ['Door_6_source', 1]);
+
 diag_log format ["***tarc says cargo told to leave chopper."];
 {if !(alive _x) then {deleteVehicle _x}} foreach (crew  _rheli); // delete any deads
 diag_log "*** tacr waiting while cargo crew disembark";
 waitUntil {sleep 0.5; (_rheli emptyPositions "cargo") isEqualTo _cspots};
+sleep 1;
+(_rheli animateDoor ['Door_4_source', 0]);
+(_rheli animateDoor ['Door_5_source', 0]);
+(_rheli animateDoor ['Door_6_source', 0]);
 diag_log "*** tacr sending heli back to startpos";
+[_helicargogroup, getpos forward] call BIS_fnc_taskattack;
 (leader (_rpilotgroup)) doMove _startpos;
+
 waitUntil {sleep 3; (_rheli distance2d _startpos) < 100};
 diag_log "*** tacr deleting heli and pilot group";
 {_rheli deleteVehicleCrew _x} forEach crew _rheli;
