@@ -112,7 +112,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// patrolling  apc /ifv group start
 	if not (_microtown) then
 		{
-		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0] call tky_fnc_t_findSafePos;
+		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_t_findSafePos;
 		_veh = selectRandom opforpatrollandvehicles;
 		_patrolveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
