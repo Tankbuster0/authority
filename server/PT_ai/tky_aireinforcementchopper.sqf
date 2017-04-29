@@ -25,30 +25,28 @@ for "_n" from 1 to _cspots do
 		[_dude, true, true] call tky_fnc_tc_setskill;
 		_dude moveInCargo (_rheli);
 	};
-[_rheli] spawn
+_rheli spawn
 	{
-		while {alive _rheli} do
+		params [_heli2]
+		while {alive _heli2} do
 		{
 		sleep 5;
-		if (((speed _rheli) < 10) and ((_rheli distance2D _landingpos) > 100)) then //if its stopped well away from target
+		if (((speed _heli2) < 10) and ((_heli2 distance2D _landingpos) > 100)) then //if its stopped well away from target
 			{
-			diag_log format ["***tarc suspects a stalled rheli at %1 ( %2 from target) and will check again in 20 secs",  getpos _rheli, (_rheli distance2D _landingpos)];
-			_checkstalledpos - getpos _rheli;
+			diag_log format ["***tarc suspects a stalled rheli at %1 ( %2 from target) and will check again in 20 secs",  getpos _heli2, (_heli2 distance2D _landingpos)];
+			_checkstalledpos = getpos _heli2;
 			sleep 20;
-			if 	(((speed _rheli) < 10) and ((_rheli distance2D _checkstalledpos) < 100)) then //if it's STILL stopped well away from target
+			if 	(((speed _heli2) < 10) and ((_heli2 distance2D _checkstalledpos) < 100)) then //if it's STILL stopped well away from target
 				{
-				diag_log format ["*** tarc is now sure rehli has stalled and is killing it. It's %1 from where we last saw it", _rheli distance2d _checkstalledpos];
-				{_rheli deleteVehicleCrew _x} forEach crew _rheli;
-				_rheli setdamage 1;
+				diag_log format ["*** tarc is now sure rehli has stalled and is killing it. It's %1 from where we last saw it", _heli2 distance2d _checkstalledpos];
+				{_heli2 deleteVehicleCrew _x} forEach crew _heli2;
+				_heli2 setdamage 1;
 				}
 				else
 				{
-				diag_log ["*** tarc says rheli is now UNSTALLED and is at speed %1 and %1 from landing pos and %3 from where we last saw it", speed _rheli, _rheli distance2D _landingpos, _rheli distance2D _checkstalledpos];
+				diag_log ["*** tarc says rheli is now UNSTALLED and is at speed %1 and %1 from landing pos and %3 from where we last saw it", speed _heli2, _heli2 distance2D _landingpos, _heli2 distance2D _checkstalledpos];
 				};
 			};
-
-
-
 		};
 	};
 diag_log format ["***tarc says giving domove."];
@@ -56,7 +54,7 @@ diag_log format ["***tarc says giving domove."];
 
 while {((_rheli) distance2D _landingpos) > 100} do {sleep 1};
 diag_log format ["***tarc says chopper arrived."];
- doStop (_rheli);
+doStop (_rheli);
 diag_log format ["***tarc says chopper stopped"];
 if (typeName _landingpos isEqualTo "OBJECT") then {(_rheli) landAt _landingpos} else {(_rheli) land "LAND"};
 diag_log format ["***tarc says chopper told to land."];
