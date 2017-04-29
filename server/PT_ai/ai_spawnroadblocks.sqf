@@ -41,7 +41,7 @@ for "_i" from 0 to 355 step 5 do
 			};
 		};
 	};
-	if (testmode) then {diag_log format ["***aisrb has found %1 places to put roadblocks", (count _myroadarray1)]}
+	diag_log format ["***aisrb has found %1 places to put roadblocks", (count _myroadarray1)];
 	_groups = [];
 	_totalenemies = 0;
 	_objects = [];
