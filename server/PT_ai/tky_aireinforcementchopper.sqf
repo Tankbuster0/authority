@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "tky_aireinforcementchopper";
 __tky_starts;
-private ["_startpos","_vecdata","_rheli","_rpilotgroup","_heliseats","_cspots","_helicargogroup","_n","_dude", "_checkstalledpos"];
+private ["_startpos","_vecdata","_rpilotgroup","_heliseats","_cspots","_helicargogroup","_n","_dude", "_checkstalledpos", "_rheli"];
 params[
 	["_landingpos", cpt_position],// send a helipad object for accurate landing on it, else send a position
 	["_helitype", selectRandom opfor_reinf_helos],// supply a classname or one will be chosen
@@ -25,30 +25,32 @@ for "_n" from 1 to _cspots do
 		[_dude, true, true] call tky_fnc_tc_setskill;
 		_dude moveInCargo (_rheli);
 	};
-_rheli spawn
+[_rheli, _landingpos] spawn
 	{
-		params [_heli2]
-		while {alive _heli2} do
+		params ["_s_rheli", "_s_landingpos"];
+		private "_checkstalledpos";
+		while {alive _s_rheli} do
 		{
 		sleep 5;
-		if (((speed _heli2) < 10) and ((_heli2 distance2D _landingpos) > 100)) then //if its stopped well away from target
+		if (((speed _s_rheli) < 10) and ((_s_rheli distance2D _s_landingpos) > 100)) then //if its stopped well away from target
 			{
-			diag_log format ["***tarc suspects a stalled rheli at %1 ( %2 from target) and will check again in 20 secs",  getpos _heli2, (_heli2 distance2D _landingpos)];
-			_checkstalledpos = getpos _heli2;
-			sleep 20;
-			if 	(((speed _heli2) < 10) and ((_heli2 distance2D _checkstalledpos) < 100)) then //if it's STILL stopped well away from target
+			diag_log format ["***tarc suspects a stalled _rheli at %1 ( %2 from target) and will check again in 20 secs",  getpos _s_rheli, (_s_rheli distance2D _s_landingpos)];
+			_checkstalledpos = getpos _s_rheli;
+			sleep 10;
+			if 	(((speed _s_rheli) < 10) and ((_s_rheli distance2D _checkstalledpos) < 100)) then //if it's STILL stopped near where we last saw it
 				{
-				diag_log format ["*** tarc is now sure rehli has stalled and is killing it. It's %1 from where we last saw it", _heli2 distance2d _checkstalledpos];
-				{_heli2 deleteVehicleCrew _x} forEach crew _heli2;
-				_heli2 setdamage 1;
+				diag_log format ["*** tarc is now sure rehli has stalled and is killing it. It's %1 from where we last saw it", _s_rheli distance2d _checkstalledpos];
+				{_s_rheli deleteVehicleCrew _x} forEach crew _s_rheli;
+				_s_rheli setdamage 1;
 				}
 				else
 				{
-				diag_log ["*** tarc says rheli is now UNSTALLED and is at speed %1 and %1 from landing pos and %3 from where we last saw it", speed _heli2, _heli2 distance2D _landingpos, _heli2 distance2D _checkstalledpos];
+				diag_log ["*** tarc says _rheli is now UNSTALLED and is at speed %1 and %1 from landing pos and %3 from where we last saw it", speed _s_rheli, _s_rheli distance2D _s_landingpos, _s_rheli distance2D _checkstalledpos];
 				};
 			};
 		};
 	};
+pt_radar setdamage 1;// remove after testing
 diag_log format ["***tarc says giving domove."];
 (leader (_rpilotgroup)) doMove (if (typename _landingpos isEqualTo "OBJECT") then {getpos _landingpos} else {_landingpos});
 
