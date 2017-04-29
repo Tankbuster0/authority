@@ -43,7 +43,7 @@ diag_log "*** tacr sending heli back to startpos";
 (leader (_rpilotgroup)) doMove _startpos;
 waitUntil {sleep 3; (_rheli distance2d _startpos) < 100};
 diag_log "*** tacr deleting heli and pilot group";
-deleteVehicleCrew _rheli;
+{_rheli deleteVehicleCrew _x} forEach crew _rheli;
 deleteVehicle _rheli;
 
 
