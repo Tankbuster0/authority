@@ -9,7 +9,7 @@ params[
 	["_cargocount", 99]// number of soldiers in cargo
 
 	];
-diag_log format ["***tarc gets landingpos %1, helitype %2 and cargocount %3."];
+diag_log format ["***tarc gets landingpos %1, helitype %2 and cargocount %3.", _landingpos, _helitype, _cargocount];
 _startpos = cpt_position getPos [(4000 + random 3000), (random 360)];
 
 _vecdata = [_startpos, (_startpos getdir cpt_position), _helitype, EAST] call BIS_fnc_spawnVehicle;
@@ -24,11 +24,11 @@ for "_n" from 1 to ((getNumber (configFile >> "CfgVehicles" >> _helitype >> "tra
 diag_log format ["***tarc says giving domove."];
 (leader (_vecdata select 2)) doMove (if (typename _landingpos isEqualTo "OBJECT") then {getpos _landingpos} else {_landingpos});
 
-while {((_vecdata select 0) distance2D _landingpos) > 40} do {sleep 3};
+while {((_vecdata select 0) distance2D _landingpos) > 100} do {sleep 3};
 diag_log format ["***tarc says chopper arrived."];
  doStop (_vecdata select 0);
 diag_log format ["***tarc says chopper stopped"];
-if (typeName _landingpos isEqualTo "OBJECT") then {(_vec select 0) landAt _landingpos_} else {(_vec select 0) land "LAND"};
+if (typeName _landingpos isEqualTo "OBJECT") then {(_vec select 0) landAt _landingpos} else {(_vec select 0) land "LAND"};
 diag_log format ["***tarc says chopper told to land."];
 _helicargogroup leaveVehicle (_vecdata select 0);
 diag_log format ["***tarc says cargo told to leave choppe."];
