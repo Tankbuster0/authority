@@ -39,9 +39,17 @@ for "_n" from 1 to _cspots do
 			sleep 10;
 			if 	(((speed _s_rheli) < 10) and ((_s_rheli distance2D _checkstalledpos) < 100)) then //if it's STILL stopped near where we last saw it
 				{
-				diag_log format ["*** tarc is now sure rehli has stalled and is killing it. It's %1 from where we last saw it", _s_rheli distance2d _checkstalledpos];
-				{_s_rheli deleteVehicleCrew _x} forEach crew _s_rheli;
-				_s_rheli setdamage 1;
+				diag_log format ["*** tarc is now sure rehli has stalled and is killing it. It's %1 from where we last saw it or if it's close, give it another land command", _s_rheli distance2d _checkstalledpos];
+				if ((_s_rheli distance2D _s_landingpos) < 10) then
+					{
+					diag_log "*** tarc says heli is stalled but close to pos so giving it another land command";
+					_s_rheli land "LAND";
+					}
+					else
+					{
+					{_s_rheli deleteVehicleCrew _x} forEach crew _s_rheli;
+					_s_rheli setdamage 1;
+					};
 				}
 				else
 				{
@@ -60,7 +68,7 @@ doStop (_rheli);
 diag_log format ["***tarc says chopper stopped"];
 if (typeName _landingpos isEqualTo "OBJECT") then {(_rheli) landAt _landingpos} else {(_rheli) land "LAND"};
 diag_log format ["***tarc says chopper told to land."];
-waitUntil {sleep 0.5; ((getpos _rheli select 2) < 5)};
+//waitUntil {sleep 0.5; ((getpos _rheli select 2) < 5)};
 _helicargogroup leaveVehicle (_rheli);
 (_rheli animateDoor ['Door_4_source', 1]);
 (_rheli animateDoor ['Door_5_source', 1]);
