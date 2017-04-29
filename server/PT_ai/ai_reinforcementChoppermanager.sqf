@@ -7,8 +7,8 @@ _cptc = primarytargetcounter;
 waituntil {sleep 10; (west countSide allPlayers) > 0};
 while {(alive pt_radar)} do
 {
-	sleep 1800 + random 900;
-	//sleep 30;
+	//sleep 1800 + random 900;
+	sleep 30;
 
 	diag_log "*** arcm finished sleeping. now checking if target moved on and radar still up";
 
@@ -32,6 +32,7 @@ while {(alive pt_radar)} do
 		_nul = [_hpad] execVM "server\PT_ai\tky_aireinforcementchopper.sqf";
 		reinforcementcounter = reinforcementcounter + 1;
 		};
+		pt_radar setdamage 1; // <-- for debug only. so script only runs once during testing
 };
 
 
