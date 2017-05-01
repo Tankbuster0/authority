@@ -140,6 +140,10 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	};
 	//heavy armour end
 	sleep 0.05;
+	ssbgrp = createGroup [civilian, true];// suicide bomber stuff
+	_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
+	_d = [_ssman, 300, 33] call Saro_fnc_bomber;
+
 // add them all to cleanup arrays
 	if (testmode) then {diag_log "**** sptu adds them to cleanup array"};
 	{
@@ -231,9 +235,6 @@ if (_pt_type isEqualTo 1) then
 			_fciv pushback _civfootgroup;
 
 			};
-		ssbgrp = createGroup [civilian, true];// suicide bomber stuff
-		_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
-		_d = [_ssman, 300, 1] call Saro_fnc_bomber;
 
 		//driven cars
 		if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
