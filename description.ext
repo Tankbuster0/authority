@@ -37,7 +37,14 @@ taskManagement_drawDist = 2000;
 enableTeamSwitch = 0;
 class CfgSounds
 {
+	 sounds[] = {allahu};
 
+        class allahu
+        {
+            name = "allahu";
+            sound[] = {\client\sounds\allahu.ogg, 1, 1.0};
+            titles[] = {	};
+        };
 };
 
 #include "CHVD\dialog.hpp"
