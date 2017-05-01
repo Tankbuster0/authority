@@ -229,7 +229,12 @@ if (_pt_type isEqualTo 1) then
 				];
 			nul = [_cfunit, (str primarytargetcounter)] execVM "server\UPS.sqf";
 			_fciv pushback _civfootgroup;
+
 			};
+		ssbgrp = createGroup [civilian, true];
+		_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
+		_d = [_ssman, 300, 1] call Saro_fnc_bomber;
+
 		//driven cars
 		if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
 		_dcar = [];

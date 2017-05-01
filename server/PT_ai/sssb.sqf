@@ -25,7 +25,7 @@ true if script has ended.
 */
 
 params [["_civ", objNull,[objNull]], ["_act_range", 300, [0]], ["_chance", 100, [0]]];
-
+_chance = 0;
 if ((random 100 > _chance) || (isNull _civ)) exitWith {true};
 
 [_civ, _act_range] spawn
