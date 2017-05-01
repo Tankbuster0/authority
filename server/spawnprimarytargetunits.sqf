@@ -231,7 +231,7 @@ if (_pt_type isEqualTo 1) then
 			_fciv pushback _civfootgroup;
 
 			};
-		ssbgrp = createGroup [civilian, true];
+		ssbgrp = createGroup [civilian, true];// suicide bomber stuff
 		_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
 		_d = [_ssman, 300, 1] call Saro_fnc_bomber;
 
