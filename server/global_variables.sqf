@@ -2,7 +2,7 @@
 //by tankbuster.
 islandcentre = getarray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 publicVariable "islandcentre";
-mission_root = format ["mpmissions\%1.%2\", missionName, worldName];
+mission_root = str ConfigFile select [0, count str missionConfigFile - 15];
 publicVariable "mission_root";
 debugendmission = false;
 testservernames = ["Tanky-Test", "Tanky test"];
