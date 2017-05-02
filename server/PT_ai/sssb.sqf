@@ -93,7 +93,7 @@ if ((random 100 > _chance) || (isNull _civ)) exitWith {true};
   }; // end follow while
   _wp = [];
  }; // main while end
-playsound3d [("mission_root + "client\sounds\alluha.ogg), _bomber,10,1,50];
+playsound3d [(mission_root + "client\sounds\allahu.ogg"), _bomber,10,1,50];
 sleep 3;
  if (_is_vec) then
  {
