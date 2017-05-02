@@ -140,9 +140,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	};
 	//heavy armour end
 	sleep 0.05;
-	ssbgrp = createGroup [civilian, true];// suicide bomber stuff
-	_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
-	_d = [_ssman, 300, 33] call Saro_fnc_bomber;
+
 
 // add them all to cleanup arrays
 	if (testmode) then {diag_log "**** sptu adds them to cleanup array"};
@@ -224,7 +222,7 @@ if (_pt_type isEqualTo 1) then
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
 			//_cfunit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
 			//_cfunit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
-			_cfunit addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+			_cfunit addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
 						{
 						civkillcount = civkillcount +1;
 						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
@@ -235,7 +233,9 @@ if (_pt_type isEqualTo 1) then
 			_fciv pushback _civfootgroup;
 
 			};
-
+		ssbgrp = createGroup [civilian, true];// suicide bomber stuff
+		_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
+		_d = [_ssman, 500, 100] call Saro_fnc_bomber;
 		//driven cars
 		if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
 		_dcar = [];
@@ -258,7 +258,7 @@ if (_pt_type isEqualTo 1) then
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
 			_veh setdir _dir;
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
-			_unit addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+			_unit addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
 						{
 						civkillcount = civkillcount +1;
 						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
@@ -274,7 +274,7 @@ if (_pt_type isEqualTo 1) then
 				{
 				sleep 0.05;
 				_unit2 = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
-				_unit2 addEventHandler ["killed", {if (([this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
+				_unit2 addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
 						{
 						civkillcount = civkillcount +1;
 						if (testmode) then {diag_log format ["civilian killed by %1", name _this select 0 ]};
