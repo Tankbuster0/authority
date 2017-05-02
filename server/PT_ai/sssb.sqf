@@ -93,7 +93,8 @@ if ((random 100 > _chance) || (isNull _civ)) exitWith {true};
   }; // end follow while
   _wp = [];
  }; // main while end
-
+playsound3d [("mission_root + "client\sounds\alluha.ogg), _bomber,10,1,50];
+sleep 3;
  if (_is_vec) then
  {
   _boom = createVehicle ["Bo_GBU12_LGB", getPos _bomber, [], 0, "CAN_COLLIDE"];
@@ -103,5 +104,5 @@ if ((random 100 > _chance) || (isNull _civ)) exitWith {true};
   _boom = createVehicle ["R_60mm_HE", getPos _bomber, [], 0, "CAN_COLLIDE"];
  };
  deleteVehicle _bomber;
-}; //spawn end
+}; //spawn end  \\\\
 true
