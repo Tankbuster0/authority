@@ -233,9 +233,18 @@ if (_pt_type isEqualTo 1) then
 			_fciv pushback _civfootgroup;
 
 			};
-		ssbgrp = createGroup [civilian, true];// suicide bomber stuff
-		_ssman = ssbgrp createUnit ["C_Driver_1_black_F", _pt_pos, [],0,"NONE" ];
-		_d = [_ssman, 500, 100] call Saro_fnc_bomber;
+		if ((random 10) > 7) then
+			{
+			ssbgrp1 = createGroup [civilian, true];// suicide bomber stuff
+			_ssman1 = ssbgrp1 createUnit [(selectRandom civs), _pt_pos, [],0,"NONE" ];
+			_d = [_ssman1, 200, 100] call Saro_fnc_bomber;
+			if (((random 10 )> 8) and (_pt_radius > 150)) then
+				{
+				ssbgrp2 = createGroup [civilian, true];// suicide bomber stuff
+				_ssman2 = ssbgrp2 createUnit [(selectRandom civs), _pt_pos, [],0,"NONE" ];
+				_d = [_ssman2, 300, 100] call Saro_fnc_bomber;
+				};
+		};
 		//driven cars
 		if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
 		_dcar = [];
