@@ -2,7 +2,8 @@
 //by tankbuster.
 islandcentre = getarray (configFile >> "CfgWorlds" >> worldName >> "centerPosition");
 publicVariable "islandcentre";
-mission_root = str ConfigFile select [0, count str missionConfigFile - 15];
+mission_root = str missionConfigFile;
+mission_root = [mission_root, 0, -15] call BIS_fnc_trimString;
 publicVariable "mission_root";
 debugendmission = false;
 testservernames = ["Tanky-Test", "Tanky test"];

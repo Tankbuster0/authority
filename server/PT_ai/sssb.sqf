@@ -93,8 +93,9 @@ if ((random 100 > _chance) || (isNull _civ)) exitWith {true};
   }; // end follow while
   _wp = [];
  }; // main while end
-playsound3d [(mission_root + "client\sounds\allahu.ogg"), _bomber,10,1,50];
-sleep 3;
+_playsound = mission_root + "client\sounds\allahu.ogg";
+playsound3d [_playsound, _bomber,false, getposasl _bomber,10,1,50];
+sleep 2;
  if (_is_vec) then
  {
   _boom = createVehicle ["Bo_GBU12_LGB", getPos _bomber, [], 0, "CAN_COLLIDE"];
