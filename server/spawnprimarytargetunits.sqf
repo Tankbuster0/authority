@@ -235,15 +235,22 @@ if (_pt_type isEqualTo 1) then
 			};
 		if ((random 10) > 7) then
 			{
-			ssbgrp1 = createGroup [civilian, true];// suicide bomber stuff
-			_ssman1 = ssbgrp1 createUnit [(selectRandom civs), _pt_pos, [],0,"NONE" ];
+			ssbgrp1 = createGroup [east, true];// suicide bomber stuff
+			_ssman1 = ssbgrp1 createUnit ["O_SolderU_unarmed_F", _pt_pos, [],0,"NONE" ];
+
+			removeAllWeapons _ssman1;
+			removeUniform _ssman1;
+			removeHeadgear _ssman1;
+			removeVest _ssman1;
+			_ssman1 forceAddUniform (selectRandom ["U_C_Poloshirt_blue", "U_C_Poloshirt_burgundy", "U_C_Poor_1", "U_C_Poloshirt_tricolour", "U_C_Poloshirt_redwhite", "U_C_man_sport_1_F", "U_C_Man_casual_6_F"]);
+			_ssman1 addHeadgear (selectRandom ["H_Cap_red", "H_Cap_blu", "H_Cap_headphones", "H_StrawHat", "H_Hat_blue", "H_Hat_brown"]);
 			_d = [_ssman1, 200, 100] call Saro_fnc_bomber;
-			if (((random 10 )> 8) and (_pt_radius > 150)) then
-				{
-				ssbgrp2 = createGroup [civilian, true];// suicide bomber stuff
-				_ssman2 = ssbgrp2 createUnit [(selectRandom civs), _pt_pos, [],0,"NONE" ];
-				_d = [_ssman2, 300, 100] call Saro_fnc_bomber;
-				};
+
+
+
+
+
+
 		};
 		//driven cars
 		if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
