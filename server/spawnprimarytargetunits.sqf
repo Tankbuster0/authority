@@ -237,7 +237,7 @@ if (_pt_type isEqualTo 1) then
 			{
 			ssbgrp1 = createGroup [east, true];// suicide bomber stuff
 			_ssman1 = ssbgrp1 createUnit ["O_SolderU_unarmed_F", _pt_pos, [],0,"NONE" ];
-
+			diag_log format ["***sptu made a suicide bomber!"];
 			removeAllWeapons _ssman1;
 			removeUniform _ssman1;
 			removeHeadgear _ssman1;
