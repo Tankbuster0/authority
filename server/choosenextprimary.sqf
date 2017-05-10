@@ -22,7 +22,11 @@ _atoti = {((floor (_x getVariable ["targetlandmassid", -1])) isEqualTo cpt_islan
 
 diag_log format ["*** cnp gives blucount %1 and redcout %2 and total targets %3", _btoti, _rtoti, _atoti];
 __tky_debug;
-if (_rtoti < 2) then {islandhop = true};
+if (_rtoti < 2) then
+	{
+		islandhop = true;
+		publicVariable "islandhop";
+	};
 
 {
 	_tstatus = _x getVariable ["targetstatus", -1];
