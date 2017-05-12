@@ -78,7 +78,7 @@ civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_
 civcars =["C_Offroad_01_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad_stripped_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_Van_01_transport_F", "C_Van_01_box_F", "C_Van_01_fuel_F","C_Offroad_02_unarmed_F", "C_SUV_01_F", "C_Truck_02_transport_F", "C_Truck_02_covered_F"];
 
 opforradartypes = ["Land_Radar_Small_F"];
-hintqueue = ["","","","","",""];
+hintqueue = ["","","","","","", "", "","", ""];
 opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F"];
 aaccomposition = [
 	["Land_HelipadCircle_F",[106.138,18.7334,0],0,1,0,[0.763851,7.67037],"","",true,false],
