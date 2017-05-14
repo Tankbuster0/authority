@@ -19,6 +19,7 @@ respawnOnStart = 1;
 //reviveDelay = 10;
 //reviveForceRespawnDelay = 60;
 //reviveBleedOutDelay = 450;
+loadScreen = "pics\authlogo512x256.paa";
 class Header {
 	gameType = COOP;
 	minPlayers = 1;
