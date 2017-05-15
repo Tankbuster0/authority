@@ -1,4 +1,4 @@
- #include "..\includes.sqf"
+#include "..\includes.sqf"
 _myscript = "fn_fobvehicledeploymanager.sqf";
 __tky_starts;
 private ["_allowed_nearobjs","_allowed_notflat","_allowed_outdoors","_allowed_lineintersects","_allowed_deploy","_buildingobjs","_house","_nobjs1","_nobjs2","_nobjs3","_nobjs4","_begpos0","_begpos1","_begpos2","_intersectobjectscount","_objs1","_objs2","_objs","_endpos1","_endpos2","_endpos3","_endpos4","_foundobj","_tc","_reasonstring","_reasonstring2","_candidatepos","_nul","_cobj","_veh"];
@@ -141,7 +141,7 @@ else
 		unassignCurator cur;
 		terminate healhandle;
 		sleep 1;
-		"FOB successfuly removed. You can drive the FOB vehicle again now." remoteexec ["hint", fobveh];
+		"FOB successfuly removed. You can drive the FOB vehicle again" remoteexec ["hint", fobveh];
 		};
 };
 __tky_ends
