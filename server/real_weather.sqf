@@ -3,27 +3,27 @@
 	Copyright (C) 2013-2015 Nicolas BOITEUX
 
 	Real weather for MP GAMES v 1.4
-	
+
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
-	
+
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	
+
 	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>. 
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 	*/
 
 	private ["_lastrain", "_rain", "_fog", "_mintime", "_maxtime", "_overcast", "_realtime", "_random","_startingdate", "_startingweather", "_timeforecast", "_daytimeratio", "_nighttimeratio", "_timesync", "_wind"];
-	
+
 	// Real time vs fast time
 	// true: Real time is more realistic weather conditions change slowly (ideal for persistent game)
-	// false: fast time give more different weather conditions (ideal for non persistent game) 
-	_realtime = false;
+	// false: fast time give more different weather conditions (ideal for non persistent game)
+	_realtime = true;
 
 	// Random time before new forecast
 	// true: forecast happens bewteen mintime and maxtime
@@ -56,7 +56,7 @@
 	/////////////////////////////////////////////////////////////////
 	// Do not edit below
 	/////////////////////////////////////////////////////////////////
-	
+
 	if(_mintime > _maxtime) exitwith {hint format["Real weather: Max time: %1 can no be higher than Min time: %2", _maxtime, _mintime];};
 	_timeforecast = _mintime;
 
@@ -65,11 +65,11 @@
 		case "CLEAR": {
 			wcweather = [0, 0, 0, [random 3, random 3, true], date];
 		};
-		
+
 		case "CLOUDY": {
 			wcweather = [0, 0, 0.6, [random 3, random 3, true], date];
 		};
-		
+
 		case "RAIN": {
 			wcweather = [1, 0, 1, [random 3, random 3, true], date];
 		};
@@ -123,7 +123,7 @@
 	// sync server & client weather & time
 	[_realtime, _timesync, _daytimeratio, _nighttimeratio] spawn {
 		private["_realtime", "_timesync", "_daytimeratio", "_nighttimeratio"];
-		
+
 		_realtime = _this select 0;
 		_timesync = _this select 1;
 		_daytimeratio = _this select 2;
@@ -132,7 +132,7 @@
 		while { true } do {
 			wcweather set [4, date];
 			publicvariable "wcweather";
-			if(!_realtime) then { 
+			if(!_realtime) then {
 				if((date select 3 > 16) or (date select 3 <6)) then {
 					setTimeMultiplier _nighttimeratio;
 				} else {

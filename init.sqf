@@ -45,4 +45,4 @@ cur addEventHandler ["CuratorObjectDeleted", {[_this select 0, _this select 1] r
 cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this select 1] remoteExec ["tky_fnc_curatorSelectionChanged"];}];
 _nul = execVM "gvs\gvs_init.sqf";
  //[] execVM "server\zerowatcher.sqf";
-//[] execVM "server\real_weather.sqf";
+[] execVM "server\real_weather.sqf";
