@@ -52,8 +52,7 @@ for "_minecounter" from 1 to _numberofmines do
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
-_dirtohint = cardinaldirs select (([([( cpt_position) getdir _mfpos, 45] call BIS_fnc_roundDir), 45] call BIS_fnc_rounddir) /45);
-(format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.", _dirtohint, cpt_name, ([(((_mfpos distance2D cpt_position) - cpt_radius) + 24), 50] call BIS_fnc_roundNum ])) remoteexec ["hint", -2];
+(format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.", (cardinaldirs (select ([(cpt_position getdir _mfpos), 45] call BIS_fnc_rounddir) /45)), cpt_name, ([(((_mfpos distance2D cpt_position) - cpt_radius) + 24), 50] call BIS_fnc_roundNum ])) remoteexec ["hint", -2];
 //[(24+ 76), 50] call BIS_fnc_roundNum <- rounds to nearest 50m
 while {missionactive} do
 	{
