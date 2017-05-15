@@ -121,7 +121,7 @@ else
 		//hint "Removing FOB";
 		diag_log "***removing fob";
 		"Removing FOB" remoteexec ["hint", fobveh];
-		sleep 2;
+		sleep 1;
 		{deleteVehicle _x} foreach fobjects;
 		fobjects = [];
 		publicVariable "fobjects";
@@ -140,7 +140,8 @@ else
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
 		terminate healhandle;
-		sleep 2;
+		sleep 1;
+		"FOB successfuly removed. You can drive the FOB vehicle again now." remoteexec ["hint", fobveh];
 		};
 };
 __tky_ends
