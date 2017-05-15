@@ -40,7 +40,7 @@ switch (tolower worldName) do
 publicVariable "fobvehicleclassname";
 publicVariable "forwardpointvehicleclassname";
 blufordropaircraft = "B_T_VTOL_01_vehicle_F"; publicVariable "blufordropaircraft";
-cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "];
+cardinaldirs = ["north of ", "northeast of ", "east of ", "southeast of ", "south of ", "southwest of ", "west of ", "northwest of ", "north of "]; publicVariable "cardinaldirs";
 fobvehrespawncounter = 0;
 // Variables for HeartandMind SideMission calc
 heartandmindscore = 0;
