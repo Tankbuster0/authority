@@ -11,7 +11,4 @@ while {_spawnpos in [[0,0,0], islandcentre]} do // findsafepos not found a good 
 
 _runabout =  createVehicle ["B_Quadbike_01_F", _spawnpos, [], 0, "NONE"];
 
-
-
-
-
+hint format ["A quadbike has spawn just %1 you!",cardinaldirs select (  ([(player getdir _spawnpos), 45] call BIS_fnc_rounddir) /45)];
