@@ -150,13 +150,13 @@
 	while {true} do {
 		_overcast = random 1;
 		if(_overcast > 0.8) then {
-			_rain = random 0.4;
+			_rain = random 0.5;
 		} else {
 			_rain = 0;
 		};
 		if((date select 3 > 2) and (date select 3 <6)) then {
 			if(random 1 > 0.75) then {
-				_fog = 0.4 + (random 0.3);
+				_fog = 0.3 + (random 0.3);
 			} else {
 				_fog = 0.1 + (random 0.2);
 			};
