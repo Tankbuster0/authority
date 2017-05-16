@@ -62,7 +62,7 @@ CQBCleanupArr = [];
 
 // Prizes for Prim Targets
 prizes = ["B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","B_T_APC_Tracked_01_AA_F","B_MBT_01_cannon_F","B_MRAP_01_gmg_F", "B_MRAP_01_hmg_F" ,
-"B_Plane_CAS_01_F", "B_Heli_Transport_01_camo_F","B_Heli_Light_01_armed_F","B_Heli_Transport_03_F", "B_Heli_Attack_01_F", "B_T_VTOL_01_armed_F"];
+"B_Plane_CAS_01_F", "B_Heli_Transport_01_camo_F","B_Heli_Light_01_armed_F","B_Heli_Transport_03_F", "B_Heli_Attack_01_F", "B_T_VTOL_01_armed_F", "B_Plane_Fighter_01_F"];
 //prizes = ["B_Plane_CAS_01_F", "B_Heli_Transport_01_camo_F","B_Heli_Light_01_armed_F","B_Heli_Transport_03_F", "B_Heli_Attack_01_F", "B_T_VTOL_01_armed_F"];
 allbluvehicles = prizes + [fobvehicleclassname, forwardpointvehicleclassname, "B_Quadbike_01_F"];
 publicVariable "allbluvehicles";
@@ -79,7 +79,7 @@ civcars =["C_Offroad_01_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad
 
 opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];
-opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F"];
+opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F", "O_Plane_Fighter_02_F"];
 aaccomposition = [
 	["Land_HelipadCircle_F",[106.138,18.7334,0],0,1,0,[0.763851,7.67037],"","",true,false],
 	["Land_BagBunker_Large_F",[26.9893,-115.696,-0.0723171],322.314,1,0,[8.16878,-1.09966],"","",true,false],
@@ -454,7 +454,7 @@ aeroporto_de_tanoa_compostion =
 	["O_Truck_02_transport_F",[-159.734,-14.6924,0.0691981],323.094,1,0,[-0.00594543,0.0190554],"","",true,false],
 	["C_Plane_Civil_01_racing_F",[-115.742,111.213,-0.788925],0,1,0,[0,0],"","",true,false],
 	["O_Plane_CAS_02_F",[-95.1616,-130.744,-0.39053],357.909,1,0,[0,0],"","",true,false],
-	["O_Plane_CAS_02_F",[-194.375,-59.7495,-0.286222],30.5656,1,0,[0,0],"","",true,false],
+	["O_Plane_Fighter_02_F",[-194.375,-59.7495,-0.286222],30.5656,1,0,[0,0],"","",true,false],
 	["O_Truck_02_fuel_F",[-206.314,-46.4897,0.0404625],0.000115146,1,0,[-0.0370043,-0.0278803],"","",true,false],
 	["O_Plane_CAS_02_F",[-214.066,-32.8662,-0.286222],138.611,1,0,[0,-0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-119.782,240.979,0.0136328],0,1,0,[0,0],"","",true,false],
@@ -511,7 +511,7 @@ Using orientation of objects: yes
 	["C_Heli_Light_01_civil_F",[20.1318,-77.1982,0.0105743],35.9938,1,0,[1.94003,0.0496379],"","",true,false],
 	["O_Truck_02_fuel_F",[93.4385,-20.0332,0.0483561],200.765,1,0,[-0.30254,-0.765374],"","",true,false],
 	["C_Heli_Light_01_civil_F",[39.502,-89.9441,-0.00247192],33.6637,1,0,[0.983601,0.00476193],"","",true,false],
-	["O_Plane_CAS_02_F",[105.781,-23.5925,-0.286222],218.805,1,0,[0,0],"","",true,false],
+	["O_Plane_Fighter_02_F",[105.781,-23.5925,-0.286222],218.805,1,0,[0,0],"","",true,false],
 	["O_T_Truck_03_repair_ghex_F",[57.8232,-105.312,0.0975361],59.0986,1,0,[1.45163,-0.192083],"","",true,false],
 	["O_Truck_02_transport_F",[42.5107,-135.149,0.0695019],226.901,1,0,[-0.00592363,0.0187485],"","",true,false],
 	["O_Plane_CAS_02_F",[137.213,-44.4946,-0.286222],216.109,1,0,[0,0],"","",true,false],
@@ -685,7 +685,7 @@ Using orientation of objects: yes
 	["O_Truck_02_fuel_F",[-3.5354,-76.3994,0.0596819],334.191,1,0,[0.229623,-0.21985],"","",true,false],
 	["O_Plane_CAS_02_F",[-20.8892,-77.1479,-0.280325],322.872,1,0,[0.243324,-0.184215],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[69.7996,-59.749,0],35.441,1,0,[0,0],"","",true,false],
-	["O_Plane_CAS_02_F",[-37.783,-89.9521,-0.276093],331.861,1,0,[1.29681,2.42368],"","",true,false],
+	["O_Plane_Fighter_02_F",[-37.783,-89.9521,-0.276093],331.861,1,0,[1.29681,2.42368],"","",true,false],
 	["O_Heli_Light_02_F",[-100.31,-34.8743,-0.128148],165.177,1,0,[3.01388,8.83277e-005],"","",true,false],
 	["Land_HelipadCircle_F",[-101.255,-34.9792,0.0246954],165.259,1,0,[0,-0],"","",true,false],
 	["O_Truck_02_box_F",[-109.242,-48.2722,0.0681133],168.78,1,0,[0.00608557,0.0189167],"","",true,false],
@@ -753,7 +753,7 @@ Using orientation of objects: yes
 	["C_Plane_Civil_01_F",[45.1812,198.832,-0.788925],134.949,1,0,[0,-0],"","",true,false],
 	["O_Truck_02_fuel_F",[70.6719,208.188,0.0404615],0.000115093,1,0,[-0.0369895,-0.027904],"","",true,false],
 	["O_Truck_02_transport_F",[225.619,-32.4277,0.0698624],323.093,1,0,[0.0249772,-0.0284067],"","",true,false],
-	["O_Plane_CAS_02_F",[74.9924,218.313,-0.390531],141.659,1,0,[0,-0],"","",true,false],
+	["O_Plane_Fighter_02_F",[74.9924,218.313,-0.390531],141.659,1,0,[0,-0],"","",true,false],
 	["O_Truck_02_transport_F",[232.188,-28.8867,0.0702734],323.093,1,0,[0.0410473,-0.00482697],"","",true,false],
 	["O_Truck_02_transport_F",[238.743,-24.8125,0.0720444],323.094,1,0,[0.0755377,0.191567],"","",true,false],
 	["O_Truck_02_box_F",[92.4939,236.356,0.0680151],234.013,1,0,[0.00613665,0.0191425],"","",true,false],
