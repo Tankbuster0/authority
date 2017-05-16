@@ -90,7 +90,7 @@
 				wcweatherstart = false;
 				skipTime -24;
 				86400 setRain (wcweather select 0);
-				86400 setfog [(wcweather select 1),1,20];
+				86400 setfog (wcweather select 1);
 				86400 setOvercast (wcweather select 2);
 				skipTime 24;
 				simulweatherSync;
@@ -99,7 +99,7 @@
 			}else{
 				wcweather = _this select 1;
 				60 setRain (wcweather select 0);
-				60 setfog [(wcweather select 1),1,20];
+				60 setfog (wcweather select 1);
 				60 setOvercast (wcweather select 2);
 				setwind (wcweather select 3);
 				setdate (wcweather select 4);
@@ -113,7 +113,7 @@
 	// apply weather
 	skipTime -24;
 	86400 setRain (wcweather select 0);
-	86400 setfog [(wcweather select 1),1,20];
+	86400 setfog (wcweather select 1);
 	86400 setOvercast (wcweather select 2);
 	skipTime 24;
 	simulweatherSync;
@@ -176,7 +176,7 @@
 
 		wcweather = [_rain, _fog, _overcast, _wind, date];
 		60 setRain (wcweather select 0);
-		60 setfog [(wcweather select 1),1,20];
+		60 setfog (wcweather select 1;
 		60 setOvercast (wcweather select 2);
 		setwind (wcweather select 3);
 		if(_random) then {
