@@ -1,5 +1,5 @@
 _myscript = "initplayerlocal.sqf";
-
+0 =
 
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;
 [ missionNamespace, "arsenalClosed",
@@ -56,6 +56,7 @@ player addEventHandler [ "Respawn", {
 				vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,false, "","((player distanceSqr fobdataterminal) < 2)"];
 				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr prizebox) < 8)"];
 				bfboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distanceSqr bfbox) < 8)"];
+				prizevecrecovid = player addAction ["Recover prize vehicles from Airhead (local version)", "client\recoverprize.sqf", "",0,true,true, "", "", (islandhop and ((player distance2D fobdataterminal) < 2))];
 			};
 		};
 
