@@ -80,7 +80,7 @@
 			diag_log "Real weather: wrong starting weather";
 		};
 	};
-
+diag_log format ["***realweather chose %1", _startingweather ];
 	// add handler
 	if (local player) then {
 		wcweatherstart = true;
@@ -176,7 +176,7 @@
 
 		wcweather = [_rain, _fog, _overcast, _wind, date];
 		60 setRain (wcweather select 0);
-		60 setfog (wcweather select 1;
+		60 setfog (wcweather select 1);
 		60 setOvercast (wcweather select 2);
 		setwind (wcweather select 3);
 		if(_random) then {
