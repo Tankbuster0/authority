@@ -27,15 +27,42 @@ Using orientation of objects: yes
 	["Land_TTowerSmall_2_F",[0.859131,-6.6907,0],0,1,0,[0,0],"","",true,false],
 	["Land_TentDome_F", [3,3,0],0,1,0,[0,0], "fobmash", "", true, false]
 ],0.0] call tky_fnc_t_objectsmapper;
-if (isDedicated) then
-{
-	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\recoverprize.sqf"}, "", 0, true, true, "", "islandhop", 4]] remoteExec ["addAction", -2, fobdataterminal];
-};
+
+sleep 0.5;
 fobflagpole setFlagTexture "pics\hom_flag_white_stripe512.paa";
+
 fobdeployed = true;
 blueflags pushback fobflagpole;
 publicVariable "fobdeployed";
 publicVariable "fobjects";
+sleep 0.5;
+
+if (isDedicated) then
+{
+	fobdtopen = false;
+	[] spawn
+		{
+		while {fobdeployed} do
+			{
+			sleep 1;
+			if (not fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 4]) > 0}) then
+				{
+				fobdtopen = true;
+				[fobdataterminal, 3] call BIS_fnc_DataTerminalAnimate;
+				};
+			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 4]) < 1}) then
+				{
+				fobdtopen = false;
+				[fobdataterminal, 0] call BIS_fnc_DataTerminalAnimate;
+				};
+
+			};
+
+	};
+	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\recoverprize.sqf"}, "", 0, true, true, "", "islandhop", 4]] remoteExec ["addAction", -2, fobdataterminal];
+};
+
+
 //previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
 sleep 0.5;
 
