@@ -45,12 +45,12 @@ if (isDedicated) then
 		while {fobdeployed} do
 			{
 			sleep 1;
-			if (not fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 4]) > 0}) then
+			if (not fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 3]) > 0}) then
 				{
 				fobdtopen = true;
 				[fobdataterminal, 3] call BIS_fnc_DataTerminalAnimate;
 				};
-			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 4]) < 1}) then
+			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 3]) < 1}) then
 				{
 				fobdtopen = false;
 				[fobdataterminal, 0] call BIS_fnc_DataTerminalAnimate;
