@@ -49,6 +49,8 @@ if (isDedicated) then
 				{
 				fobdtopen = true;
 				[fobdataterminal, 3] call BIS_fnc_DataTerminalAnimate;
+				fobdataterminal setObjectTextureGlobal [1, "pics\authlogo512x256.paa"];
+				fobdataterminal setObjectTextureGlobal [0, "pics\hom_flag_white_stripe512.paa"];
 				};
 			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 3]) < 1}) then
 				{
