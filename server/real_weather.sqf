@@ -80,7 +80,6 @@
 			diag_log "Real weather: wrong starting weather";
 		};
 	};
-diag_log format ["***realweather chose %1", _startingweather ];
 	// add handler
 	if (local player) then {
 		wcweatherstart = true;
@@ -156,7 +155,7 @@ diag_log format ["***realweather chose %1", _startingweather ];
 		} else {
 			_rain = 0;
 		};
-		if((date select 3 > 2) and (date select 3 <6)) then {
+		if(sunOrMoon isEqualTo 0) then {
 			if(random 1 > 0.75) then {
 				_fog = 0.4 + (random 0.6);
 			} else {

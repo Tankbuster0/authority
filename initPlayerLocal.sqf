@@ -67,4 +67,5 @@ player addEventHandler [ "Respawn", {
 }];
 //player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
 player setvariable ["isusingprizerecovery", false, true];
+
 [] execVM "client\playersetup.sqf";
