@@ -45,14 +45,14 @@ if (isDedicated) then
 		while {fobdeployed} do
 			{
 			sleep 1;
-			if (not fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 3]) > 0}) then
+			if (not fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 2]) > 0}) then
 				{
 				fobdtopen = true;
 				[fobdataterminal, 3] call BIS_fnc_DataTerminalAnimate;
 				fobdataterminal setObjectTextureGlobal [1, "pics\authlogo512x256.paa"];
 				fobdataterminal setObjectTextureGlobal [0, "pics\hom_flag_white_stripe512.paa"];
 				};
-			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 3]) < 1}) then
+			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 2]) < 1}) then
 				{
 				fobdtopen = false;
 				[fobdataterminal, 0] call BIS_fnc_DataTerminalAnimate;
@@ -61,7 +61,7 @@ if (isDedicated) then
 			};
 
 	};
-	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\recoverprize.sqf"}, "", 0, true, true, "", "islandhop", 4]] remoteExec ["addAction", -2, fobdataterminal];
+	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\islandhopprizerecovery.sqf"}, "", 0, true, true, "", "islandhop", 2]] remoteExec ["addAction", -2, fobdataterminal];
 };
 
 
