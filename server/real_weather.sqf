@@ -88,14 +88,15 @@ diag_log format ["***realweather chose %1", _startingweather ];
 			// first JIP synchronization
 			if(wcweatherstart) then {
 				wcweatherstart = false;
-				skipTime -24;
-				86400 setRain (wcweather select 0);
-				86400 setfog (wcweather select 1);
-				86400 setOvercast (wcweather select 2);
-				skipTime 24;
+				//skipTime -24;
+				0 setRain (wcweather select 0);
+				0 setfog (wcweather select 1);
+				0 setOvercast (wcweather select 2);
+				//skipTime 24;
 				simulweatherSync;
 				setwind (wcweather select 3);
 				setdate (wcweather select 4);
+				forceWeatherChange;
 			}else{
 				wcweather = _this select 1;
 				60 setRain (wcweather select 0);
@@ -111,14 +112,15 @@ diag_log format ["***realweather chose %1", _startingweather ];
 	if (!isServer) exitWith{};
 
 	// apply weather
-	skipTime -24;
-	86400 setRain (wcweather select 0);
-	86400 setfog (wcweather select 1);
-	86400 setOvercast (wcweather select 2);
-	skipTime 24;
+	//skipTime -24;
+	0 setRain (wcweather select 0);
+	0 setfog (wcweather select 1);
+	0 setOvercast (wcweather select 2);
+	//skipTime 24;
 	simulweatherSync;
 	setwind (wcweather select 3);
 	setdate (wcweather select 4);
+	forceWeatherChange;
 
 	// sync server & client weather & time
 	[_realtime, _timesync, _daytimeratio, _nighttimeratio] spawn {
@@ -149,8 +151,8 @@ diag_log format ["***realweather chose %1", _startingweather ];
 
 	while {true} do {
 		_overcast = random 1;
-		if(_overcast > 0.70) then {
-			_rain = random 1;
+		if(_overcast > 0.80) then {
+			_rain = random 0.8;
 		} else {
 			_rain = 0;
 		};
