@@ -11,6 +11,7 @@ while {true} do
 		{
 		bf setdamage 1;
 		[bf] execVM "server\assetrespawn.sqf";
+		"The vehicle-airlift Blackfish has been destroyed. Another is being delivred by airdrop." remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
 		sleep 120;
 		};
 	//waitUntil {sleep 1; (not forwardrespawning)};

@@ -16,7 +16,8 @@ while {true} do
 			{
 				[] call tky_fnc_fobvehicledeploymanager;
 				//format ["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] remoteexec ["hint", -2];
-				["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] call tky_fnc_t_usefirstemptyinhintqueue;
+				//["The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped."] call tky_fnc_t_usefirstemptyinhintqueue;
+				"The Forward Operating Base has been destroyed! A new FOB vehicle is being airdropped." remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
 			};
 
 		sleep 120;

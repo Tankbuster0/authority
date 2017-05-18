@@ -12,6 +12,7 @@ if (testmode) then {diag_log "*** ihpr finished waiting as islandhop is now true
 // 3. use the options at the dataterminal
 if (hasInterface) then {diag_log "runs on client because has interface"};
 if (isDedicated) then {diag_log "runs on server because isdedicated"};
+//"" remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
 "The next target is on a different island. Bring you prize vehicles to the Airhead and airlift the FOB to the new island. Deploy it and make a helipad and you will be able to bring your prize vehicles to the new island." remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
 player setvariable ["isusingprizerecovery", true, true];
 
