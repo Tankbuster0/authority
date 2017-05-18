@@ -147,7 +147,7 @@ blueflags = blueflags - [beachflag];// removes beachhead flag from array so that
 _mypos = getpos terminalcone;
 deleteVehicle terminalcone;
 blubasedataterminal setpos _mypos;
-[blubasemash,10, 0.01, 2] execVM "heal.sqf";
+//[blubasemash,10, 0.01, 2] execVM "heal.sqf";
 _con = "(!airheadserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
 _act = "airheadserviceinuse = true; publicVariable 'airheadserviceinuse'; [['airheadserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
 _ahgvst = createTrigger ["EmptyDetector", getpos blubasehelipad, false];
