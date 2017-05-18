@@ -259,7 +259,7 @@ switch (dep_side) do
         if (isNil "dep_u_veh_crew")     	then { dep_u_veh_crew   	= "O_crew_F"; };
 
         if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["O_MRAP_02_hmg_F","O_MRAP_02_gmg_F","O_APC_Tracked_02_cannon_F","O_G_Van_01_transport_F","O_APC_Wheeled_02_rcws_F","O_G_Offroad_01_armed_F"]; };
-        if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["O_Heli_Attack_02_F","O_Heli_Light_02_F","O_Plane_CAS_02_F"]; };
+        if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["O_Heli_Attack_02_F","O_Heli_Light_02_F","O_Plane_CAS_02_F", "I_Plane_Fighter_04_F"]; };
 
 		if (isNil "dep_static_aa") 			then { dep_static_aa		= "O_static_AA_F"; };
 		if (isNil "dep_static_at") 			then { dep_static_at		= "O_static_AT_F"; };
@@ -337,7 +337,7 @@ switch (dep_side) do
 
             if (isNil "dep_civ_veh")            then { dep_civ_veh          = ["C_Offroad_02_unarmed_F","C_Offroad_01_F","C_Truck_02_transport_F","C_Truck_02_covered_F","C_SUV_01_F"]; };
             if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["I_C_Offroad_02_unarmed_F","I_C_Van_01_transport_F","I_G_Van_01_transport_F","I_G_Offroad_01_armed_F","O_T_LSV_02_armed_F","O_T_LSV_02_unarmed_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F"]; };
-            if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["I_C_Plane_Civil_01_F","I_Heli_light_03_F","I_C_Heli_Light_01_civil_F","I_Heli_Transport_02_F"]; };
+            if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["I_C_Plane_Civil_01_F","I_Heli_light_03_F","I_C_Heli_Light_01_civil_F","I_Heli_Transport_02_F", "I_Plane_Fighter_04_F"]; };
         };
 
         if (isNil "dep_u_g_soldier")    	then { dep_u_g_soldier  	= "I_G_Soldier_F"; };
