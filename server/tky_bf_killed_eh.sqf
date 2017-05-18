@@ -6,7 +6,7 @@ __tky_starts;
 
 while {true} do
 	{
-	waitUntil {sleep 10; (true and {not (isNull bf)}};
+	waitUntil {sleep 10; true and {not (isNull bf)}};
 	if ((not alive bf) or (((getPosASL bf) select 2) < -2.5)) then
 		{
 		bf setdamage 1;
