@@ -53,6 +53,13 @@ fnc_setVehicleName =
 	[_veh, _name] remoteExec ["setVehicleVarName", 0, _veh];
 };
 
+KK_fnc_removeUnknownUserActions = {
+	for "_i" from 0 to (player addAction ["",""]) do {
+		if !(_i in _this) then {
+			player removeAction _i;
+		};
+	};
+};
 
 
 /*
