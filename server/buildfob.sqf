@@ -49,13 +49,19 @@ if (isDedicated) then
 				{
 				fobdtopen = true;
 				[fobdataterminal, 3] call BIS_fnc_DataTerminalAnimate;
+				sleep 2;
 				fobdataterminal setObjectTextureGlobal [1, "pics\authlogo512x256.paa"];
 				fobdataterminal setObjectTextureGlobal [0, "pics\hom_flag_white_stripe512.paa"];
 				};
 			if (fobdtopen and {count (fobdataterminal nearEntities ["SoldierWB", 2]) < 1}) then
 				{
+				fobdataterminal setObjectTextureGlobal [1, "#(argb,8,8,3)color(0,1,1,1.0,co)"];
+				fobdataterminal setObjectTextureGlobal [0, "#(argb,8,8,3)color(0,1,1,1.0,co)"];
 				fobdtopen = false;
 				[fobdataterminal, 0] call BIS_fnc_DataTerminalAnimate;
+				sleep 2;
+				fobdataterminal setObjectTextureGlobal [1, "Camo_1"];
+				fobdataterminal setObjectTextureGlobal [0, "Camo_3"];
 				};
 
 			};
