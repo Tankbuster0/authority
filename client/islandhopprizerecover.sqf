@@ -29,11 +29,17 @@ _pvna = _vna select {not ((vehicleVarName _x)isEqualTo "")};// take only those w
 		_friendlyname = _x call tky_tky_fnc_getscreenname;
 		_dirto = cardinaldirs select (  ([(FOBhelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
 		_dist = floor (_x distance2D FOBhelipad);
-		_randomid = player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
+		//player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
+		call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', _friendlyname, _dirto, _dist, _foreachindex"];// <<< exec action code missing here
 
-
-	} foreach _pvna
-player addaction ["Finish prize vehicle recovery", {/* reset all variables and end script, i guess */}]
+	} foreach _pvna;
+player addaction ["Finish prize vehicle recovery",
+	{
+		for "_i" from 0 to (count _pvna) do
+			{
+			player removeAction format ["prid%1", _i];
+			};
+	}];
 // still need to check for a clear FOBhelipad << real object name but might be local to player who deployed it only
 
 __tky_ends
