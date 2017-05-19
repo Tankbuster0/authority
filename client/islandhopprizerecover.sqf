@@ -3,12 +3,11 @@
 _myscript = "islandhopprizerecover.sqf";
 __tky_starts
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
+private ["_vna","_pvna","_friendlyname","_dirto","_dist"];
 // this script is called by the addaction on the fobdaterm and runs client side
 if ((recoveryinuse) and {!(player getVariable "isusingprizerecovery") } )exitWith {hint "Another player is using the recovery system"};// reject if someone else has already started
 if (!(FOBhelipad in fobjects)) exitWith {hint "You need a helipad at the FOB to use the prize vehicle recoery system, otherwise the prize vehicles have nowhere to go"};// reject if there's no fobhelipad
 if ((FOBhelipad in fobjects) and {count (FOBhelipad nearentities [["Car", "Tank", "Air"], 8]) > 0}) exitWith {hint "The FOB helipad needs to be clear of vehicles for this to work"};// another vehicle already on the fobhelipad
-//waitUntil {sleep 10; islandhop};
-
 // message all players something to the effect of
 // you've island hopped and can get all of your land prize vehicles here if
 // 1. have a helipad at the deployed fob
@@ -22,13 +21,16 @@ player setvariable ["isusingprizerecovery", true, true];
 recoveryinuse = true; publicVariable "recoveryinuse";
 
 _vna = blubasehelipad nearEntities ["LandVehicle", 20];// vehicle near airhead;
+
 _pvna = _vna select {not ((vehicleVarName _x) isEqualTo "")};// take only those with vehiclevarnames
+diag_log format ["*** ihpr has %1 near the blubasehelipad but only wants %2", _vna, _pvna];
 //make an addaction that says 'end vehicle recovery' that sets islandhop to false, recoveryinuse to false and isusingprizerecovery to false. ie, ending the recovery process for good.
 	{
 		//make an addaction foreach landvehicle with a varname near the airhead that teleports it to fobhelipad
 		_friendlyname = _x call tky_tky_fnc_getscreenname;
-		_dirto = cardinaldirs select (  ([(FOBhelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
-		_dist = floor (_x distance2D FOBhelipad);
+		_dirto = cardinaldirs select (  ([(blubasehelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
+		_dist = floor (_x distance2D blubasehelipad);
+		diag_log format ["*** ihpr makes an addaction for %1", _x];
 		//player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
 		call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', {setpos _x (getpos (FOBhelipad)) }]", _friendlyname, _dirto, _dist, _foreachindex];
 
