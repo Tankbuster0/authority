@@ -167,6 +167,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 	fobveh = _cargo;
 	[_cargo, "fobveh"] call fnc_setVehicleName;
 	[fobveh, "[[[[],[]],[[""SatchelCharge_Remote_Mag""],[20]],[[""ToolKit""],[10]],[[],[]]],false]"] call BIS_fnc_initAmmoBox; // same as put in the sqm, don't forget to change both when changing this!!!
+	fobveh addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
 	};
 if (_cargo iskindof "Cargo_Base_F") then //
 	{

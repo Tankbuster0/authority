@@ -1,7 +1,6 @@
  #include "..\includes.sqf"
 _myscript = "handlefobgetout.sqf";
 __tky_starts;
-unassignCurator cur;
 
 	// remove arty comms for anyone getting out of vehicle
 [_this select 2, SupportReq, ArtySupport] remoteExecCall ["BIS_fnc_removeSupportLink",_this select 2, false];
@@ -26,6 +25,7 @@ if ((_this select 0) == forward) then
 	};
 if ((_this select 0) == fobveh) then //someone is getting out of the fobveh
 	{
+	if ((_this select 2) isEqualTo (getAssignedCuratorUnit cur)) then {unassignCurator cur};
 	if (isNull (driver fobveh)) then // the drivers seat is empty
 		{
 		if (not isnull (group fobveh)) then
@@ -41,5 +41,4 @@ if ((_this select 0) == fobveh) then //someone is getting out of the fobveh
 
 		};
 	};
-
 __tky_ends
