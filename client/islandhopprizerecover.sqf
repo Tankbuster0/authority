@@ -29,7 +29,7 @@ _pvna = _vna select {not ((vehicleVarName _x)isEqualTo "")};// take only those w
 		_friendlyname = _x call tky_tky_fnc_getscreenname;
 		_dirto = cardinaldirs select (  ([(FOBhelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
 		_dist = floor (_x distance2D FOBhelipad);
-		player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
+		_randomid = player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
 
 
 	} foreach _pvna
