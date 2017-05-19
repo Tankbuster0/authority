@@ -264,7 +264,6 @@ waitUntil {scriptDone _handle2};
 sleep 0.5;
 _nul = execVM "server\tky_fobveh_killed_eh.sqf";
 _nul = execVM "server\tky_forward_killed_eh.sqf";
-_nul = execVM "server\tky_bf_killed_eh.sqf";
 _nul = [] execVM "server\doprimary.sqf";
 _nul = [] execVM "server\queuehints.sqf";
 Saro_fnc_bomber = compileFinal preProcessFileLineNumbers "server\PT_ai\sssb.sqf";

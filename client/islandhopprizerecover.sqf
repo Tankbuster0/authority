@@ -22,7 +22,7 @@ player setvariable ["isusingprizerecovery", true, true];
 recoveryinuse = true; publicVariable "recoveryinuse";
 
 _vna = blubasehelipad nearEntities ["LandVehicle", 20];// vehicle near airhead;
-_pvna = _vna select {not ((vehicleVarName _x)isEqualTo "")};// take only those with vehiclevarnames
+_pvna = _vna select {not ((vehicleVarName _x) isEqualTo "")};// take only those with vehiclevarnames
 //make an addaction that says 'end vehicle recovery' that sets islandhop to false, recoveryinuse to false and isusingprizerecovery to false. ie, ending the recovery process for good.
 	{
 		//make an addaction foreach landvehicle with a varname near the airhead that teleports it to fobhelipad
@@ -30,7 +30,7 @@ _pvna = _vna select {not ((vehicleVarName _x)isEqualTo "")};// take only those w
 		_dirto = cardinaldirs select (  ([(FOBhelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
 		_dist = floor (_x distance2D FOBhelipad);
 		//player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
-		call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', _friendlyname, _dirto, _dist, _foreachindex"];// <<< exec action code missing here
+		call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', {setpos _x (getpos (FOBhelipad)) }]", _friendlyname, _dirto, _dist, _foreachindex];
 
 	} foreach _pvna;
 player addaction ["Finish prize vehicle recovery",
@@ -40,7 +40,6 @@ player addaction ["Finish prize vehicle recovery",
 			player removeAction format ["prid%1", _i];
 			};
 	}];
-// still need to check for a clear FOBhelipad << real object name but might be local to player who deployed it only
 
 __tky_ends
 
