@@ -156,7 +156,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	[forward,"[[[[""MineDetector"",""launch_O_Titan_F"",""launch_B_Titan_short_tna_F""],[1,3,3]],[[""30Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""SmokeShellBlue"",""3Rnd_HE_Grenade_shell"",""30Rnd_65x39_caseless_mag_Tracer"",""Laserbatteries"",""SatchelCharge_Remote_Mag"",""Titan_AA"",""Titan_AT""],[16,10,5,20,20,6,8,10,10]],[[""FirstAidKit"",""ItemMap"",""Medikit"",""Laserdesignator_02_ghex_F"",""ItemRadio"",""ToolKit""],[15,1,5,2,2,2]],[[],[]]],false]"] call BIS_fnc_initAmmoBox;
 
 	// ^^^ same as put in the sqm, don't forget to change both when changing this!!!
-	[_cargo, "forward"] call fnc_setVehicleName;
+	[forward, "forward"] call fnc_setVehicleName;
 	forward setObjectTextureGlobal [0,"a3\soft_f_exp\lsv_01\data\nato_lsv_01_dazzle_co.paa"];
 	[forward,nil,["HideDoor1",0,"HideDoor2",1,"HideDoor3",0,"HideDoor4",1]] call bis_fnc_initVehicle;
 
@@ -208,7 +208,7 @@ if (_eventualtype isEqualTo blufordropaircraft) then
 			[_cargo, "prizebox"] call fnc_setVehicleName;
 		};
 	};
-if (_eventualtype in prizes) then {[_cargo, (format ["prize#1", prizecounter])] call fnc_setvehiclename;};
+if (_eventualtype in prizes) then {[_cargo, (format ["prize%1", prizecounter])] call fnc_setvehiclename;};
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
