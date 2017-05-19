@@ -27,12 +27,12 @@ diag_log format ["*** ihpr has %1 near the blubasehelipad but only wants %2", _v
 //make an addaction that says 'end vehicle recovery' that sets islandhop to false, recoveryinuse to false and isusingprizerecovery to false. ie, ending the recovery process for good.
 	{
 		//make an addaction foreach landvehicle with a varname near the airhead that teleports it to fobhelipad
-		_friendlyname = _x call tky_tky_fnc_getscreenname;
+		_friendlyname = _x call tky_fnc_getscreenname;
 		_dirto = cardinaldirs select (  ([(blubasehelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
 		_dist = floor (_x distance2D blubasehelipad);
 		diag_log format ["*** ihpr makes an addaction for %1", _x];
-		//player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
-		call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', {setpos _x (getpos (FOBhelipad)) }]", _friendlyname, _dirto, _dist, _foreachindex];
+		(format ["prid%1", _foreachindex]) = player addaction [(format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ]), {setpos _x (getpos FOBhelipad)}];
+		//call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', {setpos _x (getpos (blubasehelipad)) }]", _friendlyname, _dirto, _dist, _foreachindex];
 
 	} foreach _pvna;
 player addaction ["Finish prize vehicle recovery",
