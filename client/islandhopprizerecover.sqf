@@ -1,11 +1,12 @@
 // by tankbuster
  #include "..\includes.sqf"
-_myscript = "islandhopprizevecrecover.sqf";
+_myscript = "islandhopprizerecover.sqf";
 __tky_starts
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 // this script is called by the addaction on the fobdaterm and runs client side
 if ((recoveryinuse) and {!(player getVariable "isusingprizerecovery") } )exitWith {hint "Another player is using the recovery system"};// reject if someone else has already started
-
+if (!(FOBhelipad in fobjects)) exitWith {hint "You need a helipad at the FOB to use the prize vehicle recoery system, otherwise the prize vehicles have nowhere to go"};// reject if there's no fobhelipad
+if ((FOBhelipad in fobjects) and {count (FOBhelipad nearentities [["Car", "Tank", "Air"], 8]) > 0}) exitWith {hint "The FOB helipad needs to be clear of vehicles for this to work"};// another vehicle already on the fobhelipad
 //waitUntil {sleep 10; islandhop};
 
 // message all players something to the effect of
