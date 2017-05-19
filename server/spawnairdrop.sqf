@@ -208,7 +208,11 @@ if (_eventualtype isEqualTo blufordropaircraft) then
 			[_cargo, "prizebox"] call fnc_setVehicleName;
 		};
 	};
-if (_eventualtype in prizes) then {[_cargo, (format ["prize%1", prizecounter])] call fnc_setvehiclename;};
+diag_log format ["*** sad says eventual type is %1",_eventualtype];
+if (_droptype in prizes) then //used to be _eventualtype
+	{
+	[_cargo, (format ["prize%1", prizecounter])] call fnc_setvehiclename; //if its a prize, give it a vehiclevarname
+	};
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
