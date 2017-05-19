@@ -26,8 +26,14 @@ _pvna = _vna select {not ((vehicleVarName _x)isEqualTo "")};// take only those w
 //make an addaction that says 'end vehicle recovery' that sets islandhop to false, recoveryinuse to false and isusingprizerecovery to false. ie, ending the recovery process for good.
 	{
 		//make an addaction foreach landvehicle with a varname near the airhead that teleports it to fobhelipad
+		_friendlyname = _x call tky_tky_fnc_getscreenname;
+		_dirto = cardinaldirs select (  ([(FOBhelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
+		_dist = floor (_x distance2D FOBhelipad);
+		player addaction [format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ], {setpos _x (getpos FOBhelipad)}];
+
 
 	} foreach _pvna
+player addaction ["Finish prize vehicle recovery", {/* reset all variables and end script, i guess */}]
 // still need to check for a clear FOBhelipad << real object name but might be local to player who deployed it only
 
 __tky_ends
