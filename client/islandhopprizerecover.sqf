@@ -31,8 +31,8 @@ diag_log format ["*** ihpr has %1 near the blubasehelipad but only wants %2", _v
 		_dirto = cardinaldirs select (  ([(blubasehelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
 		_dist = floor (_x distance2D blubasehelipad);
 		diag_log format ["*** ihpr makes an addaction for %1", _x];
-		(format ["prid%1", _foreachindex]) = player addaction [(format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ]), {setpos _x (getpos FOBhelipad)}];
-		//call compile format ["prid%4 = player addaction ['Bring prize %1 that is %3m %2 Airhead to this FOB', {setpos _x (getpos (blubasehelipad)) }]", _friendlyname, _dirto, _dist, _foreachindex];
+		//(format ["prid%1", _foreachindex]) = player addaction [(format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ]), {_x setpos (getpos FOBhelipad)}];
+		call compile format ["prid%4 = player addaction ['Bring prize vehicle %1 %3m %2 Airhead to this FOB', {setpos _x (getpos FOBhelipad)}]",_friendlyname,_dirto,_dist,_foreachindex];
 
 	} foreach _pvna;
 player addaction ["Finish prize vehicle recovery",
