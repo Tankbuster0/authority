@@ -19,9 +19,9 @@ _bestvisibility = 0;
 _bestdir = 0;
 for "_d" from 0 to 315 step 45 do
 	{
-		_testpos = _mybox getrelpos [30 , _d];
+		_testpos = _mybox getrelpos [60 , _d];
 		_testpos set [2, 1];
-		_cansee = [player, "VIEW"] checkVisibility [_prizepos, _testpos];
+		_cansee = [player, "VIEW"] checkVisibility [(ATLToASL _prizepos),(ATLToASL _testpos)];
 		if (_cansee > _bestvisibility) then
 			{
 				_bestvisibility = _cansee;
@@ -36,6 +36,7 @@ _prizevec setdir _bestdir;
 if (_prizeclass isEqualTo blufordropaircraft) then
 	{
 	[_prizevec, "bf"] call fnc_setvehiclename;
+	nul = execVM "server\tky_bf_killed.sqf";
 	}
 	else
 	{
