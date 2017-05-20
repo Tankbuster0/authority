@@ -26,7 +26,7 @@ if (_rtoti < 2) then
 	{
 		islandhop = true;
 		publicVariable "islandhop";
-		["bfkilledeh", {execVM "server\tky_bf_killed_eh.sqf";}, 60, "seconds"] call BIS_fnc_runLater;
+		//["bfkilledeh", {execVM "server\tky_bf_killed_eh.sqf";}, 60, "seconds"] call BIS_fnc_runLater;
 	};
 
 {
