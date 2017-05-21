@@ -25,7 +25,7 @@ call compile preprocessFile "gvs\sounds.sqf";
 
 //execVM "gvs\gvs_triggers.sqf";
 if (isNil "Public_Banned_Vehicle_Service_List") then {Public_Banned_Vehicle_Service_List = []};
-if (isNil "Public_GVS_Delay") then {Public_GVS_Delay = 500};
+if (isNil "Public_GVS_Delay") then {Public_GVS_Delay = 1000};
 
 if (isServer) then {execVM "gvs\gvs_watcher.sqf"};
 
