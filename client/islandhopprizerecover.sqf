@@ -33,16 +33,16 @@ diag_log format ["*** ihpr has %1 near the blubasehelipad but only wants %2", _v
 		diag_log format ["*** ihpr makes an addaction for %1", _x];
 		myx = _x;
 		//(format ["prid%1", _foreachindex]) = player addaction [(format ["Bring prize vehicle %1 %3m %2 Airhead to this FOB", _friendlyname, _dirto, _dist ]), {_x setpos (getpos blubasehelipad)}];
-		call compile format ["prid%4 = player addaction ['Bring prize vehicle %1 %3m %2 Airhead to this FOB', {myx setpos  (getpos FOBhelipad); Public_Banned_Vehicle_Service_List pushback myx;}, false , true]",_friendlyname,_dirto,_dist,_foreachindex];
+		call compile format ["prid%4 = player addaction ['Bring prize vehicle %1 %3m %2 Airhead to this FOB', {myx setpos  (getpos FOBhelipad)},'',0, false , true, '', '']",_friendlyname,_dirto,_dist,_foreachindex];
 
-	} foreach _pvna;
+	} foreach pvna;
 prf = player addaction ["Finish prize vehicle recovery",
 	{
 		for "_i" from 0 to (count pvna) do
 			{
-			player removeAction format ["prid%1", _i];
-			player removeAction prf;
+			call compile format ["player removeAction prid%1", _i];
 			};
+		player removeaction prf;
 	}];
 
 __tky_ends
