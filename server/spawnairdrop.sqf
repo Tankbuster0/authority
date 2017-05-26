@@ -51,8 +51,7 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if ((_spawnpoint select 0) isEqualTo 0) then
 	{
-	If (testmode) then {_extradist = 0} else {_extradist = 4000};
-	_startpos = [_droppos, (_extradist + random 4000), _spawndir] call bis_fnc_relPos;
+	_startpos = [_droppos, ((if (testmode) then {0} else {4000}) + random 4000), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
@@ -132,7 +131,7 @@ if (serverTime > (_mytime + 90)) exitWith
 	};
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
-_dropveh flyinheight 150;
+_dropveh flyinheight 100;
 waitUntil {(_dropveh distance2D _droppos) < 100};
 
 _smoker2 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
