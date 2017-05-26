@@ -2,9 +2,8 @@ initserverfinished = false; publicVariable "initserverfinished";
 missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 0.5;
 // added advanced urban rapelling via serverside addon
-opforcenter = createCenter opfor;
-independentcenter = createCenter independent;
-civcenter = createCenter civilian;
+/*independentcenter = createCenter independent;
+civcenter = createCenter civilian;*/
 logiccenter = createCenter sideLogic;
 blufor setFriend [opfor, 0.1];// blufor enemy to opfpr
 opfor setFriend [blufor, 0.1];// opfor enemy to opfor
