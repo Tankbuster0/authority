@@ -67,7 +67,7 @@ if (isDedicated) then
 			};
 
 	};
-	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\islandhopprizerecover.sqf"}, "", 0, true, true, "", "islandhop", 2]] remoteExec ["addAction", -2, fobdataterminal];
+	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\islandhopprizerecover.sqf"}, "", 0, true, true, "", "islandhop and (not(recoveryinuse))", 2]] remoteExec ["addAction", -2, fobdataterminal];
 };
 
 
