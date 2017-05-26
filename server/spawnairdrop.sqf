@@ -208,7 +208,6 @@ if (_eventualtype isEqualTo blufordropaircraft) then
 			[_cargo, "prizebox"] call fnc_setVehicleName;
 		};
 	};
-diag_log format ["*** sad says eventual type is %1",_eventualtype];
 if (_droptype in prizes) then //used to be _eventualtype
 	{
 	[_cargo, (format ["prize%1", prizecounter])] call fnc_setvehiclename; //if its a prize, give it a vehiclevarname
