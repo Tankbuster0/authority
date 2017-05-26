@@ -15,15 +15,12 @@ if (((typeOf _mycaller) find "ngineer") > -1) then // string "ngineer" is in the
 hint format ["Assembling %1. Please wait %2 seconds. If you go away from the container and salute it (default key #), the aircraft will spawn facing you.", _prizeclassscreenname, _sleep];
 playersetdir = -1;
 
-saluteeh = player addEventHandler ["AnimDone", {if ((_this select 1) find "salute" >= 0) then
+saluteeh = player addEventHandler ["AnimDone", {if ((_this select 1) find "salute" >= 0) then// salute is in current anim
 		{
 		playersetdir = (mybox getDir player);
 		hint "At ease. Aircraft will spawn facing you";
-		diag_log "*** aa sets aircraft spawn dir";
 		}
 	}];
-//_eh = player addEventHandler ["AnimDone", {if ((_this select 1) find "salute" >= 0) then {hint "salute"}}]
-
 
 sleep _sleep;
 _prizepos = getpos mybox;
