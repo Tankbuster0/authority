@@ -51,7 +51,8 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if ((_spawnpoint select 0) isEqualTo 0) then
 	{
-	_startpos = [_droppos, (4000 + random 4000), _spawndir] call bis_fnc_relPos;
+	If (testmode) then {_extradist = 0} else {_extradist = 4000};
+	_startpos = [_droppos, (_extradist + random 4000), _spawndir] call bis_fnc_relPos;
 	} else
 	{
 	_startpos = _spawnpoint;
