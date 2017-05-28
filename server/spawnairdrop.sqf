@@ -2,7 +2,7 @@
 _myscript = "spawnairdrop.sqf";
 
 __tky_starts;
-private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist", "_mpos", "_blacklisttopleft", "_blacklistbottomright"];
+private ["_inpos","_airtype","_droptype","_spawnpoint","_mytime","_thisaidropiteration","_droppos","_testradius","_requestedpos","_mkrnumber","_mkr","_dropgroup","_spawndir","_startpos","_dir","_veh","_dropveh","_dwp","_dwp2","_dropvehmarker","_smokepos","_smoker1","_eventualtype","_cargo","_nul","_cargopos","_para","_underground","_myvalue","_movingtowardsend","_1pos","_2pos", "_objdist", "_mpos", "_blacklisttopleft", "_blacklistbottomright", "_keepgoing"];
 params [
 ["_inpos", (getpos ammobox)], // location where the cargo should land
 ["_airtype", blufordropaircraft], // classname of delivering aircraft
@@ -132,8 +132,14 @@ if (serverTime > (_mytime + 90)) exitWith
 _smokepos = _droppos; _smokepos set [2,0];
 _smoker1 = createvehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 _dropveh flyinheight 100;
-waitUntil {(_dropveh distance2D _droppos) < 100};
-
+waitUntil {(_dropveh distance2D _droppos) < 200};
+_keepgoing = true;
+while {_keepgoing} do //snippet to drop only when dropveh is flying away from droppos
+	{
+	_d1 = _dropveh distance2D _droppos;
+	uisleep 0.5;
+	if (_d1 < (_dropveh distance2d _droppos)) then {_keepgoing = false;};
+	};
 _smoker2 = createVehicle ["SmokeShellBlue", _smokepos, [],0,"NONE"];
 
 if (_droptype isKindOf "Air") then
