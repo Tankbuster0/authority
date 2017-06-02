@@ -56,8 +56,13 @@ sleep 4;
 (format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.",
  	(cardinaldirs (select ([(cpt_position getdir _mfpos), 45] call BIS_fnc_rounddir) /45)),
  	 cpt_name,
- 	 ([(((_mfpos distance2D cpt_position) - cpt_radius) + 24), 50] ) call BIS_fnc_roundNum ]) remoteexec ["hint", -2];
+ 	 ([ ( ( (_mfpos distance2D cpt_position) - cpt_radius) + 24), 50]  call BIS_fnc_roundNum) ]
+
+)remoteexec ["hint", -2];
 //[(24+ 76), 50] call BIS_fnc_roundNum <- rounds to nearest 50m
+
+_reldir = cardinaldirs select ()
+//
 while {missionactive} do
 	{
 	sleep 3;
