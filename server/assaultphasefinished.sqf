@@ -36,11 +36,11 @@ cpt_marker setMarkerBrush "Cross";
 //format ["Congratulations! You've driven the enemy from the AO."] remoteexec ["hint", -2];
 [""] call tky_fnc_t_usefirstemptyinhintqueue;
 "Congratulations, you've driven the enemy from the AO." remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
-/*
+
 sleep 10;
 _handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
 waitUntil {sleep 1;scriptdone _handle2};
-*/
+
 nul =  execVM "server\primarytargetcleared.sqf";
 cpt_marker setMarkerBrush "Solid";
 __tky_ends

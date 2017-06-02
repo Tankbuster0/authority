@@ -1,4 +1,5 @@
 //by tankbuster
+ #include "..\includes.sqf"
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
