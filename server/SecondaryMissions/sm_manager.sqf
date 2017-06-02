@@ -45,7 +45,7 @@ for "mycounter" from 1 to _sm_required do
 	//_typeselected = selectRandom _smtypearray;
 	_typeselected = "lnmcle";
 	_smtypearray = _smtypearray - [_typeselected];
-	_fname = format ["server\SecondaryMissions\Missions\do_%1.sqf", _typeselected];
+	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
 
