@@ -49,7 +49,7 @@ for "_minecounter" from 1 to _numberofmines do
 
   	//_smcleanup pushback _defuseHelper;
 	_smcleanup pushback _mine;
-	_smcleanup pushback improve_minecone;
+	_smcleanup pushback _minecone;
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;/*
@@ -63,7 +63,7 @@ sleep 4;/*
 
 _mfreldir = cpt_position getdir _mfpos;
 _mfdist = cpt_position distance2D _mfpos;
-format ["Local elders have told us there's a minefield %1 bearing %2 from the edge of town. We need to defuse all of them.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_t_usefirstemptyhintinqueue", 2, false];
+format ["Local elders have told us there's a minefield %1 bearing %2 from the edge of town. We need to defuse all of them.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
 //
 while {missionactive} do
 	{
@@ -72,7 +72,7 @@ while {missionactive} do
 		{
 		missionactive = false;
 		missionsuccess = true;
-		"All the mines have been cleared. Well done." remoteexec ["hint", -2];
+		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
 		};
 
 	};
@@ -83,3 +83,5 @@ for "_zz" from 0 to _numberofmines do
 	};
 
 __tky_ends
+
+
