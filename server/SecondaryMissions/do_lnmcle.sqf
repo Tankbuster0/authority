@@ -13,7 +13,7 @@ _meadowdata = selectRandom _meadows;
 _mfpos = _meadowdata select 0;
 //^^ choose one to start with, then below, if it isnt good, keep choosing until it is.
 while
-	{(	((_mfpos distanceSqr fobveh) < 10) or ((_mfpos distanceSqr forward) < 10) or (_mfpos inArea format ["cpt_marker_%1", primarytargetcounter] ) or (_mfpos distance (nearestBuilding _mfpos) < 25 )	)	}
+	{(	((_mfpos distance2D fobveh) < 100) or ((_mfpos distance2D forward) < 100) or (_mfpos inArea format ["cpt_marker_%1", primarytargetcounter] ) or (_mfpos distance2D (nearestBuilding _mfpos) < 40 )	)	}
 		do //choose a position that isn't near the fobveh or the forward vehicle or inside the town marker
 		{
 		_meadowdata = selectRandom _meadows;
@@ -25,7 +25,7 @@ diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom aplandmines;
-	_realminepos = [_mfpos, (26 + random 124 ), (random 360)] call BIS_fnc_relPos;
+	_realminepos = [_mfpos, (26 + random 74 ), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone hideObjectGlobal true;
@@ -61,9 +61,9 @@ sleep 4;/*
 )remoteexec ["hint", -2];*/
 //[(24+ 76), 50] call BIS_fnc_roundNum <- rounds to nearest 50m
 
-_mfreldir = cpt_position getdir _mfpos;
-_mfdist = cpt_position distance2D _mfpos;
-format ["Local elders have told us there's a minefield %1 bearing %2 from the edge of town. We need to defuse all of them.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+_mfreldir = cardinaldirs select (([cpt_position getdir _mfpos, 45] call BIS_fnc_roundDir) /45);
+_mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
+format ["Local elders have told us there's a minefield %1m %2 the edge of town. We need to defuse all of them. Only and engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
 //
 while {missionactive} do
 	{
