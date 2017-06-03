@@ -52,16 +52,18 @@ for "_minecounter" from 1 to _numberofmines do
 	_smcleanup pushback improve_minecone;
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
-sleep 4;
+sleep 4;/*
 (format ["Local elders have told us there's a minefield %1of %2, about %3m from the edge of town. We need to defuse them.",
  	(cardinaldirs (select ([(cpt_position getdir _mfpos), 45] call BIS_fnc_rounddir) /45)),
  	 cpt_name,
  	 ([ ( ( (_mfpos distance2D cpt_position) - cpt_radius) + 24), 50]  call BIS_fnc_roundNum) ]
 
-)remoteexec ["hint", -2];
+)remoteexec ["hint", -2];*/
 //[(24+ 76), 50] call BIS_fnc_roundNum <- rounds to nearest 50m
 
-_reldir = cardinaldirs select ()
+_mfreldir = cpt_position getdir _mfpos;
+_mfdist = cpt_position distance2D _mfpos;
+format ["Local elders have told us there's a minefield %1 bearing %2 from the edge of town. We need to defuse all of them.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_t_usefirstemptyhintinqueue", 2, false];
 //
 while {missionactive} do
 	{
