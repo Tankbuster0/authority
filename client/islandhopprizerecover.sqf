@@ -13,7 +13,7 @@ pvna = _vna select {not ((vehicleVarName _x) isEqualTo "")};// take only those w
 diag_log format ["*** ihpr has %1 near the blubasehelipad but only wants %2", _vna, pvna];
 if ((count pvna) < 1) exitWith {hint "There's no prize vehicles near the airhead helipad to be recovered"; __tky_ends};
 // all conditions for recovery satisfied.
-"The next target is on a different island. Bring your prize vehicles to the Airhead and airlift the FOB to the new island. Deploy it and make a helipad and you will be able to bring your prize vehicles to the new island by using the commands at the FOB data terminal." remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
+"The next target is on a different island. Bring your prize vehicles to the Airhead and airlift the FOB to the new island. Deploy it and make a helipad and you will be able to bring your prize vehicles to the new island by using the commands at the FOB data terminal." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 player setvariable ["isusingprizerecovery", true, true];
 recoveryinuse = true; publicVariable "recoveryinuse";
 

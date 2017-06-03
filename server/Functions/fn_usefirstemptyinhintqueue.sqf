@@ -1,7 +1,7 @@
 
 _myscript = "fnc_usefirstemptyinhintqueue";
 // USAGE FROM EITHER CLIENT OR SERVER
-// "TEXT IN HERE" remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
+// "TEXT IN HERE" remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 	private ["_i"];
 	params ["_tky_text"];
 	for "_i" from 0 to 9 do
