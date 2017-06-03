@@ -10,19 +10,19 @@ _sm_hint = ceil (_sm_required /2);
 switch (_sm_hint) do
 	{
 	case 1: {
-			format ["Your guys did very little damage during the assault and the locals are happy with your actions. You have just a few things to finish up before the town will be ours."] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+			format ["Your guys did very little damage during the assault and the locals are happy with your actions. You have just a few things to finish up before the town will be ours."] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	case 2: {
-			format ["Your team did some damage during the assault. The population are fairly happy with your actions, so now you and your team must make amends by doing some small missions and jobs for them. Then the town will be ours and the enemy banished."] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+			format ["Your team did some damage during the assault. The population are fairly happy with your actions, so now you and your team must make amends by doing some small missions and jobs for them. Then the town will be ours and the enemy banished."] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	case 3: {
-			format ["Your team have done considerable damage to the area, including killing civilians and damaging their infrastructure. They aren't happy. Your team will have to complete a series of missions to make amends."] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+			format ["Your team have done considerable damage to the area, including killing civilians and damaging their infrastructure. They aren't happy. Your team will have to complete a series of missions to make amends."] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	case 4: {
-			format ["Your team have done a lot of damage to the town. Many buildings are destroyed, much infrastructure has been smashed and a number of civilians killed. The populace are very unhappy. Your team will now complete a number of restorative tasks to win back the hearts and minds of the populace."] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+			format ["Your team have done a lot of damage to the town. Many buildings are destroyed, much infrastructure has been smashed and a number of civilians killed. The populace are very unhappy. Your team will now complete a number of restorative tasks to win back the hearts and minds of the populace."] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	case 5: {
-			format ["There's a lot of destroyed buildings here, not to mention many killed civilians. We don't make war on civilians. Let's rebuild their faith in us and the town. You will now complete a number of reconstruction and reparation tasks. Try not to do any more damage. Hearts and minds, soldier, not blood and guts."] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+			format ["There's a lot of destroyed buildings here, not to mention many killed civilians. We don't make war on civilians. Let's rebuild their faith in us and the town. You will now complete a number of reconstruction and reparation tasks. Try not to do any more damage. Hearts and minds, soldier, not blood and guts."] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	};
 _smtypearray = [
@@ -53,7 +53,7 @@ for "mycounter" from 1 to _sm_required do
 
 	if not (missionsuccess) then
 		{
-		format ["%1", failtext] remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		mycounter = mycounter -1;
 		sleep 10;
 
@@ -65,7 +65,7 @@ for "mycounter" from 1 to _sm_required do
 
 
 
-		"ALL MISSIONS COMPLETED" remoteExecCall ["tky_fnc_t_usefirstemptyinhintqueue", 2, false];
+		"ALL MISSIONS COMPLETED" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
 
 

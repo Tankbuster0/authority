@@ -106,7 +106,7 @@ if not (fobdeployed) then
 			fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
 			sleep 5;
 			nul = execVM "server\Functions\fn_cleanupoldprimary.sqf";
-			"The FOB has been built. There is a Virtual Arsenal and spawnpoint." remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
+			"The FOB has been built. There is a Virtual Arsenal and spawnpoint." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 			};
 		};
 	//diag_log format ["### final: flat %1, outdoors %2, nearObjs %3, interects %4, overall %5 ", _allowed_notflat, _allowed_outdoors, _allowed_nearobjs, _allowed_lineintersects, _allowed_deploy];
@@ -140,7 +140,7 @@ else
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
 		sleep 1;
-		"The FOB has been packed into the Hunter FOB vehicle. You cannot spawn there until the FOB is deployed" remoteexecCall ["tky_fnc_t_usefirstemptyinhintqueue",2,false];
+		"The FOB has been packed into the Hunter FOB vehicle. You cannot spawn there until the FOB is deployed" remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 		};
 };
 __tky_ends
