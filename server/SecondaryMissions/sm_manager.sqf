@@ -3,8 +3,7 @@
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
-private ["_sm_required","_sm_hint","_smtypearray","_typeselected","_smmanagerhandle"];
-
+private ["_sm_required","_sm_hint","_smtypearray","_posplaces","_deepest","_deepestdepth","_typeselected","_fname","_smmanagerhandle"];
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
 switch (_sm_hint) do
@@ -42,8 +41,14 @@ for "mycounter" from 1 to _sm_required do
 	{
 	smcounter = mycounter;
 	sleep 1;
+	_posplaces = selectBestPlaces [cpt_position, 1000, "waterdepth", 50, 100];
+	_deepest = _posplaces select 0;
+	_deepestdepth = _deepest select 1;
+	if (_deepestdepth < 25) then {_smtypearray = _smtypearray - [nvmcle]};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
+
 	//_typeselected = selectRandom _smtypearray;
 	_typeselected = "lnmcle";
+
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	_smmanagerhandle = execVM _fname;
