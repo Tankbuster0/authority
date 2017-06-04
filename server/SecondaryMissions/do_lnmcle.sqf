@@ -20,7 +20,7 @@ while
 		_mfpos = _meadowdata select 0;
 		};
 
-_numberofmines = ((selectrandom [2,3,4,5]) + (2 * playersnumber west)) min 12;
+_numberofmines = ((selectrandom [2,3,4]) + (2 * playersnumber west)) min 10;
 diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 for "_minecounter" from 1 to _numberofmines do
 	{
