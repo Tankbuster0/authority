@@ -11,13 +11,27 @@ _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 
-_numberofmines = ceil (random ( 2 * playersNumber west ));
+_numberofmines = ceil (random ( 2 * (playersNumber west) ));
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
+// trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 
+//for bottom mines, give it an atl zero  position, job done
+// for surface mines, give it an asl zero position
+// for mooted mines, nned to choose a random depth between the two
 for "_minecounter" from 1 to _numberofmines do
 	{
-	_chosenmine = selectRandom aplandmines;
-	_realminepos = [_mfpos, (26 + random 74 ), (random 360)] call BIS_fnc_relPos;
+	_chosenmine = selectRandom seamines;
+	_deepenough = false;
+	while {not _deepenough} do
+		{
+		_realminepos = [_mfpos, (5 + random 20 ), (random 360)] call BIS_fnc_relPos;
+		_seabedatlz =
+
+	switch (_chosenmine) do
+		{
+		case "UnderwaterMine":
+		};
+
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone hideObjectGlobal true;

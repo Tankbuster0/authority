@@ -74,7 +74,7 @@ class cfgFunctions
 			class spawnandcrewvehicle {};
 			class mando_chute {};
 			class setfuel {};
-			class t_usefirstemptyinhintqueue{};
+			class usefirstemptyinhintqueue{};
 			class tc_setskill {};
 			class findhighground {};
 			class patrolFnc {};
