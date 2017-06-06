@@ -10,7 +10,7 @@ _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
 _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
-
+__tky_debug
 _numberofmines = ceil (random ( 2 * (playersNumber west) ));
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
@@ -24,22 +24,25 @@ for "_minecounter" from 1 to _numberofmines do
 	_deepenough = false;
 	while {not _deepenough} do
 		{
-		_realminepos = [_mfpos, (5 + random 20 ), (random 360)] call BIS_fnc_relPos;
-		_seabedatlz =
-
+		_realminepos = [_mfpos, (5 + random 40 ), (random 360)] call BIS_fnc_relPos;
+		_seadepth = (getTerrainHeightASL _realminepos);// <--returns a negative number
+		if (_seadepth < -10) then {_deepenough = true};
+		};
 	switch (_chosenmine) do
 		{
-		case "UnderwaterMine":
+		case "UnderwaterMine": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, random _seadepth ]};//moored
+		case "UnderwaterMineAB": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, 0]};//bottom
+		case "UnderwaterMinePDM": {_minespawnpos = _realminepos};
 		};
 
-	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
+	_minecone = createVehicle ["RoadCone_L_F", _minespawnpos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone hideObjectGlobal true;
 	diag_log format ["*** cone made at %1", getpos _minecone];
-	_mine = createMine [_chosenmine, _realminepos, [], 0];
+	_mine = createMine [_chosenmine, _minespawnpos, [], 0];
 	_minecone setpos (getpos _mine);
 	minearray pushback _mine;
-	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _realminepos, getpos _minecone ];
+	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _minespawnpos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
   	if (testmode) then
   		{
