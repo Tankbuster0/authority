@@ -41,13 +41,17 @@ for "mycounter" from 1 to _sm_required do
 	{
 	smcounter = mycounter;
 	sleep 1;
-	_posplaces = selectBestPlaces [cpt_position, 1000, "waterdepth", 50, 100];
+	_posplaces = selectBestPlaces [cpt_position, 2500, "waterdepth", 50, 100];
 	_deepest = _posplaces select 0;
 	_deepestdepth = _deepest select 1;
-	if (_deepestdepth < 25) then {_smtypearray = _smtypearray - [nvmcle]};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
+	if (_deepestdepth < 25) then
+		{
+		_smtypearray = _smtypearray - [nvmcle];
+		diag_log "***sm manager couldnt find deep enough see nearby so removed naval mine cleareance from sm roster";
+		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
 
 	//_typeselected = selectRandom _smtypearray;
-	_typeselected = "lnmcle";
+	_typeselected = "nvmcle";
 
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
