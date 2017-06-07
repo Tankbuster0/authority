@@ -2,16 +2,17 @@
  #include "..\includes.sqf"
 _myscript = "do_nvmcle";
 __tky_starts;
+private ["_myplaces","_seapos1","_mfdata","_mfpos","__tky_debug","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //sea mine clearance mission
 
 //Find a nice deep place for mf
-
+minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
 _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 __tky_debug
-_numberofmines = ceil (random ( 2 * (playersNumber west) ));
+_numberofmines = ceil (random ( 6 * (playersNumber west) ));
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 
@@ -54,6 +55,30 @@ for "_minecounter" from 1 to _numberofmines do
   	_m1 setMarkerType "hd_dot";
 	_smcleanup pushback _mine;
 	_smcleanup pushback _minecone;
+	};
+
+
+diag_log format ["*** do_m cleanup array is %1", _smcleanup];
+sleep 4;
+_mfreldir = cardinaldirs select (([cpt_position getdir _mfpos, 45] call BIS_fnc_roundDir) /45);
+_mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
+format ["Local fishermen have told us there are mines %1m %2 the edge of town. We need to defuse all of them. Only and engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+//
+while {missionactive} do
+	{
+	sleep 3;
+	if (({mineactive _x} count minearray) isEqualTo 0) then
+		{
+		missionactive = false;
+		missionsuccess = true;
+		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		};
+
+	};
+{deletevehicle _x} foreach _smcleanup;
+for "_zz" from 0 to _numberofmines do
+	{
+	deleteMarker format ["mine%1", _zz];
 	};
 
 __tky_ends
