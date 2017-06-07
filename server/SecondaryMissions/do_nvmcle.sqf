@@ -33,7 +33,7 @@ for "_minecounter" from 1 to _numberofmines do
 		{
 		case "UnderwaterMine": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, random _seadepth ]};//moored
 		case "UnderwaterMineAB": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, 0]};//bottom
-		case "UnderwaterMinePDM": {_minespawnpos = _realminepos};
+		case "UnderwaterMinePDM": {_minespawnpos = _realminepos};//surface
 		};
 
 	_minecone = createVehicle ["RoadCone_L_F", _minespawnpos, [],0, "NONE"];
