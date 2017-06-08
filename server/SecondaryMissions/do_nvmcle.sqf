@@ -13,6 +13,7 @@ _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 __tky_debug
 _numberofmines = ceil (random ( 6 * (playersNumber west) ));
+_numberofmines = 8;//debug only
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 
@@ -31,23 +32,25 @@ for "_minecounter" from 1 to _numberofmines do
 		};
 	switch (_chosenmine) do
 		{
-		case "UnderwaterMine": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, random _seadepth ]};//moored
-		case "UnderwaterMineAB": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, 0]};//bottom
+		case "UnderwaterMine": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, abs (random _seadepth) ]};//moored
+		case "UnderwaterMineAB": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, -0.25]};//bottom
 		case "UnderwaterMinePDM": {_minespawnpos = _realminepos};//surface
 		};
 
 	_minecone = createVehicle ["RoadCone_L_F", _minespawnpos, [],0, "NONE"];
-	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
-	_minecone hideObjectGlobal true;
+	//_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
+	//_minecone hideObjectGlobal true;
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	_mine = createMine [_chosenmine, _minespawnpos, [], 0];
+	if (_chosenmine isEqualTo "UnderwaterMineAB") then {_mine setVectorUp surfaceNormal position _mine;};
+	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone setpos (getpos _mine);
 	minearray pushback _mine;
 	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _minespawnpos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
   	if (testmode) then
   		{
-  		_helper = createVehicle ["Sign_Arrow_F", getpos _mine, [],0, "CAN_COLLIDE"];
+  		_helper = createVehicle ["Sign_Arrow_F", getposATL _mine, [],0, "CAN_COLLIDE"];
   		_smcleanup pushback _helper;
   		};
   	_m1 = createmarker [_minemarkername ,getpos _mine];
