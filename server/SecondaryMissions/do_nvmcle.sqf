@@ -13,7 +13,7 @@ _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 __tky_debug
 _numberofmines = ceil (random ( 6 * (playersNumber west) ));
-_numberofmines = 8;//debug only
+_numberofmines = 1;//debug only
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 
@@ -23,6 +23,7 @@ diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom seamines;
+	_chosenmine =  "UnderwaterMinePDM";//debug only
 	_deepenough = false;
 	while {not _deepenough} do
 		{
@@ -38,14 +39,14 @@ for "_minecounter" from 1 to _numberofmines do
 		};
 
 	_minecone = createVehicle ["RoadCone_L_F", _minespawnpos, [],0, "NONE"];
-	//_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
+	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	//_minecone hideObjectGlobal true;
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	_mine = createMine [_chosenmine, _minespawnpos, [], 0];
 	if (_chosenmine isEqualTo "UnderwaterMineAB") then {_mine setVectorUp surfaceNormal position _mine;};
-	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone setpos (getpos _mine);
 	minearray pushback _mine;
+	_minecone attachTo [_mine];
 	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _minespawnpos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
   	if (testmode) then
