@@ -4,7 +4,7 @@ _myscript = "do_nvmcle";
 __tky_starts;
 private ["_myplaces","_seapos1","_mfdata","_mfpos","__tky_debug","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //sea mine clearance mission
-
+//{_nv_hd_eh = _x addEventHandler ["HandleDamage",{if (_this select 4 )}]} foreach allPlayers;
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
@@ -23,7 +23,7 @@ diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom seamines;
-	_chosenmine =  "UnderwaterMinePDM";//debug only
+	_chosenmine =  "UnderwaterMine";
 	_deepenough = false;
 	while {not _deepenough} do
 		{
@@ -34,29 +34,30 @@ for "_minecounter" from 1 to _numberofmines do
 	switch (_chosenmine) do
 		{
 		case "UnderwaterMine": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, abs (random _seadepth) ]};//moored
-		case "UnderwaterMineAB": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, -0.25]};//bottom
+		case "UnderwaterMineAB": {_minespawnpos = ATLToASL [_realminepos select 0, _realminepos select 1, 0]};//bottom
 		case "UnderwaterMinePDM": {_minespawnpos = _realminepos};//surface
 		};
 
-	_minecone = createVehicle ["RoadCone_L_F", _minespawnpos, [],0, "NONE"];
+	_minecone = createVehicle ["Land_HelipadEmpty_F", _minespawnpos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
 	//_minecone hideObjectGlobal true;
-	diag_log format ["*** cone made at %1", getpos _minecone];
 	_mine = createMine [_chosenmine, _minespawnpos, [], 0];
-	if (_chosenmine isEqualTo "UnderwaterMineAB") then {_mine setVectorUp surfaceNormal position _mine;};
+	//if (_chosenmine isEqualTo "UnderwaterMineAB") then {_mine setVectorUp surfaceNormal position _mine;};
 	_minecone setpos (getpos _mine);
 	minearray pushback _mine;
-	_minecone attachTo [_mine];
-	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _minespawnpos, getpos _minecone ];
+	if (_chosenmine isEqualTo "UnderwaterMine") then  {_minecone attachTo [_mine ,[0,0,47]]} else {_minecone attachTo [_mine ,[0,0,1]]};// underwater mine 0,0,0 is at bottom of chain
+	diag_log format ["***%1 made %3 at %2, minecone is at %5, planned position was %4 ", _minecounter, (getpos _mine), _chosenmine, _minespawnpos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
   	if (testmode) then
   		{
   		_helper = createVehicle ["Sign_Arrow_F", getposATL _mine, [],0, "CAN_COLLIDE"];
+  		if (_chosenmine isEqualTo "UnderwaterMine") then {_helper setPosATL [getPosATL _mine select 0, getPosATL _mine select 1, (46 + (getPosATL _mine select 2))]};
   		_smcleanup pushback _helper;
   		};
   	_m1 = createmarker [_minemarkername ,getpos _mine];
   	_m1 setMarkerShape "ICON";
   	_m1 setMarkerType "hd_dot";
+  	_m1 setMarkerText format ["%1", _minecounter];
 	_smcleanup pushback _mine;
 	_smcleanup pushback _minecone;
 	};
