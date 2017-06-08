@@ -36,7 +36,7 @@ _smtypearray = [
 "radtwr"// find and destroy a radiotower on a hilltop
  ];
 
-
+_sm_required = 1;//debug only
 for "mycounter" from 1 to _sm_required do
 	{
 	smcounter = mycounter;
