@@ -16,14 +16,7 @@ __tky_debug
 _numberofmines = ceil (random ( 2 * (playersNumber west) ));
 _numberofmines = 2;//debug only
 
-nvmcle_eh = addMissionEventHandler ["EntityKilled",
-	{
-	params ["_killed", "_killer"];//note its the mine that is dying
-	diag_log format ["*** mine killed %1", _killed];
 
-	}
-
-];
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 
@@ -36,7 +29,7 @@ for "_minecounter" from 1 to _numberofmines do
 	_deepenough = false;
 	while {not _deepenough} do
 		{
-		_realminepos = [_mfpos, (5 + random 40 ), (random 360)] call BIS_fnc_relPos;
+		_realminepos = [_mfpos, (50 + random 40 ), (random 360)] call BIS_fnc_relPos;
 		_seadepth = (getTerrainHeightASL _realminepos);// <--returns a negative number
 		if (_seadepth < -10) then {_deepenough = true};
 		};
@@ -50,6 +43,16 @@ for "_minecounter" from 1 to _numberofmines do
 	minearray pushback _mine;
 	diag_log format ["***%1 made %3 at %2, planned position was %4 ", _minecounter, (getpos _mine), _chosenmine, _minespawnpos ];
   	_minemarkername = format ["mine%1", _minecounter];
+  	_nvmcle_eh = _mine addEventHandler ["killed",
+  		{
+  		params ["_mine"];
+  		diag_log format ["*** mine splode %1", _mine];
+
+
+  		}
+
+
+  	];
   	if (testmode) then
   		{
   		_helper = createVehicle ["Sign_Arrow_F", getposATL _mine, [],0, "CAN_COLLIDE"];
