@@ -8,6 +8,7 @@ private ["_myplaces","_seapos1","_mfdata","_mfpos","__tky_debug","_numberofmines
 //{_nv_hd_eh = _x addEventHandler ["HandleDamage",{if (_this select 4 find "Unde" >=0) then {missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.';diag_log "*** Boom111!!"; _x removeEventHandler ["HandleDamage", thisEventHandler ];}}]} foreach allPlayers;
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
+
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
 _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
@@ -43,16 +44,7 @@ for "_minecounter" from 1 to _numberofmines do
 	minearray pushback _mine;
 	diag_log format ["***%1 made %3 at %2, planned position was %4 ", _minecounter, (getpos _mine), _chosenmine, _minespawnpos ];
   	_minemarkername = format ["mine%1", _minecounter];
-  	_nvmcle_eh = _mine addEventHandler ["killed",
-  		{
-  		params ["_mine"];
-  		diag_log format ["*** mine splode %1", _mine];
 
-
-  		}
-
-
-  	];
   	if (testmode) then
   		{
   		_helper = createVehicle ["Sign_Arrow_F", getposATL _mine, [],0, "CAN_COLLIDE"];
@@ -73,13 +65,22 @@ format ["Local fishermen have told us there are mines %1m %2 the edge of town. W
 while {missionactive} do
 	{
 	sleep 3;
+
+	minearray = minearray - [objNull];//remove any exploded mines
 	if (({mineactive _x} count minearray) isEqualTo 0) then
 		{
 		missionactive = false;
 		missionsuccess = true;
 		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
+	if (count minearray < _numberofmines) then
+		{
+		missionactive = false;
+		missionsuccess = false;
+		failtext = "A mine has gone off. You've failed this secondary mission.";
 
+		};
+	diag_log format ["active %1, success %2,minesactive %3, countminearray %4, _numberofmines requested %5", missionactive, missionsuccess,({mineactive _x} count minearray),count minearray, _numberofmines ];
 	};
 {deletevehicle _x} foreach _smcleanup;
 for "_zz" from 0 to _numberofmines do
