@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_nvmcle";
 __tky_starts;
-private ["_myplaces","_seapos1","_mfdata","_mfpos","__tky_debug","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
+private ["_myplaces","_seapos1","_mfdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //sea mine clearance mission
 //["UnderwaterMine", "UnderwaterMineAB", "UnderwaterMinePDM"];moored, bottom , surface
 //{_nv_hd_eh = _x addEventHandler ["HandleDamage",{if (_this select 4 find "Unde" >=0) then {missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.';diag_log "*** Boom111!!"; _x removeEventHandler ["HandleDamage", thisEventHandler ];}}]} foreach allPlayers;
@@ -14,8 +14,8 @@ _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 __tky_debug
-_numberofmines = ceil (random ( 2 * (playersNumber west) ));
-_numberofmines = 2;//debug only
+_numberofmines = (ceil (random ( 2 * (playersNumber west) )) min 6);
+
 
 
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
@@ -30,9 +30,10 @@ for "_minecounter" from 1 to _numberofmines do
 	_deepenough = false;
 	while {not _deepenough} do
 		{
-		_realminepos = [_mfpos, (50 + random 40 ), (random 360)] call BIS_fnc_relPos;
+		_realminepos = [_mfpos, (5 + random 50 ), (random 360)] call BIS_fnc_relPos;
+		_realminepos = _mfdist getpos [(5 + random 50), (random 360)];
 		_seadepth = (getTerrainHeightASL _realminepos);// <--returns a negative number
-		if (_seadepth < -10) then {_deepenough = true};
+		if (_seadepth < -15) then {_deepenough = true};
 		};
 	switch (_chosenmine) do
 		{
@@ -44,7 +45,6 @@ for "_minecounter" from 1 to _numberofmines do
 	minearray pushback _mine;
 	diag_log format ["***%1 made %3 at %2, planned position was %4 ", _minecounter, (getpos _mine), _chosenmine, _minespawnpos ];
   	_minemarkername = format ["mine%1", _minecounter];
-
   	if (testmode) then
   		{
   		_helper = createVehicle ["Sign_Arrow_F", getposATL _mine, [],0, "CAN_COLLIDE"];
@@ -67,7 +67,7 @@ while {missionactive} do
 	sleep 3;
 
 	minearray = minearray - [objNull];//remove any exploded mines
-	if (({mineactive _x} count minearray) isEqualTo 0) then
+	if ((({mineactive _x} count minearray) isEqualTo 0) and (count minearray isEqualTo _numberofmines) ) then
 		{
 		missionactive = false;
 		missionsuccess = true;
@@ -80,7 +80,7 @@ while {missionactive} do
 		failtext = "A mine has gone off. You've failed this secondary mission.";
 
 		};
-	diag_log format ["active %1, success %2,minesactive %3, countminearray %4, _numberofmines requested %5", missionactive, missionsuccess,({mineactive _x} count minearray),count minearray, _numberofmines ];
+	//diag_log format ["active %1, success %2,minesactive %3, countminearray %4, _numberofmines requested %5", missionactive, missionsuccess,({mineactive _x} count minearray),count minearray, _numberofmines ];
 	};
 {deletevehicle _x} foreach _smcleanup;
 for "_zz" from 0 to _numberofmines do
