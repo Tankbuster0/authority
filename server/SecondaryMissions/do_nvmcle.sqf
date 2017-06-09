@@ -5,7 +5,7 @@ __tky_starts;
 private ["_myplaces","_seapos1","_mfdata","_mfpos","__tky_debug","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //sea mine clearance mission
 //["UnderwaterMine", "UnderwaterMineAB", "UnderwaterMinePDM"];moored, bottom , surface
-{_nv_hd_eh = _x addEventHandler ["HandleDamage",{if (_this select 4 find "Unde" >=0) then {missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.';diag_log "*** Boom111!!"; _x removeEventHandler ["HandleDamage", thisEventHandler ];}}]} foreach allPlayers;
+//{_nv_hd_eh = _x addEventHandler ["HandleDamage",{if (_this select 4 find "Unde" >=0) then {missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.';diag_log "*** Boom111!!"; _x removeEventHandler ["HandleDamage", thisEventHandler ];}}]} foreach allPlayers;
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
@@ -15,6 +15,15 @@ _mfpos = _mfdata select 0;
 __tky_debug
 _numberofmines = ceil (random ( 2 * (playersNumber west) ));
 _numberofmines = 2;//debug only
+
+nvmcle_eh = addMissionEventHandler ["EntityKilled",
+	{
+	params ["_killed", "_killer"];//note its the mine that is dying
+	diag_log format ["*** mine killed %1", _killed];
+
+	}
+
+];
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 
