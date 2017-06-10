@@ -19,7 +19,7 @@ while {(alive pt_radar)} do
 		_testradius = 16;
 		while {_lpos isEqualTo islandcentre } do
 			{
-			_lpos = [cpt_position, 1, _testradius, 20, 0, 0.5, 0,1,1] call tky_fnc_t_findSafePos;;
+			_lpos = [cpt_position, 1, _testradius, 20, 0, 0.5, 0,1,1] call tky_fnc_findSafePos;;
 			_testradius = _testradius * 2;
 			};
 		diag_log format ["***arcm finds a nice spot at %1, %2 m from target centre", _lpos, _lpos distance cpt_position];

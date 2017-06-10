@@ -15,7 +15,7 @@ debriefing = 1;
 respawnDelay = 3;
 respawnTemplates[] = {"Counter", "MenuPosition"};
 respawnButton = 1;
-respawnOnStart = 1;
+respawnOnStart = 0;
 //reviveDelay = 10;
 //reviveForceRespawnDelay = 60;
 //reviveBleedOutDelay = 450;
@@ -81,7 +81,7 @@ class cfgFunctions
 			class cleanupoldprimary {};
 			class fobvehicledeploymanager {};
 			class t_objectsmapper {};
-			class t_findsafepos {};
+			class findsafepos {};
 		};
 	};
 };
