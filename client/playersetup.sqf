@@ -2,6 +2,7 @@
 _myscript = "playersetup.sqf";
 private _spawnpos = islandcentre;
 private  _testradius = 2;
+//private ["_spawnpos", islandcentre, "_testradius", 2];
 __tky_starts;
 waitUntil {!isNull player};
 //sleep 0.5;
