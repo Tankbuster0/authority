@@ -6,7 +6,7 @@ while {true} do
 		sleep 3;
 		if not (SupportReq in (synchronizedObjects player)) then //if he doesnt already have arty
 		{
-			if ((not(isEngineOn vehicle player )) and ((player in forward) or (player in fobveh)) and (((assignedVehicleRole player) select 0) isEqualTo "cargo") and (alive player) and ((incapacitatedState player) isEqualTo "" ) and (alive player)) then // and he fulfill all the conditions
+			if ((not(isEngineOn vehicle player )) and {(player in forward) or (player in fobveh)} and {((assignedVehicleRole player) select 0) isEqualTo "cargo"} and {alive player} and {(incapacitatedState player) isEqualTo "" }) then // and he fulfill all the conditions
 				{
 					(player) synchronizeObjectsAdd [SupportReq];
 					[player, SupportReq, ArtySupport] call BIS_fnc_addSupportLink;
