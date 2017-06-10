@@ -44,7 +44,7 @@ for "_count" from _start to _lc do
 	diag_log format ["***spu %1 from %2 to %3 ", _count, _start, _lc];
 	_staticgrpname = format ["staticgrp%1", _count];
 	// statics start
-	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_t_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
 	if (testmode) then {diag_log "**** sptu starts static spawn"};
 	switch ((floor (random 5))) do
@@ -73,7 +73,7 @@ for "_count" from _start to _lc do
 		};
 
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
-	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_t_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
 __tky_debug;
 if (testmode) then {diag_log "**** sptu adds a mortar"};
@@ -90,7 +90,7 @@ if (testmode) then {diag_log "**** sptu adds a mortar"};
 	// statics end
 if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	// patrolling infantry start
-	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_t_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	switch ((floor (random 4))) do
 		{
 		case 0: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;};
@@ -103,7 +103,7 @@ if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	sleep 0.05;
 if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// static IFV/ apc start
-	_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_t_findSafePos;
+	_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_findSafePos;
 
 		_veh = selectRandom opforstaticlandvehicles;
 		_staticveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
@@ -112,7 +112,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// patrolling  apc /ifv group start
 	if not (_microtown) then
 		{
-		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_t_findSafePos;
+		 _mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_findSafePos;
 		_veh = selectRandom opforpatrollandvehicles;
 		_patrolveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
@@ -128,7 +128,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	//heavy armour and shit start
 	if ((_pt_type isEqualTo 1) and (cpt_radius > 150)  and ((random 5) > 4)) then //tanks only spawn at big towns, not at bases or airfields
 	{
-		_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_t_findsafepos;
+		_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
 		_statictanks = [_mypos, east, [_veh, _veh], [[0,10,0], [5,0,0]] ]call BIS_fnc_spawngroup;
 		sleep 0.05;
