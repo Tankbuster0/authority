@@ -1,8 +1,6 @@
  #include "..\includes.sqf"
 _myscript = "playersetup.sqf";
-private _spawnpos = islandcentre;
-private  _testradius = 2;
-//private ["_spawnpos", islandcentre, "_testradius", 2];
+[islandcentre,2] params ["_spawnpos", "_testradius"];// <-- funcky new private :)
 __tky_starts;
 waitUntil {!isNull player};
 //sleep 0.5;
