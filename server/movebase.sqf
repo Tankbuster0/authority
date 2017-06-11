@@ -67,6 +67,11 @@ switch (cpt_name) do
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 //first get all the secondary airstrips
 _airstripdata = [];
+
+// clean up opfor statics... they are too messy
+
+_ostatics = (vehicles select {(_x isKindOf "StaticWeapon") and (((typeOf _x ) find "O_") > -1)}) inAreaArray "cpt_marker_1";
+{deleteVehicle _x } foreach _ostatics;// find and delete all the statics on the airfield
 for  "_i" from 1 to 10 do // get airstrip data
 	{
 	_secairstrip =  format ["Airstrip_%1", _i];
