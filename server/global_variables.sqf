@@ -7,7 +7,7 @@ mission_root = [mission_root, 0, -15] call BIS_fnc_trimString;
 publicVariable "mission_root";
 debugendmission = false;
 testservernames = ["Tanky-Test", "Tanky test"];
-
+opfor_jets = ["O_Plane_CAS_02_F", "I_Plane_Fighter_04_F","O_Plane_Fighter_02_Stealth_F" ];
 opfor_reinf_truck_soldier = "O_Soldier_GL_F";
 opfor_reinf_truck =  "O_Truck_03_transport_F";
 islandhop = false; publicVariable "islandhop";
