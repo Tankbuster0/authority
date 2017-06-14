@@ -1,6 +1,6 @@
 //by tankbuster
  #include "..\includes.sqf"
-_myscript = "do_lnmcle";
+_myscript = "do_landmineclear";
 __tky_starts;
 //land mine clearance mission
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
