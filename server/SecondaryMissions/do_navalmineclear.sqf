@@ -1,6 +1,6 @@
 //by tankbuster
  #include "..\includes.sqf"
-_myscript = "do_nvmcle";
+_myscript = "do_navalmineclear";
 __tky_starts;
 private ["_myplaces","_seapos1","_mfdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //sea mine clearance mission
