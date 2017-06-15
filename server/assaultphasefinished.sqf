@@ -39,7 +39,7 @@ cpt_marker setMarkerBrush "Cross";
 
 sleep 10;
 //_handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
-waitUntil {sleep 1;scriptdone _handle2};
+//waitUntil {sleep 1;scriptdone _handle2};
 
 nul =  execVM "server\primarytargetcleared.sqf";
 cpt_marker setMarkerBrush "Solid";
