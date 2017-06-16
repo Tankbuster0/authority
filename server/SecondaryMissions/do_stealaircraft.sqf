@@ -70,7 +70,7 @@ _mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >>
 if ((playersNumber west) > 5) then
 	{
 	_mypos = [_smairfield , 50, 500, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Armored" >> "O_T_TankPlatoon_AA")] call BIS_fnc_spawnGroup;
+	_tankaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Armored" >> "O_T_TankPlatoon_AA")] call BIS_fnc_spawnGroup;
 	};
 if (_defect isEqualTo 1) then
 	{
