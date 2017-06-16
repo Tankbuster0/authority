@@ -2,6 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_stealaircaft";
 __tky_starts;
+private ["_airport","_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk"];
 //steal aircraft
 _airport = selectRandom foundairfields;
 _airportlogics = entities "logic" select {((_x getVariable "targettype") isEqualTo 2) and {((_x getVariable "targetstatus") isEqualTo 1) and ((_x getVariable "targetstatus") != 2)}};//get all enemy held airfields that are not current target
@@ -11,7 +12,7 @@ _smairfield =  selectRandom _airportlogics;
  format ["Secondary mission aircraft steal at %1", _smairfield getVariable "targetname"] remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 _hbuildings = ((nearestTerrainObjects [_smairfield, ["HOUSE"], 1000])) select {((typeof _x) find "anga") > -1};
 diag_log format ["*** dsa finds %1 hangars ", count _hbuildings];
-if ((_hbuildings < 1) or (random 1 > 0.5))then
+if (((count _hbuildings) < 1) or (random 1 > 0.5))then
 	{_smtype = "heli";
 	_smveh = selectRandom opfor_helis;
 	}	else
@@ -33,7 +34,7 @@ if (_smtype isEqualTo "heli") then
 	if (_candposs isEqualTo []) then {_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(typeof _x) isEqualTo "Land_LandMark_F"};};
 
 	if (_candposs isEqualTo []) then {diag_log format ["***2ndary aircraft steal mission failed to find anywhere to spawn helis. report this to developer"]};
-	_smsaveh = createVehicle [_smsaveh, _candposs, [], 5, "NONE"];
+	_smsaveh = createVehicle [_smveh, _candposs, [], 5, "NONE"];
 	};
 
 if (_smtype isEqualTo "plane") then
@@ -42,7 +43,7 @@ if (_smtype isEqualTo "plane") then
 	_myhangar = selectRandom _hbuildings;
 	_myhpos1 = getpos _myhangar;
 	_candposs = [_myhpos1 select 0, _myhpos1 select 1, 0];
-	_smsaveh = createVehicle [_smsaveh, _candposs, [], 0, "NONE"];
+	_smsaveh = createVehicle [_smveh, _candposs, [], 0, "NONE"];
 	_smsaveh setdir (180 + getdir _myhangar);
 	};
 
