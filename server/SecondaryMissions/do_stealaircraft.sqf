@@ -2,13 +2,13 @@
  #include "..\includes.sqf"
 _myscript = "do_stealaircaft";
 __tky_starts;
-private ["_airport","_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk"];
+private ["_airport","_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk", "_mypos"];
 //steal aircraft
 _airport = selectRandom foundairfields;
 _airportlogics = entities "logic" select {((_x getVariable "targettype") isEqualTo 2) and {((_x getVariable "targetstatus") isEqualTo 1) and ((_x getVariable "targetstatus") != 2)}};//get all enemy held airfields that are not current target
 
 _smairfield =  selectRandom _airportlogics;
-
+diag_log format ["***dsa makes a mission at %1", (_smairfield getVariable "targetname")];
  format ["Secondary mission aircraft steal at %1", _smairfield getVariable "targetname"] remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 _hbuildings = ((nearestTerrainObjects [_smairfield, ["HOUSE"], 1000])) select {((typeof _x) find "anga") > -1};
 diag_log format ["*** dsa finds %1 hangars ", count _hbuildings];
@@ -31,10 +31,17 @@ diag_log format ["*** dsa is choosing a %1 %2", _smveh, _smtype];
 if (_smtype isEqualTo "heli") then
 	{// cluterons appear to be the cluttercutter objects underneath runways and taxiways, some dirt runways dont have them but do have landmarks
 	_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(str _x) find "cluteron" > -1};
-	if (_candposs isEqualTo []) then {_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(typeof _x) isEqualTo "Land_LandMark_F"};};
+	diag_log format ["***dsa finds %1 cluterons", count _candposs];
+	if (_candposs isEqualTo []) then
+		{
+		_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(typeof _x) isEqualTo "Land_LandMark_F"};
+		diag_log format ["***dsa now looking for landmarks and finds %1", count _candposs];
+		};
+
 
 	if (_candposs isEqualTo []) then {diag_log format ["***2ndary aircraft steal mission failed to find anywhere to spawn helis. report this to developer"]};
-	_smsaveh = createVehicle [_smveh, _candposs, [], 5, "NONE"];
+	_mypos = selectRandom _candposs;
+	_smsaveh = createVehicle [_smveh, _mypos, [], 5, "NONE"];
 	};
 
 if (_smtype isEqualTo "plane") then
