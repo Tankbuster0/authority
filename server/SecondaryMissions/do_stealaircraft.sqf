@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_stealaircaft";
 __tky_starts;
-private ["_airport","_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk", "_mypos"];
+private ["_airport","_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk", "_mypos", "_veh"];
 //steal aircraft
 _airport = selectRandom foundairfields;
 _airportlogics = entities "logic" select {((_x getVariable "targettype") isEqualTo 2) and {((_x getVariable "targetstatus") isEqualTo 1) and ((_x getVariable "targetstatus") != 2)}};//get all enemy held airfields that are not current target
@@ -66,25 +66,45 @@ switch (_defect) do
 	case 1: {_smsaveh setfuel 0};
 	};
 sleep 1;
-_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-_mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "O_MotInf_AssaultViperTeam")] call BIS_fnc_spawnGroup;
-{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew vehicle _x}; } foreach units _mechaagrp;
 
-sleep 1;
-_mypos = [_smsaveh , 15, 100, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-_mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> "O_T_InfSquad_Weapons")] call BIS_fnc_spawnGroup;
-sleep 1;
+for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
+	{
+	_mypos = [_smsaveh, 30, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_veh = selectRandom opforpatrollandvehicles;
+	_dsa_opfor1 = createvehicle [_veh, _mypos, [],0,"NONE"];
+	createVehicleCrew _dsa_opfor1;
+	NUL = [group (effectiveCommander _dsa_opfor1), getpos _smsaveh, 200 ] call BIS_fnc_taskpatrol;
+	sleep 0.5;
+	};
+
 _mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-_mgteamgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Motorized_MTP" >> "O_T_MotInf_MGTeam")] call BIS_fnc_spawnGroup;
-{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew vehicle _x}; } foreach units _mgteamgrp;
-sleep 1;
+_veh = selectRandom opforstaticlandvehicles
+_dsa_opfor2 = createVehicle [_veh, _mypos, [],0, "NONE"];
+createVehicleCrew _dsa_opfor2;
+[_dsa_opfor2, getpos _smsaveh] call BIS_fnc_taskDefend;
+
+for "_ii" from 0 to ((ceil (playersNumber west ) /4) min 5) do
+	{
+	_mypos = [_smsaveh , 15, 100, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_dsa_opfor3 = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> "O_T_InfSquad_Weapons")] call BIS_fnc_spawnGroup;
+	[_dsa_opfor3, getpos _smsaveh] call BIS_fnc_taskDefend;
+	sleep 0.5
+	};
 
 if ((playersNumber west) > 5) then
 	{
 	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_tankaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Armored" >> "O_T_TankPlatoon_AA")] call BIS_fnc_spawnGroup;
-	{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew vehicle _x}; } foreach units _tankaagrp;
-	sleep 1;
+	_veh = selectRandom opforstaticlandvehicles
+	_dsa_opfor4 = createVehicle [_veh, _mypos, [],0, "NONE"];
+	createVehicleCrew _dsa_opfor4;
+	[_dsa_opfor4, getpos _smsaveh] call BIS_fnc_taskDefend;
+
+	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_veh = selectRandom opfortanks
+	_dsa_opfor5 = createVehicle [_veh, _mypos, [],0, "NONE"];
+	createVehicleCrew _dsa_opfor5;
+	[_dsa_opfor5, getpos _smsaveh] call BIS_fnc_taskDefend;
+	sleep 0.5;
 	};
 if (_defect isEqualTo 1) then
 	{
