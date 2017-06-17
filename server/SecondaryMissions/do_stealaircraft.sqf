@@ -12,7 +12,7 @@ diag_log format ["***dsa makes a mission at %1", (_smairfield getVariable "targe
  format ["Secondary mission aircraft steal at %1", _smairfield getVariable "targetname"] remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 _hbuildings = ((nearestTerrainObjects [_smairfield, ["HOUSE"], 1000])) select {((typeof _x) find "anga") > -1};
 diag_log format ["*** dsa finds %1 hangars ", count _hbuildings];
-if (((count _hbuildings) < 1) or (random 1 > 0.5))then
+if (((count _hbuildings) < 1) or (random 1 > 0.8))then
 	{_smtype = "heli";
 	_smveh = selectRandom opfor_helis;
 	}	else
@@ -30,8 +30,7 @@ diag_log format ["*** dsa is choosing a %1 %2", _smveh, _smtype];
 
 if (_smtype isEqualTo "heli") then
 	{// cluterons appear to be the cluttercutter objects underneath runways and taxiways, some dirt runways dont have them but do have landmarks
-	_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(str _x) find "cluteron" > -1};
-	_candposs = (nearestObjects [player, [], 300], true) select {((str _x) find "centerline_90deg" > -1) or  ((str _x) find "line_curve" > -1)}// for tanoa or altis
+	_candposs = (nearestObjects [_smairfield, [], 400, true]) select { ( ((str _x) find "centerline_90deg" > -1) or  ((str _x) find "line_curve" > -1) ) };// for tanoa or altis
 	diag_log format ["***dsa finds %1 runway line curves", count _candposs];
 	if (_candposs isEqualTo []) then
 		{
@@ -54,28 +53,37 @@ if (_smtype isEqualTo "plane") then
 	_smsaveh = createVehicle [_smveh, _candposs, [], 0, "NONE"];
 	_smsaveh setdir (180 + getdir _myhangar);
 	};
-
+diag_log format ["*** dsa makes a %1 at %2 which is %3 from %4", _smveh, getpos _smsaveh, _smsaveh distance2D _smairfield,(_smairfield getVariable "targetname") ];
 _defect = floor random 5;
 switch (_defect) do
 	{
 	case 0: {_smsaveh setHitPointDamage ["hitengine", 1]; _smsaveh setHitPointDamage ["hitengine2", 1]; };
 	case 1: {_smsaveh setfuel 0};
 	};
+sleep 1;
+_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+_mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "O_MotInf_AssaultViperTeam")] call BIS_fnc_spawnGroup;
+{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew _x}; } foreach units _mechaagrp;
 
-_mypos = [_smairfield , 50, 500, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-_mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
-
+sleep 1;
 _mypos = [_smsaveh , 15, 100, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 _mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> "O_T_InfSquad_Weapons")] call BIS_fnc_spawnGroup;
+sleep 1;
+_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+_mgteamgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Motorized_MTP" >> "O_T_MotInf_MGTeam")] call BIS_fnc_spawnGroup;
+{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew _x}; } foreach units _mgteamgrp;
+sleep 1;
 
 if ((playersNumber west) > 5) then
 	{
-	_mypos = [_smairfield , 50, 500, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_tankaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Armored" >> "O_T_TankPlatoon_AA")] call BIS_fnc_spawnGroup;
+	{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew _x}; } foreach units _tankaagrp;
+	sleep 1;
 	};
 if (_defect isEqualTo 1) then
 	{
-	_mypos = [_smairfield , 50, 500, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_fueltrk = createVehicle ["C_Van_01_fuel_F", _mypos, 0,[],"NONE"];
 	};
 
