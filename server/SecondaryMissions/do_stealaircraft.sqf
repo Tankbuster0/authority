@@ -25,13 +25,14 @@ diag_log format ["*** dsa is choosing a %1 %2", _smveh, _smtype];
 //if  its a plane we know there are hangars, so choose one and put it in there, rotate it 180 from hanger dir
 // if it's a heli, find a hiden cluteron, and spawn the heli there but rough strips have landmark_f.p3d
 // use nearestTerrainObjects [player, ["hide"], 20] to find them, th use tky find safe pos to get a nice clear position a few metres away
-// useing nearestobjects gives invisibleroadway_square_cluteron_f which is quite nice, seems to be  mostly oin the runway and taxiways
-//cuterons work everywhere exept almyera on atlis, where we'll have to use landmark
+// useing nearestobjects gives decals used to mark taxiway curves (usually out in the open on the apron of paved airports
+// cuterons work everywhere exept almyera on atlis, where we'll have to use landmark
 
 if (_smtype isEqualTo "heli") then
 	{// cluterons appear to be the cluttercutter objects underneath runways and taxiways, some dirt runways dont have them but do have landmarks
 	_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(str _x) find "cluteron" > -1};
-	diag_log format ["***dsa finds %1 cluterons", count _candposs];
+	_candposs = (nearestObjects [player, [], 300], true) select {((str _x) find "centerline_90deg" > -1) or  ((str _x) find "line_curve" > -1)}// for tanoa or altis
+	diag_log format ["***dsa finds %1 runway line curves", count _candposs];
 	if (_candposs isEqualTo []) then
 		{
 		_candposs = (nearestTerrainObjects [_smairfield, ["hide"], 1000, false, true]) select {(typeof _x) isEqualTo "Land_LandMark_F"};
