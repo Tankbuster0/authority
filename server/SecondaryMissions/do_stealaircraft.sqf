@@ -49,9 +49,14 @@ if (_smtype isEqualTo "plane") then
 
 	_myhangar = selectRandom _hbuildings;
 	_myhpos1 = getpos _myhangar;
-	_candposs = [_myhpos1 select 0, _myhpos1 select 1, 0];
-	_smsaveh = createVehicle [_smveh, _candposs, [], 0, "NONE"];
+	_myhpos1 set [2,100];
+	_smsaveh = createVehicle [_smveh, _myhpos1, [], 0, "NONE"];
+	sleep 0.1;
+	_smsaveh allowdamage false;
+	sleep 0.1;
 	_smsaveh setdir (180 + getdir _myhangar);
+	sleep 0.1;
+	_smsaveh setpos getpos _myhangar;
 	};
 diag_log format ["*** dsa makes a %1 at %2 which is %3 from %4", _smveh, getpos _smsaveh, _smsaveh distance2D _smairfield,(_smairfield getVariable "targetname") ];
 _defect = floor random 5;
@@ -63,7 +68,7 @@ switch (_defect) do
 sleep 1;
 _mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 _mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Motorized_MTP" >> "O_MotInf_AssaultViperTeam")] call BIS_fnc_spawnGroup;
-{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew _x}; } foreach units _mechaagrp;
+{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew vehicle _x}; } foreach units _mechaagrp;
 
 sleep 1;
 _mypos = [_smsaveh , 15, 100, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
@@ -71,14 +76,14 @@ _mechaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >>
 sleep 1;
 _mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 _mgteamgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Motorized_MTP" >> "O_T_MotInf_MGTeam")] call BIS_fnc_spawnGroup;
-{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew _x}; } foreach units _mgteamgrp;
+{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew vehicle _x}; } foreach units _mgteamgrp;
 sleep 1;
 
 if ((playersNumber west) > 5) then
 	{
 	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_tankaagrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Armored" >> "O_T_TankPlatoon_AA")] call BIS_fnc_spawnGroup;
-	{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew _x}; } foreach units _tankaagrp;
+	{if ((vehicle _x) isKindof "LandVehicle") exitWith {createVehicleCrew vehicle _x}; } foreach units _tankaagrp;
 	sleep 1;
 	};
 if (_defect isEqualTo 1) then
