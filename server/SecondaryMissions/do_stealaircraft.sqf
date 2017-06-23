@@ -3,7 +3,10 @@
 _myscript = "do_stealaircaft";
 __tky_starts;
 private ["_airport","_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk", "_mypos", "_veh", "_playerinveh"];
+_playerinveh = false;
+ missionactive = true; missionsuccess = false; _smcleanup = [];
 _airport = selectRandom foundairfields;
+
 _airportlogics = entities "logic" select {((_x getVariable "targettype") isEqualTo 2) and {((_x getVariable "targetstatus") isEqualTo 1) and ((_x getVariable "targetstatus") != 2)}};//get all enemy held airfields that are not current target
 _smairfield =  selectRandom _airportlogics;
 diag_log format ["***dsa makes a mission at %1", (_smairfield getVariable "targetname")];
@@ -52,7 +55,7 @@ _defect = floor random 5;
 switch (_defect) do
 	{
 	case 0: {_smsaveh setHitPointDamage ["hitengine", 1]; _smsaveh setHitPointDamage ["hitengine2", 1]; };
-	case 1: {_smsaveh setfuel 0};
+	case 1: {_smsaveh setfuel 0.04};
 	};
 sleep 1;
 for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
@@ -65,7 +68,7 @@ for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
 	sleep 0.5;
 	};
 _mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-_veh = selectRandom opforstaticlandvehicles
+_veh = selectRandom opforstaticlandvehicles;
 _dsa_opfor2 = createVehicle [_veh, _mypos, [],0, "NONE"];
 createVehicleCrew _dsa_opfor2;
 [_dsa_opfor2, getpos _smsaveh] call BIS_fnc_taskDefend;
@@ -80,13 +83,13 @@ for "_ii" from 0 to ((ceil (playersNumber west ) /4) min 5) do
 if ((playersNumber west) > 5) then
 	{
 	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_veh = selectRandom opforstaticlandvehicles
+	_veh = selectRandom opforstaticlandvehicles;
 	_dsa_opfor4 = createVehicle [_veh, _mypos, [],0, "NONE"];
 	createVehicleCrew _dsa_opfor4;
 	[_dsa_opfor4, getpos _smsaveh] call BIS_fnc_taskDefend;
 
 	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_veh = selectRandom opfortanks
+	_veh = selectRandom opfortanks;
 	_dsa_opfor5 = createVehicle [_veh, _mypos, [],0, "NONE"];
 	createVehicleCrew _dsa_opfor5;
 	[_dsa_opfor5, getpos _smsaveh] call BIS_fnc_taskDefend;
@@ -95,17 +98,17 @@ if ((playersNumber west) > 5) then
 if (_defect isEqualTo 1) then
 	{
 	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_fueltrk = createVehicle ["C_Van_01_fuel_F", _mypos, 0,[],"NONE"];
+	_fueltrk = createVehicle ["C_Van_01_fuel_F", _mypos, [],0,"NONE"];
 	};
 while {missionactive} do
 	{
 	sleep 3;
-	if !(alive _smsaveh) then
+	if (not(alive _smsaveh) or (fuel _smsaveh isEqualTo 0)) then
 		{
 		missionsuccess = false;
 		missionactive = false;
 		};
-	if ((not(_playerinveh)) and {driver _smsaveh isPlayer}) then {_playerinveh = true};
+	if ((not(_playerinveh)) and {isplayer (effectiveCommander _smsaveh)}) then {_playerinveh = true};
 	if (_playerinveh and {(speed _smsaveh < 1) and (_smsaveh distance2D blubasehelipad) < 20}) then
 		{
 		missionsuccess = true;
