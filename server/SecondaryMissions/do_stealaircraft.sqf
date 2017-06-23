@@ -85,7 +85,7 @@ if ((playersNumber west) > 5) then
 	[_dsa_opfor4, getpos _smsaveh] call BIS_fnc_taskDefend;
 	_smcleanup pushback _dsa_opfor4;
 	_mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_dsa_opfor5 = createVehicle [(_veh = selectRandom opfortanks), _mypos, [],0, "NONE"];
+	_dsa_opfor5 = createVehicle [(selectRandom opfortanks), _mypos, [],0, "NONE"];
 	createVehicleCrew _dsa_opfor5;
 	[_dsa_opfor5, getpos _smsaveh] call BIS_fnc_taskDefend;
 	sleep 0.5;
