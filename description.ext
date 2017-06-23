@@ -82,6 +82,7 @@ class cfgFunctions
 			class fobvehicledeploymanager {};
 			class t_objectsmapper {};
 			class findsafepos {};
+			class smcleanup{};
 		};
 	};
 };
