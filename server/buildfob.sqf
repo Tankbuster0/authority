@@ -7,7 +7,7 @@ private ["_pos","_dir","_mypos","_testradius","_droppos","_hpad"];
 params [
 ["_pos", ""],
 ["_dir", ""]];
-
+//
 fobjects = [_pos, _dir,
 /*
 Grab data:
