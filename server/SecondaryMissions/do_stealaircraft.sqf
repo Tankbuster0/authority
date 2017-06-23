@@ -111,4 +111,5 @@ while {missionactive} do
 		missionactive = false;
 		};
 	};
+[_smcleanup, 1] call tky_fnc_smcleanup;
 __tky_ends
