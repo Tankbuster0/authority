@@ -68,6 +68,7 @@ for "_zz" from 0 to _numberofmines do
 	{
 	deleteMarker format ["mine%1", _zz];
 	};
+[_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
 

@@ -21,5 +21,6 @@ while {missionactive} do
 		missionactive = false;
 		};
 	};
-[_smcleanup, 1] call tky_fnc_smcleanup;
+[_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
+
 __tky_ends
