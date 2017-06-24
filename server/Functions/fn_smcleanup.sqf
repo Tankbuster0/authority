@@ -9,7 +9,7 @@ diag_log format ["*** smc gets %1", _cleanup];
 	if ((typeName _myelement) isEqualTo "GROUP") then
 		{
 		{deleteVehicle _x} foreach (units (_myelement));
-		//deleteGroup _myelement;
+		deleteGroup _myelement;
 		}
 		else
 		{
