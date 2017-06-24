@@ -6,29 +6,30 @@ private ["_n","_cpos","_candiposs","_sortedcandiposs","_sortedcandiposs2","_fina
 _candiposs = []; _sortedcandiposs = []; _sortedcandiposs2 = []; _smcleanup = [];
 missionactive = true; missionsuccess = false;
 // find some nice high ground
-for "_n" from 0 to 25 do
+for "_n" from 0 to 10 do
 	{
-	_cpos =  [cpt_position, 4000, 800, 100] call bis_fnc_findOverwatch;
+	_cpos =  [cpt_position, 3000, 800, 100] call bis_fnc_findOverwatch;
 	_candiposs pushBackUnique _cpos;
 	__tky_debug
 	};
 if (count _cpos < 1) then
 	{
 	diag_log "***drt didn't find highpoint using normal search, going again with easirer criteria";
-	for "_n" from 0 to 25 do
+	for "_n" from 0 to 10 do
 		{
 		_cpos =  [cpt_position, 6000, 400, 50] call bis_fnc_findOverwatch;
 		_candiposs pushBackUnique _cpos;
 		__tky_debug
 		};
 	};
-_sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND", true] call BIS_fnc_sortBy;
+
+_sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND"] call BIS_fnc_sortBy;
 
 if (count _sortedcandiposs > 5 ) then {_sortedcandiposs2 =  _sortedcandiposs select [0, 4];};
 
 _finalpos =  selectRandom _sortedcandiposs2;
 
-_tower = createVehicle ["Land_TTowerBig_2_F", [],0,"NONE"];
+_tower = createVehicle ["Land_TTowerBig_2_F",_finalpos, [],0,"NONE"];
 _tower setVectorUp [0,0,1];
 
 _dtreldir = cardinaldirs select (([cpt_position getdir _tower, 45] call BIS_fnc_roundDir) /45);
@@ -63,5 +64,5 @@ while {missionactive} do
 		"That's good work. Their communications have been severely disrupted. Command is pleased." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
-[_smcleanup, 60] call tky_fnc_smcleanup;
+[_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends

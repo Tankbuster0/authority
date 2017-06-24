@@ -111,5 +111,5 @@ while {missionactive} do
 		"We have acquired some useful technology by getting that here. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
-[_smcleanup, 60] call tky_fnc_smcleanup;
+[_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends
