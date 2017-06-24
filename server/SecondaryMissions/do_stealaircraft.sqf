@@ -64,7 +64,6 @@ for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
 	_smcleanup pushback _dsa_opfor1;
 	};
 _mypos = [_smsaveh , 50, 200, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
-;
 _dsa_opfor2 = createVehicle [(selectRandom opforstaticlandvehicles), _mypos, [],0, "NONE"];
 createVehicleCrew _dsa_opfor2;
 [_dsa_opfor2, getpos _smsaveh] call BIS_fnc_taskDefend;
@@ -109,7 +108,8 @@ while {missionactive} do
 		{
 		missionsuccess = true;
 		missionactive = false;
+		"We have acquired some useful technology by getting that here. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
-[_smcleanup, 1] call tky_fnc_smcleanup;
+[_smcleanup, 60] call tky_fnc_smcleanup;
 __tky_ends
