@@ -1,13 +1,16 @@
 //by tankbuster
  #include "..\includes.sqf"
 _myscript = "do_destroyradiotower";
-__tky_starts;
-
+__tky_starts
+private ["_n","_cpos","_candiposs","_sortedcandiposs","_sortedcandiposs2","_finalpos","_tower","_dtreldir","_dtdist","_ii","_mypos","_drt_opfor1","_smcleanup","_drt_opfor3"];
+_candiposs = []; _sortedcandiposs = []; _sortedcandiposs2 = []; _smcleanup = [];
+missionactive = true; missionsuccess = false;
 // find some nice high ground
 for "_n" from 0 to 25 do
 	{
 	_cpos =  [cpt_position, 4000, 800, 100] call bis_fnc_findOverwatch;
 	_candiposs pushBackUnique _cpos;
+	__tky_debug
 	};
 if (count _cpos < 1) then
 	{
@@ -16,9 +19,10 @@ if (count _cpos < 1) then
 		{
 		_cpos =  [cpt_position, 6000, 400, 50] call bis_fnc_findOverwatch;
 		_candiposs pushBackUnique _cpos;
+		__tky_debug
 		};
 	};
-_sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, DESCEND, true] call BIS_fnc_sortBy;
+_sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND", true] call BIS_fnc_sortBy;
 
 if (count _sortedcandiposs > 5 ) then {_sortedcandiposs2 =  _sortedcandiposs select [0, 4];};
 
@@ -35,7 +39,7 @@ for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
 	{
 	_mypos = [_tower, 5, 800, 6,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_drt_opfor1 = createvehicle [(selectRandom opforpatrollandvehicles), _mypos, [],0,"NONE"];
-	createVehicleCrew _dsa_opfor1;
+	createVehicleCrew _drt_opfor1;
 	NUL = [group (effectiveCommander _drt_opfor1), getpos _tower, 200 ] call BIS_fnc_taskpatrol;
 	sleep 0.5;
 	_smcleanup pushback _drt_opfor1;
