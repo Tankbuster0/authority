@@ -31,8 +31,6 @@ _dtreldir = cardinaldirs select (([cpt_position getdir _tower, 45] call BIS_fnc_
 _dtdist = [((cpt_position distance2D _tower) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
 format ["Freindly force commanders have called in the position of a radio relay %1m %2 the edge of town. If we can destroy it, it will be a great help to them and us.", _dtdist, _dtreldir] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
-
-
 for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
 	{
 	_mypos = [_tower, 5, 800, 6,0,0.5,0,1,1] call tky_fnc_findSafePos;
@@ -50,9 +48,6 @@ for "_ii" from 0 to ((ceil (playersNumber west ) /4) min 5) do
 	_smcleanup pushback _drt_opfor3;
 	sleep 0.5
 	};
-
-
-
 while {missionactive} do
 	{
 	sleep 3;
