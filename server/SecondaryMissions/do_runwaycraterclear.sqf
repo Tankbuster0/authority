@@ -1,6 +1,6 @@
 //by tankbuster
  #include "..\includes.sqf"
-_myscript = "do_runwayclear";
+_myscript = "do_runwaycraterclear";
 __tky_starts;
 fnc_pickupcrater =
 	{
@@ -11,7 +11,8 @@ fnc_pickupcrater =
 	waitUntil {(speed _bobcat) < -3};
 	detach _thiscrater;
 	};
-_mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", gtepos blubasehelipad, [],0,"NONE"];
+private ["_candiposs","_runwayposs","_runwayposshuffled","_nx","_craterpos","_crater","_cratereh"];
+mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", (getpos blubasehelipad), [],0,"NONE"];
 
 _candiposs = nearestObjects [cpt_position, [], 300, true];
 _runwayposs = _candiposs select {(str _x) find "bleroa" > 0 };
@@ -21,7 +22,7 @@ for "_nx" from 0 to (playersNumber west + (floor (random 4))) do
 	{
 	_craterpos = _runwayposshuffled select _nx;
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
-	_cratereh addeventhandler ["epecontactstarts", {if ((count (attachedObjects _this select 1)) isEqualTo []) then {[_this select 0, _this select 1] call fnc_pickupcrater} }];
+	_cratereh addeventhandler ["epecontactstarts", {if ((attachedObjects (_this select 1)) isEqualTo []) then { } };
 
 
 	};
