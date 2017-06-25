@@ -21,7 +21,7 @@ for "_nx" from 0 to (playersNumber west + (floor (random 4))) do
 	{
 	_craterpos = _runwayposshuffled select _nx;
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
-	_cratereh =  _crater addeventhandler ["epecontactstarts",
+	_cratereh =  _crater addeventhandler ["epecontactstart",
 		{
 		if ((attachedObjects (_this select 1)) isEqualTo []) then
 			{
