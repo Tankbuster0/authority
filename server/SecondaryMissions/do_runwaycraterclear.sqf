@@ -14,15 +14,20 @@ fnc_pickupcrater =
 private ["_candiposs","_runwayposs","_runwayposshuffled","_nx","_craterpos","_crater","_cratereh"];
 mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", (getpos blubasehelipad), [],0,"NONE"];
 
-_candiposs = nearestObjects [cpt_position, [], 300, true];
-_runwayposs = _candiposs select {(str _x) find "bleroa" > 0 };
+_candiposs = nearestObjects [blubasehelipad, [], 300, true];
+_runwayposs = _candiposs select {((str _x) find "bleroa" > 0) and ((_x distance2D blubasehelipad)> 100) };///find invisibleroadways more than 100m from helipad
 _runwayposshuffled = _runwayposs call BIS_fnc_arrayShuffle;
-
 for "_nx" from 0 to (playersNumber west + (floor (random 4))) do
 	{
 	_craterpos = _runwayposshuffled select _nx;
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
-	_cratereh addeventhandler ["epecontactstarts", {if ((attachedObjects (_this select 1)) isEqualTo []) then { } };
+	_cratereh =  _crater addeventhandler ["epecontactstarts",
+		{
+		if ((attachedObjects (_this select 1)) isEqualTo []) then
+			{
+			diag_log format ["***drcc eh says %1 crater is hit by %2", _this select 0, _this select 1];
+		 	};
+		}]
 
 
 	};
