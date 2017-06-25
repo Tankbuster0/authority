@@ -23,9 +23,10 @@ for "_nx" from 0 to (playersNumber west + (floor (random 4))) do
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
 	_cratereh =  _crater addeventhandler ["epecontactstart",
 		{
-		if ((attachedObjects (_this select 1)) isEqualTo []) then
+		if (((attachedObjects (_this select 1)) isEqualTo []) and {(_this select 1) isKindOf "B_APC_Tracked_01_CRV_F" }) then
 			{
 			diag_log format ["***drcc eh says %1 crater is hit by %2", _this select 0, _this select 1];
+			(_this select 0) attachto [_this select 1, [0,6,-2]];
 		 	};
 		}]
 
