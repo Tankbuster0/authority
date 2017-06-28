@@ -22,15 +22,18 @@ for "_nx" from 0 to (playersNumber west + (floor (random 4))) do
 	_craterpos = _runwayposshuffled select _nx;
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
 	_cratereh =  _crater addeventhandler ["epecontactstart",
-		{
-		if (((attachedObjects (_this select 1)) isEqualTo [])) then
-			{
-			diag_log format ["***drcc eh says %1 crater is hit by %2", _this select 0, _this select 1];
-			(_this select 0) attachto [_this select 1, [0,6,-2]];
-		 	};
-		}]
+		{ if (((_this select 1) isKindof "B_APC_Tracked_01_CRV_F") and {(attachedObjects (_this select 1)) isEqualTo []} and {(speed (_this select 1)) > 4})  then
+					{[_this select 0, _this select 1] spawn
+						{
+						params ["_thiscrater", "_bobcat"];
 
+						_thiscrater attachto [_bobcat, [0,6,-2] ];
 
+						waitUntil {(speed _bobcat) < -3};
+						detach _thiscrater;
+						}
+					}
+		}];
 	};
 /*
 
