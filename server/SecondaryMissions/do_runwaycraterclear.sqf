@@ -17,16 +17,22 @@ mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", (getpos blubasehelipad), [],
 _candiposs = nearestObjects [blubasehelipad, [], 300, true];
 _runwayposs = _candiposs select {((str _x) find "bleroa" > 0) and ((_x distance2D blubasehelipad)> 100) };///find invisibleroadways more than 100m from helipad
 _runwayposshuffled = _runwayposs call BIS_fnc_arrayShuffle;
-for "_nx" from 0 to (playersNumber west + (floor (random 4))) do
+for "_nx" from 0 to ((playersNumber west + (floor (random 4))) min 5) do
 	{
+
 	_craterpos = _runwayposshuffled select _nx;
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
-	_cratereh =  _crater addeventhandler ["epecontactstart",
+	diag_log format ["***making crater %1 at %2", _nx, getpos _craterpos];
+	_m = createmarker [ ("cratermkr"+ str _nx), _craterpos];
+	_m setMarkerShape "ICON";
+	_m setMarkerType "hd_dot";
+	_m setMarkerText str _nx;
+	_cratereh =  _crater addeventhandler ["EpeContact",
 		{ if (((_this select 1) isKindof "B_APC_Tracked_01_CRV_F") and {(attachedObjects (_this select 1)) isEqualTo []} and {(speed (_this select 1)) > 4})  then
 					{[_this select 0, _this select 1] spawn
 						{
 						params ["_thiscrater", "_bobcat"];
-
+						diag_log format ["***trying to attach a crater"];
 						_thiscrater attachto [_bobcat, [0,6,-2] ];
 
 						waitUntil {(speed _bobcat) < -3};
