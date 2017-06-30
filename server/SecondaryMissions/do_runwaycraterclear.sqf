@@ -48,7 +48,7 @@ for "_nx" from 0 to ((playersNumber west + (floor (random 4))) min 5) do
 		};
 	};
 _cratercount = count mycraters;
-_craterclearedcount = 0;
+
 while {missionactive} do
 	{
 	sleep 3;
@@ -57,9 +57,10 @@ while {missionactive} do
 		missionsuccess = false;
 		missionactive = false;
 		};
+	_craterclearedcount = 0;
 	{
 		_thiscrater = _x;
-		if ((count (nearestObjects [_thiscrater, [], 13, true]) select {(str _x) find "bleroa" > 0}) < 1) then // this crater is clear of the runway and taxiways
+		if (count ((nearestObjects [_thiscrater, [], 13, true]) select {((str _x) find "bleroa" > 0)}) < 1) then // this crater is clear of the runway and taxiways
 			{
 			_craterclearedcount = _craterclearedcount +1;
 			diag_log format ["***crater pushed off the runway!, cleared count = %1", _craterclearedcount];
