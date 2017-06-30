@@ -4,7 +4,12 @@ _myscript = "do_runwaycraterclear";
 __tky_starts;
 private ["_candiposs","_runwayposs","_runwayposshuffled","_nx","_craterpos","_crater","_cratereh", "_smcleanup", "_cratercount", "_craterclearedcount", "_thiscrater"];
 missionactive = true;missionsuccess = false; mycraters = [];_smcleanup = [];
-mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", (getpos blubasehelipad), [],0,"NONE"];
+ format ["Enemy action has damaged our main airbase runways and taxiways, probably runway denial munitions. There's a Bobcat CVR on its way by airdrop. Use that to push the craters off the runways.",2,false];
+ failtext = "The Bobcat has been lost and there are still some craters on the runways. You've failed this secondary mission";
+//mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", (getpos blubasehelipad), [],0,"NONE"];
+
+{_txt = "A Bobcat is being delivered by airdrop. Please clear the Airhead Helipad. Use this vehicle to push craters clear of the runways and taxiways.";};
+_nul = [blubasehelipad, blufordropaircraft, "B_APC_Tracked_01_CRV_F", [0,0,0],_txt] execVM "server\spawnairdrop.sqf";
 _candiposs = nearestObjects [blubasehelipad, [], 300, true];
 _runwayposs = _candiposs select {((str _x) find "bleroa" > 0) and ((_x distance2D blubasehelipad)> 100) };///find invisibleroadways more than 100m from helipad
 _runwayposshuffled = _runwayposs call BIS_fnc_arrayShuffle;
@@ -70,6 +75,7 @@ while {missionactive} do
 		{
 		missionsuccess = true;
 		missionactive = false;
+		"That's good Bobcat driving there, soldier. You've pushed all the craters off the runways. Secondary mission complete." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
