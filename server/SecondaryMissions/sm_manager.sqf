@@ -36,17 +36,14 @@ for "mycounter" from 1 to _sm_required do
 	{
 	smcounter = mycounter;
 	sleep 1;
-	_posplaces = selectBestPlaces [cpt_position, 2500, "waterdepth", 50, 100];
-	_deepest = _posplaces select 0;
+	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 50, 100]) select 0;
 	_deepestdepth = _deepest select 1;
-	if (_deepestdepth < 25) then
-		{
-		_smtypearray = _smtypearray - ["navalmineclear"];
+	if (_deepestdepth < 25) then 	{	_smtypearray = _smtypearray - ["navalmineclear"];
 		diag_log "***sm manager couldnt find deep enough see nearby so removed naval mine cleareance from sm roster";
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
-	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then {_smtypearray = _smtypearray - ["runwaycraterclear"];// runway crater clear doesnt work on almyra (it needs runway objects to work)
+	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then {	_smtypearray = _smtypearray - ["runwaycraterclear"];};// runway crater clear doesnt work on almyra (it needs runway objects to work)
 	_typeselected = selectRandom _smtypearray;
-	//_typeselected = "nvmcle";
+	_typeselected = "runwaycraterclear";
 
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
@@ -61,7 +58,13 @@ for "mycounter" from 1 to _sm_required do
 		mycounter = mycounter -1;
 		sleep 10;
 
-		}
+		}else
+		{
+		if (mycounter < _sm_required) then
+			{
+			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			};
+		};
 
 
 	};

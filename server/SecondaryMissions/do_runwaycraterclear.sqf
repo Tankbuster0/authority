@@ -4,12 +4,12 @@ _myscript = "do_runwaycraterclear";
 __tky_starts;
 private ["_candiposs","_runwayposs","_runwayposshuffled","_nx","_craterpos","_crater","_cratereh", "_smcleanup", "_cratercount", "_craterclearedcount", "_thiscrater"];
 missionactive = true;missionsuccess = false; mycraters = [];_smcleanup = [];
- format ["Enemy action has damaged our main airbase runways and taxiways, probably runway denial munitions. There's a Bobcat CVR on its way by airdrop. Use that to push the craters off the runways.",2,false];
+ format ["Enemy action has damaged our main airbase runways and taxiways, probably runway denial munitions. ",2,false];
  failtext = "The Bobcat has been lost and there are still some craters on the runways. You've failed this secondary mission";
 //mybobcat = createVehicle ["B_APC_Tracked_01_CRV_F", (getpos blubasehelipad), [],0,"NONE"];
 
-{_txt = "A Bobcat is being delivered by airdrop. Please clear the Airhead Helipad. Use this vehicle to push craters clear of the runways and taxiways.";};
-_nul = [blubasehelipad, blufordropaircraft, "B_APC_Tracked_01_CRV_F", [0,0,0],_txt] execVM "server\spawnairdrop.sqf";
+_txt = "Please clear the Airhead Helipad, use this vehicle to push craters clear of the runways and taxiways.";
+_nul = [blubasehelipad, blufordropaircraft, "B_APC_Tracked_01_CRV_F", [0,0,0],_txt, "mybobcat"] execVM "server\spawnairdrop.sqf";
 _candiposs = nearestObjects [blubasehelipad, [], 300, true];
 _runwayposs = _candiposs select {((str _x) find "bleroa" > 0) and ((_x distance2D blubasehelipad)> 100) };///find invisibleroadways more than 100m from helipad
 _runwayposshuffled = _runwayposs call BIS_fnc_arrayShuffle;
@@ -30,11 +30,11 @@ for "_nx" from 0 to ((playersNumber west + (floor (random 4))) min 5) do
 			{
 			params ["_mycrater"];
 			private ["_mybobcat","_craterdir"];
-			waitUntil {sleep 0.1; !((_mycrater nearObjects ["B_APC_Tracked_01_CRV_F", 5]) isEqualTo [])};
+			waitUntil {sleep 0.1; !((_mycrater nearObjects ["B_APC_Tracked_01_CRV_F", 6]) isEqualTo [])};
 			_mybobcat = nearestObject [_mycrater, "B_APC_Tracked_01_CRV_F"];
 			if (
 			    ((attachedObjects _mybobcat) isEqualTo [] ) and
-				{   ([(getpos _mybobcat), (getdir mybobcat), 20, getpos _mycrater ] call BIS_fnc_inAngleSector) and
+				{   ([(getpos _mybobcat), (getdir mybobcat), 40, getpos _mycrater ] call BIS_fnc_inAngleSector) and
 					((speed _mybobcat) > 5)
 				}
 				) then
@@ -53,7 +53,7 @@ for "_nx" from 0 to ((playersNumber west + (floor (random 4))) min 5) do
 		};
 	};
 _cratercount = count mycraters;
-
+waitUntil {sleep 1; not (isNil "mybobcat")};
 while {missionactive} do
 	{
 	sleep 3;

@@ -218,6 +218,11 @@ if (_droptype in prizes) then //used to be _eventualtype
 	{
 	[_cargo, (format ["prize%1", prizecounter])] call fnc_setvehiclename; //if its a prize, give it a vehiclevarname
 	};
+if (_droptype in ["B_APC_Tracked_01_CRV_F","B_T_APC_Tracked_01_CRV_F" ]) then
+	{
+	[_cargo, "mybobcat"] call fnc_setvehiclename;
+	};
+
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;
