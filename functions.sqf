@@ -61,9 +61,23 @@ KK_fnc_removeUnknownUserActions = {
 	};
 };
 
+tky_fnc_cardinaldirection =
+	{
+	params ["_dir"];
+	private ["cardinaldir"];
+	_cardinaldir = cardinaldirs select ((_dir call BIS_fnc_roundDir) /45);
+	_cardinaldir
+	};
 
-/*
-example
-_veh = createVehicle ["I_UAV_02_F", [24068.07,18587.05,3.19], [], 0, "NONE"];
-[_veh, "uavName"] call fnc_setVehicleName;
-*/
+tky_fnc_estimateddistance =
+	{
+	params [["_dist",0],[ "_resol", 2]];
+	private ["_data1"];
+	//resol  0 = no rounding, 1 = round to whole kilometer, 2 = round to half kilometer,3 = round to quarter km
+	// ^^^ this doesnt work atm
+
+	_data1 = [(_dist + 24), 50] call BIS_fnc_roundNum;
+	_data1
+
+	};
+//  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
