@@ -29,9 +29,9 @@ while {_deliverypos in [[0,0,0], islandcentre] } do
 	_deliverypos = [cpt_position, 50, _testradius, 23, 0, 0.3, 0] call BIS_fnc_findSafePos;
 	_testradius = _testradius * 2;
 	};
-// <----------- here
+// work out the direction of the objective from the logic
 
-
+// work out the distance of the obj from the logic
 
 
 
