@@ -64,7 +64,7 @@ KK_fnc_removeUnknownUserActions = {
 tky_fnc_cardinaldirection =
 	{
 	params ["_dir"];
-	private ["cardinaldir"];
+	private ["_cardinaldir"];
 	_cardinaldir = cardinaldirs select ((_dir call BIS_fnc_roundDir) /45);
 	_cardinaldir
 	};
@@ -74,7 +74,7 @@ tky_fnc_estimateddistance =
 	params [["_dist",0],[ "_factor", 50]];
 	private ["_data1"];
 	// because this rounds down, this will add half the factor to the dist
-	_dist = dist + (-1 + ( _factor /2));
+	_dist = _dist + (-1 + ( _factor /2));
 	_data1 = [_dist, _factor] call BIS_fnc_roundNum;
 
 	_data1
