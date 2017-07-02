@@ -71,12 +71,11 @@ tky_fnc_cardinaldirection =
 
 tky_fnc_estimateddistance =
 	{
-	params [["_dist",0],[ "_resol", 2]];
+	params [["_dist",0],[ "_factor", 50]];
 	private ["_data1"];
-	//resol  0 = no rounding, 1 = round to whole kilometer, 2 = round to half kilometer,3 = round to quarter km
-	// ^^^ this doesnt work atm
-
-	_data1 = [(_dist + 24), 50] call BIS_fnc_roundNum;
+	// because this rounds down, this will add half the factor to the dist
+	_dist = dist + (-1 + ( _factor /2));
+	_data1 = [_dist, _factor] call BIS_fnc_roundNum;
 	_data1
 
 	};
