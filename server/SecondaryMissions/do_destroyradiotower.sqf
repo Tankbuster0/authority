@@ -32,7 +32,7 @@ _finalpos =  selectRandom _sortedcandiposs2;
 _tower = createVehicle ["Land_TTowerBig_2_F",_finalpos, [],0,"NONE"];
 _tower setVectorUp [0,0,1];
 
-_dtreldir = cardinaldirs select (([cpt_position getdir _tower, 45] call BIS_fnc_roundDir) /45);
+_dtreldir = [cpt_position getdir _tower] call TKY_fnc_cardinaldirection;
 _dtdist = [((cpt_position distance2D _tower) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
 format ["Freindly force commanders have called in the position of a radio relay %1m %2 the edge of town. If we can destroy it, it will be a great help to them and us.", _dtdist, _dtreldir] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
