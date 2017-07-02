@@ -179,6 +179,7 @@ if (_cargo iskindof "Cargo_Base_F") then //
 	{
 	mycontainer = _cargo;
 	};
+if (!(_vecname isEqualTo "")) then {[_cargo, _vecname] call fnc_setVehicleName};
 while {(getPosATL _cargo select 2) > 100} do {sleep 0.1};
 _cargopos = getpos _cargo;
 _para = createVehicle ["B_Parachute_02_F", _cargopos, [],0, "NONE"];
