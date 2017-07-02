@@ -20,7 +20,7 @@ recoveryinuse = true; publicVariable "recoveryinuse";
 	{
 		//make an addaction foreach landvehicle with a varname near the airhead that teleports it to fobhelipad
 		_friendlyname = _x call tky_fnc_getscreenname;
-		_dirto = cardinaldirs select (  ([(blubasehelipad getdir _x), 45] call BIS_fnc_rounddir) /45);
+		_dirto = [blubasehelipad getdir _x] call TKY_fnc_cardinaldirection;
 		_dist = floor (_x distance2D blubasehelipad);
 		diag_log format ["*** ihpr makes an addaction for %1", _x];
 		myx = _x;
