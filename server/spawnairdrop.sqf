@@ -12,7 +12,7 @@ params [
 ["_vecname", ""] //vehicle name that will be public'd
 ];
 _mytime = serverTime;
-//diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext];
+diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5 and vecname %6", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext, _vecname];
 airdropcounter = airdropcounter +1;
 if !(_airtype isKindOf "Air") then {_airtype = blufordropaircraft};
 if (airdropcounter isEqualTo 27) then {airdropcounter =1};
@@ -154,6 +154,7 @@ if (_droptype isKindOf "Air") then
 	};
 _cargo = createvehicle [_droptype, (_dropveh modelToWorld [0,-25,-10]), [],0, "FLY"];
 _cargo setvariable ["eventualtype", _eventualtype, true];
+_cargo setvariable ["eventualname", _vecname, true];
 //it need to be containerised because its an airvehicle
 if (_droptype == forwardpointvehicleclassname) then
 	{
