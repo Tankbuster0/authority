@@ -4,7 +4,7 @@ _myscript = "do_slingloaddelivercontainer";
 __tky_starts;
 private ["_smcleanup","_conttype","_misstxt","_displayname","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
-_hurons = vehicles select {((typeof) _x isEqualTo "B_Heli_Transport_03_unarmed_F") and {alive _x} and {canMove _x}};
+_hurons = vehicles select {((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and {alive _x} and {canMove _x}};
 
 _conttype = selectRandom huroncontainertypes;
 switch (_conttype) do
@@ -14,16 +14,16 @@ switch (_conttype) do
 	case "B_Slingload_01_Fuel_F": {_misstxt = "have an immediate requirement of diesel and oil for their vehicles to continue operations"};
 	case "B_Slingload_01_Medevac_F": {_misstxt = "need these critical medical supplies for their forward medical facilities"};
 	case "B_Slingload_01_Repair_F": {_misstxt = "need to repair a number of their heavy vehicles in theatre"};
-	}
+	};
 
 _displayname = [_conttype] call tky_fnc_getscreenname;
 _contpos = [blubasehelipad, 8, 50, 8, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
 smcontainer = createVehicle [_conttype, _contpos,[],0,"NONE"];
-[smcontainer, "smcontainer"] call tky_fnc_setvehiclename;
+[smcontainer, "smcontainer"] call fnc_setvehiclename;
 _redtargets = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 5000} };
 // get all the red held target logics that are more than 5 kilometer away
 _mytarget = selectRandom _redtargets;
-_tname = _x getVariable ["targetname", "Springfield"];
+_tname = _mytarget getVariable ["targetname", "Springfield"];
 _deliverypos = [0,0,0];
 _testradius = 100;
 while {_deliverypos in [[0,0,0], islandcentre] } do
@@ -50,23 +50,25 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 
 
  failtext = "Dudes. You suck texts";
-waitUntil {sleep 4; {}};
+
+waitUntil {sleep 4; {(getpos smcontainer select 2) > 10}};// mission underway..
 while {missionactive} do
 	{
 	sleep 3;
-	if (/*failure conditions*/) then
+	if (failure conditions) then
 		{
 		missionsuccess = false;
 		missionactive = false;
 		};
 
-	if (/*succeed conditions*/) then
+	if (succeed conditions) then
 		{
 		missionsuccess = true;
 		missionactive = false;
 		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
+*/
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
