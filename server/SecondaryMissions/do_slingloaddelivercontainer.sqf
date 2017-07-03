@@ -1,6 +1,6 @@
 //by tankbuster
  #include "..\includes.sqf"
-_myscript = "do_template";
+_myscript = "do_slingloaddelivercontainer";
 __tky_starts;
 private ["_smcleanup","_conttype","_misstxt","_displayname","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
