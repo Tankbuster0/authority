@@ -38,13 +38,13 @@ format ["Freindly forces %1. There's a %2 at the Airhead, slingload that to them
 [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
 [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons")] call BIS_fnc_spawngroup;
 
-if (count _hurons) > 0 then
+if ((count _hurons) > 0) then //players already have a huron, don't give them another one
 	{
-	"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+	"Use your Huron helicopter to airlift the container." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 	}
 	else
 	{
-
+		_nul = [_droppoint2, blufordropaircraft, "B_Heli_Transport_03_unarmed_F", [0,0,0], "Use this to do the slongload container mission.", "huron" ] execVM "server\spawnairdrop.sqf";
 	};
 
 
