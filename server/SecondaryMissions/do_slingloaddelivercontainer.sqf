@@ -17,8 +17,9 @@ switch (_conttype) do
 	}
 
 _displayname = [_conttype] call tky_fnc_getscreenname;
-
-
+_contpos = [blubasehelipad, 8, 50, 8, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
+smcontainer = createVehicle [_conttype, _contpos,[],0,"NONE"];
+[smcontainer, "smcontainer"] call tky_fnc_setvehiclename;
 _redtargets = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 5000} };
 // get all the red held target logics that are more than 5 kilometer away
 _mytarget = selectRandom _redtargets;
@@ -27,7 +28,7 @@ _deliverypos = [0,0,0];
 _testradius = 100;
 while {_deliverypos in [[0,0,0], islandcentre] } do
 	{
-	_deliverypos = [cpt_position, 50, _testradius, 23, 0, 0.3, 0] call BIS_fnc_findSafePos;
+	_deliverypos = [_mytarget, 50, _testradius, 23, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
 	_testradius = _testradius * 2;
 	};
 
@@ -44,12 +45,12 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 	}
 	else
 	{
-		_nul = [_droppoint2, blufordropaircraft, "B_Heli_Transport_03_unarmed_F", [0,0,0], "Use this to do the slongload container mission.", "huron" ] execVM "server\spawnairdrop.sqf";
+	_nul = [blubasehelipad, blufordropaircraft, "B_Heli_Transport_03_unarmed_F", [0,0,0], "Use this to do the slingload container mission.", "huron" ] execVM "server\spawnairdrop.sqf";
 	};
 
 
  failtext = "Dudes. You suck texts";
-_
+waitUntil {sleep 4; {}};
 while {missionactive} do
 	{
 	sleep 3;
