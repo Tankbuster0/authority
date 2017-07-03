@@ -41,14 +41,18 @@ deletevehicle mybox;
 sleep 1;
 _prizevec = createVehicle [_prizeclass, _prizepos, [],0,"NONE"];
 if (playersetdir > -1) then {_prizevec setdir playersetdir} else { _prizevec setdir _bestdir};
-if (_prizeclass isEqualTo blufordropaircraft) then
+
+switch (_prizeclass) do
 	{
-	[_prizevec, "bf"] call fnc_setvehiclename;
-	nul = execVM "server\tky_bf_killed_eh.sqf";
-	}
-	else
-	{
-	[_prizevec, (format ["prize%1", prizecounter])] call fnc_setvehiclename;
+	case blufordropaircraft:
+		{
+		[_prizevec, "bf"] call fnc_setvehiclename;
+		nul = execVM "server\tky_bf_killed_eh.sqf";
+		};
+	case "B_Heli_Transport_03_unarmed_F": {[_prizevec, "huron"] call fnc_setvehiclename;	} ;
+	default {[_prizevec, (format ["prize%1", prizecounter])] call fnc_setvehiclename;}
+
+
 	};
 player removeEventHandler ["AnimDone", saluteeh];
 
