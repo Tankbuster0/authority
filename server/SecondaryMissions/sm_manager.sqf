@@ -27,8 +27,9 @@ switch (_sm_hint) do
 _smtypearray = [
 "navalmineclear",// naval mine clearance in the nearest marine (that doesn't have the frigate in it)
 "landmineclear",// clear a nearby minefield
-"runwaycraterclear"// clear some craters from mainbase runway
-"stealaircraft"// steal an aircraft
+"runwaycraterclear",// clear some craters from mainbase runway
+"stealaircraft",
+"slingloaddelivercontainer"// steal an aircraft
  ];
 
 //_sm_required = 1;//debug only
@@ -43,7 +44,7 @@ for "mycounter" from 1 to _sm_required do
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
 	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then {	_smtypearray = _smtypearray - ["runwaycraterclear"];};// runway crater clear doesnt work on almyra (it needs runway objects to work)
 	_typeselected = selectRandom _smtypearray;
-	_typeselected = "runwaycraterclear";
+	_typeselected = "slingloaddelivercontainer";
 
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
