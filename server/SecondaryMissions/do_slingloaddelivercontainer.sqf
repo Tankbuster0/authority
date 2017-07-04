@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_slingloaddelivercontainer";
 __tky_starts;
-private ["_smcleanup","_conttype","_misstxt","_displayname","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir"];
+private ["_smcleanup","_conttype","_misstxt","_displayname","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir", "_smheli", "_smoke1", "_smoke2"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 _hurons = vehicles select {((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and {alive _x} and {canMove _x}};
 
@@ -50,25 +50,43 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 
 
  failtext = "Dudes. You suck texts";
-
+_smoke1= false;
+_smoke2 = false;
 waitUntil {sleep 4; {(getpos smcontainer select 2) > 10}};// mission underway..
+_smheli = ropeAttachedTo smcontainer;
 while {missionactive} do
 	{
 	sleep 3;
+	if ((!(_smoke1)) and {(_smheli distance2d < 1000)}) then
+		{
+		_smoker1 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
+		_smoke1 = true;
+		};
+		if ((!(_smoke2)) and {(_smheli distance2d < 100)}) then
+		{
+		_smoker2 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
+		_smoke2 = true;
+		};
+
+
 	if (
-	    (!alive huron) or
+	    (!alive _smheli) or
 	    (!alive smcontainer) or
-	    (((smcontainer getpos select 2) < 5 ) and ((smcontainer distance2d _deliverypos) > 50))) then
+	    (((getpos smcontainer select 2) < 5 ) and {(smcontainer distance2d _deliverypos) > 20})
+	    ) then
 		{
 		missionsuccess = false;
 		missionactive = false;
 		};
 
-	if (succeed conditions) then
+	if (
+	    ((getpos smcontainer select 2)< 2) and
+		{smcontainer distance 2d _deliverypos < 20}
+		) then
 		{
 		missionsuccess = true;
 		missionactive = false;
-		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		"Mission successful! They got the much needed supplies.Dudes. " remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
 */
