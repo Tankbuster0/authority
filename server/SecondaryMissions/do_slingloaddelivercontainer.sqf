@@ -55,7 +55,10 @@ waitUntil {sleep 4; {(getpos smcontainer select 2) > 10}};// mission underway..
 while {missionactive} do
 	{
 	sleep 3;
-	if (failure conditions) then
+	if (
+	    (!alive huron) or
+	    (!alive smcontainer) or
+	    (((smcontainer getpos select 2) < 5 ) and ((smcontainer distance2d _deliverypos) > 50))) then
 		{
 		missionsuccess = false;
 		missionactive = false;
