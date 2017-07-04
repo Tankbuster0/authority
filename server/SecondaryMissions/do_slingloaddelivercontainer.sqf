@@ -86,10 +86,9 @@ while {missionactive} do
 		{
 		missionsuccess = true;
 		missionactive = false;
-		"Mission successful! They got the much needed supplies.Dudes. " remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		"Mission successful! They got the much needed supplies." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
-*/
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
