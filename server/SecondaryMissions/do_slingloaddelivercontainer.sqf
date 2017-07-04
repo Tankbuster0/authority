@@ -54,6 +54,7 @@ _smoke1= false;
 _smoke2 = false;
 waitUntil {sleep 4; (((getpos smcontainer) select 2) > 10)};// mission underway..
 _smheli = ropeAttachedTo smcontainer;
+sleep 20;
 while {missionactive} do
 	{
 	sleep 3;
