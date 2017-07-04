@@ -62,7 +62,7 @@ while {missionactive} do
 		_smoker1 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
 		_smoke1 = true;
 		};
-		if ((!(_smoke2)) and {((_smheli distance2d) < 100)}) then
+		if ((!_smoke2) and {((_smheli distance2d) < 100)}) then
 		{
 		_smoker2 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
 		_smoke2 = true;
