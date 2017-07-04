@@ -52,17 +52,17 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
  failtext = "Mission failure! You didn't get the supplies to the troops. They needed them badly.";
 _smoke1= false;
 _smoke2 = false;
-waitUntil {sleep 4; {(getpos smcontainer select 2) > 10}};// mission underway..
+waitUntil {sleep 4; (((getpos smcontainer) select 2) > 10)};// mission underway..
 _smheli = ropeAttachedTo smcontainer;
 while {missionactive} do
 	{
 	sleep 3;
-	if ((!(_smoke1)) and {(_smheli distance2d < 1000)}) then
+	if ((!(_smoke1)) and {(_smheli distance2d _deliverypos < 1000)}) then
 		{
 		_smoker1 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
 		_smoke1 = true;
 		};
-		if ((!(_smoke2)) and {(_smheli distance2d < 100)}) then
+		if ((!(_smoke2)) and {((_smheli distance2d) < 100)}) then
 		{
 		_smoker2 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
 		_smoke2 = true;
