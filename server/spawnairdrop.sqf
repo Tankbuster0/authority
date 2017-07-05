@@ -12,7 +12,7 @@ params [
 ["_vecname", ""] //vehicle name that will be public'd
 ];
 _mytime = serverTime;
-diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5 and vecname %6", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext, _vecname];
+//diag_log format ["***sad gets inpos, %1, airtype %2, droptype %3, spawnpoint %4 droptext %5 and vecname %6", _inpos, _airtype, _droptype, _spawnpoint, _airdroptext, _vecname];
 airdropcounter = airdropcounter +1;
 if !(_airtype isKindOf "Air") then {_airtype = blufordropaircraft};
 if (airdropcounter isEqualTo 27) then {airdropcounter =1};
