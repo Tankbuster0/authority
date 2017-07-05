@@ -37,14 +37,18 @@ for "mycounter" from 1 to _sm_required do
 	{
 	smcounter = mycounter;
 	sleep 1;
+	// custom exclusions
+	// #1 dont do navalmine clearance if theres no deep water nearby
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 50, 100]) select 0;
 	_deepestdepth = _deepest select 1;
 	if (_deepestdepth < 25) then 	{	_smtypearray = _smtypearray - ["navalmineclear"];
 		diag_log "***sm manager couldnt find deep enough see nearby so removed naval mine cleareance from sm roster";
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
-	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then {	_smtypearray = _smtypearray - ["runwaycraterclear"];};// runway crater clear doesnt work on almyra (it needs runway objects to work)
+	//#2 dont do crater clearance on Almyra as it lacks the runways objects the sm needs
+	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then {	_smtypearray = _smtypearray - ["runwaycraterclear"];};
+	//#3 dont do aircraft steal if airhead is at tuvanaka
 	_typeselected = selectRandom _smtypearray;
-	_typeselected = "slingloaddelivercontainer";
+	_typeselected = "slingloaddelivercontainer";//<<< debug only
 
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
