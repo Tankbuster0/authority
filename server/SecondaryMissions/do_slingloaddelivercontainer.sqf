@@ -75,9 +75,9 @@ while {missionactive} do
 			missionactive = false;
 			};
 	if (
-	    ((isNull (ropeAttachedTo smcontainer))) and
+	    (isNull (ropeAttachedTo smcontainer)) and
 			{
-				(smcontainer distance 2d _deliverypos < 20) and
+				((smcontainer distance2d _deliverypos) < 20) and
 				((getpos smcontainer select 2)< 2)
 			}
 		) then
