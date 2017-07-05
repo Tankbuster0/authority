@@ -3,7 +3,7 @@
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
-private ["_sm_required","_sm_hint","_smtypearray","_posplaces","_deepest","_deepestdepth","_typeselected","_fname","_smmanagerhandle"];
+private ["_sm_required","_sm_hint","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_typeselected","_fname","_smmanagerhandle"];
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
 switch (_sm_hint) do
@@ -31,7 +31,6 @@ _smtypearray = [
 "stealaircraft",
 "slingloaddelivercontainer"// steal an aircraft
  ];
-
 //_sm_required = 1;//debug only
 for "mycounter" from 1 to _sm_required do
 	{
@@ -41,28 +40,47 @@ for "mycounter" from 1 to _sm_required do
 	// #1 dont do navalmine clearance if theres no deep water nearby
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 50, 100]) select 0;
 	_deepestdepth = _deepest select 1;
-	if (_deepestdepth < 25) then 	{	_smtypearray = _smtypearray - ["navalmineclear"];
+	if (_deepestdepth < 25) then
+		{
+		_smtypearray = _smtypearray - ["navalmineclear"];
 		diag_log "***sm manager couldnt find deep enough see nearby so removed naval mine cleareance from sm roster";
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
 	//#2 dont do crater clearance on Almyra as it lacks the runways objects the sm needs
-	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then {	_smtypearray = _smtypearray - ["runwaycraterclear"];};
-	//#3 dont do aircraft steal if airhead is at tuvanaka
-	_typeselected = selectRandom _smtypearray;
-	_typeselected = "slingloaddelivercontainer";//<<< debug only
+	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then
+		{
+		_smtypearray = _smtypearray - ["runwaycraterclear"];
+		};
+	//#3 dont do aircraft steal if airhead is at tuvanaka, but can do it there if west have a heli
+	_wvecs = vehicles select {(([_x] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+	_whelivtols = _wvecs select
+	{
+		(
+			((typeof _x) isKindof  "Helicopter_Base_F") or
+			((typeof _x) isKindof  "VTOL_Base_F")
+		)
+	};
+	if
+		(
+		((count _whelivtols) > 1) and
+		{((getMarkerPos "cpt_marker_1") select [0,1]) isEqualTo [2119,13168]}// << tuvanaka
+		)
+		 then
+		 	{
+		 	_smtypearray = _smtypearray - ["stealaircraft"];
+		 	};
 
+	_typeselected = selectRandom _smtypearray;
+	//_typeselected = "slingloaddelivercontainer";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
-
 	//succeed or fail?
-
 	if not (missionsuccess) then
 		{
 		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		mycounter = mycounter -1;
 		sleep 10;
-
 		}else
 		{
 		if (mycounter < _sm_required) then
@@ -70,15 +88,6 @@ for "mycounter" from 1 to _sm_required do
 			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 		};
-
-
 	};
-
-
-
-
 		"ALL MISSIONS COMPLETED" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-
-
-
 __tky_ends
