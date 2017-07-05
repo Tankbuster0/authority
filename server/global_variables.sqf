@@ -266,13 +266,11 @@ Using orientation of objects: yes
 */
 AAC_blubase =
 [
-	["B_Slingload_01_Repair_F",[69.2891,129.341,0.00305939],303.692,1,0.0064874,[1.34162,0.604084],"blubaserepairbox","",true,false],
 	["Land_Cargo_House_V1_F",[53.7969,141.576,-0.00670052],303.636,1,0,[1.92637,-1.65363],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[65.1221,139.681,2.47955e-005],303.679,1,0,[0,0],"","",true,false],
 	["Land_BagBunker_Small_F",[44.9307,148.286,0.00561523],122.812,1,0,[-0.556485,1.00445],"","",true,false],
 	["Land_New_WiredFence_10m_F",[54.6689,149.652,0.618752],30.5823,1,0,[0,0],"","",true,false],
 	["Land_HelipadSquare_F",[82.7822,138.895,0],294.756,1,0,[1.01865,-0.203069],"blubasehelipad","",true,false],
-	["B_Slingload_01_Ammo_F",[71.8994,145.076,0.00308228],31.4615,1,0.0069762,[-0.299897,1.40826],"","",true,false],
 	["Land_Net_Fence_Gate_F",[59.0225,156.357,-0.111502],303.679,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[68.6475,153.051,-0.083807],122.836,1,0,[0,-0],"","",true,false],
 	["Land_Medevac_house_V1_F",[50.9297,158.099,0],303.324,1,0,[0,0],"blubasehospital","",true,false],
@@ -282,7 +280,6 @@ AAC_blubase =
 	["RoadCone_F",[78.2822,151.451,4.3869e-005],0.00635934,1,0.00995299,[0.494112,0.387547],"terminalcone","",true,false],
 	["MapBoard_altis_F",[68.1553,159.072,0.000909805],154.055,1,0,[-2.00812,-0.838235],"blubasewhiteboard","",true,false],
 	["RoadCone_L_F",[67.3535,162.865,0.00304604],359.987,1,0,[1.3823,1.60862],"ammoboxcone","",true,false],
-	["B_Slingload_01_Fuel_F",[87.043,154.184,0.00481796],303.671,1,0.00616072,[0.76245,-0.494854],"","",true,false],
 	["Land_BagBunker_Small_F",[57.3037,167.815,0.0397186],122.847,1,0,[-3.83322,-1.65957],"","",true,false],
 	["Land_Sign_WarningUnexplodedAmmo_F",[74.0137,161.285,-0.000236511],0,1,0,[0.611019,2.367],"","",true,false],
 	["Land_FieldToilet_F",[72.8496,161.883,-0.459442],303.704,1,0,[2.30675,0.806765],"","",true,false],
@@ -302,7 +299,6 @@ Using orientation of objects: yes
 */
 Abdera_blubase =
 [
-	["B_Slingload_01_Repair_F",[21.6533,90.8809,0.00324631],329.313,1,0.0069529,[-0.723342,0.781751],"blubaserepairbox","",true,false],
 	["Land_HelipadSquare_F",[37.8906,93.5898,0],320.396,1,0,[-1.06554,-0.208678],"blubasehelipad","",true,false],
 	["Land_Cargo_Patrol_V1_F",[22.3086,101.938,0],329.316,1,0,[0,0],"","",true,false],
 	["Land_Cargo_House_V1_F",[12.9033,108.477,0.872322],329.316,1,0,[-0.342804,0.469694],"","",true,false],
@@ -310,7 +306,6 @@ Abdera_blubase =
 	["RoadCone_F",[38.5371,104.525,7.34329e-005],0.000641433,1,0.0099011,[-0.532995,-0.913832],"terminalcone","",true,false],
 	["Land_New_WiredFence_10m_F",[31.3086,112.436,0.0491238],148.473,1,0,[0,-0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[17.2334,115.426,-0.0785303],56.2194,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Fuel_F",[48.3623,105.563,0.0261803],329.321,1,0.00564134,[0.0678922,-0.104752],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[35.9902,109.975,0],329.316,1,0,[0,0],"","",true,false],
 	["Land_BagBunker_Small_F",[7.81836,118.416,0],148.453,1,0,[0,-0],"","",true,false],
 	["Land_Net_Fence_Gate_F",[24.0869,119.561,0.00233364],329.316,1,0,[0,0],"","",true,false],
@@ -339,10 +334,7 @@ Using orientation of objects: yes
 almyra_blubase =
 [
 	["Land_HelipadSquare_F",[69.0215,14.4746,0],81.256,1,0,[0,0],"blubasehelipad","",true,false],
-	["B_Slingload_01_Fuel_F",[73.9141,-0.632813,9.53674e-007],90.1734,1,0.00350337,[4.2574e-008,-0.000120058],"","",true,false],
-	["B_Slingload_01_Repair_F",[75.0352,29.8105,2.86102e-006],90.1736,1,0,[1.72801e-005,-0.000198366],"","",true,false],
 	["RoadCone_F",[80.9961,7.99805,8.82149e-006],360,1,0.00993533,[0.00215815,0.00383759],"terminalcone","",true,false],
-	["B_Slingload_01_Ammo_F",[81.4902,15.3965,4.76837e-007],177.975,1,0.00660153,[4.82622e-007,2.73177e-006],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[84.0645,7.69922,0],90.1734,1,0,[0,-0],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[84.1816,23.5664,0],90.1734,1,0,[0,-0],"","",true,false],
 	["Land_Axe_fire_F",[89.0762,-0.289063,-0.00336051],90.1734,1,0,[-1.562e-005,-5.16511e-006],"","",true,false],
@@ -374,13 +366,10 @@ Using orientation of objects: yes
 */
 feres_blubase =
 [
-	["B_Slingload_01_Repair_F",[-155.357,5.54248,0.0571232],236.278,1,0.0120523,[0.713568,-0.322086],"blubaserepairbox","",true,false],
 	["Land_HelipadSquare_F",[-158.943,21.623,0],227.403,1,0,[0.108804,0.00456093],"blubasehelipad","",true,false],
 	["Land_Cargo_Patrol_V1_F",[-166.469,5.62646,0],236.321,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-168.973,13.8789,0.00465584],324.121,1,0.00609955,[-1.51807,2.98215],"","",true,false],
 	["RoadCone_F",[-170.5,19.105,4.57764e-005],359.962,1,0.010012,[0.0265697,-0.259675],"terminalcone","",true,false],
 	["Land_Cargo_House_V1_F",[-172.521,-4.11035,0.324123],236.321,1,0,[0.23298,0.211489],"","",true,false],
-	["B_Slingload_01_Fuel_F",[-171.402,31.4375,0.00256348],236.3,1,0.00582188,[-0.505582,1.36586],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-177.432,14.0396,-0.257574],55.4774,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-179.699,-0.183105,0.375683],323.224,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[-175.209,18.8696,0],236.321,1,0,[0,0],"","",true,false],
@@ -410,7 +399,6 @@ Using orientation of objects: yes
 */
 molos_blubase =
 [
-	["B_Slingload_01_Fuel_F",[-176.939,-123.359,0.00619125],310.499,1,0,[-3.55422,-1.00009],"","",true,false],
 	["Land_FireExtinguisher_F",[-189.207,-112.908,0.000244141],310.653,1,0,[0.197725,-0.562359],"","",true,false],
 	["Land_Axe_fire_F",[-188.707,-113.861,-0.00332832],310.508,1,0,[-0.62086,0.373256],"","",true,false],
 	["Danger",[-189.285,-114.596,0],0,1,0,[0,0],"","",true,false],
@@ -424,14 +412,12 @@ molos_blubase =
 	["Land_HelipadSquare_F",[-182.986,-138.088,0],301.613,1,0,[-5.28587,-1.73779],"blubasehelipad","",true,false],
 	["Land_BagBunker_Small_F",[-204.672,-106.348,-0.0295944],129.841,1,0,[3.54412,4.44456],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-202.625,-115.678,0.0222244],41.2451,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-192.611,-131.188,0.0257168],38.2112,1,0.0121096,[0.57267,-2.83807],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-195.297,-122.385,-0.0765495],129.668,1,0,[0,-0],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-205.742,-119.369,-0.131025],310.511,1,0,[0,0],"","",true,false],
 	["Land_Net_Fence_Gate_F",[-204.414,-117.969,-0.015358],310.511,1,0,[0,0],"","",true,false],
 	["Land_Medevac_house_V1_F",[-212.318,-115.24,0.000999451],310.156,1,0,[0,0],"blubasehospital","",true,false],
 	["Land_New_WiredFence_10m_F",[-209.57,-124.09,-0.127295],37.4148,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V1_F",[-200.42,-135.215,0],310.511,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Repair_F",[-197.479,-145.883,0.00175476],310.482,1,0.00618307,[-1.862,1.10897],"blubaserepairbox","",true,false],
 	["Land_Cargo_House_V1_F",[-211.414,-132.053,0.224188],310.509,1,0,[-0.762329,-0.0483798],"","",true,false],
 	["Land_BagBunker_Small_F",[-219.406,-124.318,-0.0262489],129.61,1,0,[3.099,0.0880829],"","",true,false]
 ];
@@ -479,9 +465,6 @@ Using orientation of objects: yes
 
 [
 	["Land_HelipadSquare_F",[-111.321,-78.666,0],217.773,1,0,[0,0],"blubasehelipad","",true,false],
-	["B_Slingload_01_Repair_F",[-115.601,-105.708,9.53674e-007],226.69,1,0.0051586,[-5.88112e-006,-1.51752e-005],"blubaserepairbox","",true,false],
-	["B_Slingload_01_Fuel_F",[-139.543,-80.9404,-1.43051e-005],226.69,1,0.00672271,[1.13647e-007,-6.58186e-006],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-130.144,-97.9512,-1.43051e-005],315.911,1,0,[-5.63504e-007,1.8178e-005],"","",true,false],
 	["RoadCone_F",[-135.473,-91.0039,-6.67572e-006],226.692,1,0,[0.000918308,0.00257029],"terminalcone","",true,false],
 	["Land_Cargo_Patrol_V4_F",[-125.735,-105.974,0],226.69,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V4_F",[-138.019,-93.4414,0],226.69,1,0,[0,0],"","",true,false],
@@ -544,13 +527,11 @@ Using orientation of objects: yes
 */
 
 [
-	["B_Slingload_01_Repair_F",[123.664,-37.8894,8.86917e-005],35.7597,1,0.0117588,[0.0049778,0.0041],"blubaserepairbox","",true,false],
 	["Land_Cargo_Patrol_V4_F",[133.541,-35.6646,0],35.7639,1,0,[0,0],"","",true,false],
 	["Land_Cargo_House_V1_F",[136.556,-24.4561,0.072571],35.7639,1,0,[0,0],"","",true,false],
 	["Land_HelipadSquare_F",[123.826,-63.7542,0],275.681,1,0,[0.380173,0.805451],"blubasehelipad","",true,false],
 	["Land_BagBunker_Small_F",[143.621,-15.8235,0.00999737],214.898,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[144.646,-25.6436,-2.86102e-006],122.665,1,0,[0,-0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[139.408,-42.748,-3.8147e-006],124.983,1,0.0133406,[-5.45785e-006,2.61224e-005],"","",true,false],
 	["Land_New_WiredFence_10m_F",[147.528,-39.7307,-2.86102e-006],214.918,1,0,[0,0],"","",true,false],
 	["Land_Net_Fence_Gate_F",[151.171,-30.2771,0.000781059],35.7639,1,0,[0,0],"","",true,false],
 	["RoadCone_F",[145.943,-48.5266,3.33786e-006],35.7617,1,0.0197804,[0.000967092,0.00265898],"terminalcone","",true,false],
@@ -559,7 +540,6 @@ Using orientation of objects: yes
 	["Land_Cargo_Patrol_V4_F",[147.979,-45.6409,0],35.7639,1,0,[0,0],"","",true,false],
 	["Land_TentDome_F",[153.418,-22.7249,0.09123],216.034,1,0,[0,0],"blubasemash","",true,false],
 	["Land_MapBoard_F",[154.146,-40.9424,-0.00223207],242.666,1,0,[-0.330114,0.00269133],"blubasewhiteboard","",true,false],
-	["B_Slingload_01_Fuel_F",[151.901,-57.676,0.0302691],35.7791,1,0.0133303,[1.78849,-1.21493],"","",true,false],
 	["Land_FieldToilet_F",[157.271,-43.054,-3.29018e-005],35.7616,1,0,[0.00214665,-0.00121344],"","",true,false],
 	["Land_Fire_burning",[157.767,-42.53,0.40119],35.7639,1,0,[0,0],"","",true,false],
 	["Land_Sign_WarningUnexplodedAmmo_F",[157.348,-44.5308,-0.000141621],35.7639,1,0,[0,0],"","",true,false],
@@ -646,17 +626,14 @@ Using orientation of objects: yes
 */
 
 [
-	["B_Slingload_01_Repair_F",[-70.8145,-11.6729,9.53674e-007],203.092,1,0.00540471,[-1.27715e-005,-1.75108e-005],"blubaserepairbox","",true,false],
 	["Land_HelipadSquare_F",[-75.5957,15.1289,0],194.175,1,0,[0,0],"blubasehelipad","",true,false],
 	["Land_Cargo_Patrol_V4_F",[-80.001,-15.8994,0],203.092,1,0,[0,0],"","",true,false],
 	["Land_Cargo_House_V1_F",[-79.6816,-27.2998,0.121078],203.092,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-87.2881,-10.3223,0],292.314,1,0.00635913,[-1.97062e-006,2.26678e-005],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-88.6348,-28.1113,-1.90735e-006],289.996,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-94.5361,-14.999,-1.90735e-006],22.249,1,0,[0,0],"","",true,false],
 	["RoadCone_F",[-94.9473,-6.07422,8.58307e-006],203.09,1,0,[0.00202321,0.00392737],"terminalcone","",true,false],
 	["Land_Net_Fence_Gate_F",[-96.0186,-25.0225,9.53674e-007],203.092,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V4_F",[-96.2734,-9.33105,0],203.092,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Fuel_F",[-98.0566,0.795898,0],203.092,1,0.00651541,[2.0393e-007,-2.59308e-006],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-98.7197,-23.9922,0.00152302],293.826,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-94.251,-25.9072,9.53674e-007],203.092,1,0,[0,0],"","",true,false],
 	["Land_TentDome_F",[-96.3389,-31.9844,0.0810776],23.3654,1,0,[0,0],"blubasemash","",true,false],
@@ -716,10 +693,8 @@ Using orientation of objects: yes
 */
 
 [
-	["B_Slingload_01_Repair_F",[-31.5315,-65.5083,0],162.304,1,0.0598618,[-4.59328e-006,2.21992e-005],"blubaserepairbox","",true,false],
 	["Land_HelipadSquare_F",[-54.1174,-49.9053,0],153.387,1,0,[0,-0],"blubasehelipad","",true,false],
 	["Land_Cargo_Patrol_V4_F",[-35.7249,-74.708,0],162.304,1,0,[0,-0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[-44.8862,-75.2468,-9.53674e-007],251.525,1,0.0404973,[-5.81259e-006,-4.53834e-005],"","",true,false],
 	["Land_Cargo_House_V1_F",[-28.5107,-83.7747,0.13077],162.3,1,0,[-1.11764,0.517588],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-47.3186,-83.5232,0.0119896],341.461,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-34.2854,-89.5483,-0.330708],249.207,1,0,[0,0],"","",true,false],
@@ -728,7 +703,6 @@ Using orientation of objects: yes
 	["Land_BagBunker_Small_F",[-25.7859,-94.6184,-0.0014019],341.441,1,0,[0.144046,-0.0483623],"","",true,false],
 	["Land_Net_Fence_Gate_F",[-41.938,-92.0781,0.229599],162.304,1,0,[0,-0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-44.6116,-93.0645,0.00152302],253.038,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Fuel_F",[-64.3948,-76.4443,-9.53674e-007],162.304,1,0,[-3.33903e-006,2.14627e-005],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-39.9763,-91.5862,-0.018549],162.304,1,0,[0,-0],"","",true,false],
 	["Land_MapBoard_F",[-52.2693,-88.2134,-0.00218868],9.24914,1,0,[-0.31977,-0.00309329],"blubasewhiteboard","",true,false],
 	["Land_TentDome_F",[-37.1824,-98.3887,0.2115],342.58,1,0,[-0.0167437,0.96595],"blubasemash","",true,false],
@@ -792,11 +766,9 @@ Using orientation of objects: yes
 	["Land_New_WiredFence_10m_F",[-2.19189,148.329,0.000468254],317.649,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Patrol_V4_F",[11.1248,155.14,0.000469208],230.745,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_5m_F",[-6.14209,152.889,0.000470161],230.745,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Repair_F",[21.2227,154.62,4.76837e-006],230.744,1,0.00492431,[2.19853e-005,0.000375418],"blubaserepairbox","",true,false],
 	["Land_BagBunker_Small_F",[-18.8638,156.757,0.000470161],110.079,1,0,[0,-0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-1.3335,162.683,0.000468254],49.902,1,0,[0,0],"","",true,false],
 	["Land_New_WiredFence_10m_F",[-9.21265,156.659,0.00199318],321.479,1,0,[0,0],"","",true,false],
-	["B_Slingload_01_Ammo_F",[7.2583,163.462,-3.8147e-006],319.967,1,0.00671845,[-5.303e-007,2.2812e-005],"","",true,false],
 	["RoadCone_L_F",[-12.7051,164.532,0.0021286],230.744,1,0,[0.00776869,0.00189537],"ammoboxcone","",true,false],
 	["Land_MapBoard_F",[-7.51489,165.564,-0.00220585],77.773,1,0,[-0.31939,0.000975451],"blubasewhiteboard","",true,false],
 	["Flag_UK_F",[-19.1382,165.652,0.000473022],230.745,1,0,[0,0],"baseflag","",true,false],
@@ -806,7 +778,6 @@ Using orientation of objects: yes
 	["Land_Sign_WarningUnexplodedAmmo_F",[-9.65918,169.888,0.00479412],230.745,1,0,[0,0],"","",true,false],
 	["Land_Axe_fire_F",[-11.4619,170.301,-0.00336361],230.749,1,0,[-0.000320164,7.18269e-005],"","",true,false],
 	["RoadCone_F",[2.44556,170.779,4.76837e-006],230.748,1,0,[0.00193905,0.00391166],"terminalcone","",true,false],
-	["B_Slingload_01_Fuel_F",[4.09375,176.502,-1.90735e-006],230.745,1,0.00665843,[-3.85053e-006,0.000246576],"","",true,false],
 	["Land_HelipadSquare_F",[27.4346,181.359,0],221.828,1,0,[0,0],"blubasehelipad","",true,false]
 ];
 
