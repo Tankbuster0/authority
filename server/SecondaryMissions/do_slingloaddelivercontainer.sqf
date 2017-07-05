@@ -36,9 +36,9 @@ while {_deliverypos in [[0,0,0], islandcentre] } do
 _dir = [cpt_position getdir _deliverypos] call TKY_fnc_cardinaldirection;
 _dist = [cpt_position distance2d _deliverypos] call TKY_fnc_estimateddistance;
 format ["Freindly forces %1. There's a %2 at the Airhead, slingload that to them %3m %4 %5", _misstxt, _displayname, _dist,_dir, _tname] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-[_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
-[_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons")] call BIS_fnc_spawngroup;
-
+_smgrp1 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
+_smgrp2 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons")] call BIS_fnc_spawngroup;
+{_smcleanup pushback _x} foreach {(units _smgrp1) + (units _smgrp2)};
 if ((count _hurons) > 0) then //players already have a huron, don't give them another one
 	{
 	"Use your Huron helicopter to airlift the container." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -62,11 +62,13 @@ while {missionactive} do
 		{
 		_smoker1 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
 		_smoke1 = true;
+		_smcleanup pushback _smoker1;
 		};
 		if ((!_smoke2) and {((_smheli distance2d) < 100)}) then
 		{
 		_smoker2 = createvehicle ["SmokeShellBlue", _deliverypos, [],0,"NONE"];
 		_smoke2 = true;
+		_smcleanup pushback _smoker2;
 		};
 
 
