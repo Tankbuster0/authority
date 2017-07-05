@@ -77,19 +77,19 @@ while {missionactive} do
 	    (!alive smcontainer) or
 	    (((getpos smcontainer select 2) < 5 ) and {(smcontainer distance2d _deliverypos) > 20})
 	    ) then
-		{
-		missionsuccess = false;
-		missionactive = false;
-		};
+			{
+			missionsuccess = false;
+			missionactive = false;
+			};
 
 	if (
 	    ((getpos smcontainer select 2)< 2) and
 		{smcontainer distance 2d _deliverypos < 20}
 		) then
 		{
-		missionsuccess = true;
-		missionactive = false;
-		"Mission successful! They got the much needed supplies." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			missionsuccess = true;
+			missionactive = false;
+			"Mission successful! They got the much needed supplies." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
