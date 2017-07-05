@@ -4,8 +4,7 @@ _myscript = "do_slingloaddelivercontainer";
 __tky_starts;
 private ["_smcleanup","_conttype","_misstxt","_displayname","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir", "_smheli", "_smoke1", "_smoke2"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
-_hurons = vehicles select {((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and {alive _x} and {canMove _x}};
-
+_hurons = vehicles select {((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and {(alive _x) (and canMove _x)}};
 _conttype = selectRandom huroncontainertypes;
 switch (_conttype) do
 	{
@@ -15,7 +14,6 @@ switch (_conttype) do
 	case "B_Slingload_01_Medevac_F": {_misstxt = "need these critical medical supplies for their forward medical facilities"};
 	case "B_Slingload_01_Repair_F": {_misstxt = "need to repair a number of their heavy vehicles in theatre"};
 	};
-
 _displayname = [_conttype] call tky_fnc_getscreenname;
 _contpos = [blubasehelipad, 8, 50, 8, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
 smcontainer = createVehicle [_conttype, _contpos,[],0,"NONE"];
@@ -31,7 +29,6 @@ while {_deliverypos in [[0,0,0], islandcentre] } do
 	_deliverypos = [_mytarget, 50, _testradius, 23, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
 	_testradius = _testradius * 2;
 	};
-
 // work out the direction of the objective from the logic
 _dir = [cpt_position getdir _deliverypos] call TKY_fnc_cardinaldirection;
 _dist = [cpt_position distance2d _deliverypos] call TKY_fnc_estimateddistance;
@@ -47,8 +44,6 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 	{
 	_nul = [blubasehelipad, blufordropaircraft, "B_Heli_Transport_03_unarmed_F", [0,0,0], "Use this to do the slingload container mission.", "huron" ] execVM "server\spawnairdrop.sqf";
 	};
-
-
  failtext = "Mission failure! You didn't get the supplies to the troops. They needed them badly.";
 _smoke1= false;
 _smoke2 = false;
@@ -70,8 +65,6 @@ while {missionactive} do
 		_smoke2 = true;
 		_smcleanup pushback _smoker2;
 		};
-
-
 	if (
 	    (!alive _smheli) or
 	    (!alive smcontainer) or
@@ -81,17 +74,18 @@ while {missionactive} do
 			missionsuccess = false;
 			missionactive = false;
 			};
-
 	if (
-	    ((getpos smcontainer select 2)< 2) and
-		{smcontainer distance 2d _deliverypos < 20}
+	    ((isNull (ropeAttachedTo smcontainer))) and
+			{
+				(smcontainer distance 2d _deliverypos < 20) and
+				((getpos smcontainer select 2)< 2)
+			}
 		) then
-		{
+			{
 			missionsuccess = true;
 			missionactive = false;
 			"Mission successful! They got the much needed supplies." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		};
+			};
 	};
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
-
 __tky_ends
