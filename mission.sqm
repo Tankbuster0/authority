@@ -152,7 +152,6 @@ class AddonsMetaData
 	};
 };
 randomSeed=11790110;
-appId=395180;
 class ScenarioData
 {
 	author="tankbuster";
@@ -160,11 +159,10 @@ class ScenarioData
 	{
 		gameType="Coop";
 	};
-	wreckManagerMode=3;
 	wreckRemovalMaxTime=411.59161;
 	corpseManagerMode=1;
 	corpseLimit=100;
-	corpseRemovalMinTime=60.000004;
+	corpseRemovalMinTime=154.31776;
 	corpseRemovalMaxTime=340;
 	minPlayerDistance=200;
 };
@@ -431,7 +429,7 @@ class Mission
 	class Intel
 	{
 		briefingName="Coop 40 Authority Altis";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 1418";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 1531";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
