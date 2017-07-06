@@ -64,6 +64,7 @@ switch (cpt_name) do
 		_composition = tuvanaka_blubase;
 		};
 	};
+airheadname = cpt_name;
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 //first get all the secondary airstrips
 _airstripdata = [];
