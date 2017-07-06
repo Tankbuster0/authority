@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -16,11 +16,11 @@
 */
 // This file creates patroling air vehicles
 
-dep_fnc_spawn_air = 
+dep_fnc_spawn_air =
 {
 	private ["_start","_end","_startpos","_endpos","_waypoints","_vehicle","_group","_player","_safe"];
 	_waypoints = _this select 0;
-	
+
 	_start = floor random (count _waypoints);
 	_end = _start;
 	_startpos = _waypoints select _start;
@@ -30,13 +30,13 @@ dep_fnc_spawn_air =
 		_end = floor random (count _waypoints);
 		_endpos = _waypoints select _end;
 	};
-	
+
 	["Begin air patrol from %1 to %2", _start, _end] spawn dep_fnc_log;
-	
-	_return = [_startpos, 0, (dep_air_vehicles call BIS_fnc_selectRandom), dep_side] call BIS_fnc_spawnVehicle;
+
+	_return = [_startpos, 0, (dep_air_vehicles call BIS_fnc_selectRandom), civilian] call BIS_fnc_spawnVehicle;
 	_vehicle = _return select 0;
 	_group = _return select 2;
-    
+
     _freeCargoPositions = _vehicle emptyPositions "cargo";
     if (_freeCargoPositions >= 1) then {
         _freeCargoPositions = ceil random _freeCargoPositions;
@@ -47,14 +47,14 @@ dep_fnc_spawn_air =
             _soldier moveInCargo _vehicle;
         };
     };
-    
+
     if (_vehicle isKindOf "Plane") then {
         _vehicle flyInHeight 100;
     } else {
         _vehicle flyInHeight 50;
         _group setCombatMode "RED";
     };
-    
+
     _player = dep_players call BIS_fnc_selectRandom;
     if !(isNil "_player") then {
         _player = getPos _player;
@@ -72,7 +72,7 @@ dep_fnc_spawn_air =
         _wp setWaypointFormation "COLUMN";
         _wp setWaypointType "MOVE";
     };
-	
+
 	_wp = _group addWaypoint [_endpos, 0];
 	_wp setWaypointBehaviour "SAFE";
 	if ((random 1) < 0.5) then
@@ -85,7 +85,7 @@ dep_fnc_spawn_air =
 	_wp setWaypointType "MOVE";
 	_wp setWaypointCompletionRadius 300;
 	_wp setWaypointStatements ["true", "cleanUpveh = vehicle leader this; {deleteVehicle _x} forEach crew cleanUpveh + [cleanUpveh];"];
-	
+
 	_vehicle;
 };
 
@@ -98,7 +98,7 @@ _vehicles = [];
 
 // Find waypoints
 _newdir = 0;
-for "_c" from 0 to 15 do 
+for "_c" from 0 to 15 do
 {
     _pos = [dep_map_center, dep_map_radius + 1000, _newdir] call BIS_fnc_relPos;
     _newdir = _newdir + (360 / 16);
