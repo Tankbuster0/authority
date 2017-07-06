@@ -36,7 +36,24 @@ dep_fnc_spawn_air =
 	_return = [_startpos, 0, (dep_air_vehicles call BIS_fnc_selectRandom), civilian] call BIS_fnc_spawnVehicle;
 	_vehicle = _return select 0;
 	_group = _return select 2;
-
+    switch (typeOf _vehicle) do
+        {
+        case "I_Heli_Transport_02_F":
+            {
+            if ((random 1) > 0.5  ) then
+                {
+                _vehicle setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_dahoman_co.paa"];
+                _vehicle setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_dahoman_co.paa"];
+                _vehicle setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_dahoman_co.paa"];
+                }
+                else
+                {
+                _vehicle setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_ion_co.paa"];
+                _vehicle setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_ion_co.paa"];
+                _vehicle setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_ion_co.paa"];
+                };
+            };
+        };
     _freeCargoPositions = _vehicle emptyPositions "cargo";
     if (_freeCargoPositions >= 1) then {
         _freeCargoPositions = ceil random _freeCargoPositions;
