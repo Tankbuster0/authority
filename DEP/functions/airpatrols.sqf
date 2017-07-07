@@ -53,6 +53,7 @@ dep_fnc_spawn_air =
                 _vehicle setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_ion_co.paa"];
                 };
             };
+        case  "O_Heli_Light_02_unarmed_F": {_vehicle setObjectTextureGlobal [0, "\a3\air_f\Heli_Light_02\Data\heli_light_02_ext_civilian_co.paa"]; };
         };
     _freeCargoPositions = _vehicle emptyPositions "cargo";
     if (_freeCargoPositions >= 1) then {

@@ -109,8 +109,8 @@ dep_housepop = 50;
 // Vehicles
 // dep_civ_veh         = ["C_Offroad_02_unarmed_F","C_Offroad_01_F","C_Truck_02_transport_F","C_Truck_02_covered_F","C_SUV_01_F"];
  dep_ground_vehicles = ["I_C_Offroad_02_unarmed_F","I_C_Van_01_transport_F","I_G_Van_01_transport_F","I_G_Offroad_01_armed_F","O_T_Truck_03_transport_ghex_F"];
- dep_air_vehicles     = ["I_C_Plane_Civil_01_F","I_Heli_light_03_unarmed_F","I_C_Heli_Light_01_civil_F","I_Heli_Transport_02_F"];
-
+ dep_air_vehicles     = ["I_C_Plane_Civil_01_F","I_Heli_light_03_unarmed_F","I_C_Heli_Light_01_civil_F","I_Heli_Transport_02_F", "O_Heli_Light_02_unarmed_F"];
+// ^^^ caesar, hellcat, m900, mohawk, orca
 // Static weapons
  dep_static_aa       = "O_static_AA_F";
  dep_static_at       = "O_static_AA_F";
