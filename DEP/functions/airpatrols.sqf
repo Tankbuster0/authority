@@ -54,6 +54,7 @@ dep_fnc_spawn_air =
                 };
             };
         case  "O_Heli_Light_02_unarmed_F": {_vehicle setObjectTextureGlobal [0, "\a3\air_f\Heli_Light_02\Data\heli_light_02_ext_civilian_co.paa"]; };
+        case "I_Heli_light_03_unarmed_F": { [_vehicle, ["Green",1], true] call BIS_fnc_initVehicle;};
         };
     _freeCargoPositions = _vehicle emptyPositions "cargo";
     if (_freeCargoPositions >= 1) then {
