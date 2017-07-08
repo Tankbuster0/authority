@@ -35,7 +35,7 @@ class rsc_button_2: RscButton
 	y = 0.511003 * safezoneH + safezoneY;
 	w = 0.0412444 * safezoneW;
 	h = 0.0550163 * safezoneH;
-	action = "closeDialog 0"
+	action = "closeDialog 0";
 };
 class tky_recListBox: RscListbox
 {

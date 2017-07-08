@@ -31,4 +31,8 @@ player createDiarySubject ["authcomm","Development"];//subject author, developme
 player createDiaryRecord ["authcomm", ["Code repository", "https://app.assembla.com/spaces/coop40-authority-altis/subversion/source"]];
 player createDiaryRecord ["authcomm", ["Bug and feature tracker", "https://www.hostedredmine.com/projects/operation-authority"]];
 player createDiaryRecord ["authcomm", ["Bohemia Interactive Forum", "https://forums.bistudio.com/forums/topic/194184-authority-20-player-coop/"]];
+
+//
+player createDiarySubject ["dialog", "Mission Status"];
+player createDiaryRecord ["dialog", ["Mission Status", "<execute expression='[] spawn tky_fnc_showmissiondialog;'>Mission Status Dialog</execute>"] ];
 __tky_ends
