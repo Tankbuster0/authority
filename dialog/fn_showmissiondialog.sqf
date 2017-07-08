@@ -1,8 +1,8 @@
 disableSerialization;
-
+diag_log "***fn_showmissiondialog runs";
 _shopitems = ["squiffy", "blobby", "test"];
 
-createDialog "d_tky_showmissiondialog";
+createDialog "tky_missiondialog";
 
 waitUntil {!isNull (findDisplay 9999);};
 
