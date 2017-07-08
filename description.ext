@@ -57,6 +57,7 @@ class cfgFunctions
 {
 
 	#include "CHVD\CfgFunctions.hpp"
+	#include "dialog\functions.hpp"
 	class tky
 	{
 		class auth_client
