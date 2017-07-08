@@ -3,7 +3,7 @@ class tky
 	tag = "tky";
 	class dialog
 	{
-		file - "functions";
+		file = "functions";
 		class showmissiondialog {};
 
 	};
