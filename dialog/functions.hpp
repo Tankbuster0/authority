@@ -1,8 +1,9 @@
-class tky
+class d_tky
 {
-	tag = "tky";
+	tag = "d_tky";
 	class dialog
 	{
+		file = "dialog";
 		class showmissiondialog {};
 
 	};
