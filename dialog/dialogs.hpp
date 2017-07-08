@@ -1,4 +1,4 @@
-class tky_missiondialog
+class d_tky_missiondialog
 {
 	idd = 9999;
 	movingEnabled = false;
@@ -9,7 +9,7 @@ class tky_missiondialog
 // GUI EDITOR OUTPUT START (by Tankbuster, v1.063, #Podydi)
 ////////////////////////////////////////////////////////
 
-class tky_rscPicture: RscPicture
+class d_tky_rscPicture: RscPicture
 {
 	idc = 1200;
 	text = "#(argb,8,8,3)color(0,0,1,0.5)";
@@ -18,7 +18,7 @@ class tky_rscPicture: RscPicture
 	w = 0.350577 * safezoneW;
 	h = 0.385114 * safezoneH;
 };
-class tky_rscButton_1: RscButton
+class d_tky_rscButton_1: RscButton
 {
 	idc = 1600;
 	text = "equip"; //--- ToDo: Localize;
@@ -37,7 +37,7 @@ class rsc_button_2: RscButton
 	h = 0.0550163 * safezoneH;
 	action = "closeDialog 0"
 };
-class tky_recListBox: RscListbox
+class d_tky_recListBox: RscListbox
 {
 	idc = 1500;
 	x = 0.355645 * safezoneW + safezoneX;
