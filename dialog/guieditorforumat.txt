@@ -1,0 +1,22 @@
+guieditorformat.txt
+shift ctrl s for exporting to dialogs.hpp format
+alt ctrl s for exporting to this file for backup. ctrl o to import to gui editor
+
+/* #Syhoce
+$[
+	1.063,
+	["tky_authority",[[0,0,1,1],0.025,0.04,"GUI_GRID"],0,0,0],
+	[1004,"tky_pt_txt_desc",[1,"",["0.324712 * safezoneW + safezoneX","0.46699 * safezoneH + safezoneY","0.0979553 * safezoneW","0.110033 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1800,"tky_frame",[1,"tky_frame",["0.298934 * safezoneW + safezoneX","0.268932 * safezoneH + safezoneY","0.402132 * safezoneW","0.495147 * safezoneH"],[-1,-1,-1,-1],[0.5,0.5,0.5,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1000,"tky_text",[1,"",["0.3144 * safezoneW + safezoneX","0.268932 * safezoneH + safezoneY","0.108266 * safezoneW","0.165049 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1200,"tky_pic",[1,"pics\ctrglogo256.jpg",["0.335023 * safezoneW + safezoneX","0.290938 * safezoneH + safezoneY","0.0721776 * safezoneW","0.110033 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1001,"tky_title_text",[1,"Authority Mission Status",["0.463911 * safezoneW + safezoneX","0.301941 * safezoneH + safezoneY","0.180444 * safezoneW","0.0660196 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","2"],[]],
+	[1002,"tky_pt_title_txt",[1,"Primary Target",["0.319556 * safezoneW + safezoneX","0.43398 * safezoneH + safezoneY","0.0721776 * safezoneW","0.0330098 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1801,"tky_pt_frame",[1,"",["0.309245 * safezoneW + safezoneX","0.422977 * safezoneH + safezoneY","0.38151 * safezoneW","0.176052 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1802,"tky_sm_frame",[1,"tky_sm_frame",["0.309245 * safezoneW + safezoneX","0.621036 * safezoneH + safezoneY","0.38151 * safezoneW","0.132039 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]],
+	[1003,"tky_sm_text",[1,"Secondary  Mission",["0.309245 * safezoneW + safezoneX","0.632039 * safezoneH + safezoneY","0.0773332 * safezoneW","0.0550163 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],[]]
+]
+*/
+
+
+1004 <<<<<<
