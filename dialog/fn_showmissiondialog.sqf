@@ -2,7 +2,7 @@ disableSerialization;
 
 _shopitems = ["squiffy", "blobby", "test"];
 
-createDialog "tky_snowmissiondialog";
+createDialog "tky_showmissiondialog";
 
 waitUntil {!isNull (findDisplay 9999);};
 

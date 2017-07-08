@@ -12,5 +12,5 @@ while {_spawnpos isEqualTo islandcentre } do
 	_testradius = _testradius * 2;
 	};
 player setpos _spawnpos;
-player addaction ["Mission Dialog", "[] spawn tky_fnc_showmissiondialog";];
+player addaction ["Mission Dialog", "[] spawn tky_fnc_showmissiondialog"];
 __tky_ends
