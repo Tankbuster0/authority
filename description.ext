@@ -55,11 +55,18 @@ class CfgSounds
 
 class cfgFunctions
 {
-
 	#include "CHVD\CfgFunctions.hpp"
-	#include "dialog\functions.hpp"
+
 	class tky
 	{
+		tag = "tky";
+		class dialog
+		{
+			file = "dialog";
+			class showmissiondialog {};
+
+		};
+
 		class auth_client
 		{
 			file = "client";
@@ -87,6 +94,9 @@ class cfgFunctions
 		};
 	};
 };
+
+#include "dialog\defines.hpp"
+#include "dialog\dialogs.hpp"
 class RscTitles
 {
 	#include "gvs\stc_include_alt.hpp"
