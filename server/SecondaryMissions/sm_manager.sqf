@@ -29,7 +29,8 @@ _smtypearray = [
 "landmineclear",// clear a nearby minefield
 "runwaycraterclear",// clear some craters from mainbase runway
 "stealaircraft",
-"slingloaddelivercontainer"// steal an aircraft
+"slingloaddelivercontainer",// steal an aircraft
+"sinktrawler"
  ];
 //_sm_required = 1;//debug only
 for "mycounter" from 1 to _sm_required do
@@ -37,8 +38,9 @@ for "mycounter" from 1 to _sm_required do
 	smcounter = mycounter;
 	sleep 1;
 	// custom exclusions
+	///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1 dont do navalmine clearance if theres no deep water nearby
-	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 50, 100]) select 0;
+	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
 	if (_deepestdepth < 25) then
 		{
@@ -49,9 +51,11 @@ for "mycounter" from 1 to _sm_required do
 	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then
 		{
 		_smtypearray = _smtypearray - ["runwaycraterclear"];
+		diag_log "*** sm manager removes runwaycraterclear from the sm array because we're at Almyra";
 		};
 	//#3 dont do aircraft steal if airhead is at tuvanaka, but can do it there if west have a heli
 	_wvecs = vehicles select {(([_x] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+
 	_whelivtols = _wvecs select
 	{
 		(
@@ -67,8 +71,36 @@ for "mycounter" from 1 to _sm_required do
 		 then
 		 	{
 		 	_smtypearray = _smtypearray - ["stealaircraft"];
+		 	diag_log "***sm manager removes stealaircraft from the sm array because we're at tuvanaka";
 		 	};
+	//#4 dont do sinktrawler if theres no deep water within 10k or if they dont have attack aircraft
+	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
+	_deepestdepth = _deepest select 1;
+	_wvecs = vehicles select {(([_x] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+	_wvecsarmed = _wvecs select {((typeof _x) find "unarmed") isEqualTo -1}; // only armed vecs
+	_wairarmed  = _wvecsarmed select
+	{
+		(
+			((typeof _x) isKindof  "Helicopter_Base_F") or
+			((typeof _x) isKindof  "Plane_Base_F")
+		)
+	};
 
+
+		if ( (_deepestdepth < 25) or ((count _wairarmed) < 1 )) then
+		{
+		_smtypearray = _smtypearray - ["sinktrawler"];
+		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
+		};
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////// end of exclusions;
 	_typeselected = selectRandom _smtypearray;
 	//_typeselected = "slingloaddelivercontainer";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
