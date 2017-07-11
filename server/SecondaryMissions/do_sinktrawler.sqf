@@ -5,7 +5,9 @@ __tky_starts;
 private [];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 
-_missionposs = selectBestPlaces [cpt_position, 10000, "sea * waterDepth", 100,20];
+_missionposs= (selectBestPlaces [cpt_position, 10000, "sea * waterDepth", 100,20]) select [0,5] ;
+
+_missionpos = selectRandom
 
 
 
