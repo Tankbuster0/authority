@@ -78,7 +78,7 @@ for "mycounter" from 1 to _sm_required do
 	_deepestdepth = _deepest select 1;
 	_wvecs = vehicles select {(([_x] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 	_wvecsarmed = _wvecs select {((typeof _x) find "unarmed") isEqualTo -1}; // only armed vecs
-	_wairarmed  = _wvecsarmed select
+	wairarmed  = _wvecsarmed select // array of blufor attack aircraft available to do this mission. made global for failure condition
 	{
 		(
 			((typeof _x) isKindof  "Helicopter_Base_F") or
