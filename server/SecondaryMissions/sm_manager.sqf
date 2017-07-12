@@ -86,23 +86,15 @@ for "mycounter" from 1 to _sm_required do
 		)
 	};
 
-
-		if ( (_deepestdepth < 25) or ((count _wairarmed) < 1 )) then
+		if ( (_deepestdepth < 25) or ((count wairarmed) < 1 )) then
 		{
 		_smtypearray = _smtypearray - ["sinktrawler"];
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
 		};
 
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////// end of exclusions;
 	_typeselected = selectRandom _smtypearray;
-	//_typeselected = "slingloaddelivercontainer";//<<< debug only
+	_typeselected = "slingloaddelivercontainer";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	_smmanagerhandle = execVM _fname;
