@@ -15,9 +15,10 @@ switch (_conttype) do
 	case "B_Slingload_01_Repair_F": {_misstxt = "need to repair a number of their heavy vehicles in theatre"};
 	};
 _displayname = [_conttype] call tky_fnc_getscreenname;
-_contpos = [blubasehelipad, 8, 50, 8, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
+_contpos = [blubasehelipad, 20, 70, 10, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
 smcontainer = createVehicle [_conttype, _contpos,[],0,"NONE"];
 [smcontainer, "smcontainer"] call fnc_setvehiclename;
+_smcleanup pushback smcontainer;
 _redtargets = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} };
 // get all the red held target logics that are more than 5 kilometer away
 _mytarget = selectRandom _redtargets;
@@ -36,7 +37,10 @@ smmissionstring = format ["Freindly forces %1. There's a %2 at the Airhead, slin
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 _smgrp1 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
 _smgrp2 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons")] call BIS_fnc_spawngroup;
-{_smcleanup pushback _x} foreach ((units _smgrp1) + (units _smgrp2));
+	{
+	_smcleanup pushback _x;
+	if ((vehicle _x) != _x)then {_smcleanup pushBack (vehicle _x);}
+	} foreach ((units _smgrp1) + (units _smgrp2));
 {if ((vehicle _x) isKindOf "LandVehicle") then {(vehicle _x) setfuel 0}} foreach (units _smgrp1);
 if ((count _hurons) > 0) then //players already have a huron, don't give them another one
 	{
@@ -49,7 +53,7 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 failtext = "Mission failure! You didn't get the supplies to the troops. They needed them badly.";
 _smoke1= false;
 _smoke2 = false;
-waitUntil {sleep 4; (((((getpos smcontainer) select 2) > 10) and ((speed (ropeAttachedTo smcontainer)) > 20)) or (damage smcontainer < 0.5) )};// mission underway..
+waitUntil {sleep 4; (((((getpos smcontainer) select 2) > 10) and ((speed (ropeAttachedTo smcontainer)) > 20)) or (damage smcontainer > 0.5) )};// mission underway..
 _smheli = ropeAttachedTo smcontainer;
 sleep 20;
 while {missionactive} do
