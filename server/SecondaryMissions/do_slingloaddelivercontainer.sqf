@@ -37,6 +37,7 @@ smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 _smgrp1 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
 _smgrp2 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons")] call BIS_fnc_spawngroup;
 {_smcleanup pushback _x} foreach ((units _smgrp1) + (units _smgrp2));
+{if ((vehicle _x) isKindOf "LandVehicle") then {(vehicle _x) setfuel 0}} foreach (units _smgrp1);
 if ((count _hurons) > 0) then //players already have a huron, don't give them another one
 	{
 	"Use your Huron helicopter to airlift the container." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
