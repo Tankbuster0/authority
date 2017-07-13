@@ -3,9 +3,6 @@
 _myscript = "do_navalmineclear";
 __tky_starts;
 private ["_myplaces","_seapos1","_mfdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
-//sea mine clearance mission
-//["UnderwaterMine", "UnderwaterMineAB", "UnderwaterMinePDM"];moored, bottom , surface
-//{_nv_hd_eh = _x addEventHandler ["HandleDamage",{if (_this select 4 find "Unde" >=0) then {missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.';diag_log "*** Boom111!!"; _x removeEventHandler ["HandleDamage", thisEventHandler ];}}]} foreach allPlayers;
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 
@@ -15,12 +12,8 @@ _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 __tky_debug
 _numberofmines = (ceil (random ( 2 * (playersNumber west) )) min 6);
-
-
-
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
-
 //for bottom mines, give it an atl zero  position, job done
 // for surface mines, give it an asl zero position
 // for moored mines, nned to choose a random depth between the two
@@ -61,11 +54,12 @@ diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-format ["Local fishermen have told us there are mines %1m %2 the edge of town. We need to defuse all of them. Only and engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+smmissionstring = format ["Local fishermen have told us there are mines %1m %2 the edge of town. We need to defuse all of them. Only and engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir];
+smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+publicVariable "smmissionstring";
 while {missionactive} do
 	{
 	sleep 3;
-
 	minearray = minearray - [objNull];//remove any exploded mines
 	if ((({mineactive _x} count minearray) isEqualTo 0) and (count minearray isEqualTo _numberofmines) ) then
 		{
@@ -78,7 +72,6 @@ while {missionactive} do
 		missionactive = false;
 		missionsuccess = false;
 		failtext = "A mine has gone off. You've failed this secondary mission.";
-
 		};
 	//diag_log format ["active %1, success %2,minesactive %3, countminearray %4, _numberofmines requested %5", missionactive, missionsuccess,({mineactive _x} count minearray),count minearray, _numberofmines ];
 	};
