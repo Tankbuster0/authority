@@ -5,7 +5,6 @@ __tky_starts;
 private ["_myplaces","_seapos1","_mfdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
-
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
 _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
@@ -14,9 +13,7 @@ __tky_debug
 _numberofmines = (ceil (random ( 2 * (playersNumber west) )) min 6);
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
-//for bottom mines, give it an atl zero  position, job done
-// for surface mines, give it an asl zero position
-// for moored mines, nned to choose a random depth between the two
+//for bottom mines, give it an atl zero  position,  for surface mines, give it an asl zero position for moored mines, need to choose a random depth between the two
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom seamines;
@@ -73,14 +70,10 @@ while {missionactive} do
 		missionsuccess = false;
 		failtext = "A mine has gone off. You've failed this secondary mission.";
 		};
-	//diag_log format ["active %1, success %2,minesactive %3, countminearray %4, _numberofmines requested %5", missionactive, missionsuccess,({mineactive _x} count minearray),count minearray, _numberofmines ];
 	};
 {deletevehicle _x} foreach _smcleanup;
 for "_zz" from 0 to _numberofmines do
 	{
 	deleteMarker format ["mine%1", _zz];
 	};
-
 __tky_ends
-
-
