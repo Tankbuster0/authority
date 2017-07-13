@@ -34,8 +34,9 @@ _tower setVectorUp [0,0,1];
 
 _dtreldir = [cpt_position getdir _tower] call TKY_fnc_cardinaldirection;
 _dtdist = [((cpt_position distance2D _tower) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-format ["Freindly force commanders have called in the position of a radio relay %1m %2 the edge of town. If we can destroy it, it will be a great help to them and us.", _dtdist, _dtreldir] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-
+smmissionstring = format ["Freindly force commanders have called in the position of a radio relay %1m %2 the edge of town. If we can destroy it, it will be a great help to them and us.", _dtdist, _dtreldir];
+smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+publicVariable "smmissionstring";
 for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
 	{
 	_mypos = [_tower, 5, 800, 6,0,0.5,0,1,1] call tky_fnc_findSafePos;
