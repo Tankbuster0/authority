@@ -33,9 +33,8 @@ _smtypearray = [
 "sinktrawler"
  ];
 //_sm_required = 1;//debug only
-for "mycounter" from 1 to _sm_required do
+for "smcounter" from 1 to _sm_required do
 	{
-	smcounter = mycounter;
 	sleep 1;
 	// custom exclusions
 	///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,17 +96,19 @@ for "mycounter" from 1 to _sm_required do
 	_typeselected = "slingloaddelivercontainer";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
+	diag_log format ["***current sm number is %1", smcounter];
 	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
 	//succeed or fail?
 	if not (missionsuccess) then
 		{
 		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		mycounter = mycounter -1;
+		smcounter = smcounter -1;
+		diag_log format ["***smm after mission failure, smcounter is %1", smcounter];
 		sleep 10;
 		}else
 		{
-		if (mycounter < _sm_required) then
+		if (smcounter < _sm_required) then
 			{
 			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
