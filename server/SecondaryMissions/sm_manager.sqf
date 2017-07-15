@@ -53,7 +53,7 @@ for "smcounter" from 1 to _sm_required do
 		diag_log "*** sm manager removes runwaycraterclear from the sm array because we're at Almyra";
 		};
 	//#3 dont do aircraft steal if airhead is at tuvanaka, but can do it there if west have a heli
-	_wvecs = vehicles select {(([_x] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 
 	_whelivtols = _wvecs select
 	{
@@ -75,7 +75,7 @@ for "smcounter" from 1 to _sm_required do
 	//#4 dont do sinktrawler if theres no deep water within 10k or if they dont have attack aircraft
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
-	_wvecs = vehicles select {(([_x] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 	_wvecsarmed = _wvecs select {((typeof _x) find "unarmed") isEqualTo -1}; // only armed vecs
 	wairarmed  = _wvecsarmed select // array of blufor attack aircraft available to do this mission. made global for failure condition
 	{
