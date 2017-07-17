@@ -35,6 +35,7 @@ _dir = [_mytarget getdir _deliverypos] call TKY_fnc_cardinaldirection;
 _dist = [_mytarget distance2d _deliverypos] call tky_fnc_estimateddistance;
 smmissionstring = format ["Freindly forces %1. There's a %2 at the Airhead, slingload that to them %3m %4 %5", _misstxt, _displayname, _dist,_dir, _tname];
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+publicVariable "smmissionstring";
 _smgrp1 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
 _smgrp2 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Infantry" >> "IRG_InfSquad_Weapons")] call BIS_fnc_spawngroup;
 	{

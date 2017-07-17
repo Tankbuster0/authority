@@ -22,7 +22,7 @@ player createDiaryRecord ["yourstuff", ["The Beachhead","The beachhead has an am
 //
 player createDiarySubject ["enemystuff", "The Enemy"];// subject enemy stuff
 player createDiaryRecord ["enemystuff", ["The dispersed enemy", "There are small enemy forces all over the island and they will attack you at every opportunity so be aware that you may be flanked or attacked from the rear at any time. They have access to air as well as land assets and actively patrol the entire island."]];
-player createDiaryRecord ["enemystuff", ["Towns and bases", "After the airbase falls to BLUFOR, your team will be ordered to clear nearby towns and bases. As with the airbase, there will be an HQ that controls the enemy air patrol assets and a radar that controls the enemy air reinforcements. At the edge of the target, there are some roadblocks. Destroying them will stop the enemy reinforcing by road.<br />There are civilians in the towns. Avoid killing them or damaging the vehicles and buildings at all cost."]];
+player createDiaryRecord ["enemystuff", ["Towns and bases", "After the airbase falls to BLUFOR, your team will be ordered to clear nearby towns and bases. As with the airbase, there will be an HQ that controls the enemy air patrol assets and a radar that controls the enemy air reinforcements. At the edge of the target, there are some roadblocks. Destroying them will stop the enemy reinforcing by road.<br />There are civilians in the towns. Avoid killing them or damaging their vehicles and buildings at all cost."]];
 player createDiaryRecord ["enemystuff", ["Airfield", "The first enemy target you will attack is always the airfield. It's heavily defended and will be reinforced throughout. <br />There's an HQ building, usually hidden under a camo net, that controls the enemy air patrols and attack aircraft.<br /> On a hill nearby you should see a radar installation, destroying that will stop the enemy reinforcing by air. "]];
 
 
@@ -35,4 +35,6 @@ player createDiaryRecord ["authcomm", ["Bohemia Interactive Forum", "https://for
 //
 player createDiarySubject ["dialog", "Mission Status"];
 player createDiaryRecord ["dialog", ["Mission Status", "<execute expression='[] spawn tky_fnc_showmissiondialog;'>Mission Status Dialog</execute>"] ];
+
+
 __tky_ends
