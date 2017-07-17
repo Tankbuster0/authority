@@ -88,8 +88,13 @@ tky_fnc_fleet_armed_aircraft =
 			(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x) and (((typeOf _x) isKindOf "Helicopter_Base_F") or ((typeOf _x) isKindOf "Plane_Base_F"))}
 		};
 	_wvecsairarmed = _wvecs select {((typeof _x) find "unarmed") isEqualTo -1}; // only armed vecs
-
 	_wvecsairarmed
-
+	};
+tky_fnc_fleet_heli_vtols =
+	{
+	private ["_wvecs","_whelivtols"];
+	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+	_whelivtols = _wvecs select	{( ((typeof _x) isKindof  "Helicopter_Base_F") or ((typeof _x) isKindof  "VTOL_Base_F") )	};
+	_whelivtols
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;

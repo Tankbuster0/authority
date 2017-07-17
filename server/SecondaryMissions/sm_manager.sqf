@@ -33,6 +33,7 @@ _smtypearray = [
 "sinktrawler"
  ];
 //_sm_required = 1;//debug only
+_pt_name = primarytarget getVariable "targetname";
 for "smcounter" from 1 to _sm_required do
 	{
 	sleep 1;
@@ -55,19 +56,8 @@ for "smcounter" from 1 to _sm_required do
 	//#3 dont do aircraft steal if airhead is at tuvanaka, but can do it there if west have a heli
 	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 
-	_whelivtols = _wvecs select
-	{
-		(
-			((typeof _x) isKindof  "Helicopter_Base_F") or
-			((typeof _x) isKindof  "VTOL_Base_F")
-		)
-	};
-	if
-		(
-		((count _whelivtols) > 1) and
-		{((getMarkerPos "cpt_marker_1") select [0,1]) isEqualTo [2119,13168]}// << tuvanaka
-		)
-		 then
+	_whelivtols = call tky_fnc_fleet_heli_vtols;
+	if	( ((count _whelivtols) > 1) and {_pt_name == "Tuvanaka"} ) then
 		 	{
 		 	_smtypearray = _smtypearray - ["stealaircraft"];
 		 	diag_log "***sm manager removes stealaircraft from the sm array because we're at tuvanaka";
@@ -75,17 +65,8 @@ for "smcounter" from 1 to _sm_required do
 	//#4 dont do sinktrawler if theres no deep water within 10k or if they dont have attack aircraft
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
-	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
-	_wvecsarmed = _wvecs select {((typeof _x) find "unarmed") isEqualTo -1}; // only armed vecs
-	wairarmed  = _wvecsarmed select // array of blufor attack aircraft available to do this mission. made global for failure condition
-	{
-		(
-			((typeof _x) isKindof  "Helicopter_Base_F") or
-			((typeof _x) isKindof  "Plane_Base_F")
-		)
-	};
-
-		if ( (_deepestdepth < 25) or ((count wairarmed) < 1 )) then
+	_wairarmed  = call tky_fnc_fleet_armed_aircraft;
+	if ( (_deepestdepth < 25) or ((count _wairarmed) < 1 )) then
 		{
 		_smtypearray = _smtypearray - ["sinktrawler"];
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
@@ -93,7 +74,7 @@ for "smcounter" from 1 to _sm_required do
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
 	_typeselected = selectRandom _smtypearray;
-	_typeselected = "slingloaddelivercontainer";//<<< debug only
+	//_typeselected = "slingloaddelivercontainer";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	diag_log format ["***current sm number is %1", smcounter];

@@ -34,6 +34,7 @@ cpt_name = (nextpt getVariable "targetname");
 cpt_island = (nextpt getVariable "targetlandmassid");
 primarytarget = nextpt;
 publicVariable "primarytarget";
+
 // Spawn Enemy Horde.
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 waitUntil {sleep 0.05;scriptDone _handle1};

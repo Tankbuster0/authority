@@ -20,7 +20,7 @@ for "_minecounter" from 1 to _numberofmines do
 	_deepenough = false;
 	while {not _deepenough} do
 		{
-		_realminepos = [_mfpos, (5 + random 50 ), (random 360)] call BIS_fnc_relPos;
+		_realminepos = [_mfpos, (5 + (random 50 )), (random 360)] call BIS_fnc_relPos;
 		_realminepos = _mfdist getpos [(5 + random 50), (random 360)];
 		_seadepth = (getTerrainHeightASL _realminepos);// <--returns a negative number
 		if (_seadepth < -15) then {_deepenough = true};

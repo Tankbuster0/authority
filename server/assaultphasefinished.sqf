@@ -40,7 +40,8 @@ cpt_marker setMarkerBrush "Cross";
 sleep 10;
 _handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
 waitUntil {sleep 1;scriptdone _handle2};
-
+smmissionstring = "There is currently no Secondary Mission";
+publicVariable "smmissionstring";
 nul =  execVM "server\primarytargetcleared.sqf";
 cpt_marker setMarkerBrush "Solid";
 __tky_ends

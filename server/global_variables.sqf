@@ -14,7 +14,7 @@ opfor_reinf_truck =  "O_Truck_03_transport_F";
 islandhop = false; publicVariable "islandhop";
 recoveryinuse = false; publicVariable "recoveryinuse";
 opfor_reinf_helos = ["O_Heli_Light_02_F","O_Heli_Transport_04_covered_F"];
-champyisgay = true;
+smmissionstring = "There is currently no Secondary Mission";
 airdropcounter = 0;
 prizecounter = 0;
 switch (tolower worldName) do
