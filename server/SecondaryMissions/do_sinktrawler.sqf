@@ -15,20 +15,21 @@ private ["_smcleanup","_missionposs","_missionpos","_smnrlog","_smnrtown","_smdi
 missionactive = true;missionsuccess = false; attackunderway = false; engagingveh = objNull;
 _1sinking = false; _2sinking = false;_bothsunk = false;_smcleanup = [];
 failtext = "You didn't sink those ships. Mission failed.";
-_missionposs= (selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,20]) select [0,5] ;
+_missionposs = (selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,20]) select [0,5] ;
+diag_log format ["*dst gets best places %1", _missionposs];
 _missionpos1 = selectRandom _missionposs;
+
 _missionpos = _missionpos1 select 0;
 diag_log format ["***dst says %1 for mission pos", _missionpos];
-_smnrlogs = (_missionpos nearEntities ["Logic", 8000]) select {( ((_x getVariable ["targetstatus", -1]) isEqualTo 1) and ((_x distance _missionpos) < 3000) ) };
+_smnrlogs = (_missionpos nearEntities ["Logic", 8000]) select {( ((_x getVariable ["targetstatus", -1]) isEqualTo 1) and ((_x distance _missionpos) < 8000) ) };
 diag_log format ["***dst unsorted logics near the mission pos %1", _smnrlogs];
-sleep 5;
 _sortedsmnrlogs = [_smnrlogs, [] , {_x distance2d _missionpos}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["***dst sorted the logics near mission pos %1", _sortedsmnrlogs];
 _smnrlog = _sortedsmnrlogs select 0;
 _smnrtown = (_smnrlog getVariable "targetname");
 _smdir = [(_smnrlog getDir _missionpos)] call tky_fnc_cardinaldirection;
 _smdist = [(_smnrlog distance2D _missionpos), 500] call tky_fnc_estimateddistance;
-smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m %2 of %3. Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smdist, _smdir,_smnrtown ];
+smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m %2 %3. Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smdist, _smdir,_smnrtown ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 smship1 = createvehicle ["C_Boat_Civil_04_F", _missionpos, [],0, "NONE"];
