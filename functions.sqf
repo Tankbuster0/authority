@@ -85,7 +85,7 @@ tky_fnc_fleet_armed_aircraft =
 	private ["_wvecs","_wvecsairarmed"];
 	_wvecs = vehicles select
 		{
-			(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x) and (((typeOf _x) isKindOf "Helicopter_Base_F") or ((typeOf _x) isKindOf "Plane_Base_F"))}
+			(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {((fuel _x) > 0.3) and (alive _x) and ((damage _x) < 0.4) and (((typeOf _x) isKindOf "Helicopter_Base_F") or ((typeOf _x) isKindOf "Plane_Base_F"))}
 		};
 	_wvecsairarmed = _wvecs select {((typeof _x) find "unarmed") isEqualTo -1}; // only armed vecs
 	_wvecsairarmed
