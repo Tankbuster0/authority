@@ -3,8 +3,10 @@
 _myscript = "do_template";
 __tky_starts;
 private [];
-missionactive = true;missionsuccess = false;_smcleanup = [];
- format ["missiondescription text ",2,false];
+smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
+smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
+publicVariable "smmissionstring";
+
  failtext = "Dudes. You suck texts";
 _
 while {missionactive} do
