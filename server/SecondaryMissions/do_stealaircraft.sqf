@@ -4,7 +4,7 @@ _myscript = "do_stealaircaft";
 __tky_starts;
 private ["_airportlogics","_smairfield","_hbuildings","_smtype","_smveh","_candposs","_smsaveh","_myhangar","_myhpos1","_defect","_mypos","_mechaagrp","_fueltrk", "_mypos", "_veh", "_playerinveh", "_smcleanup"];
 _playerinveh = false; missionactive = true; missionsuccess = false; _smcleanup = [];
-_airportlogics = entities "logic" select {((_x getVariable "targettype") isEqualTo 2) and {((_x getVariable "targetstatus") isEqualTo 1) and ((_x getVariable "targetstatus") != 2)}};//get all enemy held airfields that are not current target
+_airportlogics = entities "logic" select {((_x getVariable "targettype") isEqualTo 2) and {((_x getVariable "targetstatus") isEqualTo 1) and ((_x getVariable "targetstatus") != 2) and (_x getVariable "targetname"!= "Tuvanaka")}};//get all enemy held airfields that are not current target, and not tuvanaka
 _smairfield =  selectRandom _airportlogics;
 diag_log format ["***dsa makes a mission at %1", (_smairfield getVariable "targetname")];
 smmissionstring = format ["Satellite intel reports  there's an enemy aircraft at %1 that our R and D guys would quite like to see. Steal it and bring it back to our airbase.", _smairfield getVariable "targetname"]
