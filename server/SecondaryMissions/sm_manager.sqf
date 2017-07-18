@@ -74,7 +74,7 @@ for "smcounter" from 1 to _sm_required do
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
 	_typeselected = selectRandom _smtypearray;
-	//_typeselected = "slingloaddelivercontainer";//<<< debug only
+	_typeselected = "sinktrawler";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	diag_log format ["***current sm number is %1", smcounter];
