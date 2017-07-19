@@ -16,10 +16,33 @@ _mystart = selectRandom _potentialstarts;
 	_rp1 = (roadsConnectedTo _nr3) select 0;// the next road peice
 	_rp2 = ((roadsConnectedTo _rp1) - [_rp0]) select 0;// the next road peice that isnt rp0
 
+//domi version did it by placing a vehicle see below
 
+/*
+// places convoy vehicles on a straight piece of road. works best if the first is v close to the centre of a road piece.
+private ["_pos","_dir","_count","_vehs","_ret","_convoyleadvehicle","_previous_pos","_nextposa","_counter","_nextposb","_vec","_type", "_mytruck"];
+_pos = [_this, 0] call BIS_fnc_param;
+_dir = [_this, 1] call BIS_fnc_param;
+_count = [_this ,2] call BIS_fnc_param;
+_ret = [];
+_convoyleadvehicle = createVehicle [(bluconvoyvehicles select 0), _pos, [], 0, "NONE"];
+_convoyleadvehicle setdir _dir;
+_ret pushBack _convoyleadvehicle;
+_previous_pos = getPosATL _convoyleadvehicle;
+_nextposa = _convoyleadvehicle modeltoworld [0, -22, 0];
+for [{_counter = 1}, {_counter < _count}, {_counter = _counter +1}]  do
+	{
+	_nextposb = position ([_nextposa] call d_fnc_getnearestroad);
+	if ((_counter > 0) and (_counter < (_count-1))) then {_mytruck = (bluconvoyvehicles select 1)} else {_mytruck = (bluconvoyvehicles select 2)};//middle
+	_vec= createVehicle [(_mytruck), _nextposb,[],0,"NONE"];
+	_vec setdir ([_vec, _previous_pos] call bis_fnc_dirTo);
+	_ret pushBack _vec;
+	_previous_pos = getPosATL _vec;
+	_nextposa = _vec modeltoworld [0,-22,0];
+	};
+_ret
 
-// go again if the above routine fails in some way
-// check how we did this in domi.. might be better
+*/
 
 smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
