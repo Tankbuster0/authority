@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
-private ["_numberoftrucks"];
+private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_vec0","_nrs","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
@@ -33,7 +33,9 @@ for "_i" from 1 to _numberoftrucks do
 	_vec0 = createVehicle [(selectRandom _trucks), getpos _nextposb, [],0,"NONE"];
 	_vec0 setdir  (_prevroadpiece getDir _vec0); // set its direction away from the previous truck position
 
-	_nextposa = _nextposb;// reset for next iteration
+	_nextposa = _vec0 modelToWorld [0,22,0]; // get a pos in front of the truck for next iteration
+	_prevpos = _nextposb; // reset for next loop
+	_prevroadpiece = (_nearroadstopos select 0);// reset for next loop
 
 
 
