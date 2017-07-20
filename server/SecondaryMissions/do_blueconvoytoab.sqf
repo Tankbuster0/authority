@@ -6,7 +6,7 @@ private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_n
 missionactive = true;missionsuccess = false;_smcleanup = [];
 
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
-_numberoftrucks = 2 + (floor ((playersNumber west) /3));
+_numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
 _mystart = selectRandom _potentialstarts;
 
 _nr1 = _mystart nearroads 2000;// all thr roads nearby
@@ -50,16 +50,32 @@ _smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
 smmissionstring = format ["There's a convoy formed up %1m %2 %3 but the transport taking the driver crew has not made it. Send a team and get the convoy, in it's entirity to the centre of %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-
 _
 while {missionactive} do
 	{
 	sleep 3;
-	if (/*failure conditions*/) then
-		{
+
+	if ( !(_smcleanup isEqualTo ((inAreaArray [_vecx, 100,100,0,false, -1]) select {(typeof _x) in _trucks} )) ) then
+		{// ^^ if the cleanup array isnt the same as vehicles (but only those from the trucks array) within 100m of the 2nd truck
 		missionsuccess = false;
 		missionactive = false;
 		};
+
+	{// if a vehicle gets out of an 80 circle around mid vehicle
+	if (not (_x inarea [_vecx, 80,80,0,false, -1] )) then
+	 	{
+	 	"You are dropping out of the convoy Stay together!" remoteExec ["Hint", _x];
+
+	 	};
+	}forEach _smcleanup;
+
+	{
+		if (not alive _x) exitWith
+			{// fail if any vehicle dies
+			missionactive = false;
+			missionsuccess = false;
+			};
+	} foreach _smcleanup;
 
 	if (/*succeed conditions*/) then
 		{
