@@ -36,10 +36,6 @@ for "_i" from 1 to _numberoftrucks do
 	_nextposa = _vec0 modelToWorld [0,22,0]; // get a pos in front of the truck for next iteration
 	_prevpos = _nextposb; // reset for next loop
 	_prevroadpiece = (_nearroadstopos select 0);// reset for next loop
-
-
-
-
 	};
 
 
