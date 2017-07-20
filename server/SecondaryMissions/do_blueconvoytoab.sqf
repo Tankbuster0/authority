@@ -4,8 +4,9 @@ _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
 private ["_numberoftrucks"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
-_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} };
-// ^^^ improve this so it chooses potential start on same island
+
+_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
+
 _mystart = selectRandom _potentialstarts;
 
 	_nr1 = _mystart nearroads 2000;// all thr roads nearby
