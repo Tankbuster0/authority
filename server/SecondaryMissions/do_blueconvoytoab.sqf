@@ -6,16 +6,41 @@ private ["_numberoftrucks"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
-
+_numberoftrucks = 2 + (floor (playersNumber west /3));
 _mystart = selectRandom _potentialstarts;
 
-	_nr1 = _mystart nearroads 2000;// all thr roads nearby
-	_nr2 = _nr1 select {count ((roadsConnectedTo _x ) isEqualTo 1)}; // all the roads that have only 1 connection, ie, are dead ends
-	_nr3 = selectRandom _nr2;// take an random dead end piece
+_nr1 = _mystart nearroads 2000;// all thr roads nearby
+_nr2 = _nr1 select {count ((roadsConnectedTo _x ) isEqualTo 1)}; // all the roads that have only 1 connection, ie, are dead ends
+_nr3 = selectRandom _nr2;// take an random dead end piece
+_trucks = selectRandom blufortrucktypes;
 
-	_rp0 = _nr3;
-	_rp1 = (roadsConnectedTo _nr3) select 0;// the next road peice
-	_rp2 = ((roadsConnectedTo _rp1) - [_rp0]) select 0;// the next road peice that isnt rp0
+_vec0 = createVehicle [(selectRandom _trucks), getpos _nr3, [],0,"NONE"];
+_vec0 setdir (_vec0 getdir ((_nrs roadsConnectedTo) select 0)); // we know theres a roadconnectedto so orient the vehicle towards it
+_nextposa = _vec0 modeltoworld [0, 22, 0]; //look 22m infront
+_prevpos = getpos _nr3;
+_prevroadpiece = nr3;
+for "_i" from 1 to _numberoftrucks do
+	{
+	_nearroadstopos = _nextposa nearRoads 15;// get rp near the position in front of the previous truck
+	_nearroadstopos = _nearroadstopos - [_prevroadpiece];// just in case, remove the previous rp from any found
+	if (_nearroadstopos isEqualTo []) then
+		{
+		_nearroadstopos = (_nextposa nearRoads 25);
+		_nearroadstopos = _nearroadstopos - [_prevroadpiece];// just in case the nr 15 didnt get anything, we look further out
+		};
+	_nearroadstopos = [_nearroadstopos,[],{_prevpos distance2d _x},"ASCEND"] call BIS_fnc_sortby;// sort them so select 0 is closet to prevpos
+	_nextposb = getpos (_nearroadstopos select 0);// get its position
+	_vec0 = createVehicle [(selectRandom _trucks), getpos _nextposb, [],0,"NONE"];
+	_vec0 setdir  (_prevroadpiece getDir _vec0); // set its direction away from the previous truck position
+
+	_nextposa = _nextposb;// reset for next iteration
+
+
+
+
+	};
+
+
 
 //domi version did it by placing a vehicle see below
 
