@@ -84,7 +84,7 @@ opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];
 opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F", "O_Plane_Fighter_02_F"];
 huroncontainertypes =  ["B_Slingload_01_Ammo_F", "B_Slingload_01_Cargo_F", "B_Slingload_01_Fuel_F", "B_Slingload_01_Medevac_F", "B_Slingload_01_Repair_F"];
-blufortrucktypes [["B_Truck_01_box_F","B_Truck_01_covered_F", "B_Truck_01_transport_F"], ["I_C_Van_01_transport_F", "I_C_Van_01_transport_brown_F", "I_C_Van_01_transport_olive_F"], ["C_Van_01_transport_F", "C_Van_01_box_F", "C_Van_01_transport_red_F", "C_Van_01_box_white_F"]],
+blufortrucktypes = [["B_Truck_01_box_F","B_Truck_01_covered_F", "B_Truck_01_transport_F"], ["I_C_Van_01_transport_F", "I_C_Van_01_transport_brown_F", "I_C_Van_01_transport_olive_F"], ["C_Van_01_transport_F", "C_Van_01_box_F", "C_Van_01_transport_red_F", "C_Van_01_box_white_F"]];
 
 aaccomposition = [
 	["Land_HelipadCircle_F",[106.138,18.7334,0],0,1,0,[0.763851,7.67037],"","",true,false],
