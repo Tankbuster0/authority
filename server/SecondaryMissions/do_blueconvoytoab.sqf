@@ -64,7 +64,7 @@ while {missionactive} do
 	sleep 3;
 
 	if ( !(_smcleanup isEqualTo ((vehicles inAreaArray [_vecx, 100,100,0,false, -1]) select {(typeof _x) in _trucks} )) ) then
-		{// ^^ if the cleanup array isnt the same as vehicles (but only those from the trucks array) within 100m of the 2nd truck
+		{// ^^ this wont work, it selects an object from the inarea array.. we want an array of objects in the area
 		missionsuccess = false;
 		missionactive = false;
 		};
