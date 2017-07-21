@@ -30,10 +30,11 @@ _smtypearray = [
 "runwaycraterclear",// clear some craters from mainbase runway
 "stealaircraft",
 "slingloaddelivercontainer",// steal an aircraft
-"sinktrawler"
+"sinktrawler",
+"blueconvoytoab"
  ];
 //_sm_required = 1;//debug only
-_pt_name = primarytarget getVariable "targetname";
+
 for "smcounter" from 1 to _sm_required do
 	{
 	sleep 1;
@@ -70,6 +71,11 @@ for "smcounter" from 1 to _sm_required do
 		{
 		_smtypearray = _smtypearray - ["sinktrawler"];
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
+		};
+	_pt_name = primarytarget getVariable "targetname";
+	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
+		{
+		_smtypearray = _smtypearray - ["blueconvoytoab"];
 		};
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
