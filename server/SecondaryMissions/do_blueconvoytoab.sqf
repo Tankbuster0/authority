@@ -6,12 +6,15 @@ private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_n
 missionactive = true;missionsuccess = false;_smcleanup = [];
 
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
+diag_log format ["*** dbcta gets _potentialstarts count %1", count _potentialstarts];
 _numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
 _mystart = selectRandom _potentialstarts;
-
+diag_log format ["*** dbcta gets chooses %1", _mystart];
 _nr1 = _mystart nearroads 2000;// all thr roads nearby
 _nr2 = _nr1 select {(roadsConnectedTo _x ) isEqualTo 1 }; // all the roads that have only 1 connection, ie, are dead ends
+
 _nr3 = selectRandom _nr2;// take an random dead end piece
+diag_log format ["*** dbcta chooses rp %1", _nr3];
 _trucks = selectRandom blufortrucktypes;
 
 _vec0 = createVehicle [(selectRandom _trucks), getpos _nr3, [],0,"NONE"];
@@ -19,9 +22,10 @@ _smcleanup pushback _vec0;
 _vec0 setdir ( _vec0 getdir ((roadsConnectedTo _nr3) select 0) ); // we know theres a roadconnectedto so orient the vehicle towards it
 _nextposa = _vec0 modeltoworld [0, 22, 0]; //look 22m infront
 _prevpos = getpos _nr3;
-_prevroadpiece = nr3;
+_prevroadpiece = _nr3;
 for "_i" from 1 to _numberoftrucks do
 	{
+	diag_log format ["*** dbcta inside loop %1 of %2", _i, _numberoftrucks];
 	_nearroadstopos = _nextposa nearRoads 15;// get rp near the position in front of the previous truck
 	_nearroadstopos = _nearroadstopos - [_prevroadpiece];// just in case, remove the previous rp from any found
 	if (_nearroadstopos isEqualTo []) then
@@ -32,7 +36,7 @@ for "_i" from 1 to _numberoftrucks do
 	_nearroadstopos = [_nearroadstopos,[],{_prevpos distance2d _x},"ASCEND"] call BIS_fnc_sortby;// sort them so select 0 is closet to prevpos
 	_nextposb = getpos (_nearroadstopos select 0);// get its position
 	_vecx = createVehicle [(selectRandom _trucks), getpos _nextposb, [],0,"NONE"];
-	_vecx setdir  (_prevroadpiece getDir _vecx); // set its direction away from the previous truck position
+	_vecx setdir (_prevroadpiece getDir _vecx); // set its direction away from the previous truck position
 	_smcleanup pushback _vecx;
 	_nextposa = _vecx modelToWorld [0,22,0]; // get a pos in front of the truck for next iteration
 	_prevpos = _nextposb; // reset for next loop
@@ -55,7 +59,7 @@ while {missionactive} do
 	{
 	sleep 3;
 
-	if ( !(_smcleanup isEqualTo ((inAreaArray [_vecx, 100,100,0,false, -1]) select {(typeof _x) in _trucks} )) ) then
+	if ( !(_smcleanup isEqualTo ((vehicles inAreaArray [_vecx, 100,100,0,false, -1]) select {(typeof _x) in _trucks} )) ) then
 		{// ^^ if the cleanup array isnt the same as vehicles (but only those from the trucks array) within 100m of the 2nd truck
 		missionsuccess = false;
 		missionactive = false;
@@ -77,7 +81,7 @@ while {missionactive} do
 			};
 	} foreach _smcleanup;
 
-	if (/*succeed conditions*/) then
+	if (FALSE) then
 		{
 		missionsuccess = true;
 		missionactive = false;
