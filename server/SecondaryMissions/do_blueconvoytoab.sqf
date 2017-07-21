@@ -4,8 +4,7 @@ _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
 private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_vec0","_vecx","_nrs","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb", "_mindist"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
-if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then {_mindist = 700} else {_mindist = 300};//shorter distance on tuvanaka island
-_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > _mindist} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
+_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
 diag_log format ["*** dbcta gets _potentialstarts count %1", count _potentialstarts];
 _numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
 _mystart = selectRandom _potentialstarts;
@@ -17,8 +16,10 @@ diag_log format ["*** dbcta gets deadends %1", _nr2];
 _nr3 = selectRandom _nr2;// take an random dead end piece
 diag_log format ["*** dbcta chooses rp %1", _nr3];
 _trucks = selectRandom blufortrucktypes;
-
-_vec0 = createVehicle [(selectRandom _trucks), getpos _nr3, [],0,"NONE"];
+diag_log format ["***dbcta chooses %1 truck types", _trucks];
+_trucktype = selectRandom _trucks;
+diag_log format ["***dbcta going to spawn a %1 at %2", _trucktype, getpos _nr3];
+_vec0 = createVehicle [_trucktype, getpos _nr3, [],0,"NONE"];
 _smcleanup pushback _vec0;
 _vec0 setdir ( _vec0 getdir ((roadsConnectedTo _nr3) select 0) ); // we know theres a roadconnectedto so orient the vehicle towards it
 _nextposa = _vec0 modeltoworld [0, 22, 0]; //look 22m infront
@@ -36,7 +37,9 @@ for "_i" from 1 to _numberoftrucks do
 		};
 	_nearroadstopos = [_nearroadstopos,[],{_prevpos distance2d _x},"ASCEND"] call BIS_fnc_sortby;// sort them so select 0 is closet to prevpos
 	_nextposb = getpos (_nearroadstopos select 0);// get its position
-	_vecx = createVehicle [(selectRandom _trucks), getpos _nextposb, [],0,"NONE"];
+	_trucktype = selectRandom _trucks;
+	diag_log format ["***dbcta going to spawn a %1 at %2", _trucktype, _nextposb];
+	_vecx = createVehicle [_trucktype, _nextposb, [],0,"NONE"];
 	_vecx setdir (_prevroadpiece getDir _vecx); // set its direction away from the previous truck position
 	_smcleanup pushback _vecx;
 	_nextposa = _vecx modelToWorld [0,22,0]; // get a pos in front of the truck for next iteration
