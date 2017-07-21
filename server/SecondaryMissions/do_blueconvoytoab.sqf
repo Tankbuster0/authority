@@ -2,17 +2,18 @@
  #include "..\includes.sqf"
 _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
-private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_vec0","_vecx","_nrs","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb"];
+private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_vec0","_vecx","_nrs","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb", "_mindist"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
-
-_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 3000} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
+if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then {_mindist = 700} else {_mindist = 300};//shorter distance on tuvanaka island
+_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > _mindist} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
 diag_log format ["*** dbcta gets _potentialstarts count %1", count _potentialstarts];
 _numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
 _mystart = selectRandom _potentialstarts;
-diag_log format ["*** dbcta gets chooses %1", _mystart];
+diag_log format ["*** dbcta gets chooses %1 which is %2", _mystart, _mystart getVariable "targetname"];
 _nr1 = _mystart nearroads 2000;// all thr roads nearby
-_nr2 = _nr1 select {(roadsConnectedTo _x ) isEqualTo 1 }; // all the roads that have only 1 connection, ie, are dead ends
-
+diag_log format ["*** dbcta gets nearby rps %1", _nr1];
+_nr2 = _nr1 select {(count (roadsConnectedTo _x )) isEqualTo 1 }; // all the roads that have only 1 connection, ie, are dead ends
+diag_log format ["*** dbcta gets deadends %1", _nr2];
 _nr3 = selectRandom _nr2;// take an random dead end piece
 diag_log format ["*** dbcta chooses rp %1", _nr3];
 _trucks = selectRandom blufortrucktypes;
