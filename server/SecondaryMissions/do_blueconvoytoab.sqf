@@ -26,7 +26,7 @@ _vec0 setdir ( _vec0 getdir ((roadsConnectedTo _nr3) select 0) ); // we know the
 _nextposa = _vec0 modeltoworld [0, 22, 0]; //look 22m infront
 _prevpos = getpos _nr3;
 _prevroadpiece = _nr3;
-for "_i" from 1 to _numberoftrucks do
+for "_i" from 2 to _numberoftrucks do
 	{
 	diag_log format ["*** dbcta inside loop %1 of %2", _i, _numberoftrucks];
 	_nearroadstopos = _nextposa nearRoads 15;// get rp near the position in front of the previous truck
