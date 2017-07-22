@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -16,10 +16,10 @@
 */
 // This file creates patroling vehicles
 
-dep_fnc_spawn_vehiclepatrol = 
+dep_fnc_spawn_vehiclepatrol =
 {
 	private ["_start","_end","_target","_try","_wp","_vehicle","_group","_player","_players","_roads"];
-    
+
     // Find a player
     if ((count dep_players) == 0) exitWith { objNull; };
     _players = dep_players call dep_fnc_shuffle;
@@ -30,14 +30,14 @@ dep_fnc_spawn_vehiclepatrol =
         }
     } forEach _players;
     if (isNull _player) exitWith { objNull; };
-    
+
     // Find a target road position
     _roads = [getPos _player, dep_act_dist] call dep_fnc_findroads;
     if ((count _roads) == 0) then {
         _roads = [getPos _player, dep_act_dist * 2] call dep_fnc_findroads;
     };
     if ((count _roads) == 0) exitWith { objNull; };
-    
+
     _try = true;
     _y = 1;
     _target = objNull;
@@ -46,7 +46,7 @@ dep_fnc_spawn_vehiclepatrol =
         if ([getPos _target] call dep_fnc_outsidesafezone) then {
             _try = false;
         };
-        
+
         _y = _y + 1;
         if ((_y > 20) && _try) then {
             _target = objNull;
@@ -54,7 +54,7 @@ dep_fnc_spawn_vehiclepatrol =
         };
     };
     if (isNull _target) exitWith { objNull; };
-    
+
     // Find the start road position
     _try = true;
     _y = 1;
@@ -67,7 +67,7 @@ dep_fnc_spawn_vehiclepatrol =
                 _try = false;
             };
         };
-        
+
         _y = _y + 1;
         if ((_y > 20) && _try) then {
             _start = objNull;
@@ -75,7 +75,7 @@ dep_fnc_spawn_vehiclepatrol =
         };
     };
     if (isNull _start) exitWith { objNull; };
-    
+
     // Find the end road position
     _try = true;
     _y = 1;
@@ -87,7 +87,7 @@ dep_fnc_spawn_vehiclepatrol =
                 _try = false;
             };
         };
-        
+
         _y = _y + 1;
         if ((_y > 20) && _try) then {
             _end = objNull;
@@ -95,36 +95,38 @@ dep_fnc_spawn_vehiclepatrol =
         };
     };
     if (isNull _end) exitWith { objNull; };
-    
+
     // Create the vehicle
     _vehicle = objNull;
     _group = grpNull;
     if (dep_civilians && (random 1) < 0.5) then {
         // Civilian vehicle
         _vehicle = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle (getPos _start);
+        [_vehicle, true, true] call BIS_fnc_initVehicle;
         _vehicle setDir ([_start] call dep_fnc_roaddir);
         [_vehicle] spawn dep_fnc_vehicledamage;
-    
+
         _group = createGroup civilian;
         _spawnpos = (getPos _start) findEmptyPosition [0, 10];
-        _soldier = [_group, (dep_civ_units call bis_fnc_selectRandom), _spawnpos] call dep_fnc_createcivilian;    
+        _soldier = [_group, (dep_civ_units call bis_fnc_selectRandom), _spawnpos] call dep_fnc_createcivilian;
         _soldier assignAsDriver _vehicle;
         _soldier moveInDriver _vehicle;
     } else {
         // Enemy vehicle
         _vehicle = (dep_ground_vehicles call BIS_fnc_selectRandom) createVehicle (getPos _start);
+        [_vehicle, true, true] call BIS_fnc_initVehicle;
         _vehicle setDir ([_start] call dep_fnc_roaddir);
         [_vehicle] spawn dep_fnc_vehicledamage;
         _group = [_vehicle] call dep_fnc_vehicle_fill;
     };
-    
+
     _wp = _group addWaypoint [getPos _target, 0];
 	_wp setWaypointBehaviour "SAFE";
 	_wp setWaypointSpeed "LIMITED";
 	_wp setWaypointFormation "COLUMN";
 	_wp setWaypointTimeOut [0,15,30];
 	_wp setWaypointType "MOVE";
-    
+
     _wp = _group addWaypoint [getPos _end, 0];
 	_wp setWaypointBehaviour "SAFE";
 	_wp setWaypointSpeed "LIMITED";
@@ -133,7 +135,7 @@ dep_fnc_spawn_vehiclepatrol =
 	_wp setWaypointType "MOVE";
     _wp setWaypointCompletionRadius 20;
 	_wp setWaypointStatements ["true", "[(vehicle leader this)] spawn dep_fnc_delete_vehicle;"];
-    
+
     /*_m = createMarker[format["patrol%1", getPos _start], getPos _start];
     _m setMarkerType "mil_dot";
     _m setMarkerText format["Start %1", time];
@@ -143,7 +145,7 @@ dep_fnc_spawn_vehiclepatrol =
     _m = createMarker[format["patrol%1", getPos _end], getPos _end];
     _m setMarkerType "mil_dot";
     _m setMarkerText format["End %1", time];*/
-    
+
     ["Vehicle created and moving to %1.", getPos _end] spawn dep_fnc_log;
     _vehicle;
 };
@@ -173,7 +175,7 @@ while {true} do {
         };
     } forEach _vehicles;
     dep_total_veh = count _vehicles;
-    
+
     _maxvehicles = round random (dep_veh_chance * 4);
     _created = false;
     while {(count _vehicles) < _maxvehicles && dep_num_players > 0 && dep_veh_chance > 0} do {
@@ -191,5 +193,5 @@ while {true} do {
         sleep _interval;
     } else {
         sleep 10;
-    };    
+    };
 };
