@@ -159,7 +159,7 @@ _multiplyMatrixFunc =
 		_newObj hideObjectGlobal false;
 		uiSleep 0.002;
 		if (!_ASL) then {_newObj setPos _newPos;} else {_newObj setPosASL _newPos; _newObj setVariable ["BIS_DynO_ASL", true];};
-
+		[_newObj, true, true] call BIS_fnc_initVehicle;
 		//If fuel and damage were grabbed, map them
 		if (!isNil "_fuel") then {_newObj setFuel _fuel};
 		if (!isNil "_damage") then {_newObj setDamage _damage;};
