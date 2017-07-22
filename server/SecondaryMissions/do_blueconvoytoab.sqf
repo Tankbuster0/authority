@@ -4,6 +4,7 @@ _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
 private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_vec0","_vecx","_nrs","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb", "_mindist"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
+publicVariable "missionactive"; publicVariable "missionsuccess";
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
 diag_log format ["*** dbcta gets _potentialstarts count %1", count _potentialstarts];
 _numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
@@ -55,24 +56,25 @@ _smnrlog = _sortedsmnrlogs select 0;
 _smnrtown = (_smnrlog getVariable "targetname");
 _smdir = [(_smnrlog getDir _nr3)] call tky_fnc_cardinaldirection;
 _smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
-smmissionstring = format ["There's a convoy formed up %1m %2 %3 but the transport taking the driver crew has not made it. Send a team and get the convoy, in it's entirity to the centre of %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
+smmissionstring = format ["There's a convoy formed up %1m %2 %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy of %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-
 while {missionactive} do
 	{
 	sleep 3;
 
-	if ( !(_smcleanup isEqualTo ((vehicles inAreaArray [_vecx, 100,100,0,false, -1]) select {(typeof _x) in _trucks} )) ) then
-		{// ^^ this wont work, it selects an object from the inarea array.. we want an array of objects in the area
+		{// if a vehicle gets out of an 80 circle around mid vehicle
+	if (not (_x inarea [_vecx, 100,100,0,false, -1] )) then
+	 	{
 		missionsuccess = false;
 		missionactive = false;
-		};
+	 	};
+	}forEach _smcleanup;
 
 	{// if a vehicle gets out of an 80 circle around mid vehicle
 	if (not (_x inarea [_vecx, 80,80,0,false, -1] )) then
 	 	{
-	 	"You are dropping out of the convoy Stay together!" remoteExec ["Hint", _x];
+	 	"You are dropping out of the convoy. Stay together!" remoteExec ["Hint", _x];
 
 	 	};
 	}forEach _smcleanup;
