@@ -178,7 +178,6 @@ if ((_location select 1) == "town") then {
             _dir = [_road] call dep_fnc_roaddir;
             _vehname = dep_ground_vehicles call BIS_fnc_selectRandom;
             _veh = _vehname createVehicle (getPos _road);
-            [_veh, true, true] call BIS_fnc_initVehicle;
             _veh setDir _dir;
             _objects = _objects + [_veh];
             [_veh] spawn dep_fnc_vehicledamage;

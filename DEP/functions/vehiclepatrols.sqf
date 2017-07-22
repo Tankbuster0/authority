@@ -102,7 +102,6 @@ dep_fnc_spawn_vehiclepatrol =
     if (dep_civilians && (random 1) < 0.5) then {
         // Civilian vehicle
         _vehicle = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle (getPos _start);
-        [_vehicle, true, true] call BIS_fnc_initVehicle;
         _vehicle setDir ([_start] call dep_fnc_roaddir);
         [_vehicle] spawn dep_fnc_vehicledamage;
 
@@ -114,7 +113,6 @@ dep_fnc_spawn_vehiclepatrol =
     } else {
         // Enemy vehicle
         _vehicle = (dep_ground_vehicles call BIS_fnc_selectRandom) createVehicle (getPos _start);
-        [_vehicle, true, true] call BIS_fnc_initVehicle;
         _vehicle setDir ([_start] call dep_fnc_roaddir);
         [_vehicle] spawn dep_fnc_vehicledamage;
         _group = [_vehicle] call dep_fnc_vehicle_fill;
