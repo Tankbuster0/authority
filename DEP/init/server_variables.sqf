@@ -335,9 +335,9 @@ switch (dep_side) do
             if (isNil "dep_u_veh_cmnd")     	then { dep_u_veh_cmnd   	= "I_C_Soldier_Para_8_F"; };
             if (isNil "dep_u_veh_crew")     	then { dep_u_veh_crew   	= "I_C_Soldier_Para_8_F"; };
 
-            if (isNil "dep_civ_veh")            then { dep_civ_veh          = ["C_Offroad_02_unarmed_F","C_Offroad_01_F","C_Truck_02_transport_F","C_Truck_02_covered_F","C_SUV_01_F"]; };
-            if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["I_C_Offroad_02_unarmed_F","I_C_Van_01_transport_F","I_G_Van_01_transport_F","I_G_Offroad_01_armed_F","O_T_LSV_02_armed_F","O_T_LSV_02_unarmed_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F"]; };
-            if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["I_C_Plane_Civil_01_F","I_Heli_light_03_F","I_C_Heli_Light_01_civil_F","I_Heli_Transport_02_F", "I_Plane_Fighter_04_F"]; };
+            if (isNil "dep_civ_veh")            then { dep_civ_veh          = ["C_Offroad_02_unarmed_black_F", "C_Offroad_02_unarmed_blue_F", "C_Offroad_02_unarmed_green_F", "C_Offroad_02_unarmed_orange_F", "C_Offroad_02_unarmed_red_F", "C_Offroad_02_unarmed_white_F","C_Truck_02_transport_F","C_Truck_02_covered_F","SUV_01_base_red_F", "SUV_01_base_black_F", "SUV_01_base_grey_F", "SUV_01_base_orange_F"]; };
+            if (isNil "dep_ground_vehicles") 	then { dep_ground_vehicles 	= ["  I_C_Offroad_02_unarmed_brown_F", "I_C_Offroad_02_unarmed_olive_F", "I_C_Van_01_transport_brown_F","I_C_Van_01_transport_olive_F", "I_G_Van_01_transport_F","I_G_Offroad_01_armed_F","O_T_LSV_02_armed_F","O_T_LSV_02_unarmed_F","O_T_Truck_03_transport_ghex_F","O_T_Truck_03_covered_ghex_F"]; };
+            if (isNil "dep_air_vehicles") 		then { dep_air_vehicles 	= ["I_C_Plane_Civil_01_F","I_Heli_light_03_F","I_C_Heli_Light_01_civil_F"]; };
         };
 
         if (isNil "dep_u_g_soldier")    	then { dep_u_g_soldier  	= "I_G_Soldier_F"; };
