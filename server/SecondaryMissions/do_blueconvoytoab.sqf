@@ -19,7 +19,7 @@ diag_log format ["*** dbcta chooses rp %1", _nr3];
 _trucks = selectRandom blufortrucktypes;
 diag_log format ["***dbcta chooses %1 truck types", _trucks];
 _trucktype = selectRandom _trucks;
-diag_log format ["***dbcta going to spawn a %1 at %2", _trucktype, getpos _nr3];
+diag_log format ["***dbcta going to spawn lead vehicle, a %1 at %2", _trucktype, getpos _nr3];
 _vec0 = createVehicle [_trucktype, getpos _nr3, [],0,"NONE"];
 _smcleanup pushback _vec0;
 _vec0 setdir ( _vec0 getdir ((roadsConnectedTo _nr3) select 0) ); // we know theres a roadconnectedto so orient the vehicle towards it
@@ -63,11 +63,11 @@ while {missionactive} do
 	{
 	sleep 3;
 
-		{// if a vehicle gets out of an 80 circle around mid vehicle
+		{// if a vehicle gets out of an 100 circle around mid vehicle
 	if (not (_x inarea [_vecx, 100,100,0,false, -1] )) then
 	 	{
-		missionsuccess = false;
-		missionactive = false;
+		missionsuccess = false; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
 	 	};
 	}forEach _smcleanup;
 
@@ -82,15 +82,15 @@ while {missionactive} do
 	{
 		if (not alive _x) exitWith
 			{// fail if any vehicle dies
-			missionactive = false;
-			missionsuccess = false;
+			missionactive = false; publicVariable "missionactive";
+			missionsuccess = false; publicVariable "missionsuccess";
 			};
 	} foreach _smcleanup;
 
 	if (FALSE) then
 		{
-		missionsuccess = true;
-		missionactive = false;
+		missionsuccess = true; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
 		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
