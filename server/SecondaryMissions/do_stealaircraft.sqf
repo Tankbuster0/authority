@@ -95,6 +95,7 @@ if (_defect isEqualTo 1) then
 	{
 	_mypos = [_smsaveh , 20, 100, 8,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_fueltrk = createVehicle ["C_Van_01_fuel_F", _mypos, [],0,"NONE"];
+	[_fueltrk, true, true] call BIS_fnc_initVehicle;
 	_smcleanup pushback _fueltrk;
 	};
 while {missionactive} do

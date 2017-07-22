@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -100,7 +100,7 @@ if ((_location select 1) == "ambush") then {
     _objects = _objects + (_result select 2);
 };
 
-// Spawn units 
+// Spawn units
 if ((_location select 1) in ["roadpop","town"]) then {
     _validhouses = [_pos, _size] call dep_fnc_enterablehouses;
     _enemyamount = 2;
@@ -115,10 +115,10 @@ if ((_location select 1) in ["roadpop","town"]) then {
         _spawnpositions = _spawnpositions + _temp;
     } forEach _validhouses;
     _spawnpositions = _spawnpositions call dep_fnc_shuffle;
-    
+
     _depgroup = createGroup dep_side;
     _groups = _groups + [_depgroup];
-    
+
     for "_e" from 1 to _enemyamount do {
         _spawnpos = [];
         if ((count _spawnpositions) > 0) then {
@@ -131,10 +131,10 @@ if ((_location select 1) in ["roadpop","town"]) then {
         _soldiername = dep_guer_units call BIS_fnc_selectRandom;
         _soldier = [_depgroup, _soldiername, _spawnpos] call dep_fnc_createunit;
         _totalenemies = _totalenemies + 1;
-        _soldier setDir (random 360); 
+        _soldier setDir (random 360);
     };
     [_depgroup] spawn dep_fnc_enemyspawnprotect;
-    
+
     if ((random 1) < 0.3 && _enemyamount > 1) then {
         // Make units patrol
         [_depgroup, _size, _pos] spawn dep_fnc_unitpatrol;
@@ -142,7 +142,7 @@ if ((_location select 1) in ["roadpop","town"]) then {
         doStop (units _depgroup);
     };
     sleep 0.5;
-    
+
     // Civilians
     if (dep_civilians) then {
         if ((count _validhouses) > 10) then {
@@ -178,6 +178,7 @@ if ((_location select 1) == "town") then {
             _dir = [_road] call dep_fnc_roaddir;
             _vehname = dep_ground_vehicles call BIS_fnc_selectRandom;
             _veh = _vehname createVehicle (getPos _road);
+            [_veh, true, true] call BIS_fnc_initVehicle;
             _veh setDir _dir;
             _objects = _objects + [_veh];
             [_veh] spawn dep_fnc_vehicledamage;
@@ -193,8 +194,8 @@ if ((_location select 1) == "military") then {
     _groups = _groups + [_depgroup];
     _enemyamount = (dep_max_ai_loc / 2) + (round random (dep_max_ai_loc / 2));
     _totalenemies = _totalenemies + _enemyamount;
-    
-    for "_e" from 1 to _enemyamount do {				
+
+    for "_e" from 1 to _enemyamount do {
         _soldiername = dep_mil_units call BIS_fnc_selectRandom;
         _newpos = _pos findEmptyPosition [0, 50, _soldiername];
         _soldier = [_depgroup, _soldiername, _newpos] call dep_fnc_createunit;
@@ -237,7 +238,7 @@ if (dep_mines) then {
 					_m setMarkerType "Minefield";
 					_m setMarkerText "AP";
 				};
-				
+
 				_minepos set [2, 0.01];
 				_mine = createMine [["APERSMine","APERSBoundingMine","APERSTripMine"] call BIS_fnc_selectRandom, _minepos, [], 0];
 				_mine setDir (getDir _house);
@@ -248,14 +249,14 @@ if (dep_mines) then {
 };
 
 // Spawn vehicles and patroling squad
-if ((_location select 1) in ["patrol"]) then {   
+if ((_location select 1) in ["patrol"]) then {
     _depgroup = createGroup dep_side;
     _groups = _groups + [_depgroup];
     _enemyamount = round((dep_max_ai_loc / 2) + random (dep_max_ai_loc / 2));
     _totalenemies = _totalenemies + _enemyamount;
     _newpos = [_pos, 200, (random 360)] call BIS_fnc_relPos;
-    
-    for "_e" from 1 to _enemyamount do {				
+
+    for "_e" from 1 to _enemyamount do {
         _soldiername = dep_mil_units call BIS_fnc_selectRandom;
         _spawnhandle = [_depgroup, _soldiername, _newpos] spawn {
             _soldier = [(_this select 0), (_this select 1), (_this select 2)] call dep_fnc_createunit;
@@ -276,7 +277,7 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
 			_dir = [_road] call dep_fnc_roaddir;
 			_iedpos = getPos _road;
 			_ied = objNull;
-			
+
 			_type = "car";
 			if (dep_ieds) then {
 				_type = ["car","rubble","mine"] call BIS_fnc_selectRandom;
@@ -298,9 +299,9 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
 					_ied = createMine [["IEDUrbanBig_F","IEDLandBig_F","IEDUrbanSmall_F","IEDLandSmall_F"] call BIS_fnc_selectRandom, _iedpos, [], 0];
 				};
 			};
-            
+
 			// Enable IED
-            if (((random 1) <= dep_ied_chance || _type == "mine") && dep_ieds) then 
+            if (((random 1) <= dep_ied_chance || _type == "mine") && dep_ieds) then
 			{
 				_ied setVariable ["workingon",false,true];
                 _ied setVariable ["IED",true,true];
@@ -312,22 +313,22 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
                 } else {
                     _ied execFSM (dep_directory + "functions\ied_veh.fsm"); // only explodes on vehicles
                 };
-                
+
                 // Add the actions
 				if (_type != "mine") then {
 					[[[_ied],format["%1functions\disable_ied_addactions.sqf", dep_directory]],"BIS_fnc_execVM",nil,true] spawn BIS_fnc_MP;
 				};
-                
+
                 if (dep_debug) then {
                     _m = createMarker[format["ied%1", _this], _iedpos];
                     _m setMarkerType "mil_dot";
                     _m setMarkerText "ied";
 					_m setMarkerColor "ColorRed";
                 };
-                        
-				_ied addEventHandler 
-				["Explosion", 
-					{                       
+
+				_ied addEventHandler
+				["Explosion",
+					{
 						_object = (_this select 0);
 						if (_object getVariable "IED") then {
 							_boomtype = ["Bomb_03_F", "Bomb_04_F", "Bo_GBU12_LGB"] select round random 2;
@@ -339,7 +340,7 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
 				];
 			};
         };
-        
+
         // Create AT mine
 		if (dep_mines) then {
 			if ((_location select 1) in ["roadpop"]) then {
@@ -390,12 +391,12 @@ _loccachegrps = [];
             } else {
                 _loccacheitem set [3, damage _obj];               // Health
             };
-            
+
             _crew = [];
             {
                 _unit = _x;
                 if (isPlayer _unit) exitWith { _hasplayers = true; }; // Don't clean up objects when players are in it
-                
+
                 _crewunit = [];
                 if (alive _unit) then {
                     _crewunit set [0, typeOf _unit];
@@ -407,7 +408,7 @@ _loccachegrps = [];
             if (!_hasplayers) then {
                 _loccacheobjs = _loccacheobjs + [_loccacheitem];
             };
-        };            
+        };
     };
 } foreach (_location select 8);
 // Store all groups

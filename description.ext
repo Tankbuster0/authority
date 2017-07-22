@@ -16,6 +16,7 @@ respawnDelay = 3;
 respawnTemplates[] = {"Counter", "MenuPosition"};
 respawnButton = 1;
 respawnOnStart = 0;
+disableRandomization[] = {"AllVehicles"};
 //reviveDelay = 10;
 //reviveForceRespawnDelay = 60;
 //reviveBleedOutDelay = 450;
