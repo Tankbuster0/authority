@@ -65,7 +65,7 @@ tky_fnc_cardinaldirection =
 	{
 	params ["_dir"];
 	private ["_cardinaldir"];
-	_cardinaldir = cardinaldirs select ((_dir call BIS_fnc_roundDir) /45);
+	_cardinaldir = cardinaldirs select (([_dir, 45] call BIS_fnc_roundDir) /45);
 	_cardinaldir
 	};
 
