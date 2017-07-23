@@ -75,8 +75,7 @@ while {missionactive} do
 	if (not (_x inarea [_vecx, 80,80,0,false, -1] )) then
 	 	{
 	 	"You are dropping out of the convoy. Stay together!" remoteExec ["Hint", _x];
-
-	 	};
+	 	"alarmcar" remoteexec ["playsound", _x , false];// should play the car alarm to all vehicles in the convoy
 	}forEach _smcleanup;
 
 	{
