@@ -88,7 +88,7 @@ while {missionactive} do
 	} foreach _smcleanup;
 
 	if ( (count ((vehicle inAreaArray [(getmarkerpos "cpt_marker"), 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
-		{// all cleanup vehicles get into a 75m circle at the centre of the town marker
+		{// all cleanup vehicles get into a 75m circle at the centre of the town marker. check 75 is radius or circumference
 		missionsuccess = true; publicVariable "missionsuccess";
 		missionactive = false; publicVariable "missionactive";
 		"The convoy reached its destination! Great driving!" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
