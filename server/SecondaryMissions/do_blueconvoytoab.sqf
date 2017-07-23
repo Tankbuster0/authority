@@ -55,8 +55,10 @@ diag_log format ["***dst sorted the logics near mission pos %1", _sortedsmnrlogs
 _smnrlog = _sortedsmnrlogs select 0;
 _smnrtown = (_smnrlog getVariable "targetname");
 _smdir = [(_smnrlog getDir _nr3)] call tky_fnc_cardinaldirection;
+
 _smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
-smmissionstring = format ["There's a convoy formed up %1m %2 %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy of %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
+if (_smdist < 500) then {_smdist = "just";} else {_smdist = _smdist + "m";};
+smmissionstring = format ["There's a convoy formed up %1 %2 %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 while {missionactive} do
@@ -74,8 +76,11 @@ while {missionactive} do
 	{// if a vehicle gets out of an 80 circle around mid vehicle
 	if (not (_x inarea [_vecx, 80,80,0,false, -1] )) then
 	 	{
-	 	"You are dropping out of the convoy. Stay together!" remoteExec ["Hint", _x];
-	 	"alarmcar" remoteexec ["playsound", _x , false];// should play the car alarm to all vehicles in the convoy
+	 		{
+		 	"You are dropping out of the convoy. Stay together!" remoteExec ["Hint", _x];
+		 	"alarmcar" remoteexec ["playsound", _x , false];// should play the car alarm to all vehicles in the convoy
+		 	} foreach _smcleanup;
+	 	};
 	}forEach _smcleanup;
 
 	{
@@ -86,7 +91,7 @@ while {missionactive} do
 			};
 	} foreach _smcleanup;
 
-	if ( (count ((vehicle inAreaArray [(getmarkerpos "cpt_marker"), 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
+	if ( (count ((vehicles inAreaArray [(getmarkerpos "cpt_marker"), 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
 		{// all cleanup vehicles get into a 75m circle at the centre of the town marker. check 75 is radius or circumference
 		missionsuccess = true; publicVariable "missionsuccess";
 		missionactive = false; publicVariable "missionactive";
