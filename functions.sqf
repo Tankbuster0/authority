@@ -75,7 +75,7 @@ tky_fnc_estimateddistance =
 	private ["_data1"];
 	// because this rounds down, this will add half the factor to the dist
 	_dist = _dist + (-1 + ( _factor /2));
-	_data1 = [_dist, _factor] call BIS_fnc_roundNum;
+	_data1 = [_dist, _factor, 10] call BIS_fnc_roundNum;
 
 	_data1
 
