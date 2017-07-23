@@ -4,6 +4,7 @@ _myscript = "do_runwaycraterclear";
 __tky_starts;
 private ["_candiposs","_runwayposs","_runwayposshuffled","_nx","_craterpos","_crater","_cratereh", "_smcleanup", "_cratercount", "_craterclearedcount", "_thiscrater"];
 missionactive = true;missionsuccess = false; mycraters = [];_smcleanup = [];
+publicVariable "missionactive"; publicVariable "missionsuccess";
 smmissionstring = format ["Enemy action has damaged our main airbase runways and taxiways, probably runway denial munitions. "];
 failtext = "The Bobcat has been lost and there are still some craters on the runways. You've failed this secondary mission";
 smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -78,6 +79,7 @@ while {missionactive} do
 		"That's good Bobcat driving there, soldier. You've pushed all the craters off the runways. Secondary mission complete." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
+publicVariable "missionsuccess"; publicVariable "missionactive";
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
