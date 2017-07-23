@@ -5,6 +5,7 @@ __tky_starts;
 private ["_myplaces","_seapos1","_mfdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_deepenough","_realminepos","_seadepth","_minespawnpos","_minecone","_mine","_minemarkername","_helper","_smcleanup","_m1"];
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
+publicVariable "missionactive"; publicVariable "missionsuccess";
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
 _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
@@ -71,6 +72,7 @@ while {missionactive} do
 		failtext = "A mine has gone off. You've failed this secondary mission.";
 		};
 	};
+publicVariable "missionsuccess"; publicVariable "missionactive";
 {deletevehicle _x} foreach _smcleanup;
 for "_zz" from 0 to _numberofmines do
 	{

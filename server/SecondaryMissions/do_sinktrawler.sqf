@@ -13,6 +13,7 @@ tky_fnc_shiphit =
 	};
 private ["_smcleanup","_missionposs","_missionpos","_smnrlog","_smnrtown","_smdir","_smdist","_smdir","_smdist", "_engagingveh", "_1sinking", "_2sinking", "_bothsunk"];
 missionactive = true;missionsuccess = false; attackunderway = false; engagingveh = objNull;
+publicVariable "missionactive"; publicVariable "missionsuccess";
 _1sinking = false; _2sinking = false;_bothsunk = false;_smcleanup = [];
 failtext = "You didn't sink those ships. Mission failed.";
 _missionposs = (selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,20]) select [0,5] ;
@@ -65,5 +66,6 @@ while {missionactive} do
 		};
 	if (_bothsunk )
 	};
+publicVariable "missionactive"; publicVariable "missionsuccess";
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends

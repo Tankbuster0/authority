@@ -9,6 +9,7 @@ private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmi
 _myplaces = selectbestplaces [cpt_position, cpt_radius + 200, "meadow", 50,50];
 _meadows = _myplaces select {(_x select 1) == 1};
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
+publicVariable "missionactive"; publicVariable "missionsuccess";
 _meadowdata = selectRandom _meadows;
 _mfpos = _meadowdata select 0;
 //^^ choose one to start with, then below, if it isnt good, keep choosing until it is.
@@ -59,8 +60,8 @@ while {missionactive} do
 	sleep 3;
 	if (({mineactive _x} count minearray) isEqualTo 0) then
 		{
-		missionactive = false;
-		missionsuccess = true;
+		missionactive = false; publicVariable "missionactive";
+		missionsuccess = true; publicVariable "missionsuccess";
 		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 

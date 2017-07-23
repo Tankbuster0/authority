@@ -4,7 +4,7 @@ _myscript = "do_destroyradiotower";
 __tky_starts
 private ["_n","_cpos","_candiposs","_sortedcandiposs","_sortedcandiposs2","_finalpos","_tower","_dtreldir","_dtdist","_ii","_mypos","_drt_opfor1","_smcleanup","_drt_opfor3"];
 _candiposs = []; _sortedcandiposs = []; _sortedcandiposs2 = []; _smcleanup = [];
-missionactive = true; missionsuccess = false;
+missionactive = true; missionsuccess = false; publicVariable "missionactive"; publicVariable "missionsuccess";
 // find some nice high ground
 for "_n" from 0 to 10 do
 	{
@@ -55,8 +55,8 @@ while {missionactive} do
 	if (not(alive _tower) or (damage _tower > 0.5)) then
 		{
 		_tower setdamage 1;
-		missionsuccess = true;
-		missionactive = false;
+		missionsuccess = true; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
 		"That's good work. Their communications have been severely disrupted. Command is pleased." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
