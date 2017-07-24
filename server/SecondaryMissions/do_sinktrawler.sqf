@@ -63,7 +63,7 @@ while {missionactive} do
 		_2sinking = true;
 		nul = [smship2, "RANDOM", (10 + (random 10)), true] execVM "server\SecondaryMissions\sinkship.sqf";
 		};
-	if attackingvehs != [] then
+	if (attackingvehs != []) then
 		{
 			{
 			if (
@@ -72,22 +72,22 @@ while {missionactive} do
 			    (not (engineon _x))
 			   ) then
 					{
-					missionsuccess = false; publicVariable "missionsuccess";
-					missionactive = false; publicVariable "missionactive";
+					missionsuccess = false;
+					missionactive = false;
 					};
 
-			} foreach attackingvehs
+			} foreach attackingvehs;
 		};
 	if (attackunderway) and { call tky_fnc_fleet_armed_aircraft isEqualTo []} then
 		{// ^^^ if the attack is underway but theres no attack aircraft in the fleet, fail
-		missionsuccess = false; publicVariable "missionsuccess";
-		missionactive = false; publicVariable "missionactive";
+		missionsuccess = false;
+		missionactive = false;
 		};
 
-
-	if ( (not (_bothsunk)) and {((damage smship1) + (damage smship2)) isEqualTo 2} )then
+	if ( ((damage smship1) + (damage smship2)) isEqualTo 2 )then
 		{
-		_bothsunk = true;
+		missionsuccess = true;
+		missionactive = false;
 		"Both ships are gone. Get your aircraft back safely." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 
