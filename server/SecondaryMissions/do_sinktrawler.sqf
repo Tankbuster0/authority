@@ -2,16 +2,25 @@
  #include "..\includes.sqf"
 _myscript = "do_sinktrawler";
 __tky_starts;
+attackingvehs = [];
 //// functions
 tky_fnc_shiphit =
 	{
 	params ["_sh_engaging_vec"];
-	smship1 removeallEventHandlers "handledamage";
-	smship2 removeAllEventHandlers "handledamage";
-	engagingveh = _sh_engaging_vec;
+	//smship1 removeallEventHandlers "handledamage";
+	//smship2 removeAllEventHandlers "handledamage";
+	_eh1 = attackingvehs pushBackUnique _sh_engaging_vec;
+	if (_eh1 > -1) then {_leh = _sh_engaging_vec addEventHandler ["Landed", "[_this select 0, _this select 1] call tky_fnc_landedcheck"]};
+	//^^^ if this is vehs first attack, add the landed eh to it so se can remove it from attackingvehs array if it lands for reload
 	attackunderway = true;
+
 	};
-private ["_smcleanup","_missionposs","_missionpos","_smnrlog","_smnrtown","_smdir","_smdist","_smdir","_smdist", "_engagingveh", "_1sinking", "_2sinking", "_bothsunk"];
+tky_fnc_landedcheck =
+	{
+	params ["_veh", "_airport"];
+	if (((damage _veh) < 0.8) and {(_airport distance2d baseflag) < 800}  then {attackingvehs = attackingvehs - [_veh]}; //if attacking veh lands OK for refuel, reload, remove it from attackvehs array
+	};
+private ["_smcleanup","_missionposs","_missionpos","_smnrlog","_smnrtown","_smdir","_smdist","_smdir","_smdist", "_engagingveh", "_1sinking", "_2sinking", "_bothsunk", "_engagingvehs"];
 missionactive = true;missionsuccess = false; attackunderway = false; engagingveh = objNull;
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _1sinking = false; _2sinking = false;_bothsunk = false;_smcleanup = [];
@@ -54,17 +63,34 @@ while {missionactive} do
 		_2sinking = true;
 		nul = [smship2, "RANDOM", (10 + (random 10)), true] execVM "server\SecondaryMissions\sinkship.sqf";
 		};
-	if (not (isNull engagingveh) and {(fuel engagingveh isEqualTo 0) or (damage engagingveh > 0.9) or (not (someAmmo engagingveh))}  )then
+	if attackingvehs != [] then
 		{
-		missionsuccess = false;
-		missionactive = false;
+			{
+			if (
+			    ((fuel _x) < 0.1) or
+			    (not (alive _x)) or
+			    (not (engineon _x))
+			   ) then
+					{
+					missionsuccess = false; publicVariable "missionsuccess";
+					missionactive = false; publicVariable "missionactive";
+					};
+
+			} foreach attackingvehs
 		};
+	if (attackunderway) and { call tky_fnc_fleet_armed_aircraft isEqualTo []} then
+		{// ^^^ if the attack is underway but theres no attack aircraft in the fleet, fail
+		missionsuccess = false; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
+		};
+
+
 	if ( (not (_bothsunk)) and {((damage smship1) + (damage smship2)) isEqualTo 2} )then
 		{
 		_bothsunk = true;
 		"Both ships are gone. Get your aircraft back safely." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
-	if (_bothsunk )
+
 	};
 publicVariable "missionactive"; publicVariable "missionsuccess";
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
