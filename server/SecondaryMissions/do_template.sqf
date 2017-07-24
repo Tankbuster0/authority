@@ -2,6 +2,8 @@
  #include "..\includes.sqf"
 _myscript = "do_template";
 __tky_starts;
+missionactive = true; publicVariable "missionactive";
+missionsuccess = false; publicVariable "missionsuccess";
 private [];
 smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
@@ -25,6 +27,8 @@ while {missionactive} do
 		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
+publicVariable "missionsuccess";
+publicVariable "missionactive";
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
