@@ -113,12 +113,12 @@ case "RIGHT BACK":
 // Create the smoke emitter
 if (_smoke) then
 {
-[_ship] call BIS_fnc_effectKilledAirDestruction;
+
 _smoke_e =createVehicle ["test_EmptyObjectForFireBig", getpos _ship, [],0,"NONE"];
 _smoke_e attachTo [_ship, _smokeloc];
 
 };
-
+_nul = createVehicle ["HelicopterExploBig", [_ship select 0, _ship select 1, 5], [], 0, "CAN_COLLIDE"];
 sleep 2;
 
 // Slight tilt
