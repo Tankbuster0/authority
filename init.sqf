@@ -23,7 +23,7 @@ execVM "functions.sqf";
 // Arty Support Stuff
 ArtySupport synchronizeObjectsAdd [SupportReq];
 SupportReq synchronizeObjectsAdd [ArtySupport];
-//[] execVM "DEP\init.sqf";
+[] execVM "DEP\init.sqf";
 // MHQ Curator Build Stuff
 
 // Build Helipad, Can be NULL!
