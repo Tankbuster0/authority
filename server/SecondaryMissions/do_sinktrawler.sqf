@@ -14,11 +14,7 @@ tky_fnc_shiphit =
 	attackunderway = true;
 
 	};
-tky_fnc_landedcheck =
-	{
-	params ["_veh", "_airport"];
-	if (((damage _veh) < 0.8) and {(_airport distance2d baseflag) < 800})  then {attackingvehs = attackingvehs - [_veh]}; //if attacking veh lands OK for refuel, reload, remove it from attackvehs array
-	};
+
 private ["_smcleanup","_missionposs","_missionpos","_smnrlog","_smnrtown","_smdir","_smdist","_smdir","_smdist", "_engagingveh", "_1sinking", "_2sinking", "_bothsunk", "_engagingvehs"];
 missionactive = true;missionsuccess = false; attackunderway = false; engagingveh = objNull;
 publicVariable "missionactive"; publicVariable "missionsuccess";
@@ -30,7 +26,7 @@ _missionpos1 = selectRandom _missionposs;
 
 _missionpos = _missionpos1 select 0;
 diag_log format ["***dst says %1 for mission pos", _missionpos];
-_smnrlogs = (_missionpos nearEntities ["Logic", 8000]) select {( ((_x getVariable ["targetstatus", -1]) isEqualTo 1) and ((_x distance _missionpos) < 8000) ) };
+_smnrlogs = (_missionpos nearEntities ["Logic", 8000]) select { (_x getVariable ["targetstatus", -1]) isEqualTo 1   };
 diag_log format ["***dst unsorted logics near the mission pos %1", _smnrlogs];
 _sortedsmnrlogs = [_smnrlogs, [] , {_x distance2d _missionpos}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["***dst sorted the logics near mission pos %1", _sortedsmnrlogs];
