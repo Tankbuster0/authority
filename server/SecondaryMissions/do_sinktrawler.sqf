@@ -20,13 +20,13 @@ missionactive = true;missionsuccess = false; attackunderway = false; engagingveh
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _1sinking = false; _2sinking = false;_bothsunk = false;_smcleanup = [];
 failtext = "You didn't sink those ships. Mission failed.";
-_missionposs = (selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,20]) select [0,5] ;
+_missionposs = (selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,40]) select [0,10] ;
 diag_log format ["*dst gets best places %1", _missionposs];
 _missionpos1 = selectRandom _missionposs;
 
 _missionpos = _missionpos1 select 0;
 diag_log format ["***dst says %1 for mission pos", _missionpos];
-_smnrlogs = (_missionpos nearEntities ["Logic", 8000]) select { (_x getVariable ["targetstatus", -1]) isEqualTo 1   };
+_smnrlogs = (_missionpos nearEntities ["Logic", 6000]) select { (_x getVariable ["targetstatus", -1]) isEqualTo 1   };
 diag_log format ["***dst unsorted logics near the mission pos %1", _smnrlogs];
 _sortedsmnrlogs = [_smnrlogs, [] , {_x distance2d _missionpos}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["***dst sorted the logics near mission pos %1", _sortedsmnrlogs];
