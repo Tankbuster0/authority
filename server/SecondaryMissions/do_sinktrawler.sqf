@@ -55,12 +55,12 @@ while {missionactive} do
 	if ( (not _1sinking) and {((damage smship1) isEqualTo 1)}) then
 		{
 		_1sinking = true;
-		nul = [smship1, "RANDOM", (10 + (random 10)), true] execVM "server\SecondaryMissions\sinkship.sqf";
+		nul = [smship1, "RANDOM", 5 , true] execVM "server\SecondaryMissions\sinkship.sqf";
 		};
 	if ((not _2sinking) and { ((damage smship2) isEqualTo 1)}) then
 		{
 		_2sinking = true;
-		nul = [smship2, "RANDOM", (10 + (random 10)), true] execVM "server\SecondaryMissions\sinkship.sqf";
+		nul = [smship2, "RANDOM", 5 , true] execVM "server\SecondaryMissions\sinkship.sqf";
 		};
 	if ((count attackingvehs) > 0 ) then
 		{
