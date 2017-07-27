@@ -32,7 +32,7 @@ switch (tolower worldName) do
 			{
 			forwardpointvehicleclassname = "B_T_LSV_01_armed_F";
 			fobvehicleclassname = "B_MRAP_01_F";
-			opforpatrollandvehicles = ["O_T_APC_Tracked_02_cannon_ghex_F", "O_T_APC_Wheeled_02_rcws_F", "O_T_MRAP_02_gmg_ghex_F", "O_T_MRAP_02_hmg_ghex_F", "O_T_LSV_02_armed_F"];
+			opforpatrollandvehicles = ["O_T_APC_Tracked_02_cannon_ghex_F", "O_T_APC_Wheeled_02_rcws_ghex_F", "O_T_MRAP_02_gmg_ghex_F", "O_T_MRAP_02_hmg_ghex_F", "O_T_LSV_02_armed_F"];
 			opforstaticlandvehicles =["O_T_APC_Tracked_02_AA_ghex_F", "O_T_APC_Tracked_02_cannon_ghex_F"];
 			opfortanks = ["O_T_MBT_02_cannon_ghex_F"];
 			opforhqtypes = ["O_T_Truck_03_covered_ghex_F", "Land_Cargo_House_V4_F"];
