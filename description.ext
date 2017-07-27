@@ -64,7 +64,8 @@ class cfgFunctions
 		class dialog
 		{
 			file = "dialog";
-			class showmissiondialog {};
+			class dlg_missionStatus {};
+			class fn_fixTextHeight {};
 
 		};
 
@@ -97,7 +98,7 @@ class cfgFunctions
 };
 
 #include "dialog\defines.hpp"
-#include "dialog\dialogs.hpp"
+#include "dialog\dlg_missionStatus.hpp"
 class RscTitles
 {
 	#include "gvs\stc_include_alt.hpp"
