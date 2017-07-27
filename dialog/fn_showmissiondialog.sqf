@@ -2,7 +2,7 @@ disableSerialization;
 
 _shopitems = ["squiffy", "blobby", "test"];
 
-createDialog "tky_missiondialog";
+createDialog "dlg_missionStatus";
 
 waitUntil {!isNull (findDisplay 9999);};
 _cpt_name = (primarytarget getVariable "targetname");
