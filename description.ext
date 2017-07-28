@@ -64,8 +64,8 @@ class cfgFunctions
 		class dialog
 		{
 			file = "dialog";
-			class dlg_missionStatus {};
-			class fn_fixTextHeight {};
+			class fixTextHeight {};
+			class showmissiondialog {};
 
 		};
 

@@ -184,7 +184,7 @@ class Haz_RscTextBox : Haz_RscScrollBar
 	};
 };
 
-class Haz_RscTitleBar : Haz_RscText
+class Haz_RscTitleBar : Haz_RscTextBox
 {
 	idc = -1;
 	colorBackground[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0.13])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.54])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.21])", 1};
