@@ -1,6 +1,5 @@
 disableSerialization;
-
-_shopitems = ["squiffy", "blobby", "test"];
+diag_log "*** fn_smd runs";
 
 createDialog "dlg_missionStatus";
 
@@ -10,10 +9,4 @@ ctrlSetText [1004, (format ["The Primary Target is at %1. Clear the enemy from t
 
 _ctrl = (findDisplay 9999) displayCtrl 1500;
 
-{
-	_ctrl lbAdd _x;
-
-
-
-
-}foreach _shopitems
+diag_log "*** fn_smd ends";
