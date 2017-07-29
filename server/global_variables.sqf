@@ -52,6 +52,9 @@ captivekillcounter = 0;
 blueflags = [];
 pt_hq_alive = true;
 pt_radar_alive = true;
+deadgatecount = 0;
+roadblockgates = 0;
+roadblockscleared = false;
 
 // CQB Arrs
 // CQB Center Troops

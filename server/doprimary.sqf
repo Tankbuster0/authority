@@ -14,7 +14,7 @@ if (primarytargetcounter > 1) then
 	sleep 0.5;
 	primarytarget = nextpt;// <-- dont forget nextpt is a logic
 	_handle = [primarytarget] execVM "server\PT_ai\ai_spawnroadblocks.sqf";
-	waitUntil {sleep 1;(!(isnil "roadblockreturndata"))};
+	waitUntil {sleep 0.2;(!(isnil "roadblockreturndata"))};
 	}else
 	{
 	roadblockscleared = true;// this is the first target, no roadblocks so set it to true so it's ignored
