@@ -244,7 +244,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 		_handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 		waitUntil {scriptDone _handle1};
 	};
-
+diag_log "*** initServer done targetdata stuff";
 sleep 0.5;
 if not (testmode) then
 	{
