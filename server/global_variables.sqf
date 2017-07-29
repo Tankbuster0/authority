@@ -38,7 +38,7 @@ switch (tolower worldName) do
 			opforhqtypes = ["O_T_Truck_03_covered_ghex_F", "Land_Cargo_House_V4_F"];
 			};
 	};
-
+cpt_name = "None";
 publicVariable "fobvehicleclassname";
 publicVariable "forwardpointvehicleclassname";
 blufordropaircraft = "B_T_VTOL_01_vehicle_F"; publicVariable "blufordropaircraft";
@@ -50,6 +50,7 @@ civkillcount = 0;
 reinforcementcounter = 0;
 captivekillcounter = 0;
 blueflags = [];
+pt_hq_alive = false;
 
 // CQB Arrs
 // CQB Center Troops

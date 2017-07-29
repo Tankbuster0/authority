@@ -86,6 +86,7 @@ class dlg_missionStatus
 			colorBackground2[] = {0.25, 0.25, 0.22, 1};
 			colorBackgroundFocused[] = {0.25, 0.25, 0.22, 1};
 			colorBackgroundActive[] = {0.25, 0.25, 0.22, 1};
+			action = "closeDialog 0";
 		};
 		class settings : Haz_RscButton
 		{
@@ -121,20 +122,20 @@ class dlg_missionStatus
 		class primaryTargetLocation : Haz_RscStructuredText
 		{
 			idc = idc_primaryTargetLocation;
-			x = 0.35 * safezoneW + safezoneX;
+			x = 0.325 * safezoneW + safezoneX;
 			y = 0.32 * safezoneH + safezoneY;
-			w = 0.1 * safezoneW;
+			w = 0.12 * safezoneW;
 			h = 0.02 * safezoneH;
-			text = "Target Location: Kavala";
+			text = "";
 		};
 		class sabotagedHQs : Haz_RscStructuredText
 		{
 			idc = idc_sabotagedHQs;
-			x = 0.35 * safezoneW + safezoneX;
+			x = 0.325 * safezoneW + safezoneX;
 			y = 0.36 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.02 * safezoneH;
-			text = "HQs Sabotaged: 6";
+			text = "";
 		};
 		class radioTowerStatus : Haz_RscStructuredText
 		{

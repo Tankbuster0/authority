@@ -123,6 +123,7 @@ while {_hqpos in [[0,0,0], islandcentre] } do
 	_testradius = _testradius * 2;
 	};
 pt_hq = createVehicle [_hqtype, _hqpos, [],0, "NONE"];
+pt_hq_alive = true;
 _higherhqpos = [_hqpos select 0, _hqpos select 1, 10 ];
 
 hqnet = createVehicle ["Land_IRMaskingCover_01_F", _higherhqpos, [] ,0, "CAN_COLLIDE" ];
