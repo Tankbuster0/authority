@@ -50,7 +50,8 @@ civkillcount = 0;
 reinforcementcounter = 0;
 captivekillcounter = 0;
 blueflags = [];
-pt_hq_alive = false;
+pt_hq_alive = true;
+pt_radar_alive = true;
 
 // CQB Arrs
 // CQB Center Troops
