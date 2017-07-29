@@ -192,7 +192,7 @@ class dlg_missionStatus
 			y = 0.3 * safezoneH + safezoneY;
 			w = 0.0625 * safezoneW;
 			h = 0.1 * safezoneH;
-			text = "#(argb,8,8,3)color(1,1,1,1)";
+			text = "pics\ctrglogo256.jpg";
 		};
 	};
 };
