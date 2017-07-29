@@ -34,6 +34,7 @@ class dlg_missionStatus
 			w = 0.4 * safezoneW;
 			h = 0.04 * safezoneH;
 			text = "";
+			colorText[] = {1,1,1,0.5};
 			colorBackground[] = {0.56, 0.52, 0.42, 1};
 		};
 		class title_left : Haz_RscStructuredText
@@ -124,7 +125,7 @@ class dlg_missionStatus
 			idc = idc_primaryTargetLocation;
 			x = 0.325 * safezoneW + safezoneX;
 			y = 0.32 * safezoneH + safezoneY;
-			w = 0.12 * safezoneW;
+			w = 0.13 * safezoneW;
 			h = 0.02 * safezoneH;
 			text = "";
 		};
@@ -140,7 +141,7 @@ class dlg_missionStatus
 		class radioTowerStatus : Haz_RscStructuredText
 		{
 			idc = idc_radioTowerStatus;
-			x = 0.475 * safezoneW + safezoneX;
+			x = 0.478 * safezoneW + safezoneX;
 			y = 0.32 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.02 * safezoneH;
@@ -149,11 +150,11 @@ class dlg_missionStatus
 		class roadBlocksCleared : Haz_RscStructuredText
 		{
 			idc = idc_roadBlocksCleared;
-			x = 0.475 * safezoneW + safezoneX;
+			x = 0.478 * safezoneW + safezoneX;
 			y = 0.36 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.02 * safezoneH;
-			text = "Road Blocks Cleared: 2";
+			text = "";
 		};
 		class secondaryTargetFrame : Haz_RscFrame
 		{
