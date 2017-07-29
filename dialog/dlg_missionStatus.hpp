@@ -15,7 +15,7 @@
 #define idc_roadBlocksCleared 1001
 #define idc_secondaryTargetFrame 1002
 #define idc_controlsGroup 1003
-#define idc_textBox 100
+#define idc_textBox 1005
 #define idc_logo 1004
 
 class dlg_missionStatus
@@ -180,7 +180,7 @@ class dlg_missionStatus
 					y = 0;
 					w = 0.35 * safezoneW;
 					h = 0.3 * safezoneH;
-					text = "<t size='1.0' color='#FFFF00'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc consectetur odio vel turpis ornare, vitae consequat turpis tristique. Praesent mattis, erat quis mattis auctor, tortor ante fringilla nunc, a ullamcorper tellus orci euismod enim. Aliquam maximus eu lacus a venenatis. Vestibulum ac nisi quis nulla venenatis aliquam id sed ipsum. Donec fringilla scelerisque turpis, sed finibus dolor aliquet vel. Mauris ac dignissim diam, non condimentum elit. Integer congue mattis velit vel laoreet. Sed quis sodales nisi. Ut mollis massa nec lacus ornare ullamcorper. Sed in est sed sem gravida finibus eu fringilla orci. Ut ut arcu neque. In tempor elit felis, vel congue dolor suscipit in. Nunc ante elit, ultricies id rutrum eu, volutpat nec odio. Aenean ultrices auctor ipsum. In ultrices aliquam imperdiet. Cras commodo mi in bibendum commodo.<br/><br/>Cras sed tempor ligula. In id sodales nibh. Aliquam in turpis id odio vestibulum dapibus ac quis urna. Fusce pretium congue eros vitae sagittis. Sed non placerat ante. Vestibulum lobortis maximus est quis ultrices. Vestibulum vitae vulputate tellus.<br/><br/>Proin eu odio purus. Phasellus et dui non ante feugiat hendrerit. Etiam ut dui a ante venenatis mollis non at nisi. Donec semper ex sit amet sapien blandit feugiat. Nam viverra justo in quam rhoncus commodo. Aenean id elementum est, id ornare massa. In lectus mauris, pulvinar nec suscipit in, elementum eu augue. Curabitur a augue viverra, venenatis risus vitae, vulputate neque. In rhoncus eleifend volutpat. Ut vestibulum pulvinar nulla, a rhoncus ante porta quis. Sed fringilla tortor eget diam finibus viverra. Maecenas elementum cursus arcu ut facilisis. Phasellus vitae erat et nisl sagittis ornare non et arcu. Vivamus id auctor purus, nec accumsan tellus. Duis malesuada ornare est, sed sagittis erat feugiat a.</t>";
+					text = "";
 				};
 			};
 		};

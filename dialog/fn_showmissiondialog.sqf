@@ -32,4 +32,6 @@ _ctrl = (findDisplay 13579) displayCtrl 1000;
 _ctrl ctrlSetStructuredText parseText format ["Radio Tower up: %1", _d_radar_status];
 _ctrl = (findDisplay 13579) displayCtrl 1001;
 _ctrl ctrlSetStructuredText parseText format ["%1", _d_roadblockfinal];
+_ctrl = (findDisplay 13579) displayCtrl 1005;
+_ctrl ctrlSetStructuredText parseText format ["%1", smmissionstring];
 diag_log "*** fn_smd ends";
