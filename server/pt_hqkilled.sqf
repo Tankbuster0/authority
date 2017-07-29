@@ -7,6 +7,7 @@ hqnet setdamage 1;
 //["The enemy HQ here has been destroyed. The enemy now have no further combat air support"] call tky_fnc_usefirstemptyinhintqueue;
 "The enemy HQ here has been destroyed. The enemy now have no further combat air support." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 pt_fire = createVehicle ["test_EmptyObjectForFireBig", (getpos pt_hq), [],0,"NONE"];
+pt_hq_alive = false;
 
 
 
