@@ -144,7 +144,7 @@ class dlg_missionStatus
 			y = 0.32 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.02 * safezoneH;
-			text = "Radio Tower Status: Active";
+			text = "";
 		};
 		class roadBlocksCleared : Haz_RscStructuredText
 		{
