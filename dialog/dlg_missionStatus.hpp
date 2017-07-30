@@ -141,7 +141,7 @@ class dlg_missionStatus
 		class radioTowerStatus : Haz_RscStructuredText
 		{
 			idc = idc_radioTowerStatus;
-			x = 0.478 * safezoneW + safezoneX;
+			x = 0.480 * safezoneW + safezoneX;
 			y = 0.32 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.02 * safezoneH;
@@ -150,7 +150,7 @@ class dlg_missionStatus
 		class roadBlocksCleared : Haz_RscStructuredText
 		{
 			idc = idc_roadBlocksCleared;
-			x = 0.478 * safezoneW + safezoneX;
+			x = 0.480 * safezoneW + safezoneX;
 			y = 0.36 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.02 * safezoneH;
