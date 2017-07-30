@@ -51,6 +51,24 @@ class Haz_RscScrollBar
 	border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
 };
 
+class Haz_RscPlayerIcon
+{
+	idc = 100;
+	type = CT_STRUCTURED_TEXT;
+	style = CT_SHORTCUTBUTTON + ST_NO_RECT;
+	x = -1;
+	y = -1;
+	w = 0.4;
+	h = 0.2;
+	size = 0.020;
+	sizeEx = 0.020;
+	font = "RobotoCondensed";
+	shadow = 0;
+	lineSpacing = 1;
+	colorText[] = {1, 1, 1, 1};
+	colorBackground[] = {0, 0, 0, 0};
+};
+
 class Haz_RscShortcutButton
 {
 	idc = -1;
@@ -147,6 +165,175 @@ class Haz_RscButton : Haz_RscShortcutButton
 	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.090000, 1};
 };
 
+class Haz_RscListBox
+{
+	idc = -1;
+	type = CT_LISTBOX;
+	style = ST_MULTI;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	rowHeight = 0.04;
+	font = "RobotoCondensed";
+	shadow = 0;
+	period = 1.2;
+	maxHistoryDelay = 1.000000;
+	colorSelect[] = {1, 1, 1, 1};
+	colorSelectRight[] = {1, 1, 1, 1};
+	colorSelect2[] = {1, 1, 1, 1};
+	colorSelect2Right[] = {1, 1, 1, 1};
+	colorText[] = {1, 1, 1, 1.000000};
+	colorTextRight[] = {1, 1, 1, 1};
+	colorShadow[] = {0, 0, 0, 0.500000};
+	colorDisabled[] = {1, 1, 1, 0.250000};
+	colorPicture[] = {1, 1, 1, 1};
+	colorPictureRight[] = {1, 1, 1, 1};
+	colorPictureSelected[] = {1, 1, 1, 1};
+	colorPictureRightSelected[] = {1, 1, 1, 1};
+	colorPictureDisabled[] = {1, 1, 1, 0.250000};
+	colorPictureRightDisabled[] = {1, 1, 1, 0.250000};
+	colorBackground[] = {0, 0, 0, 0.300000};
+	colorSelectBackground[] = {0.950000, 0.950000, 0.950000, 1};
+	colorSelectBackground2[] = {1, 1, 1, 0.500000};
+	colorScrollbar[] = {1, 0, 0, 0};
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.650000};
+	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.090000, 1};
+	class ListScrollBar : Haz_RscScrollBar
+	{
+		autoScrollEnabled = 1;
+		color[] = {1, 1, 1, 1};
+	};
+};
+
+class Haz_RscListNBox
+{
+	idc = -1;
+	idcLeft = -1;
+	idcRight = -1;
+	type = CT_LISTNBOX;
+	style = CT_SHORTCUTBUTTON;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	rowHeight = 0.06;
+	font = "RobotoCondensed";
+	shadow = 0;
+	period = 1.2;
+	maxHistoryDelay = 1;
+	drawSideArrows = 1;
+	colorSelect[] = {0, 0, 0, 1};
+	colorSelectRight[] = {0, 0, 0, 1};
+	colorSelect2[] = {0, 0, 0, 1};
+	colorSelect2Right[] = {0, 0, 0, 1};
+	colorText[] = {1, 1, 1, 1.000000};
+	colorDisabled[] = {1, 1, 1, 0.250000};
+	colorPicture[] = {1, 1, 1, 1};
+	colorPictureSelected[] = {1, 1, 1, 1};
+	colorPictureDisabled[] = {1, 1, 1, 0.250000};
+	colorSelectBackground[] = {0.950000, 0.950000, 0.950000, 1};
+	colorSelectBackground2[] = {1, 1, 1, 0.500000};
+	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.090000, 1};
+	class ListScrollBar : Haz_RscScrollBar
+	{
+		autoScrollEnabled = 1;
+		color[] = {1, 1, 1, 1};
+	};
+};
+
+class Haz_RscTree
+{
+	idc = -1;
+	type = CT_TREE;
+	style = ST_LEFT;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	rowHeight = 0.04
+	font = "RobotoCondensed";
+	shadow = 0;
+	maxHistoryDelay = 1;
+	multiSelectEnabled = 0;
+	expandOnDoubleclick = 1;
+	colorSelect[] = {1, 1, 1, 0.7};
+	colorText[] = {1, 1, 1, 1};
+	colorSelectText[] = {0, 0, 0, 1};
+	colorDisabled[] = {1, 1, 1, 0.25};
+	colorMarked[] = {0.2, 0.3, 0.7, 1};
+	colorMarkedText[] = {0, 0, 0, 1};
+	colorMarkedSelected[] = {0, 0.5, 0.5, 1};
+	colorSearch[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.35])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.07])", 1};
+	colorArrow[] = {1, 1, 1, 1};
+	colorLines[] = {0, 0, 0, 0};
+	colorPicture[] = {1, 1, 1, 1};
+	colorPictureRight[] = {1, 1, 1, 1};
+	colorPictureSelected[] = {0, 0, 0, 1};
+	colorPictureRightSelected[] = {0, 0, 0, 1};
+	colorPictureDisabled[] = {1, 1, 1, 0.25};
+	colorPictureRightDisabled[] = {1, 1, 1, 0.25};
+	colorBackground[] = {0, 0, 0, 0};
+	colorSelectBackground[] = {0, 0, 0, 0.5};
+	colorBorder[] = {0, 0, 0, 0};
+	expandedTexture = "A3\ui_f\data\gui\rsccommon\rsctree\expandedTexture_ca.paa";
+	hiddenTexture = "A3\ui_f\data\gui\rsccommon\rsctree\hiddenTexture_ca.paa";
+	class ScrollBar : Haz_RscScrollBar
+	{
+		autoScrollEnabled = 1;
+		color[] = {1, 1, 1, 1};
+	};
+};
+
+class Haz_RscCombo
+{
+	idc = -1;
+	type = CT_COMBO;
+	style = ST_CENTER;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	font = "RobotoCondensed";
+	rowHeight = 0.04;
+	wholeHeight = 0.48;
+	maxHistoryDelay = 0;
+	autoScrollSpeed = -1;
+	autoScrollDelay = 5;
+	autoScrollRewind = 0;
+	color[] = {0, 0, 0, 0};
+	colorSelect[] = {0, 0, 0, 1};
+	colorText[] = {1, 1, 1, 1};
+	colorDisabled[] = {};
+	colorBackground[] = {0, 0, 0, 1};
+	colorSelectBackground[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0.69])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.75])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.5])", 1};
+	colorSelectBackground2[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0.69])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.75])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.5])", 1};
+	colorScrollbar[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0.69])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.75])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.5])", 1};
+	arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+	arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+	soundSelect[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.090000, 1};
+	soundExpand[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.090000, 1};
+	soundCollapse[] = {"\A3\ui_f\data\sound\RscListbox\soundSelect", 0.090000, 1};
+	class ComboScrollBar : Haz_RscScrollBar
+	{
+		autoScrollEnabled = 1;
+		color[] = {1, 1, 1, 1};
+		colorActive[] = {0, 0, 0, 1};
+		colorDisabled[] = {0, 0, 0, 0};
+		arrowEmpty = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_ca.paa";
+		arrowFull = "\A3\ui_f\data\GUI\RscCommon\rsccombo\arrow_combo_active_ca.paa";
+		thumb = "\A3\ui_f\data\gui\cfg\scrollbar\thumb_ca.paa";
+		border = "\A3\ui_f\data\gui\cfg\scrollbar\border_ca.paa";
+	};
+};
+
+class Haz_RscText
+{
+	idc = -1;
+	type = CT_STATIC;
+	style = ST_LEFT;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	font = "RobotoCondensed";
+	shadow = 1;
+	lineSpacing = 1;
+	colorText[] = {1, 1, 1, 1.000000};
+	colorShadow[] = {0, 0, 0, 0.500000};
+	colorBackground[] = {0, 0, 0, 0};
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.650000};
+};
+
 class Haz_RscStructuredText
 {
 	idc = -1;
@@ -163,6 +350,28 @@ class Haz_RscStructuredText
 		shadow = 1;
 		align = "left";
 	};
+};
+
+class Haz_RscActiveText
+{
+	idc = -1;
+	type = CT_ACTIVE_TEXT;
+	style = ST_PICTURE;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	font = "RobotoCondensed";
+	shadow = 2;
+	color[] = {1, 1, 1, 0.35};
+	colorText[] = {0.75, 0.78, 0, 1};
+	colorActive[] = {1, 1, 1, 1};
+	colorDisabled[] = {0, 0, 0, 0};
+	colorBackground[] = {1, 1, 1, 1};
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.650000};
+	soundEnter[] = {"\A3\ui_f\data\sound\RscButton\soundEnter", 0.090000, 1};
+	soundPush[] = {"\A3\ui_f\data\sound\RscButton\soundPush", 0.090000, 1};
+	soundClick[] = {"\A3\ui_f\data\sound\RscButton\soundClick", 0.090000, 1};
+	soundEscape[] = {"\A3\ui_f\data\sound\RscButton\soundEscape", 0.090000, 1};
 };
 
 class Haz_RscTextBox : Haz_RscScrollBar
@@ -184,10 +393,20 @@ class Haz_RscTextBox : Haz_RscScrollBar
 	};
 };
 
-class Haz_RscTitleBar : Haz_RscTextBox
+class Haz_RscTitleBar : Haz_RscText
 {
 	idc = -1;
 	colorBackground[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0.13])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.54])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.21])", 1};
+};
+
+class Haz_RscProgressBar
+{
+	idc = -1;
+	type = CT_PROGRESS;
+	style = CT_STATIC;
+	colorFrame[] = {0.25, 0.25, 0.25, 1};
+	colorBar[] = {0.4, 0, 0.5, 1};
+	texture = "#(argb,8,8,3)color(1,1,1,1)";
 };
 
 class Haz_RscPicture
@@ -220,6 +439,24 @@ class Haz_RscFrame
 	shadow = 2;
 	colorText[] = {1, 1, 1, 1};
 	colorBackground[] = {0, 0, 0, 0};
+};
+
+class Haz_RscEdit
+{
+	idc = -1;
+	type = CT_EDIT;
+	style = ST_CENTER;
+	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	font = "RobotoCondensed";
+	shadow = 2;
+	autoComplete = 1;
+	colorText[] = {0.950000, 0.950000, 0.950000, 1};
+	colorSelection[] = {"(profileNamespace getVariable ['GUI_BCG_RGB_R', 0.13])", "(profileNamespace getVariable ['GUI_BCG_RGB_G', 0.54])", "(profileNamespace getVariable ['GUI_BCG_RGB_B', 0.21])", 1};
+	colorDisabled[] = {1, 1, 1, 0.250000};
+	colorBackground[] = {0, 0, 0, 0};
+	tooltipColorText[] = {1, 1, 1, 1};
+	tooltipColorBox[] = {1, 1, 1, 1};
+	tooltipColorShade[] = {0, 0, 0, 0.650000};
 };
 
 class Haz_RscControlsGroup
