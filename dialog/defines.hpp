@@ -244,7 +244,7 @@ class Haz_RscTree
 	type = CT_TREE;
 	style = ST_LEFT;
 	sizeEx = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
-	rowHeight = 0.04
+	rowHeight = 0.04;
 	font = "RobotoCondensed";
 	shadow = 0;
 	maxHistoryDelay = 1;
