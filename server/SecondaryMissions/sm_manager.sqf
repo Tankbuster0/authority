@@ -6,6 +6,7 @@ __tky_starts;
 private ["_sm_required","_sm_hint","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_typeselected","_fname","_smmanagerhandle"];
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
+_pt_name = primarytarget getVariable "targetname";
 switch (_sm_hint) do
 	{
 	case 1: {
@@ -72,7 +73,6 @@ for "smcounter" from 1 to _sm_required do
 		_smtypearray = _smtypearray - ["sinktrawler"];
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
 		};
-	_pt_name = primarytarget getVariable "targetname";
 	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
 		{
 		_smtypearray = _smtypearray - ["blueconvoytoab"];
@@ -80,7 +80,6 @@ for "smcounter" from 1 to _sm_required do
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
 	_typeselected = selectRandom _smtypearray;
-	_typeselected = "sinktrawler";//<<< debug only
 	_smtypearray = _smtypearray - [_typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
 	diag_log format ["***current sm number is %1", smcounter];
