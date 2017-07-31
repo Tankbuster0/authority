@@ -1,56 +1,40 @@
 exports.dat
 
-/* #Femysa
+/* #Hazuqy
 $[
 	1.063,
-	["k",[[0,0,1,1],0.025,0.04,"GUI_GRID"],0,0,0],
-	[1000,"title: Haz_RscTitleBar",[2,"",["0.6 * GUI_GRID_W + GUI_GRID_X","0.69 * GUI_GRID_H + GUI_GRID_Y","38.7932 * GUI_GRID_W","1.81764 * GUI_GRID_H"],[1,1,1,0.5],[0.56,0.52,0.42,1],[-1,-1,-1,-1],"","-1"],["idc = 100;"]],
-	[1001,"title_left: Haz_RscStructuredText",[2,"<t size='1.0' align='left' color='#FFFFFF'>Authority Mission Status</t>",["0.6 * GUI_GRID_W + GUI_GRID_X","0.69 * GUI_GRID_H + GUI_GRID_Y","19.3966 * GUI_GRID_W","1.81764 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 200;","size = |(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) ~ 1.75)|;"]],
-	[1002,"title_right: Haz_RscStructuredText",[2,"<t size='1.0' align='right' color='#FFFFFF'><img size='1.0' color='#FFFFFF' image='\A3\ui_f\data\gui\cfg\ranks\corporal_gs.paa'/>Haz</t>",["20 * GUI_GRID_W + GUI_GRID_X","0.69 * GUI_GRID_H + GUI_GRID_Y","19.3966 * GUI_GRID_W","1.81764 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 300;","size = |(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) ~ 1.75)|;"]],
-	[1003,"background: Haz_RscPicture",[2,"#(argb,8,8,3)color(0.25,0.25,0.22,1)",["0.6 * GUI_GRID_W + GUI_GRID_X","2.5 * GUI_GRID_H + GUI_GRID_Y","38.7932 * GUI_GRID_W","19.9941 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 400;"]],
-	[1004,"close: Haz_RscButton",[2,"Close",["0.6 * GUI_GRID_W + GUI_GRID_X","22.5 * GUI_GRID_H + GUI_GRID_Y","7.27372 * GUI_GRID_W","1.81764 * GUI_GRID_H"],[1,1,1,1],[0.56,0.52,0.42,1],[-1,-1,-1,-1],"","-1"],["idc = 500;","period = 0;","periodFocus = 0;","periodOver = 0;","color[] = {0.25,0.25,0.22,1};","color2[] = {0.25,0.25,0.22,1};","colorFocused[] = {0.25,0.25,0.22,1};","colorFocusedSecondary[] = {0.25,0.25,0.22,1};","colorSecondary[] = {0.25,0.25,0.22,1};","color2Secondary[] = {0.25,0.25,0.22,1};","colorBackground2[] = {0.25,0.25,0.22,1};","colorBackgroundFocused[] = {0.25,0.25,0.22,1};","colorBackgroundActive[] = {0.25,0.25,0.22,1};","action = |closeDialog 0|;"]],
-	[1005,"settings: Haz_RscButton",[2,"Settings",["32.12 * GUI_GRID_W + GUI_GRID_X","22.5 * GUI_GRID_H + GUI_GRID_Y","7.27372 * GUI_GRID_W","1.81764 * GUI_GRID_H"],[1,1,1,1],[0.56,0.52,0.42,1],[-1,-1,-1,-1],"","-1"],["idc = 600;","period = 0;","periodFocus = 0;","periodOver = 0;","color[] = {0.25,0.25,0.22,1};","color2[] = {0.25,0.25,0.22,1};","colorFocused[] = {0.25,0.25,0.22,1};","colorFocusedSecondary[] = {0.25,0.25,0.22,1};","colorSecondary[] = {0.25,0.25,0.22,1};","color2Secondary[] = {0.25,0.25,0.22,1};","colorBackground2[] = {0.25,0.25,0.22,1};","colorBackgroundFocused[] = {0.25,0.25,0.22,1};","colorBackgroundActive[] = {0.25,0.25,0.22,1};"]],
-	[1006,"primaryTargetFrame: Haz_RscFrame",[2,"",["3.03 * GUI_GRID_W + GUI_GRID_X","3.41 * GUI_GRID_H + GUI_GRID_Y","26.6703 * GUI_GRID_W","4.54411 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 700;"]],
-	[1007,"primaryTargetLocation: Haz_RscStructuredText",[2,"",["3 * GUI_GRID_W + GUI_GRID_X","4 * GUI_GRID_H + GUI_GRID_Y","17.5 * GUI_GRID_W","1 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 800;"]],
-	[1008,"sabotagedHQs: Haz_RscStructuredText",[2,"",["3.03 * GUI_GRID_W + GUI_GRID_X","6.14 * GUI_GRID_H + GUI_GRID_Y","9.6983 * GUI_GRID_W","0.908821 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 900;"]],
-	[1009,"radioTowerStatus: Haz_RscStructuredText",[1,"",["0.5 * safezoneW + safezoneX","0.312945 * safezoneH + safezoneY","0.1 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1000;"]],
-	[1010,"roadBlocksCleared: Haz_RscStructuredText",[2,"",["20 * GUI_GRID_W + GUI_GRID_X","6 * GUI_GRID_H + GUI_GRID_Y","9.6983 * GUI_GRID_W","0.908821 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1001;"]],
-	[1011,"secondaryTargetFrame: Haz_RscFrame",[2,"",["3.03 * GUI_GRID_W + GUI_GRID_X","8.86 * GUI_GRID_H + GUI_GRID_Y","33.944 * GUI_GRID_W","12.7235 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1002;"]],
-	[1012,"controlsGroup: Haz_RscControlsGroup2",[2,"",["3.03 * GUI_GRID_W + GUI_GRID_X","8.86 * GUI_GRID_H + GUI_GRID_Y","33.944 * GUI_GRID_W","12.7235 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1003;"]],
-	[1013,"logo: Haz_RscPictureKeepAspect",[2,"pics\ctrglogo256.jpg",["30.91 * GUI_GRID_W + GUI_GRID_X","3.41 * GUI_GRID_H + GUI_GRID_Y","6.06144 * GUI_GRID_W","4.54411 * GUI_GRID_H"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1004;"]]
+	["q",[[0,0,1,1],0.025,0.04,"GUI_GRID"],0,0,0],
+	[1000,"title: Haz_RscTitleBar",[1,"",["0.300041 * safezoneW + safezoneX","0.23996 * safezoneH + safezoneY","0.4 * safezoneW","0.04 * safezoneH"],[1,1,1,0.5],[0.56,0.52,0.42,1],[-1,-1,-1,-1],"","-1"],["idc = 100;"]],
+	[1001,"title_left: Haz_RscStructuredText",[1,"<t size='1.0' align='left' color='#FFFFFF'>Authority Mission Status</t>",["0.300041 * safezoneW + safezoneX","0.23996 * safezoneH + safezoneY","0.2 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 200;","size = |(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) ~ 1.75)|;"]],
+	[1002,"title_right: Haz_RscStructuredText",[1,"<t size='1.0' align='right' color='#FFFFFF'><img size='1.0' color='#FFFFFF' image='\A3\ui_f\data\gui\cfg\ranks\corporal_gs.paa'/>Haz</t>",["0.5 * safezoneW + safezoneX","0.23996 * safezoneH + safezoneY","0.2 * safezoneW","0.04 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 300;","size = |(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) ~ 1.75)|;"]],
+	[1003,"background: Haz_RscPicture",[1,"#(argb,8,8,3)color(0.25,0.25,0.22,1)",["0.300041 * safezoneW + safezoneX","0.28 * safezoneH + safezoneY","0.4 * safezoneW","0.44 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 400;"]],
+	[1004,"close: Haz_RscButton",[1,"Close",["0.300041 * safezoneW + safezoneX","0.72 * safezoneH + safezoneY","0.075 * safezoneW","0.04 * safezoneH"],[1,1,1,1],[0.56,0.52,0.42,1],[-1,-1,-1,-1],"","-1"],["idc = 500;","period = 0;","periodFocus = 0;","periodOver = 0;","color[] = {0.25,0.25,0.22,1};","color2[] = {0.25,0.25,0.22,1};","colorFocused[] = {0.25,0.25,0.22,1};","colorFocusedSecondary[] = {0.25,0.25,0.22,1};","colorSecondary[] = {0.25,0.25,0.22,1};","color2Secondary[] = {0.25,0.25,0.22,1};","colorBackground2[] = {0.25,0.25,0.22,1};","colorBackgroundFocused[] = {0.25,0.25,0.22,1};","colorBackgroundActive[] = {0.25,0.25,0.22,1};","action = |closeDialog 0|;"]],
+	[1005,"settings: Haz_RscButton",[1,"Settings",["0.624987 * safezoneW + safezoneX","0.72 * safezoneH + safezoneY","0.075 * safezoneW","0.04 * safezoneH"],[1,1,1,1],[0.56,0.52,0.42,1],[-1,-1,-1,-1],"","-1"],["idc = 600;","period = 0;","periodFocus = 0;","periodOver = 0;","color[] = {0.25,0.25,0.22,1};","color2[] = {0.25,0.25,0.22,1};","colorFocused[] = {0.25,0.25,0.22,1};","colorFocusedSecondary[] = {0.25,0.25,0.22,1};","colorSecondary[] = {0.25,0.25,0.22,1};","color2Secondary[] = {0.25,0.25,0.22,1};","colorBackground2[] = {0.25,0.25,0.22,1};","colorBackgroundFocused[] = {0.25,0.25,0.22,1};","colorBackgroundActive[] = {0.25,0.25,0.22,1};"]],
+	[1006,"primaryTargetFrame: Haz_RscFrame",[1,"",["0.32156 * safezoneW + safezoneX","0.30002 * safezoneH + safezoneY","0.262969 * safezoneW","0.154 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 700;"]],
+	[1007,"primaryTargetLocation: Haz_RscStructuredText",[1,"",["0.329844 * safezoneW + safezoneX","0.322 * safezoneH + safezoneY","0.232031 * safezoneW","0.022 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 800;"]],
+	[1008,"sabotagedHQs: Haz_RscStructuredText",[1,"",["0.324997 * safezoneW + safezoneX","0.36008 * safezoneH + safezoneY","0.1 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 900;"]],
+	[1009,"radioTowerStatus: Haz_RscStructuredText",[1,"",["0.319531 * safezoneW + safezoneX","0.401 * safezoneH + safezoneY","0.1 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1000;"]],
+	[1010,"roadBlocksCleared: Haz_RscStructuredText",[1,"",["0.443281 * safezoneW + safezoneX","0.357 * safezoneH + safezoneY","0.1 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1001;"]],
+	[1011,"secondaryTargetFrame: Haz_RscFrame",[1,"",["0.324372 * safezoneW + safezoneX","0.468921 * safezoneH + safezoneY","0.350625 * safezoneW","0.231 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1002;"]],
+	[1012,"controlsGroup: Haz_RscControlsGroup2",[1,"",["0.319216 * safezoneW + safezoneX","0.479921 * safezoneH + safezoneY","0.355781 * safezoneW","0.22 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1003;"]],
+	[1013,"logo: Haz_RscPictureKeepAspect",[1,"pics\ctrglogo256.jpg",["0.597665 * safezoneW + safezoneX","0.30002 * safezoneH + safezoneY","0.0773437 * safezoneW","0.132 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 1004;"]],
+	[1014,"enemydisposition: Haz_RscStructuredText",[1,"",["0.443281 * safezoneW + safezoneX","0.401 * safezoneH + safezoneY","0.1 * safezoneW","0.02 * safezoneH"],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"","-1"],["idc = 900;"]]
 ]
 */
 
 
-controls[]=
-{
-	title,
-	title_left,
-	title_right,
-	background,
-	close,
-	settings,
-	primaryTargetFrame,
-	primaryTargetLocation,
-	sabotagedHQs,
-	radioTowerStatus,
-	roadBlocksCleared,
-	secondaryTargetFrame,
-	controlsGroup,
-	logo
-};
 ////////////////////////////////////////////////////////
-// GUI EDITOR OUTPUT START (by Tankbuster, v1.063, #Femysa)
+// GUI EDITOR OUTPUT START (by Paul-Laptop, v1.063, #Hazuqy)
 ////////////////////////////////////////////////////////
 
 class title: Haz_RscTitleBar
 {
 	idc = 100;
 
-	x = 0.6 * GUI_GRID_W + GUI_GRID_X;
-	y = 0.69 * GUI_GRID_H + GUI_GRID_Y;
-	w = 38.7932 * GUI_GRID_W;
-	h = 1.81764 * GUI_GRID_H;
+	x = 0.300041 * safezoneW + safezoneX;
+	y = 0.23996 * safezoneH + safezoneY;
+	w = 0.4 * safezoneW;
+	h = 0.04 * safezoneH;
 	colorText[] = {1,1,1,0.5};
 	colorBackground[] = {0.56,0.52,0.42,1};
 };
@@ -60,10 +44,10 @@ class title_left: Haz_RscStructuredText
 	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.75)";
 
 	text = "<t size='1.0' align='left' color='#FFFFFF'>Authority Mission Status</t>"; //--- ToDo: Localize;
-	x = 0.6 * GUI_GRID_W + GUI_GRID_X;
-	y = 0.69 * GUI_GRID_H + GUI_GRID_Y;
-	w = 19.3966 * GUI_GRID_W;
-	h = 1.81764 * GUI_GRID_H;
+	x = 0.300041 * safezoneW + safezoneX;
+	y = 0.23996 * safezoneH + safezoneY;
+	w = 0.2 * safezoneW;
+	h = 0.04 * safezoneH;
 };
 class title_right: Haz_RscStructuredText
 {
@@ -71,20 +55,20 @@ class title_right: Haz_RscStructuredText
 	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.75)";
 
 	text = "<t size='1.0' align='right' color='#FFFFFF'><img size='1.0' color='#FFFFFF' image='\A3\ui_f\data\gui\cfg\ranks\corporal_gs.paa'/>Haz</t>"; //--- ToDo: Localize;
-	x = 20 * GUI_GRID_W + GUI_GRID_X;
-	y = 0.69 * GUI_GRID_H + GUI_GRID_Y;
-	w = 19.3966 * GUI_GRID_W;
-	h = 1.81764 * GUI_GRID_H;
+	x = 0.5 * safezoneW + safezoneX;
+	y = 0.23996 * safezoneH + safezoneY;
+	w = 0.2 * safezoneW;
+	h = 0.04 * safezoneH;
 };
 class background: Haz_RscPicture
 {
 	idc = 400;
 
 	text = "#(argb,8,8,3)color(0.25,0.25,0.22,1)"; //--- ToDo: Localize;
-	x = 0.6 * GUI_GRID_W + GUI_GRID_X;
-	y = 2.5 * GUI_GRID_H + GUI_GRID_Y;
-	w = 38.7932 * GUI_GRID_W;
-	h = 19.9941 * GUI_GRID_H;
+	x = 0.300041 * safezoneW + safezoneX;
+	y = 0.28 * safezoneH + safezoneY;
+	w = 0.4 * safezoneW;
+	h = 0.44 * safezoneH;
 };
 class close: Haz_RscButton
 {
@@ -104,10 +88,10 @@ class close: Haz_RscButton
 	action = "closeDialog 0";
 
 	text = "Close"; //--- ToDo: Localize;
-	x = 0.6 * GUI_GRID_W + GUI_GRID_X;
-	y = 22.5 * GUI_GRID_H + GUI_GRID_Y;
-	w = 7.27372 * GUI_GRID_W;
-	h = 1.81764 * GUI_GRID_H;
+	x = 0.300041 * safezoneW + safezoneX;
+	y = 0.72 * safezoneH + safezoneY;
+	w = 0.075 * safezoneW;
+	h = 0.04 * safezoneH;
 	colorText[] = {1,1,1,1};
 	colorBackground[] = {0.56,0.52,0.42,1};
 };
@@ -128,10 +112,10 @@ class settings: Haz_RscButton
 	colorBackgroundActive[] = {0.25,0.25,0.22,1};
 
 	text = "Settings"; //--- ToDo: Localize;
-	x = 32.12 * GUI_GRID_W + GUI_GRID_X;
-	y = 22.5 * GUI_GRID_H + GUI_GRID_Y;
-	w = 7.27372 * GUI_GRID_W;
-	h = 1.81764 * GUI_GRID_H;
+	x = 0.624987 * safezoneW + safezoneX;
+	y = 0.72 * safezoneH + safezoneY;
+	w = 0.075 * safezoneW;
+	h = 0.04 * safezoneH;
 	colorText[] = {1,1,1,1};
 	colorBackground[] = {0.56,0.52,0.42,1};
 };
@@ -139,35 +123,35 @@ class primaryTargetFrame: Haz_RscFrame
 {
 	idc = 700;
 
-	x = 3.03 * GUI_GRID_W + GUI_GRID_X;
-	y = 3.41 * GUI_GRID_H + GUI_GRID_Y;
-	w = 26.6703 * GUI_GRID_W;
-	h = 4.54411 * GUI_GRID_H;
+	x = 0.32156 * safezoneW + safezoneX;
+	y = 0.30002 * safezoneH + safezoneY;
+	w = 0.262969 * safezoneW;
+	h = 0.154 * safezoneH;
 };
 class primaryTargetLocation: Haz_RscStructuredText
 {
 	idc = 800;
 
-	x = 3 * GUI_GRID_W + GUI_GRID_X;
-	y = 4 * GUI_GRID_H + GUI_GRID_Y;
-	w = 17.5 * GUI_GRID_W;
-	h = 1 * GUI_GRID_H;
+	x = 0.329844 * safezoneW + safezoneX;
+	y = 0.322 * safezoneH + safezoneY;
+	w = 0.232031 * safezoneW;
+	h = 0.022 * safezoneH;
 };
 class sabotagedHQs: Haz_RscStructuredText
 {
 	idc = 900;
 
-	x = 3.03 * GUI_GRID_W + GUI_GRID_X;
-	y = 6.14 * GUI_GRID_H + GUI_GRID_Y;
-	w = 9.6983 * GUI_GRID_W;
-	h = 0.908821 * GUI_GRID_H;
+	x = 0.324997 * safezoneW + safezoneX;
+	y = 0.36008 * safezoneH + safezoneY;
+	w = 0.1 * safezoneW;
+	h = 0.02 * safezoneH;
 };
 class radioTowerStatus: Haz_RscStructuredText
 {
 	idc = 1000;
 
-	x = 0.5 * safezoneW + safezoneX;
-	y = 0.312945 * safezoneH + safezoneY;
+	x = 0.319531 * safezoneW + safezoneX;
+	y = 0.401 * safezoneH + safezoneY;
 	w = 0.1 * safezoneW;
 	h = 0.02 * safezoneH;
 };
@@ -175,38 +159,47 @@ class roadBlocksCleared: Haz_RscStructuredText
 {
 	idc = 1001;
 
-	x = 20 * GUI_GRID_W + GUI_GRID_X;
-	y = 6 * GUI_GRID_H + GUI_GRID_Y;
-	w = 9.6983 * GUI_GRID_W;
-	h = 0.908821 * GUI_GRID_H;
+	x = 0.443281 * safezoneW + safezoneX;
+	y = 0.357 * safezoneH + safezoneY;
+	w = 0.1 * safezoneW;
+	h = 0.02 * safezoneH;
 };
 class secondaryTargetFrame: Haz_RscFrame
 {
 	idc = 1002;
 
-	x = 3.03 * GUI_GRID_W + GUI_GRID_X;
-	y = 8.86 * GUI_GRID_H + GUI_GRID_Y;
-	w = 33.944 * GUI_GRID_W;
-	h = 12.7235 * GUI_GRID_H;
+	x = 0.324372 * safezoneW + safezoneX;
+	y = 0.468921 * safezoneH + safezoneY;
+	w = 0.350625 * safezoneW;
+	h = 0.231 * safezoneH;
 };
 class controlsGroup: Haz_RscControlsGroup2
 {
 	idc = 1003;
 
-	x = 3.03 * GUI_GRID_W + GUI_GRID_X;
-	y = 8.86 * GUI_GRID_H + GUI_GRID_Y;
-	w = 33.944 * GUI_GRID_W;
-	h = 12.7235 * GUI_GRID_H;
+	x = 0.319216 * safezoneW + safezoneX;
+	y = 0.479921 * safezoneH + safezoneY;
+	w = 0.355781 * safezoneW;
+	h = 0.22 * safezoneH;
 };
 class logo: Haz_RscPictureKeepAspect
 {
 	idc = 1004;
 
 	text = "pics\ctrglogo256.jpg"; //--- ToDo: Localize;
-	x = 30.91 * GUI_GRID_W + GUI_GRID_X;
-	y = 3.41 * GUI_GRID_H + GUI_GRID_Y;
-	w = 6.06144 * GUI_GRID_W;
-	h = 4.54411 * GUI_GRID_H;
+	x = 0.597665 * safezoneW + safezoneX;
+	y = 0.30002 * safezoneH + safezoneY;
+	w = 0.0773437 * safezoneW;
+	h = 0.132 * safezoneH;
+};
+class enemydisposition: Haz_RscStructuredText
+{
+	idc = 900;
+
+	x = 0.443281 * safezoneW + safezoneX;
+	y = 0.401 * safezoneH + safezoneY;
+	w = 0.1 * safezoneW;
+	h = 0.02 * safezoneH;
 };
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END

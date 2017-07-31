@@ -13,7 +13,6 @@ _d_roadblockdata2 = [missionNamespace, "roadblockgates", -1 ] call BIS_fnc_getSe
 _d_roadblockdata3 = [missionNamespace, "roadblockscleared"] call BIS_fnc_getServerVariable;
 
 _d_roadblockfinal = format ["Roadblocks to clear: %1",(_d_roadblockdata2 - _d_roadblockdata1)];// number of gates still to kill
-if (_d_roadblockdata3) then {_d_roadblockfinal = "All roadblocks done";};
 
 
 
