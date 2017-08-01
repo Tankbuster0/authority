@@ -97,8 +97,14 @@ for "smcounter" from 1 to _sm_required do
 		if (smcounter < _sm_required) then
 			{
 			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			smmissionstring = "There are further Secondary Missions. Orders incomming soon";
+			publicVariable "smmissionstring";
 			};
 		};
 	};
-		"ALL MISSIONS COMPLETED" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+"ALL MISSIONS COMPLETED" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+smmissionstring = "You've completed all the Secondary Missions for this town. The locals are happy with our work. Next Primary Mission orders coming soon.";
+publicVariable "smmissionstring";
+sleep 10;
+
 __tky_ends
