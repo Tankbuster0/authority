@@ -7,9 +7,34 @@ missionsuccess = false; publicVariable "missionsuccess";
 private [];
 
 _kill1types =
-	[// [missioncode, [buildings to use, buildings to use]]
-		["rp", ["Land_Church_01_V1_F", "Land_Church_01_F", "Land_Church_02_F", "Land_Church_03_F", "Land_Chapel_V1_F", "Land_Chapel_V2_F", "Land_Chapel_Small_V1_F", "Land_Chapel_Small_V2_F", "Land_Cathedral_01_F" ], "class of priest" ]
+	[//[missioncode, [buildings to use, buildings to use], spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, [classnames of mantokill],"unitinit"[texts to use], ["classnames of support units indoors"], ["classnames of support units outdoors"], ["missiontextstrings"]]
+		["cgl", ["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"], false, true, false ["I_C_Soldier_Bandit_7_F"], ["",""], ["His activities are disturbing the fragile peace. Take him out"] ],
+	["htg", []]
 	];
+/*
+missiontextstrings explan
+random ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a "]
+plus
+screenname classname of manktokill
+plus
+if spawninsideflag then "inside" else "near"
+plus
+distance
+plus
+cardinaldirection
+plus
+of nearesttown.
+plus
+missiontextstring
+
+
+
+*/
+submissiondata = selectRandom _kill1types;
+
+
+
+
 smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
