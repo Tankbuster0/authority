@@ -31,6 +31,8 @@ missiontextstring
 
 */
 submissiondata = selectRandom _kill1types;
+_housetypes = submissiondata select 2;
+params
 
 
 _redtargets = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 1000} };
@@ -41,6 +43,7 @@ _tname = _mytown getVariable ["targetname", "Springfield"];
 diag_log format ["*** dk1m chooses %1", _tname ];
 
 _nearblds = nearestTerrainObjects [_mytown, (submissiondata select 2), 50, false, true];
+if
 
 
 
