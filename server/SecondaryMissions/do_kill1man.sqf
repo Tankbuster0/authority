@@ -8,8 +8,8 @@ private [];
 
 _kill1types =
 	[//[missioncode, [buildings to use, buildings to use], spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, [classnames of mantokill],"unitinit"[texts to use], ["classnames of support units indoors"], ["classnames of support units outdoors"], ["missiontextstrings"]]
-		["cgl", ["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"], false, true, false ["I_C_Soldier_Bandit_7_F"], ["",""], ["His activities are disturbing the fragile peace. Take him out"] ],
-	["htg", ["House_f"]]
+		["cgl", ["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"], false, true, false ["I_C_Soldier_Bandit_7_F"],"", [""],[""], ["His activities are disturbing the fragile peace. Take him out"] ],
+		["htg", ["House_f"], false, true, false, ["I_C_Soldier_Bandit_1_F"], "", ["I_C_Soldier_Bandit_4_F"], [], ["He has been taking hostages for ransom. We need him taken out."]]
 	];
 /*
 missiontextstrings explan
@@ -31,6 +31,17 @@ missiontextstring
 
 */
 submissiondata = selectRandom _kill1types;
+
+
+_redtargets = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 1000} };
+//^^^ get nearby enemy towns
+_mytown = selectRandom _redtargets;
+// ^^^ select 1 at random
+_tname = _mytown getVariable ["targetname", "Springfield"];
+diag_log format ["*** dk1m chooses %1", _tname ];
+
+_nearblds = nearestTerrainObjects [_mytown, (submissiondata select 2), 50, false, true];
+
 
 
 
