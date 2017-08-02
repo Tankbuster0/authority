@@ -9,7 +9,7 @@ private [];
 _kill1types =
 	[//[missioncode, [buildings to use, buildings to use], spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, [classnames of mantokill],"unitinit"[texts to use], ["classnames of support units indoors"], ["classnames of support units outdoors"], ["missiontextstrings"]]
 		["cgl", ["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"], false, true, false ["I_C_Soldier_Bandit_7_F"], ["",""], ["His activities are disturbing the fragile peace. Take him out"] ],
-	["htg", []]
+	["htg", ["House_f"]]
 	];
 /*
 missiontextstrings explan
