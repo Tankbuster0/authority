@@ -8,7 +8,7 @@ scriptName "fn_fixTextHeight";
 
 if ((isDedicated) || (!hasInterface)) exitWith {};
 
-_controlsGroup = (uiNamespace getVariable "disp_missionStatus") displayCtrl 1003;
+_controlsGroup = (uiNamespace getVariable "disp_missionStatus") displayCtrl 1004;
 _textBoxCtrl = _controlsGroup controlsGroupCtrl 100;
 
 _textHeight = ctrlTextHeight _textBoxCtrl;
