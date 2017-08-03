@@ -24,7 +24,7 @@ class dlg_missionStatus
 {
 	idd = 13579;
 	movingEnable = 1;
-	onLoad = "uiNamespace setVariable [""disp_missionStatus"", (_this select 0)]; [] call Haz_fnc_fixTextHeight; [] call Haz_fnc_missionStatus;";
+	onLoad = "uiNamespace setVariable [""disp_missionStatus"", (_this select 0)]; [] call tky_fnc_fixTextHeight; [] call tky_fnc_missionStatus;";
 	onUnload = "uiNamespace setVariable [""disp_missionStatus"", nil];";
 	class controls
 	{
