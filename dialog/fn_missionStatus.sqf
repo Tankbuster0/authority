@@ -8,10 +8,10 @@ scriptName "fn_missionStatus";
 
 if ((isDedicated) || (!hasInterface)) exitWith {};
 
-disablerSerialization;
+disableSerialization;
 
 _display = uiNamespace getVariable "disp_missionStatus";
 _titleRight = _display displayCtrl 300;
 
-_titleRight ctrlSetStructuredText parseText format ["<t size='1.0' align='right' color='#FFFFFF'><img size='1.0' color='#FFFFFF' image='\A3\ui_f\data\gui\cfg\ranks\%1_gs.paa'/>%2</t>", (rank player), (name player)];
+_titleRight ctrlSetStructuredText parseText format ["<t size='1.0' align='right' color='#FFFFFF'><img size='1.0' color='#FFFFFF' image='\A3\ui_f\data\gui\cfg\ranks\%1_gs.paa'/>%2 (%3)</t>", (rank player), (name player), player];
 _titleRight ctrlCommit 0;

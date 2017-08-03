@@ -142,7 +142,7 @@ class dlg_missionStatus
 		class roadBlocksCleared  : Haz_RscStructuredText
 		{
 			idc = idc_roadBlocksCleared;
-			x = 0.45 * safezoneW + safezoneX;
+			x = 0.43 * safezoneW + safezoneX;
 			y = 0.36 * safezoneH + safezoneY;
 			w = 0.1125 * safezoneW;
 			h = 0.04 * safezoneH;
@@ -160,9 +160,9 @@ class dlg_missionStatus
 		class enemyStrength : Haz_RscStructuredText
 		{
 			idc = idc_enemy_strength;
-			x = 0.45 * safezoneW + safezoneX;
+			x = 0.43 * safezoneW + safezoneX;
 			y = 0.4 * safezoneH + safezoneY;
-			w = 0.1125 * safezoneW;
+			w = 0.1150 * safezoneW;
 			h = 0.04 * safezoneH;
 			text = "Enemy Strength:";
 		};
