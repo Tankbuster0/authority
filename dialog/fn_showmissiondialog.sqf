@@ -1,7 +1,8 @@
 disableSerialization;
 diag_log "*** fn_smd runs";
-private ["_d_cpt_name","_d_hq_status","_d_radar_status","_d_roadblockdata1","_d_roadblockdata2","_d_roadblockdata3","_d_roadblockfinal","_ctrl"];
-_d_roadblockfinal = "";
+private ["_d_roadblockfinal","_numberstrengths","_d_cpt_name","_d_hq_status","_d_radar_status","_d_roadblockdata1","_d_roadblockdata2","_d_roadblockdata3","_d_enemystrength","_d_hq_status_output","_d_radar_status_output","_ctrl"];
+
+_numberstrengths = ["Routed","Stragglers",  "Very Weak", "Quite Weak","Weak" "Medium","Quite Strong", "Strong","Very Strong", "Overwhelming";]
 _d_cpt_name = [missionNamespace, "cpt_name"] call BIS_fnc_getServerVariable;
 
 _d_hq_status = [missionnamespace, "pt_hq_alive", false] call BIS_fnc_getServerVariable;
@@ -14,8 +15,9 @@ _d_roadblockdata3 = [missionNamespace, "roadblockscleared"] call BIS_fnc_getServ
 
 _d_roadblockfinal = format ["Roadblocks to clear: %1",(_d_roadblockdata2 - _d_roadblockdata1)];// number of gates still to kill
 
-_d_enemystrengthdata = east countSide allunits;
 
+
+_d_enemystrength =  _numberstrengths select ((round (east countSide allunits / 10)) min 9);
 createDialog "dlg_missionStatus";
 
 waitUntil {!isNull (findDisplay 13579);};
@@ -35,7 +37,7 @@ _ctrl ctrlSetStructuredText parseText format ["Enemy Radar Active: %1", _d_radar
 _ctrl = (findDisplay 13579) displayCtrl 1001;
 _ctrl ctrlSetStructuredText parseText format ["Roadblocks to Clear", _d_roadblockfinal];
 _ctrl = (findDisplay 13579) displayCtrl 1003;
-_ctrl ctrlSetStructuredText parseText format ["Enemy Strength: %1", _d_enemystrengthdata];
+_ctrl ctrlSetStructuredText parseText format ["Enemy Strength: %1", _d_enemystrength];
 
 _ctrl = (findDisplay 13579) displayCtrl 1005;
 _ctrl ctrlSetStructuredText parseText format ["%1", smmissionstring];
