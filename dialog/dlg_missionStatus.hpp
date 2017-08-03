@@ -88,6 +88,7 @@ class dlg_missionStatus
 			colorBackground2[] = {0.25, 0.25, 0.22, 1};
 			colorBackgroundFocused[] = {0.25, 0.25, 0.22, 1};
 			colorBackgroundActive[] = {0.25, 0.25, 0.22, 1};
+			action = "closeDialog 0";
 		};
 		class settings  : Haz_RscButton
 		{
