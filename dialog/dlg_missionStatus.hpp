@@ -201,7 +201,7 @@ class dlg_missionStatus
 			y = 0.3 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.16 * safezoneH;
-			text = "logo.paa";
+			text = "pics\ctrglogo256.jpg";
 		};
 		class credits : Haz_RscText
 		{
