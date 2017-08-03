@@ -14,12 +14,14 @@ _d_roadblockdata3 = [missionNamespace, "roadblockscleared"] call BIS_fnc_getServ
 
 _d_roadblockfinal = format ["Roadblocks to clear: %1",(_d_roadblockdata2 - _d_roadblockdata1)];// number of gates still to kill
 
-
+_d_enemystrengthdata = countSide east;
 
 createDialog "dlg_missionStatus";
 
 waitUntil {!isNull (findDisplay 13579);};
 
+_d_hq_status_output = if (_d_hq_status) then {"Yes"} else {"No"};
+_d_radar_status_output = if (_d_radar_status) then {"Yes"} else {"No"};
 
 
 sleep 0;
@@ -27,11 +29,14 @@ sleep 0;
 _ctrl = (findDisplay 13579) displayCtrl 800;
 _ctrl ctrlSetStructuredText parseText format ["Primary Target: %1", _d_cpt_name];
 _ctrl = (findDisplay 13579) displayCtrl 900;
-_ctrl ctrlSetStructuredText parseText format ["Enemy HQ active: %1", _d_hq_status];
+_ctrl ctrlSetStructuredText parseText format ["Enemy HQ active: %1", _d_hq_status_output];
 _ctrl = (findDisplay 13579) displayCtrl 1000;
-_ctrl ctrlSetStructuredText parseText format ["Radio Tower up: %1", _d_radar_status];
+_ctrl ctrlSetStructuredText parseText format ["Radio Tower up: %1", _d_radar_status_output];
 _ctrl = (findDisplay 13579) displayCtrl 1001;
 _ctrl ctrlSetStructuredText parseText format ["%1", _d_roadblockfinal];
+_ctrl = (findDisplay 13579) displayCtrl 1003;
+_ctrl ctrlSetStructuredText parseText format ["%1", _d_enemystrength];
+
 _ctrl = (findDisplay 13579) displayCtrl 1005;
 _ctrl ctrlSetStructuredText parseText format ["%1", smmissionstring];
 diag_log "*** fn_smd ends";
