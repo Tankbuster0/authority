@@ -39,6 +39,8 @@ _ctrl ctrlSetStructuredText parseText format ["%1", _d_roadblockfinal];
 _ctrl = (findDisplay 13579) displayCtrl 1003;
 _ctrl ctrlSetStructuredText parseText format ["Enemy Strength: %1", _d_enemystrength];
 
-_ctrl = (findDisplay 13579) displayCtrl 100;
-_ctrl ctrlSetStructuredText parseText format ["%1", smmissionstring];
+_controlsGroup = (uiNamespace getVariable "disp_missionStatus") displayCtrl 1004;
+_textBoxCtrl = _controlsGroup controlsGroupCtrl 100;
+_textBoxCtrl ctrlSetStructuredText parseText format ["%1", smmissionstring];
+
 diag_log "*** fn_smd ends";
