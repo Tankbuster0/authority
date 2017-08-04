@@ -14,7 +14,7 @@ respawn = "BASE";
 debriefing = 1;
 respawnDelay = 3;
 respawnTemplates[] = {"Counter", "MenuPosition"};
-respawnButton = 1;
+respawnButton = 0;
 respawnOnStart = 0;
 disableRandomization[] = {"AllVehicles"};
 //reviveDelay = 10;
@@ -78,8 +78,6 @@ class cfgFunctions
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
 			class resetCuratorBuildlist {};
-			class respawnButton {};
-
 		};
 		class auth_server
 		{

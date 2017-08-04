@@ -26,6 +26,7 @@ endLoadingScreen;
 [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 
 player addEventHandler [ "Respawn", {
+
 	[SupportReq, ArtySupport] call BIS_fnc_removeSupportLink;
 	BIS_supp_refresh = TRUE;
 	//systemChat "Respawning";
