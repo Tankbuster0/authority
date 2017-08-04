@@ -246,7 +246,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 	};
 diag_log "*** initServer done targetdata stuff";
 sleep 0.5;
-if not (testmode) then
+if not (false) then
 	{
 		for "_m" from 1 to 100 do
 			{
