@@ -73,11 +73,13 @@ class cfgFunctions
 		class auth_client
 		{
 			file = "client";
+			class addSupportRequester {};
 			class curatorObjectPlaced {};
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
 			class resetCuratorBuildlist {};
-			class addSupportRequester {};
+			class respawnButton {};
+
 		};
 		class auth_server
 		{
