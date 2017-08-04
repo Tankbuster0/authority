@@ -63,9 +63,10 @@ _mytown = selectRandom _redtargets;
 _tname = _mytown getVariable ["targetname", "Springfield"];
 diag_log format ["*** dk1m chooses %1", _tname ];
 
-_nearblds = nearestTerrainObjects [_mytown, _searchbuildings, 50, false, true];
+_nearblds = nearestTerrainObjects [_mytown, "house", 1000, false, true];
+// ^^^ got some terrain objects, ow filter it found our wanted building types
 
-_nearesttown
+_nearesttown =
 
 
 smmissionstring = (selectRandom _1sttext) + ([_mantokill] call tky_fnc_getscreenname) +
