@@ -2,7 +2,7 @@ disableSerialization;
 diag_log "*** fn_smd runs";
 private ["_d_roadblockfinal","_numberstrengths","_d_cpt_name","_d_hq_status","_d_radar_status","_d_roadblockdata1","_d_roadblockdata2","_d_roadblockdata3","_d_enemystrength","_d_hq_status_output","_d_radar_status_output","_ctrl"];
 
-_numberstrengths = ["Routed","Stragglers",  "Very Weak", "Quite Weak","Weak", "Medium","Quite Strong", "Strong","Very Strong", "Overwhelming"];
+_numberstrengths = ["Routed","Stragglers",  "Very Weak", "Weak","Weak", "Medium","Quite Strong", "Strong","Strong", "Overwhelming"];
 _d_cpt_name = [missionNamespace, "cpt_name"] call BIS_fnc_getServerVariable;
 
 _d_hq_status = [missionnamespace, "pt_hq_alive", false] call BIS_fnc_getServerVariable;
