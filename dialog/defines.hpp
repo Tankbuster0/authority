@@ -339,7 +339,7 @@ class Haz_RscStructuredText
 	idc = -1;
 	type = CT_STRUCTURED_TEXT;
 	style = ST_LEFT;
-	size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1)";
+	size = "0.02 / (getResolution select 5)";
 	shadow = 1;
 	colorText[] = {1, 1, 1, 1.000000};
 	class Attributes
