@@ -99,12 +99,21 @@ tky_fnc_fleet_heli_vtols =
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
 
-KK_fnc_inHouse =
+tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input)
 	{
+	//if sending pos, it must be asl
+	params [_indata];
+	private [_pos];
+	if ((typename _indata) isEqualTo "OBJECT") then
+		{_pos = getPosWorld _indata}
+		else
+		{_pos = _indata;
+		_pos set [2, (0.2 + (pos select 2))]// raise it a tiny bit to avoid ground collision
+		};
 	lineIntersectsSurfaces [
-		getPosWorld _this,
-		getPosWorld _this vectorAdd [0, 0, 50],
-		_this, objNull, true, 1, "GEOM", "NONE"
+		_pos,
+		_pos vectorAdd [0, 0, 50],
+		objNull, objNull, true, 1, "GEOM", "NONE"
 	] select 0 params ["","","","_house"];
 	if (_house isKindOf "House") exitWith {true};
 	false
