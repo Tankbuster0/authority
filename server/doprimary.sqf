@@ -26,7 +26,7 @@ heartandmindscore = 0;
 civkillcount = 0;
 reinforcementcounter = 0;
 captivekillcounter = 0;
-
+deadgatecount = 0;
 cpt_position = getpos nextpt;
 cpt_radius = (nextpt getVariable "targetradius");
 cpt_type = (nextpt getVariable "targettype");
