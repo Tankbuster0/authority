@@ -98,3 +98,14 @@ tky_fnc_fleet_heli_vtols =
 	_whelivtols
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
+
+KK_fnc_inHouse =
+	{
+	lineIntersectsSurfaces [
+		getPosWorld _this,
+		getPosWorld _this vectorAdd [0, 0, 50],
+		_this, objNull, true, 1, "GEOM", "NONE"
+	] select 0 params ["","","","_house"];
+	if (_house isKindOf "House") exitWith {true};
+	false
+	};
