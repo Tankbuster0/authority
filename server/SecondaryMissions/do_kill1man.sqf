@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_redtargets","_mytown","_tname","_nearblds","_cblds1","_thisbld","_cblds2","_mybld","_cblds","_cbps2","_cbps1","_smcleanup"];
+private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_redtargets","_mytown","_tname","_nearblds0","_nearblds1","_cblds1","_thisbld","_cblds2","_mybld","_cblds","_cbps2","_cbps1","_smcleanup"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private [];
@@ -69,14 +69,15 @@ _mytown = selectRandom _redtargets;
 // ^^^ select 1 at random
 _tname = _mytown getVariable ["targetname", "Springfield"];
 diag_log format ["*** dk1m chooses %1", _tname ];
-_nearblds = nearestTerrainObjects [_mytown, ["house"], 1000, false, true];
-diag_log format ["*** dtk1m finds %1 houses ", count _nearblds];
-// ^^^ got some terrain objects, now filter it found our wanted building types
+_nearblds0 = nearestTerrainObjects [_mytown, ["house"], 1000, false, true];
+diag_log format ["*** dtk1m finds %1 houses ", count _nearblds0];
+_nearblds1 = _nearblds0 select {((typeof _x) find "ouse") > 0 }; //only if its got "ouse" in the classname
+// ^^^ got some terrain objects, and removed everything that doesnt have "ouse" in the classname,now filter it found our wanted building types
 _cblds1 = [];
 {
 	private ["_thisbld"];
 	_thisbld = _x;
-	diag_log format ["***dk1m _nearblds loop has _thisbld %1 and _x %2 (should be the same) ", _thisbld, _x];
+	diag_log format ["***dk1m _nearblds1 loop has _thisbld %1 and _x %2 (should be the same) ", _thisbld, _x];
 	{
 	diag_log format ["*** dk1m looping thru _searchbuildings, currently got %1", _x];
 	if (_thisbld isKindOf _x) then
@@ -85,7 +86,7 @@ _cblds1 = [];
 		diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
 		};
 	} foreach _searchbuildings;
-} foreach _nearblds;
+} foreach _nearblds1; _nearblds
 //^^^ cblds1 buildings in our list of classes
 diag_log format ["***dk1m has %1 candidate buildings to choose from were in the required class", count _cblds1];
 
