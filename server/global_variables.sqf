@@ -53,7 +53,7 @@ blueflags = [];
 pt_hq_alive = true;
 pt_radar_alive = true;
 deadgatecount = 0;
-roadblockgates = 0;
+roadblockgates = [];
 roadblockscleared = false;
 
 // CQB Arrs
