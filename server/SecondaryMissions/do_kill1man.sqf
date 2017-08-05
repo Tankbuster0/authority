@@ -2,11 +2,21 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
+private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_redtargets","_mytown","_tname","_nearblds","_cblds1","_thisbld","_cblds2","_mybld","_cblds","_cbps2","_cbps1","_smcleanup"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private [];
 _1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a "];
-	[//[missioncode, [buildings to use, buildings to use], spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, [classnames of mantokill],"unitinit"[texts to use], ["classnames of support units indoors"], ["classnames of support units outdoors"], ["missiontextstrings"]]
+_kill1types =
+	[
+		/*["missioncode",
+			[buildings to use (array of classnames)],
+			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag,
+			[classnames of mantokill],"unitinit",
+			["classnames of support units indoors"],
+			["classnames of support units outdoors"],
+			["missiontextstrings"]
+		]*/
 		["cgl",
 			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"],
 			false, true, false,
@@ -45,9 +55,7 @@ plus
 of nearesttown.
 plus
 missiontextstring
-
 */
-
 submissiondata = selectRandom _kill1types;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
@@ -55,21 +63,46 @@ diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 
 }foreach submissiondata;
 
-
 _redtargets = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 1000} };
 //^^^ get nearby enemy towns
 _mytown = selectRandom _redtargets;
 // ^^^ select 1 at random
 _tname = _mytown getVariable ["targetname", "Springfield"];
 diag_log format ["*** dk1m chooses %1", _tname ];
+_nearblds = nearestTerrainObjects [_mytown, ["house"], 1000, false, true];
+diag_log format ["*** dtk1m finds %1 houses ", count _nearblds];
+// ^^^ got some terrain objects, now filter it found our wanted building types
+_cblds1 = [];
+{
+	private ["_thisbld"];
+	_thisbld = _x;
+	diag_log format ["***dk1m _nearblds loop has _thisbld %1 and _x %2 (should be the same) ", _thisbld, _x];
+	{
+	diag_log format ["*** dk1m looping thru _searchbuildings, currently got %1", _x];
+	if (_thisbld isKindOf _x) then
+		{
+		_cblds1 pushBackUnique _thisbld;
+		diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
+		};
+	} foreach _searchbuildings;
+} foreach _nearblds;
+//^^^ cblds1 buildings in our list of classes
+diag_log format ["***dk1m has %1 candidate buildings to choose from were in the required class", count _cblds1];
 
-_nearblds = nearestTerrainObjects [_mytown, "house", 1000, false, true];
-// ^^^ got some terrain objects, ow filter it found our wanted building types
 
-_nearesttown =
+_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count ([_x] call BIS_fnc_buildingPositions) ) > 1) and (_spawninsidelow or _spawninsidehigh) ) };
+///^^^cblds2 = buildings that conform to our spawn hi/low/outside criteris
+diag_log format ["*** dk1m has %1 useable buildings (ie, have interior positions)", count _cblds2];
+_mybld = selectRandom _cblds2;
+diag_log format ["*** dk1m chooses %1 at %2, which is a %3", _mybld, getpos _mybld, typeOf _mybld];
 
 
-smmissionstring = (selectRandom _1sttext) + ([_mantokill] call tky_fnc_getscreenname) +
+//	_cbps2 = [_cbps1, [], {_x select 2}, "ASCEND", [(ATLToASL _x)] call tky_fnc_inhouse ] call BIS_fnc_sortBy; // sort them by altitude, lowest first, removes outside poss
+
+
+
+
+smmissionstring = (selectRandom _1sttext) + ([_mantokill] call tky_fnc_getscreenname);
 
 smmissionstring = format ["Do some stuff at %1 and blah blah etc", _tname];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
