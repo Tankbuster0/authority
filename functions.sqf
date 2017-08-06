@@ -106,6 +106,7 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	params ["_indata"];
 	private ["_pos"];
 	//diag_log format ["*** tfi gets %1", _indata];
+	private _ignoreObject = if ((_indata isEqualTo "OBJECT")) then {_indata} else {objNull};
 	if ((typename _indata) isEqualTo "OBJECT") then
 		{_pos = getPosWorld _indata}
 		else
@@ -115,7 +116,7 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	lineIntersectsSurfaces [
 		_pos,
 		_pos vectorAdd [0, 0, 50],
-		objNull, objNull, false, 1, "GEOM", "NONE"
+		_ignoreObject, objNull, false, 1, "GEOM", "NONE"
 	] select 0 params ["","","","_house"];
 	if (_house isKindOf "House") then
 	{
