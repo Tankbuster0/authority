@@ -4,7 +4,7 @@ _myscript = "doprimary.sqf";
 __tky_starts;
 private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
 vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
-sleep 20;
+sleep 10;
 if !(testmode) then {sleep 40;};
 if (primarytargetcounter > 1) then
 	{
