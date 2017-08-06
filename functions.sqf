@@ -116,7 +116,8 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 		_pos vectorAdd [0, 0, 50],
 		objNull, objNull, true, 1, "GEOM", "NONE"
 	] select 0 params ["","","","_house"];
-	_house
+	if (_house isKindOf "House") exitWith {true};
+
 	};
 KKK_fnc_inHouse = {
 	lineIntersectsSurfaces [
