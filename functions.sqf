@@ -102,8 +102,8 @@ tky_fnc_fleet_heli_vtols =
 tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input), returns true if indoors
 	{
 	//if sending pos, it must be asl
-	params [_indata];
-	private [_pos];
+	params ["_indata"];
+	private ["_pos"];
 	diag_log format ["*** tfi gets %1", _indata];
 	if ((typename _indata) isEqualTo "OBJECT") then
 		{_pos = getPosWorld _indata}

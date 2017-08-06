@@ -88,22 +88,16 @@ _cblds1 = [];
 } foreach _nearblds1;
 //^^^ cblds1 buildings in our list of classes
 diag_log format ["***dk1m has %1 candidate buildings to choose from were in the required class", count _cblds1];
-
 _cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x call BIS_fnc_buildingPositions) ) > 6) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable
 diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
-
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 _mybld = _cblds3 select 0;
 //^^^ take the nearest building to the remote town
-
-
 _mybldposs0 = [_mybld] call BIS_fnc_buildingPositions;
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
 //_mybldposs1 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
-
 _mybldposs1 = [_mybldposs0 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
-
 {
 	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
 } foreach _mybldposs1;
