@@ -16,8 +16,9 @@ private _scale = ctrlMapScale (_this select 0) < 0.070;
 	if ((effectiveCommander (vehicle _x) == _x)) then
 	{
 		private _vehicle = vehicle _x;
+		private _objectSide = [_x, true] call BIS_fnc_objectSide;
 		private _iconType = getText (configFile >> "CfgVehicles" >> (typeOf _vehicle) >> "icon");
-		private _iconColour = [(side _x), false] call BIS_fnc_sideColor;
+		private _iconColour = [_objectSide, false] call BIS_fnc_sideColor;
 		private _iconPosition = getPos _x;
 		private _iconWidth = 24;
 		private _iconHeight = 24;
