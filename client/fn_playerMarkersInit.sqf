@@ -19,4 +19,4 @@ if ((!isNil "EH_mainMap")) then
 	((findDisplay 12) displayCtrl 51) ctrlRemoveEventHandler ["Draw", EH_mainMap];
 };
 
-EH_mainMap = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", Haz_fnc_playerMarkers];
+EH_mainMap = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw", tky_fnc_playerMarkers];
