@@ -32,7 +32,7 @@ _kill1types =
 			["He has been taking hostages for ransom. We need him taken out."]],
 		["eof",
 			["Land_i_Barracks_V1_F"],
-			true, false, false,
+			false, true, false,
 			["O_G_officer_F"], "",
 			["O_G_Soldier_TL_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F", "O_G_Soldier_GL_F", "O_G_Soldier_GL_F"],
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
@@ -114,7 +114,7 @@ if (_spawninsidehigh and {not _spawninsidelow}) then {_seldpos = _mybldposs1 sel
 __tky_debug;
 if ((not _spawninsidehigh) and {_spawninsidelow}) then {_seldpos = _mybldposs1 select (floor (random 3))};//will select 1st,2nd or 3rd  bpos
 __tky_debug;
-if (_spawnoutside) then {_seldpos = []  [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos; };
+if (_spawnoutside) then {_seldpos = [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos; };
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
