@@ -46,3 +46,14 @@ cur addEventHandler ["CuratorObjectSelectionChanged", {[_this select 0, _this se
 _nul = execVM "gvs\gvs_init.sqf";
  //[] execVM "server\zerowatcher.sqf";
 [] execVM "server\real_weather.sqf";
+
+[] spawn tky_fnc_playerMarkersInit;
+
+player addEventHandler ["InventoryOpened",
+{
+	[] spawn
+	{
+		waitUntil {(!isNull (findDisplay 602))};
+		[] call tky_fnc_inventory;
+	};
+}];
