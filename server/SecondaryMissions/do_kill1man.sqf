@@ -6,7 +6,7 @@ private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh"
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private [];
-_1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a "];
+_1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a ", "Human gathered intel tells us there is a "];
 _kill1types =
 	[
 		/*["missioncode",
@@ -62,48 +62,59 @@ submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawn
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 
 }foreach submissiondata;
-
-_redtargets = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 1000} };
-//^^^ get nearby enemy towns
+_targetman = selectRandom _mantokill;
+_redtargets = (cpt_position nearEntities ["Logic", 4000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {((_x distance2d cpt_position) > 700 and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
+//^^^ get nearby enemy towns between 700m and 5km away that are not blu town and on the same island
 _mytown = selectRandom _redtargets;
 // ^^^ select 1 at random
 _tname = _mytown getVariable ["targetname", "Springfield"];
 diag_log format ["*** dk1m chooses %1", _tname ];
-_nearblds0 = nearestTerrainObjects [_mytown, ["house"], 1000, false, true];
-diag_log format ["*** dtk1m finds %1 houses ", count _nearblds0];
-_nearblds1 = _nearblds0 select {((typeof _x) find "ouse") > 0 }; //only if its got "ouse" in the classname
-// ^^^ got some terrain objects, and removed everything that doesnt have "ouse" in the classname,now filter it found our wanted building types
+_nearblds1 = nearestTerrainObjects [_mytown, ["house"], 6000, false, true];
+diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
+//_nearblds1 = _nearblds0 select {((typeof _x) find "ouse") > 0 }; //only if its got "ouse" in the classname
+// ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];
 {
 	private ["_thisbld"];
 	_thisbld = _x;
-	diag_log format ["***dk1m _nearblds1 loop has _thisbld %1 and _x %2 (should be the same) ", _thisbld, _x];
+	//diag_log format ["***dk1m _nearblds1 loop has _thisbld %1 and _x %2 (should be the same) ", _thisbld, _x];
 	{
-	diag_log format ["*** dk1m looping thru _searchbuildings, currently got %1", _x];
+	//diag_log format ["*** dk1m looping thru _searchbuildings, currently got %1", _x];
 	if (_thisbld isKindOf _x) then
 		{
 		_cblds1 pushBackUnique _thisbld;
-		diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
+		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
 		};
 	} foreach _searchbuildings;
-} foreach _nearblds1; _nearblds
+} foreach _nearblds1;
 //^^^ cblds1 buildings in our list of classes
 diag_log format ["***dk1m has %1 candidate buildings to choose from were in the required class", count _cblds1];
 
+_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x call BIS_fnc_buildingPositions) ) > 6) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
+///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable
+diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
 
-_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count ([_x] call BIS_fnc_buildingPositions) ) > 1) and (_spawninsidelow or _spawninsidehigh) ) };
-///^^^cblds2 = buildings that conform to our spawn hi/low/outside criteris
-diag_log format ["*** dk1m has %1 useable buildings (ie, have interior positions)", count _cblds2];
-_mybld = selectRandom _cblds2;
-diag_log format ["*** dk1m chooses %1 at %2, which is a %3", _mybld, getpos _mybld, typeOf _mybld];
-
-
-//	_cbps2 = [_cbps1, [], {_x select 2}, "ASCEND", [(ATLToASL _x)] call tky_fnc_inhouse ] call BIS_fnc_sortBy; // sort them by altitude, lowest first, removes outside poss
+_cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
+_mybld = _cblds3 select 0;
+//^^^ take the nearest building to the remote town
 
 
+_mybldposs0 = [_mybld] call BIS_fnc_buildingPositions;
+diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
+diag_log format ["*** mbp0 actually is type %1 data is %2", typeName _mybldposs0, _mybldposs0];
+_mybldposs1 = _mybldposs0 select { [_x] call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort.
+
+_mybldposs2 = [_mybldposs1 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
+
+{
+	diag_log format ["***dk1m sorted building pos %1 at %2", _foreachindex, _x];
+	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
 
 
-smmissionstring = (selectRandom _1sttext) + ([_mantokill] call tky_fnc_getscreenname);
+} foreach _mybldposs1;
+
+
+//smmissionstring = (selectRandom _1sttext) + ([_targetman] call tky_fnc_getscreenname) +
 
 smmissionstring = format ["Do some stuff at %1 and blah blah etc", _tname];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];

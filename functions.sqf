@@ -99,11 +99,12 @@ tky_fnc_fleet_heli_vtols =
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
 
-tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input)
+tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input), returns true if indoors
 	{
 	//if sending pos, it must be asl
 	params [_indata];
 	private [_pos];
+	diag_log format ["*** tfi gets %1", _indata];
 	if ((typename _indata) isEqualTo "OBJECT") then
 		{_pos = getPosWorld _indata}
 		else
