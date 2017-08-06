@@ -100,7 +100,6 @@ _mybld = _cblds3 select 0;
 
 _mybldposs0 = [_mybld] call BIS_fnc_buildingPositions;
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
-diag_log format ["*** mbp0 actually is type %1 data is %2", typeName _mybldposs0, _mybldposs0];
 //_mybldposs1 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
 
 _mybldposs1 = [_mybldposs0 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
@@ -108,11 +107,15 @@ _mybldposs1 = [_mybldposs0 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; 
 {
 	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
 } foreach _mybldposs1;
-
+__tky_debug;
 if (_spawninsidehigh and {_spawninsidelow}) then {_seldpos = selectRandom _mybldposs1};
+__tky_debug;
 if (_spawninsidehigh and {not _spawninsidelow) then {_seldpos = _mybldposs1 select ( ( (count _mybldposs1) -3) + floor (random 3))  };// will select last, 2nd tolast or third to last
+__tky_debug;
 if (not _spawninsidehigh) and {_spawninsidelow} then {_seldpos = _mybldposs1 select (floor (random 3))};//will select 1st,2nd or 3rd  bpos
+__tky_debug;
 if (_spawnoutside) then {_seldpos = []  [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos; };
+__tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
 _mydude = _smk1mgrp createUnit [_targetman,_seldpos, [],0,"NONE"];
