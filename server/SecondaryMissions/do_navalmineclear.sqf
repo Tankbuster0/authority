@@ -10,7 +10,6 @@ _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
 _seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
-__tky_debug
 _numberofmines = (ceil (random ( 2 * (playersNumber west) )) min 6);
 diag_log format ["***do_nvmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them

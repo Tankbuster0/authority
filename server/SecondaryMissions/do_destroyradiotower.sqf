@@ -10,7 +10,6 @@ for "_n" from 0 to 10 do
 	{
 	_cpos =  [cpt_position, 3000, 800, 100] call bis_fnc_findOverwatch;
 	_candiposs pushBackUnique _cpos;
-	__tky_debug
 	};
 if (count _cpos < 1) then
 	{
@@ -19,7 +18,6 @@ if (count _cpos < 1) then
 		{
 		_cpos =  [cpt_position, 6000, 400, 50] call bis_fnc_findOverwatch;
 		_candiposs pushBackUnique _cpos;
-		__tky_debug
 		};
 	};
 _sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND"] call BIS_fnc_sortBy;

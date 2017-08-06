@@ -1,4 +1,5 @@
 _myscript = "initplayerlocal.sqf";
+
 0 =
 
 ["InitializePlayer", [player]] call BIS_fnc_dynamicGroups;

@@ -75,7 +75,6 @@ for "_count" from _start to _lc do
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
-__tky_debug;
 if (testmode) then {diag_log "**** sptu adds a mortar"};
 	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
@@ -150,7 +149,6 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	sleep 0.02;
 	 }foreach (/*_allcompositionunits + */(units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
-__tky_debug;
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 {
@@ -201,7 +199,6 @@ if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //a
 	};
 //createcivilians
 if (testmode) then {diag_log "**** sptu starts cvilian stuff"};
-__tky_debug;
 if (_pt_type isEqualTo 1) then
 		{
 		if (testmode) then {diag_log "**** sptu adds civilans on foot"};
