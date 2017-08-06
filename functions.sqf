@@ -115,7 +115,7 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	lineIntersectsSurfaces [
 		_pos,
 		_pos vectorAdd [0, 0, 50],
-		objNull, objNull, true, 1, "GEOM", "NONE"
+		objNull, objNull, false, 1, "GEOM", "NONE"
 	] select 0 params ["","","","_house"];
 	if (_house isKindOf "House") then
 	{
