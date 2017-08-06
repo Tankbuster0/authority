@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_targetman","_redtargets","_mytown","_tname","_nearblds1","_nearblds0","_cblds1","_thisbld","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs1","_mveh","_seldpos","_smk1mgrp","_mydude","_smcleanup"];
+private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_targetman","_redtargets","_mytown","_tname","_nearblds1","_nearblds0","_cblds1","_thisbld","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs1","_mveh","_seldpos","_smk1mgrp","_mydude","_smcleanup", "_2ndtext"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a ", "Human gathered intel tells us there is a "];
@@ -107,20 +107,37 @@ _mybldposs1 = [_mybldposs0 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; 
 {
 	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
 } foreach _mybldposs1;
-__tky_debug;
-if (_spawninsidehigh and {_spawninsidelow}) then {_seldpos = selectRandom _mybldposs1};
-__tky_debug;
-if (_spawninsidehigh and {not _spawninsidelow}) then {_seldpos = _mybldposs1 select ( floor random 3 + ((count _mybldposs1) -4 ) ) };// will select last, 2nd tolast or third to last
-__tky_debug;
-if ((not _spawninsidehigh) and {_spawninsidelow}) then {_seldpos = _mybldposs1 select (floor (random 3))};//will select 1st,2nd or 3rd  bpos
-__tky_debug;
-if (_spawnoutside) then {_seldpos = [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos; };
+if (_spawninsidehigh and {_spawninsidelow}) then
+	{
+	_seldpos = selectRandom _mybldposs1;
+	_2ndtext = " somewhere in the ";
+	};
+if (_spawninsidehigh and {not _spawninsidelow}) then
+	{
+	_seldpos = _mybldposs1 select ( floor random 3 + ((count _mybldposs1) -4 ) );
+	_2ndtext = " inside the ";
+	};// will select last, 2nd tolast or third to last
+if ((not _spawninsidehigh) and {_spawninsidelow}) then
+	{
+	_seldpos = _mybldposs1 select (floor (random 3));
+	_2ndtext = " in the ";
+	};//will select 1st,2nd or 3rd  bpos
+if (_spawnoutside) then
+	{
+	_seldpos = [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_2ndtext = selectRandom [" in the vicinity of ", " near the ", " not from from the ", " around the ", " a short distance from the "];
+	 };
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
 _mydude = _smk1mgrp createUnit [_targetman,_seldpos, [],0,"NONE"];
 diag_log format ["*** mydude made at %1", getpos _mydude];
-//smmissionstring = (selectRandom _1sttext) + ([_targetman] call tky_fnc_getscreenname) +
+
+_mandist0 = floor (_mybld distance2D _mytown);
+if (_mandist0 < 50) then {_3rdtext = " in the middle of ";};
+if (_mandist0 >= 50 and _mandist0 < 200 ) then {_3rdtext = " near the middle of ";}// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+
+smmissionstring = (selectRandom _1sttext) + ([_targetman] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) +
 
 smmissionstring = format ["Do some stuff at %1 and blah blah etc", _tname];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
