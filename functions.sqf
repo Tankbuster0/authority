@@ -104,7 +104,7 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	//if sending pos, it must be asl
 	params ["_indata"];
 	private ["_pos"];
-	diag_log format ["*** tfi gets %1", _indata];
+	//diag_log format ["*** tfi gets %1", _indata];
 	if ((typename _indata) isEqualTo "OBJECT") then
 		{_pos = getPosWorld _indata}
 		else
