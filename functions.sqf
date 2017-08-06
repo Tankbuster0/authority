@@ -109,7 +109,7 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 		{_pos = getPosWorld _indata}
 		else
 		{_pos = _indata;
-		_pos set [2, (0.2 + (_pos select 2))]// raise it a tiny bit to avoid ground collision
+		_pos set [2, (0.2 + (_pos select 2))];
 		};
 	lineIntersectsSurfaces [
 		_pos,
