@@ -110,7 +110,7 @@ _mybldposs1 = [_mybldposs0 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; 
 __tky_debug;
 if (_spawninsidehigh and {_spawninsidelow}) then {_seldpos = selectRandom _mybldposs1};
 __tky_debug;
-if (_spawninsidehigh and {not _spawninsidelow}) then {_seldpos = _mybldposs1 select ( floor random 3 + ((count _mybldposs1) -4 ) };// will select last, 2nd tolast or third to last
+if (_spawninsidehigh and {not _spawninsidelow}) then {_seldpos = _mybldposs1 select ( floor random 3 + ((count _mybldposs1) -4 ) ) };// will select last, 2nd tolast or third to last
 __tky_debug;
 if ((not _spawninsidehigh) and {_spawninsidelow}) then {_seldpos = _mybldposs1 select (floor (random 3))};//will select 1st,2nd or 3rd  bpos
 __tky_debug;
