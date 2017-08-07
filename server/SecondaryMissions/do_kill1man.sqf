@@ -61,12 +61,14 @@ submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawn
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 
 }foreach submissiondata;
+
 _targetman = selectRandom _mantokill;
 _redtargets = (cpt_position nearEntities ["Logic", 4000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {((_x distance2d cpt_position) > 700 and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
 //^^^ get nearby enemy towns between 700m and 5km away that are not blu town and on the same island
 _mytown = selectRandom _redtargets;
 // ^^^ select 1 at random
 _tname = _mytown getVariable ["targetname", "Springfield"];
+_tradius = _mytown getVariable ["targetradius", 125];
 diag_log format ["*** dk1m chooses %1", _tname ];
 _nearblds1 = nearestTerrainObjects [_mytown, ["house"], 6000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
@@ -119,21 +121,25 @@ if ((not _spawninsidehigh) and {_spawninsidelow}) then
 if (_spawnoutside) then
 	{
 	_seldpos = [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	_2ndtext = selectRandom [" in the vicinity of ", " near the ", " not from from the ", " around the ", " a short distance from the "];
+	_2ndtext = selectRandom [" in the vicinity of ", " near the ", " not far from the ", " around the ", " a short distance from the "];
 	 };
+
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
 _mydude = _smk1mgrp createUnit [_targetman,_seldpos, [],0,"NONE"];
 diag_log format ["*** mydude made at %1", getpos _mydude];
 
+_mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
+
 if (_mandist0 < 50) then {_3rdtext = " in the middle of ";};
-if (_mandist0 >= 50 and _mandist0 < 200 ) then {_3rdtext = " near the middle of ";}// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " near the middle ";};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+_mandist1 = str ([_mandist0, 50] call tky_fnc_estimateddistance);
+if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 + _mandir + _tname};
 
-smmissionstring = (selectRandom _1sttext) + ([_targetman] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) +
+smmissionstring = (selectRandom _1sttext) + ([_targetman] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + _3rdtext + _mtext;
 
-smmissionstring = format ["Do some stuff at %1 and blah blah etc", _tname];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 
