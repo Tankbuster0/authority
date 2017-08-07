@@ -10,7 +10,7 @@ _kill1types =
 	[
 		/*["missioncode",
 			[buildings to use (array of classnames)],
-			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag,
+			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag
 			[classnames of mantokill],"unitinit",
 			["classnames of support units indoors"],
 			["classnames of support units outdoors"],
@@ -18,21 +18,21 @@ _kill1types =
 		]*/
 		["cgl",
 			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"],
-			false, true, false,
+			false, true, false, false,
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
 			[""],
 			["His activities are disturbing the fragile peace. Take him out"] ],
 		["htg",
 			["House_f"],
-			false, true, false,
+			false, true, false,false
 			["I_C_Soldier_Bandit_1_F"], "",
 			["I_C_Soldier_Bandit_4_F"],
 			[""],
 			["He has been taking hostages for ransom. We need him taken out."]],
 		["eof",
 			["Land_i_Barracks_V1_F"],
-			false, true, false,
+			false, true, false,false,
 			["O_G_officer_F"], "",
 			["O_G_Soldier_TL_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F", "O_G_Soldier_GL_F", "O_G_Soldier_GL_F"],
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
@@ -56,7 +56,7 @@ plus
 missiontextstring
 */
 submissiondata = selectRandom _kill1types;
-submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
+submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 
