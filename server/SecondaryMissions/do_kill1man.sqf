@@ -41,7 +41,7 @@ _kill1types =
 		["sni"],
 			["House_f"],
 			false, false, true, true,
-			["O_T_Sniper_F"], "" // put a lie down command in here
+			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
 			["He's been sniping civilians and our troops. He must be stopped quickly"]
@@ -158,8 +158,11 @@ if (spawnonroof) then
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
-_mydude = _smk1mgrp createUnit [_targetman,_seldpos, [],0,"NONE"];
-diag_log format ["*** mydude made at %1", getpos _mydude];
+_unitinit = "sk1guy = this" + _unitinit;
+
+ _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
+
+diag_log format ["*** sk1guy made at %1", getpos _mydude];
 
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
