@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_targetman","_redtargets","_mytown","_tname","_nearblds1","_nearblds0","_cblds1","_thisbld","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs1","_mveh","_seldpos","_smk1mgrp","_mydude","_smcleanup", "_2ndtext"];
+private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_foreachindex","_targetman","_redtargets","_mytown","_tname","_nearblds1","_nearblds0","_cblds1","_thisbld","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs2","_mveh","_seldpos","_smk1mgrp","_mydude","_smcleanup", "_2ndtext"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a ", "Human gathered intel tells us there is a "];
@@ -123,24 +123,30 @@ _mybld = _cblds3 select 0;
 //^^^ take the nearest building to the remote town
 _mybldposs0 = [_mybld] call BIS_fnc_buildingPositions;
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
-//_mybldposs1 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
-_mybldposs1 = [_mybldposs0 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
+//_mybldposs2 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
+if ( not _spawnonroof) then
+	{
+	_mybldposs1 = _mybldposs0 select {( not [_x] call tky_fnc_inhouse)};
+	}else
+	{_mybldposs1 = _mybldposs0};
+// ^^^ if not spawnonroof, then remove all roof positions
+_mybldposs2 = [_mybldposs1 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
 {
 	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
-} foreach _mybldposs1;
+} foreach _mybldposs2;
 if (_spawninsidehigh and {_spawninsidelow}) then
 	{
-	_seldpos = selectRandom _mybldposs1;
+	_seldpos = selectRandom _mybldposs2;
 	_2ndtext = " somewhere in the ";
 	};
 if (_spawninsidehigh and {not _spawninsidelow}) then
 	{
-	_seldpos = _mybldposs1 select ( floor random 3 + ((count _mybldposs1) -4 ) );
+	_seldpos = _mybldposs2 select ( floor random 3 + ((count _mybldposs2) -4 ) );
 	_2ndtext = " inside the ";
 	};// will select last, 2nd tolast or third to last
 if ((not _spawninsidehigh) and {_spawninsidelow}) then
 	{
-	_seldpos = _mybldposs1 select (floor (random 3));
+	_seldpos = _mybldposs2 select (floor (random 3));
 	_2ndtext = " in the ";
 	};//will select 1st,2nd or 3rd  bpos
 if (_spawnoutside) then
@@ -150,7 +156,7 @@ if (_spawnoutside) then
 	 };
 if (spawnonroof) then
 	{
-	_mybldposs2 = _mybldposs1 select { not ([_x] call tky_fnc_inhouse)};
+	_mybldposs2 = _mybldposs2 select { not ([_x] call tky_fnc_inhouse)};
 	_seldpos = selectRandom _mybldposs2
 	_2ndtext = " on the roof of ";
 	};
@@ -158,11 +164,11 @@ if (spawnonroof) then
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
-_unitinit = "sk1guy = this;" + _unitinit;
+_unitinit = "sk1mguy = this;" + _unitinit;
 
  _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
 
-diag_log format ["*** sk1guy made at %1", getpos _mydude];
+diag_log format ["*** sk1mguy made at %1", getpos _mydude];
 
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
@@ -188,7 +194,7 @@ while {missionactive} do
 		missionactive = false;
 		};
 
-	if (FALSE) then
+	if (not alive sk1guy) then
 		{
 		missionsuccess = true;
 		missionactive = false;
