@@ -10,7 +10,7 @@ _kill1types =
 	[
 		/*["missioncode",
 			[buildings to use (array of classnames)],
-			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag
+			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag << note that roof only must be exculsive
 			[classnames of mantokill],"unitinit",
 			["classnames of support units indoors"],
 			["classnames of support units outdoors"],
@@ -37,7 +37,14 @@ _kill1types =
 			["O_G_Soldier_TL_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F", "O_G_Soldier_GL_F", "O_G_Soldier_GL_F"],
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
 			["He is thought to be planning a major counterattack in the North. Liquidate him, fast."]
-		]
+		],
+		["sni"],
+			["House_f"],
+			false, false, true, true,
+			["O_T_Sniper_F"], "" // put a lie down command in here
+			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
+			[""],
+			["He's been sniping civilians and our troops. He must be stopped quickly"]
 	];
 /*
 missiontextstrings explan
@@ -95,12 +102,11 @@ if (_spawnonroof) then
 	{
 
 		{// keep only the buildings that have roof positions
-		_thisbldhasroofposs = false;
 		_sof_bld_poss = [_x] call BIS_fnc_buildingPositions;
 			{
 			if ( not (_x call tky_fnc_house)) exitwith
 				{
-				_clbds2 pushback _x;
+				_clbds2 pushBackUnique _x;
 				};
 			} foreach _sof_bld_poss;
 		}foreach _clbds1;
@@ -142,6 +148,12 @@ if (_spawnoutside) then
 	_seldpos = [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_2ndtext = selectRandom [" in the vicinity of ", " near the ", " not far from the ", " around the ", " a short distance from the "];
 	 };
+if (spawnonroof) then
+	{
+	_mybldposs2 = _mybldposs1 select { not ([_x] call tky_fnc_inhouse)};
+	_seldpos = selectRandom _mybldposs2
+	_2ndtext = " on the roof of ";
+	};
 
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
