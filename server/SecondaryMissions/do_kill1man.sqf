@@ -158,7 +158,7 @@ if (spawnonroof) then
 __tky_debug;
 diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
 _smk1mgrp = createGroup east;
-_unitinit = "sk1guy = this" + _unitinit;
+_unitinit = "sk1guy = this;" + _unitinit;
 
  _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
 
