@@ -92,6 +92,21 @@ _cblds1 = [];
 diag_log format ["***dk1m has %1 candidate buildings to choose from were in the required class", count _cblds1];
 _cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x call BIS_fnc_buildingPositions) ) > 6) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable
+if (_spawnonroof) then
+	{
+
+		{// keep only the buildings that have roof positions
+		_thisbldhasroofposs = false;
+		_sof_bld_poss = [_x] call BIS_fnc_buildingPositions;
+		{} foreach _sof_bld_poss;
+
+
+
+		}foreach _clbds1;
+
+
+	};
+
 diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 _mybld = _cblds3 select 0;
