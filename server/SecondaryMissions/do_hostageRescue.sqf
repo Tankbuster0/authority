@@ -82,6 +82,12 @@ for "_i" from 0 to _numHostages do
 				_rescuedHostages = _rescuedHostages + 1;
 			} forEach _hostages;
 		};
+		if ((_rescuedHostages >= 2)) then
+		{
+			completionText = "Mission completed. At least two hostages were rescued.";
+			publicVariable "completionText";
+			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		};
 	};
 };
 
