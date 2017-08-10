@@ -38,6 +38,8 @@ private _hostageAnimation = selectRandom _hostageAnimations;
 
 private _numHostages = 4 + (ceil (random 4));
 
+systemChat format ["Number of hostages... %1", _numHostages];
+
 aliveHostages = _numHostages;
 publicVariable "aliveHostages";
 
@@ -45,8 +47,9 @@ private _hostages = [];
 
 for "_i" from 0 to _numHostages do
 {
-	private _hostage = _group createUnit [_hostageClassname, _start, [], 0, "FORM"]; // TODO: Proper positions. Maybe a line? 2m apart or something...
+	private _hostage = _group createUnit [(_hostageClassname select (floor (random 2))), _start, [], 0, "FORM"]; // TODO: Proper positions. Maybe a line? 2m apart or something...
 	_hostage disableAI "ALL";
+	_hostage setCaptive true;
 	// _hostage addEventHandler ["Killed", tky_fnc_KilledEH];
 	// Not in use, at least not at the moment.
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", ([0, -2] select isDedicated), false];
@@ -78,12 +81,12 @@ for "_i" from 0 to _numHostages do
 			publicVariable "failText";
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
-		if ((_x distance2D (getMarkerPos "respwn_west") < 10)) then
 		{
+			if ((_x distance2D (getMarkerPos "respawn_west") < 10)) then
 			{
 				_rescuedHostages = _rescuedHostages + 1;
-			} forEach _hostages;
-		};
+			};
+		} forEach _hostages;
 		if ((_rescuedHostages >= 2)) then
 		{
 			completionText = "Mission completed. At least two hostages were rescued.";
