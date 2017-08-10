@@ -99,6 +99,7 @@ class cfgFunctions
 			class loadDataFromDB {};
 			class saveDataToDB {};
 			class sendDataToClient {};
+			class followLeader {};
 		};
 	};
 };
