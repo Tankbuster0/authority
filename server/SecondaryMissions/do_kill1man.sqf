@@ -25,7 +25,7 @@ _kill1types =
 			["His activities are disturbing the fragile peace. Take him out"] ],
 		["htg",
 			["House_f"],
-			false, true, false,false
+			false, true, false,false,
 			["I_C_Soldier_Bandit_1_F"], "",
 			["I_C_Soldier_Bandit_4_F"],
 			[""],
@@ -157,7 +157,7 @@ if (_spawnoutside) then
 if (spawnonroof) then
 	{
 	_mybldposs2 = _mybldposs2 select { not ([_x] call tky_fnc_inhouse)};
-	_seldpos = selectRandom _mybldposs2
+	_seldpos = selectRandom _mybldposs2;
 	_2ndtext = " on the roof of ";
 	};
 
