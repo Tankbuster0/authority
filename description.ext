@@ -96,6 +96,9 @@ class cfgFunctions
 			class t_objectsmapper {};
 			class findsafepos {};
 			class smcleanup{};
+			class loadDataFromDB {};
+			class saveDataToDB {};
+			class sendDataToClient {};
 		};
 	};
 };
