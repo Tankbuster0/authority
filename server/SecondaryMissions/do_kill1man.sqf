@@ -22,14 +22,16 @@ _kill1types =
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
 			[""],
-			["His activities are disturbing the fragile peace. Take him out"] ],
+			["His activities are disturbing the fragile peace. Take him out"]
+		 ],
 		["htg",
 			["House_f"],
 			false, true, false,false,
 			["I_C_Soldier_Bandit_1_F"], "",
 			["I_C_Soldier_Bandit_4_F"],
 			[""],
-			["He has been taking hostages for ransom. We need him taken out."]],
+			["He has been taking hostages for ransom. We need him taken out."]
+		],
 		["eof",
 			["Land_i_Barracks_V1_F"],
 			false, true, false,false,
@@ -38,13 +40,14 @@ _kill1types =
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
 			["He is thought to be planning a major counterattack in the North. Liquidate him, fast."]
 		],
-		["sni"],
+		["sni",
 			["House_f"],
 			false, false, true, true,
 			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
 			["He's been sniping civilians and our troops. He must be stopped quickly"]
+		]
 	];
 /*
 missiontextstrings explan
