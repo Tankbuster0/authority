@@ -41,19 +41,28 @@ waitUntil
 _hostage enableAI "ALL";
 _hostage doMove (getPosATL _leader);
 
+private _inVehicle = false;
+
 private _cargoPositions = 0;
 
 while {(missionactive)} do
 {
-	if ((unitReady _hostage)) then
+	if ((vehicle _leader != _leader)) then
+	{
+		_inVehicle = true;
+	};
+	if ((_inVehicle)) then
+	{
+		_cargoPositions = (vehicle _leader) emptyPositions "cargo";
+		if ((_cargoPositions > 0)) then
+		{
+			doStop _hostage;
+			_hostage assignAsCargo (vehicle _leader);
+			[_hostage] orderGetIn true;
+		};
+	} else
 	{
 		_hostage doMove (getPosATL _leader);
-	};
-	_cargoPositions = (vehicle _leader) emptyPositions "cargo";
-	if ((vehicle _leader != _leader) && (_cargoPositions > 0)) then
-	{
-		_hostage assignAsCargo _hostage;
-		[_hostage] orderGetIn true;
 	};
 	sleep 1;
 };
