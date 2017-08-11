@@ -22,6 +22,7 @@ private _potentialStarts = (cpt_position nearEntities ["Logic", 10000]) select {
 private _start = selectRandom _potentialStarts;
 private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
 
+// TODO: Change this...
 smmissionstring = format ["A group of hostiles are held up at %1 with at least a couple of hostages. Eliminate all hostile threats and save at least 2 hostages by bringing them safely back to base.", _locationName];
 publicVariable "smmissionstring";
 
@@ -47,7 +48,7 @@ private _hostages = [];
 
 for "_i" from 0 to (_numHostages - 1) do
 {
-	private _hostage = _group createUnit [(_hostageClassname select _floorRand), _start, [], 0, "FORM"]; // TODO: Proper positions. Maybe a line? 2m apart or something...
+	private _hostage = _group createUnit [(_hostageClassname select _floorRand), _start, [], 0, "FORM"];
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
@@ -91,7 +92,7 @@ private _hostagePos = getPosATL hostage1;
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 		{
-			if ((_x distance2D (getMarkerPos "respawn_west") < 10)) then
+			if ((_x distance2D (getMarkerPos "respawn_west") <= 10)) then
 			{
 				_rescuedHostages = _rescuedHostages + 1;
 			};
@@ -106,7 +107,15 @@ private _hostagePos = getPosATL hostage1;
 };
 
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", (position _start), [], 0, "CAN_COLLIDE"];
+
+private _lightSource = "#lightPoint" createVehicle (position _start);
+_lightSource setLightAmbient [255, 0, 0];
+_lightSource setLightColor [255, 0, 0];
+_lightSource setLightBrightness 1;
+_lightSource lightAttachObject [_alarmSpeakers, [0, 0, 6]];
+
 private _soundSource = createVehicle ["Land_HelipadEmpty_F", (position _start), [], 0, "CAN_COLLIDE"];
+
 _alarmSpeakers addEventHandler ["Hit",
 {
 	_newDamage = (getDammage (_this select 0)) - (_this select 2) + 0.10;
@@ -124,6 +133,12 @@ _alarmSpeakers addEventHandler ["Hit",
 	waitUntil {(2 > 1)}; // TODO: Add condition (...when BLUFOR get spotted by OPFOR...)
 	while {(missionactive)} do
 	{
+		if ((!isNull _lightSource)) then
+		{
+			_lightSource setLightAmbient [255, 0, 0];
+			_lightSource setLightColor [255, 0, 0];
+			_lightSource setLightBrightness 1;
+		};
 		if ((!alive _alarmSpeakers) || (getDammage _alarmSpeakers >= 0.15)) then
 		{
 			deleteVehicle _soundSource;
@@ -132,6 +147,12 @@ _alarmSpeakers addEventHandler ["Hit",
 			[_soundSource, ["Alarm_BLUFOR", 125, 1]] remoteExec ["say3D", ([0, -2] select isDedicated), false];
 		};
 		sleep 6.86;
+		if ((!isNull _lightSource)) then
+		{
+			_lightSource setLightAmbient [0, 0, 0];
+			_lightSource setLightColor [0, 0, 0];
+			_lightSource setLightBrightness 0;
+		};
 	};
 };
 
