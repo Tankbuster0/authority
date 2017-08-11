@@ -17,7 +17,7 @@ _kill1types =
 			["missiontextstrings"]
 		]*/
 		["cgl",
-			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F"],
+			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F", "Land_GarageShelter_01_F"],
 			false, true, false, false,
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
@@ -80,17 +80,14 @@ _mytown = selectRandom _redtargets;
 _tname = _mytown getVariable ["targetname", "Springfield"];
 _tradius = _mytown getVariable ["targetradius", 125];
 diag_log format ["*** dk1m chooses %1", _tname ];
-_nearblds1 = nearestTerrainObjects [_mytown, ["house"], 6000, false, true];
+_nearblds1 = nearestTerrainObjects [_mytown, ["house"], 8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
-//_nearblds1 = _nearblds0 select {((typeof _x) find "ouse") > 0 }; //only if its got "ouse" in the classname
 // ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];
 {
 	private ["_thisbld"];
 	_thisbld = _x;
-	//diag_log format ["***dk1m _nearblds1 loop has _thisbld %1 and _x %2 (should be the same) ", _thisbld, _x];
 	{
-	//diag_log format ["*** dk1m looping thru _searchbuildings, currently got %1", _x];
 	if (_thisbld isKindOf _x) then
 		{
 		_cblds1 pushBackUnique _thisbld;
