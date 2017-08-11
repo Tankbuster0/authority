@@ -52,7 +52,7 @@ while {(missionactive)} do
 	_cargoPositions = (vehicle _leader) emptyPositions "cargo";
 	if ((vehicle _leader != _leader) && (_cargoPositions > 0)) then
 	{
-		_hostage assignAsCargo _hostage
+		_hostage assignAsCargo _hostage;
 		[_hostage] orderGetIn true;
 	};
 	sleep 1;
