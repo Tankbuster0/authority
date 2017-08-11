@@ -4,7 +4,7 @@ _myscript = "primarytargetcleared.sqf";
 __tky_starts;
 
 private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh", "_txt"];
-[taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
+taskbool = [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 previousmission = nextpt; // remember the old target in this variable to use in later cleanup scripts
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorBlue";
