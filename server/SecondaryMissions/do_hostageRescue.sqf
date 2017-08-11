@@ -45,9 +45,10 @@ publicVariable "aliveHostages";
 
 private _hostages = [];
 
-for "_i" from 0 to _numHostages do
+for "_i" from 0 to (_numHostages - 1) do
 {
 	private _hostage = _group createUnit [(_hostageClassname select (floor (random 2))), _start, [], 0, "FORM"]; // TODO: Proper positions. Maybe a line? 2m apart or something...
+	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
 	// _hostage addEventHandler ["Killed", tky_fnc_KilledEH];
@@ -55,9 +56,16 @@ for "_i" from 0 to _numHostages do
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", ([0, -2] select isDedicated), false];
 	[_hostage, (format ["hostage%1", (_i + 1)])] call fnc_setVehicleName; // Found in functions.sqf (:
 	_hostages pushBack _hostage;
-	[_hostage, _hostages] joinSilent grpNull;
-	[_hostage, _hostages] spawn tky_fnc_followLeader;
+	// [_hostage, _hostages] spawn tky_fnc_followLeader;
 };
+
+private _hostagePos = getPosATL hostage1;
+
+{
+	[_x] joinSilent grpNull;
+	_hostagePos set [0, ((_hostagePos select 0) + 2)];
+	_x setPosATL _hostagePos;
+} forEach _hostages;
 
 [_hostages] spawn
 {
