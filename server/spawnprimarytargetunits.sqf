@@ -46,7 +46,7 @@ for "_count" from _start to _lc do
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
-	if (testmode) then {diag_log "**** sptu starts static spawn"};
+	//if (testmode) then {diag_log "**** sptu starts static spawn"};
 	switch ((floor (random 5))) do
 		{
 		case 0: {
@@ -75,7 +75,7 @@ for "_count" from _start to _lc do
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
-if (testmode) then {diag_log "**** sptu adds a mortar"};
+//if (testmode) then {diag_log "**** sptu adds a mortar"};
 	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
 	_mgunner = _staticgrp createUnit ["O_support_Mort_F", _mypos,[],0,"NONE"];
@@ -87,7 +87,7 @@ if (testmode) then {diag_log "**** sptu adds a mortar"};
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.05;
 	// statics end
-if (testmode) then {diag_log "**** sptu adds infantry patrols"};
+//if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	// patrolling infantry start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	switch ((floor (random 4))) do
@@ -100,7 +100,7 @@ if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
 	sleep 0.05;
-if (testmode) then {diag_log "**** sptu adds static IFV"};
+//if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_findSafePos;
 
@@ -115,12 +115,11 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 		_veh = selectRandom opforpatrollandvehicles;
 		_patrolveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
-		if (testmode) then {diag_log "**** sptu adds patyrolling apc/ifv because not microtown"};
+		//if (testmode) then {diag_log "**** sptu adds patyrolling apc/ifv because not microtown"};
 		}
 		else
 		{
-		if (testmode) then
-			{diag_log "**** sptu not adding patrolling APC/AFC because its a microtown";};
+		//if (testmode) then {diag_log "**** sptu not adding patrolling APC/AFC because its a microtown";};
 		};
 	// patrolling  apc/ifv group end
 	sleep 0.05;
@@ -135,14 +134,14 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	}
 	else
 	{
-		if (testmode) then {diag_log "**** sptu skips adding mbt becuase it's an airfield or a small town or it was randomly not done"};
+		//if (testmode) then {diag_log "**** sptu skips adding mbt becuase it's an airfield or a small town or it was randomly not done"};
 	};
 	//heavy armour end
 	sleep 0.05;
 
 
 // add them all to cleanup arrays
-	if (testmode) then {diag_log "**** sptu adds them to cleanup array"};
+	//if (testmode) then {diag_log "**** sptu adds them to cleanup array"};
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
@@ -150,7 +149,7 @@ if (testmode) then {diag_log "**** sptu adds static IFV"};
 	 }foreach (/*_allcompositionunits + */(units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
-if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
+//if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 {
 	if (side _x isEqualTo east) then
 		{
@@ -170,8 +169,8 @@ if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 			};
 		};
 } foreach allgroups;
-if (testmode) then {diag_log "**** sptu might start nasty mortar helper"};
-if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //and false temporarily turns off this to see if we need it. Old mortars were too powerful
+//if (testmode) then {diag_log "**** sptu might start nasty mortar helper"};
+//if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //and false temporarily turns off this to see if we need it. Old mortars were too powerful
 	{
 		if (testmode) then {diag_log "**** sptu does actually start nasty mortar helper"};
 		{
@@ -198,10 +197,10 @@ if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //a
 		} foreach mortar_gunners;
 	};
 //createcivilians
-if (testmode) then {diag_log "**** sptu starts cvilian stuff"};
+//if (testmode) then {diag_log "**** sptu starts cvilian stuff"};
 if (_pt_type isEqualTo 1) then
 		{
-		if (testmode) then {diag_log "**** sptu adds civilans on foot"};
+		//if (testmode) then {diag_log "**** sptu adds civilans on foot"};
 		//civs on foot
 		_townroadsx = _pt_pos nearRoads (_pt_radius + 75);// road find radius needs to be bigger than normal radius
 
@@ -243,7 +242,7 @@ if (_pt_type isEqualTo 1) then
 			_d = [_ssman1, 200, 100] call Saro_fnc_bomber;
 			};
 		//driven cars
-		if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
+		//if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
 		_dcar = [];
 		_dcarcount = (1 * _lc);
 		for "_i" from 1 to _dcarcount do
@@ -295,7 +294,7 @@ if (_pt_type isEqualTo 1) then
 		_roadposarray = [];
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-		if (testmode) then {diag_log "**** sptu adds civilian parked cars"};
+		//if (testmode) then {diag_log "**** sptu adds civilian parked cars"};
 		_pcar = [];
 		_pcarcount = (2 * _lc);
 		if !(_microtown) then
