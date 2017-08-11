@@ -41,11 +41,19 @@ waitUntil
 _hostage enableAI "ALL";
 _hostage doMove (getPosATL _leader);
 
+private _cargoPositions = 0;
+
 while {(missionactive)} do
 {
 	if ((unitReady _hostage)) then
 	{
 		_hostage doMove (getPosATL _leader);
+	};
+	_cargoPositions = (vehicle _leader) emptyPositions "cargo";
+	if ((vehicle _leader != _leader) && (_cargoPositions > 0)) then
+	{
+		_hostage assignAsCargo _hostage
+		[_hostage] orderGetIn true;
 	};
 	sleep 1;
 };
