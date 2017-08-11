@@ -83,7 +83,7 @@ diag_log format ["*** dk1m chooses %1", _tname ];
 _nearblds1 = nearestTerrainObjects [_mytown, ["house"], 8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
-_cblds1 = [];
+_cblds1 = [];// <<candidatebuildings1
 {
 	private ["_thisbld"];
 	_thisbld = _x;
@@ -102,17 +102,17 @@ if (_spawnonroof) then
 	{
 
 		{// keep only the buildings that have roof positions
-		_sof_bld_poss = [_x] call BIS_fnc_buildingPositions;
+		_sof_bld_poss = _x buildingPos -1;
 			{
 			if ( not (_x call tky_fnc_house)) exitwith
 				{
-				_clbds2 pushBackUnique _x;
+				_cblds2 pushBackUnique _x;
 				};
 			} foreach _sof_bld_poss;
-		}foreach _clbds1;
+		}foreach _cblds1;
 	} else
 	{
-	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x call BIS_fnc_buildingPositions) ) > 6) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
+	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > 6) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
 	};
 
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable OR if spawnonroof, array will contain only blds with roof positions
@@ -121,7 +121,7 @@ diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior po
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 _mybld = _cblds3 select 0;
 //^^^ take the nearest building to the remote town
-_mybldposs0 = [_mybld] call BIS_fnc_buildingPositions;
+_mybldposs0 = _mybld buildingPos -1;
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
 //_mybldposs2 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
 if ( not _spawnonroof) then
@@ -168,7 +168,7 @@ _unitinit = "sk1mguy = this;" + _unitinit;
 
  _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
 
-diag_log format ["*** sk1mguy made at %1", getpos _targetman];
+diag_log format ["*** sk1mguy made at %1", getpos sk1mguy];
 
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
