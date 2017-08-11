@@ -105,26 +105,28 @@ private _hostagePos = getPosATL hostage1;
 	};
 };
 
-private _soundSource = createVehicle ["Land_Loudspeakers_F", (position _start), [], 0, "CAN_COLLIDE"];
-_soundSource addEventHandler ["Hit",
+private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", (position _start), [], 0, "CAN_COLLIDE"];
+private _soundSource = createVehicle ["Land_HelipadEmpty_F", (position _start), [], 0, "CAN_COLLIDE"];
+_alarmSpeakers addEventHandler ["Hit",
 {
-	_newDamage = (_this select 2) + 0.10;
-	(_this select 0) setDamage (_newDamage - (_this select 2));
+	_newDamage = (getDammage (_this select 0)) - (_this select 2) + 0.10;
+	(_this select 0) setDamage _newDamage;
 }];
 
-[_soundSource] spawn
+[_alarmSpeakers, _soundSource] spawn
 {
 	params
 	[
+		["_alarmSpeakers", objNull],
 		["_soundSource", objNull]
 	];
-	if ((isNull _soundSource)) exitWith {};
+	if ((isNull _alarmSpeakers) || (isNull _soundSource)) exitWith {};
 	waitUntil {(2 > 1)}; // TODO: Add condition (...when BLUFOR get spotted by OPFOR...)
 	while {(missionactive)} do
 	{
-		if ((!alive _soundSource) || (getDammage _soundSource >= 0.15)) then
+		if ((!alive _alarmSpeakers) || (getDammage _alarmSpeakers >= 0.15)) then
 		{
-			_soundSource enableSimulationGlobal false;
+			deleteVehicle _soundSource;
 		} else
 		{
 			[_soundSource, ["Alarm_BLUFOR", 125, 1]] remoteExec ["say3D", ([0, -2] select isDedicated), false];
