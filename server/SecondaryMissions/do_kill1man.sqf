@@ -17,7 +17,7 @@ _kill1types =
 			["missiontextstrings"]
 		]*/
 		["cgl",
-			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F", "Land_GarageShelter_01_F"],
+			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F", "Land_GarageShelter_01_F", "Land_CarService_F"],
 			false, true, false, false,
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
