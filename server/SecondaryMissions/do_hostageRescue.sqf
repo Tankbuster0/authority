@@ -111,7 +111,7 @@ private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", (position _start)
 private _lightSource = "#lightPoint" createVehicle (position _start);
 _lightSource setLightAmbient [255, 0, 0];
 _lightSource setLightColor [255, 0, 0];
-_lightSource setLightBrightness 1;
+_lightSource setLightBrightness 0.025;
 _lightSource lightAttachObject [_alarmSpeakers, [0, 0, 6]];
 
 private _soundSource = createVehicle ["Land_HelipadEmpty_F", (position _start), [], 0, "CAN_COLLIDE"];
@@ -122,14 +122,15 @@ _alarmSpeakers addEventHandler ["Hit",
 	(_this select 0) setDamage _newDamage;
 }];
 
-[_alarmSpeakers, _soundSource] spawn
+[_alarmSpeakers, _soundSource, _lightSource] spawn
 {
 	params
 	[
 		["_alarmSpeakers", objNull],
-		["_soundSource", objNull]
+		["_soundSource", objNull],
+		["_lightSource", objNull]
 	];
-	if ((isNull _alarmSpeakers) || (isNull _soundSource)) exitWith {};
+	if ((isNull _alarmSpeakers) || (isNull _soundSource) || (isNull _lightSource)) exitWith {};
 	waitUntil {(2 > 1)}; // TODO: Add condition (...when BLUFOR get spotted by OPFOR...)
 	while {(missionactive)} do
 	{
@@ -137,22 +138,26 @@ _alarmSpeakers addEventHandler ["Hit",
 		{
 			_lightSource setLightAmbient [255, 0, 0];
 			_lightSource setLightColor [255, 0, 0];
-			_lightSource setLightBrightness 1;
+			_lightSource setLightBrightness 0.025;
 		};
 		if ((!alive _alarmSpeakers) || (getDammage _alarmSpeakers >= 0.15)) then
 		{
 			deleteVehicle _soundSource;
+			_lightSource setLightAmbient [0, 0, 0];
+			_lightSource setLightColor [0, 0, 0];
+			_lightSource setLightBrightness 0;
 		} else
 		{
 			[_soundSource, ["Alarm_BLUFOR", 125, 1]] remoteExec ["say3D", ([0, -2] select isDedicated), false];
 		};
-		sleep 6.86;
+		sleep 3.43;
 		if ((!isNull _lightSource)) then
 		{
 			_lightSource setLightAmbient [0, 0, 0];
 			_lightSource setLightColor [0, 0, 0];
 			_lightSource setLightBrightness 0;
 		};
+		sleep 3.43;
 	};
 };
 
