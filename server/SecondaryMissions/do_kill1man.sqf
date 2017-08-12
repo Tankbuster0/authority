@@ -22,7 +22,7 @@ _kill1types =
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
 			[""],
-			["His activities are disturbing the fragile peace. Take him out"]
+			"His activities are disturbing the fragile peace. Take him out"
 		 ],
 		["htg",
 			["House_f"],
@@ -30,7 +30,7 @@ _kill1types =
 			["I_C_Soldier_Bandit_1_F"], "",
 			["I_C_Soldier_Bandit_4_F"],
 			[""],
-			["He has been taking hostages for ransom. We need him taken out."]
+			"He has been taking hostages for ransom. We need him taken out."
 		],
 		["eof",
 			["Land_i_Barracks_V1_F"],
@@ -38,7 +38,7 @@ _kill1types =
 			["O_G_officer_F"], "",
 			["O_G_Soldier_TL_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F", "O_G_Soldier_GL_F", "O_G_Soldier_GL_F"],
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
-			["He is thought to be planning a major counterattack in the North. Liquidate him, fast."]
+			"He is thought to be planning a major counterattack in the North. Liquidate him, fast."
 		],
 		["sni",
 			["House_f"],
@@ -46,7 +46,7 @@ _kill1types =
 			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
-			["He's been sniping civilians and our troops. He must be stopped quickly"]
+			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
 /*
@@ -84,6 +84,7 @@ _nearblds1 = nearestTerrainObjects [_mytown, ["house"], 8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];// <<candidatebuildings1
+_clbds2 = [];
 {
 	private ["_thisbld"];
 	_thisbld = _x;
@@ -104,7 +105,7 @@ if (_spawnonroof) then
 		{// keep only the buildings that have roof positions
 		_sof_bld_poss = _x buildingPos -1;
 			{
-			if ( not (_x call tky_fnc_house)) exitwith
+			if ( not ([_x] call tky_fnc_inhouse)) exitwith
 				{
 				_cblds2 pushBackUnique _x;
 				};
@@ -127,8 +128,12 @@ diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and ha
 if ( not _spawnonroof) then
 	{
 	_mybldposs1 = _mybldposs0 select {( not ([_x] call tky_fnc_inhouse))};
+	diag_log format ["*** dk1m removed roofs and has %1", _mybldposs1];
 	}else
-	{_mybldposs1 = _mybldposs0};
+	{
+	_mybldposs1 = _mybldposs0;
+	diag_log format ["***dk1m roofs ok and has %1", _mybldposs1];
+	};
 // ^^^ if not spawnonroof, then remove all roof positions
 _mybldposs2 = [_mybldposs1 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
 {
@@ -177,8 +182,14 @@ if (_mandist0 < 50) then {_3rdtext = " in the middle of ";};
 if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " near the middle ";};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
 _mandist1 = str ([_mandist0, 50] call tky_fnc_estimateddistance);
 if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 + _mandir + _tname};
+diag_log format ["1sttext %1", _1sttext];
+diag_log format ["sk1mguy %1", [sk1mguy] call tky_fnc_getscreenname];
+diag_log format ["_2ndtext %1", _2ndtext];
+diag_log format ["_mybld %1", [_mybld]  call tky_fnc_getscreenname];
+diag_log format ["_3rdtext %1", _3rdtext];
+diag_log format ["_mtext %1,", _mtext];
 
-smmissionstring = (selectRandom _1sttext) + ([_targetman] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + _3rdtext + _mtext;
+smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + _3rdtext + _mtext;
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
@@ -194,7 +205,7 @@ while {missionactive} do
 		missionactive = false;
 		};
 
-	if (not alive sk1guy) then
+	if (not alive sk1mguy) then
 		{
 		missionsuccess = true;
 		missionactive = false;
