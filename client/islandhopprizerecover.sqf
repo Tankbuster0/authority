@@ -24,7 +24,7 @@ recoveryinuse = true; publicVariable "recoveryinuse";
 		_dist = floor (_x distance2D blubasehelipad);
 		diag_log format ["*** ihpr makes an addaction for %1", _x];
 		myx = _x;
-		call compile format ["prid%4 = player addaction ['Bring prize vehicle %1 %3m %2 Airhead to this FOB', {myx setpos  (getpos FOBhelipad); Public_Banned_Vehicle_Service_List pushback myx; publicVariable 'Public_Banned_Vehicle_Service_List'},'',0, false , true, '', '(player distance2d fobdataterminal) < 2']",_friendlyname,_dirto,_dist,_foreachindex];
+		call compile format ["prid%4 = player addaction ['Bring prize vehicle %1 %3m %2of Airhead to this FOB', {myx setpos  (getpos FOBhelipad); Public_Banned_Vehicle_Service_List pushback myx; publicVariable 'Public_Banned_Vehicle_Service_List'},'',0, false , true, '', '(player distance2d fobdataterminal) < 2']",_friendlyname,_dirto,_dist,_foreachindex];
 
 	} foreach pvna;
 prf = player addaction ["Finish prize vehicle recovery",
