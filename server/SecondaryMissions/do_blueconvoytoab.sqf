@@ -58,7 +58,7 @@ _smdir = [(_smnrlog getDir _nr3)] call tky_fnc_cardinaldirection;
 
 _smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
 if (_smdist < 500) then {_smdist = "just";} else {_smdist = _smdist + "m";};
-smmissionstring = format ["There's a convoy formed up %1 %2 %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
+smmissionstring = format ["There's a convoy formed up %1 %2of %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 while {missionactive} do

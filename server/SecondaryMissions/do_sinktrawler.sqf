@@ -34,7 +34,7 @@ _smnrlog = _sortedsmnrlogs select 0;
 _smnrtown = (_smnrlog getVariable "targetname");
 _smdir = [(_smnrlog getDir _missionpos)] call tky_fnc_cardinaldirection;
 _smdist = [(_smnrlog distance2D _missionpos), 500] call tky_fnc_estimateddistance;
-smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m %2 %3. Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smdist, _smdir,_smnrtown ];
+smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m %2of %3. Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smdist, _smdir,_smnrtown ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 smship1 = createvehicle ["C_Boat_Civil_04_F", _missionpos, [],0, "NONE"];
