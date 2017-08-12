@@ -42,7 +42,7 @@ cpt_name = "None";
 publicVariable "fobvehicleclassname";
 publicVariable "forwardpointvehicleclassname";
 blufordropaircraft = "B_T_VTOL_01_vehicle_F"; publicVariable "blufordropaircraft";
-cardinaldirs = ["north ", "northeast ", "east ", "southeast ", "south ", "southwest ", "west ", "northwest ", "north "]; publicVariable "cardinaldirs";
+cardinaldirs = ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest", "north"]; publicVariable "cardinaldirs";
 fobvehrespawncounter = 0;
 // Variables for HeartandMind SideMission calc
 heartandmindscore = 0;
