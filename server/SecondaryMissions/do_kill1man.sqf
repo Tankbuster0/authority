@@ -84,7 +84,7 @@ _nearblds1 = nearestTerrainObjects [_mytown, ["house"], 8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];// <<candidatebuildings1
-_clbds2 = [];
+_cblds2 = [];
 {
 	private ["_thisbld"];
 	_thisbld = _x;
@@ -120,9 +120,10 @@ if (_spawnonroof) then
 
 diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
+
 _mybld = _cblds3 select 0;
 //^^^ take the nearest building to the remote town
-_mybldposs0 = _mybld buildingPos -1;
+_mybldposs0 = (_mybld buildingPos -1);
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
 //_mybldposs2 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
 if ( not _spawnonroof) then
@@ -178,10 +179,10 @@ diag_log format ["*** sk1mguy made at %1", getpos sk1mguy];
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
 
-if (_mandist0 < 50) then {_3rdtext = " in the middle of ";};
-if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of ";};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
-_mandist1 = str ([_mandist0, 50] call tky_fnc_estimateddistance);
-if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 + _mandir + "of" + _tname};
+if (_mandist0 < 50) then {_3rdtext = " in the middle of " + _tname;};
+if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+_mandist1 = str ([_mandist0, 100] call tky_fnc_estimateddistance);
+if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 + _mandir + " of " + _tname};
 diag_log format ["1sttext %1", _1sttext];
 diag_log format ["sk1mguy %1", [sk1mguy] call tky_fnc_getscreenname];
 diag_log format ["_2ndtext %1", _2ndtext];
@@ -189,7 +190,7 @@ diag_log format ["_mybld %1", [_mybld]  call tky_fnc_getscreenname];
 diag_log format ["_3rdtext %1", _3rdtext];
 diag_log format ["_mtext %1,", _mtext];
 
-smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + _3rdtext + _mtext;
+smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + " " + _3rdtext + _mtext;
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
