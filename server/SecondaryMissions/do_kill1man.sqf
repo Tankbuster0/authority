@@ -106,7 +106,7 @@ if (_spawnonroof) then
 		_mybld2 = _x;
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
 			{
-			if ( not ([_x] call tky_fnc_inhouse)) exitwith
+			if ( not ([ATLToASL _x] call tky_fnc_inhouse)) exitwith
 				{// if the tested position is outside ie, on a roof
 				_cblds2 pushBackUnique _mybld2;
 				};
@@ -183,7 +183,7 @@ _mandist0 = floor (_mybld distance2D _mytown);
 if (_mandist0 < 50) then {_3rdtext = " in the middle of " + _tname;};
 if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
 _mandist1 = str ([_mandist0, 100] call tky_fnc_estimateddistance);
-if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 + _mandir + " of " + _tname};
+if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 +"m" + _mandir + " of " + _tname + " "};
 diag_log format ["1sttext %1", _1sttext];
 diag_log format ["sk1mguy %1", [sk1mguy] call tky_fnc_getscreenname];
 diag_log format ["_2ndtext %1", _2ndtext];
