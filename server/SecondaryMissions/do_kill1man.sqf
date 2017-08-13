@@ -107,7 +107,7 @@ if (_spawnonroof) then
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
 			{
 			if ( not ([_x] call tky_fnc_inhouse)) exitwith
-				{
+				{// if the tested position is outside ie, on a roof
 				_cblds2 pushBackUnique _mybld2;
 				};
 			} foreach _sof_bld_poss;
