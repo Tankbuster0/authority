@@ -10,8 +10,6 @@ if ((isDedicated) || (!hasInterface)) exitWith {};
 
 disableSerialization;
 
-private ["_inventoryDisplay", "_uniformLoadText", "_vestLoadText", "_backpackLoadText"];
-
 private _inventoryDisplay = findDisplay 602;
 
 private _uniformLoadText = _inventoryDisplay ctrlCreate ["RscStructuredText", 7111];
