@@ -42,7 +42,7 @@ _kill1types =
 		],
 		["sni",
 			["House_f"],
-			false, false, true, true,
+			false, false, false, true,
 			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
@@ -65,7 +65,8 @@ of nearesttown.
 plus
 missiontextstring
 */
-submissiondata = selectRandom _kill1types;
+//submissiondata = selectRandom _kill1types;
+submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
@@ -169,18 +170,18 @@ if (_spawnonroof) then
 	};
 
 __tky_debug;
-diag_log format ["*** high %1, low %2, outside %3 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _seldpos];
+diag_log format ["*** high %1, low %2, outside %3, roof %4 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _spawnonroof, _seldpos];
 _smk1mgrp = createGroup east;
 _unitinit = "sk1mguy = this;" + _unitinit;
 
- _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
-
+_targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
+_smcleanup pushback sk1mguy;
 diag_log format ["*** sk1mguy made at %1", getpos sk1mguy];
 
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
 
-if (_mandist0 < 50) then {_3rdtext = " in the middle of " + _tname;};
+if (_mandist0 < 50) then {_3rdtext = "in the middle of " + _tname;};
 if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
 _mandist1 = str ([_mandist0, 100] call tky_fnc_estimateddistance);
 if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 +"m" + _mandir + " of " + _tname + " "};
