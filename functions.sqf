@@ -106,11 +106,12 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	params ["_indata"];
 	private ["_pos"];
 	private _ignoreObject = if ((_indata isEqualTo "OBJECT")) then {_indata} else {objNull};
-	diag_log format ["*** indata  is %1 ignoreobj is %2",_indata, _ignoreObject];
 	if ((typename _indata) isEqualTo "OBJECT") then
 		{_pos = getPosWorld _indata}
 		else
-		{_pos = _indata;
+		{
+		_pos = _indata;
+		diag_log format ["*** indata  is %1 ignoreobj is %2",_indata, _ignoreObject];
 		_pos set [2, (0.2 + (_pos select 2))];
 		};
 	lineIntersectsSurfaces [
