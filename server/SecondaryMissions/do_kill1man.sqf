@@ -50,7 +50,7 @@ _kill1types =
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
-_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_"];
+_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "land_shop_city_07_f", "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
@@ -76,7 +76,7 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if ((_thisbld isKindOf _x) and {not ((typeof _thisbld) in _blacklistedbuildings)}) then
+	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and (count (_thisbld buildingpos -1) > 6 ) and (abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2)) > 5) }) then
 		{
 		_cblds1 pushBackUnique _thisbld;
 		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
