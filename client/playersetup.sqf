@@ -12,4 +12,12 @@ while {_spawnpos isEqualTo islandcentre } do
 	_testradius = _testradius * 2;
 	};
 player setpos _spawnpos;
+player addEventHandler ["InventoryOpened",
+{
+	[] spawn
+	{
+		waitUntil {(!isNull (findDisplay 602))};
+		[] call tky_fnc_inventory;
+	};
+}];
 __tky_ends
