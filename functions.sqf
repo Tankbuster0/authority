@@ -111,9 +111,9 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 		else
 		{
 		_pos = _indata;
-		diag_log format ["*** indata  is %1 ignoreobj is %2",_indata, _ignoreObject];
 		_pos set [2, (0.2 + (_pos select 2))];
 		};
+	diag_log format ["*** indata  is %1 pos is %2  ignoreobj %3"_indata, _pos, _ignoreObject];
 	lineIntersectsSurfaces [
 		_pos,
 		_pos vectorAdd [0, 0, 50],
