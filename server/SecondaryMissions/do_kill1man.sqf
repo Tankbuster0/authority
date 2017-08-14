@@ -50,7 +50,7 @@ _kill1types =
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
-_blacklistedbuildings = ["scf_01_heap_bagasse_f"];
+_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_"];
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
