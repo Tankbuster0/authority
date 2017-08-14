@@ -1,0 +1,17 @@
+#define idc_title 100
+#define idc_title_left 200
+#define idc_title_right 300
+#define idc_background 400
+#define idc_close 500
+#define idc_diagnostics 600
+#define idc_primaryTargetFrame 700
+#define idc_primaryTargetLocation 800
+#define idc_sabotagedHQs 900
+#define idc_radioTowerStatus 1000
+#define idc_roadBlocksCleared 1001
+#define idc_secondaryTargetFrame 1002
+#define idc_enemy_strength 1003
+#define idc_controlsGroup 1004
+#define idc_textBox 100
+#define idc_logo 1005
+#define idc_credits 1006
