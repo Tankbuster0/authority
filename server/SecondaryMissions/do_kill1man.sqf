@@ -50,22 +50,7 @@ _kill1types =
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
-/*
-missiontextstrings explan
-random ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a "]
-plus
-screenname classname of manktokill
-plus
-if spawninsideflag then "inside" else "near"
-plus
-distance
-plus
-cardinaldirection
-plus
-of nearesttown.
-plus
-missiontextstring
-*/
+_blacklistedbuildings = ["scf_01_heap_bagasse_f"];
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
@@ -91,7 +76,7 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if (_thisbld isKindOf _x) then
+	if ((_thisbld isKindOf _x) and {not ((typeof _x) in _blacklistedbuildings)}) then
 		{
 		_cblds1 pushBackUnique _thisbld;
 		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
