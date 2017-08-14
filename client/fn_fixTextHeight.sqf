@@ -6,10 +6,12 @@ scriptName "fn_fixTextHeight";
 
 #define __FILENAME "fn_fixTextHeight.sqf"
 
+#include "..\dlg_missionStatus_IDCs.hpp"
+
 if ((isDedicated) || (!hasInterface)) exitWith {};
 
-_controlsGroup = (uiNamespace getVariable "disp_missionStatus") displayCtrl 1004;
-_textBoxCtrl = _controlsGroup controlsGroupCtrl 100;
+_controlsGroup = (uiNamespace getVariable "disp_missionStatus") displayCtrl idc_controlsGroup;
+_textBoxCtrl = _controlsGroup controlsGroupCtrl idc_textBox;
 
 _textHeight = ctrlTextHeight _textBoxCtrl;
 _textBoxPosition = ctrlPosition _textBoxCtrl;

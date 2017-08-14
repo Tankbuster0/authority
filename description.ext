@@ -61,15 +61,6 @@ class cfgFunctions
 	class tky
 	{
 		tag = "tky";
-		class dialog
-		{
-			file = "dialog";
-			class fixTextHeight {};
-			class showmissiondialog {};
-			class missionstatus {};
-
-		};
-
 		class auth_client
 		{
 			file = "client";
@@ -77,6 +68,10 @@ class cfgFunctions
 			class curatorObjectPlaced {};
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
+			class fixTextHeight {};
+			class showmissiondialog {};
+			class missionStatus {};
+			class missionStatus_diagnostics {};
 			class playerMarkers {};
 			class playerMarkersInit {};
 			class inventory {};
@@ -106,6 +101,7 @@ class cfgFunctions
 
 #include "dialog\defines.hpp"
 #include "dialog\dlg_missionStatus.hpp"
+#include "dialog\dlg_missionStatus_diagnostics.hpp"
 class RscTitles
 {
 	#include "gvs\stc_include_alt.hpp"

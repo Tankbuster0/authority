@@ -2,23 +2,7 @@
 	Code written by Haz
 */
 
-#define idc_title 100
-#define idc_title_left 200
-#define idc_title_right 300
-#define idc_background 400
-#define idc_close 500
-#define idc_settings 600
-#define idc_primaryTargetFrame 700
-#define idc_primaryTargetLocation 800
-#define idc_sabotagedHQs 900
-#define idc_radioTowerStatus 1000
-#define idc_roadBlocksCleared 1001
-#define idc_secondaryTargetFrame 1002
-#define idc_enemy_strength 1003
-#define idc_controlsGroup 1004
-#define idc_textBox 100
-#define idc_logo 1005
-#define idc_credits 1006
+#include "..\dlg_missionStatus_IDCs.hpp"
 
 class dlg_missionStatus
 {
@@ -75,6 +59,7 @@ class dlg_missionStatus
 			w = 0.075 * safezoneW;
 			h = 0.04 * safezoneH;
 			text = "Close";
+			action = "closeDialog 0;";
 			period = 0;
 			periodFocus = 0;
 			periodOver = 0;
@@ -88,16 +73,16 @@ class dlg_missionStatus
 			colorBackground2[] = {0.25, 0.25, 0.22, 1};
 			colorBackgroundFocused[] = {0.25, 0.25, 0.22, 1};
 			colorBackgroundActive[] = {0.25, 0.25, 0.22, 1};
-			action = "closeDialog 0";
 		};
-		class settings : Haz_RscButton
+		class diagnostics : Haz_RscButton
 		{
-			idc = idc_settings;
+			idc = idc_diagnostics;
 			x = 0.625 * safezoneW + safezoneX;
 			y = 0.72 * safezoneH + safezoneY;
 			w = 0.075 * safezoneW;
 			h = 0.04 * safezoneH;
-			text = "Settings";
+			text = "Diagnostics";
+			action = "closeDialog 0; createDialog ""dlg_missionStatus_diagnostics"";";
 			period = 0;
 			periodFocus = 0;
 			periodOver = 0;
