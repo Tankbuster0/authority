@@ -76,7 +76,7 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if ((_thisbld isKindOf _x) and {not ((typeof _x) in _blacklistedbuildings)}) then
+	if ((_thisbld isKindOf _x) and {not ((typeof _thisbld) in _blacklistedbuildings)}) then
 		{
 		_cblds1 pushBackUnique _thisbld;
 		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
