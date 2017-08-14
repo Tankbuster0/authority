@@ -60,84 +60,150 @@ private _missionTime = _display displayCtrl idc_missionTime;
 private _serverTime = _display displayCtrl idc_serverTime;
 private _serverFPS = _display displayCtrl idc_serverFPS;
 
-private _bluforAliveMen0 = entities [["SoldierWB"], [], true, true];
+private _bluforAliveMen0 = count (entities [["SoldierWB"], [], true, true]);
 private _bluforDeadMen0 = {(!alive _x)} count (entities [["SoldierWB"], [], true, false]);
-private _bluforAliveCars = entities [["Car"], [], true, true];
-private _bluforAliveTanks = entities [["Tank"], [], true, true];
-private _bluforAliveWatercraft = entities [["Ship"], [], true, true];
-private _bluforAliveRotorcraft = entities [["Helicopter"], [], true, true];
-private _bluforAlivePlanes = entities [["Plane"], [], true, true];
-private _bluforAliveAutonomous = entities [["Autonomous"], [], true, true];
+private _bluforAliveCars = count (entities [["Car"], [], true, true]);
+private _bluforAliveTanks = count (entities [["Tank"], [], true, true]);
+private _bluforAliveWatercraft = count (entities [["Ship"], [], true, true]);
+private _bluforAliveHelicopters = count (entities [["Helicopter"], [], true, true]);
+private _bluforAlivePlanes = count (entities [["Plane"], [], true, true]);
+private _bluforAliveAutonomous = count (entities [["Autonomous"], [], true, true]);
 private _bluforDeadVehicles0 = {(!alive _x)} count (entities [["AllVehicles"], [], true, false]);
 
-private _opforAliveMen0 = entities [["SoldierEB"], [], true, true];
+private _opforAliveMen0 = count (entities [["SoldierEB"], [], true, true]);
 private _opforDeadMen0 = {(!alive _x)} count (entities [["SoldierEB"], [], true, false]);
-private _opforAliveCars = entities [["Car"], [], true, true];
-private _opforAliveTanks = entities [["Tank"], [], true, true];
-private _opforAliveWatercraft = entities [["Ship"], [], true, true];
-private _opforAliveRotorcraft = entities [["Helicopter"], [], true, true];
-private _opforAlivePlanes = entities [["Plane"], [], true, true];
-private _opforAliveAutonomous = entities [["Autonomous"], [], true, true];
+private _opforAliveCars = count (entities [["Car"], [], true, true]);
+private _opforAliveTanks = count (entities [["Tank"], [], true, true]);
+private _opforAliveWatercraft = count (entities [["Ship"], [], true, true]);
+private _opforAliveHelicopters = count (entities [["Helicopter"], [], true, true]);
+private _opforAlivePlanes = count (entities [["Plane"], [], true, true]);
+private _opforAliveAutonomous = count (entities [["Autonomous"], [], true, true]);
 private _opforDeadVehicles0 = {(!alive _x)} count (entities [["AllVehicles"], [], true, false]);
 
-private _independentAliveMen0 = entities [["SoldierGB"], [], true, true];
+private _independentAliveMen0 = count (entities [["SoldierGB"], [], true, true]);
 private _independentDeadMen0 = {(!alive _x)} count (entities [["SoldierGB"], [], true, false]);
-private _independentAliveCars = entities [["Car"], [], true, true];
-private _independentAliveTanks = entities [["Tank"], [], true, true];
-private _independentAliveWatercraft = entities [["Ship"], [], true, true];
-private _independentAliveRotorcraft = entities [["Helicopter"], [], true, true];
-private _independentAlivePlanes = entities [["Plane"], [], true, true];
-private _independentAliveAutonomous = entities [["Autonomous"], [], true, true];
+private _independentAliveCars = count (entities [["Car"], [], true, true]);
+private _independentAliveTanks = count (entities [["Tank"], [], true, true]);
+private _independentAliveWatercraft = count (entities [["Ship"], [], true, true]);
+private _independentAliveHelicopters = count (entities [["Helicopter"], [], true, true]);
+private _independentAlivePlanes = count (entities [["Plane"], [], true, true]);
+private _independentAliveAutonomous = count (entities [["Autonomous"], [], true, true]);
 private _independentDeadVehicles0 = {(!alive _x)} count (entities [["AllVehicles"], [], true, false]);
 
-private _civilianAliveMen0 = entities [["SoldierCB"], [], true, true];
+private _civilianAliveMen0 = count (entities [["SoldierCB"], [], true, true]);
 private _civilianDeadMen0 = {(!alive _x)} count (entities [["SoldierCB"], [], true, false]);
-private _civilianAliveCars = entities [["Car"], [], true, true];
-private _civilianAliveTanks = entities [["Tank"], [], true, true];
-private _civilianAliveWatercraft = entities [["Ship"], [], true, true];
-private _civilianAliveRotorcraft = entities [["Helicopter"], [], true, true];
-private _civilianAlivePlanes = entities [["Plane"], [], true, true];
-private _civilianAliveAutonomous = entities [["Autonomous"], [], true, true];
+private _civilianAliveCars = count (entities [["Car"], [], true, true]);
+private _civilianAliveTanks = count (entities [["Tank"], [], true, true]);
+private _civilianAliveWatercraft = count (entities [["Ship"], [], true, true]);
+private _civilianAliveHelicopters = count (entities [["Helicopter"], [], true, true]);
+private _civilianAlivePlanes = count (entities [["Plane"], [], true, true]);
+private _civilianAliveAutonomous = count (entities [["Autonomous"], [], true, true]);
 private _civilianDeadVehicles0 = {(!alive _x)} count (entities [["AllVehicles"], [], true, false]);
 
-{
-	hintSilent format ["%1\n%2\n%3", (_x select 0), (_x select 1)];
-} forEach
-[
-	[_bluforAliveMen, _bluforAliveMen0],
-	[_opforAliveMen, _opforAliveMen0],
-	[_independentAliveMen, _independentAliveMen0],
-	[_civilianAliveMen, _civilianAliveMen0],
-	[_bluforDeadMen, _bluforDeadMen0],
-	[_opforDeadMen, _opforDeadMen0],
-	[_independentDeadMen, _indeoendentDeadMen0],
-	[_civilianDeadMen, _civilianAliveMen0],
-	[_bluforCars, _bluforAliveCars],
-	[_opforCars, _opforAliveCars],
-	[_independentCars, _independentAliveCars],
-	[_civilianCars, _civilianAliveCars],
-	[_bluforTanks, _bluforAliveTanks],
-	[_opforTanks, _opforAliveTanks],
-	[_independentTanks, _independentAliveTanks],
-	[_civilianTanks, _civilianAliveTanks],
-	[_bluforWatercraft, _bluforAliveWatercraft],
-	[_opforWatercraft, _opforAliveWatercraft],
-	[_independentWatercraft, _independentAliveWatercraft],
-	[_civilianWatercraft, _civilianAliveWatercraft],
-	[_bluforHelicopters, _bluforAliveHelicopters],
-	[_opforHelicopters, _opforAliveHelicopters],
-	[_independentHelicopters, _independentAliveHelicopters],
-	[_civilianHelicopters, _civilianAliveHelicopters],
-	[_bluforPlanes, _bluforAlivePlanes],
-	[_opforPlanes, _opforAlivePlanes],
-	[_independentPlanes, _independentAlivePlanes],
-	[_civilianPlanes, _civilianAlivePlanes],
-	[_bluforAutonomous, _bluforAliveAutonomous],
-	[_opforAutonomous, _opforAliveAutonomous],
-	[_independentAutonomous, _independentAliveAutonomous],
-	[_civilianAutonomous, _civilianAliveAutonomous],
-	[_bluforDeadVehicles, _bluforDeadVehicles0],
-	[_opforDeadVehicles, _opforDeadVehicles0],
-	[_independentDeadVehicles, _independentDeadVehicles0],
-	[_civilianDeadVehicles, _civilianDeadVehicles0]
-];
+_bluforAliveMen ctrlSetText format ["%1", _bluforAliveMen0];
+_bluforAliveMen ctrlCommit 0;
+
+_bluforDeadMen ctrlSetText format ["%1", _bluforDeadMen0];
+_bluforDeadMen ctrlCommit 0;
+
+_bluforCars ctrlSetText format ["%1", _bluforAliveCars];
+_bluforCars ctrlCommit 0;
+
+_bluforTanks ctrlSetText format ["%1", _bluforAliveTanks];
+_bluforTanks ctrlCommit 0;
+
+_bluforWatercraft ctrlSetText format ["%1", _bluforAliveWatercraft];
+_bluforWatercraft ctrlCommit 0;
+
+_bluforHelicopters ctrlSetText format ["%1", _bluforAliveHelicopters];
+_bluforHelicopters ctrlCommit 0;
+
+_bluforPlanes ctrlSetText format ["%1", _bluforAlivePlanes];
+_bluforPlanes ctrlCommit 0;
+
+_bluforAutonomous ctrlSetText format ["%1", _bluforAliveAutonomous];
+_bluforAutonomous ctrlCommit 0;
+
+_bluforDeadVehicles ctrlSetText format ["%1", _bluforDeadVehicles0];
+_bluforDeadVehicles ctrlCommit 0;
+
+_opforAliveMen ctrlSetText format ["%1", _opforAliveMen0];
+_opforAliveMen ctrlCommit 0;
+
+_opforDeadMen ctrlSetText format ["%1", _opforDeadMen0];
+_opforDeadMen ctrlCommit 0;
+
+_opforCars ctrlSetText format ["%1", _opforAliveCars];
+_opforCars ctrlCommit 0;
+
+_opforTanks ctrlSetText format ["%1", _opforAliveTanks];
+_opforTanks ctrlCommit 0;
+
+_opforWatercraft ctrlSetText format ["%1", _opforAliveWatercraft];
+_opforWatercraft ctrlCommit 0;
+
+_opforHelicopters ctrlSetText format ["%1", _opforAliveHelicopters];
+_opforHelicopters ctrlCommit 0;
+
+_opforPlanes ctrlSetText format ["%1", _opforAlivePlanes];
+_opforPlanes ctrlCommit 0;
+
+_opforAutonomous ctrlSetText format ["%1", _opforAliveAutonomous];
+_opforAutonomous ctrlCommit 0;
+
+_opforDeadVehicles ctrlSetText format ["%1", _opforDeadVehicles0];
+_opforDeadVehicles ctrlCommit 0;
+
+_independentAliveMen ctrlSetText format ["%1", _independentAliveMen0];
+_independentAliveMen ctrlCommit 0;
+
+_independentDeadMen ctrlSetText format ["%1", _indeoendentDeadMen0];
+_independentDeadMen ctrlCommit 0;
+
+_independentCars ctrlSetText format ["%1", _independentAliveCars];
+_independentCars ctrlCommit 0;
+
+_independentTanks ctrlSetText format ["%1", _independentAliveTanks];
+_independentTanks ctrlCommit 0;
+
+_independentWatercraft ctrlSetText format ["%1", _independentAliveWatercraft];
+_independentWatercraft ctrlCommit 0;
+
+_civilianWatercraft ctrlSetText format ["%1", _civilianAliveWatercraft];
+_civilianWatercraft ctrlCommit 0;
+
+_independentHelicopters ctrlSetText format ["%1", _independentAliveHelicopters];
+_independentHelicopters ctrlCommit 0;
+
+_independentPlanes ctrlSetText format ["%1", _independentAlivePlanes];
+_independentPlanes ctrlCommit 0;
+
+_independentAutonomous ctrlSetText format ["%1", _independentAliveAutonomous];
+_independentAutonomous ctrlCommit 0;
+
+_independentDeadVehicles ctrlSetText format ["%1", _independentDeadVehicles0];
+_independentDeadVehicles ctrlCommit 0;
+
+_civilianAliveMen ctrlSetText format ["%1", _civilianAliveMen0];
+_civilianAliveMen ctrlCommit 0;
+
+_civilianDeadMen ctrlSetText format ["%1", _civilianAliveMen0];
+_civilianDeadMen ctrlCommit 0;
+
+_civilianCars ctrlSetText format ["%1", _civilianAliveCars];
+_civilianCars ctrlCommit 0;
+
+_civilianTanks ctrlSetText format ["%1", _civilianAliveTanks];
+_civilianTanks ctrlCommit 0;
+
+_civilianHelicopters ctrlSetText format ["%1", _civilianAliveHelicopters];
+_civilianHelicopters ctrlCommit 0;
+
+_civilianPlanes ctrlSetText format ["%1", _civilianAlivePlanes];
+_civilianPlanes ctrlCommit 0;
+
+_civilianAutonomous ctrlSetText format ["%1", _civilianAliveAutonomous];
+_civilianAutonomous ctrlCommit 0;
+
+_civilianDeadVehicles ctrlSetText format ["%1", _civilianDeadVehicles0];
+_civilianDeadVehicles ctrlCommit 0;

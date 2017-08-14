@@ -19,7 +19,7 @@ class dlg_missionStatus_diagnostics
 			y = 0.08 * safezoneH + safezoneY;
 			w = 0.9 * safezoneW;
 			h = 0.04 * safezoneH;
-			text = "";
+			text = "Diagnostics Panel";
 			colorBackground[] = {0.56, 0.52, 0.42, 1};
 		};
 		class background : Haz_RscPicture
