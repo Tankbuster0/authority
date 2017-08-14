@@ -16,7 +16,7 @@ _display = uiNamespace getVariable "disp_missionStatus";
 _titleRight = _display displayCtrl idc_title_right;
 _diagnostics = _display displayCtrl idc_diagnostics;
 
-if ((call compile "(call BIS_fnc_admin) clientOwner != 2")) then
+if (((call BIS_fnc_admin) != 2)) then
 {
 	_diagnostics ctrlShow false;
 };
