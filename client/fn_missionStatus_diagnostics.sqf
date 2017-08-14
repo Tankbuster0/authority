@@ -157,7 +157,7 @@ _opforDeadVehicles ctrlCommit 0;
 _independentAliveMen ctrlSetText format ["%1", _independentAliveMen0];
 _independentAliveMen ctrlCommit 0;
 
-_independentDeadMen ctrlSetText format ["%1", _indeoendentDeadMen0];
+_independentDeadMen ctrlSetText format ["%1", _independentDeadMen0];
 _independentDeadMen ctrlCommit 0;
 
 _independentCars ctrlSetText format ["%1", _independentAliveCars];
