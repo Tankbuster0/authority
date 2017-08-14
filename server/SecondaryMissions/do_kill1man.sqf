@@ -107,7 +107,7 @@ if (_spawnonroof) then
 		{// keep only the buildings that have roof positions
 		_mybld2 = _x;
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
-		diag_log format ["*** dk1m is going to send this array of positions to inhouse %1", _sof_bld_poss];
+		diag_log format ["*** dk1m has building %1 and is going to send this array of positions to inhouse %1", _mybld2, _sof_bld_poss];
 			{
 			sleep 0.5;
 			if (((count _x) > 2) and {([ATLToASL _x] call tky_fnc_inhouse)} ) then
