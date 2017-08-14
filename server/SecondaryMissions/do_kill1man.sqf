@@ -82,7 +82,7 @@ _mytown = selectRandom _redtargets;
 _tname = _mytown getVariable ["targetname", "Springfield"];
 _tradius = _mytown getVariable ["targetradius", 125];
 diag_log format ["*** dk1m chooses %1", _tname ];
-_nearblds1 = nearestTerrainObjects [_mytown, ["house"], 8000, false, true];
+_nearblds1 = nearestTerrainObjects [_mytown, ["house"],1000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];// <<candidatebuildings1
