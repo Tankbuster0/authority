@@ -5,6 +5,7 @@ __tky_starts;
 private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_spawnonroof","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_targetman","_redtargets","_mytown","_tname","_tradius","_nearblds1","_nearblds0","_cblds1","_thisbld","_sof_bld_poss","_clbds2","_clbds1","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs2","_mybldposs1","_mveh","_seldpos","_2ndtext","__tky_debug","_smk1mgrp","_mydude","_mandir","_mandist0","_3rdtext","_mandist1","_smcleanup", "_mybld2"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
+_smcleanup = [];
 _1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", "Mobile phone intercepts show there might be a ", "Our forward forces observed a ", "Reports are coming in of a ", "Human gathered intel tells us there is a "];
 _kill1types =
 	[
@@ -106,10 +107,11 @@ if (_spawnonroof) then
 		{// keep only the buildings that have roof positions
 		_mybld2 = _x;
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
+		diag_log format ["*** dk1m is going to send this array of positions to inhouse %1", _sof_bld_poss];
 			{
 			if ( not ([ATLToASL _x] call tky_fnc_inhouse)) exitwith
 				{// if the tested position is outside ie, on a roof
-				_cblds2 pushBackUnique _mybld2;
+				_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
 				};
 			} foreach _sof_bld_poss;
 		}foreach _cblds1;
@@ -119,7 +121,7 @@ if (_spawnonroof) then
 	};
 
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable OR if spawnonroof, array will contain only blds with roof positions
-
+diag_log format "*** dk1m says _cblds2 is %1", _cblds2];
 diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["*** _cblds3 is %1",_cblds3];
@@ -170,7 +172,7 @@ if (_spawnonroof) then
 	};
 
 __tky_debug;
-diag_log format ["*** high %1, low %2, outside %3, roof %4 actualpos = %4", _spawninsidehigh, _spawninsidelow, _spawnoutside, _spawnonroof, _seldpos];
+diag_log format ["*** high %1, low %2, outside %3, roof %4 actualpos = %5", _spawninsidehigh, _spawninsidelow, _spawnoutside, _spawnonroof, _seldpos];
 _smk1mgrp = createGroup east;
 _unitinit = "sk1mguy = this;" + _unitinit;
 
