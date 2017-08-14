@@ -109,7 +109,8 @@ if (_spawnonroof) then
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
 		diag_log format ["*** dk1m is going to send this array of positions to inhouse %1", _sof_bld_poss];
 			{
-			if ( not ([ATLToASL _x] call tky_fnc_inhouse)) exitwith
+			sleep 0.5;
+			if (((count _x) > 2) and {( not ([ATLToASL _x] call tky_fnc_inhouse))} )exitwith
 				{// if the tested position is outside ie, on a roof
 				_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
 				};
@@ -121,7 +122,7 @@ if (_spawnonroof) then
 	};
 
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable OR if spawnonroof, array will contain only blds with roof positions
-diag_log format "*** dk1m says _cblds2 is %1", _cblds2];
+diag_log format ["*** dk1m says _cblds2 is %1", _cblds2];
 diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["*** _cblds3 is %1",_cblds3];
