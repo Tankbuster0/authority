@@ -110,8 +110,13 @@ if (_spawnonroof) then
 		diag_log format ["*** dk1m is going to send this array of positions to inhouse %1", _sof_bld_poss];
 			{
 			sleep 0.5;
-			if (((count _x) > 2) and {( not ([ATLToASL _x] call tky_fnc_inhouse))} )exitwith
+			if (((count _x) > 2) and {([ATLToASL _x] call tky_fnc_inhouse)} ) then
+				{
+				diag_log format ["inhouse says %1 is indoors ", _x];
+				}
+				else
 				{// if the tested position is outside ie, on a roof
+				diag_log ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
 				_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
 				};
 			} foreach _sof_bld_poss;
