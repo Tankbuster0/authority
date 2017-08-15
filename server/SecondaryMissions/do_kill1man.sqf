@@ -13,7 +13,7 @@ _kill1types =
 			[buildings to use (array of classnames)],
 			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag << note that roof only must be exculsive
 			[classnames of mantokill],"unitinit",
-			["classnames of support units indoors"],
+			["classnames of support units indoors"], << no more than 6 and man units only
 			["classnames of support units outdoors"],
 			["missiontextstrings"]
 		]*/
@@ -184,9 +184,32 @@ if ((count _insupports) > 0 ) then
 		{
 		_suppos = selectRandom _supportbldposs;
 		_supportbldposs = _supportbldposs - [_suppos];
-		_smk1mgrp createUnit [_x, _suppos, [], 0, "NONE"];
+		_isman = _smk1mgrp createUnit [_x, _suppos, [], 0, "NONE"];
+		_smcleanup pushback _isman;
 		} foreach _insupports;
-	};// ^^^ if there
+	};// ^^^ if insupports provided, spawn them
+
+if ( (count _outsupports) > 0 ) then
+	{
+		{
+		_ostype = _x;
+		if (_ostype isKindOf "LandVehicle") then
+			{
+			_ospos = [_mybld, (sizeof _mybld) 500, 8 ,0,0.5,0,1,1] call tky_fnc_findSafePos;
+			_ret = [_ospos, (_ospos getdir alpha_1), _ostype, _smk1mgrp] call BIS_fnc_spawnVehicle;
+			_smcleanup pushBack (_ret select 0);
+			}
+			else
+			{//assume its a man unit
+			_ospos = [_mybld, (sizeof _mybld) 500, 3 ,0,0.5,0,1,1] call tky_fnc_findSafePos;
+			_osman = _smk1mgrp createUnit [_x, _ospos, [],0, "NONE"];
+			_smcleanup pushback _osman;
+			};
+		}forEach _outsupports;
+
+
+
+	}
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
 
