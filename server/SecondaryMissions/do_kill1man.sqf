@@ -50,7 +50,7 @@ _kill1types =
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
-_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "land_shop_city_07_f", "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
+_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
@@ -67,7 +67,7 @@ _mytown = selectRandom _redtargets;
 _tname = _mytown getVariable ["targetname", "Springfield"];
 _tradius = _mytown getVariable ["targetradius", 125];
 diag_log format ["*** dk1m chooses %1", _tname ];
-_nearblds1 = nearestTerrainObjects [_mytown, ["house"],1000, false, true];
+_nearblds1 = nearestTerrainObjects [_mytown, ["house"],8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];// <<candidatebuildings1
@@ -92,11 +92,11 @@ if (_spawnonroof) then
 		{// keep only the buildings that have roof positions
 		_mybld2 = _x;
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
-		diag_log format ["*** dk1m has building %1 at %2  and is going to send this array of positions to inhouse %3", _mybld2, getpos _mybld2, _sof_bld_poss];
+		//diag_log format ["*** dk1m has building %1 at %2  and is going to send this array of positions to inhouse %3", _mybld2, getpos _mybld2, _sof_bld_poss];
 			{
-			sleep 0.5;
+			//sleep 0.5;
 
-			if (((count _x) > 2) and {(_x select 2) > 3} ) then //is it a real position array? for some reason, it gets passed [] sometimes, if it is, is it at least a 1s floor?
+			if (((count _x) > 2) and {(_x select 2) > 6} ) then //is it a real position array? for some reason, it gets passed [] sometimes, if it is, is it at least a 1s floor?
 				{
 					if ([ATLToASL _x] call tky_fnc_inhouse)  then
 						{
@@ -105,8 +105,8 @@ if (_spawnonroof) then
 						}
 						else
 						{// if the tested position is outside ie, on a roof
-						diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
-						_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
+						//diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
+						_cblds2 pushBackUnique _mybld2;// should be buildings that have roof positions higher than 6m
 						};
 				};
 			} foreach _sof_bld_poss;
@@ -162,7 +162,7 @@ if (_spawnoutside) then
 	 };
 if (_spawnonroof) then
 	{
-	_mybldposs2 = _mybldposs2 select { not ([_x] call tky_fnc_inhouse)};
+	_mybldposs2 = _mybldposs2 select ( count _mybldposs0 - (ceil random 2));// select one of the last two positions
 	_seldpos = selectRandom _mybldposs2;
 	_2ndtext = " on the roof of ";
 	};
