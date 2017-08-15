@@ -51,6 +51,7 @@ _kill1types =
 		]
 	];
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
+// ^^^ note blacklisted buildings cannot be a base case.
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
@@ -147,7 +148,7 @@ if (_spawninsidehigh and {_spawninsidelow}) then
 	};
 if (_spawninsidehigh and {not _spawninsidelow}) then
 	{
-	_seldpos = _mybldposs2 select ( floor random 3 + ((count _mybldposs2) -4 ) );
+	_seldpos = _mybldposs2 select ( count _mybldposs2 - (ceil random 4) );
 	_2ndtext = " inside the ";
 	};// will select last, 2nd tolast or third to last
 if ((not _spawninsidehigh) and {_spawninsidelow}) then
@@ -162,8 +163,7 @@ if (_spawnoutside) then
 	 };
 if (_spawnonroof) then
 	{
-	_mybldposs2 = _mybldposs2 select ( count _mybldposs0 - (ceil random 2));// select one of the last two positions
-	_seldpos = selectRandom _mybldposs2;
+	_seldpos = _mybldposs2 select ( count _mybldposs2 - (ceil random 2));// select one of the last two positions
 	_2ndtext = " on the roof of ";
 	};
 
@@ -174,8 +174,19 @@ _unitinit = "sk1mguy = this;" + _unitinit;
 
 _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
 _smcleanup pushback sk1mguy;
+_mybldposs2 = _mybldposs2 - ["_seldpos"];// remove the used position from the array of positions, just in case we need to put further units in the same building
 diag_log format ["*** sk1mguy made at %1", getpos sk1mguy];
 
+
+if ((count _insupports) > 0 ) then
+	{
+	_supportbldposs = +_mybldposs2;
+		{
+		_suppos = selectRandom _supportbldposs;
+		_supportbldposs = _supportbldposs - [_suppos];
+		_smk1mgrp createUnit [_x, _suppos, [], 0, "NONE"];
+		} foreach _insupports;
+	};// ^^^ if there
 _mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown);
 
