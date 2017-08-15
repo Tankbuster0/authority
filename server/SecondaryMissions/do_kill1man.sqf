@@ -58,7 +58,8 @@ _kill1types =
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
-_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
+_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];// Land_SCF_01_chimney_F
+
 // ^^^ note blacklisted buildings cannot be a base case.
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
@@ -114,7 +115,7 @@ if (_spawnonroof) then
 						}
 						else
 						{// if the tested position is outside ie, on a roof
-						//diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
+						diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
 						_cblds2 pushBackUnique _mybld2;// should be buildings that have roof positions higher than 6m
 						};
 				};
@@ -181,10 +182,13 @@ _smk1mgrp = createGroup east;
 _unitinit = "sk1mguy = this;" + _unitinit;
 
 _targetman createUnit [_seldpos, _smk1mgrp, _unitinit, 0.6, "corporal"];
+sk1mguy allowdamage false;
+sk1mguy setpos _seldpos;
 _smcleanup pushback sk1mguy;
 _mybldposs2 = _mybldposs2 - ["_seldpos"];// remove the used position from the array of positions, just in case we need to put further units in the same building
-diag_log format ["*** sk1mguy made at %1", getpos sk1mguy];
-
+diag_log format ["*** sk1mguy is at %1, spawned at %2", getpos sk1mguy, _seldpos];
+sleep 3;
+sk1mguy allowdamage true;
 
 if ((count _insupports) > 0 ) then
 	{
@@ -209,7 +213,7 @@ if ( (count _outsupports) > 0 ) then
 			}
 			else
 			{//assume its a man unit
-			_ospos = [_mybld, (sizeof _mybld)< 500, 3 ,0,0.5,0,1,1] call tky_fnc_findSafePos;
+			_ospos = [_mybld, (sizeof (typeof _mybld)), 500, 3 ,0,0.5,0,1,1] call tky_fnc_findSafePos;
 			_osman = _smk1mgrp createUnit [_x, _ospos, [],0, "NONE"];
 			_smcleanup pushback _osman;
 			};
