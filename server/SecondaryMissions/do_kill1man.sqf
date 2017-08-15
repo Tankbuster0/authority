@@ -101,7 +101,7 @@ if (_spawnonroof) then
 				}
 				else
 				{// if the tested position is outside ie, on a roof
-				diag_log ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
+				diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
 				_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
 				};
 			} foreach _sof_bld_poss;
