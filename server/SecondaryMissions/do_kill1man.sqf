@@ -48,6 +48,14 @@ _kill1types =
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
 			"He's been sniping civilians and our troops. He must be stopped quickly"
+		],
+		["sci",//not sure there's enough sciency type buildings on tanoa?
+			["House_f"],
+			false, false, false, true,
+			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
+			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
+			[""],
+			"He's been sniping civilians and our troops. He must be stopped quickly"
 		]
 	];
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
