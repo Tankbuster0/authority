@@ -95,14 +95,19 @@ if (_spawnonroof) then
 		diag_log format ["*** dk1m has building %1 at %2  and is going to send this array of positions to inhouse %3", _mybld2, getpos _mybld2, _sof_bld_poss];
 			{
 			sleep 0.5;
-			if (((count _x) > 2) and {([ATLToASL _x] call tky_fnc_inhouse)} ) then
+
+			if (((count _x) > 2) and {(_x select 2) > 3} ) then //is it a real position array? for some reason, it gets passed [] sometimes, if it is, is it at least a 1s floor?
 				{
-				diag_log format ["inhouse says %1 is indoors, building %2 ", _x, _mybld2];
-				}
-				else
-				{// if the tested position is outside ie, on a roof
-				diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
-				_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
+					if ([ATLToASL _x] call tky_fnc_inhouse)  then
+						{
+						//diag_log format ["inhouse says %1 is indoors, building %2 ", _x, _mybld2];
+						_donothing = true;//I think youre not allowed to have an empty block in a then statement and have just remarked out the diaglog above
+						}
+						else
+						{// if the tested position is outside ie, on a roof
+						diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
+						_cblds2 pushBackUnique _mybld2;// should be buildings that have roofs
+						};
 				};
 			} foreach _sof_bld_poss;
 		}foreach _cblds1;
