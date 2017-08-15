@@ -119,7 +119,7 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 		_pos vectorAdd [0, 0, 50],
 		_ignoreObject, objNull, false, 1, "GEOM", "NONE"
 	] select 0 params ["","","","_house"];
-	if (_house isKindOf "House") then
+	if ((not (isnil "_house")) and { _house isKindOf "House"})  then// i think this is right?
 	{
 		_return = true;
 	};
