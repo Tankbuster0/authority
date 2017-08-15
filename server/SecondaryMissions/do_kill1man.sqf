@@ -78,7 +78,7 @@ _cblds2 = [];
 	{
 	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and (count (_thisbld buildingpos -1) > 6 ) and (abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2)) > 5) }) then
 		{
-		_cblds1 pushBackUnique _thisbld;
+		_cblds1 pushBack _thisbld;
 		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
 		};
 	} foreach _searchbuildings;
