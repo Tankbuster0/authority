@@ -22,7 +22,6 @@ private _potentialStarts = (cpt_position nearEntities ["Logic", 10000]) select {
 private _start = selectRandom _potentialStarts;
 private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
 
-// TODO: Change this...
 smmissionstring = format ["A group of hostiles are held up at %1 with at least a couple of hostages. Eliminate all hostile threats and save at least 2 hostages by bringing them safely back to base.", _locationName];
 publicVariable "smmissionstring";
 
@@ -160,8 +159,5 @@ _alarmSpeakers addEventHandler ["Hit",
 		sleep 3.43;
 	};
 };
-
-// TODO: Cleanup... What is _smcleanup ???
-// [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends;
