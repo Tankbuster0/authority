@@ -11,7 +11,7 @@ _kill1types =
 	[
 		/*["missioncode",
 			[buildings to use (array of classnames)],
-			spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag << note that roof only must be exculsive
+			number of buildingposs to filter for, spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag << note that roof only must be exclusive
 			[classnames of mantokill],"unitinit",
 			["classnames of support units indoors"], << no more than 6 and man units only
 			["classnames of support units outdoors"],
@@ -19,7 +19,7 @@ _kill1types =
 		]*/
 		["cgl",
 			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F", "Land_GarageShelter_01_F", "Land_CarService_F"],
-			false, true, false, false,
+			6, false, true, false, false,
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
 			[""],
@@ -27,7 +27,7 @@ _kill1types =
 		 ],
 		["htg",
 			["House_f"],
-			false, true, false,false,
+			6, false, true, false,false,
 			["I_C_Soldier_Bandit_1_F"], "",
 			["I_C_Soldier_Bandit_4_F"],
 			[""],
@@ -35,7 +35,7 @@ _kill1types =
 		],
 		["eof",
 			["Land_i_Barracks_V1_F"],
-			false, true, false,false,
+			20, false, true, false,false,
 			["O_G_officer_F"], "",
 			["O_G_Soldier_TL_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F", "O_G_Soldier_GL_F", "O_G_Soldier_GL_F"],
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
@@ -43,27 +43,26 @@ _kill1types =
 		],
 		["sni",
 			["House_f"],
-			false, false, false, true,
+			6, false, false, false, true,
 			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		],
-		["bom",//not sure there's enough sciency type buildings on tanoa?
+		["bom",
 			["Land_Warehouse_03_F", "Land_Warehouse_01_F", "Land_Warehouse_02_F", "Land_SCF_01_warehouse_F"],
-			false, true, false, false,
+			8,false, true, false, false,
 			["I_G_Soldier_exp_F"], "",
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F", "I_G_medic_F"],
 			[""],
 			"He's a bombmaker we've tracked from the border. He needs to be taken out before he gets to work."
 		]
 	];
-_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];// Land_SCF_01_chimney_F
-
+_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
 // ^^^ note blacklisted buildings cannot be a base case.
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 3;
-submissiondata params ["_mcode", "_searchbuildings", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
+submissiondata params ["_mcode", "_searchbuildings","_bposthreshold" "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 
@@ -86,7 +85,7 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and (count (_thisbld buildingpos -1) > 6 ) and (abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2)) > 5) }) then
+	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and (count (_thisbld buildingpos -1) > _bposthreshold ) and (abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2)) > 3) }) then
 		{
 		_cblds1 pushBack _thisbld;
 		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
