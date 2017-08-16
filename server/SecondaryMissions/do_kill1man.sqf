@@ -59,7 +59,7 @@ _kill1types =
 		],
 		["esab",
 			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F"],
-			0,false, false, true, false,
+			-1,false, false, true, false,
 			["I_C_Soldier_Para_8_F"], "",
 			["I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
 			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F"],
@@ -69,8 +69,8 @@ _kill1types =
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
 // ^^^ note blacklisted buildings cannot be a base case.
 //submissiondata = selectRandom _kill1types;
-submissiondata = _kill1types select 3;
-submissiondata params ["_mcode", "_searchbuildings","_bposthreshold" "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
+submissiondata = _kill1types select 5;
+submissiondata params ["_mcode", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 }foreach submissiondata;
@@ -211,7 +211,7 @@ if ( (count _outsupports) > 0 ) then
 		_ostype = _x;
 		if (_ostype isKindOf "LandVehicle") then
 			{
-			_ospos = [_mybld, (sizeof _mybld), 500, 8 ,0,0.5,0,1,1] call tky_fnc_findSafePos;
+			_ospos = [_mybld, (sizeof (typeof _mybld)), 500, 8 ,0,0.5,0,1,1] call tky_fnc_findSafePos;
 			_ret = [_ospos, (_ospos getdir alpha_1), _ostype, _smk1mgrp] call BIS_fnc_spawnVehicle;
 			_smcleanup pushBack (_ret select 0);
 			}
