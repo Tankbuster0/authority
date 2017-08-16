@@ -56,6 +56,14 @@ _kill1types =
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F", "I_G_medic_F"],
 			[""],
 			"He's a bombmaker we've tracked from the border. He needs to be taken out before he gets to work."
+		],
+		["esab",
+			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F"],
+			0,false, false, true, false,
+			["I_C_Soldier_Para_8_F"], "",
+			["I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
+			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F"],
+			"This guy has already sabotaged some of the island electrical infrastructure and we believe he's going to continue. Stop him, permanently."
 		]
 	];
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
@@ -166,7 +174,7 @@ if ((not _spawninsidehigh) and {_spawninsidelow}) then
 	};//will select 1st,2nd or 3rd  bpos
 if (_spawnoutside) then
 	{
-	_seldpos = [_mybld, 6, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_seldpos = [_mybld, 3, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_2ndtext = selectRandom [" in the vicinity of ", " near the ", " not far from the ", " around the ", " a short distance from the "];
 	 };
 if (_spawnonroof) then
