@@ -73,7 +73,6 @@ submissiondata = _kill1types select 3;
 submissiondata params ["_mcode", "_searchbuildings","_bposthreshold" "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
-
 }foreach submissiondata;
 
 _targetman = selectRandom _mantokill;
@@ -102,10 +101,8 @@ _cblds2 = [];
 } foreach _nearblds1;
 //^^^ cblds1 buildings in our list of classes
 diag_log format ["***dk1m has %1 candidate buildings to choose from were in the required class", count _cblds1];
-
 if (_spawnonroof) then
 	{
-
 		{// keep only the buildings that have roof positions
 		_mybld2 = _x;
 		_sof_bld_poss = (_mybld2 buildingPos -1);// the buildingpositions of this building
