@@ -125,13 +125,32 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	};
 	_return
 	};
-KKK_fnc_inHouse = {
-	lineIntersectsSurfaces [
-		getPosWorld _this,
-		getPosWorld _this vectorAdd [0, 0, 50],
-		_this, objNull, true, 1, "GEOM", "NONE"
-	] select 0 params ["","","","_house"];
-	if (_house isKindOf "House") exitWith {true};
-	false
-};
 
+tky_fnc_distanddirfromtown =
+{
+	private ["_targets","_sortedtargets","_mytown","_tname","_tradius","_mydir","_mydist","_kmorm","_ret"];
+	params [_pos];
+	//takes a position and returns the nearest town/target to it
+	_targets = (_pos nearEntities ["Logic", 4000]) select {((_x getVariable ["targetstatus", -1]) > -1)  };
+	_sortedtargets = [_targets, [] , {_pos distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
+	_mytown = _sortedtargets select 0;
+	_tname = _mytown getVariable ["targetname", "Springfield"];
+	_tradius = _mytown getVariable ["targetradius", 75];
+	_mydir = [(_mytown getDir _pos)] call tky_fnc_cardinaldirection;
+	_mydist = floor (_pos distance2D _mytown);
+	if (_mydist < 1000) then
+		{
+		_mydist = str ([_mydist, 100] call tky_fnc_estimateddistance);
+		_kmorm = "m";
+		}
+		else
+		{
+		_mydist = _mydist /1000;
+		_mydist  = ([_mydist, 1] call BIS_fnc_cutDecimals);
+		_kmorm = "km";
+		};
+	if (_mydist < 75) then {_ret = "in the middle of " + _tname;};
+	if ( (_mydist >= 75) and (_mydist < _tradius ) )then {_ret = " in the "+ _mydir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+	if (_mydist >= _tradius) then {_ret = _mydist + kmorm + _mydir + " of " + _tname + " "};
+	_ret
+};
