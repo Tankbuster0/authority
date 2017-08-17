@@ -127,7 +127,7 @@ if (_spawnonroof) then
 		}foreach _cblds1;
 	} else
 	{
-	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > 6) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
+	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > _bposthreshold) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
 	};
 
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable OR if spawnonroof, array will contain only blds with roof positions
