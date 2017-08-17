@@ -29,7 +29,8 @@ class dlg_missionStatus_diagnostics
 			y = 0.24 * safezoneH + safezoneY;
 			w = 0.4 * safezoneW;
 			h = 0.52 * safezoneH;
-			text = "#(argb,8,8,3)color(0.25,0.25,0.22,1)";
+			// text = "#(argb,8,8,3)color(0.25,0.25,0.22,1)";
+			text = "pics\bg2.paa";
 		};
 		class back : Haz_RscButton
 		{
@@ -266,14 +267,14 @@ class dlg_missionStatus_diagnostics
 			h = 0.04 * safezoneH;
 			text = "OS:";
 		};
-		class missionTime : Haz_RscText
+		class missionUptime : Haz_RscText
 		{
-			idc = idc_missionTime;
+			idc = idc_missionUptime;
 			x = 0.575 * safezoneW + safezoneX;
 			y = 0.52 * safezoneH + safezoneY;
 			w = 0.1 * safezoneW;
 			h = 0.04 * safezoneH;
-			text = "Mission Time:";
+			text = "Mission Uptime:";
 		};
 		class serverTime : Haz_RscText
 		{

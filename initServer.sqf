@@ -1,3 +1,5 @@
+authenicatedAdmins = [];
+publicVariable "authenicatedAdmins";
 initserverfinished = false; publicVariable "initserverfinished";
 missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 0.5;
