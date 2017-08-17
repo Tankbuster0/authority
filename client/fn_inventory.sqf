@@ -28,7 +28,7 @@ while {(!isNull _inventoryDisplay)} do
 {
 	if ((uniform player != "")) then
 	{
-		_uniformLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", ((loadUniform player) * 100), ((getContainerMaxLoad uniform player) * 100)];
+		_uniformLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", ((floor (loadUniform player)) * 100), ((getContainerMaxLoad uniform player) * 100)];
 	} else
 	{
 		_uniformLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FF0000'>No uniform</t>"];
@@ -36,7 +36,7 @@ while {(!isNull _inventoryDisplay)} do
 	_uniformLoadText ctrlCommit 0;
 	if ((vest player != "")) then
 	{
-		_vestLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", ((loadVest player) * 100), ((getContainerMaxLoad vest player) * 100)];
+		_vestLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", ((floor (loadVest player)) * 100), ((getContainerMaxLoad vest player) * 100)];
 	} else
 	{
 		_vestLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FF0000'>No vest</t>"];
@@ -44,7 +44,7 @@ while {(!isNull _inventoryDisplay)} do
 	_vestLoadText ctrlCommit 0;
 	if ((backpack player != "")) then
 	{
-		_backpackLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", ((loadBackpack player) * 100), ((getContainerMaxLoad backpack player) * 100)];
+		_backpackLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", ((floor (loadBackpack player)) * 100), ((getContainerMaxLoad backpack player) * 100)];
 	} else
 	{
 		_backpackLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FF0000'>No backpack</t>"];
