@@ -49,7 +49,8 @@ class dlg_missionStatus
 			y = 0.28 * safezoneH + safezoneY;
 			w = 0.4 * safezoneW;
 			h = 0.44 * safezoneH;
-			text = "#(argb,8,8,3)color(0.25,0.25,0.22,1)";
+			// text = "#(argb,8,8,3)color(0.25,0.25,0.22,1)";
+			text = "pics\bg2.paa";
 		};
 		class close : Haz_RscButton
 		{

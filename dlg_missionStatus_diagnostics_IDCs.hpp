@@ -59,6 +59,6 @@
 #define idc_branch 1049
 #define idc_platform 1050
 #define idc_OS 1051
-#define idc_missionTime 1052
+#define idc_missionUptime 1052
 #define idc_serverTime 1053
 #define idc_serverFPS 1054
