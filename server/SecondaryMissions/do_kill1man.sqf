@@ -233,12 +233,6 @@ if (_mandist0 < 50) then {_3rdtext = "in the middle of " + _tname;};
 if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
 _mandist1 = str ([_mandist0, 100] call tky_fnc_estimateddistance);
 if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 +"m" + _mandir + " of " + _tname + " "};
-diag_log format ["1sttext %1", _1sttext];
-diag_log format ["sk1mguy %1", [sk1mguy] call tky_fnc_getscreenname];
-diag_log format ["_2ndtext %1", _2ndtext];
-diag_log format ["_mybld %1", [_mybld]  call tky_fnc_getscreenname];
-diag_log format ["_3rdtext %1", _3rdtext];
-diag_log format ["_mtext %1,", _mtext];
 
 smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + " " + _3rdtext + _mtext;
 
