@@ -10,6 +10,7 @@ _1sttext =  ["Locals report there is a ", "Freindly forces tell us there's a ", 
 _kill1types =
 	[
 		/*["missioncode",
+			[objects for nearestterrainobjects],
 			[buildings to use (array of classnames)],
 			number of buildingposs to filter for, spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag << note that roof only must be exclusive
 			[classnames of mantokill],"unitinit",
@@ -18,6 +19,7 @@ _kill1types =
 			["missiontextstrings"]
 		]*/
 		["cgl",
+			["house"],
 			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F", "Land_GarageShelter_01_F", "Land_CarService_F"],
 			6, false, true, false, false,
 			["I_C_Soldier_Bandit_7_F"],"",
@@ -26,6 +28,7 @@ _kill1types =
 			"His activities are disturbing the fragile peace. Take him out"
 		 ],
 		["htg",
+			["house"],
 			["House_f"],
 			6, false, true, false,false,
 			["I_C_Soldier_Bandit_1_F"], "",
@@ -34,6 +37,7 @@ _kill1types =
 			"He has been taking hostages for ransom. We need him taken out."
 		],
 		["eof",
+			["house"],
 			["Land_i_Barracks_V1_F"],
 			20, false, true, false,false,
 			["O_G_officer_F"], "",
@@ -42,6 +46,7 @@ _kill1types =
 			"He is thought to be planning a major counterattack in the North. Liquidate him, fast."
 		],
 		["sni",
+			["house"],
 			["House_f"],
 			6, false, false, false, true,
 			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
@@ -50,6 +55,7 @@ _kill1types =
 			"He's been sniping civilians and our troops. He must be stopped quickly"
 		],
 		["bom",
+			["house"],
 			["Land_Warehouse_03_F", "Land_Warehouse_01_F", "Land_Warehouse_02_F", "Land_SCF_01_warehouse_F"],
 			8,false, true, false, false,
 			["I_G_Soldier_exp_F"], "",
@@ -58,9 +64,10 @@ _kill1types =
 			"He's a bombmaker we've tracked from the border. He needs to be taken out before he gets to work."
 		],
 		["esab",
-			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F"],
+			["power lines", "house"],
+			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F", "Land_PowerLine_01_pole_junction_F"],
 			-1,false, false, true, false,
-			["I_C_Soldier_Para_8_F"], "",
+			["I_C_Soldier_Para_8_F"], "_this doMove (getpos _mybld)",
 			["I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
 			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F"],
 			"This guy has already sabotaged some of the island electrical infrastructure and we believe he's going to continue. Stop him, permanently."
@@ -70,11 +77,10 @@ _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_s
 // ^^^ note blacklisted buildings cannot be a base case.
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 5;
-submissiondata params ["_mcode", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
+submissiondata params ["_mcode", "_searchobjects", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 }foreach submissiondata;
-
 _targetman = selectRandom _mantokill;
 _redtargets = (cpt_position nearEntities ["Logic", 4000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {((_x distance2d cpt_position) > 700 and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
 //^^^ get nearby enemy towns between 700m and 5km away that are not blu town and on the same island
@@ -83,7 +89,7 @@ _mytown = selectRandom _redtargets;
 _tname = _mytown getVariable ["targetname", "Springfield"];
 _tradius = _mytown getVariable ["targetradius", 125];
 diag_log format ["*** dk1m chooses %1", _tname ];
-_nearblds1 = nearestTerrainObjects [_mytown, ["house"],8000, false, true];
+_nearblds1 = nearestTerrainObjects [_mytown, _searchobjects ,8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
 _cblds1 = [];// <<candidatebuildings1
@@ -92,10 +98,11 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and (count (_thisbld buildingpos -1) > _bposthreshold ) and (abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2)) > 3) }) then
+	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) /* and ((count (_thisbld buildingpos -1)) > _bposthreshold ) */ and ((abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2))) > 2) }) then
+	//if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings))  }) then
 		{
 		_cblds1 pushBack _thisbld;
-		//diag_log format ["***dk1m loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
+		//diag_log format ["***dk1m pushbacks into cblds1 . loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
 		};
 	} foreach _searchbuildings;
 } foreach _nearblds1;
@@ -119,7 +126,7 @@ if (_spawnonroof) then
 						}
 						else
 						{// if the tested position is outside ie, on a roof
-						diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
+						//diag_log format ["%1 in building %2 is outdoors and has saved the building for use as a sniper pos", _x, _mybld2];
 						_cblds2 pushBackUnique _mybld2;// should be buildings that have roof positions higher than 6m
 						};
 				};
@@ -127,7 +134,8 @@ if (_spawnonroof) then
 		}foreach _cblds1;
 	} else
 	{
-	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > _bposthreshold) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
+	//_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > _bposthreshold) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
+	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > _bposthreshold) and (_spawninsidelow or _spawninsidehigh)  )};
 	};
 
 ///^^^cblds2 = buildings that conform to spawn hi/low/outside criteria & removes buildings with less than 5 poss as these are small or have only 'porch' positions & are actualy unenterable OR if spawnonroof, array will contain only blds with roof positions
@@ -171,7 +179,7 @@ if ((not _spawninsidehigh) and {_spawninsidelow}) then
 	};//will select 1st,2nd or 3rd  bpos
 if (_spawnoutside) then
 	{
-	_seldpos = [_mybld, 3, 20, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
+	_seldpos = [_mybld, 3, 10, 2,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_2ndtext = selectRandom [" in the vicinity of ", " near the ", " not far from the ", " around the ", " a short distance from the "];
 	 };
 if (_spawnonroof) then
