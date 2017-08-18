@@ -22,10 +22,6 @@ endLoadingScreen;
 
 #include "\a3\functions_f_mp_mark\Revive\defines.hpp"
 
-//systemChat "Saving initial loadout";
-//Save initial loadout
-[ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
-
 player addEventHandler [ "Respawn", {
 
 	[SupportReq, ArtySupport] call BIS_fnc_removeSupportLink;
