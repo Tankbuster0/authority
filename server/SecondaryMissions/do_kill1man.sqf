@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_spawnonroof","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_targetman","_redtargets","_mytown","_tname","_tradius","_nearblds1","_nearblds0","_cblds1","_thisbld","_sof_bld_poss","_clbds2","_clbds1","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs2","_mybldposs1","_mveh","_seldpos","_2ndtext","__tky_debug","_smk1mgrp","_mydude","_mandir","_mandist0","_3rdtext","_mandist1","_smcleanup", "_mybld2"];
+private ["_1sttext","_kill1types","_mcode","_searchbuildings","_spawninsidehigh","_spawninsidelow","_spawnoutside","_spawnonroof","_mantokill","_unitinit","_insupports","_outsupports","_mtext","_targetman","_redtargets","_mytown","_tname","_tradius","_nearblds1","_nearblds0","_cblds1","_thisbld","_sof_bld_poss","_clbds2","_clbds1","_cblds2","_cblds3","_mybld","_mybldposs0","_mybldposs2","_mybldposs1","_mveh","_seldpos","_2ndtext","__tky_debug","_smk1mgrp","_mydude","_mandir","_mandist0","_3rdtext","_mandist1","_smcleanup", "_mybld2", "_suppos"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _smcleanup = [];
