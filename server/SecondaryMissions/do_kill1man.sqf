@@ -68,8 +68,8 @@ _kill1types =
 			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F", "Land_PowerLine_01_pole_junction_F"],
 			-1,false, false, true, false,
 			["I_C_Soldier_Para_8_F"], "_this doMove (getpos _mybld)",
-			["I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
-			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F"],
+			[],
+			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F", "I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
 			"This guy has already sabotaged some of the island electrical infrastructure and we believe he's going to continue. Stop him, permanently."
 		]
 	];
