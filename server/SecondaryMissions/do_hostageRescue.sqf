@@ -159,6 +159,8 @@ _alarmSpeakers addEventHandler ["Hit",
 		} forEach _hostages;
 		if ((_rescuedHostages >= 2)) exitWith
 		{
+			missionactive = false;
+			publicVariable "missionactive";
 			completionText = "Mission completed. At least two hostages were rescued.";
 			publicVariable "completionText";
 			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
