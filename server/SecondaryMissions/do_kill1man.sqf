@@ -202,7 +202,7 @@ diag_log format ["*** sk1mguy is at %1, spawned at %2", getpos sk1mguy, _seldpos
 sleep 3;
 sk1mguy allowdamage true;
 
-if ((count _insupports) > 0 ) then
+if ((count _insupports) > 0 and {(count _mybldposs2) > 0 }   ) then
 	{
 	_supportbldposs = +_mybldposs2;
 		{
