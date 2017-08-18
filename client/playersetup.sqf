@@ -12,6 +12,7 @@ while {_spawnpos isEqualTo islandcentre } do
 	_testradius = _testradius * 2;
 	};
 player setpos _spawnpos;
+[ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 player addEventHandler ["InventoryOpened",
 {
 	[] spawn
