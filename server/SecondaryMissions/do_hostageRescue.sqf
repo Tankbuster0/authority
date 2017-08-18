@@ -51,7 +51,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
-	_hostage addEventHandler ["Killed", {aliveHostages = aliveHostages + 1; publicVariable "aliveHostages";}];
+	_hostage addEventHandler ["Killed", {aliveHostages = aliveHostages - 1; publicVariable "aliveHostages";}];
 	_hostageAnimation = selectRandom _hostageAnimations;
 	[_hostage, (format ["hostage%1", (_i + 1)])] call fnc_setVehicleName; // Found in functions.sqf (:
 	_hostages pushBack _hostage;
@@ -60,49 +60,6 @@ for "_i" from 0 to (_numHostages - 1) do
 };
 
 private _hostagePos = getPosATL hostage1;
-
-{
-	[_x] joinSilent grpNull;
-	_hostagePos set [0, ((_hostagePos select 0) + 2)];
-	_x setPosATL _hostagePos;
-} forEach _hostages;
-
-[_hostages] spawn
-{
-	params
-	[
-		["_hostages", []]
-	];
-	if ((_hostages isEqualTo [])) exitWith {};
-	private _rescuedHostages = 0;
-	while {(missionactive)} do
-	{
-		if ((aliveHostages < 2)) exitWith
-		{
-			{
-				_x setPos [0, 0, 0];
-				_x setDamage 1;
-			} forEach _hostages;
-			missionactive = false;
-			publicVariable "missionactive";
-			failText = "Mission failed. One or more hostages were killed.";
-			publicVariable "failText";
-			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		};
-		{
-			if ((_x distance2D (getMarkerPos "respawn_west") <= 10)) then
-			{
-				_rescuedHostages = _rescuedHostages + 1;
-			};
-		} forEach _hostages;
-		if ((_rescuedHostages >= 2)) then
-		{
-			completionText = "Mission completed. At least two hostages were rescued.";
-			publicVariable "completionText";
-			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		};
-	};
-};
 
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", (position _start), [], 0, "CAN_COLLIDE"];
 
@@ -156,6 +113,55 @@ _alarmSpeakers addEventHandler ["Hit",
 			_lightSource setLightBrightness 0;
 		};
 		sleep 3.43;
+	};
+};
+
+{
+	[_x] joinSilent grpNull;
+	_hostagePos set [0, ((_hostagePos select 0) + 2)];
+	_x setPosATL _hostagePos;
+} forEach _hostages;
+
+[_hostages, _alarmSpeakers, _soundSource, _lightSource] spawn
+{
+	params
+	[
+		["_hostages", []],
+		["_alarmSpeakers", objNull],
+		["_soundSource", objNull],
+		["_lightSource", objNull]
+	];
+	if ((_hostages isEqualTo [])) exitWith {};
+	private _rescuedHostages = 0;
+	while {(missionactive)} do
+	{
+		if ((aliveHostages < 2)) exitWith
+		{
+			{
+				_x setPos [0, 0, 0];
+				_x setDamage 1;
+				deleteVehicle _x;
+			} forEach _hostages;
+			{
+			} forEach [_alarmSpeakers, _soundSource, _lightSource];
+			missionactive = false;
+			publicVariable "missionactive";
+			failText = "Mission failed. One or more hostages were killed.";
+			publicVariable "failText";
+			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		};
+		{
+			if ((_x distance2D (getMarkerPos "respawn_west") <= 10)) then
+			{
+				_rescuedHostages = _rescuedHostages + 1;
+			};
+		} forEach _hostages;
+		if ((_rescuedHostages >= 2)) then
+		{
+			completionText = "Mission completed. At least two hostages were rescued.";
+			publicVariable "completionText";
+			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		};
 	};
 };
 
