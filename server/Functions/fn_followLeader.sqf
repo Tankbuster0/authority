@@ -37,7 +37,7 @@ waitUntil
 	_return
 };
 
-[_hostage, ""] remoteExec ["switchMove", ([0, -2] select isDedicated), false];
+[_hostage, ""] remoteExec ["switchMove", 0, false];
 _hostage enableAI "ALL";
 _hostage doMove (getPosATL _leader);
 
