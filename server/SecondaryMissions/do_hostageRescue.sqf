@@ -157,7 +157,7 @@ _alarmSpeakers addEventHandler ["Hit",
 				_rescuedHostages = _rescuedHostages + 1;
 			};
 		} forEach _hostages;
-		if ((_rescuedHostages >= 2)) then
+		if ((_rescuedHostages >= 2)) exitWith
 		{
 			completionText = "Mission completed. At least two hostages were rescued.";
 			publicVariable "completionText";
