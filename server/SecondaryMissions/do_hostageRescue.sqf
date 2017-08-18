@@ -143,6 +143,7 @@ _alarmSpeakers addEventHandler ["Hit",
 				deleteVehicle _x;
 			} forEach _hostages;
 			{
+				deleteVehicle _x;
 			} forEach [_alarmSpeakers, _soundSource, _lightSource];
 			missionactive = false;
 			publicVariable "missionactive";
