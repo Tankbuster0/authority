@@ -24,7 +24,7 @@ endLoadingScreen;
 
 //systemChat "Saving initial loadout";
 //Save initial loadout
-[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
+[ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 
 player addEventHandler [ "Respawn", {
 
@@ -44,14 +44,14 @@ player addEventHandler [ "Respawn", {
 
 		if ( { "menuInventory" == _x }count _templates > 0 ) then {
 			//systemChat "Respawning - saving menu inventory";
-			[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
+			[ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 		}else
 		{
 			h = [] spawn
 			{
 				sleep playerRespawnTime;
 				//systemChat "Respawning - loading last saved";
-				[ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
+				[ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,true, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] ) and (not (isEngineOn (vehicle player))) ) "];
 				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,true, "","((player distanceSqr blubasedataterminal) < 2)"];
 				vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,true, "","((player distanceSqr fobdataterminal) < 2)"];
