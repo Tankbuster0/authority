@@ -51,8 +51,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
-	// _hostage addEventHandler ["Killed", tky_fnc_KilledEH];
-	// Not in use, at least not at the moment.
+	_hostage addEventHandler ["Killed", {aliveHostages = aliveHostages + 1; publicVariable "aliveHostages";}];
 	_hostageAnimation = selectRandom _hostageAnimations;
 	[_hostage, (format ["hostage%1", (_i + 1)])] call fnc_setVehicleName; // Found in functions.sqf (:
 	_hostages pushBack _hostage;
