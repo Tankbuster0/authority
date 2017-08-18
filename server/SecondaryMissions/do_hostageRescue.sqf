@@ -56,7 +56,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	[_hostage, (format ["hostage%1", (_i + 1)])] call fnc_setVehicleName; // Found in functions.sqf (:
 	_hostages pushBack _hostage;
 	[_hostage, _hostages] spawn tky_fnc_followLeader;
-	[(vehicleVarName _hostage), _hostageAnimation] remoteExec ["switchMove", ([0, -2] select isDedicated), false];
+	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
 };
 
 private _hostagePos = getPosATL hostage1;
