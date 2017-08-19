@@ -30,7 +30,7 @@ class dlg_missionStatus_diagnostics
 			w = 0.4 * safezoneW;
 			h = 0.52 * safezoneH;
 			// text = "#(argb,8,8,3)color(0.25,0.25,0.22,1)";
-			text = "pics\bg2.paa";
+			text = "pics\bg.paa";
 		};
 		class back : Haz_RscButton
 		{
