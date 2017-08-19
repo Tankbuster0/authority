@@ -35,6 +35,7 @@
 				(_this select 8) select 1: ARRAY - default position on water
 	Returns:
 		Coordinate array with a position solution.
+	_ret =  [[centrepos], mindistfromcentrepos, maxdistfromcentre, distfrom nearobj, water 0 1 2 (dry, either, wet), grad, shoremode 0 1 (not, must), outside 0 1(yes, no), strict (use 1 for now), blacklist, default]
 */
 scopeName "main";
 params [
