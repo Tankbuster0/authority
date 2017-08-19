@@ -28,7 +28,7 @@ switch ((_key)) do
 {
 	case _escKey :
 	{
-		[] call tky_fnc_respawnButton;
+		[] spawn tky_fnc_respawnButton;
 	};
 	case _missionStatusKey :
 	{

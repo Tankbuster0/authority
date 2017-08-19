@@ -8,6 +8,8 @@ scriptName "fn_respawnButton";
 
 if ((isDedicated) || (!hasInterface)) exitWith {};
 
+waitUntil {(!isNull (findDisplay 49))};
+
 if (((lifeState player) isEqualTo "INCAPACITATED")) then
 {
 	((findDisplay 49) displayCtrl 1010) ctrlEnable false;
