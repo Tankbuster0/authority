@@ -14,7 +14,7 @@ respawn = "BASE";
 debriefing = 1;
 respawnDelay = 3;
 respawnTemplates[] = {"Counter", "MenuPosition"};
-respawnButton = 0;
+respawnButton = 1;
 respawnOnStart = 0;
 disableRandomization[] = {"AllVehicles"};
 //reviveDelay = 10;
@@ -75,6 +75,8 @@ class cfgFunctions
 			class playerMarkers {};
 			class playerMarkersInit {};
 			class inventory {};
+			class keyDownHandler {};
+			class respawnButton {};
 		};
 		class auth_server
 		{

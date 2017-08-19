@@ -13,6 +13,11 @@ while {_spawnpos isEqualTo islandcentre } do
 	};
 player setpos _spawnpos;
 [ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
+[] spawn
+{
+	waitUntil {(!isNull (findDisplay 46))};
+	keyDownHandler = (findDisplay 46) displayAddEventHandler ["KeyDown", "_this call tky_fnc_keyDownHandler;"];
+};
 player addEventHandler ["InventoryOpened",
 {
 	[] spawn
