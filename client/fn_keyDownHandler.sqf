@@ -30,7 +30,7 @@ switch ((_key)) do
 	{
 		[] call tky_fnc_respawnButton;
 	};
-	case _interactionMenuKey :
+	case _missionStatusKey :
 	{
 		_handled = true;
 		[] spawn tky_fnc_showmissiondialog;
