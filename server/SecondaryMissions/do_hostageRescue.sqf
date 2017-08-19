@@ -1,7 +1,7 @@
 scriptName "do_hostageRescue";
 
 /*
-	Code written by Haz
+	Code written by Haz start
 */
 
 #define __FILENAME "do_hostageRescue.sqf"
@@ -18,17 +18,19 @@ publicVariable "missionactive";
 missionsuccess = false;
 publicVariable "missionsuccess";
 
-private _potentialStarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 2500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
+private _potentialStarts = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 1500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
 private _start = selectRandom _potentialStarts;
 private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
 
-smmissionstring = format ["A group of hostiles are held up at %1 with at least a couple of hostages. Eliminate all hostile threats and save at least 2 hostages by bringing them safely back to base.", _locationName];
+_spawnpos =  [_start, 0, 400, 15, 0, 0.5, 0 , 0, 1] call tky_fnc_findsafepos;
+
+_loctext = [_spawnpos] call tky_fnc_distanddirfromtown;
+smmissionstring = format ["A group of hostiles are holed up %1 with at least a couple of hostages. Eliminate all hostile threats and save at least 2 hostages by bringing them safely back to base.", _loctext];
 publicVariable "smmissionstring";
 
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
-private _center = createCenter blufor;
-private _group = createGroup blufor;
+private _smhrgroup = createGroup blufor;
 
 private _hostageClassnames = [["B_officer_F", "B_helicrew_F", "B_crew_F"], ["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"]];
 _hostageClassname = selectRandom _hostageClassnames;
@@ -38,7 +40,7 @@ private _floorRand = floor (random 2);
 private _hostageAnimations = ["Acts_AidlPsitMstpSsurWnonDnon_loop", "Acts_ExecutionVictim_Loop"];
 private _hostageAnimation = selectRandom _hostageAnimations;
 
-private _numHostages = 4 + (ceil (random 4));
+private _numHostages = 3 + (ceil (random 3));
 
 aliveHostages = _numHostages;
 publicVariable "aliveHostages";
@@ -47,7 +49,7 @@ private _hostages = [];
 
 for "_i" from 0 to (_numHostages - 1) do
 {
-	private _hostage = _group createUnit [(_hostageClassname select _floorRand), _start, [], 0, "FORM"];
+	private _hostage = _smhrgroup createUnit [(_hostageClassname select _floorRand), _spawnpos, [], 0, "FORM"];
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
@@ -61,15 +63,15 @@ for "_i" from 0 to (_numHostages - 1) do
 
 private _hostagePos = getPosATL hostage1;
 
-private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", (position _start), [], 0, "CAN_COLLIDE"];
+private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnpos, [], 0, "CAN_COLLIDE"];
 
-private _lightSource = "#lightPoint" createVehicle (position _start);
+private _lightSource = "#lightPoint" createVehicle _spawnpos;
 _lightSource setLightAmbient [255, 0, 0];
 _lightSource setLightColor [255, 0, 0];
 _lightSource setLightBrightness 0.025;
 _lightSource lightAttachObject [_alarmSpeakers, [0, 0, 6]];
 
-private _soundSource = createVehicle ["Land_HelipadEmpty_F", (position _start), [], 0, "CAN_COLLIDE"];
+private _soundSource = createVehicle ["Land_HelipadEmpty_F", _spawnpos, [], 0, "CAN_COLLIDE"];
 
 _alarmSpeakers addEventHandler ["Hit",
 {
