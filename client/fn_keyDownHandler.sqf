@@ -28,7 +28,6 @@ switch ((_key)) do
 {
 	case _escKey :
 	{
-		_handled = true;
 		[] call tky_fnc_respawnButton;
 	};
 	case _interactionMenuKey :
