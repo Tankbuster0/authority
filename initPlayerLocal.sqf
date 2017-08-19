@@ -6,7 +6,7 @@ _myscript = "initplayerlocal.sqf";
 [ missionNamespace, "arsenalClosed",
 	{
 	//diag_log "*** VA closed!";
-    [ player, [ missionNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
+    [ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_saveInventory;
 	}] call BIS_fnc_addScriptedEventHandler;
 	//^^ when player closes VA, save their loadout to server
 sleep 1;
