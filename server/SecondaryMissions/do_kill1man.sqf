@@ -74,7 +74,7 @@ _kill1types =
 		],
 		["sci",
 			["house"],
-			[/*<< some shop buildings. on tanoa, check which have real interior positions, not just roof ones */],
+			["land shop city 03", "land shop city 02 f", "land shop city 01 f", "land supermarket 01 f", "land fuelstation 01 shop f", "land shop town 03 f", "land shop town 01 f"],
 			-1,false, true, false, false, false,
 			["C_scientist_F"], "",
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F"],
