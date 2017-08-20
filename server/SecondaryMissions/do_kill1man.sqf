@@ -92,12 +92,9 @@ diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 }foreach submissiondata;
 _targetman = selectRandom _mantokill;
 _redtargets = (cpt_position nearEntities ["Logic", 4000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {((_x distance2d cpt_position) > 700 and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
-//^^^ get nearby enemy towns between 700m and 5km away that are not blu town and on the same island
+//^^^ get nearby enemy towns between 700m and 4km away that are not blu town and are on the same island
 _mytown = selectRandom _redtargets;
 // ^^^ select 1 at random
-_tname = _mytown getVariable ["targetname", "Springfield"];
-_tradius = _mytown getVariable ["targetradius", 125];
-diag_log format ["*** dk1m chooses %1", _tname ];
 _nearblds1 = nearestTerrainObjects [_mytown, _searchobjects ,8000, false, true];
 diag_log format ["*** dtk1m finds %1 'houses' ", count _nearblds1];
 // ^^^ got some terrain objects,now filter it found our wanted building types
@@ -150,8 +147,8 @@ diag_log format ["*** dk1m says _cblds2 is %1", _cblds2];
 diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior positions)", count _cblds2];
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["*** _cblds3 is %1",_cblds3];
-_mybld = (_cblds3 select 0);
-//^^^ take the nearest building to the remote town
+_mybld = (_cblds3 select (floor ((count _cblds3) / 4)));
+//^^^ take one of the nearest buildings
 _mybldposs0 = (_mybld buildingPos -1);
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
 if ( not _spawnonroof) then
@@ -236,12 +233,16 @@ if ( (count _outsupports) > 0 ) then
 			_smcleanup pushback _osman;
 			};
 		}forEach _outsupports;
-
-
-
 	};
-_mandir = [(_mytown getDir _mybld)] call tky_fnc_cardinaldirection;
-_mandist0 = floor (_mybld distance2D _mytown);
+
+//get the new nearest logic, in case mybld is a long way from mytown
+_redtargets2 = (_mybld nearEntities ["Logic", 2000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {((_x distance2d cpt_position) > 700 and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
+_sortedrt2 = [_redtargets2 , [], {_x distance2D _mybld}, "ASCEND" ] call BIS_fnc_sortBy;
+_mytown2 = _sortedrt2 select 0;
+_tname = _mytown2 getVariable ["targetname", "Springfield"];
+_tradius = _mytown2 getVariable ["targetradius", 125];
+_mandir = [(_mytown2 getDir _mybld)] call tky_fnc_cardinaldirection;
+_mandist0 = floor (_mybld distance2D _mytown2);
 
 if (_mandist0 < 50) then {_3rdtext = "in the middle of " + _tname;};
 if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
