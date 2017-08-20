@@ -12,7 +12,7 @@ _kill1types =
 		/*["missioncode",
 			[objects for nearestterrainobjects],
 			[buildings to use (array of classnames)],
-			number of buildingposs to filter for, spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag << note that roof only must be exclusive
+			number of buildingposs to filter for, spawninsidehighflag, spawninsidelowflag, spawnoutsideflag, roofonlyflag, nearbybuilding << note that roof only must be exclusive
 			[classnames of mantokill],"unitinit",
 			["classnames of support units indoors"], << no more than 6 and man units only
 			["classnames of support units outdoors"],
@@ -21,7 +21,7 @@ _kill1types =
 		["cgl",
 			["house"],
 			["Land_FuelStation_Build_F", "Land_FuelStation_01_shop_F", "Land_FuelStation_01_workshop_F", "Land_FuelStation_02_workshop_F", "Land_GarageShelter_01_F", "Land_CarService_F"],
-			6, false, true, false, false,
+			6, false, true, false, false, false,
 			["I_C_Soldier_Bandit_7_F"],"",
 			[""],
 			[""],
@@ -30,7 +30,7 @@ _kill1types =
 		["htg",
 			["house"],
 			["House_f"],
-			6, false, true, false,false,
+			6, false, true, false,false, false,
 			["I_C_Soldier_Bandit_1_F"], "",
 			["I_C_Soldier_Bandit_4_F"],
 			[""],
@@ -39,7 +39,7 @@ _kill1types =
 		["eof",
 			["house"],
 			["Land_i_Barracks_V1_F"],
-			20, false, true, false,false,
+			20, false, true, false,false, false,
 			["O_G_officer_F"], "",
 			["O_G_Soldier_TL_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F", "O_G_Soldier_GL_F", "O_G_Soldier_GL_F"],
 			["O_G_Offroad_01_armed_F", "O_APC_Wheeled_02_rcws_F", "O_G_Van_01_transport_F"],
@@ -48,7 +48,7 @@ _kill1types =
 		["sni",
 			["house"],
 			["House_f"],
-			6, false, false, false, true,
+			6, false, false, false, true, false,
 			["O_T_Sniper_F"], "this setUnitPos 'DOWN'",
 			["O_T_Spotter_F", "O_G_Soldier_AR_F","O_G_Soldier_AR_F","O_G_Soldier_AR_F", "O_G_medic_F"],
 			[""],
@@ -57,7 +57,7 @@ _kill1types =
 		["bom",
 			["house"],
 			["Land_Warehouse_03_F", "Land_Warehouse_01_F", "Land_Warehouse_02_F", "Land_SCF_01_warehouse_F"],
-			8,false, true, false, false,
+			8,false, true, false, false, false,
 			["I_G_Soldier_exp_F"], "",
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F", "I_G_medic_F"],
 			[""],
@@ -66,7 +66,7 @@ _kill1types =
 		["esab",
 			["power lines", "house"],
 			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F", "Land_PowerLine_01_pole_junction_F"],
-			-1,false, false, true, false,
+			-1,false, false, true, false, false,
 			["I_C_Soldier_Para_8_F"], "_this doMove (getpos _mybld)",
 			[],
 			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F", "I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
@@ -75,18 +75,18 @@ _kill1types =
 		["sci",
 			["house"],
 			[/*<< some shop buildings. on tanoa, check which have real interior positions, not just roof ones */],
-			-1,false, true, false, false,
+			-1,false, true, false, false, false,
 			["C_scientist_F"], "",
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F"],
 			[],
-			"This chemical weapons scientist has finally been seen outside of his heavily armed compound, getting supplies or food. We don't care which, take him out. Note that he's probably not unescorted."
+			"This chemical weapons scientist has finally been seen outside of his heavily protected compound, getting supplies or food. We don't care which, take him out. Note that he's probably not unescorted."
 		]
 	];
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
 // ^^^ note blacklisted buildings cannot be a base class.
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 5;
-submissiondata params ["_mcode", "_searchobjects", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
+submissiondata params ["_mcode", "_searchobjects", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof","_spawnnearby", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
 }foreach submissiondata;
@@ -107,8 +107,7 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) /* and ((count (_thisbld buildingpos -1)) > _bposthreshold ) */ and ((abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2))) > 2) }) then
-	//if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings))  }) then
+	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and ((abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2))) > 2) }) then
 		{
 		_cblds1 pushBack _thisbld;
 		//diag_log format ["***dk1m pushbacks into cblds1 . loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
@@ -143,7 +142,6 @@ if (_spawnonroof) then
 		}foreach _cblds1;
 	} else
 	{
-	//_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > _bposthreshold) and (_spawninsidelow or _spawninsidehigh) and (not ((_x buildingExit 0)  isEqualTo [0,0,0]) ) )};
 	_cblds2 = _cblds1 select { (_spawnoutside) or ( ( (count (_x buildingPos -1 ) ) > _bposthreshold) and (_spawninsidelow or _spawninsidehigh)  )};
 	};
 
@@ -156,7 +154,6 @@ _mybld = (_cblds3 select 0);
 //^^^ take the nearest building to the remote town
 _mybldposs0 = (_mybld buildingPos -1);
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];
-//_mybldposs2 = _mybldposs0 select { _x call tky_fnc_inhouse }; // take only the ones indoors. this isnt very good at flitering out porches, unfort. its also broken, so removed.
 if ( not _spawnonroof) then
 	{
 	_mybldposs1 = _mybldposs0 select {( not ([_x] call tky_fnc_inhouse))};
