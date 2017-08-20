@@ -71,10 +71,19 @@ _kill1types =
 			[],
 			["I_G_Offroad_01_armed_F", "I_G_Offroad_01_armed_F", "I_C_Soldier_Bandit_4_F", "I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_4_F","I_C_Soldier_Bandit_2_F", "I_C_Soldier_Bandit_5_F"],
 			"This guy has already sabotaged some of the island electrical infrastructure and we believe he's going to continue. Stop him, permanently."
+		],
+		["sci",
+			["house"],
+			[/*<< some shop buildings. on tanoa, check which have real interior positions, not just roof ones */],
+			-1,false, true, false, false,
+			["C_scientist_F"], "",
+			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F"],
+			[],
+			"This chemical weapons scientist has finally been seen outside of his heavily armed compound, getting supplies or food. We don't care which, take him out. Note that he's probably not unescorted."
 		]
 	];
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
-// ^^^ note blacklisted buildings cannot be a base case.
+// ^^^ note blacklisted buildings cannot be a base class.
 //submissiondata = selectRandom _kill1types;
 submissiondata = _kill1types select 5;
 submissiondata params ["_mcode", "_searchobjects", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
