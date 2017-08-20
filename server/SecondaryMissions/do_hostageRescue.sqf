@@ -170,7 +170,7 @@ private _enemySpotted = false;
 			[_cleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 		};
 		{
-			if ((_x distance2D ammobox < 11) && {(!((vehicle _x) isEqualTo _x)) && (alive _x) && (isTouchingGround _x)}) then
+			if ((_x distance2D ammobox < 11) && {((vehicle _x) isEqualTo _x)) && (alive _x) && (isTouchingGround _x)}) then
 			{
 				_rescuedHostages = _rescuedHostages + 1;
 			};
