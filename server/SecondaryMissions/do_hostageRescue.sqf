@@ -137,6 +137,7 @@ _alarmSpeakers addEventHandler ["Hit",
 	private _rescuedHostages = 0;
 	while {(missionactive)} do
 	{
+		sleep 4;
 		if ((aliveHostages < 2)) exitWith
 		{
 			{
@@ -154,7 +155,7 @@ _alarmSpeakers addEventHandler ["Hit",
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 		{
-			if ((_x distance2D ammobox) <= 10) then
+			if ((_x distance2D ammobox) <= 10 and {(not ((vehicle _x) isEqualTo _x)) and (alive _x) and (isTouchingGround _x)}) then
 			{
 				_rescuedHostages = _rescuedHostages + 1;
 			};
