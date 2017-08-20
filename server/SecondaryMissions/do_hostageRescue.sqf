@@ -155,7 +155,7 @@ _alarmSpeakers addEventHandler ["Hit",
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 		{
-			if ((_x distance2D ammobox) <= 10 and {(not ((vehicle _x) isEqualTo _x)) and (alive _x) and (isTouchingGround _x)}) then
+			if ((_x distance2D ammobox <= 10) && {(!((vehicle _x) isEqualTo _x)) && (alive _x) && (isTouchingGround _x)}) then
 			{
 				_rescuedHostages = _rescuedHostages + 1;
 			};
