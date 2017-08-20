@@ -72,7 +72,7 @@ private _hostagePos = getPosATL hostage1;
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnPos, [], 0, "CAN_COLLIDE"];
 
 private _lightSource = "#lightPoint" createVehicle _spawnPos;
-_lightSource setPos (_lightSource modelToWorld [0, 0, (((getNumber (configFile >> "CfgVehicles" >> _objectType >> "mapSize")) * 2) + 1.43)]);
+_lightSource setPos (_lightSource modelToWorld [0, 0, (((getNumber (configFile >> "CfgVehicles" >> "Land_Loudspeakers_F" >> "mapSize")) * 2) + 1.43)]);
 _lightSource setLightAmbient [255, 0, 0];
 _lightSource setLightColor [255, 0, 0];
 _lightSource setLightBrightness 0.025;
@@ -99,16 +99,7 @@ private _enemySpotted = false;
 		["_enemySpotted", objNull]
 	];
 	if ((isNull _alarmSpeakers) || (isNull _soundSource) || (isNull _lightSource)) exitWith {};
-	waitUntil
-	{
-		{
-			if ((((leader _enemyGroup) targetKnowledge _x) select 0)) then
-			{
-				_enemySpotted = true;
-			};
-		} forEach allPlayers - (entities "HeadlessClient_F");
-		_enemySpotted
-	};
+	waitUntil {(((((leader _enemyGroup) targetsQuery [objNull, blufor, "", [], 0]) select 0) select 0) > 0.4)};
 	while {(missionactive)} do
 	{
 		if ((!isNull _lightSource)) then
@@ -144,14 +135,15 @@ private _enemySpotted = false;
 	_x setPosATL _hostagePos;
 } forEach _hostages;
 
-[_hostages, _alarmSpeakers, _soundSource, _lightSource] spawn
+[_hostages, _alarmSpeakers, _soundSource, _lightSource, _cleanup] spawn
 {
 	params
 	[
 		["_hostages", []],
 		["_alarmSpeakers", objNull],
 		["_soundSource", objNull],
-		["_lightSource", objNull]
+		["_lightSource", objNull],
+		["_cleanup", objNull]
 	];
 	if ((_hostages isEqualTo [])) exitWith {};
 	private _rescuedHostages = 0;
