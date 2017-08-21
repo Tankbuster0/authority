@@ -18,7 +18,7 @@ private _diagnostics = _display displayCtrl idc_diagnostics;
 
 private _UID = if ((isMultiplayer)) then {(getPlayerUID player)} else {000};
 
-if (((call BIS_fnc_admin) != 2) || (!(_UID in authenicatedAdmins))) then
+if (((admin clientOwner player) != 2) || (!(_UID in authenicatedAdmins))) then
 {
 	_diagnostics ctrlShow false;
 } else
