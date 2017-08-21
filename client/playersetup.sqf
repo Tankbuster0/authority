@@ -15,7 +15,8 @@ player setpos _spawnpos;
 [ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 if ((score player < 1)) then // Honestly... I'm not sure why you wanted to use "score" as this will show for regular players each new game. I suggest an alternative method.
 {
-	titleText [format ["If you are new to Authority, we recommend that you open your map and read the briefing and notes at the top left. Press %1 to open the mission status dialog.", ((toString (actionKeysNamesArray "User1")) joinString " | ")]], "PLAIN"];
+	// TODO: Style the message using the new syntax... Doesn't seem to work (not even the example on the Wiki). It says Since Arma 3 v1.73.142260 and I'm testing on 1.74.142559 so no idea why it's not working!
+	titleText [(format ["Welcome to Operation Authority, %1! If you are new to the mission then we recommend that you read the briefing and notes on the map screen in the top left corner. Press %2 to open the mission status dialog.", (name player), ((actionKeysNamesArray "User1") joinString " | ")]), "PLAIN", 4];
 };
 [] spawn
 {
