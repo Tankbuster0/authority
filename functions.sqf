@@ -102,6 +102,7 @@ tky_fnc_fleet_heli_vtols =
 tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input), returns true if indoors
 	{
 	private _return = false;
+	private _houseabove = false;
 	//if sending pos, it must be asl
 	params ["_indata"];
 	private ["_pos", "_houseabove", "_wallscore"];
@@ -126,11 +127,11 @@ tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input
 	_wallscore = 0;
 	if (not _houseabove) then
 		{
-		_dirstocheck = [[10,0,0], [0,10,0], [-10,0,0], [0,10,0]];
+		_dirstocheck = [[2,0,0], [0,2,0], [-2,0,0], [0,-2,0]];
 			{
 			lineIntersectsSurfaces [
 			_pos,
-			_pos vectorAdd _dirstocheck,
+			_pos vectorAdd _x,
 			_ignoreObject, objNull, false, 1, "GEOM", "NONE"
 			] select 0 params ["","","","_house"];
 			if ((not (isnil "_house")) and { _house isKindOf "House"})  then
