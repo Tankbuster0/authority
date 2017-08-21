@@ -73,16 +73,24 @@ private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnPos, [], 0,
 
 private _lightSource = "#lightPoint" createVehicle _spawnPos;
 _lightSource setPos (_lightSource modelToWorld [0, 0, (((getNumber (configFile >> "CfgVehicles" >> "Land_Loudspeakers_F" >> "mapSize")) * 2) + 1.43)]);
-_lightSource setLightAmbient [255, 0, 0];
-_lightSource setLightColor [255, 0, 0];
-_lightSource setLightBrightness 0.025;
+[_lightSource, [255, 0, 0]] remoteExec ["setLightAmbient", 0, false];
+[_lightSource, [255, 0, 0]] remoteExec ["setLightColor", 0, false];
+[_lightSource, 0.025] remoteExec ["setLightBrightness", 0, false];
 _lightSource lightAttachObject [_alarmSpeakers, [0, 0, 6]];
 
 private _soundSource = createVehicle ["Land_HelipadEmpty_F", _spawnPos, [], 0, "CAN_COLLIDE"];
 
+_alarmSpeakers addEventHandler ["HandleDamage",
+{
+	if (((_this select 2) >= 0.90)) then
+	{
+		(_this select 0) setDamage 0;
+	};
+}];
+
 _alarmSpeakers addEventHandler ["Hit",
 {
-	_newDamage = (getDammage (_this select 0)) - (_this select 2) + 0.10;
+	_newDamage = (getDammage (_this select 0)) - (_this select 2) + 0.25;
 	(_this select 0) setDamage _newDamage;
 }];
 
@@ -104,16 +112,16 @@ private _enemySpotted = false;
 	{
 		if ((!isNull _lightSource)) then
 		{
-			_lightSource setLightAmbient [255, 0, 0];
-			_lightSource setLightColor [255, 0, 0];
-			_lightSource setLightBrightness 0.025;
+			[_lightSource, [255, 0, 0]] remoteExec ["setLightAmbient", 0, false];
+			[_lightSource, [255, 0, 0]] remoteExec ["setLightColor", 0, false];
+			[_lightSource, 0.025] remoteExec ["setLightBrightness", 0, false];
 		};
 		if ((!alive _alarmSpeakers) || (getDammage _alarmSpeakers >= 0.15)) then
 		{
 			deleteVehicle _soundSource;
-			_lightSource setLightAmbient [0, 0, 0];
-			_lightSource setLightColor [0, 0, 0];
-			_lightSource setLightBrightness 0;
+			[_lightSource, [0, 0, 0]] remoteExec ["setLightAmbient", 0, false];
+			[_lightSource, [0, 0, 0]] remoteExec ["setLightColor", 0, false];
+			[_lightSource, 0] remoteExec ["setLightBrightness", 0, false];
 		} else
 		{
 			[_soundSource, ["Alarm_BLUFOR", 125, 1]] remoteExec ["say3D", ([0, -2] select isDedicated), false];
@@ -121,9 +129,9 @@ private _enemySpotted = false;
 		sleep 3.43;
 		if ((!isNull _lightSource)) then
 		{
-			_lightSource setLightAmbient [0, 0, 0];
-			_lightSource setLightColor [0, 0, 0];
-			_lightSource setLightBrightness 0;
+			[_lightSource, [0, 0, 0]] remoteExec ["setLightAmbient", 0, false];
+			[_lightSource, [0, 0, 0]] remoteExec ["setLightColor", 0, false];
+			[_lightSource, 0] remoteExec ["setLightBrightness", 0, false];
 		};
 		sleep 3.43;
 	};
