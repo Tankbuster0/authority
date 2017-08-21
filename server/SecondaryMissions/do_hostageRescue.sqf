@@ -1,7 +1,7 @@
 scriptName "do_hostageRescue";
 
 /*
-	Code written by Haz start
+	Code written by Haz
 */
 
 #define __FILENAME "do_hostageRescue.sqf"
