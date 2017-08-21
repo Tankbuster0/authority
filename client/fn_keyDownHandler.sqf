@@ -33,7 +33,10 @@ switch ((_key)) do
 	case _missionStatusKey :
 	{
 		_handled = true;
-		[] spawn tky_fnc_showmissiondialog;
+		if ((!dialog)) then
+		{
+			[] spawn tky_fnc_showmissiondialog;
+		};
 	};
 };
 

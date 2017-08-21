@@ -13,6 +13,10 @@ while {_spawnpos isEqualTo islandcentre } do
 	};
 player setpos _spawnpos;
 [ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
+if ((score player < 1)) then // Honestly... I'm not sure why you wanted to use "score" as this will show for regular players each new game. I suggest an alternative method.
+{
+	titleText [format ["If you are new to Authority, we recommend that you open your map and read the briefing and notes at the top left. Press %1 to open the mission status dialog.", ((toString (actionKeysNamesArray "User1")) joinString " | ")]], "PLAIN"];
+};
 [] spawn
 {
 	waitUntil {(!isNull (findDisplay 46))};
