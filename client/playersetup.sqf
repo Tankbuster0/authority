@@ -21,10 +21,9 @@ if ((_hasLaser > 0)) then
 		player addMagazine "LaserBatteries";
 	};
 };
-if ((score player < 1)) then // Honestly... I'm not sure why you wanted to use "score" as this will show for regular players each new game. I suggest an alternative method.
+if ((score player < 1)) then
 {
-	// TODO: Style the message using the new syntax... Doesn't seem to work (not even the example on the Wiki). It says Since Arma 3 v1.73.142260 and I'm testing on 1.74.142559 so no idea why it's not working!
-	titleText [(format ["Welcome to Operation Authority, %1! If you are new to the mission then we recommend that you read the briefing and notes on the map screen in the top left corner. Press %2 to open the mission status dialog.", (name player), ((actionKeysNamesArray "User1") joinString " | ")]), "PLAIN", 4];
+	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Operation Authority, %1! If you are new to the mission then we recommend that you read the briefing and notes on the map screen in the top left corner. Press %2 to open the mission status dialog.</t>", (name player), ((actionKeysNamesArray "User1") joinString " | ")]), -1, -1, 6, 1, 0, 12345] spawn BIS_fnc_dynamicText;
 };
 [] spawn
 {
