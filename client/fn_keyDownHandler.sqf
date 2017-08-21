@@ -22,7 +22,7 @@ params
 private _handled = false;
 
 private _escKey = 1;
-private _missionStatusKey = if ((count (actionKeys "User1") isEqualTo 0)) then {220} else {(actionKeys "User1") select 0};
+private _missionStatusKey = if ((count (actionKeys "User1") isEqualTo 0)) then {219} else {(actionKeys "User1") select 0};
 
 switch ((_key)) do
 {
