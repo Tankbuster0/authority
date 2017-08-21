@@ -84,8 +84,7 @@ _kill1types =
 	];
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f",  "land_pierwooden_02_16m_f", "land_pierwooden_02_barrel_f", "land_pierwooden_02_ladder_f"];
 // ^^^ note blacklisted buildings cannot be a base class.
-//submissiondata = selectRandom _kill1types;
-submissiondata = _kill1types select 5;
+submissiondata = selectRandom _kill1types;
 submissiondata params ["_mcode", "_searchobjects", "_searchbuildings","_bposthreshold", "_spawninsidehigh", "_spawninsidelow", "_spawnoutside", "_spawnonroof","_spawnnearby", "_mantokill", "_unitinit", "_insupports", "_outsupports", "_mtext"];
 {
 diag_log format ["***submissiondata %1, %2", _foreachindex, _x];
@@ -161,7 +160,7 @@ if ( not _spawnonroof) then
 	diag_log format ["***dk1m roofs ok and has %1", _mybldposs1];
 	};
 // ^^^ if not spawnonroof, then remove all roof positions
-_mybldposs2 = [_mybldposs1 , [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
+_mybldposs2 = [_mybldposs1, [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
 {
 	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
 } foreach _mybldposs2;
