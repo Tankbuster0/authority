@@ -36,6 +36,9 @@ switch ((_key)) do
 		if ((!dialog)) then
 		{
 			[] spawn tky_fnc_showmissiondialog;
+		} else
+		{
+			closeDialog 0;
 		};
 	};
 };
