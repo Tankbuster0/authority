@@ -11,8 +11,6 @@ _d_radar_status = [missionNamespace, "pt_radar_alive", false] call BIS_fnc_getSe
 
 _d_roadblockdata1 = [missionNamespace, "deadgatecount", -1 ] call BIS_fnc_getServerVariable;
 _d_roadblockdata2 = count ([missionNamespace, "roadblockgates", [] ] call BIS_fnc_getServerVariable);
-diag_log format ["***smd says rdb1 = %1", _d_roadblockdata1];
-diag_log format ["***smd says rbd2 = %1", _d_roadblockdata2];
 _d_roadblockfinal = format ["Roadblocks to Clear: %1",(_d_roadblockdata2 - _d_roadblockdata1)];// number of gates still to kill
 
 _d_enemystrength =  _numberstrengths select ((round ((east countSide allunits) / 10)) min 9);
