@@ -74,7 +74,7 @@ _kill1types =
 		],
 		["sci",
 			["house"],
-			["land_shop_city_03", "land_shop_city_02_f", "land_shop_city_01_f", "land_supermarket_01_f", "land_fuelstation_01_shop_f", "land_shop_town_03_f", "land_shop_town_01_f"],
+			["Land_Shop_City_03_F", "Land_Shop_City_02_F", "Land_Shop_City_01_F", "Land_Supermarket_01_F", "Land_Fuelstation_01_Shop_F", "Land_Shop_Town_03_F", "Land_Shop_Town_01_F", "Land_i_Shop_01_V1_F", "Land_i_Shop_01_V2_F", "Land_i_Shop_01_V3_F","Land_u_Shop_01_V1_F","Land_d_Shop_01_V1_F", "Land_i_Shop_02_V1_F", "Land_i_Shop_02_V2_F", "Land_i_Shop_02_V3_F" ],
 			6,false, true, false, false, false,
 			["C_scientist_F"], "",
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F"],
