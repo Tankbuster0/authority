@@ -23,7 +23,8 @@ if ((_hasLaser > 0)) then
 };
 if ((score player < 1)) then
 {
-	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Operation Authority, %1! If you are new to the mission then we recommend that you read the briefing and notes on the map screen in the top left corner. Press %2 to open the mission status dialog.</t>", (name player), ((actionKeysNamesArray "User1") joinString " | ")]), -1, -1, 6, 1, 0, 12345] spawn BIS_fnc_dynamicText;
+	private _key = if ((count (actionKeys "User1") isEqualTo 0)) then {"Left Windows"} else {((actionKeysNamesArray "User1") joinString " | ")};
+	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Operation Authority, %1! If you are new to the mission then we recommend that you read the briefing and notes on the map screen in the top left corner. Press %2 to open the mission status dialog.</t>", (name player), _key]), -1, -1, 6, 1, 0, 12345] remoteExec ["BIS_fnc_dynamicText", player, false];
 };
 [] spawn
 {
