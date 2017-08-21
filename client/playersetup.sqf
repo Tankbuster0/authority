@@ -13,6 +13,14 @@ while {_spawnpos isEqualTo islandcentre } do
 	};
 player setpos _spawnpos;
 [ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
+_hasLaser = {_x in (weapons player)} count ["Laserdesignator", "Laserdesignator_01_khk_F", "Laserdesignator_02", "Laserdesignator_02_ghex_F", "Laserdesignator_03", "Laserdesignator_mounted", "Laserdesignator_pilotCamera"];
+if ((_hasLaser > 0)) then
+{
+	if ((!("LaserBatteries" in (magazines player)))) then
+	{
+		player addMagazine "LaserBatteries";
+	};
+};
 if ((score player < 1)) then // Honestly... I'm not sure why you wanted to use "score" as this will show for regular players each new game. I suggest an alternative method.
 {
 	// TODO: Style the message using the new syntax... Doesn't seem to work (not even the example on the Wiki). It says Since Arma 3 v1.73.142260 and I'm testing on 1.74.142559 so no idea why it's not working!
