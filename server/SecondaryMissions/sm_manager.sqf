@@ -32,7 +32,11 @@ _smtypearray = [
 "stealaircraft",
 "slingloaddelivercontainer",// steal an aircraft
 "sinktrawler",
-"blueconvoytoab"
+"blueconvoytoab",
+"destroyradiotower",
+"hostagerescue",
+"kill1man"
+
  ];
 //_sm_required = 1;//debug only
 
@@ -79,9 +83,9 @@ for "smcounter" from 1 to _sm_required do
 		};
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
-	_typeselected = selectRandom _smtypearray;
-	_smtypearray = _smtypearray - [_typeselected];
-	_fname = format ["server\SecondaryMissions\do_%1.sqf", _typeselected];
+	typeselected = selectRandom _smtypearray; publicVariable "typeselected";
+	_smtypearray = _smtypearray - [typeselected];
+	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
 	diag_log format ["***current sm number is %1", smcounter];
 	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};

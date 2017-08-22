@@ -11,8 +11,22 @@ if ((isDedicated) || (!hasInterface)) exitWith {};
 params
 [
 	["_object", objNull],
-	["_killer", objNull]
+	["_killer", objNull],
+	["_shooter", objNull]
 ];
+if
+
+
+
+
+
+
+
+
+
+
+
+
 
 if ((isNull _object)) exitWith {};
 
