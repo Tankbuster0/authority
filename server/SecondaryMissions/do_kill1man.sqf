@@ -76,7 +76,7 @@ _kill1types =
 			["house"],
 			["Land_Shop_City_03_F", "Land_Shop_City_02_F", "Land_Shop_City_01_F", "Land_Supermarket_01_F", "Land_Fuelstation_01_Shop_F", "Land_Shop_Town_03_F", "Land_Shop_Town_01_F", "Land_i_Shop_01_V1_F", "Land_i_Shop_01_V2_F", "Land_i_Shop_01_V3_F","Land_u_Shop_01_V1_F","Land_d_Shop_01_V1_F", "Land_i_Shop_02_V1_F", "Land_i_Shop_02_V2_F", "Land_i_Shop_02_V3_F" ],
 			6,false, true, false, false, false,
-			["C_scientist_F"], "",
+			["O_G_Survivor_F"], "_ this removeheadgear; _this removeuniform; _this forceAddUniform 'U_C_Scientist'",// opfor scientist
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F"],
 			[],
 			"This chemical weapons scientist has finally been seen outside of his heavily protected compound, getting supplies or food. We don't care which, take him out. Note that he's probably not unescorted."
