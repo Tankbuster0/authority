@@ -69,14 +69,16 @@ class cfgFunctions
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
 			class fixTextHeight {};
+			class inventory {};
+			class KilledEH {};
+			class keyDownHandler {};
+			class respawnButton {};
 			class showmissiondialog {};
 			class missionStatus {};
 			class missionStatus_diagnostics {};
 			class playerMarkers {};
 			class playerMarkersInit {};
-			class inventory {};
-			class keyDownHandler {};
-			class respawnButton {};
+
 		};
 		class auth_server
 		{

@@ -39,5 +39,5 @@ player addEventHandler ["InventoryOpened",
 		[] call tky_fnc_inventory;
 	};
 }];
-player addEventHandler ["killed", {[_this] call tky_fnc_killedEH}];
+player addEventHandler ["killed", tky_fnc_killedEH];
 __tky_ends
