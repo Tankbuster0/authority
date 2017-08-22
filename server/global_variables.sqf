@@ -15,6 +15,7 @@ islandhop = false; publicVariable "islandhop";
 recoveryinuse = false; publicVariable "recoveryinuse";
 opfor_reinf_helos = ["O_Heli_Light_02_F","O_Heli_Transport_04_covered_F"];
 smmissionstring = "There is currently no Secondary Mission"; publicVariable "smmissionstring";
+typeselected = "none"; publicVariable "typeselected";
 airdropcounter = 0;
 prizecounter = 0;
 switch (tolower worldName) do

@@ -148,6 +148,7 @@ diag_log format ["*** dk1m has %1 useable buildings (ie, have enough interior po
 _cblds3 = [_cblds2, [] , {_mytown distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 diag_log format ["*** _cblds3 is %1",_cblds3];
 _mybld = (_cblds3 select (floor ((count _cblds3) / 4)));
+mybldposition = getpos _mybld; publicVariable "_mybld";
 //^^^ take one of the nearest buildings
 _mybldposs0 = (_mybld buildingPos -1);
 diag_log format ["*** dk1m chooses %1 at %2, which is a %3, screenname %4 and has %5 positions", _mybld, getpos _mybld, typeOf _mybld, [(_mybld)] call tky_fnc_getscreenname, count _mybldposs0];

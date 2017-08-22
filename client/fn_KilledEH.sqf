@@ -14,7 +14,15 @@ params
 	["_killer", objNull],
 	["_shooter", objNull]
 ];
-if
+if ((typeselected isEqualTo "kill1man") and {(_object distance2d mybldposition) < 30}) then
+	{
+	missionsuccess = false; publicVariable "missionsuccess";
+	missionactive = false; publicVariable "missionactive";
+
+
+	};
+
+
 
 
 
