@@ -252,7 +252,7 @@ _mandist1 = str ([_mandist0, 100] call tky_fnc_estimateddistance);
 if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 +"m" + _mandir + " of " + _tname + ". "};
 */
 _3rdtext = [_mytown] call tky_fnc_distanddirfromtown;
-smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + " " + _3rdtext + _mtext;
+smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + " " + _3rdtext + ". " + _mtext;
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
