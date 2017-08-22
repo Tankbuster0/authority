@@ -238,6 +238,7 @@ if ( (count _outsupports) > 0 ) then
 
 //get the new nearest logic, in case mybld is a long way from mytown
 _redtargets2 = (_mybld nearEntities ["Logic", 2000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {((_x distance2d cpt_position) > 700 and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
+/*
 _sortedrt2 = [_redtargets2 , [], {_x distance2D _mybld}, "ASCEND" ] call BIS_fnc_sortBy;
 _mytown2 = _sortedrt2 select 0;
 _tname = _mytown2 getVariable ["targetname", "Springfield"];
@@ -245,11 +246,12 @@ _tradius = _mytown2 getVariable ["targetradius", 125];
 _mandir = [(_mytown2 getDir _mybld)] call tky_fnc_cardinaldirection;
 _mandist0 = floor (_mybld distance2D _mytown2);
 
-if (_mandist0 < 50) then {_3rdtext = "in the middle of " + _tname;};
-if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+if (_mandist0 < 50) then {_3rdtext = "in the middle of " + _tname + ". ";};
+if ( (_mandist0 >= 50) and (_mandist0 < _tradius ) )then {_3rdtext = " in the "+ _mandir + "ern quarter of " + _tname + ". ";};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
 _mandist1 = str ([_mandist0, 100] call tky_fnc_estimateddistance);
-if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 +"m" + _mandir + " of " + _tname + " "};
-
+if (_mandist0 >= _tradius) then {_3rdtext = _mandist1 +"m" + _mandir + " of " + _tname + ". "};
+*/
+_3rdtext = [_mytown] call tky_fnc_distanddirfromtown;
 smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + " " + _3rdtext + _mtext;
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];

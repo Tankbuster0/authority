@@ -169,8 +169,8 @@ tky_fnc_distanddirfromtown =
 		_kmorm = "km";
 		};
 	diag_log format ["dist %1,mydist %2, _tname %3, _tradius %4, _kmorm %5, _mydir %6,",_dist, _mydist, _tname, _tradius, _kmorm, _mydir ];
-	if (_dist < 75) then {_ret = "in the middle of " + _tname + ". ";};
-	if ( (_dist >= 75) and (_dist < _tradius ) )then {_ret = " in the "+ _mydir + "ern quarter of " + _tname + ". ";};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
-	if (_dist >= _tradius) then {_ret = (str _mydist) + _kmorm + " " + _mydir + " of " + _tname + ". "};
+	if (_dist < 75) then {_ret = "in the middle of " + _tname ;};
+	if ( (_dist >= 75) and (_dist < _tradius ) )then {_ret = " in the "+ _mydir + "ern quarter of " + _tname;};// <<< get the town radius & the cardinal direction so we can say "in the northern quarter of"
+	if (_dist >= _tradius) then {_ret = (str _mydist) + _kmorm + " " + _mydir + " of " + _tname};
 	_ret
 };
