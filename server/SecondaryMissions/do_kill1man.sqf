@@ -163,9 +163,12 @@ if ( not _spawnonroof) then
 	};
 // ^^^ if not spawnonroof, then remove all roof positions
 _mybldposs2 = [_mybldposs1, [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; // sort them by altitude, lowest first,
-{
+if (testmode) then
+	{
+		{
 	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
-} foreach _mybldposs2;
+		} foreach _mybldposs2;
+	};
 if (_spawninsidehigh and {_spawninsidelow}) then
 	{
 	_seldpos = selectRandom _mybldposs2;
