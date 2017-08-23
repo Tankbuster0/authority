@@ -166,7 +166,7 @@ _mybldposs2 = [_mybldposs1, [], {_x select 2}, "ASCEND" ] call BIS_fnc_sortBy; /
 if (testmode) then
 	{
 		{
-	_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
+		_mveh = createvehicle ["Sign_Arrow_f", _x, [],0,"CAN_COLLIDE"];
 		} foreach _mybldposs2;
 	};
 if (_spawninsidehigh and {_spawninsidelow}) then
