@@ -33,8 +33,8 @@ cpt_marker setMarkerBrush "Cross";
 "Congratulations, you've driven the enemy from the AO." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 
 sleep 10;
-//_handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
-//waitUntil {sleep 1;scriptdone _handle2};
+_handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
+waitUntil {sleep 1;scriptdone _handle2};
 smmissionstring = "There is currently no Secondary Mission";
 publicVariable "smmissionstring";
 if ((toLower ([taskname] call BIS_fnc_taskState)) != "succeeded" ) then
