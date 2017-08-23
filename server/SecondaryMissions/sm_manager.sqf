@@ -6,6 +6,7 @@ __tky_starts;
 private ["_sm_required","_sm_hint","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_typeselected","_fname","_smmanagerhandle"];
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
+diag_log format ["*** smm says h&M score is %1 and smreqd is %2", heartandmindscore, _sm_required];
 _pt_name = primarytarget getVariable "targetname";
 switch (_sm_hint) do
 	{
