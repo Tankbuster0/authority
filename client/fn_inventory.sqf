@@ -28,7 +28,7 @@ while {(!isNull _inventoryDisplay)} do
 {
 	if ((uniform player != "")) then
 	{
-		_uniformLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", (((loadUniform player) * 10) * 10), ((getContainerMaxLoad uniform player) * 10)];
+		_uniformLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1%2/100%2 full</t>", (([(loadUniform player), 1] call BIS_fnc_cutDecimals) / ((getContainerMaxLoad uniform player) / 100) * 10), "%"];
 	} else
 	{
 		_uniformLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FF0000'>No uniform</t>"];
@@ -36,7 +36,7 @@ while {(!isNull _inventoryDisplay)} do
 	_uniformLoadText ctrlCommit 0;
 	if ((vest player != "")) then
 	{
-		_vestLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", (((loadVest player) * 10) * 10), ((getContainerMaxLoad uniform player) * 10)];
+		_vestLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1%2/100%2 full</t>", (([(loadVest player), 1] call BIS_fnc_cutDecimals) / ((getContainerMaxLoad uniform player) / 100) * 10), "%"];
 	} else
 	{
 		_vestLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FF0000'>No vest</t>"];
@@ -44,7 +44,7 @@ while {(!isNull _inventoryDisplay)} do
 	_vestLoadText ctrlCommit 0;
 	if ((backpack player != "")) then
 	{
-		_backpackLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1 / %2</t>", (((loadBackpack player) * 10) * 10), ((getContainerMaxLoad uniform player) * 10)];
+		_backpackLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FFFF00'>%1%2/100%2 full</t>", (([(loadBackpack player), 1] call BIS_fnc_cutDecimals) / ((getContainerMaxLoad uniform player) / 100) * 10), "%"];
 	} else
 	{
 		_backpackLoadText ctrlSetStructuredText parseText format ["<t size='0.6' align='center' color='#FF0000'>No backpack</t>"];
