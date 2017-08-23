@@ -40,8 +40,8 @@ _smtypearray = [
 
  ];
 //_sm_required = 1;//debug only
-
-for "smcounter" from 1 to _sm_required do
+smcounter = 1;
+while {smcounter < _sm_required} do
 	{
 	sleep 1;
 	// custom exclusions
@@ -94,7 +94,7 @@ for "smcounter" from 1 to _sm_required do
 	if not (missionsuccess) then
 		{
 		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		smcounter = smcounter -1;
+		//smcounter = smcounter -1;
 		diag_log format ["***smm after mission failure, smcounter is %1", smcounter];
 		sleep 10;
 		}else
@@ -104,6 +104,7 @@ for "smcounter" from 1 to _sm_required do
 			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			smmissionstring = "There are further Secondary Missions. Orders incomming soon";
 			publicVariable "smmissionstring";
+			smcounter = smcounter + 1;
 			};
 		};
 	};
