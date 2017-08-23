@@ -30,7 +30,7 @@ class dlg_missionStatus
 			w = 0.2 * safezoneW;
 			h = 0.04 * safezoneH;
 			text = "<t size='1.0' align='left' color='#FFFFFF'>Authority Mission Status</t>";
-			size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.75)";
+			size = "0.038 / (getResolution select 5)";
 		};
 		class title_right : Haz_RscStructuredText
 		{
@@ -40,7 +40,7 @@ class dlg_missionStatus
 			w = 0.2 * safezoneW;
 			h = 0.04 * safezoneH;
 			text = "<t size='1.0' align='right' color='#FFFFFF'><img size='1.0' color='#FFFFFF' image='\A3\ui_f\data\gui\cfg\ranks\corporal_gs.paa'/>Haz</t>";
-			size = "(((((safezoneW / safezoneH) min 1.2) / 1.2) / 25) * 1.75)";
+			size = "0.038 / (getResolution select 5)";
 		};
 		class background : Haz_RscPicture
 		{
