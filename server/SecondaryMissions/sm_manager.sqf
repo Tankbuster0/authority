@@ -35,7 +35,7 @@ _smtypearray = [
 "sinktrawler",
 "blueconvoytoab",
 "destroyradiotower",
-"hostagerescue",
+/*"hostagerescue",*/
 "kill1man"
 
  ];
