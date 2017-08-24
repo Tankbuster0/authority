@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
-private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_vec0","_vecx","_nrs","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb", "_mindist"];
+private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_trucktype","_vec0","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb","_vecx","_smnrlogs","_sortedsmnrlogs","_smnrlog","_smnrtown","_smdir","_smdist","_smdist1"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
@@ -57,8 +57,8 @@ _smnrtown = (_smnrlog getVariable "targetname");
 _smdir = [(_smnrlog getDir _nr3)] call tky_fnc_cardinaldirection;
 
 _smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
-if (_smdist < 500) then {_smdist = "just";} else {_smdist = _smdist + "m";};
-smmissionstring = format ["There's a convoy formed up %1 %2of %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist, _smdir,_smnrtown, cpt_name ];
+if (_smdist < 500) then {_smdist1 = "just";} else {_smdist1 = _smdist + "m";};
+smmissionstring = format ["There's a convoy formed up %1 %2of %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist1, _smdir,_smnrtown, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 while {missionactive} do
