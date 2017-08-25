@@ -87,6 +87,6 @@ while {missionactive} do
 		};
 	diag_log format ["*** ative %1, success %2, underway %3, damage 1 %4, damage 2 %5, attackingvehs %6 ", missionactive, missionsuccess, attackunderway, damage smship1, damage smship2, attackingvehs];
 	};
-publicVariable "missionactive"; publicVariable "missionsuccess";
+publicVariable "missionsuccess" publicVariable "missionactive";
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends

@@ -103,14 +103,14 @@ while {missionactive} do
 	sleep 3;
 	if (not(alive _smsaveh) or (fuel _smsaveh isEqualTo 0)) then
 		{
-		missionsuccess = false;
-		missionactive = false;
+		missionsuccess = false; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
 		};
 	if ((not(_playerinveh)) and {isplayer (effectiveCommander _smsaveh)}) then {_playerinveh = true};
 	if (_playerinveh and {(speed _smsaveh < 1) and (_smsaveh distance2D blubasehelipad) < 20}) then
 		{
-		missionsuccess = true;
-		missionactive = false;
+		missionsuccess = true; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
 		"We have acquired some useful technology by getting that here. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};

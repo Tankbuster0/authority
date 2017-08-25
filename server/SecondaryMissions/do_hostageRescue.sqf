@@ -168,10 +168,11 @@ private _enemySpotted = false;
 			{
 				deleteVehicle _x;
 			} forEach [_alarmSpeakers, _soundSource, _lightSource];
-			missionactive = false;
-			publicVariable "missionactive";
 			missionsuccess = false;
 			publicVariable "missionsuccess";
+			missionactive = false;
+			publicVariable "missionactive";
+
 			failText = "Mission failed. One or more hostages were killed.";
 			publicVariable "failText";
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -185,10 +186,11 @@ private _enemySpotted = false;
 		} forEach _hostages;
 		if ((_rescuedHostages >= 2)) exitWith
 		{
-			missionactive = false;
-			publicVariable "missionactive";
 			missionsuccess = true;
 			publicVariable "missionsuccess";
+			missionactive = false;
+			publicVariable "missionactive";
+
 			completionText = "Mission completed. At least two hostages were rescued.";
 			publicVariable "completionText";
 			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];

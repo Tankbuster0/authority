@@ -78,8 +78,8 @@ while {missionactive} do
 	    (((getpos smcontainer select 2) < 5 ) and {(smcontainer distance2d _deliverypos) > 20})
 	    ) then
 			{
-			missionsuccess = false;
-			missionactive = false;
+			missionsuccess = false; publicVariable "missionsuccess";
+			missionactive = false; publicVariable "missionactive";
 			};
 	if (
 	    (isNull (ropeAttachedTo smcontainer)) and
@@ -89,8 +89,8 @@ while {missionactive} do
 			}
 		) then
 			{
-			missionsuccess = true;
-			missionactive = false;
+			missionsuccess = true; publicVariable "missionsuccess";
+			missionactive = false; publicVariable "missionactive";
 			"Mission successful! They got the much needed supplies." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	};
