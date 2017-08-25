@@ -3,7 +3,7 @@
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
-private ["_sm_required","_sm_hint","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_typeselected","_fname","_smmanagerhandle"];
+private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle"];
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
 diag_log format ["*** smm says h&M score is %1 and smreqd is %2", heartandmindscore, _sm_required];
@@ -52,7 +52,7 @@ while {smcounter < _sm_required} do
 	if (_deepestdepth < 25) then
 		{
 		_smtypearray = _smtypearray - ["navalmineclear"];
-		diag_log "***sm manager couldnt find deep enough see nearby so removed naval mine cleareance from sm roster";
+		diag_log "***sm manager couldnt find deep enough sea nearby so removed naval mine cleareance from sm roster";
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
 	//#2 dont do crater clearance on Almyra as it lacks the runways objects the sm needs
 	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then
@@ -85,7 +85,7 @@ while {smcounter < _sm_required} do
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
 	typeselected = selectRandom _smtypearray; publicVariable "typeselected";
-	_smtypearray = _smtypearray - [typeselected];
+	//_smtypearray = _smtypearray - [typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
 	diag_log format ["***current sm number is %1", smcounter];
 	_smmanagerhandle = execVM _fname;
@@ -98,6 +98,7 @@ while {smcounter < _sm_required} do
 		sleep 10;
 		}else
 		{
+		_smtypearray = _smtypearray - [typeselected];// only remove selected mission if it's completed successfully
 		if (smcounter < _sm_required) then
 			{
 			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
