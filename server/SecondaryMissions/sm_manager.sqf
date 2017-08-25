@@ -3,7 +3,9 @@
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
-private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle"];
+private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle", "_previousmission"];
+_previousmission = "none";
+typeselected = "";
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
 _sm_hint = ceil (_sm_required /2);
 diag_log format ["*** smm says h&M score is %1 and smreqd is %2", heartandmindscore, _sm_required];
@@ -84,7 +86,11 @@ while {smcounter < _sm_required} do
 		};
 
 ///////////////////////////////////////////////////////////////////// end of exclusions;
-	typeselected = selectRandom _smtypearray; publicVariable "typeselected";
+	while  {typeselected isEqualTo _previousmission} do
+		{
+		typeselected = selectRandom _smtypearray;
+		};
+	 publicVariable "typeselected";
 	//_smtypearray = _smtypearray - [typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
 	diag_log format ["***current sm number is %1", smcounter];
@@ -96,7 +102,8 @@ while {smcounter < _sm_required} do
 		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		diag_log format ["***smm after mission failure, smcounter is %1", smcounter];
 		sleep 10;
-		}else
+		}
+		else
 		{
 		_smtypearray = _smtypearray - [typeselected];// only remove selected mission if it's completed successfully
 		if (smcounter < _sm_required) then
@@ -105,6 +112,7 @@ while {smcounter < _sm_required} do
 			smmissionstring = "There are further Secondary Missions. Orders incomming soon";
 			publicVariable "smmissionstring";
 			smcounter = smcounter + 1;
+			_previousmission = typeselected;
 			};
 		};
 	};
