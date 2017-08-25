@@ -59,14 +59,16 @@ while {missionactive} do
 	minearray = minearray - [objNull];//remove any exploded mines
 	if ((({mineactive _x} count minearray) isEqualTo 0) and (count minearray isEqualTo _numberofmines) ) then
 		{
-		missionactive = false;
 		missionsuccess = true;
+		missionactive = false;
+
 		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	if (count minearray < _numberofmines) then
 		{
-		missionactive = false;
 		missionsuccess = false;
+		missionactive = false;
+
 		failtext = "A mine has gone off. You've failed this secondary mission.";
 		};
 	};

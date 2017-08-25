@@ -28,7 +28,7 @@ for "_minecounter" from 1 to _numberofmines do
 	_chosenmine = selectRandom aplandmines;
 	_realminepos = [_mfpos, (26 + random 74 ), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
-	_minecone addEventHandler ["explosion", "missionactive = false; missionsuccess = false; failtext = 'One of the mines has gone off. You failed the task.'"];
+	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess' failtext = 'One of the mines has gone off. You failed the task.'"];
 	_minecone hideObjectGlobal true;
 	diag_log format ["*** cone made at %1", getpos _minecone];
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
@@ -60,8 +60,8 @@ while {missionactive} do
 	sleep 3;
 	if (({mineactive _x} count minearray) isEqualTo 0) then
 		{
-		missionactive = false; publicVariable "missionactive";
 		missionsuccess = true; publicVariable "missionsuccess";
+		missionactive = false; publicVariable "missionactive";
 		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 
