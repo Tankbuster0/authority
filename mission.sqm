@@ -16,10 +16,10 @@ class EditorData
 	};
 	class Camera
 	{
-		pos[]={8452.4453,126.88087,25143.824};
-		dir[]={-0.44073376,-0.32562786,-0.8364951};
-		up[]={-0.15180801,0.9454838,-0.28812531};
-		aside[]={-0.88471401,-1.7612183e-007,0.46613938};
+		pos[]={8452.4453,110.4425,25143.824};
+		dir[]={0.43655503,-0.31534168,-0.84261823};
+		up[]={0.14509949,0.94895542,-0.28006414};
+		aside[]={-0.88792276,-7.0178794e-007,-0.4600262};
 	};
 };
 binarizationWanted=0;
@@ -429,7 +429,7 @@ class Mission
 	class Intel
 	{
 		briefingName="Coop 40 Authority Altis";
-		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 1718";
+		overviewText="From a beachhead, capture a nearby airfield, then drive the enemy from towns and their bases, while keeping the local population happy. Build 1859";
 		resistanceWest=0;
 		resistanceEast=1;
 		timeOfChanges=1800.0002;
