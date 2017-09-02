@@ -174,6 +174,20 @@ _id1 = addMissionEventHandler ["HandleDisconnect", {_this execVM "server\cleanup
 Arty setpos _gopos;
 Arty attachTo [frigate];
 */
+
+if (toLower (worldName) isEqualTo "tanoa") then
+	{
+	hs = createVehicle ["Land_Hospital_main_F", [5690,9937,0], [], 0, "NONE"];
+	hs setDir 63;
+	var = createVehicle ["Land_Hospital_side1_F", [0,0,0], [], 0, "NONE"];
+	var attachTo [hs, [4.69775,32.6045,-0.1125]];
+	detach var;
+	var1 = createVehicle ["Land_Hospital_side2_F", [0,0,0], [], 0, "NONE"];
+	var1 attachTo [hs, [-28.0336,-10.0317,0.0889387]];
+	detach var1;
+	};
+
+
 forward allowdamage true;
 _nul = execVM "server\replacequads.sqf";
 _nul = execVM "server\reloadarty.sqf";

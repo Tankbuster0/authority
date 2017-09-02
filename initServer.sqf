@@ -248,6 +248,19 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 	};
 diag_log "*** initServer done targetdata stuff";
 sleep 0.5;
+if ((tolower worldName) isEqualTo "tanoa") then
+	{
+		_ntobjs = nearestTerrainObjects [[5693, 9930], [], 60, false];
+		//diag_log format ["marker4 is at %1 and nto is %2", getmarkerpos "marker_4", _ntobjs ];
+		{
+			if (_x inArea "marker_4") then
+				{
+				hideObjectGlobal _x;
+				//diag_log format ["hiding a %1", _x];
+				};
+		} foreach _ntobjs;
+	};
+
 if not (false) then
 	{
 		for "_m" from 1 to 100 do
