@@ -160,9 +160,10 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 				{
 				if (_removeenemyvests < 0)  then
 				    {
-				    if (random 1 > 0.5) then
+				    if (random 1 > 0.3) then
 						{
 						removeVest _x;
+						_x setDamage 0.5;
 						};
 					};
 				} foreach units _mygroup;
