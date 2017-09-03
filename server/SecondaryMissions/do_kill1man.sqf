@@ -104,7 +104,7 @@ _cblds2 = [];
 	private ["_thisbld"];
 	_thisbld = _x;
 	{
-	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and ((abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2))) > 2) }) then
+	if ((_thisbld isKindOf _x) and {(not ((typeof _thisbld) in _blacklistedbuildings)) and ((abs( (boundingBoxReal _thisbld select 1 select 2) - (boundingBoxReal _thisbld select 0 select 2))) > 2) and (not (isObjectHidden _thisbld))}) then
 		{
 		_cblds1 pushBack _thisbld;
 		//diag_log format ["***dk1m pushbacks into cblds1 . loop _searchbuildings says %1 is in the _searchbuildings array, entry %2", _thisbld, _x ];
