@@ -57,7 +57,7 @@ _smnrtown = (_smnrlog getVariable "targetname");
 _smdir = [(_smnrlog getDir _nr3)] call tky_fnc_cardinaldirection;
 
 _smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
-if (_smdist < 500) then {_smdist1 = "just";} else {_smdist1 = _smdist + "m";};
+if (_smdist < 500) then {_smdist1 = "just";} else {_smdist1 = (str _smdist) + "m";};
 smmissionstring = format ["There's a convoy formed up %1 %2of %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist1, _smdir,_smnrtown, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -88,6 +88,7 @@ while {missionactive} do
 			{// fail if any vehicle dies
 			missionactive = false; publicVariable "missionactive";
 			missionsuccess = false; publicVariable "missionsuccess";
+			failtext = "You didn't keep the convoy together. Mission failed"; publicVariable "failext";
 			};
 	} foreach _smcleanup;
 
