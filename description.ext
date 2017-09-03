@@ -76,6 +76,7 @@ class cfgFunctions
 			class showmissiondialog {};
 			class missionStatus {};
 			class missionStatus_diagnostics {};
+			class resetCuratorBuildlist {};
 			class playerMarkers {};
 			class playerMarkersInit {};
 
