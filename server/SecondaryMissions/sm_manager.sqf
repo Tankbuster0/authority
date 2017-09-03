@@ -82,9 +82,11 @@ while {smcounter < _sm_required} do
 		_smtypearray = _smtypearray - ["blueconvoytoab"];
 		};
 // end of exclusions///////////////////////////////////////////////////////////////////
-	while  {typeselected isEqualTo _previousmission} do
+	typeselected = selectRandom _smtypearray;
+	while  {(typeselected isEqualTo _previousmission)} do
 		{
 		typeselected = selectRandom _smtypearray;
+		diag_log format ["***smm says smarray is %1 and chooses %2, _previousmission is %3", _smtypearray, typeselected, _previousmission];
 		};
 	 publicVariable "typeselected";
 	//_smtypearray = _smtypearray - [typeselected];
