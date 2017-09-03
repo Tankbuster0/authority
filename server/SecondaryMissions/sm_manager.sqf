@@ -37,17 +37,14 @@ _smtypearray = [
 "sinktrawler",
 "blueconvoytoab",
 "destroyradiotower",
-/*"hostagerescue",*/
 "kill1man"
-
- ];
+ ];// rmoved hostagerescue for now
 //_sm_required = 1;//debug only
 smcounter = 1;
 while {smcounter < _sm_required} do
 	{
 	sleep 1;
-	// custom exclusions
-	///////////////////////////////////////////////////////////////////////////////////////////////////////
+	// custom exclusions ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1 dont do navalmine clearance if theres no deep water nearby
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
@@ -84,8 +81,7 @@ while {smcounter < _sm_required} do
 		{
 		_smtypearray = _smtypearray - ["blueconvoytoab"];
 		};
-
-///////////////////////////////////////////////////////////////////// end of exclusions;
+// end of exclusions///////////////////////////////////////////////////////////////////
 	while  {typeselected isEqualTo _previousmission} do
 		{
 		typeselected = selectRandom _smtypearray;
