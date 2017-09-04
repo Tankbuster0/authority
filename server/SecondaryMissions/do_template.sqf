@@ -5,7 +5,7 @@ __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private [];
-
+_distanddir = [_mytarget] call tky_fnc_distanddirfromtown;
 smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
@@ -19,6 +19,7 @@ while {missionactive} do
 		{
 		missionsuccess = false;
 		missionactive = false;
+		failtext = "You suck. Mission failed because of reasons"; publicVariable "failtext";
 		};
 
 	if (/*succeed conditions*/) then
