@@ -32,9 +32,13 @@ diag_log format ["*** d_rlb chooses %1, screenname %2, at %3", _bldtorepair, _bl
 
 _mtext = [_bldpos] call tky_fnc_distanddirfromtown;
 
-// ^^^ got this far
 
-smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
+
+_1texts = ["During the assault we damaged a ", "We've been told about some collateral damage suffered by a ", "It seems our people have damaged a ", "Our actions have damaged a "];
+_2texts = ["We need to repair this. Hearts and minds, guys. Hearts and minds. ", "We should fix this up. These people support us and we can't ruin their town. ", "We broke it, we need to fix it. ", "Let's make this good again. These people are on our side. "];
+_3text = "An engineer should get there and do this. If he has a Bobcat with/near him, it will be completed faster";
+smmissionstring = (selectRandom _1texts) + _bldscrn + " " + _mtext + ". " + (selectRandom _2texts) + _3text;
+
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 
@@ -43,7 +47,7 @@ _
 while {missionactive} do
 	{
 	sleep 3;
-	if (/*failure conditions*/) then
+	if (false) then // work on a failure condition
 		{
 		missionsuccess = false;
 		missionactive = false;
@@ -55,6 +59,7 @@ while {missionactive} do
 		missionsuccess = true;
 		missionactive = false;
 		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		//^^^ got this far. need to make success conditions
 		};
 	};
 publicVariable "missionsuccess";
