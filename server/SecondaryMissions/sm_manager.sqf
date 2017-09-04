@@ -37,7 +37,8 @@ _smtypearray = [
 "sinktrawler",
 "blueconvoytoab",
 "destroyradiotower",
-"kill1man"
+"kill1man",
+"repairlocalbuilding"
  ];// rmoved hostagerescue for now
 //_sm_required = 1;//debug only
 smcounter = 1;
@@ -85,7 +86,7 @@ while {smcounter < _sm_required} do
 	if (getNumber ( configFile >> "CfgVehicles" >> typeOf _x >> "engineer" ) isEqualTo 1) then
 		{_engineercount = _engineercount + 1};
 	} foreach (allPlayers - entities "HeadlessClient_F");
-	if (_engineercount < 1) then // no engineer in squad, so dont do repairlocal building
+	if (_engineercount < 1) then
 		{
 		_smtypearray - _smtypearray - ["repairlocalbuilding"];
 		diag_log format ["***smm removes repairlocalbuilding because no engineer in squad"];
