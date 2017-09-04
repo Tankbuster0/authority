@@ -3,7 +3,7 @@
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
-private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle", "_previousmission"];
+private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle", "_previousmission", "_engineercount"];
 _previousmission = "none";
 typeselected = "";
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
@@ -78,8 +78,17 @@ while {smcounter < _sm_required} do
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
 		};
 	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
+		{_smtypearray = _smtypearray - ["blueconvoytoab"];};
+	//#5 dont do repairbuilding if no engineer in squad
+	_engineercount = 0;
+	{
+	if (getNumber ( configFile >> "CfgVehicles" >> typeOf _x >> "engineer" ) isEqualTo 1) then
+		{_engineercount = _engineercount + 1};
+	} foreach (allPlayers - entities "HeadlessClient_F");
+	if (_engineercount < 1) then // no engineer in squad, so dont do repairlocal building
 		{
-		_smtypearray = _smtypearray - ["blueconvoytoab"];
+		_smtypearray - _smtypearray - ["repairlocalbuilding"];
+		diag_log format ["***smm removes repairlocalbuilding because no engineer in squad"];
 		};
 // end of exclusions///////////////////////////////////////////////////////////////////
 	typeselected = selectRandom _smtypearray;
