@@ -2,6 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
+private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nearbldsb3","_actualblds","_bldtorepair","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_smcleanup"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private [];
@@ -10,17 +11,17 @@ _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_s
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
 
 _nearbldsa1 = nearestObjects [cpt_position, ["House_f"], cpt_radius + 20, true];
-_nearbldsa2 = _nearbldsa1 select {((damage _x) < 1) and { ((_x buildingPos -1 ) > 6)}  };
+_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos -1 )) > 6)  };
 
 // get the buildings that sink their good model (method "b")
-_nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(_x buildingPos -1) > 4}};
+_nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};
 {
 	_nearbldsb3  pushback ((nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 3, false] ) select 0);
-	^^^ // get the ruin that is on the surface
+	//^^^ get the ruin that is on the surface
 } forEach _nearbldsb2;
-diag_log format ["*** d_rlb has damagedtex buildings %1", _nearbldsa2];
-diag_log format ["*** d_rld has buried good buildings %1, count %2", _nearbldsb2, count _nearbldsb2];
-diag_log format ["*** d_rld finds surface ruins %1 count %2", _nearbldsb3, count _nearbldsb3];
+diag_log format ["*** d_rlb has %2 damagedtex buildings %1", _nearbldsa2, count _nearbldsa2];
+diag_log format ["*** d_rld has %2 buried good buildings %1", _nearbldsb2, count _nearbldsb2];
+diag_log format ["*** d_rld finds %2 surface ruins %1", _nearbldsb3, count _nearbldsb3];
 
 _actualblds = _nearbldsa2;
 _actualblds = _actualblds + _nearbldsb3;
@@ -42,8 +43,6 @@ smmissionstring = (selectRandom _1texts) + _bldscrn + " " + _mtext + ". " + (sel
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 
- failtext = "Dudes. You suck texts";
-_
 while {missionactive} do
 	{
 	sleep 3;
@@ -54,7 +53,7 @@ while {missionactive} do
 		failtext = "You suck. Mission failed because of reasons"; publicVariable "failtext";
 		};
 
-	if (/*succeed conditions*/) then
+	if (false) then
 		{
 		missionsuccess = true;
 		missionactive = false;
