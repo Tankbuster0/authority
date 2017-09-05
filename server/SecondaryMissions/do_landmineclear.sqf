@@ -40,10 +40,11 @@ for "_minecounter" from 1 to _numberofmines do
   		{
   		_helper = createVehicle ["Sign_Arrow_F", getpos _mine, [],0, "CAN_COLLIDE"];
   		_smcleanup pushback _helper;
-  		};
-  	_m1 = createmarker [_minemarkername ,getpos _mine];
-  	_m1 setMarkerShape "ICON";
-  	_m1 setMarkerType "hd_dot";
+
+	  	_m1 = createmarker [_minemarkername ,getpos _mine];
+	  	_m1 setMarkerShape "ICON";
+	  	_m1 setMarkerType "hd_dot";
+	  };
 	_smcleanup pushback _mine;
 	_smcleanup pushback _minecone;
 	};
