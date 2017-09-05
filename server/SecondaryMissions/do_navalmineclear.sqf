@@ -39,11 +39,12 @@ for "_minecounter" from 1 to _numberofmines do
   		_helper = createVehicle ["Sign_Arrow_F", getposATL _mine, [],0, "CAN_COLLIDE"];
   		if (_chosenmine isEqualTo "UnderwaterMine") then {_helper setPosATL [getPosATL _mine select 0, getPosATL _mine select 1, (46 + (getPosATL _mine select 2))]};
   		_smcleanup pushback _helper;
+
+	  	_m1 = createmarker [_minemarkername ,getpos _mine];
+	  	_m1 setMarkerShape "ICON";
+	  	_m1 setMarkerType "hd_dot";
+	  	_m1 setMarkerText format ["%1", _minecounter];
   		};
-  	_m1 = createmarker [_minemarkername ,getpos _mine];
-  	_m1 setMarkerShape "ICON";
-  	_m1 setMarkerType "hd_dot";
-  	_m1 setMarkerText format ["%1", _minecounter];
 	_smcleanup pushback _mine;
 	};
 diag_log format ["*** do_m cleanup array is %1", _smcleanup];
