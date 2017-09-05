@@ -24,10 +24,11 @@ _sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND"] cal
 if (count _sortedcandiposs > 5 ) then {_sortedcandiposs2 =  _sortedcandiposs select [0, 4];};
 _finalpos =  selectRandom _sortedcandiposs2;
 _tower = createVehicle ["Land_TTowerBig_2_F",_finalpos, [],0,"NONE"];
+//_tower addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
+
 _tower setVectorUp [0,0,1];
-_dtreldir = [cpt_position getdir _tower] call TKY_fnc_cardinaldirection;
-_dtdist = [((cpt_position distance2D _tower) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-smmissionstring = format ["Freindly force commanders have called in the position of a radio relay %1m %2from the edge of town. If we can destroy it, it will be a great help to them and us.", _dtdist, _dtreldir];
+_mtext = [(getpos _tower)] call tky_fnc_distanddirfromtown;
+smmissionstring = format ["Freindly force commanders have called in the position of a radio relay %1. If we can destroy it, it will be a great help to them and us.", _mtext];
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 publicVariable "smmissionstring";
 for "_ii" from 0 to ((ceil (playersNumber west ) /2) min 5) do
