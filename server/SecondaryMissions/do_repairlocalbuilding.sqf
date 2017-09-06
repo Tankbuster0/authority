@@ -16,7 +16,7 @@ _nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos 
 // get the buildings that sink their good model (method "b")
 _nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};
 {
-	_nearbldsb3  pushback ((nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 3, false] ) select 0);
+	_nearbldsb3 pushback ((nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 3, false] ) select 0);
 	//^^^ get the ruin that is on the surface
 } forEach _nearbldsb2;
 diag_log format ["*** d_rlb has %2 damagedtex buildings %1", _nearbldsa2, count _nearbldsa2];
