@@ -75,7 +75,7 @@ while {missionactive} do
 	if (
 	    (!alive _smheli) or
 	    (!alive smcontainer) or
-	    (((getpos smcontainer select 2) < 2 ) and {(smcontainer distance2d _deliverypos) > 50})
+	    (((getpos smcontainer select 2) < 2 ) and {(smcontainer distance2d _deliverypos) > 50}) and ( (speed _smheli) < 20) )}
 	    ) then
 			{
 			missionsuccess = false; publicVariable "missionsuccess";
