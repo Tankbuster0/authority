@@ -2,10 +2,8 @@
  #include "..\includes.sqf"
 _myscript = "do_landmineclear";
 __tky_starts;
-//land mine clearance mission
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
 //get a good place for minefield
-
 _myplaces = selectbestplaces [cpt_position, cpt_radius + 200, "meadow", 50,50];
 _meadows = _myplaces select {(_x select 1) == 1};
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
@@ -20,7 +18,6 @@ while
 		_meadowdata = selectRandom _meadows;
 		_mfpos = _meadowdata select 0;
 		};
-
 _numberofmines = ((selectrandom [2,3,4]) + (2 * playersnumber west)) min 10;
 diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 for "_minecounter" from 1 to _numberofmines do
@@ -28,13 +25,13 @@ for "_minecounter" from 1 to _numberofmines do
 	_chosenmine = selectRandom aplandmines;
 	_realminepos = [_mfpos, (26 + random 74 ), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
-	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess' failtext = 'One of the mines has gone off. You failed the task.'"];
+	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess' failtext = 'One of the mines has gone off. You failed the task.'; publicVariable 'failtext'"];
 	_minecone hideObjectGlobal true;
-	diag_log format ["*** cone made at %1", getpos _minecone];
+	//diag_log format ["*** cone made at %1", getpos _minecone];
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
 	_minecone setpos (getpos _mine);
 	minearray pushback _mine;
-	diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _realminepos, getpos _minecone ];
+	//diag_log format ["***made %3 at %2, number %1, planned position was %4, minecone is at %5", _minecounter, (getpos _mine), _chosenmine, _realminepos, getpos _minecone ];
   	_minemarkername = format ["mine%1", _minecounter];
   	if (testmode) then
   		{
@@ -48,7 +45,7 @@ for "_minecounter" from 1 to _numberofmines do
 	_smcleanup pushback _mine;
 	_smcleanup pushback _minecone;
 	};
-diag_log format ["*** do_m cleanup array is %1", _smcleanup];
+//diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
@@ -65,15 +62,10 @@ while {missionactive} do
 		missionactive = false; publicVariable "missionactive";
 		"All the mines have been cleared. Well done." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
-
 	};
-{deletevehicle _x} foreach _smcleanup;
 for "_zz" from 0 to _numberofmines do
 	{
 	deleteMarker format ["mine%1", _zz];
 	};
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
-
 __tky_ends
-
-
