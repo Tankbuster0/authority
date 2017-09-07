@@ -37,8 +37,7 @@ _smtypearray = [
 "sinktrawler",
 "blueconvoytoab",
 "destroyradiotower",
-"kill1man",
-"repairlocalbuilding"
+"kill1man"// "repairlocalbuilding"
  ];// rmoved hostagerescue for now
 //_sm_required = 1;//debug only
 smcounter = 1;
