@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
-private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_trucktype","_vec0","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb","_vecx","_smnrlogs","_sortedsmnrlogs","_smnrlog","_smnrtown","_smdir","_smdist","_smdist1"];
+private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_trucktype","_vec0","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb","_vecx","_smnrlogs","_sortedsmnrlogs","_smnrlog","_smnrtown","_smdir","_smdist","_smdist1", "_smtext"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
@@ -47,24 +47,13 @@ for "_i" from 2 to _numberoftrucks do
 	_prevpos = _nextposb; // reset for next loop
 	_prevroadpiece = (_nearroadstopos select 0);// reset for next loop
 	};
-
-_smnrlogs = ((getpos _nr3) nearEntities ["Logic", 4000]) select {( ((_x getVariable ["targetstatus", -1]) isEqualTo 1) and ((_x distance _nr3) < 4000) ) };
-diag_log format ["***dbcta unsorted logics near the mission pos %1", _smnrlogs];
-_sortedsmnrlogs = [_smnrlogs, [] , {_x distance2d _nr3}, "ASCEND"] call BIS_fnc_sortBy;
-diag_log format ["***dst sorted the logics near mission pos %1", _sortedsmnrlogs];
-_smnrlog = _sortedsmnrlogs select 0;
-_smnrtown = (_smnrlog getVariable "targetname");
-_smdir = [(_smnrlog getDir _nr3)] call tky_fnc_cardinaldirection;
-
-_smdist = [(_smnrlog distance2D _nr3), 500] call tky_fnc_estimateddistance;
-if (_smdist < 500) then {_smdist1 = "just";} else {_smdist1 = (str _smdist) + "m";};
-smmissionstring = format ["There's a convoy formed up %1 %2of %3 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %4. They must stay together while on the move. Expect enemy activity all along the route.", _smdist1, _smdir,_smnrtown, cpt_name ];
+_smtext = [(_nr3)] call tky_fnc_distanddirfromtown;
+smmissionstring = format ["There's a convoy formed up %1 but the transport taking the driver crew has not made it. Send a team and get the whole convoy to %2. They must stay together while on the move. Expect enemy activity all along the route.", _smtext, cpt_name ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 while {missionactive} do
 	{
 	sleep 3;
-
 		{// if a vehicle gets out of an 100 circle around mid vehicle
 	if (not (_x inarea [_vecx, 100,100,0,false, -1] )) then
 	 	{
@@ -72,7 +61,6 @@ while {missionactive} do
 		missionactive = false; publicVariable "missionactive";
 	 	};
 	}forEach _smcleanup;
-
 	{// if a vehicle gets out of an 80 circle around mid vehicle
 	if (not (_x inarea [_vecx, 80,80,0,false, -1] )) then
 	 	{
@@ -82,7 +70,6 @@ while {missionactive} do
 		 	} foreach _smcleanup;
 	 	};
 	}forEach _smcleanup;
-
 	{
 		if (not alive _x) exitWith
 			{// fail if any vehicle dies
@@ -91,7 +78,6 @@ while {missionactive} do
 			failtext = "You didn't keep the convoy together. Mission failed"; publicVariable "failext";
 			};
 	} foreach _smcleanup;
-
 	if ( (count ((vehicles inAreaArray [cpt_position, 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
 		{// all cleanup vehicles get into a 75m circle at the centre of the town marker. check 75 is radius or circumference
 		missionsuccess = true; publicVariable "missionsuccess";
@@ -100,5 +86,4 @@ while {missionactive} do
 		};
 	};
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
-
 __tky_ends
