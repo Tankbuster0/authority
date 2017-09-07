@@ -262,6 +262,7 @@ if (_pt_type isEqualTo 1) then
 			_road2 = (roadsConnectedTo _road1) select 0;
 			_dir = _road1 getdir _road2;
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
+			_blah = [_veh, "", []] call BIS_fnc_initvehicle;
 			_veh setdir _dir;
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
 			_unit addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
