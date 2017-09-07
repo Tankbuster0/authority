@@ -1,4 +1,4 @@
-//by tankbuster
+//by George
  #include "..\includes.sqf"
 _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;

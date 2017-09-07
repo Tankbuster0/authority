@@ -98,7 +98,7 @@ civcars =
 "C_Truck_02_covered_F",
 "C_Quadbike_01_black_F", "C_Quadbike_01_blue_F", "C_Quadbike_01_red_F", "C_Quadbike_01_white_F"
 ];
-
+civcars =["C_Offroad_01_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad_stripped_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_Van_01_transport_F", "C_Van_01_box_F", "C_Van_01_fuel_F","C_Offroad_02_unarmed_F", "C_SUV_01_F", "C_Truck_02_transport_F", "C_Truck_02_covered_F", "C_Van_02_transport_F", "C_Van_02_vehicle_F"];
 opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];
 opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F", "O_Plane_Fighter_02_F"];
