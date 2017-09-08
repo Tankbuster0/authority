@@ -312,6 +312,7 @@ if (_pt_type isEqualTo 1) then
 					if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 					};
 				_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
+				_blah = [_veh, "", []] call BIS_fnc_initvehicle;
 				_nb = nearestBuilding _veh;
 				if ((_veh distancesqr _nb) > 3.1) then
 					{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}

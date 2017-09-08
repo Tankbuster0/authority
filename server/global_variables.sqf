@@ -82,23 +82,9 @@ civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_
 	   "C_man_polo_5_F_asia","C_man_polo_6_F","C_man_polo_6_F_afro","C_man_polo_6_F_euro","C_man_polo_6_F_asia","C_man_p_fugitive_F","C_man_p_fugitive_F_afro","C_man_p_fugitive_F_euro","C_man_p_fugitive_F_asia",
 	   "C_man_p_beggar_F","C_man_p_beggar_F_afro","C_man_p_beggar_F_euro","C_man_p_beggar_F_asia","C_man_w_worker_F","C_man_hunter_1_F","C_man_p_shorts_1_F","C_man_p_shorts_1_F_afro","C_man_p_shorts_1_F_euro",
 	   "C_man_p_shorts_1_F_asia","C_man_shorts_1_F","C_man_shorts_1_F_afro","C_man_shorts_1_F_euro","C_man_shorts_1_F_asia","C_man_shorts_2_F","C_man_shorts_2_F_afro","C_man_shorts_2_F_euro","C_man_shorts_2_F_asia",
-	   "C_man_shorts_3_F","C_man_shorts_3_F_afro","C_man_shorts_3_F_euro","C_man_shorts_3_F_asia","C_man_shorts_4_F","C_man_shorts_4_F_afro","C_man_shorts_4_F_euro","C_man_shorts_4_F_asia"];// all the civs apart from named and stpry related ones
+	   "C_man_shorts_3_F","C_man_shorts_3_F_afro","C_man_shorts_3_F_euro","C_man_shorts_3_F_asia","C_man_shorts_4_F","C_man_shorts_4_F_afro","C_man_shorts_4_F_euro","C_man_shorts_4_F_asia"];// all the civs apart from named and story related ones
 
-civcars =
-[
-"C_Offroad_01_red_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad_stripped_F", "C_Offroad_01_white_F","C_Offroad_01_blue_F","C_Offroad_01_darkred_F", "C_Offroad_01_bluecustom_F",
-"C_Hatchback_01_grey_F", "C_Hatchback_01_green_F", "C_Hatchback_01_blue_F", "C_Hatchback_01_bluecustom_F", "C_Hatchback_01_beigecustom_F", "C_Hatchback_01_yellow_F", "C_Hatchback_01_white_F", "C_Hatchback_01_black_F", "C_Hatchback_01_dark_F",
-"C_Hatchback_01_sport_red_F", "C_Hatchback_01_sport_blue_F", "C_Hatchback_01_sport_orange_F", "C_Hatchback_01_sport_white_F", "C_Hatchback_01_sport_grey_F", "C_Hatchback_01_sport_green_F",
-"SUV_01_base_red_F", "SUV_01_base_black_F", "SUV_01_base_grey_F", "SUV_01_base_orange_F",
-"C_Van_01_transport_white_F", "C_Van_01_transport_red_F",
-"C_Van_01_box_white_F", "C_Van_01_box_red_F",
-"C_Van_01_fuel_white_F", "C_Van_01_fuel_red_F", "C_Van_01_fuel_white_v2_F", "C_Van_01_fuel_red_v2_F",
-"C_Offroad_02_unarmed_black_F", "C_Offroad_02_unarmed_blue_F", "C_Offroad_02_unarmed_green_F", "C_Offroad_02_unarmed_orange_F", "C_Offroad_02_unarmed_red_F", "C_Offroad_02_unarmed_white_F",
-"C_Truck_02_transport_F",
-"C_Truck_02_covered_F",
-"C_Quadbike_01_black_F", "C_Quadbike_01_blue_F", "C_Quadbike_01_red_F", "C_Quadbike_01_white_F"
-];
-civcars =["C_Offroad_01_F","C_Offroad_luxe_F", "C_Offroad_01_sand_F", "C_Offroad_stripped_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_Van_01_transport_F", "C_Van_01_box_F", "C_Van_01_fuel_F","C_Offroad_02_unarmed_F", "C_SUV_01_F", "C_Truck_02_transport_F", "C_Truck_02_covered_F", "C_Van_02_transport_F", "C_Van_02_vehicle_F"];
+civcars = ["C_Offroad_01_F", "C_Offroad_02_unarmed_F","C_Quadbike_01_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F", "C_Van_01_transport_F", "C_Van_01_box_F","C_Offroad_02_unarmed_F", "C_SUV_01_F", "C_Truck_02_transport_F", "C_Truck_02_covered_F", "C_Van_02_transport_F", "C_Van_02_vehicle_F"];
 opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];
 opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F", "O_Plane_Fighter_02_F"];
