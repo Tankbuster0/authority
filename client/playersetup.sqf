@@ -5,7 +5,7 @@ __tky_starts;
 waitUntil {!isNull player};
 //sleep 0.5;
 [] execVM "client\tky_supportmanager.sqf";
-[]execVM "client\makediary.sqf";
+[] execVM "client\makediary.sqf";
 while {_spawnpos isEqualTo islandcentre } do
 	{
 	_spawnpos = [ammobox, 2, _testradius, 4, 0, 0.5, 0,1,1] call tky_fnc_findSafePos;;
@@ -40,4 +40,8 @@ player addEventHandler ["InventoryOpened",
 	};
 }];
 player addEventHandler ["killed", tky_fnc_killedEH];
+if (player getUnitTrait "engineer") then
+	{
+	[] execVM "client\sm_repbld_action.sqf";
+	};
 __tky_ends

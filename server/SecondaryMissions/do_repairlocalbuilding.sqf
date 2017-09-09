@@ -6,11 +6,11 @@ private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nea
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 
-_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f"];
+_blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F"];
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
 _nearbldsb3 = [];
 _nearbldsa1 = nearestObjects [cpt_position, ["House_f"], cpt_radius + 20, true];
-_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos -1 )) > 6)  };
+_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos -1 )) > 6) and (not ((typename _x) in _blacklistedbuildings) ) };
 
 // get the buildings that sink their good model (method "b")
 _nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};
@@ -37,29 +37,7 @@ smmissionstring = (selectRandom _1texts) + _bldscrn + " " + _mtext + ". " + (sel
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
-{
-	if (_x getUnitTrait "engineer") then
-		{
-		[
-		player,
-		"Repair/Rebuild building",
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
-		"((player distance2D bldtorepair) < 10)",
-		"((player distance2D bldtorepair) < 10)",
-		{},
-		{},
-		{diag_log format ["yey, rebuild complete"]},
-		{},
-		[],
-		12,
-		0,
-		"true",
-		"false"
-		] remoteExec ["BIS_fnc_holdActionAdd", -2];
-		diag_log format ["*** d_rld added holdaction to an engineer"];
-		};
-} forEach (allPlayers - entities "HeadlessClient_F");
+
 while {missionactive} do
 	{
 	sleep 3;
