@@ -56,7 +56,7 @@ cpt_marker setMarkerColor "ColorRed";
 trg2 = createTrigger ["EmptyDetector", cpt_position];
 trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg2 setTriggerActivation  ["EAST", "NOT PRESENT", false];
-trg2 setTriggerStatements ["this", "diag_log '***all east dead'", ""];
+trg2 setTriggerStatements ["this", "", ""];
 
 
 trg3 = createTrigger ["EmptyDetector", cpt_position];
