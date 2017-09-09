@@ -2,10 +2,10 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nearbldsb3","_actualblds","_bldtorepair","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_smcleanup"];
+private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nearbldsb3","_actualblds","_bldtorepair","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_smcleanup", "_method"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-
+_method = "a";
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F"];
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
 _nearbldsb3 = [];
@@ -24,6 +24,7 @@ diag_log format ["*** d_rld finds %2 surface ruins %1", _nearbldsb3, count _near
 _actualblds = _nearbldsa2;// <-- a2 = tex building, method a
 _actualblds = _actualblds + _nearbldsb3; // <-- b3 = surfaceruin, method b
 _bldtorepair = selectRandom _actualblds;
+if (_bldscrn in _nearbldsb3) then {_method = "b"};
 _bldscrn = [_bldtorepair] call tky_fnc_getscreenname;
 _bldpos = getpos _bldtorepair;
 diag_log format ["*** d_rlb chooses %1, screenname %2, at %3", _bldtorepair, _bldscrn, _bldpos ];
