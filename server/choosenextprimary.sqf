@@ -18,7 +18,7 @@ _rtoti = {(((_x getVariable ["targetstatus", -1]) isEqualTo 1) and ((_x getVaria
 _btoti = {(((_x getVariable ["targetstatus", -1]) isEqualTo 2) and ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} count _logics; // blutargetsonthisisland
 _atoti = {((floor (_x getVariable ["targetlandmassid", -1])) isEqualTo cpt_island)} count _logics; // alltargetsonthisisland
 
-diag_log format ["*** cnp gives blucount %1 and redcout %2 and total targets %3", _btoti, _rtoti, _atoti];
+//diag_log format ["*** cnp gives blucount %1 and redcout %2 and total targets %3", _btoti, _rtoti, _atoti];
 if (_rtoti < 2) then
 	{
 		islandhop = true;
@@ -55,7 +55,7 @@ if ((count _finaltargetlist) > 1) then
 sleep 0.1;
 if (testmode) then
 	{
-		diag_log "***cnp@ 55 has sorted";
+
 		{diag_log format ["*** cnp:  %1 is %2m from pos and %3 overseas", (_x getVariable "targetname"), (floor (_x distance2d _pos)), (if (_x in _overseastargets) then {"is"} else {"isnt"})  ] } foreach _sortedtargetlist;
 	};
 _sortedtargetlist resize 2;
