@@ -6,7 +6,6 @@ private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nea
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 
-
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f"];
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
 _nearbldsb3 = [];
@@ -22,13 +21,13 @@ _nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_
 diag_log format ["*** d_rlb has %2 damagedtex buildings %1", _nearbldsa2, count _nearbldsa2];
 diag_log format ["*** d_rld has %2 buried good buildings %1", _nearbldsb2, count _nearbldsb2];
 diag_log format ["*** d_rld finds %2 surface ruins %1", _nearbldsb3, count _nearbldsb3];
-_actualblds = _nearbldsa2;
-_actualblds = _actualblds + _nearbldsb3;
+_actualblds = _nearbldsa2;// <-- a2 = tex building, method a
+_actualblds = _actualblds + _nearbldsb3; // <-- b3 = surfaceruin, method b
 _bldtorepair = selectRandom _actualblds;
 _bldscrn = [_bldtorepair] call tky_fnc_getscreenname;
 _bldpos = getpos _bldtorepair;
 diag_log format ["*** d_rlb chooses %1, screenname %2, at %3", _bldtorepair, _bldscrn, _bldpos ];
-
+[_bldtorepair, "bldtorepair"] call fnc_setvehiclename;
 _mtext = [_bldpos] call tky_fnc_distanddirfromtown;
 
 _1texts = ["During the assault we damaged a ", "We've been told about some collateral damage suffered by a ", "It seems our people have damaged a ", "Our actions have damaged a "];
@@ -38,7 +37,29 @@ smmissionstring = (selectRandom _1texts) + _bldscrn + " " + _mtext + ". " + (sel
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
-
+{
+	if (_x getUnitTrait "engineer") then
+		{
+		[
+		player,
+		"Repair/Rebuild building",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"\a3\ui_f\data\IGUI\Cfg\holdactions\holdAction_connect_ca.paa",
+		"((player distance2D bldtorepair) < 10)",
+		"((player distance2D bldtorepair) < 10)",
+		{},
+		{},
+		{diag_log format ["yey, rebuild complete"]},
+		{},
+		[],
+		12,
+		0,
+		"true",
+		"false"
+		] remoteExec ["BIS_fnc_holdActionAdd", -2];
+		diag_log format ["*** d_rld added holdaction to an engineer"];
+		};
+} forEach (allPlayers - entities "HeadlessClient_F");
 while {missionactive} do
 	{
 	sleep 3;
@@ -59,6 +80,5 @@ while {missionactive} do
 	};
 publicVariable "missionsuccess";
 publicVariable "missionactive";
-//[_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
