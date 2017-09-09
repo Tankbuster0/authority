@@ -2,12 +2,10 @@
  #include "..\includes.sqf"
 _myscript = "primarytargetcleared.sqf";
 __tky_starts;
-__tky_debug;
 private ["_newflag","_nearestplayers","_pos","_droptype","_nul","_veh", "_txt"];
 //taskbool = [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 //taskname setTaskState "Succeeded";
 sleep 10;
-__tky_debug;
 previousmission = nextpt; // remember the old target in this variable to use in later cleanup scripts
 nextpt setvariable ["targetstatus", 2];
 cpt_marker setMarkerColor "ColorBlue";
