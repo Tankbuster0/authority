@@ -2,6 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "sm_repbld_action";
 __tky_starts;
+private ["_bbox0","_bb1","_bb2","_mx1y1","_mx1y2","_mx2y2","_mx2y1","_wx1y1","_wx1y2","_wx2y2","_wx2y1","_nrvecs"];
 while {true} do
 	{
 	waitUntil {sleep 5; typeselected isEqualTo "repairlocalbuilding"};
@@ -27,8 +28,8 @@ while {true} do
 		"Repair/Rebuild building.",
 		"\a3\ui_f\data\IGUI\Cfg\actions\repair_ca.paa",
 		"\a3\ui_f\data\IGUI\Cfg\actions\settimer_ca.paa",
-		"(position player) inPolygon [[_wx1y1, _wx1y2, _wx2y2 ,_wx2y1]]",
-		"(position player) inPolygon [[_wx1y1, _wx1y2, _wx2y2 ,_wx2y1]]",
+		"(position player) inPolygon [_wx1y1, _wx1y2, _wx2y2, _wx2y1]",
+		"(position player) inPolygon [_wx1y1, _wx1y2, _wx2y2, _wx2y1]",
 		{hint "Repairing building!"},
 		{},
 		{hint "code to visually do the fix goes here"},
