@@ -5,6 +5,7 @@ __tky_starts;
 private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nearbldsb3","_actualblds","_bldtorepair","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_smcleanup", "_method"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
+typeselected = "repairlocalbuilding"; publicVariable "typeselected";// <-- debug only
 _method = "a";
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F"];
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
