@@ -24,7 +24,7 @@ diag_log format ["*** d_rld finds %2 surface ruins %1", _nearbldsb3, count _near
 _actualblds = _nearbldsa2;// <-- a2 = tex building, method a
 _actualblds = _actualblds + _nearbldsb3; // <-- b3 = surfaceruin, method b
 _bldtorepair = selectRandom _actualblds;
-if (_bldscrn in _nearbldsb3) then {_method = "b"};
+if (_bldtorepair in _nearbldsb3) then {_method = "b"};
 _bldscrn = [_bldtorepair] call tky_fnc_getscreenname;
 _bldpos = getpos _bldtorepair;
 diag_log format ["*** d_rlb chooses %1, screenname %2, at %3", _bldtorepair, _bldscrn, _bldpos ];

@@ -20,7 +20,7 @@ while {true} do
 	_wx1y2 = bldtorepair modelToWorld _mx1y2;//world top left
 	_wx2y2 = bldtorepair modelToWorld _mx2y2;//world top right
 	_wx2y1 = bldtorepair modelToWorld _mx2y1;//world bottom right
-
+	diag_log format ["*** Polygon corners are at %1 %2 %3 %4", _wx1y1, _wx1y2, _wx2y2, _wx2y1];
 	_nrvecs = player nearEntities [["Truck_F", "Tank_F", "Offroad_01_repair_base_f"], 10];
 		[
 		bldtorepair,
@@ -34,7 +34,7 @@ while {true} do
 		{hint "code to visually do the fix goes here"},
 		{},
 		[],
-		(if ((player distance2d mybobcat) < 15) then {10} else {20}),
+		(if (! (isNull mybobcat) ) and { ((player distance2d mybobcat) < 15)} then {10} else {20}) ,
 		_nil,
 		true,
 		false
