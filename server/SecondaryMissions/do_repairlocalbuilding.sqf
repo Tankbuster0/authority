@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_blacklistedbuildings","_nearbldsa1","_nearbldsa2","_nearbldsb2","_nearbldsb3","_actualblds","_surfacebld","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_smcleanup", "_method"];
+private ["_method","_blacklistedbuildings","_nearbldsb3","_nearbldsa1","_nearbldsa2","_nearbldsb2","_actualblds","_surfacebld","_bldtosetdam0","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 typeselected = "repairlocalbuilding"; publicVariable "typeselected";// <-- debug only
@@ -35,7 +35,7 @@ if (_method isEqualTo "b") then
 	{
 	_bldtosetdam0 = _surfacebld;
 	diag_log format ["*** d_rlb because method a, bld to setdam0 is %1 at %2 and is on the surface %3 ", _bldtosetdam0, getpos _bldtosetdam0, ((getpos _bldtosetdam0) select 2 ) > -4];
-	}
+	};
 _bldscrn = [_bldtosetdam0] call tky_fnc_getscreenname;
 _bldpos = getpos _surfacebld;
 diag_log format ["*** d_rlb chooses %1, screenname %2, at %3", _surfacebld, _bldscrn, _bldpos ];
