@@ -40,6 +40,7 @@ while {true} do
 		true,
 		false
 		] call BIS_fnc_holdActionAdd;
+	waitUntil {sleep 5; !missionactive};
 	};
 
 
