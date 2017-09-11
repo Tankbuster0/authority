@@ -11,7 +11,7 @@ _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_s
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
 _nearbldsb3 = [];
 _nearbldsa1 = nearestObjects [cpt_position, ["House_f"], cpt_radius + 20, true];
-_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos -1 )) > 6) and (not ((typename _x) in _blacklistedbuildings) ) };
+_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos -1 )) > 6) and (not ((typename _x) in _blacklistedbuildings) ) and ((getpos _x select 2) > -5)};
 
 // get the buildings that sink their good model (method "b")
 _nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};
