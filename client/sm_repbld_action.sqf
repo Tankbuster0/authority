@@ -22,7 +22,6 @@ while {true} do
 	wx2y2 = surfacebld modelToWorld _mx2y2;//world top right
 	wx2y1 = surfacebld modelToWorld _mx2y1;//world bottom right
 	diag_log format ["*** Polygon corners are at %1 %2 %3 %4", wx1y1, wx1y2, wx2y2, wx2y1];
-	_nrvecs = player nearEntities [["Truck_F", "Tank_F", "Offroad_01_repair_base_f"], 10];
 		[
 		surfacebld,
 		"Repair/Rebuild building.",
