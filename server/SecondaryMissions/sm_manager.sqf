@@ -80,16 +80,8 @@ while {smcounter < _sm_required} do
 	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
 		{_smtypearray = _smtypearray - ["blueconvoytoab"];};
 	//#5 dont do repairbuilding if no engineer in squad
-	_engineercount = 0;
-	{
-	if (getNumber ( configFile >> "CfgVehicles" >> typeOf _x >> "engineer" ) isEqualTo 1) then
-		{_engineercount = _engineercount + 1};
-	} foreach (allPlayers - entities "HeadlessClient_F");
-	if (_engineercount < 1) then
-		{
+	if ((count (allplayers select {_x getUnitTrait isEqualTo "engineer"})) isEqualTo 0) then
 		_smtypearray - _smtypearray - ["repairlocalbuilding"];
-		diag_log format ["***smm removes repairlocalbuilding because no engineer in squad"];
-		};
 // end of exclusions///////////////////////////////////////////////////////////////////
 	typeselected = selectRandom _smtypearray;
 	while  {(typeselected isEqualTo _previousmission)} do

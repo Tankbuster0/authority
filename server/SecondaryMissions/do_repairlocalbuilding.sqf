@@ -71,5 +71,6 @@ while {missionactive} do
 	};
 publicVariable "missionsuccess";
 publicVariable "missionactive";
+typeselected = "none"; publicVariable "typeselected";//<< debug only
 
 __tky_ends
