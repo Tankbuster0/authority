@@ -11,10 +11,10 @@ _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_s
 // get the buildings that apply a dmaged tex but dont change the model (method "a")
 _nearbldsb3 = [];
 _nearbldsa1 = nearestObjects [cpt_position, ["House_f"], cpt_radius + 20, true];
-_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and ((count (_x buildingPos -1 )) > 6) and (not ((typename _x) in _blacklistedbuildings) ) and ((getpos _x select 2) > -5)};
+_nearbldsa2 = _nearbldsa1 select {((damage _x) > 0) and {((count (_x buildingPos -1 )) > 6) and (not ((typename _x) in _blacklistedbuildings) ) and ((getpos _x select 2) > -5)}};// surface buildings
 
 // get the buildings that sink their good model (method "b")
-_nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};
+_nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};// good buildings that are deep
 {
 	_nearbldsb3 pushback ((nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 3, false] ) select 0);
 	//^^^ get the ruin that is on the surface
