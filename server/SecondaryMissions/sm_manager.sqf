@@ -43,7 +43,7 @@ _smtypearray = [
 smcounter = 1;
 while {smcounter < _sm_required} do
 	{
-	sleep 1;
+	sleep 10;
 	// custom exclusions ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1 dont do navalmine clearance if theres no deep water nearby
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;

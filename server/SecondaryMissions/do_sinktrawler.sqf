@@ -69,6 +69,7 @@ while {missionactive} do
 					{
 					missionsuccess = false;
 					missionactive = false;
+					publicVariable "failtext";
 					};
 			if ( (alive _x ) and {(speed _x < 1) and (_x distance2d baseflag < 500)} ) exitWith {attackingvehs = attackingvehs - [_x]};
 			} foreach attackingvehs;
