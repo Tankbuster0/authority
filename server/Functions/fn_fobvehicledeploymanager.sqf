@@ -4,7 +4,6 @@ __tky_starts;
 private ["_allowed_nearobjs","_allowed_notflat","_allowed_outdoors","_allowed_lineintersects","_allowed_deploy","_buildingobjs","_house","_nobjs1","_nobjs2","_nobjs3","_nobjs4","_begpos0","_begpos1","_begpos2","_intersectobjectscount","_objs1","_objs2","_objs","_endpos1","_endpos2","_endpos3","_endpos4","_foundobj","_tc","_reasonstring","_reasonstring2","_candidatepos","_nul","_cobj","_veh"];
 if not (fobdeployed) then
 {
-	diag_log format ["*** fdm says fob not deployed"];
 	//new code starts
 	_allowed_nearobjs = false;_allowed_notflat = false;_allowed_outdoors = true;_allowed_lineintersects =false;_allowed_deploy = false;
 	_allowed_notflat =  !((position fobveh) isFlatEmpty
@@ -71,15 +70,12 @@ if not (fobdeployed) then
 		if !(_allowed_outdoors) then {_reasonstring = _reasonstring + " Can't deploy in a building "};
 		if (!(_allowed_lineintersects) or !(_allowed_nearobjs)) then {_reasonstring = _reasonstring + "Too close to other objects "};
 		if !(_allowed_notflat) then {_reasonstring = _reasonstring + "Ground isn't flat enough or is in water "};
-		//hint format ["Can't deploy here, %1", _reasonstring];
 		_reasonstring2 = "Can't deploy here, " + _reasonstring;
-		diag_log "*** fdm deploy denied";
 		(format ["%1", _reasonstring2]) remoteexec ["hint", fobveh];
 		sleep 4;
 		}
 		else
 		{
-		//hint "Deploy allowed";
 		if not(isNull (driver fobveh)) then
 			{
 			diag_log "*** fdm refuses because there's a driver in fobveh";
@@ -87,8 +83,6 @@ if not (fobdeployed) then
 			}
 			else
 			{
-			diag_log "*** fdm deploying";
-			//hint "Deploying FOB";
 			"Deploying FOB." remoteExec ["hint", fobveh];
 			[fobveh, true] remoteexec ["lockdriver"];
 			sleep 2;
@@ -109,17 +103,12 @@ if not (fobdeployed) then
 			"The FOB has been built. There is a Virtual Arsenal and spawnpoint." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 			};
 		};
-	//diag_log format ["### final: flat %1, outdoors %2, nearObjs %3, interects %4, overall %5 ", _allowed_notflat, _allowed_outdoors, _allowed_nearobjs, _allowed_lineintersects, _allowed_deploy];
-	//new code ends
-	//fob deploy requested
+
 }
 else
 {
-	diag_log "*** fdm says fod is deployed";
 	if (!(isNil "fobjects")) then
 		{
-		//hint "Removing FOB";
-		diag_log "***removing fob";
 		"Removing FOB" remoteexec ["hint", fobveh];
 		sleep 1;
 		{deleteVehicle _x} foreach fobjects;
