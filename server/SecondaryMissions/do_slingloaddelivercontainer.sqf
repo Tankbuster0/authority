@@ -75,11 +75,12 @@ while {missionactive} do
 	if (
 	    (!alive _smheli) or
 	    (!alive smcontainer) or
-	    ( ((getpos smcontainer select 2) < 2 ) and {((smcontainer distance2d _deliverypos) > 50) and ( (speed _smheli) < 20)  } )
+	    ( ((getpos smcontainer select 2) < 2 ) and {((smcontainer distance2d _deliverypos) > 50) and ( (speed _smheli) < 20) and (isNull (attachedTo smcontainer)) } )
 	    ) then
 			{
 			missionsuccess = false; publicVariable "missionsuccess";
 			missionactive = false; publicVariable "missionactive";
+			publicVariable "failtext";
 			};
 	if (
 	    (isNull (ropeAttachedTo smcontainer)) and

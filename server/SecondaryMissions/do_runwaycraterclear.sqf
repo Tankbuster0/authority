@@ -57,6 +57,7 @@ while {missionactive} do
 		{
 		missionsuccess = false;
 		missionactive = false;
+		publicVariable "failtext";
 		};
 	_craterclearedcount = 0;
 	{

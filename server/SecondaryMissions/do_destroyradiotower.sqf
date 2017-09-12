@@ -5,10 +5,11 @@ __tky_starts
 private ["_n","_cpos","_candiposs","_sortedcandiposs","_sortedcandiposs2","_finalpos","_tower","_dtreldir","_dtdist","_ii","_mypos","_drt_opfor1","_smcleanup","_drt_opfor3"];
 _candiposs = []; _sortedcandiposs = []; _sortedcandiposs2 = []; _smcleanup = [];
 missionactive = true; missionsuccess = false; publicVariable "missionactive"; publicVariable "missionsuccess";
+failtext = "Error if players read this. Mission has no failure condition"; publicVariable "failtext";
 // find some nice high ground
 for "_n" from 0 to 10 do
 	{
-	_cpos =  [cpt_position, 3000, 800, 100] call bis_fnc_findOverwatch;
+	_cpos =  [cpt_position, 3000, 400, 100] call bis_fnc_findOverwatch;
 	_candiposs pushBackUnique _cpos;
 	};
 if (count _cpos < 1) then
@@ -16,12 +17,11 @@ if (count _cpos < 1) then
 	diag_log "***drt didn't find highpoint using normal search, going again with easirer criteria";
 	for "_n" from 0 to 10 do
 		{
-		_cpos =  [cpt_position, 6000, 400, 50] call bis_fnc_findOverwatch;
+		_cpos =  [cpt_position, 6000, 200, 50] call bis_fnc_findOverwatch;
 		_candiposs pushBackUnique _cpos;
 		};
 	};
 _sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND"] call BIS_fnc_sortBy;
-if (count _sortedcandiposs > 5 ) then {_sortedcandiposs2 =  _sortedcandiposs select [0, 4];};
 _finalpos =  selectRandom _sortedcandiposs2;
 _tower = createVehicle ["Land_TTowerBig_2_F",_finalpos, [],0,"NONE"];
 //_tower addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
