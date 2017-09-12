@@ -59,6 +59,7 @@ while {missionactive} do
 	 	{
 		missionsuccess = false; publicVariable "missionsuccess";
 		missionactive = false; publicVariable "missionactive";
+		failtext = "You didn't keep the convoy together. Mission failed."; publicVariable "failtext";
 	 	};
 	}forEach _smcleanup;
 	{// if a vehicle gets out of an 80 circle around mid vehicle
@@ -75,7 +76,7 @@ while {missionactive} do
 			{// fail if any vehicle dies
 			missionactive = false; publicVariable "missionactive";
 			missionsuccess = false; publicVariable "missionsuccess";
-			failtext = "You didn't keep the convoy together. Mission failed"; publicVariable "failext";
+			failtext = "One of the convoy vehicles has been destroyed. Mission failed"; publicVariable "failext";
 			};
 	} foreach _smcleanup;
 	if ( (count ((vehicles inAreaArray [cpt_position, 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
