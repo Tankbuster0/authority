@@ -9,11 +9,6 @@ if (not isServer) exitWith
 	diag_log "*** assetrespawn runs on a not server so will quit and exec remote to the server";
 	[[_this select 0], "server\assetrespawn.sqf"] remoteexec ["execVM", 2];
 	};
-
-if (isServer) then {diag_log "***assetrespawn runs on the server!"};
-if (isDedicated) then {diag_log "***assetrespawn runs on dedicated!"};
-if (hasInterface) then {diag_log "***assetrespawn runs on client!"};
-
 _oldv = _this select 0;
 switch (_oldv) do
 	{
@@ -41,8 +36,6 @@ if (_typebf) then
 	{
 	bfrespawning = true;
 	publicVariable "bfrespawning";
-
-
 	};
 _respawns = [west] call bis_fnc_getRespawnPositions;
 _respawns2 = _respawns - [_oldv];
@@ -52,7 +45,6 @@ if ((count blueflags) > 1) then
 	blueflags = _sortedblueflags;
 	};
 _nearestblueflag = blueflags select 0;
-
 _droppoint2 = [0,0,0];
 _testradius = 2;
 while {((_droppoint2 in [[0,0,0], islandcentre]) or (surfaceIsWater _droppoint2) or (((nearestObject [_droppoint2, "LandVehicle"]) distanceSqr _droppoint2) < 2.2))} do
@@ -67,22 +59,18 @@ switch (true) do
 	case _typefpv:
 		{
 		_nul = [_droppoint2, blufordropaircraft, forwardpointvehicleclassname, [0,0,0],"This is to replace the vehicle that's just been destroyed.", "" ] execVM "server\spawnairdrop.sqf";
-		diag_log "***ar calls a fpv";
-
 		forwardrespawning = false;
 		publicVariable "forwardrespawning";
 		};
 	case _typefob:
 		{
 		_nul = [_droppoint2, blufordropaircraft, fobvehicleclassname, [0,0,0],"This is to replace the vehicle that's just been destroyed.", "" ] execVM "server\spawnairdrop.sqf";
-		diag_log "***ar calls a fob";
 		fobrespawning = false;
 		publicVariable "fobrespawning";
 		};
 	case _typebf:
 		{
 		_nul = [_droppoint2, blufordropaircraft, blufordropaircraft, [0,0,0], "This is to replace the aircraft that's just been lost", "" ] execVM "server\spawnairdrop.sqf";
-		diag_log "***ar calls a blackfish";
 		bfrespawning = false;
 		publicVariable "bfrespawning";
 		};
