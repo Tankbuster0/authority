@@ -20,11 +20,6 @@ for "_nx" from 0 to ((playersNumber west + (floor (random 4))) min 5) do
 	_crater = createVehicle ["craterlong_small", getpos _craterpos, [],0,"NONE"];
 	mycraters pushBack _crater;
 	_smcleanup pushback _crater;
-	diag_log format ["***making crater %1 at %2", _nx, getpos _craterpos];
-	_m = createmarker [ ("cratermkr"+ str _nx), _craterpos];
-	_m setMarkerShape "ICON";
-	_m setMarkerType "hd_dot";
-	_m setMarkerText str _nx;
 	_handle = [_crater] spawn
 		{
 		while {missionactive} do
