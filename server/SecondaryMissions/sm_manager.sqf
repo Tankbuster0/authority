@@ -61,7 +61,6 @@ while {smcounter < _sm_required} do
 		};
 	//#3 dont do aircraft steal if airhead is at tuvanaka, but can do it there if west have a heli
 	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
-
 	_whelivtols = call tky_fnc_fleet_heli_vtols;
 	if	( ((count _whelivtols) > 1) and {_pt_name == "Tuvanaka"} ) then
 		 	{
@@ -81,7 +80,7 @@ while {smcounter < _sm_required} do
 		{_smtypearray = _smtypearray - ["blueconvoytoab"];};
 	//#5 dont do repairbuilding if no engineer in squad
 	if ((count (allplayers select {_x getUnitTrait isEqualTo "engineer"})) isEqualTo 0) then
-		_smtypearray - _smtypearray - ["repairlocalbuilding"];
+		{_smtypearray - _smtypearray - ["repairlocalbuilding"];};
 // end of exclusions///////////////////////////////////////////////////////////////////
 	typeselected = selectRandom _smtypearray;
 	while  {(typeselected isEqualTo _previousmission)} do
