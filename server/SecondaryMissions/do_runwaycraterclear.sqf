@@ -53,7 +53,7 @@ waitUntil {sleep 1; not (isNil "mybobcat")};
 while {missionactive} do
 	{
 	sleep 3;
-	if (not(alive mybobcat) or (fuel mybobcat isEqualTo 0)) then
+	if (not(alive mybobcat) ) then
 		{
 		missionsuccess = false;
 		missionactive = false;
