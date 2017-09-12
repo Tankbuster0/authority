@@ -50,7 +50,8 @@ player addEventHandler [ "Respawn", {
 				[ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,true, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] ) and (not (isEngineOn (vehicle player))) ) "];
 				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,true, "","( ((player distance2D blubasedataterminal) < 2) or ((player distance2D fobdataterminal) < 2) )"];
-				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "( ((player distanceSqr prizebox) < 8) or ((player distance2d bfbox) < 3) )"];
+				bfboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "( ((player distance2D prizebox) < 3) or ((player distance2d bfbox) < 3) )"];
+				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distance2D prizebox) < 3)"];
 				//prizevecrecovid = player addAction ["Recover prize vehicles from Airhead (local version)", "client\recoverprize.sqf", "",0,true,true, "", "(islandhop) and {(player distance2D fobdataterminal) < 2}" ];
 				// ^^^ removed because the cheaper version in buildfob now works yey
 			};
@@ -65,5 +66,6 @@ player setvariable ["isusingprizerecovery", false, true];
 // need to add these here as they used to be added by respawn eh at mission start. note that addaction is NOT respawn persistent.
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,true, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] ) and (not (isEngineOn (vehicle player))) ) "];
 				vehiclespawnerid = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,true, "","( ((player distance2D blubasedataterminal) < 2) or ((player distance2D fobdataterminal) < 2) )"];
-				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "( ((player distance2D prizebox) < 3) or ((player distance2d bfbox) < 3) )"];
+				bfboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "( ((player distance2D prizebox) < 3) or ((player distance2d bfbox) < 3) )"];
+				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "((player distance2D prizebox) < 3)"];
 [] execVM "client\playersetup.sqf";
