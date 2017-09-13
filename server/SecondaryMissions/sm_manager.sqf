@@ -59,13 +59,13 @@ while {smcounter < _sm_required} do
 		_smtypearray = _smtypearray - ["runwaycraterclear"];
 		diag_log "*** sm manager removes runwaycraterclear from the sm array because we're at Almyra";
 		};
-	//#3 dont do aircraft steal if airhead is at tuvanaka, but can do it there if west have a heli
+	//#3 only do aircraft steal if we have a helicopter (its to hard to check other island for target)
 	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 	_whelivtols = call tky_fnc_fleet_heli_vtols;
-	if	( ((count _whelivtols) > 1) and {_pt_name == "Tuvanaka"} ) then
+	if	 ((count _whelivtols) > 1)  then
 		 	{
 		 	_smtypearray = _smtypearray - ["stealaircraft"];
-		 	diag_log "***sm manager removes stealaircraft from the sm array because we're at tuvanaka";
+		 	diag_log "***sm manager removes stealaircraft from the sm array because we have no helis";
 		 	};
 	//#4 dont do sinktrawler if theres no deep water within 10k or if they dont have attack aircraft
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
@@ -91,14 +91,14 @@ while {smcounter < _sm_required} do
 	 publicVariable "typeselected";
 	//_smtypearray = _smtypearray - [typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
-	diag_log format ["***current sm number is %1", smcounter];
+	diag_log format ["***current sm number is %1 of %2", smcounter, _sm_required];
 	_smmanagerhandle = execVM _fname;
 	waitUntil {sleep 1;scriptDone _smmanagerhandle};
 	//succeed or fail?
 	if not (missionsuccess) then
 		{
 		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		diag_log format ["***smm after mission failure, smcounter is %1", smcounter];
+		diag_log format ["***smm after mission failure, smcounter is %1 or %2", smcounter, _sm_required];
 		sleep 10;
 		}
 		else
