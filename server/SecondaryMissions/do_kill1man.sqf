@@ -206,7 +206,7 @@ sk1mguy setpos _seldpos;
 _smcleanup pushback sk1mguy;
 _mybldposs2 = _mybldposs2 - [_seldpos];// remove the used position from the array of positions, just in case we need to put further units in the same building
 diag_log format ["*** sk1mguy is at %1, spawned at %2", getpos sk1mguy, _seldpos];
-sleep 3;
+sleep 2;
 sk1mguy allowdamage true;
 
 if ((count _insupports) > 0 and {(count _mybldposs2) > 0 }   ) then
@@ -253,7 +253,7 @@ failtext = "One of your team died during the operation. That's a failed mission.
 while {missionactive} do
 	{
 	sleep 3;
-	if (FALSE) then// failure is set by killed EH on players.
+	if (FALSE) then// failure is set by killed EH on players. (see client\fn_killedeh)
 		{
 		missionsuccess = false;
 		missionactive = false;
@@ -268,6 +268,7 @@ while {missionactive} do
 	};
 publicVariable "missionsuccess";
 publicVariable "missionactive";
+if (not missionsuccess) then {publicVariable "failtext"};
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 
 __tky_ends
