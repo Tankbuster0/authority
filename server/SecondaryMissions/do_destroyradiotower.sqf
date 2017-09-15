@@ -17,7 +17,7 @@ if (count _cpos < 1) then
 	diag_log "***drt didn't find highpoint using normal search, going again with easirer criteria";
 	for "_n" from 0 to 10 do
 		{
-		_cpos =  [cpt_position, 6000, 200, 50] call bis_fnc_findOverwatch;
+		_cpos =  [cpt_position, 6000, 200] call bis_fnc_findOverwatch;
 		_candiposs pushBackUnique _cpos;
 		};
 	};
