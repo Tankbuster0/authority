@@ -37,7 +37,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_wp3 setwaypointtype "COMBAT";
 	_wp3 setWaypointSpeed "NORMAL";
 	_wp3 setwaypointtype "CYCLE";
-	diag_log format [ "*** aasm spawn %1 at %2", _chosenveh, _startpos];
+	//diag_log format [ "*** aasm spawn %1 at %2", _chosenveh, _startpos];
 	//if (true) exitWith {};
 	};
 
