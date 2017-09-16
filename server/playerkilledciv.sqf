@@ -1,5 +1,4 @@
-//playerkilledciv.sqf
-// by tankbuster
+//playerkilledciv.sqf by tankbuster
  #include "..\includes.sqf"
 _myscript = "playerkilledciv.sqf";
 __tky_starts;
