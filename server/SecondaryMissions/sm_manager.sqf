@@ -62,7 +62,7 @@ while {smcounter < _sm_required} do
 	//#3 only do aircraft steal if we have a helicopter (its to hard to check other island for target)
 	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 	_whelivtols = call tky_fnc_fleet_heli_vtols;
-	if	 ((count _whelivtols) > 1)  then
+	if	 ((count _whelivtols) < 1)  then
 		 	{
 		 	_smtypearray = _smtypearray - ["stealaircraft"];
 		 	diag_log "***sm manager removes stealaircraft from the sm array because we have no helis";

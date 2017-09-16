@@ -93,7 +93,7 @@ tky_fnc_fleet_armed_aircraft =
 tky_fnc_fleet_heli_vtols =
 	{
 	private ["_wvecs","_whelivtols"];
-	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
+	_wvecs = vehicles select {(faction _x) in ["BLU_F", "BLU_T_F"] and {(alive _x) and (canMove _x)}};
 	_whelivtols = _wvecs select	{( ((typeof _x) isKindof  "Helicopter_Base_F") or ((typeof _x) isKindof  "VTOL_Base_F") )	};
 	_whelivtols
 	};
