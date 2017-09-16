@@ -272,8 +272,7 @@ if (_pt_type isEqualTo 1) then
 			_civfootgroup = createGroup civilian;
 			_pos = getpos (selectRandom _townroads);
 			_cfunit = _civfootgroup createUnit [(selectRandom civs), _pos, [],0,"NONE"];
-			//_cfunit addEventHandler ["killed", {if (((_this select 1) getVariable "ACE_medical_lastDamageSource") isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
-			//_cfunit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+			_cfunit addEventHandler ["killed", {if ((_this select 2) isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
 			_cfunit addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
 						{
 						civkillcount = civkillcount +1;
@@ -327,7 +326,7 @@ if (_pt_type isEqualTo 1) then
 						};
 					}
 				];
-			//_unit addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+			_cfunit addEventHandler ["killed", {if ((_this select 2) isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
 			_unit assignAsDriver _veh;
 			_unit moveInDriver _veh;
 			nul = [_unit, (str primarytargetcounter)] execVM "server\UPS.sqf";
@@ -343,7 +342,7 @@ if (_pt_type isEqualTo 1) then
 						};
 					}
 				];
-				//_unit2 addEventHandler ["killed", {if ((faction ((_this select 0) getVariable "ACE_medical_lastDamageSource")) isEqualTo "CUP_B_GB") then {civkillcount = civkillcount +1};}];
+				_cfunit addEventHandler ["killed", {if ((_this select 2) isKindOf "SoldierWB") then {nul = execVM "server\playerkilledciv.sqf"}}];
 				_unit2 moveInAny _veh;
 				};
 			_dcar pushback _dcargroup;
