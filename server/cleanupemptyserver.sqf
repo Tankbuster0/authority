@@ -11,5 +11,6 @@ if (count (allPlayers - (entities "HeadlessClient_F")) < 1) then
 	sleep 1;
 	{deletegroup _x} foreach allGroups;
 	{if (!(alive _x)) then {deleteVehicle _x}} foreach entities [[fobvehicleclassname, forwardpointvehicleclassname, "groundWeaponHolderSimulated", "WeaponHolderSimulated", "GroundWeaponHolder"], [], false, false];
+	{deletevehicle _x} foreach entities [["WeaponHolderSimulated"], [], false, false];
 };
 __tky_ends
