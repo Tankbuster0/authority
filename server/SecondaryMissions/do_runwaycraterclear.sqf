@@ -17,7 +17,7 @@ if (count (blubasehelipad nearEntities ["B_APC_Tracked_01_CRV_F", 200]) < 1) the
 	else
 	{
 	"You already have a Bobcat CRV at the Airhead. Use it to push craters off the runways and taxiways", 2, false];
-	}
+	};
 _candiposs = nearestObjects [blubasehelipad, [], 300, true];
 _runwayposs = _candiposs select {((str _x) find "bleroa" > 0) and ((_x distance2D blubasehelipad)> 100) };///find invisibleroadways more than 100m from helipad
 _runwayposshuffled = _runwayposs call BIS_fnc_arrayShuffle;
