@@ -77,9 +77,11 @@ while {smcounter < _sm_required} do
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
 		};
 	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
-		{_smtypearray = _smtypearray - ["blueconvoytoab"];};
+		{
+		_smtypearray = _smtypearray - ["blueconvoytoab"];
+		};
 	//#5 dont do repairbuilding if no engineer in squad
-	if ((count (allplayers select {_x getUnitTrait isEqualTo "engineer"})) isEqualTo 0) then
+	if  (count (allplayers select {_x getUnitTrait "engineer"}) isEqualTo 0)  then
 		{_smtypearray - _smtypearray - ["repairlocalbuilding"];};
 // end of exclusions///////////////////////////////////////////////////////////////////
 	typeselected = selectRandom _smtypearray;
