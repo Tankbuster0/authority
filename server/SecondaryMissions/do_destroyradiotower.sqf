@@ -3,13 +3,13 @@
 _myscript = "do_destroyradiotower";
 __tky_starts
 private ["_n","_cpos","_candiposs","_sortedcandiposs","_sortedcandiposs2","_finalpos","_tower","_dtreldir","_dtdist","_ii","_mypos","_drt_opfor1","_smcleanup","_drt_opfor3"];
-_candiposs = []; _sortedcandiposs = []; _sortedcandiposs2 = []; _smcleanup = [];
+_candiposs = []; _smcleanup = [];
 missionactive = true; missionsuccess = false; publicVariable "missionactive"; publicVariable "missionsuccess";
 failtext = "Error if players read this. Mission has no failure condition"; publicVariable "failtext";
 // find some nice high ground
 for "_n" from 0 to 10 do
 	{
-	_cpos =  [cpt_position, 3000, 400, 100] call bis_fnc_findOverwatch;
+	_cpos =  [cpt_position, 3000, 400,50] call bis_fnc_findOverwatch;
 	_candiposs pushBackUnique _cpos;
 	};
 if (count _cpos < 1) then
@@ -21,12 +21,13 @@ if (count _cpos < 1) then
 		_candiposs pushBackUnique _cpos;
 		};
 	};
-_sortedcandiposs = [_candiposs, [], {cpt_position distance2d _x}, "DESCEND"] call BIS_fnc_sortBy;
-_finalpos =  selectRandom _sortedcandiposs2;
+_finalpos =  selectRandom _candiposs;
 _tower = createVehicle ["Land_TTowerBig_2_F",_finalpos, [],0,"NONE"];
 //_tower addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
 
 _tower setVectorUp [0,0,1];
+_smcleanup pushBack _tower;
+
 _mtext = [(getpos _tower)] call tky_fnc_distanddirfromtown;
 smmissionstring = format ["Freindly force commanders have called in the position of a radio relay %1. If we can destroy it, it will be a great help to them and us.", _mtext];
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
