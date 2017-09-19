@@ -51,7 +51,7 @@ if (((count _stname) > 12) and {_namewithoutid in _linenames} ) then
 	//_helper =createVehicle ["Sign_Arrow_F", (getpos _x), [],0, "CAN_COLLIDE"];
 	_cplines pushBack _x;
 	};
-if (((count _stname) > 12) and {_namewithoutid == "rd_taxi.p3d"} ) then
+if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
 	{
 	if ((random 1) > 0.7) then
 		{
