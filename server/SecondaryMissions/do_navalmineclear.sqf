@@ -6,8 +6,8 @@ private ["_myplaces","_seapos1","_mfdata","_mfpos","_numberofmines","_minecounte
 //Find a nice deep place for mf
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
-_myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 50,100];
-_seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 80)};
+_myplaces = selectbestplaces [cpt_position, 2000, "waterdepth", 50,200];
+_seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 40)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 _numberofmines = (ceil (random ( 2 * (playersNumber west) )) min 6);
