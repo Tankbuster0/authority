@@ -2,7 +2,7 @@
 #include "..\includes.sqf"
 _myscript = "spawnprimarytargetunits";
 __tky_starts;
-private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_obs","_cplines","_linenames","_stname","_namewithoutid","_helper","_mbus","_blah","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
+private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_obs","_cplines","_linenames","_stname","_namewithoutid","_helper","_mbus","_blah","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_compgrp"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
@@ -28,9 +28,22 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 		case "Tuvanaka Airbase": {_composition = tuvanaka_composition};
 		};
 	_allcompositionunits = [_pt_pos, 0, _composition] call tky_fnc_t_objectsmapper;
+	_compgrp = creategroup [east, true];
 	sleep 0.05;
 	{
-		if (_x isKindOf "Air") then {_x setVehicleLock "LOCKEDPLAYER";};
+		if (_x isKindOf "Air" and {faction _x in ["OPF_T_F", "OPF_F", "OPF_G_F"]} ) then
+			{
+			_plt = _compgrp createUnit ["O_survivor_F", [0,0,0], [],0, "NONE"];
+			_plt moveInDriver _x;
+			_plt assignAsDriver _x;
+			_plt disableAI "All";
+			_plt setdamage 0.9;
+			_plt hideObjectGlobal true;
+			_x setUnloadInCombat [false, false];
+			_x setVehicleLock "LOCKED";
+			_x setfuel 0;
+
+			};
 	}foreach _allcompositionunits;
 	}
 	else
