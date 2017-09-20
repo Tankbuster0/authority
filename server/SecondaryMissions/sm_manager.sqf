@@ -46,7 +46,7 @@ while {smcounter < _sm_required} do
 	sleep 10;
 	// custom exclusions ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1 dont do navalmine clearance if theres no deep water nearby
-	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
+	_deepest = 	(selectBestPlaces [cpt_position, 2000, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
 	if (_deepestdepth < 25) then
 		{
