@@ -6,7 +6,7 @@ private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_m
 _airfield = selectRandom foundairfields;//choose a random airfield
 foundairfields = foundairfields - [_airfield];
 enableVehicleCrashes = false;
-addMissionEventHandler ["BuildingChanged", {diag_log format ["from %1, to %2, isruin %3", _this select 0, _this select 1, _this select 2]}];
+//addMissionEventHandler ["BuildingChanged", {diag_log format ["from %1, to %2, isruin %3", _this select 0, _this select 1, _this select 2]}];
 _beachheadpos =[0,0,0];
 roadreinforcementvehicles = [];
 fobdeployed = false;
