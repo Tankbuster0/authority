@@ -48,7 +48,7 @@ while {smcounter < _sm_required} do
 	// #1 dont do navalmine clearance if theres no deep water nearby
 	_deepest = 	(selectBestPlaces [cpt_position, 2000, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
-	if (_deepestdepth < 25) then
+	if (_deepestdepth < 40) then
 		{
 		_smtypearray = _smtypearray - ["navalmineclear"];
 		diag_log "***sm manager couldnt find deep enough sea nearby so removed naval mine cleareance from sm roster";
