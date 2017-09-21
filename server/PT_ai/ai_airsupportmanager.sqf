@@ -48,7 +48,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 			if ( ((fuel _oveh) < 0.02) or (not (someAmmo _oveh)) or (not (alive pt_hq)) ) then
 				{
 				_breakoff = true;
-
+				diag_log format ["***CAS spawned manager breaks off %1", _oveh];
 				 while {(count (waypoints _ogrp)) > 0} do
 					 {
 					  deleteWaypoint ((waypoints _ogrp) select 0);
