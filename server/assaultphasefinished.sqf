@@ -12,13 +12,6 @@ if (primarytargetcounter isEqualTo 1) then
 	};
 if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary target cleared
 	{
-	if (testmode) then
-		{
-		sleep 1; //used to be 10
-		} else
-		{
-		sleep 1;//used to be 10
-		};
 	nul = execVM "server\primarytargetcleared.sqf";
 	};
 _ruinstartcount = nextpt getVariable "targetruincount";
@@ -27,7 +20,7 @@ heartandmindscore = (_ruinendcount - _ruinstartcount) + civkillcount + reinforce
 diag_log format ["****h&m = %1, ruinend %2 ruinstart %3 civkill %4 reinfcntr %5", heartandmindscore, _ruinendcount, _ruinstartcount,civkillcount, reinforcementcounter];
 
 sleep 1;
-cpt_marker setMarkerBrush "Cross";
+cpt_marker setMarkerColor "ColorUNKNOWN";
 
 [""] call tky_fnc_usefirstemptyinhintqueue;
 "Congratulations, you've driven the enemy from the AO." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
@@ -42,5 +35,4 @@ if ((toLower ([taskname] call BIS_fnc_taskState)) != "succeeded" ) then
 	taskbool = [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;// #9 will set to succeed if ptc ==1 , otherwise, set it here after 2ndaries.
 	};
 nul =  execVM "server\primarytargetcleared.sqf";
-cpt_marker setMarkerBrush "Solid";
 __tky_ends
