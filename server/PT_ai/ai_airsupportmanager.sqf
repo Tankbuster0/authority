@@ -17,8 +17,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	{_opforairsupportgroup reveal [_x,(random 4)];} foreach (allPlayers - entities "HeadlessClient_F");
 	_opforairsupportveh = _opforairsupport select 0;
 	_t_ehindex = _opforairsupportveh addeventhandler ["HandleDamage", {if ((_this select 4) isKindOf "MissileCore") then { 1; } else { _this select 2; }; }];
-	_opforairsupportveh setfuel 0.05;
-	_opforairsupportveh addEventHandler ["Fuel", "if not(_this select 1) then {(_this select 0) setdamage 1};"];
+	_opforairsupportveh setfuel 0.7;
 	_opforairsupportveh setVelocity [200 * (sin direction _opforairsupportveh), 200 * (cos direction _opforairsupportveh), 0];
 	_opforairsupportgroup setCombatMode "RED";
 	_wp1 = _opforairsupportgroup addWaypoint [primarytarget, 300];
@@ -39,6 +38,37 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	_wp3 setwaypointtype "CYCLE";
 	//diag_log format [ "*** aasm spawn %1 at %2", _chosenveh, _startpos];
 	//if (true) exitWith {};
+
+	_h = [_opforairsupportveh, _opforairsupportgroup] spawn
+		{
+		params ["_oveh", "_ogrp"]
+		while {alive _oveh} do
+			{
+			sleep 3;
+			if ( ((fuel _oveh) < 0.02) or (not (someAmmo _oveh)) or (not (alive pt_hq)) ) then
+				{
+				_breakoff = true;
+
+				 while {(count (waypoints _ogrp)) > 0} do
+					 {
+					  deleteWaypoint ((waypoints _ogrp) select 0);
+					 };
+				(driver _oveh) domove [0,0,0];
+				_wpx = _opforairsupportgroup addWaypoint [[0,0,0], 500];
+				_wp2 setWaypointBehaviour "CARELESS";
+				_wp2 setWaypointSpeed "NORMAL";
+				_wp2 setwaypointtype "HOLD";
+				_wp2 setWaypointFormation "COLUMN";
+				sleep 60;
+				{_oveh deleteVehicleCrew _x} forEach crew _oveh;
+				_oveh setdamage 1;
+				deleteVehicle _oveh;
+
+				};
+
+			};
+
+		};
 	};
 
 
