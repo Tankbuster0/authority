@@ -7,7 +7,7 @@ private ["_opforairsupportgroup","_startpos","_chosenveh","_opforairsupport","_o
 while {(alive pt_hq) and ((playersNumber west) > 0)} do
 	{
 	sleep 600 + ((floor random 30) * 60); // 10 to 40 mins
-	_opforairsupportgroup = createGroup east;
+	_opforairsupportgroup = createGroup [east, true];
 
 	_startpos = primarytarget getrelpos [(4000 + ((random 8) * 500)), random 360 ];
 	_startpos set [2,800];
@@ -55,10 +55,11 @@ while {(alive pt_hq) and ((playersNumber west) > 0)} do
 					 };
 				(driver _oveh) domove [0,0,0];
 				_wpx = _opforairsupportgroup addWaypoint [[0,0,0], 500];
-				_wp2 setWaypointBehaviour "CARELESS";
-				_wp2 setWaypointSpeed "NORMAL";
-				_wp2 setwaypointtype "HOLD";
-				_wp2 setWaypointFormation "COLUMN";
+				_wpx setWaypointBehaviour "CARELESS";
+				_wpx setWaypointSpeed "NORMAL";
+				_wpx setwaypointtype "HOLD";
+				_wpx setWaypointFormation "COLUMN";
+				_wpx setWaypointStatements [ "true", "_oveh setdamage 1"];
 				sleep 60;
 				{_oveh deleteVehicleCrew _x} forEach crew _oveh;
 				_oveh setdamage 1;
