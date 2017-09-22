@@ -7,8 +7,6 @@ attackingvehs = [];
 tky_fnc_shiphit =
 	{
 	params ["_sh_engaging_vec"];
-	//smship1 removeallEventHandlers "handledamage";
-	//smship2 removeAllEventHandlers "handledamage";
 	_eh1 = attackingvehs pushBackUnique _sh_engaging_vec;
 	//^^^ if this is vehs first attack, add the landed eh to it so se can remove it from attackingvehs array if it lands for reload
 	attackunderway = true;
@@ -20,8 +18,8 @@ missionactive = true;missionsuccess = false; attackunderway = false; engagingveh
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _1sinking = false; _2sinking = false;_bothsunk = false;_smcleanup = [];
 failtext = "You didn't sink those ships. Mission failed.";
-_missionposs = (selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,40]) select [0,10] ;
-diag_log format ["*dst gets best places %1", _missionposs];
+_missionposs = selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,50];
+//diag_log format ["*dst gets best places %1", _missionposs];
 _missionpos1 = selectRandom _missionposs;
 
 _missionpos = _missionpos1 select 0;
