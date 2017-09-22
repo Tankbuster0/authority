@@ -25,16 +25,8 @@ diag_log format ["*dst gets best places %1", _missionposs];
 _missionpos1 = selectRandom _missionposs;
 
 _missionpos = _missionpos1 select 0;
-diag_log format ["***dst says %1 for mission pos", _missionpos];
-_smnrlogs = (_missionpos nearEntities ["Logic", 6000]) select { (_x getVariable ["targetstatus", -1]) isEqualTo 1   };
-diag_log format ["***dst unsorted logics near the mission pos %1", _smnrlogs];
-_sortedsmnrlogs = [_smnrlogs, [] , {_x distance2d _missionpos}, "ASCEND"] call BIS_fnc_sortBy;
-diag_log format ["***dst sorted the logics near mission pos %1", _sortedsmnrlogs];
-_smnrlog = _sortedsmnrlogs select 0;
-_smnrtown = (_smnrlog getVariable "targetname");
-_smdir = [(_smnrlog getDir _missionpos)] call tky_fnc_cardinaldirection;
-_smdist = [(_smnrlog distance2D _missionpos), 500] call tky_fnc_estimateddistance;
-smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m %2of %3. Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smdist, _smdir,_smnrtown ];
+_smtext1 = [smship1] call tky_fnc_distanddirfromtown;
+smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smtext1 ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 smship1 = createvehicle ["C_Boat_Civil_04_F", _missionpos, [],0, "NONE"];
