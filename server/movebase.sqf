@@ -156,7 +156,7 @@ blubasedataterminal setpos _mypos;
 
 if (isDedicated) then
 {
-	fobdtopen = false;
+	bbdtopen = false;
 	[] spawn
 		{
 		sleep 1;
@@ -179,7 +179,6 @@ if (isDedicated) then
 			blubasedataterminal setObjectTextureGlobal [0, "Camo_3"];
 			};
 		};
-	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\islandhopprizerecover.sqf"}, "", 0, true, true, "", "islandhop and (not(recoveryinuse))", 2]] remoteExec ["addAction", -2, fobdataterminal];
 };
 
 _con = "(!airheadserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
