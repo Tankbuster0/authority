@@ -90,7 +90,7 @@ while {smcounter < _sm_required} do
 		typeselected = selectRandom _smtypearray;
 		diag_log format ["***smm says smarray is %1 and chooses %2, _previousmission is %3", _smtypearray, typeselected, _previousmission];
 		};
-	//typeselected = "navalmineclear";// debug only
+	//typeselected = "kill1man";// debug only
 	publicVariable "typeselected";
 	//_smtypearray = _smtypearray - [typeselected];
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
