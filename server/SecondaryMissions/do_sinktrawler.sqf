@@ -19,6 +19,8 @@ publicVariable "missionactive"; publicVariable "missionsuccess";
 _1sinking = false; _2sinking = false;_bothsunk = false;_smcleanup = [];
 failtext = "You didn't sink those ships. Mission failed.";
 _missionposs = selectBestPlaces [cpt_position, 8000, "sea * waterDepth", 100,50];
+_missionposs append (selectBestPlaces [cpt_position, 4000, "sea * waterDepth", 100,50 ]);
+_missionposs append (selectBestPlaces [cpt_position, 2000, "sea * waterDepth", 100,50 ]);
 //diag_log format ["*dst gets best places %1", _missionposs];
 _missionpos1 = selectRandom _missionposs;
 
