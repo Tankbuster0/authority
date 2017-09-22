@@ -25,7 +25,7 @@ diag_log format ["*dst gets best places %1", _missionposs];
 _missionpos1 = selectRandom _missionposs;
 
 _missionpos = _missionpos1 select 0;
-_smtext1 = [smship1] call tky_fnc_distanddirfromtown;
+_smtext1 = [_missionpos] call tky_fnc_distanddirfromtown;
 smmissionstring = format ["Native fishermen reported the presence of two unusual surface vessels %1m Overhead imagery has determined them to be enemy and intelligence gathering or maybe even mine layers. Sink them.", _smtext1 ];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -78,8 +78,8 @@ while {missionactive} do
 		missionactive = false;
 		"Both ships are gone. Get your aircraft back safely." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
-	diag_log format ["*** ative %1, success %2, underway %3, damage 1 %4, damage 2 %5, attackingvehs %6 ", missionactive, missionsuccess, attackunderway, damage smship1, damage smship2, attackingvehs];
+	//diag_log format ["*** ative %1, success %2, underway %3, damage 1 %4, damage 2 %5, attackingvehs %6 ", missionactive, missionsuccess, attackunderway, damage smship1, damage smship2, attackingvehs];
 	};
-publicVariable "missionsuccess" publicVariable "missionactive";
+publicVariable "missionsuccess"; publicVariable "missionactive";
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends
