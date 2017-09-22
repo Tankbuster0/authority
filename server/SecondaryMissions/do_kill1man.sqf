@@ -240,9 +240,7 @@ if ( (count _outsupports) > 0 ) then
 	};
 
 //get the new nearest logic, in case mybld is a long way from mytown
-_redtargets2 = (_mybld nearEntities ["Logic", 3000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {( ((_x getVariable ["targetlandmassid", -1]) isEqualTo cpt_island))} };
-_redtargets3 = [_redtargets2, [] , {_mybld distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
-_3rdtext = [(_redtargets3 select 0)] call tky_fnc_distanddirfromtown;
+_3rdtext = [_mybld] call tky_fnc_distanddirfromtown;
 smmissionstring = (selectRandom _1sttext) + ([sk1mguy] call tky_fnc_getscreenname) + _2ndtext +  ([_mybld] call tky_fnc_getscreenname) + " " + _3rdtext + ". " + _mtext;
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
