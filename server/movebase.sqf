@@ -153,7 +153,35 @@ blueflags = blueflags - [beachflag];// removes beachhead flag from array so that
 _mypos = getpos terminalcone;
 deleteVehicle terminalcone;
 blubasedataterminal setpos _mypos;
-//[blubasemash,10, 0.01, 2] execVM "heal.sqf";
+
+if (isDedicated) then
+{
+	fobdtopen = false;
+	[] spawn
+		{
+		sleep 1;
+		if (not bbdtopen and {count (blubasedataterminal nearEntities ["SoldierWB", 2]) > 0}) then
+			{
+			bbdtopen = true;
+			[blubasedataterminal, 3] call BIS_fnc_DataTerminalAnimate;
+			sleep 2;
+			blubasedataterminal setObjectTextureGlobal [1, "pics\authlogo512x256.paa"];
+			blubasedataterminal setObjectTextureGlobal [0, "pics\hom_flag_white_stripe512.paa"];
+			};
+		if (bbdtopen and {count (blubasedataterminal nearEntities ["SoldierWB", 2]) < 1}) then
+			{
+			blubasedataterminal setObjectTextureGlobal [1, "#(argb,8,8,3)color(0,1,1,1.0,co)"];
+			blubasedataterminal setObjectTextureGlobal [0, "#(argb,8,8,3)color(0,1,1,1.0,co)"];
+			bbdtopen = false;
+			[blubasedataterminal, 0] call BIS_fnc_DataTerminalAnimate;
+			sleep 2;
+			blubasedataterminal setObjectTextureGlobal [1, "Camo_1"];
+			blubasedataterminal setObjectTextureGlobal [0, "Camo_3"];
+			};
+		};
+	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\islandhopprizerecover.sqf"}, "", 0, true, true, "", "islandhop and (not(recoveryinuse))", 2]] remoteExec ["addAction", -2, fobdataterminal];
+};
+
 _con = "(!airheadserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
 _act = "airheadserviceinuse = true; publicVariable 'airheadserviceinuse'; [['airheadserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
 _ahgvst = createTrigger ["EmptyDetector", getpos blubasehelipad, false];
