@@ -44,8 +44,6 @@ for "_nx" from 0 to ((playersNumber west + (floor (random 4))) min 5) do
 					{
 					_craterdir = getdir _mycrater;
 					_mycrater attachTo [_mybobcat, [0,6,-2]];
-					//_mycrater setdir (_craterdir) + (360 - (getdir _mybobcat));
-					diag_log format ["*** attached a crater!"];
 					};
 			waitUntil {sleep 0.5;(((speed _mybobcat) < -3 ) or (!(alive _mybobcat)))};
 
@@ -72,7 +70,7 @@ while {missionactive} do
 		if (count ((nearestObjects [_thiscrater, [], 13, true]) select {((str _x) find "bleroa" > 0)}) < 1) then // this crater is clear of the runway and taxiways
 			{
 			_craterclearedcount = _craterclearedcount +1;
-			diag_log format ["***crater pushed off the runway!, cleared count = %1", _craterclearedcount];
+			//diag_log format ["***crater pushed off the runway!, cleared count = %1", _craterclearedcount];
 			};
 	}foreach mycraters;
 	if (_craterclearedcount isEqualTo _cratercount) then
