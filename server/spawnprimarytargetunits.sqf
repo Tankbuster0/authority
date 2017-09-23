@@ -91,7 +91,7 @@ if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p
 } foreach _obs;
 {
 _linea = _x;
-_linebx = _cplines select {(_linea distance2d _x) < 4.3};
+_linebx = _cplines select {(_linea distance2d _x) < 4.95};
 if ((count _linebx) > 0) then
 	{
 	_lineb = _linebx select 0;
