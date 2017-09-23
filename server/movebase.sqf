@@ -142,7 +142,25 @@ sleep 2;
 waitUntil {(getposATL mycontainer select 2) < 2};
 deletevehicle mycontainer;
 blubaseobjects = [getpos previousmission, 0, _composition] call tky_fnc_t_objectsmapper;
-{_x setdamage 0;} foreach blubaseobjects;
+{
+	_x setdamage 0;
+	if (_x isKindOf "Heli_Transport_02_base_F") then
+		{
+		    if ((random 1) > 0.5  ) then
+                {
+                _x setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_dahoman_co.paa"];
+                _x setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_dahoman_co.paa"];
+                _x setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_dahoman_co.paa"];
+                }
+                else
+                {
+                _x setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_ion_co.paa"];
+                _x setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_ion_co.paa"];
+                _x setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_ion_co.paa"];
+                };
+       	_blah = [_x, "", []] call BIS_fnc_initvehicle;
+		};
+} foreach blubaseobjects;
 _mypos = getpos ammoboxcone;
 deleteVehicle ammoboxcone;
 ammoboxpad setpos _mypos;
