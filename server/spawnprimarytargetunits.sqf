@@ -42,8 +42,23 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 			_x setUnloadInCombat [false, false];
 			_x setVehicleLock "LOCKED";
 			_x setfuel 0;
-
 			};
+			if (_x isKindOf "Heli_Transport_02_base_F") then
+				{
+		    	if ((random 1) > 0.5  ) then
+	                {
+	                _x setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_dahoman_co.paa"];
+	                _x setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_dahoman_co.paa"];
+	                _x setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_dahoman_co.paa"];
+	                }
+	                else
+	                {
+	                _x setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_ion_co.paa"];
+	                _x setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_ion_co.paa"];
+	                _x setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_ion_co.paa"];
+	                };
+       			_blah = [_x, "", []] call BIS_fnc_initvehicle;
+				};
 	}foreach _allcompositionunits;
 	}
 	else
