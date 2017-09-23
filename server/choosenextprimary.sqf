@@ -44,7 +44,7 @@ if (_rtoti < 2) then
 				{_notlegittargets pushback _x;};
 } forEach _logics;
 _finaltargetlist = _logics - _notlegittargets;
-if (testmode) then {diag_log format ["***@42 cnp removed %1 from the list because they are not legit targets", count _notlegittargets]};
+if (testmode) then {diag_log format ["***@47 cnp removed %1 from the list because they are not legit targets", count _notlegittargets]};
 
 sleep 0.1;
 
