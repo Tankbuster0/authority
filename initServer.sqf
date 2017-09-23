@@ -220,7 +220,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 			if (_targetType == 2) then {
 				foundairfields pushback _logic;
 			};
-/*
+
 			if (testmode) then
 				{
 				_mname2 = format ["smn%1", _foreachindex];
@@ -231,7 +231,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				_mkr2 setMarkerText (str _foreachindex);
 				_mkr2 setMarkerBrush "Vertical";
 				};
-*/
+
 			//TESTOUTPUT pushBack _tempArr;
 			missionsetupprogress = 1;
 			publicVariable "missionsetupprogress";
