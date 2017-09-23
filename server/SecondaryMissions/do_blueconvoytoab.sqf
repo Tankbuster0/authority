@@ -2,10 +2,10 @@
  #include "..\includes.sqf"
 _myscript = "do_blueconvoytoab";// bluconvoy drive to airbase from remote
 __tky_starts;
-private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_trucktype","_vec0","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb","_vecx","_smnrlogs","_sortedsmnrlogs","_smnrlog","_smnrtown","_smdir","_smdist","_smdist1", "_smtext"];
+private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_nr2","_nr3","_trucks","_trucktype","_vec0","_nextposa","_prevpos","_prevroadpiece","_nearroadstopos","_nextposb","_vecx","_smnrlogs","_sortedsmnrlogs","_smnrlog","_smnrtown","_smdir","_smdist","_smdist1", "_smtext", "_deaddrivercount"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
-_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
+_potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
 diag_log format ["*** dbcta gets _potentialstarts count %1", count _potentialstarts];
 _numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
 _mystart = selectRandom _potentialstarts;
@@ -63,7 +63,7 @@ while {missionactive} do
 	 	};
 	}forEach _smcleanup;
 	{// if a vehicle gets out of an 80 circle around mid vehicle
-	if (not (_x inarea [_vecx, 80,80,0,false, -1] )) then
+	if ( (not (_x inarea [_vecx, 80,80,0,false, -1] )) and (not((driver _x) isEqualTo objNull )) and (alive (driver _x)) ) then
 	 	{
 	 		{
 		 	"You are dropping out of the convoy. Stay together!" remoteExec ["Hint", _x];
@@ -76,9 +76,24 @@ while {missionactive} do
 			{// fail if any vehicle dies
 			missionactive = false; publicVariable "missionactive";
 			missionsuccess = false; publicVariable "missionsuccess";
-			failtext = "One of the convoy vehicles has been destroyed. Mission failed"; publicVariable "failext";
+			failtext = "One of the convoy vehicles has been destroyed. Mission failed"; publicVariable "failtext";
 			};
 	} foreach _smcleanup;
+
+
+	_deaddrivercount = 0;
+	{
+	if ( (not ((driver _x) isEqualTo objNull)) and {(not (alive driver _x))} ) then
+		{
+		_deaddrivercount = _deaddrivercount + 1;
+		};
+	} foreach _smcleanup;
+	if (_deaddrivercount isEqualTo (count _smcleanup)) then
+		{
+		missionactive = false; publicVariable "missionactive";
+		missionsuccess = false; publicVariable "missionsuccess";
+		failtext = "All the drivers are dead. Mission failed"; publicVariable "failtext";
+		};
 	if ( (count ((vehicles inAreaArray [cpt_position, 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
 		{// all cleanup vehicles get into a 75m circle at the centre of the town marker. check 75 is radius or circumference
 		missionsuccess = true; publicVariable "missionsuccess";
