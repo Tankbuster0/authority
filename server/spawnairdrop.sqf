@@ -203,7 +203,10 @@ _underground = _droppos;
 _underground set [2, -2];
 _para setpos _underground;
 _cargo allowdamage true;
-if (_droptype == forwardpointvehicleclassname) then {forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;};
+if (_droptype == forwardpointvehicleclassname) then
+	{
+	forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call bis_fnc_addRespawnPosition;
+	};
 if (_eventualtype isEqualTo blufordropaircraft) then
 	{
 		bfbox = _cargo;
@@ -224,7 +227,7 @@ if (_droptype in ["B_APC_Tracked_01_CRV_F","B_T_APC_Tracked_01_CRV_F" ]) then
 	{
 	[_cargo, "mybobcat"] call fnc_setvehiclename;
 	};
-
+[_cargo] call tky_fnc_setvehicleloadout;
 sleep 2;
 _cargo setvectorup (surfaceNormal (getpos _cargo));
 _dropveh domove _startpos;

@@ -3,15 +3,17 @@
  _myscript = "setvehicleloadout";
  params ["_vec"];
 
- clearWeaponCargoGlobal _vec;
- clearBackpackCargoGlobal _vec;
- clearItemCargoGlobal _vec;
- clearMagazineCargoGlobal _vec;
+
 
 switch (typeof _vec) do
 	{
 	case forwardpointvehicleclassname:
 		{
+		clearWeaponCargoGlobal _vec;
+ 		clearBackpackCargoGlobal _vec;
+ 		clearItemCargoGlobal _vec;
+ 		clearMagazineCargoGlobal _vec;
+
 		_vec addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag_Tracer", 20];
 		_vec addMagazineCargoGlobal ["20Rnd_762x51_Mag", 20];
 		_vec addMagazineCargoGlobal ["1Rnd_HE_Grenade_shell", 10];
@@ -33,6 +35,11 @@ switch (typeof _vec) do
 
 	case fobvehicleclassname:
 		{
+		clearWeaponCargoGlobal _vec;
+ 		clearBackpackCargoGlobal _vec;
+ 		clearItemCargoGlobal _vec;
+ 		clearMagazineCargoGlobal _vec;
+
 		_vec addItemCargoGlobal ["FirstAidKit",15];
 		_vec addItemCargoGlobal ["ItemMap",1];
 		_vec addItemCargoGlobal ["Medikit",5];
