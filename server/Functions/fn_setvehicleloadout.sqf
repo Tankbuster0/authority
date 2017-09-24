@@ -1,4 +1,4 @@
-/by tankbuster
+//by tankbuster
  #include "..\includes.sqf"
  _myscript = "setvehicleloadout";
  params ["_vec"];

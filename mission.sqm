@@ -2210,7 +2210,7 @@ class Mission
 									"STRING"
 								};
 							};
-							value="[[[[""MineDetector"",""launch_O_Titan_F"",""launch_B_Titan_short_tna_F""],[1,3,3]],[[""30Rnd_65x39_caseless_mag"",""1Rnd_HE_Grenade_shell"",""SmokeShellBlue"",""3Rnd_HE_Grenade_shell"",""30Rnd_65x39_caseless_mag_Tracer"",""Laserbatteries"",""SatchelCharge_Remote_Mag"",""Titan_AT"",""Titan_AA""],[16,10,5,20,20,6,8,10,10]],[[""Laserdesignator_02_ghex_F"",""FirstAidKit"",""ItemMap"",""Medikit"",""ItemRadio"",""ToolKit""],[2,15,1,5,2,2]],[[],[]]],false]";
+							value="[[[[],[]],[[],[]],[[],[]],[[],[]]],false]";
 						};
 					};
 				};
