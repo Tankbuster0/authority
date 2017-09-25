@@ -50,7 +50,7 @@ _nul = [_pos, blufordropaircraft, _droptype, [0,0,0],_txt] execVM "server\spawna
 	deleteGroup _x;
 } foreach allGroups;
 
-if (serverName in testservernames) then {sleep 40;} else {sleep 180;};
+if (testmode) then {sleep 40;} else {sleep 180;};
 
 primarytargetcounter = primarytargetcounter + 1;
 
