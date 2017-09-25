@@ -474,6 +474,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_1";
+						description="Squad Leader";
 						isPlayer=1;
 						class Inventory
 						{
@@ -584,6 +585,25 @@ class Mission
 					{
 						class Attribute0
 						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male05ENG";
+								};
+							};
+						};
+						class Attribute1
+						{
 							property="pitch";
 							expression="_this setpitch _value;";
 							class Value
@@ -601,7 +621,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item1
@@ -617,6 +637,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_2";
+						description="Team Leader";
 						isPlayable=1;
 					};
 					id=64;
@@ -624,6 +645,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male03ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -642,7 +682,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item2
@@ -657,6 +697,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_3";
+						description="Machine Gunner";
 						isPlayable=1;
 					};
 					id=65;
@@ -664,6 +705,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -682,7 +742,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item3
@@ -697,6 +757,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_4";
+						description="Grenadier";
 						isPlayable=1;
 					};
 					id=66;
@@ -704,6 +765,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male08ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -722,7 +802,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item4
@@ -737,6 +817,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_5";
+						description="Marksman";
 						isPlayable=1;
 					};
 					id=67;
@@ -744,6 +825,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male11ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -762,7 +862,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item5
@@ -777,6 +877,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_6";
+						description="Medic";
 						isPlayable=1;
 					};
 					id=69;
@@ -784,6 +885,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male10ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -802,7 +922,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item6
@@ -817,6 +937,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_7";
+						description="Anti Air";
 						isPlayable=1;
 					};
 					id=70;
@@ -825,6 +946,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male11ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -843,7 +983,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item7
@@ -858,6 +998,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_8";
+						description="Anti Tank ";
 						isPlayable=1;
 					};
 					id=71;
@@ -865,6 +1006,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male02ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -883,7 +1043,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item8
@@ -898,6 +1058,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_9";
+						description="Engineer";
 						isPlayable=1;
 					};
 					id=72;
@@ -905,6 +1066,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male06ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -923,7 +1103,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item9
@@ -938,6 +1118,7 @@ class Mission
 					class Attributes
 					{
 						name="alpha_10";
+						description="Explosives Specialist";
 						isPlayable=1;
 					};
 					id=74;
@@ -946,6 +1127,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male11ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -964,7 +1164,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 			};
@@ -992,6 +1192,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_1";
+						description="Squad Leader";
 						isPlayable=1;
 					};
 					id=75;
@@ -1000,6 +1201,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male01ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1018,7 +1238,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item1
@@ -1034,6 +1254,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_2";
+						description="Team Leader";
 						isPlayable=1;
 					};
 					id=76;
@@ -1041,6 +1262,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male06ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1059,7 +1299,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item2
@@ -1074,6 +1314,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_3";
+						description="Marksman";
 						isPlayable=1;
 					};
 					id=77;
@@ -1081,6 +1322,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male07ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1099,7 +1359,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item3
@@ -1115,6 +1375,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_4";
+						description="Anti Tank";
 						isPlayable=1;
 					};
 					id=78;
@@ -1122,6 +1383,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male10ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1140,7 +1420,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item4
@@ -1155,6 +1435,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_5";
+						description="Grenadier";
 						isPlayable=1;
 					};
 					id=80;
@@ -1162,6 +1443,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male12ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1180,7 +1480,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item5
@@ -1195,6 +1495,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_6";
+						description="Rifleman";
 						isPlayable=1;
 					};
 					id=81;
@@ -1202,6 +1503,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male12ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1220,7 +1540,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item6
@@ -1235,6 +1555,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_7";
+						description="Anti Air";
 						isPlayable=1;
 					};
 					id=82;
@@ -1243,6 +1564,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male09ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1261,7 +1601,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item7
@@ -1277,14 +1617,33 @@ class Mission
 					class Attributes
 					{
 						name="bravo_8";
+						description="Medic";
 						isPlayable=1;
 					};
 					id=83;
 					type="B_medic_F";
-					atlOffset=7.6293945e-006;
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male07ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1303,7 +1662,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item8
@@ -1319,6 +1678,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_9";
+						description="Engineer";
 						isPlayable=1;
 					};
 					id=84;
@@ -1327,6 +1687,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male04ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1345,7 +1724,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 				class Item9
@@ -1360,6 +1739,7 @@ class Mission
 					class Attributes
 					{
 						name="bravo_10";
+						description="Explosive Specialist";
 						isPlayable=1;
 					};
 					id=85;
@@ -1367,6 +1747,25 @@ class Mission
 					class CustomAttributes
 					{
 						class Attribute0
+						{
+							property="speaker";
+							expression="_this setspeaker _value;";
+							class Value
+							{
+								class data
+								{
+									class type
+									{
+										type[]=
+										{
+											"STRING"
+										};
+									};
+									value="Male11ENG";
+								};
+							};
+						};
+						class Attribute1
 						{
 							property="pitch";
 							expression="_this setpitch _value;";
@@ -1385,7 +1784,7 @@ class Mission
 								};
 							};
 						};
-						nAttributes=1;
+						nAttributes=2;
 					};
 				};
 			};
