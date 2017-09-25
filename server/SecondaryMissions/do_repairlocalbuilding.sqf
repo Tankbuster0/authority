@@ -2,23 +2,30 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
-private ["_method","_blacklistedbuildings","_nearbldsb3","_nearbldsa1","_nearbldsa2","_nearbldsb2","_actualblds","_surfacebld","_bldtosetdam0","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text"];
+private ["_blacklistedbuildings","_drlbmaster","_nearbldssurfaceruin","_nearblds","_nearbldsdeep","_foreachindex","_randpair","_surfacebld","_bldscrn","_bldpos","_bldtosetdam0","_mtext","_1texts","_2texts","_3text"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 typeselected = "repairlocalbuilding"; publicVariable "typeselected";// <-- debug only
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F", "Land_House_Small_04_F", "Land_House_Big_01_F","Land_House_Small_06_F"];
 // get the buildings that sink their good model
-_nearbldsb2 = _nearbldsa1 select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 4}};// good buildings that are deep
+_drlbmaster = []; //master array. [[buriedbld1,ruin1], [buriedbld2,ruin2], ~~~]
+_nearblds = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];// all good buildings whether on surface or sunk
+
+_nearbldsdeep = _nearblds select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 90 }};// good buildings that are deep
 {
-	_nearbldsb3 pushback ((nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 3, false] ) select 0);
+	_nearbldssurfaceruin = ((nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 3, false] ) select 0);
 	//^^^ get the ruin that is on the surface
-} forEach _nearbldsb2;
-diag_log format ["*** d_rld has %2 buried good buildings %1 and %3 surface ruins %4", _nearbldsb2, count _nearbldsb2, _nearbldsb3, count _nearbldsb3];
-_actualblds = _nearbldsb3; // <-- b3 = surfaceruin,
-_surfacebld = selectRandom _actualblds;
-	_bldtosetdam0 = ((nearestObjects [([((getpos _surfacebld) select 0), ((getpos _surfacebld) select 1), -100]), ["house_f"], 15, false] ) select 0);
-	diag_log format ["*** d_rlb bld to setdam0 to is %1 at %2 and is deep underground %3",_bldtosetdam0, getpos _bldtosetdam0, ((getpos _bldtosetdam0 select 2) < -80)];
-_bldscrn = [_bldtosetdam0] call tky_fnc_getscreenname;
+	_drlbmaster pushBack [_x, _nearbldssurfaceruin ];
+} forEach _nearbldsdeep;
+diag_log format ["*** d_rlb says _drlbmaster is %1", _drlbmaster];
+{
+diag_log format ["*** d_rlb master array record %1 buried %2 at %3 and surfaceruin %4 at %5. 2d distance is %6", _foreachindex, (_x select 0), getpos (_x select 0), (_x select 1), getpos (_x select 1), ((_x select 0) distance2D (_x select 1))];
+} foreach _drlbmaster;
+_randpair = selectRandom _drlbmaster;
+
+_surfacebld = _randpair select 1;
+
+_bldscrn = [_randpair select 0] call tky_fnc_getscreenname;
 _bldpos = getpos _surfacebld;
 diag_log format ["*** d_rlb chooses %1, screenname %2, at %3", _surfacebld, _bldscrn, _bldpos ];
 [_surfacebld, "surfacebld"] call fnc_setvehiclename;
