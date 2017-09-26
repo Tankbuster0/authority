@@ -2,10 +2,10 @@
  #include "..\includes.sqf"
 _myscript = "do_kill1man";
 __tky_starts;
+//note this script uses "client\sm_repbld_action" to run the repair action
 private ["_blacklistedbuildings","_drlbmaster","_nearbldssurfaceruin","_nearblds","_nearbldsdeep","_foreachindex","_randpair","_surfacebld","_bldscrn","_bldpos","_bldtosetdam0","_mtext","_1texts","_2texts","_3text"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-typeselected = "repairlocalbuilding"; publicVariable "typeselected";// <-- debug only
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F", "Land_House_Small_04_F", "Land_House_Big_01_F","Land_House_Small_06_F", "Land_House_Big_03_F"];
 // get the buildings that sink their good model
 _drlbmaster = []; //master array. [[buriedbld1,ruin1], [buriedbld2,ruin2], ~~~]
@@ -22,8 +22,6 @@ diag_log format ["*** @15, nbdeep %1", _nearbldsdeep];
 	diag_log format ["*** @22 nearruins %1", _nearruins];
 	_nearbldssurfaceruin = _nearruins select 0;
 	diag_log format ["*** @24 _nearbldssurfaceruin %1", _nearbldssurfaceruin];
-	//_nearbldssurfaceruin = ( (nearestObjects [([((getpos _x) select 0), ((getpos _x) select 1), 0]), ["Ruins_F"], 6, false] ) select 0);
-	//^^^ get the ruin that is on the surface
 	_drlbmaster pushBack ([_x, _nearbldssurfaceruin ]);
 } forEach _nearbldsdeep;
 diag_log format ["*** d_rlb says _drlbmaster is %1", _drlbmaster];
@@ -59,12 +57,11 @@ while {missionactive} do
 		failtext = "You suck. Mission failed because of reasons"; publicVariable "failtext";
 		};
 
-	if ((damage _bldtosetdam0) == 0) then
+	if ((damage _deepbld) == 0) then
 		{
 		missionsuccess = true;
 		missionactive = false;
 		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		//^^^ got this far. need to make success conditions
 		};
 	};
 publicVariable "missionsuccess";
