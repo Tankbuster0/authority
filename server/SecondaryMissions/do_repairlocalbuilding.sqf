@@ -11,7 +11,7 @@ _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_s
 _drlbmaster = []; //master array. [[buriedbld1,ruin1], [buriedbld2,ruin2], ~~~]
 _nearblds = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];// all good buildings whether on surface or sunk
 diag_log format ["*** @13, _nearblds %1", _nearblds];
-_nearbldsdeep = _nearblds select { (((getpos _x) select 2) < -90) and {(count (_x buildingPos -1)) > 9 }};// good buildings that are deep
+_nearbldsdeep = _nearblds select { (((getpos _x) select 2) < -50) and {(count (_x buildingPos -1)) > 7 }};// good buildings that are deep
 diag_log format ["*** @15, nbdeep %1", _nearbldsdeep];
 {
 	_goodbpos = getpos _x,
