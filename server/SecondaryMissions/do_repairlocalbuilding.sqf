@@ -3,10 +3,18 @@
 _myscript = "do_kill1man";
 __tky_starts;
 //note this script uses "client\sm_repbld_action" to run the repair action
-private ["_blacklistedbuildings","_drlbmaster","_nearbldssurfaceruin","_nearblds","_nearbldsdeep","_foreachindex","_randpair","_surfacebld","_bldscrn","_bldpos","_bldtosetdam0","_mtext","_1texts","_2texts","_3text"];
+private ["_blacklistedbuildings","_startblds0","_startblds1","_startbldtodmg","_drlbmaster","_nearblds","_nearbldsdeep","_goodbpos","_surfacepos","_nearruins","_nearbldssurfaceruin","_foreachindex","_randpair","_deepbld","_surfacebld","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F", "Land_House_Small_04_F", "Land_House_Big_01_F","Land_House_Small_06_F", "Land_House_Big_03_F"];
+// Damage a building somewhere in the town so that we have something to go at
+_startblds0 = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];
+_startblds1 = _startblds0 select { ((getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "DestructionEffects" >> "Ruin1" >> "type")) != "") and ((count (_x buildingPos -1) > 7) )};
+_startbldtodmg = selectRandom _startblds1;
+_startbldtodmg setdamage 1;
+diag_log format ["*** drlb damaged a %1 at start and waiting for it to sink before carrying on", _startbldtodmg];
+waitUntil {sleep 1;(getpos _startbldtodmg) select 2 < -95};
+
 // get the buildings that sink their good model
 _drlbmaster = []; //master array. [[buriedbld1,ruin1], [buriedbld2,ruin2], ~~~]
 _nearblds = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];// all good buildings whether on surface or sunk

@@ -5,7 +5,7 @@ __tky_starts;
 private ["_bbox0","_bb1","_bb2","_mx1y1","_mx1y2","_mx2y2","_mx2y1","_nrvecs"];
 while {true} do
 	{
-	waitUntil {sleep 5; typeselected isEqualTo "repairlocalbuilding"};
+	waitUntil {sleep 10; typeselected isEqualTo "repairlocalbuilding"};
 	sleep 5;
 	if (testmode) then {diag_log "*** sm_r_a starts because replocbld mission runs"};
 	_bbox0 = boundingBox surfacebld;
