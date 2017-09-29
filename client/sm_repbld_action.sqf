@@ -1,34 +1,23 @@
 //by tankbuster
  #include "..\includes.sqf"
 _myscript = "sm_repbld_action";
-__tky_starts;
-private ["_bbox0","_bb1","_bb2","_mx1y1","_mx1y2","_mx2y2","_mx2y1","_nrvecs"];
+private ["_cwx1y1","_cwx1y2","_cwx2y2","_cwx2y1"];
 while {true} do
 	{
-	waitUntil {sleep 10; typeselected isEqualTo "repairlocalbuilding"};
-	sleep 5;
-	if (testmode) then {diag_log "*** sm_r_a starts because replocbld mission runs"};
-	_bbox0 = boundingBox surfacebld;
-	_bb1 = _bbox0 select 0;
-	_bb2 = _bbox0 select 1;
-
-	_mx1y1 = [_bb1 select 0, _bb1 select 1, _bb1 select 2];// model bottom left
-	_mx1y2 = [_bb1 select 0, _bb2 select 1, _bb1 select 2];// model top left
-	_mx2y2 = [_bb2 select 0, _bb2 select 1, _bb1 select 2];// model top right
-	_mx2y1 = [_bb2 select 0, _bb1 select 1, _bb1 select 2];// model bottom right
-
-	wx1y1 = surfacebld modelToWorld _mx1y1;//world bottom left
-	wx1y2 = surfacebld modelToWorld _mx1y2;//world top left
-	wx2y2 = surfacebld modelToWorld _mx2y2;//world top right
-	wx2y1 = surfacebld modelToWorld _mx2y1;//world bottom right
-	diag_log format ["*** Polygon corners are at %1 %2 %3 %4", wx1y1, wx1y2, wx2y2, wx2y1];
+	waitUntil {sleep 10; startrlbaction};
+	sleep 1;
+	cwx1y1 = missionNamespace getVariable "wx1y1";
+	cwx1y2 = missionNamespace getVariable "wx1y2";
+	cwx2y2 = missionNamespace getVariable "wx2y2";
+	cwx2y1 = missionNamespace getVariable "wx2y1";
+	diag_log format ["*** Polygon corners are at %1 %2 %3 %4", cwx1y1, cwx1y2, cwx2y2, cwx2y1];
 		[
 		surfacebld,
 		"Repair/Rebuild building.",
 		"pics\holdAction_rebuild_ca.paa",
 		"\a3\ui_f\data\IGUI\Cfg\actions\settimer_ca.paa",
-		"(position player) inPolygon [wx1y1, wx1y2, wx2y2, wx2y1]",
-		"(position player) inPolygon [wx1y1, wx1y2, wx2y2, wx2y1]",
+		"(position player) inPolygon [cwx1y1, cwx1y2, cwx2y2, cwx2y1]",
+		"(position player) inPolygon [cwx1y1, cwx1y2, cwx2y2, cwx2y1]",
 		{hint "Repairing building! Hold SPACEBAR down. Don't stand too close."},
 		{},
 		{hint "Repair complete!"; deepbld setdamage 0;},

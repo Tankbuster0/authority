@@ -55,6 +55,24 @@ smmissionstring = (selectRandom _1texts) + _bldscrn + " " + _mtext + ". " + (sel
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 
+_bbox0 = boundingBox _surfacebld;
+_bb1 = _bbox0 select 0;
+_bb2 = _bbox0 select 1;
+
+_mx1y1 = [_bb1 select 0, _bb1 select 1, _bb1 select 2];// model bottom left
+_mx1y2 = [_bb1 select 0, _bb2 select 1, _bb1 select 2];// model top left
+_mx2y2 = [_bb2 select 0, _bb2 select 1, _bb1 select 2];// model top right
+_mx2y1 = [_bb2 select 0, _bb1 select 1, _bb1 select 2];// model bottom right
+
+missionnamespace setvariable ["wx1y1",(surfacebld modelToWorld _mx1y1)];//world bottom left
+missionnamespace setvariable ["wx1y2",(surfacebld modelToWorld _mx1y2)];//world top left
+missionnamespace setvariable ["wx2y2",(surfacebld modelToWorld _mx2y2)];//world top right
+missionnamespace setvariable ["wx2y1",(surfacebld modelToWorld _mx2y1)];//world bottom right
+startrlbaction = true;publicVariable "startrlbaction";
+
+
+
+
 while {missionactive} do
 	{
 	sleep 3;
@@ -72,8 +90,8 @@ while {missionactive} do
 		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
+startrlbaction = false; publicVariable "startrlbaction";
 publicVariable "missionsuccess";
 publicVariable "missionactive";
-typeselected = "none"; publicVariable "typeselected";//<< debug only
 
 __tky_ends
