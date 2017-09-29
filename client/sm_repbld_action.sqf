@@ -6,24 +6,21 @@ while {true} do
 	{
 	waitUntil {sleep 10; startrlbaction};
 	sleep 1;
-	cwx1y1 = missionNamespace getVariable "wx1y1";
-	cwx1y2 = missionNamespace getVariable "wx1y2";
-	cwx2y2 = missionNamespace getVariable "wx2y2";
-	cwx2y1 = missionNamespace getVariable "wx2y1";
-	diag_log format ["*** Polygon corners are at %1 %2 %3 %4", cwx1y1, cwx1y2, cwx2y2, cwx2y1];
+
+	diag_log format ["*** Polygon corners are at %1", polyarray];
 		[
 		surfacebld,
 		"Repair/Rebuild building.",
 		"pics\holdAction_rebuild_ca.paa",
 		"\a3\ui_f\data\IGUI\Cfg\actions\settimer_ca.paa",
-		"(position player) inPolygon [cwx1y1, cwx1y2, cwx2y2, cwx2y1]",
-		"(position player) inPolygon [cwx1y1, cwx1y2, cwx2y2, cwx2y1]",
+		"(position player) inPolygon polyarray",
+		"(position player) inPolygon polyarray",
 		{hint "Repairing building! Hold SPACEBAR down. Don't stand too close."},
 		{},
 		{hint "Repair complete!"; deepbld setdamage 0;},
 		{hint "You didn't finish the building repair!"},
 		[],
-		(if (count (player nearentities [["B_APC_Tracked_01_CRV_F", "B_Truck_01_Repair_F", "Offroad_01_military_base_F", "Offroad_01_repair_base_F",  "O_Truck_03_repair_F"],5]) > 0) then {10} else {20}),
+		(if (count (player nearentities [["B_APC_Tracked_01_CRV_F", "B_Truck_01_Repair_F", "Offroad_01_military_base_F", "Offroad_01_repair_base_F",  "O_Truck_03_repair_F"],5]) > 0) then {6} else {12}),
 		nil,
 		true,
 		false
