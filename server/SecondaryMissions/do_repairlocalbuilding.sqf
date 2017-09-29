@@ -7,6 +7,7 @@ private ["_blacklistedbuildings","_startblds0","_startblds1","_startbldtodmg","_
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F", "Land_House_Small_04_F", "Land_House_Big_01_F","Land_House_Small_06_F", "Land_House_Big_03_F"];
+polyarray = [];
 // Damage a building somewhere in the town so that we have something to go at
 _startblds0 = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];
 _startblds1 = _startblds0 select { ((getText (configFile >> "CfgVehicles" >> (typeOf _x) >> "DestructionEffects" >> "Ruin1" >> "type")) != "") and ((count (_x buildingPos -1) > 7) )};
@@ -64,11 +65,17 @@ _mx1y2 = [_bb1 select 0, _bb2 select 1, _bb1 select 2];// model top left
 _mx2y2 = [_bb2 select 0, _bb2 select 1, _bb1 select 2];// model top right
 _mx2y1 = [_bb2 select 0, _bb1 select 1, _bb1 select 2];// model bottom right
 
-missionnamespace setvariable ["wx1y1",(surfacebld modelToWorld _mx1y1)];//world bottom left
-missionnamespace setvariable ["wx1y2",(surfacebld modelToWorld _mx1y2)];//world top left
-missionnamespace setvariable ["wx2y2",(surfacebld modelToWorld _mx2y2)];//world top right
-missionnamespace setvariable ["wx2y1",(surfacebld modelToWorld _mx2y1)];//world bottom right
+wx1y1 = _surfacebld modelToWorld _mx1y1;//world bottom left
+wx1y2 = _surfacebld modelToWorld _mx1y2;//world top left
+wx2y2 = _surfacebld modelToWorld _mx2y2;//world top right
+wx2y1 = _surfacebld modelToWorld _mx2y1;//world bottom right
+polyarray pushback wx1y1;
+polyarray pushBack wx1y2;
+polyarray pushBack wx2y2;
+polyarray pushBack wx2y1;
+publicVariable "polyarray";
 startrlbaction = true;publicVariable "startrlbaction";
+
 
 
 
