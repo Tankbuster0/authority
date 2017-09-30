@@ -69,6 +69,12 @@ wx1y1 = _surfacebld modelToWorld _mx1y1;//world bottom left
 wx1y2 = _surfacebld modelToWorld _mx1y2;//world top left
 wx2y2 = _surfacebld modelToWorld _mx2y2;//world top right
 wx2y1 = _surfacebld modelToWorld _mx2y1;//world bottom right
+
+wx1y1 set [2,0];
+wx1y2 set [2,0];
+wx2y2 set [2,0];
+wx2y1 set [2,0];
+
 polyarray pushback wx1y1;
 polyarray pushBack wx1y2;
 polyarray pushBack wx2y2;
@@ -76,7 +82,42 @@ polyarray pushBack wx2y1;
 publicVariable "polyarray";
 startrlbaction = true;publicVariable "startrlbaction";
 
+_ox1y1 = wx1y1 getpos [2, (_surfacebld getDir wx1y1)];
+_ox1y2 = wx1y2 getpos [2, (_surfacebld getDir wx1y2)];
+_ox2y2 = wx2y2 getpos [2, (_surfacebld getDir wx2y2)];
+_ox2y1 = wx2y1 getPos [2, (_surfacebld getDir wx2y1)];
 
+_lspos = [(((_ox1y1 select 0) + (_ox1y2 select 0))/2), (((_ox1y1 select 1) + (_ox1y2 select 1))/2), 0]; //left side mid point
+_tspos = [(((_ox1y2 select 0) + (_ox2y2 select 0))/2), (((_ox1y2 select 1) + (_ox2y2 select 1))/2), 0]; // top side mid point
+_rspos = [(((_ox2y2 select 0) + (_ox2y1 select 0))/2), (((_ox2y2 select 1) + (_ox2y1 select 1))/2), 0]; //right side mid point
+_bspos = [(((_ox1y1 select 0) + (_ox2y1 select 0))/2), (((_ox1y1 select 1) + (_ox2y1 select 1))/2), 0]; // bottom mid point
+
+if ((_ox1y1 distance2D _ox1y2) > 2) then
+	{
+	_lscaf = createVehicle ["Land_Scaffolding_F", _lspos, [], 0, "CAN_COLLIDE"];
+	_lscaf setdir (getdir _surfacebld);
+	_lscaf setpos _lspos;
+	diag_log format ["*** drlb left scaf at %1", getpos _lscaf];
+	_rscaf = createVehicle ["Land_Scaffolding_F", _rspos, [], 0, "CAN_COLLIDE"];
+	_rscaf setdir (180 + (getdir _surfacebld));
+	_rscaf setpos _rspos;
+	};
+if ((_ox1y2 distance2D _ox2y2) > 2) then
+	{
+	_tscaf = createVehicle ["Land_Scaffolding_F", _tspos, [], 0, "CAN_COLLIDE"];
+	_tscaf setdir (90 + (getdir _surfacebld));
+	_tscaf setpos _tspos;
+	};
+
+
+
+{
+_rm = createVehicle ["Sign_Arrow_F", _x, [], 0, "CAN_COLLIDE"];
+} forEach [wx1y1,wx1y2,wx2y2,wx2y1];
+
+{
+_bm = createVehicle ["Sign_Arrow_Blue_F", _x, [], 0, "CAN_COLLIDE"];
+} forEach [_ox1y1,_ox1y2,_ox2y2,_ox2y1];
 
 
 
