@@ -3,7 +3,7 @@
 _myscript = "do_kill1man";
 __tky_starts;
 //note this script uses "client\sm_repbld_action" to run the repair action
-private ["_blacklistedbuildings","_startblds0","_startblds1","_startbldtodmg","_drlbmaster","_nearblds","_nearbldsdeep","_goodbpos","_surfacepos","_nearruins","_nearbldssurfaceruin","_foreachindex","_randpair","_deepbld","_surfacebld","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text"];
+private ["_blacklistedbuildings","_startblds0","_startblds1","_startbldtodmg","_drlbmaster","_nearblds","_nearbldsdeep","_goodbpos","_surfacepos","_nearruins","_nearbldssurfaceruin","_foreachindex","_randpair","_deepbld","_surfacebld","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_bbox0","_bb1","_bb2","_mx1y1","_mx1y2","_mx2y2","_mx2y1","_ox1y1","_ox1y2","_ox2y2","_ox2y1","_lspos","_tspos","_rspos","_bspos","_rm","_bm"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F", "Land_House_Small_04_F", "Land_House_Big_01_F","Land_House_Small_06_F", "Land_House_Big_03_F"];
@@ -60,66 +60,49 @@ _bbox0 = boundingBox _surfacebld;
 _bb1 = _bbox0 select 0;
 _bb2 = _bbox0 select 1;
 
-_mx1y1 = [_bb1 select 0, _bb1 select 1, _bb1 select 2];// model bottom left
-_mx1y2 = [_bb1 select 0, _bb2 select 1, _bb1 select 2];// model top left
-_mx2y2 = [_bb2 select 0, _bb2 select 1, _bb1 select 2];// model top right
-_mx2y1 = [_bb2 select 0, _bb1 select 1, _bb1 select 2];// model bottom right
-
-wx1y1 = _surfacebld modelToWorld _mx1y1;//world bottom left
-wx1y2 = _surfacebld modelToWorld _mx1y2;//world top left
-wx2y2 = _surfacebld modelToWorld _mx2y2;//world top right
-wx2y1 = _surfacebld modelToWorld _mx2y1;//world bottom right
+wx1y1 = _surfacebld modelToWorld [_bb1 select 0, _bb1 select 1, _bb1 select 2];//world bottom left
+wx1y2 = _surfacebld modelToWorld [_bb1 select 0, _bb2 select 1, _bb1 select 2];//world top left
+wx2y2 = _surfacebld modelToWorld [_bb2 select 0, _bb2 select 1, _bb1 select 2];//world top right
+wx2y1 = _surfacebld modelToWorld [_bb2 select 0, _bb1 select 1, _bb1 select 2];//world bottom right
 
 wx1y1 set [2,0];
 wx1y2 set [2,0];
 wx2y2 set [2,0];
 wx2y1 set [2,0];
 
-polyarray pushback wx1y1;
-polyarray pushBack wx1y2;
-polyarray pushBack wx2y2;
-polyarray pushBack wx2y1;
-publicVariable "polyarray";
-startrlbaction = true;publicVariable "startrlbaction";
-
-_ox1y1 = wx1y1 getpos [2, (_surfacebld getDir wx1y1)];
-_ox1y2 = wx1y2 getpos [2, (_surfacebld getDir wx1y2)];
-_ox2y2 = wx2y2 getpos [2, (_surfacebld getDir wx2y2)];
-_ox2y1 = wx2y1 getPos [2, (_surfacebld getDir wx2y1)];
+_ox1y1 = wx1y1 getpos [1.5, (_surfacebld getDir wx1y1)];
+_ox1y2 = wx1y2 getpos [1.5, (_surfacebld getDir wx1y2)];
+_ox2y2 = wx2y2 getpos [1.5, (_surfacebld getDir wx2y2)];
+_ox2y1 = wx2y1 getPos [1.5, (_surfacebld getDir wx2y1)];
 
 _lspos = [(((_ox1y1 select 0) + (_ox1y2 select 0))/2), (((_ox1y1 select 1) + (_ox1y2 select 1))/2), 0]; //left side mid point
 _tspos = [(((_ox1y2 select 0) + (_ox2y2 select 0))/2), (((_ox1y2 select 1) + (_ox2y2 select 1))/2), 0]; // top side mid point
 _rspos = [(((_ox2y2 select 0) + (_ox2y1 select 0))/2), (((_ox2y2 select 1) + (_ox2y1 select 1))/2), 0]; //right side mid point
 _bspos = [(((_ox1y1 select 0) + (_ox2y1 select 0))/2), (((_ox1y1 select 1) + (_ox2y1 select 1))/2), 0]; // bottom mid point
 
-if ((_ox1y1 distance2D _ox1y2) > 2) then
-	{
-	_lscaf = createVehicle ["Land_Scaffolding_F", _lspos, [], 0, "CAN_COLLIDE"];
-	_lscaf setdir (getdir _surfacebld);
-	_lscaf setpos _lspos;
-	diag_log format ["*** drlb left scaf at %1", getpos _lscaf];
-	_rscaf = createVehicle ["Land_Scaffolding_F", _rspos, [], 0, "CAN_COLLIDE"];
-	_rscaf setdir (180 + (getdir _surfacebld));
-	_rscaf setpos _rspos;
-	};
-if ((_ox1y2 distance2D _ox2y2) > 2) then
-	{
-	_tscaf = createVehicle ["Land_Scaffolding_F", _tspos, [], 0, "CAN_COLLIDE"];
-	_tscaf setdir (90 + (getdir _surfacebld));
-	_tscaf setpos _tspos;
-	};
+polyarray pushback _ox1y1;
+polyarray pushBack _ox1y2;
+polyarray pushBack _ox2y2;
+polyarray pushBack _ox2y1;
+publicVariable "polyarray";
+startrlbaction = true;publicVariable "startrlbaction";
 
-
-
-{
-_rm = createVehicle ["Sign_Arrow_F", _x, [], 0, "CAN_COLLIDE"];
-} forEach [wx1y1,wx1y2,wx2y2,wx2y1];
-
-{
-_bm = createVehicle ["Sign_Arrow_Blue_F", _x, [], 0, "CAN_COLLIDE"];
-} forEach [_ox1y1,_ox1y2,_ox2y2,_ox2y1];
-
-
+lscaf = createVehicle ["Land_Scaffolding_F", _lspos, [], 0, "CAN_COLLIDE"];
+lscaf setdir (getdir _surfacebld);
+lscaf setpos _lspos;
+lscaf setVectorUp [0,0,1];
+rscaf = createVehicle ["Land_Scaffolding_F", _rspos, [], 0, "CAN_COLLIDE"];
+rscaf setdir (180 + (getdir _surfacebld));
+rscaf setpos _rspos;
+rscaf setVectorUp [0,0,1];
+tscaf = createVehicle ["Land_Scaffolding_F", _tspos, [], 0, "CAN_COLLIDE"];
+tscaf setdir (90 + (getdir _surfacebld));
+tscaf setpos _tspos;
+tscaf setVectorUp [0,0,1];
+bscaf = createVehicle ["Land_Scaffolding_F", _bspos, [], 0, "CAN_COLLIDE"];
+bscaf setdir (270 + (getdir _surfacebld));
+bscaf setpos _bspos;
+bscaf setVectorUp [0,0,1];
 
 while {missionactive} do
 	{
