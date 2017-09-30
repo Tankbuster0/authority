@@ -5,7 +5,7 @@ private ["_cwx1y1","_cwx1y2","_cwx2y2","_cwx2y1"];
 while {true} do
 	{
 	waitUntil {sleep 10; startrlbaction};
-	sleep 1;
+	sleep 0.5;
 
 	diag_log format ["*** Polygon corners are at %1", polyarray];
 		[
