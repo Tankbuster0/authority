@@ -116,7 +116,7 @@ while {missionactive} do
 		{
 		missionsuccess = true;
 		missionactive = false;
-		"Dudes. You rock! Mission successful. Yey." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+		"The building was repaired. Well done. This will improve our reputation here." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		};
 	};
 startrlbaction = false; publicVariable "startrlbaction";
