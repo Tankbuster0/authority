@@ -3,7 +3,7 @@
 _myscript = "do_kill1man";
 __tky_starts;
 //note this script uses "client\sm_repbld_action" to run the repair action
-private ["_blacklistedbuildings","_smcleanup","_startblds0","_startblds1","_startbldtodmg","_drlbmaster","_nearblds","_nearbldsdeep","_goodbpos","_surfacepos","_nearruins","_nearbldssurfaceruin","_foreachindex","_randpair","_deepbld","_surfacebld","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_bbox0","_bb1","_bb2","_wx1y1","_wx1y2","_wx2y2","_wx2y1","_ox1y1","_ox1y2","_ox2y2","_ox2y1","_lspos","_tspos","_rspos","_bspos"];
+private ["_blacklistedbuildings","_smcleanup","_startblds0","_startblds1","_startbldtodmg","_drlbmaster","_nearblds","_nearbldsdeep","_goodbpos","_surfacepos","_nearruins","_nearbldssurfaceruin","_foreachindex","_randpair","_deepbld","_surfacebld","_bldscrn","_bldpos","_mtext","_1texts","_2texts","_3text","_bbox0","_bb1","_bb2","_wx1y1","_wx1y2","_wx2y2","_wx2y1","_ox1y1","_ox1y2","_ox2y2","_ox2y1","_lspos","_tspos","_rspos","_bspos", "_nrobs"];
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 _blacklistedbuildings = ["Land_SCF_01_heap_bagasse_f", "land_slum_01_f", "land_slum_03_f", "Land_House_Small_03_F", "Land_House_Small_04_F", "Land_House_Big_01_F","Land_House_Small_06_F", "Land_House_Big_03_F"];
@@ -76,11 +76,21 @@ polyarray pushBack _ox2y2;
 polyarray pushBack _ox2y1;
 publicVariable "polyarray";
 startrlbaction = true;publicVariable "startrlbaction";
-_nrobs = nearestTerrainObjects [getpos _startbldtodmg, ["TREE","BUSH", "SMALL TREE", "ROCK", "ROCKS"], 5 + (sizeOf _startbldtodmg)];
+_nrobs = nearestTerrainObjects [getpos _startbldtodmg, ["TREE","BUSH", "SMALL TREE", "ROCK", "ROCKS"], 10 + (sizeOf _startbldtodmg)];
 diag_log format ["*** drlb is going to remove %1 trees and bushes etc", count _nrobs];
 {
 if ((getpos _x) inPolygon polyarray) then {hideObjectGlobal _x};
 } foreach _nrobs; // hide all the rocks and trees that might foul the scaffolding
+
+_cone1 = createVehicle ["RoadCone_L_F", _ox1y1, [],0, "NONE"];
+smcleanup pushBack _cone1;
+_cone2 = createVehicle ["RoadCone_L_F", _ox1y2, [],0, "NONE"];
+smcleanup pushback _cone2;
+_cone3 = createVehicle ["RoadCone_L_F", _ox2y2, [],0, "NONE"];
+smcleanup pushBack _cone3;
+_cone4 = createVehicle ["RoadCone_L_F", _ox2y1, [],0, "NONE"];
+smcleanup pushBack _cone4;
+
 lscaf = createVehicle ["Land_Scaffolding_F", _lspos, [], 0, "CAN_COLLIDE"];
 lscaf setdir (getdir _surfacebld);
 lscaf setpos _lspos;
