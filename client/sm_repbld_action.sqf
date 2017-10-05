@@ -28,6 +28,7 @@ while {true} do
 		true,
 		false
 		] call BIS_fnc_holdActionAdd;
+	// wait until player gets down from scaf (or dies) , then delete it?
 	waitUntil {sleep 5; !missionactive};
 	};
 

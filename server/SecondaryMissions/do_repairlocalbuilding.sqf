@@ -76,7 +76,7 @@ polyarray pushBack _ox2y2;
 polyarray pushBack _ox2y1;
 publicVariable "polyarray";
 startrlbaction = true;publicVariable "startrlbaction";
-_nrobs = nearestTerrainObjects [getpos _startbldtodmg, ["TREE","BUSH", "SMALL TREE", "ROCK", "ROCKS"], 10 + (sizeOf _startbldtodmg)];
+_nrobs = nearestTerrainObjects [_startbldtodmg, ["TREE","BUSH", "SMALL TREE", "ROCK", "ROCKS"], (10 + (sizeOf (typeof _startbldtodmg)))];
 diag_log format ["*** drlb is going to remove %1 trees and bushes etc", count _nrobs];
 {
 if ((getpos _x) inPolygon polyarray) then {hideObjectGlobal _x};
