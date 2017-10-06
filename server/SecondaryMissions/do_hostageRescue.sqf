@@ -46,7 +46,7 @@ private _floorRand = floor (random 2);
 private _hostageAnimations = ["Acts_AidlPsitMstpSsurWnonDnon_loop", "Acts_ExecutionVictim_Loop"];
 private _hostageAnimation = selectRandom _hostageAnimations;
 
-private _numHostages = 3 + (ceil (random 3));
+private _numHostages = 2 + (ceil (random 2));
 
 aliveHostages = _numHostages;
 publicVariable "aliveHostages";
@@ -95,7 +95,7 @@ _alarmSpeakers addEventHandler ["Hit",
 }];
 
 private _enemySpotted = false;
-
+/*
 [_alarmSpeakers, _soundSource, _lightSource, _enemyGroup, _enemySpotted] spawn
 {
 	params
@@ -136,26 +136,16 @@ private _enemySpotted = false;
 		sleep 3.43;
 	};
 };
-
+*/
 {
 	[_x] joinSilent grpNull;
 	_hostagePos set [0, ((_hostagePos select 0) + 2)];
 	_x setPosATL _hostagePos;
 } forEach _hostages;
+diag_log format ["*** dhr says hostages %1", _hostages];
 
-[_hostages, _alarmSpeakers, _soundSource, _lightSource, _cleanup] spawn
-{
-	params
-	[
-		["_hostages", []],
-		["_alarmSpeakers", objNull],
-		["_soundSource", objNull],
-		["_lightSource", objNull],
-		["_cleanup", objNull]
-	];
-	if ((_hostages isEqualTo [])) exitWith {};
 	private _rescuedHostages = 0;
-	while {(missionactive)} do
+	while {missionactive} do
 	{
 		sleep 4;
 		if ((aliveHostages < 2)) exitWith
@@ -165,18 +155,15 @@ private _enemySpotted = false;
 				_x setDamage 1;
 				deleteVehicle _x;
 			} forEach _hostages;
-			{
-				deleteVehicle _x;
-			} forEach [_alarmSpeakers, _soundSource, _lightSource];
 			missionsuccess = false;
 			publicVariable "missionsuccess";
 			missionactive = false;
 			publicVariable "missionactive";
-
+			diag_log format ["*** dhr fails mission because some have died"];
 			failText = "Mission failed. One or more hostages were killed.";
 			publicVariable "failText";
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-			[_cleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
+
 		};
 		{
 			if ((_x distance2D ammobox < 11) && {((vehicle _x) isEqualTo _x) && (alive _x) && (isTouchingGround _x)}) then
@@ -194,9 +181,9 @@ private _enemySpotted = false;
 			completionText = "Mission completed. At least two hostages were rescued.";
 			publicVariable "completionText";
 			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-			[_cleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 		};
 	};
-};
+diag_log format ["***dhr drops out of main loop, presumably becuae mission not active"];
+
 
 __tky_ends;
