@@ -221,7 +221,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 				foundairfields pushback _logic;
 			};
 
-			if (testmode) then
+			if (false) then
 				{
 				_mname2 = format ["smn%1", _foreachindex];
 				_mkr2 = createMarker [_mname2, _targetLocation];
