@@ -18,7 +18,7 @@ publicVariable "missionactive";
 missionsuccess = false;
 publicVariable "missionsuccess";
 
-private _potentialStarts = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 1500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
+private _potentialStarts = (cpt_position nearEntities ["Logic", 3000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
 private _start = selectRandom _potentialStarts;
 private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
 
@@ -55,16 +55,19 @@ private _hostages = [];
 
 for "_i" from 0 to (_numHostages - 1) do
 {
+	sleep 0.5;
 	private _hostage = _hostageGroup createUnit [(_hostageClassname select _floorRand), _spawnPos, [], 0, "FORM"];
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
 	_hostage addEventHandler ["Killed", {aliveHostages = aliveHostages - 1; publicVariable "aliveHostages";}];
 	_hostageAnimation = selectRandom _hostageAnimations;
-	[_hostage, (format ["hostage%1", (_i + 1)])] call fnc_setVehicleName;
+	[_hostage, (format ["hostage%1", _i])] call fnc_setVehicleName;
+	sleep 0.1;
 	_hostages pushBack _hostage;
-	[_hostage, _hostages] spawn tky_fnc_followLeader;
+	[_hostage] spawn tky_fnc_followLeader;
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
+	diag_log format ["***dhr makes hostage %1, %2", _i, _hostage];
 };
 
 private _hostagePos = getPosATL hostage1;
@@ -95,48 +98,7 @@ _alarmSpeakers addEventHandler ["Hit",
 }];
 
 private _enemySpotted = false;
-/*
-[_alarmSpeakers, _soundSource, _lightSource, _enemyGroup, _enemySpotted] spawn
-{
-	params
-	[
-		["_alarmSpeakers", objNull],
-		["_soundSource", objNull],
-		["_lightSource", objNull],
-		["_enemyGroup", objNull],
-		["_enemySpotted", objNull]
-	];
-	if ((isNull _alarmSpeakers) || (isNull _soundSource) || (isNull _lightSource)) exitWith {};
-	waitUntil {(((((leader _enemyGroup) targetsQuery [objNull, blufor, "", [], 0]) select 0) select 0) > 0.4)};
-	while {(missionactive)} do
-	{
-		if ((!isNull _lightSource)) then
-		{
-			[_lightSource, [255, 0, 0]] remoteExec ["setLightAmbient", 0, false];
-			[_lightSource, [255, 0, 0]] remoteExec ["setLightColor", 0, false];
-			[_lightSource, 0.025] remoteExec ["setLightBrightness", 0, false];
-		};
-		if ((!alive _alarmSpeakers) || (getDammage _alarmSpeakers >= 0.15)) then
-		{
-			deleteVehicle _soundSource;
-			[_lightSource, [0, 0, 0]] remoteExec ["setLightAmbient", 0, false];
-			[_lightSource, [0, 0, 0]] remoteExec ["setLightColor", 0, false];
-			[_lightSource, 0] remoteExec ["setLightBrightness", 0, false];
-		} else
-		{
-			[_soundSource, ["Alarm_BLUFOR", 125, 1]] remoteExec ["say3D", ([0, -2] select isDedicated), false];
-		};
-		sleep 3.43;
-		if ((!isNull _lightSource)) then
-		{
-			[_lightSource, [0, 0, 0]] remoteExec ["setLightAmbient", 0, false];
-			[_lightSource, [0, 0, 0]] remoteExec ["setLightColor", 0, false];
-			[_lightSource, 0] remoteExec ["setLightBrightness", 0, false];
-		};
-		sleep 3.43;
-	};
-};
-*/
+
 {
 	[_x] joinSilent grpNull;
 	_hostagePos set [0, ((_hostagePos select 0) + 2)];
@@ -147,7 +109,7 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 	private _rescuedHostages = 0;
 	while {missionactive} do
 	{
-		sleep 4;
+		sleep 2;
 		if ((aliveHostages < 2)) exitWith
 		{
 			{
@@ -165,8 +127,9 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
 		};
+		_rescuedHostages = 0;
 		{
-			if ((_x distance2D ammobox < 11) && {((vehicle _x) isEqualTo _x) && (alive _x) && (isTouchingGround _x)}) then
+			if ((_x inArea "headmarker1") && {((vehicle _x) isEqualTo _x) && (alive _x) && (isTouchingGround _x)}) then
 			{
 				_rescuedHostages = _rescuedHostages + 1;
 			};
@@ -181,6 +144,7 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 			completionText = "Mission completed. At least two hostages were rescued.";
 			publicVariable "completionText";
 			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			diag_log format ["*** dhr succeeds. yey"];
 		};
 	};
 diag_log format ["***dhr drops out of main loop, presumably becuae mission not active"];
