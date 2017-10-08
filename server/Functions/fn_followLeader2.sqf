@@ -14,12 +14,11 @@ params
 private _resqleader = objNull;
 private _resqvec = objNull;
 private _return = false;
-
 waitUntil
 {
 	sleep 0.5;
 	{
-		if (((_hostage distance2D _x) < 8) && (isPlayer _x)) then
+		if (((hostage0 distance2D _x) < 8) && (isPlayer _x)) then
 		{
 			_return = true;
 			_resqleader = _x;
@@ -30,11 +29,11 @@ waitUntil
 	} forEach allPlayers;
 	_return
 };
-diag_log format ["*** fnfl %2 released hostages", _hostage, _resqleader];
+diag_log format ["*** fnfl %2 released hostages", _hostages, _resqleader];
 {
-[_x, ""] remoteExec ["switchMove", 0, false];
-_x enableAI "ALL";
-_x doMove (getPosATL _resqleader);
+	[_x, ""] remoteExec ["switchMove", 0, false];
+	_x enableAI "ALL";
+	_x doMove (getPosATL _resqleader);
 } forEach _hostages;
 private _resqleaderinvehicle = false;
 private _assignvecdone = false;
@@ -43,20 +42,18 @@ private _cargoPositions = 0;
 
 while {(missionactive)} do
 {
-
 	if ( (not _resqleaderinvehicle) and {vehicle _resqleader != _resqleader}) then
 	{//hes in vec but in flag is false ie, hes just got in
 		_resqleaderinvehicle = true;
 		_resqvec = vehicle _resqleader;
 		diag_log "***fnfl2 says resqleader just got in vec";
 	};
-	if ((vehicle _resqleader isEqualTo _resqleader) and {_resqleaderinvehicle})
+	if ((vehicle _resqleader isEqualTo _resqleader) and {_resqleaderinvehicle}) then
 	{// hes not in vec, but flag is true ie, hes just got out
 		_resqleaderinvehicle = false;
 		_resqvec = objNull;
 		diag_log "***fnfl2 says reqleader just got out";
 	};
-
 
 	if ((_resqleaderinvehicle) and {not _assignvecdone}) then
 	{//resql in the vec but hostages not yet assigned
@@ -78,9 +75,9 @@ while {(missionactive)} do
 	};
 
 	{
-		if (_x isEqualTo vehicle _x) and (_domoveelapsedtime > 10) then
+		if ( (_x isEqualTo vehicle _x) and {_domoveelapsedtime > 10} ) then
 			{// each hostage given the domove every once every 10 cycles if host is on ground
-				_x doMove _resqleader;
+				_x doMove (getpos _resqleader);
 				diag_log format ["**** doMove given to %1", _x];
 				_domoveelapsedtime = 0;
 			};
