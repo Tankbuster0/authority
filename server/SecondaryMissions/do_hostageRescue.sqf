@@ -65,12 +65,12 @@ for "_i" from 0 to (_numHostages - 1) do
 	[_hostage, (format ["hostage%1", _i])] call fnc_setVehicleName;
 	sleep 0.1;
 	_hostages pushBack _hostage;
-	[_hostage] spawn tky_fnc_followLeader;
+	//[_hostage] spawn tky_fnc_followLeader;
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
 	diag_log format ["***dhr makes hostage %1, %2", _i, _hostage];
 };
-
-private _hostagePos = getPosATL hostage1;
+[_hostages] spawn tky_fnc_followLeader2;
+private _hostagePos = getPosATL hostage0;
 
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnPos, [], 0, "CAN_COLLIDE"];
 
