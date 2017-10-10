@@ -1,12 +1,8 @@
 scriptName "fn_followLeader2";
-
 //By Tankbuster
 __tky_starts
  #include "..\includes.sqf"
-#define __FILENAME "fn_followLeader.sqf"
-
-if ((!isServer)) exitWith {};
-
+#define __FILENAME "fn_followLeader2.sqf"
 params
 [
 	["_hostages", objNull]
@@ -41,6 +37,14 @@ private _cargoPositions = 0;
 
 while {(missionactive)} do
 {
+	switch (true) do
+	{
+		case (vehicle _x != _x): {_x setVariable ["mode", "invec", true]};
+		case (_x inArea "headmarker1")
+
+
+	}
+
 	if ( (not _resqleaderinvehicle) and {vehicle _resqleader != _resqleader}) then
 	{//hes in vec but in flag is false ie, hes just got in
 		_resqleaderinvehicle = true;
@@ -72,7 +76,6 @@ while {(missionactive)} do
 		_assignvecdone = false;
 		[_hostages] orderGetIn false;
 	};
-
 	{
 		if ( (_x isEqualTo vehicle _x) and {_domoveelapsedtime > 10} ) then
 			{// each hostage given the domove every once every 10 cycles if host is on ground
@@ -85,7 +88,6 @@ while {(missionactive)} do
 				_domoveelapsedtime = _domoveelapsedtime +1;
 			};
 	}foreach _hostages;
-
 	sleep 1;
 };
 __tky_end
