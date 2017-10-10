@@ -32,6 +32,7 @@ diag_log format ["*** fnfl %2 released hostages", _hostages, _resqleader];
 	[_x, ""] remoteExec ["switchMove", 0, false];
 	_x enableAI "ALL";
 	_x doMove (getPosATL _resqleader);
+	_x setVariable ["mode", "following", true];
 } forEach _hostages;
 private _resqleaderinvehicle = false;
 private _assignvecdone = false;
