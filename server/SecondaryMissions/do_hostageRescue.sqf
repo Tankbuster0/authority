@@ -66,6 +66,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	sleep 0.1;
 	_hostages pushBack _hostage;
 	//[_hostage] spawn tky_fnc_followLeader;
+	_hostage setVariable ["mode", "captured", true];
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
 	diag_log format ["***dhr makes hostage %1, %2", _i, _hostage];
 };
