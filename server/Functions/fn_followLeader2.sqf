@@ -1,7 +1,7 @@
 scriptName "fn_followLeader2";
 
 //By Tankbuster
-
+__tky_starts
  #include "..\includes.sqf"
 #define __FILENAME "fn_followLeader.sqf"
 
@@ -11,9 +11,7 @@ params
 [
 	["_hostages", objNull]
 ];
-private _resqleader = objNull;
-private _resqvec = objNull;
-private _return = false;
+private _resqleader = objNull; private _resqvec = objNull; private _return = false;
 waitUntil
 {
 	sleep 0.5;
@@ -86,36 +84,7 @@ while {(missionactive)} do
 				_domoveelapsedtime = _domoveelapsedtime +1;
 			};
 	}foreach _hostages;
-/*
 
-	if ((vehicle _hostage isEqualTo _hostage) and {_resqleaderinvehicle}) then
-	{
-		_cargoPositions = _resqvec emptyPositions "cargo";
-		if ((_cargoPositions > 0)) then
-		{
-			doStop _hostage;
-			_hostage assignAsCargo _resqvec;
-			[_hostage] orderGetIn true;
-			diag_log format ["***fnfl hostage %1 gets in %2", _hostage, vehicle _resqleader];
-			waitUntil {vehicle _hostage != _hostage};
-		};
-	}
-	else
-	{
-		_hostage doMove (getPosATL _resqleader);
-		diag_log format ["***fnfl tells %1 to doMove %2", _hostage, _resqleader];
-		sleep 3;
-	};
-	if ((vehicle _hostage != _hostage) and {isNull (driver vehicle _hostage)})then
-		{
-			{
-			_hostage leaveVehicle _resqvec;
-			diag_log format ["***fnfl hostage %1 leaveVehicle %2", _hostage, _resqvec];
-			};
-
-		};
-	if ({isPlayer _x} count (crew _resqvec) < 1) then {_resqvec = objNull};
-
-*/
 	sleep 1;
 };
+__tky_end
