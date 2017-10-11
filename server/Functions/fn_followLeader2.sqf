@@ -81,12 +81,20 @@ while {(missionactive)} do
 
 	{
 		if ((_x getVariable "mode") isEqualTo "waiting") then
-			{
-			if (_x nearEntities ["SolderWB"])//<<<<<<<<<<<<got to here
-
+			{// waiting hostages wait for a new resqr
+				if ( isplayer((_x nearEntities ["SoldierWB", 8]) select 0) ) then
+					{
+						_resqleader = (_x nearEntities ["SoldierWB", 8]) select 0;
+						_x doMove (getPosATL _resqleader);
+						_x setVariable ["mode", "following", true];
+					};
 			};
-
-		if ( (_x isEqualTo vehicle _x) and {_domoveelapsedtime > 10} ) then
+		if ((not isNull _resqleader) and {not alive _resqleader}) then
+			{// if resqleader dies, hostages stop following and dismount (they might not actually be ina vehicle, but nvm)
+				_x setVariable ["mode", "waiting", true];
+				_x leaveVehicle vehicle _x;
+			}
+		if ( (_x isEqualTo vehicle _x) and {(_domoveelapsedtime > 10) and (_x getVariable "mode" isEqualTo "following")} ) then
 			{// each hostage given the domove every once every 10 cycles if host is on ground
 				_x doMove (getpos _resqleader);
 				diag_log format ["**** doMove given to %1", _x];
