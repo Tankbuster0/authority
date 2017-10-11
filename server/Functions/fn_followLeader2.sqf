@@ -64,7 +64,7 @@ while {(missionactive)} do
 			_x doMove (getpos _x);
 			_x doStop;
 			_x assignAsCargo _resqvec;
-			diag_log format ["*** %1 is in vec role %1", _x, assignedVehicleRole _x];
+			diag_log format ["*** %1 is in %3 role %2", _x, assignedVehicleRole _x, assignedVehicle _x];
 		} foreach _hostages;
 		_assignvecdone = true;
 		[_hostages] orderGetIn true;
