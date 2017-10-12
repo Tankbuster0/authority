@@ -71,9 +71,10 @@ while {(missionactive)} do
 	};
 	if ((not _resqleaderinvehicle) and {_assignvecdone}) then
 	{// resql not in the vec, but hostages still assigned in it
-		{
+		{// make them getout, then set mode to waiting. (if the resqldr is nearby, they'll quickly get set to following)
 			unassignVehicle _x;
 			diag_log format ["*** %1 unassigned to %3 and role is %2", _x, assignedVehicleRole _x, assignedVehicle _x];
+			_x setVariable ["mode", "waiting", true];
 		}foreach _hostages;
 		_assignvecdone = false;
 		[_hostages] orderGetIn false;
