@@ -42,7 +42,7 @@ while {(missionactive)} do
 		case (vehicle _x != _x): {_x setVariable ["mode", "invec", true]};
 		case (_x inArea "headmarker1"): {_x setVariable ["mode", "resqd", true]};
 		case ((not alive resqleader) or (_x distance2d resqleader > 100)): {_x setVariable ["mode", "waiting", true]};
-		case (not (isNull _resqvec) and {damage _resqvec > 0.9}): // not sure
+		case (not (isNull _resqvec) and {damage _resqvec > 0.9}): {};// not sure
 	};
 	if ( (not _resqleaderinvehicle) and {vehicle _resqleader != _resqleader}) then
 	{//hes in vec but in flag is false ie, hes just got in
@@ -62,7 +62,7 @@ while {(missionactive)} do
 	{//resql in the vec but hostages not yet assigned
 		{
 			_x doMove (getpos _x);
-			_x doStop;
+			doStop _x;
 			_x assignAsCargo _resqvec;
 			diag_log format ["*** %1 is in %3 role %2", _x, assignedVehicleRole _x, assignedVehicle _x];
 		} foreach _hostages;
@@ -94,7 +94,7 @@ while {(missionactive)} do
 			{// if resqleader dies or quits, hostages stop following and dismount (they might not actually be ina vehicle, but nvm)
 				_x setVariable ["mode", "waiting", true];
 				_x leaveVehicle vehicle _x;
-			}
+			};
 		if ( (_x isEqualTo vehicle _x) and {(_domoveelapsedtime > 10) and (_x getVariable "mode" isEqualTo "following")} ) then
 			{// each hostage given the domove every once every 10 cycles if host is on ground
 				_x doMove (getpos _resqleader);
