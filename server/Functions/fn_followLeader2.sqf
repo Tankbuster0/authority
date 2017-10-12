@@ -90,8 +90,8 @@ while {(missionactive)} do
 						_x setVariable ["mode", "following", true];
 					};
 			};
-		if ((not isNull _resqleader) and {not alive _resqleader}) then
-			{// if resqleader dies, hostages stop following and dismount (they might not actually be ina vehicle, but nvm)
+		if ( ((not isNull _resqleader) and (not alive _resqleader)) or (pdflag and (whodiscd isEqualTo _resqleader)) ) then
+			{// if resqleader dies or quits, hostages stop following and dismount (they might not actually be ina vehicle, but nvm)
 				_x setVariable ["mode", "waiting", true];
 				_x leaveVehicle vehicle _x;
 			}

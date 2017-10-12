@@ -21,6 +21,7 @@ sleep 0.5;
 primarytargetcounter = 1;
 previousmission = locationNull;
 foundairfields = [];
+pdflag = false;
 [] spawn //moving markers on forward and fob
 	{
 	while {true} do

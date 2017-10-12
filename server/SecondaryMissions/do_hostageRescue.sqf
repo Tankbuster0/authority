@@ -1,22 +1,11 @@
 scriptName "do_hostageRescue";
-
-/*
-	Code written by Haz
-*/
-
+/*	Code written by Haz, edited by Tankbuster*/
 #define __FILENAME "do_hostageRescue.sqf"
-
 if ((!isServer)) exitWith {};
-
 #include "..\includes.sqf"
-
 __tky_starts;
-
-missionactive = true;
-publicVariable "missionactive";
-
-missionsuccess = false;
-publicVariable "missionsuccess";
+missionactive = true; publicVariable "missionactive";
+missionsuccess = false; publicVariable "missionsuccess";
 
 private _potentialStarts = (cpt_position nearEntities ["Logic", 3000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
 private _start = selectRandom _potentialStarts;
