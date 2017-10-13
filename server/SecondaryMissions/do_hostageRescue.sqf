@@ -3,10 +3,10 @@ scriptName "do_hostageRescue";
 #define __FILENAME "do_hostageRescue.sqf"
 if ((!isServer)) exitWith {};
 #include "..\includes.sqf"
-__tky_starts;
+__tky_starts
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-
+private _smcleanup = [];
 private _potentialStarts = (cpt_position nearEntities ["Logic", 3000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
 private _start = selectRandom _potentialStarts;
 private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
@@ -19,11 +19,9 @@ publicVariable "smmissionstring";
 
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
-_cleanup = [];
-
 private _enemyGroup = [_spawnPos, opfor, (configFile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> "O_T_InfTeam")] call BIS_fnc_spawnGroup;
 [_enemyGroup, (getPos (leader _enemyGroup))] call BIS_fnc_taskDefend;
-_cleanup pushBack _enemyGroup;
+_smcleanup pushBack _enemyGroup;
 
 private _hostageGroup = createGroup blufor;
 
@@ -54,7 +52,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	[_hostage, (format ["hostage%1", _i])] call fnc_setVehicleName;
 	sleep 0.1;
 	_hostages pushBack _hostage;
-	//[_hostage] spawn tky_fnc_followLeader;
+	_smcleanup pushBack _hostage;
 	_hostage setVariable ["mode", "captured", true];
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
 	diag_log format ["***dhr makes hostage %1, %2", _i, _hostage];
@@ -139,5 +137,5 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 	};
 diag_log format ["***dhr drops out of main loop, presumably becuae mission not active"];
 
-
+[_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends;
