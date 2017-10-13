@@ -1,13 +1,11 @@
-scriptName "fn_followLeader2";
 //By Tankbuster
+#include "..\includes.sqf"
 __tky_starts
- #include "..\includes.sqf"
-#define __FILENAME "fn_followLeader2.sqf"
 params
 [
 	["_hostages", objNull]
 ];
-private _resqleader = objNull; private _resqvec = objNull; private _return = false;
+private _resqleader = objNull; private _resqvec = objNull; private _return = false; whodiscd= objNull;
 waitUntil
 {
 	sleep 0.5;
@@ -34,16 +32,18 @@ private _resqleaderinvehicle = false;
 private _assignvecdone = false;
 private _domoveelapsedtime = 0;
 private _cargoPositions = 0;
-
+//modes are captured, waiting, invec, following, resqd
 while {(missionactive)} do
 {
-	switch (true) do
 	{
-		case (vehicle _x != _x): {_x setVariable ["mode", "invec", true]};
-		case (_x inArea "headmarker1"): {_x setVariable ["mode", "resqd", true]};
-		case ((not alive resqleader) or (_x distance2d resqleader > 100)): {_x setVariable ["mode", "waiting", true]};
-		case (not (isNull _resqvec) and {damage _resqvec > 0.9}): {};// not sure
-	};
+		switch (true) do
+		{
+			//case (vehicle _x != _x): {_x setVariable ["mode", "invec", true]};
+			case (_x inArea "headmarker1"): {_x setVariable ["mode", "resqd", true]};
+			case ((not alive _resqleader) or (_x distance2d _resqleader > 100)): {_x setVariable ["mode", "waiting", true]};
+			case (not (isNull _resqvec) and {damage _resqvec > 0.9}): {};// not sure
+		};
+	} forEach _hostages;
 	if ( (not _resqleaderinvehicle) and {vehicle _resqleader != _resqleader}) then
 	{//hes in vec but in flag is false ie, hes just got in
 		_resqleaderinvehicle = true;
@@ -61,13 +61,20 @@ while {(missionactive)} do
 	if ((_resqleaderinvehicle) and {not _assignvecdone}) then
 	{//resql in the vec but hostages not yet assigned
 		{
-			_x doMove (getpos _x);
-			doStop _x;
+			//_x doMove (getpos _x);
+			//doStop _x;
 			_x assignAsCargo _resqvec;
+			//[_x orderGetIn true];
+			sleep 0.1;
 			diag_log format ["*** %1 is in %3 role %2", _x, assignedVehicleRole _x, assignedVehicle _x];
+			if (not (isNull assignedVehicle _x)) then
+				{
+					_x setVariable ["mode", "invec",true];
+					[_x] orderGetIn true;
+				};
 		} foreach _hostages;
 		_assignvecdone = true;
-		[_hostages] orderGetIn true;
+		//[_hostages] orderGetIn true;
 	};
 	if ((not _resqleaderinvehicle) and {_assignvecdone}) then
 	{// resql not in the vec, but hostages still assigned in it
@@ -108,4 +115,4 @@ while {(missionactive)} do
 	}foreach _hostages;
 	sleep 1;
 };
-__tky_end
+__tky_ends
