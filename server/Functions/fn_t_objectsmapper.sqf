@@ -181,6 +181,7 @@ _multiplyMatrixFunc =
 		};
 		if (!isNil "_init") then {_newObj call (compile ("this = _this; " + _init));}; //TODO: remove defining this hotfix?
 		if (!isNil "_simulation") then {_newObj enableSimulation _simulation; _newObj setVariable ["BIS_DynO_simulation", _simulation];};
+		if (_newObj isKindOf "FirePlace_burning_F") then {_newObj setpos [(getpos _newObj) select 0, (getpos _newObj) select 1, 0]};
 		_newObjs = _newObjs + [_newObj];
 	};
 } forEach _objs;
