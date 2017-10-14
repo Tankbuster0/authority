@@ -16,30 +16,23 @@ _spawnPos =  [_start, 0, 400, 15, 0, 0.5, 0 , 0, 1] call tky_fnc_findsafepos;
 _loctext = [_spawnPos] call tky_fnc_distanddirfromtown;
 smmissionstring = format ["A group of hostiles are holed up %1 with at least a couple of hostages. Eliminate all hostile threats and save the hostages by bringing them safely back to base.", _loctext];
 publicVariable "smmissionstring";
-
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-
 private _enemyGroup = [_spawnPos, opfor, (configFile >> "CfgGroups" >> "East" >> "OPF_T_F" >> "Infantry" >> "O_T_InfTeam")] call BIS_fnc_spawnGroup;
 [_enemyGroup, (getPos (leader _enemyGroup))] call BIS_fnc_taskDefend;
 _smcleanup pushBack _enemyGroup;
-
 private _hostageGroup = createGroup blufor;
-
-private _hostageClassnames = [["B_officer_F", "B_helicrew_F", "B_crew_F"], ["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"], ["B_GEN_Soldier_F","B_GEN_Commander_F", "B_GEN_Soldier_F"],["C_IDAP_Man_AidWorker_01_F","C_IDAP_Man_AidWorker_07_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_AidWorker_09_F","C_IDAP_Man_AidWorker_02_F","C_IDAP_Man_AidWorker_03_F"], ["c_man_ConstructionWorker_01_Vrana_F","C_Man_ConstructionWorker_01_Red_F","C_Man_ConstructionWorker_01_Blue_F","C_Man_ConstructionWorker_01_Black_F"]];
+private _hostageClassnames = [
+["B_officer_F", "B_helicrew_F", "B_crew_F"], ["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"],["B_GEN_Soldier_F","B_GEN_Commander_F", "B_GEN_Soldier_F"],
+["C_IDAP_Man_AidWorker_01_F","C_IDAP_Man_AidWorker_07_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_AidWorker_09_F","C_IDAP_Man_AidWorker_02_F","C_IDAP_Man_AidWorker_03_F"],
+["C_Man_ConstructionWorker_01_Vrana_F","C_Man_ConstructionWorker_01_Red_F","C_Man_ConstructionWorker_01_Blue_F","C_Man_ConstructionWorker_01_Black_F"],
+["C_Man_Messenger_01_F","C_journalist_F","C_Journalist_01_War_F","C_Nikos_aged"],
+["C_man_w_worker_F","C_Man_UtilityWorker_01_F","C_man_pilot_F","C_Story_Mechanic_01_F"]
+];
 _hostageClassname = selectRandom _hostageClassnames;
-
-private _floorRand = floor (random 2);
-
 private _hostageAnimations = ["Acts_AidlPsitMstpSsurWnonDnon_loop", "Acts_ExecutionVictim_Loop"];
 private _hostageAnimation = selectRandom _hostageAnimations;
-
-private _numHostages = 2 + (ceil (random 2));
-
-aliveHostages = _numHostages;
-publicVariable "aliveHostages";
-
+private _numHostages = 3 + (ceil (random 2));
 private _hostages = [];
-
 for "_i" from 0 to (_numHostages - 1) do
 {
 	sleep 0.5;
@@ -47,7 +40,6 @@ for "_i" from 0 to (_numHostages - 1) do
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
-	_hostage addEventHandler ["Killed", {aliveHostages = aliveHostages - 1; publicVariable "aliveHostages";}];
 	_hostageAnimation = selectRandom _hostageAnimations;
 	[_hostage, (format ["hostage%1", _i])] call fnc_setVehicleName;
 	sleep 0.1;
@@ -59,18 +51,14 @@ for "_i" from 0 to (_numHostages - 1) do
 };
 [_hostages] spawn tky_fnc_followLeader2;
 private _hostagePos = getPosATL hostage0;
-
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnPos, [], 0, "CAN_COLLIDE"];
-
 private _lightSource = "#lightPoint" createVehicle _spawnPos;
 _lightSource setPos (_lightSource modelToWorld [0, 0, (((getNumber (configFile >> "CfgVehicles" >> "Land_Loudspeakers_F" >> "mapSize")) * 2) + 1.43)]);
 [_lightSource, [255, 0, 0]] remoteExec ["setLightAmbient", 0, false];
 [_lightSource, [255, 0, 0]] remoteExec ["setLightColor", 0, false];
 [_lightSource, 0.025] remoteExec ["setLightBrightness", 0, false];
 _lightSource lightAttachObject [_alarmSpeakers, [0, 0, 6]];
-
 private _soundSource = createVehicle ["Land_HelipadEmpty_F", _spawnPos, [], 0, "CAN_COLLIDE"];
-
 _alarmSpeakers addEventHandler ["HandleDamage",
 {
 	if (((_this select 2) >= 0.90)) then
@@ -78,15 +66,11 @@ _alarmSpeakers addEventHandler ["HandleDamage",
 		(_this select 0) setDamage 0;
 	};
 }];
-
 _alarmSpeakers addEventHandler ["Hit",
 {
 	_newDamage = (getDammage (_this select 0)) - (_this select 2) + 0.25;
 	(_this select 0) setDamage _newDamage;
 }];
-
-private _enemySpotted = false;
-
 {
 	[_x] joinSilent grpNull;
 	_hostagePos set [0, ((_hostagePos select 0) + 2)];
@@ -113,7 +97,6 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 			failText = "Mission failed. One or more hostages were killed.";
 			publicVariable "failText";
 			failText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-
 		};
 		_rescuedHostages = 0;
 		{
@@ -136,6 +119,5 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 		};
 	};
 diag_log format ["***dhr drops out of main loop, presumably becuae mission not active"];
-
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends;
