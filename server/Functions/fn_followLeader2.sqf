@@ -9,16 +9,14 @@ private _resqleader = objNull; private _resqvec = objNull; private _return = fal
 waitUntil
 {
 	sleep 0.5;
+	if ( isplayer (((hostage0 nearEntities ["SoldierWB", 4]) - _hostages) select 0) ) then
 	{
-		if (((hostage0 distance2D _x) < 8) && (isPlayer _x)) then
-		{
-			_return = true;
-			_resqleader = _x;
-		} else
-		{
-			_return = false;
-		};
-	} forEach allPlayers;
+		_return = true;
+		_resqleader =  ((hostage0 nearEntities ["SoldierWB", 4]) - _hostages) select 0;
+	} else
+	{
+		_return = false;
+	};
 	_return
 };
 diag_log format ["*** fnfl %2 released hostages", _hostages, _resqleader];
@@ -32,6 +30,8 @@ private _resqleaderinvehicle = false;
 private _assignvecdone = false;
 private _domoveelapsedtime = 0;
 private _cargoPositions = 0;
+private _nrdudes = [];
+private _nrsoldrs = [];
 //modes are captured, waiting, invec, following, resqd
 while {(missionactive)} do
 {
@@ -64,13 +64,17 @@ while {(missionactive)} do
 			//_x doMove (getpos _x);
 			//doStop _x;
 			_x assignAsCargo _resqvec;
-			//[_x orderGetIn true];
 			sleep 0.1;
 			diag_log format ["*** %1 is in %3 role %2", _x, assignedVehicleRole _x, assignedVehicle _x];
 			if (not (isNull assignedVehicle _x)) then
-				{
+				{// assignvehicle command worked, make them get in vec
 					_x setVariable ["mode", "invec",true];
 					[_x] orderGetIn true;
+				}
+				else
+				{// assignvehicle failed because not enough seats, make them stop and set mode to waiting
+					_x setVariable ["mode", "waiting", true];
+					doStop _x;
 				};
 		} foreach _hostages;
 		_assignvecdone = true;
@@ -88,11 +92,12 @@ while {(missionactive)} do
 	};
 
 	{
-		if ((_x getVariable "mode") isEqualTo "waiting") then
+		if ((_x getVariable "mode") in ["waiting", "captured"]) then
 			{// waiting hostages wait for a new resqr
-				if ( isplayer((_x nearEntities ["SoldierWB", 8]) select 0) ) then
+				_nrsoldrs = (_x nearentities ["SoldierWB", 8]) - _hostages;
+				if ( isplayer(_nrsoldrs select 0) ) then
 					{
-						_resqleader = (_x nearEntities ["SoldierWB", 8]) select 0;
+						_resqleader = _nrsoldrs select 0;
 						_x doMove (getPosATL _resqleader);
 						_x setVariable ["mode", "following", true];
 					};
