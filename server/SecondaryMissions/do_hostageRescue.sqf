@@ -14,7 +14,7 @@ private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
 _spawnPos =  [_start, 0, 400, 15, 0, 0.5, 0 , 0, 1] call tky_fnc_findsafepos;
 
 _loctext = [_spawnPos] call tky_fnc_distanddirfromtown;
-smmissionstring = format ["A group of hostiles are holed up %1 with at least a couple of hostages. Eliminate all hostile threats and save at least 2 hostages by bringing them safely back to base.", _loctext];
+smmissionstring = format ["A group of hostiles are holed up %1 with at least a couple of hostages. Eliminate all hostile threats and save the hostages by bringing them safely back to base.", _loctext];
 publicVariable "smmissionstring";
 
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -25,7 +25,7 @@ _smcleanup pushBack _enemyGroup;
 
 private _hostageGroup = createGroup blufor;
 
-private _hostageClassnames = [["B_officer_F", "B_helicrew_F", "B_crew_F"], ["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"]];
+private _hostageClassnames = [["B_officer_F", "B_helicrew_F", "B_crew_F"], ["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"], ["B_GEN_Soldier_F","B_GEN_Commander_F", "B_GEN_Soldier_F"],["C_IDAP_Man_AidWorker_01_F","C_IDAP_Man_AidWorker_07_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_AidWorker_09_F","C_IDAP_Man_AidWorker_02_F","C_IDAP_Man_AidWorker_03_F"], ["c_man_ConstructionWorker_01_Vrana_F","C_Man_ConstructionWorker_01_Red_F","C_Man_ConstructionWorker_01_Blue_F","C_Man_ConstructionWorker_01_Black_F"]];
 _hostageClassname = selectRandom _hostageClassnames;
 
 private _floorRand = floor (random 2);
@@ -43,7 +43,7 @@ private _hostages = [];
 for "_i" from 0 to (_numHostages - 1) do
 {
 	sleep 0.5;
-	private _hostage = _hostageGroup createUnit [(_hostageClassname select _floorRand), _spawnPos, [], 0, "FORM"];
+	private _hostage = _hostageGroup createUnit [(selectrandom _hostageClassname), _spawnPos, [], 0, "FORM"];
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
