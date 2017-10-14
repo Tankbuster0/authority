@@ -3,7 +3,7 @@
  #include "..\includes.sqf"
 _myscript = "handleplayerdisconnect";
 __tky_starts;
-params [_who];
+_who = param [0];
 //cleanup deads, wrecks and dropped weapons and magazines
 
 if (count (allPlayers - (entities "HeadlessClient_F")) < 1) then

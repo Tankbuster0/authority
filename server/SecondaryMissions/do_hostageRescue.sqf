@@ -98,7 +98,7 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 	while {missionactive} do
 	{
 		sleep 2;
-		if ((aliveHostages < 2)) exitWith
+		if (({alive _x }count _hostages) < count _hostages) exitWith
 		{
 			{
 				_x setPos [0, 0, 0];
