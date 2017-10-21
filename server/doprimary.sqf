@@ -58,7 +58,6 @@ trg2 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg2 setTriggerActivation  ["EAST", "NOT PRESENT", false];
 trg2 setTriggerStatements ["this", "", ""];
 
-
 trg3 = createTrigger ["EmptyDetector", cpt_position];
 trg3 setTriggerArea [(cpt_radius + 200),(cpt_radius + 200),0,false];
 trg3 setTriggerActivation  ["EAST", "NOT PRESENT", false];

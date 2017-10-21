@@ -65,8 +65,6 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 	{
 	_allcompositionunits = [];
 	};
-
-
 _obs = nearestObjects [_pt_pos, [], _pt_radius, true];
 _cplines = [];
 _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_line_f.p3d"];
@@ -113,13 +111,11 @@ if ((count _linebx) > 0) then
 				if ((getdir _linea) < 180) then {_spawndir = 180 + (getdir _linea)} else {_spawndir = 180 - (getdir _linea)};
 				_mycar setdir _spawndir;
 				};
-			sleep 0.1;
+			sleep 0.02;
 			};
 		};
 	};
 } foreach _cplines;
-
-
 mortar_gunners = [];
 for "_count" from _start to _lc do
 {
@@ -152,9 +148,7 @@ for "_count" from _start to _lc do
 				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "O_GMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
-
 		};
-
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
@@ -222,17 +216,14 @@ for "_count" from _start to _lc do
 	//heavy armour end
 	sleep 0.05;
 
-
 // add them all to cleanup arrays
-	//if (testmode) then {diag_log "**** sptu adds them to cleanup array"};
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
 	sleep 0.02;
-	 }foreach (/*_allcompositionunits + */(units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
+	 }foreach ((units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
-//if (testmode) then {diag_log "**** sptu removes some opfor vests at random"};
 {
 	if (side _x isEqualTo east) then
 		{
@@ -253,8 +244,6 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
-//if (testmode) then {diag_log "**** sptu might start nasty mortar helper"};
-//if (((west countSide allPlayers) > 2) and (not _microtown) and (false)) then //and false temporarily turns off this to see if we need it. Old mortars were too powerful
 	{
 		if (testmode) then {diag_log "**** sptu does actually start nasty mortar helper"};
 		{
@@ -336,7 +325,6 @@ if (_pt_type isEqualTo 1) then
 			_roadnogood = true;
 			while {_roadnogood} do // make sure the roadpiece chosen doesn't already have a car on it.
 				{
-				sleep 0.05;
 				_road1 = (selectRandom _townroads);
 				_objs = (getpos _road1) nearEntities ["LandVehicle",7];
 				if (((count _objs) < 1) and (count (roadsConnectedTo _road1) > 1 ))  then {_roadnogood = false};
