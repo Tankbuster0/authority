@@ -2,7 +2,7 @@
 #include "..\includes.sqf"
 _myscript = "spawnprimarytargetunits";
 __tky_starts;
-private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_obs","_cplines","_linenames","_stname","_namewithoutid","_helper","_mbus","_blah","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_compgrp"];
+private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_obs","_cplines","_linenames","_stname","_namewithoutid","_helper","_mbus","_blah","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_compgrp", "_myboat"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
@@ -65,29 +65,49 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 	{
 	_allcompositionunits = [];
 	};
-_obs = nearestObjects [_pt_pos, [], _pt_radius, true];
+_obs = nearestObjects [_pt_pos, [], (_pt_radius + 50), true];
 _cplines = [];
 _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_line_f.p3d"];
 {
-_stname = str _x;// make it into a string
-//diag_log format ["*** object is %1, stringname is %2", _x, _stname ];
-_namewithoutid = ((_stname splitstring ": ") select 1);// strip the id number and colon
-if (((count _stname) > 12) and {_namewithoutid in _linenames} ) then
-	{
-	//_helper =createVehicle ["Sign_Arrow_F", (getpos _x), [],0, "CAN_COLLIDE"];
-	_cplines pushBack _x;
-	};
-if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
-	{
-	if ((random 1) > 0.7) then
-		{
-		_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
-		_mbus setdir ( (getdir _x ) + 90);
-		_blah = [_mbus, "", []] call BIS_fnc_initvehicle;
+	_stname = str _x;// make it into a string
+	//diag_log format ["*** object is %1, stringname is %2", _x, _stname ];
+	_namewithoutid = ((_stname splitstring ": ") select 1);// strip the id number and colon
+	if (((count _stname) > 12) and {_namewithoutid in _linenames} ) then
+		{// get lines used for carparks
+		_cplines pushBack _x;
 		};
+	if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
+		{
+		if ((random 1) > 0.7) then
+			{
+			_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
+			_mbus setdir ( (getdir _x ) + 90);
+			_blah = [_mbus, "", []] call BIS_fnc_initvehicle;
+			};
+		};
+	// put boats in some port objects
+	if ( ((getTerrainHeightASL getpos _x) < -3) and { ( (count nearestTerrainObjects [_x, ["tree", "bush", "rock"], 5, false, true]) < 1) and ((random 1) > 0.5) } ) then
+	{
+		_myboat = createVehicle ["O_Boat_Armed_01_hmg_F", [0,0,1000],[],0, "NONE"];
+		_myboat	allowDamage false;
+		switch (tolower (typeOf _x)) do
+			{
+				case "land_pierconcrete_01_steps_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld [-6.7,-1,1.5]);};
+				case "land_pierconcrete_01_4m_ladders_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld (selectRandom [[5,0,2], [-8.3,0,2]]));};
+				//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< got to here
+
+
+
+
+
+			}
+
+
+
 	};
+
 } foreach _obs;
-{
+{// park some empty civ cars in car parks
 _linea = _x;
 _linebx = _cplines select {(_linea distance2d _x) < 4.95};
 if ((count _linebx) > 0) then
