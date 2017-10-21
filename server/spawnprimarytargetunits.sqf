@@ -65,7 +65,7 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 	{
 	_allcompositionunits = [];
 	};
-_obs = nearestObjects [_pt_pos, [], (_pt_radius + 50), true];
+_obs = nearestObjects [_pt_pos, [], (_pt_radius + 200), true];
 _cplines = [];
 _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_line_f.p3d"];
 {
@@ -86,7 +86,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			};
 		};
 	// put boats in some port objects
-	if ( ((getTerrainHeightASL getpos _x) < -3) and { ( (count nearestTerrainObjects [_x, ["tree", "bush", "rock"], 5, false, true]) < 1) and ((random 1) > 0.5) } ) then
+	if ( ((getTerrainHeightASL getpos _x) < -1) and { ( (count (nearestTerrainObjects [_x, ["tree", "bush", "rock"], 5, false, true]) < 10)) and ((random 1) > 0) } ) then
 	{
 		_myboat = createVehicle ["O_Boat_Armed_01_hmg_F", [0,0,1000],[],0, "NONE"];
 		_myboat	allowDamage false;
@@ -94,13 +94,20 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			{
 				case "land_pierconcrete_01_steps_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld [-6.7,-1,1.5]);};
 				case "land_pierconcrete_01_4m_ladders_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld (selectRandom [[5,0,2], [-8.3,0,2]]));};
-				//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< got to here
+				case "land_pierwooden_02_ladder_f": {_myboat setdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _myboat setpos (_x modelToWorldWorld [0,1,16]);};
+				case "land_pierwooden_01_dock_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld [0.7,1.2,15.6]);};
+				case "land_pierwooden_01_hut_f": {_myboat setdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _myboat setpos (_x modelToWorldWorld [-0.5,1,16.5]);};
+				case "land_pierwooden_03_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld [-1.6,6,17.5]);};
+				case "land_pier_small_f": {_myboat setdir (getdir _x);  _myboat setpos (_x modelToWorldWorld (selectRandom [[3.5,0,2], [-3,0,2]]));};
+				case "land_canal_wall_stairs_f": {_myboat setdir (getdir _x); _myboat setpos (_x modelToWorldWorld [0,-4.2,0]);};
+				case "land_pierwooden_01_hut_f": {_myboat setdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _myboat setpos (_x modelToWorldWorld [0,3,-2]);};
+			};
+	if (random 1 > 0) then
+		{
+		createVehicleCrew _myboat;
+		dummy = [_myboat, "ColorBlue",true,500] execVM "server\PT_ai\JBOY_boatRandomPatrol.sqf";
 
-
-
-
-
-			}
+		};
 
 
 
