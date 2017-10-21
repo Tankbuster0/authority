@@ -11,7 +11,7 @@ if (primarytargetcounter > 1) then
 	// 2nd, 3rd , 4th targets, etc
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";// creates global variable nextpt which is a logic
 	waitUntil {scriptDone _npt};
-	sleep 0.5;
+	sleep 0.1;
 	primarytarget = nextpt;// <-- dont forget nextpt is a logic
 	_handle = [primarytarget] execVM "server\PT_ai\ai_spawnroadblocks.sqf";
 	waitUntil {sleep 0.2;(!(isnil "roadblockreturndata"))};
