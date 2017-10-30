@@ -87,20 +87,22 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 		};
 	// put boats in some port objects
 	diag_log format ["*** sptu boatspawn runs, object is %1", _x];
-	if (((tolower (typeOf _x )) in boatspawnobjs) and { ( (count (nearestTerrainObjects [_x, ["tree", "bush", "rock"], 5, false, true]) < 10)) and  ((random 1) > 0) and ((getTerrainHeightASL getpos _x) < -1) } ) then
+	if ( (tolower (typeOf _x )) in boatspawnobjs )   then
 	{
 		switch (tolower (typeOf _x)) do
 			{
-				case "land_pierconcrete_01_steps_f": {_boatdir = (getdir _x); _boatpos = [-6.7,-1,1.5];};
+				case "land_pierconcrete_01_steps_f": {_boatdir = (getdir _x); _boatpos = [[-6.7,-1,1.5], [-6.7,-1,1.5]];};
 				case "land_pierconcrete_01_4m_ladders_f": {_boatdir (getdir _x); _boatpos = [[5,0,2], [-8.3,0,2]];};
-				case "land_pierwooden_02_ladder_f": {_boatdir = ((getdir _x) - 90), _boatpos [0,1,16];};
-				case "land_pierwooden_01_dock_f": {_boatdir = (getdir _x); _boatpos = [0.7,1.2,15.6];};
-				case "land_pierwooden_01_hut_f": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [-0.5,1,16.5];};
-				case "land_pierwooden_03_f": {_boatdir = (getdir _x); _boatpos = [-1.6,6,17.5];};
+				case "land_pierwooden_02_ladder_f": {_boatdir = ((getdir _x) - 90), _boatpos [[0,1,16], [0,1,16]];};
+				case "land_pierwooden_01_dock_f": {_boatdir = (getdir _x); _boatpos = [[0.7,1.2,15.6], [0.7,1.2,15.6]];};
+				case "land_pierwooden_01_hut_f": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[-0.5,1,16.5],[-0.5,1,16.5]];};
+				case "land_pierwooden_03_f": {_boatdir = (getdir _x); _boatpos = [[-1.6,6,17.5],[-1.6,6,17.5]];};
 				case "land_pier_small_f": {_boatdir = (getdir _x);  _boatpos =  [[3.5,0,2], [-3,0,2]];};
-				case "land_canal_wall_stairs_f": {_boatdir (getdir _x); _boatpos = [0,-4.2,0];};
-				case "land_pier_addon_f": {_boatdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [0,3,-2];};
+				case "land_canal_wall_stairs_f": {_boatdir (getdir _x); _boatpos = [[0,-4.2,0],[0,-4.2,0]];};
+				case "land_pier_addon_f": {_boatdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[0,3,-2],[0,3,-]];};
 			};
+
+
 	if (random 1 > 0) then
 		{
 		createVehicleCrew _myboat;
