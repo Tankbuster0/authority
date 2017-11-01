@@ -101,7 +101,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				case "land_canal_wall_stairs_f": {_boatdir (getdir _x); _boatpos = [[0,-4.2,0],[0,-4.2,0]];};
 				case "land_pier_addon_f": {_boatdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[0,3,-2],[0,3,-]];};
 			};
-
+	if ( getTerrainHeightASL (_x modelToWorldWorld _boatpos))
 
 	if (random 1 > 0) then
 		{
