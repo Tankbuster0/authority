@@ -177,7 +177,9 @@ tky_fnc_distanddirfromtown =
 
 tky_fnc_stripidandcolonandspace =
 {
-	//send me an object, I will return the p3dname
+	//send me an object, I will return the p3dname (not including path)
+	//so obj 163566: pierwooden_03_f.p3d will ret pierwooden_03_f.p3d
+	// useful if typeOf returns "" because queried object doesnt have a classname
 	private ["_obj", "_ret"];
 	_ret = ((str _obj) splitString ":" select 1) select [1];
 	_ret
