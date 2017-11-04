@@ -2,7 +2,7 @@
 #include "..\includes.sqf"
 _myscript = "spawnprimarytargetunits";
 __tky_starts;
-private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_obs","_cplines","_linenames","_stname","_namewithoutid","_helper","_mbus","_blah","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb", "_compgrp", "_myboat"];
+private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_compgrp","_plt","_blah","_obs","_cplines","_linenames","_stname","_namewithoutid","_mbus","_boatdir","_boatpos","_myboat","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
 _pt_radius = (_currentprimarytarget getVariable "targetradius");
@@ -92,25 +92,51 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 		switch (tolower (typeOf _x)) do
 			{
 				case "land_pierconcrete_01_steps_f": {_boatdir = (getdir _x); _boatpos = [[-6.7,-1,1.5], [-6.7,-1,1.5]];};
-				case "land_pierconcrete_01_4m_ladders_f": {_boatdir (getdir _x); _boatpos = [[5,0,2], [-8.3,0,2]];};
-				case "land_pierwooden_02_ladder_f": {_boatdir = ((getdir _x) - 90), _boatpos [[0,1,16], [0,1,16]];};
+				case "land_pierconcrete_01_4m_ladders_f": {_boatdir = (getdir _x); _boatpos = [[5,0,2], [-8.3,0,2]];};
+				case "land_pierwooden_02_ladder_f": {_boatdir = ((getdir _x) - 90), _boatpos = [[0,1,16], [0,1,16]];};
 				case "land_pierwooden_01_dock_f": {_boatdir = (getdir _x); _boatpos = [[0.7,1.2,15.6], [0.7,1.2,15.6]];};
 				case "land_pierwooden_01_hut_f": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[-0.5,1,16.5],[-0.5,1,16.5]];};
 				case "land_pierwooden_03_f": {_boatdir = (getdir _x); _boatpos = [[-1.6,6,17.5],[-1.6,6,17.5]];};
 				case "land_pier_small_f": {_boatdir = (getdir _x);  _boatpos =  [[3.5,0,2], [-3,0,2]];};
-				case "land_canal_wall_stairs_f": {_boatdir (getdir _x); _boatpos = [[0,-4.2,0],[0,-4.2,0]];};
-				case "land_pier_addon_f": {_boatdir selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[0,3,-2],[0,3,-]];};
+				case "land_canal_wall_stairs_f": {_boatdir = (getdir _x); _boatpos = [[0,-4.2,0],[0,-4.2,0]];};
+				case "land_pier_addon_f": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[0,3,-2],[0,3,-2]];};
 			};
-	if ( getTerrainHeightASL (_x modelToWorldWorld _boatpos))
-
-	if (random 1 > 0) then
+		diag_log format ["*** found a pier object!"];
+		if ( ((getTerrainHeightASL (_x modelToWorldWorld (_boatpos select 0)) < -1.5) ) and {(random 1) > 0}) then //is the water deep enough and we are randomly going to make a boat
 		{
-		createVehicleCrew _myboat;
-		//_dummy = [_myboat, "ColorBlue",true,500] execVM "server\PT_ai\JBOY_boatRandomPatrol.sqf";
-
+			diag_log format ["***spawning a boat!"];
+			if (random 1 > 0.5 ) then // make a mil boat
+				{
+					_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
+					_myboat setdir _boatdir;
+					_myboat setpos _boatpos select 0;
+					if (random 1 > 0.5) then {createVehicleCrew _myboat};
+				}
+				else
+				{
+					_myboat = createvehicle [selectRandom ["C_Boat_Civil_01_f", "C_Boat_Civil_01_rescue_F", "C_Boat_Civil_01_police_F", "C_Boat_Transport_02_F", "C_Scooter_Transport_01_F"], [0,0,0], [],0,"NONE"];
+					_myboat setdir _boatdir;
+					_myboat setpos _boatpos select 0;
+					if (random 1 > 0.5) then {createVehicleCrew _myboat};
+				};
 		};
-
-	diag_log format ["***now the boat is at %1", getpos _myboat];
+		if ( ((getTerrainHeightASL (_x modelToWorldWorld (_boatpos select 1)) < -1.5) ) and {((random 1) > 0) and (not ((_boatpos select 0) isEqualTo (_boatpos select 1)))} ) then //is the water deep enough and we are randomly going to make a boat at the other position (and it's not the same as the first one)
+		{
+			if (random 1 > 0.5 ) then // make a mil boat
+				{
+					_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
+					_myboat setdir _boatdir;
+					_myboat setpos _boatpos select 1;
+					if (random 1 > 0.5) then {createVehicleCrew _myboat};
+				}
+				else
+				{
+					_myboat = createvehicle [selectRandom ["C_Boat_Civil_01_f", "C_Boat_Civil_01_rescue_F", "C_Boat_Civil_01_police_F", "C_Boat_Transport_02_F", "C_Scooter_Transport_01_F"], [0,0,0], [],0,"NONE"];
+					_myboat setdir _boatdir;
+					_myboat setpos _boatpos select 1;
+					if (random 1 > 0.5) then {createVehicleCrew _myboat};
+				};
+		};
 
 	};
 
