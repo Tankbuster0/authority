@@ -96,7 +96,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				{
 					case "pierconcrete_01_steps_f.psd": {_boatdir = (getdir _x); _boatpos = [-7,-3,3];};// done
 					case "pierconcrete_01_4m_ladders_f.p3d": {_boatdir = (getdir _x); _boatpos = [9,0,3];};// done
-					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,1,16];};
+					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,4.5,18];};/done
 					case "pierwooden_01_dock_f.p3d": {_boatdir = (getdir _x); _boatpos = [1.5,2,6];};//done
 					case "pierwooden_01_hut_f.p3d": {_boatdir = ((getdir _x) + 90); _boatpos = [1,2,17];};//done
 					case "pierwooden_03_f.p3d": {_boatdir = (getdir _x); _boatpos = [-1.6,6,17.5];};// didnt need changing
@@ -107,14 +107,14 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			diag_log format ["!!! found a pier object!"];
 			if ( ( (getTerrainHeightASL (_x modelToWorldWorld _boatpos)) < -1 ) and {(random 1) > 0}) then //is the water deep enough and we are randomly going to make a boat
 			{
-				diag_log format ["!!!spawning a boat!"];
+				diag_log format ["!!!spawning a boat near a pier"];
 				if (random 1 > 0.5 ) then // make a mil boat
 					{
 						_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
 						_myboat setdir _boatdir;
 						_myboat setpos (_x modelToWorldWorld _boatpos);
 						if (random 1 > 0.5) then {createVehicleCrew _myboat};
-						diag_log format ["*** made a %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
+						diag_log format ["*** made a military %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
 					}
 					else
 					{
@@ -122,7 +122,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 						_myboat setdir _boatdir;
 						_myboat setpos (_x modelToWorldWorld _boatpos);
 						if (random 1 > 0.5) then {createVehicleCrew _myboat};
-						diag_log format ["*** made a %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
+						diag_log format ["*** made a civvy %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
 					};
 			};
 		};
