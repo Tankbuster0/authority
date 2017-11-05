@@ -66,78 +66,66 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 	_allcompositionunits = [];
 	};
 _obs = nearestObjects [_pt_pos, [], (_pt_radius + 200), true];
+_obs = _obs - allMissionObjects "All";
 _cplines = [];
 _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_line_f.p3d"];
 {
-	_stname = str _x;// make it into a string
-	//diag_log format ["*** object is %1, stringname is %2", _x, _stname ];
-	_namewithoutid = ((_stname splitstring ": ") select 1);// strip the id number and colon
-	if (((count _stname) > 12) and {_namewithoutid in _linenames} ) then
-		{// get lines used for carparks
-		_cplines pushBack _x;
-		};
-	if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
-		{
-		if ((random 1) > 0.7) then
-			{
-			_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
-			_mbus setdir ( (getdir _x ) + 90);
-			_blah = [_mbus, "", []] call BIS_fnc_initvehicle;
-			};
-		};
-	// put boats in some port objects
-	diag_log format ["*** sptu boatspawn runs, object is %1", _x];
-	if ( (tolower (typeOf _x )) in boatspawnobjs )   then
+	if (not ((typeOf _x) isEqualTo "EmptyDetector")) then
 	{
-		switch (tolower (typeOf _x)) do
-			{
-				case "land_pierconcrete_01_steps_f": {_boatdir = (getdir _x); _boatpos = [[-6.7,-1,1.5], [-6.7,-1,1.5]];};
-				case "land_pierconcrete_01_4m_ladders_f": {_boatdir = (getdir _x); _boatpos = [[5,0,2], [-8.3,0,2]];};
-				case "land_pierwooden_02_ladder_f": {_boatdir = ((getdir _x) - 90), _boatpos = [[0,1,16], [0,1,16]];};
-				case "land_pierwooden_01_dock_f": {_boatdir = (getdir _x); _boatpos = [[0.7,1.2,15.6], [0.7,1.2,15.6]];};
-				case "land_pierwooden_01_hut_f": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[-0.5,1,16.5],[-0.5,1,16.5]];};
-				case "land_pierwooden_03_f": {_boatdir = (getdir _x); _boatpos = [[-1.6,6,17.5],[-1.6,6,17.5]];};
-				case "land_pier_small_f": {_boatdir = (getdir _x);  _boatpos =  [[3.5,0,2], [-3,0,2]];};
-				case "land_canal_wall_stairs_f": {_boatdir = (getdir _x); _boatpos = [[0,-4.2,0],[0,-4.2,0]];};
-				case "land_pier_addon_f": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [[0,3,-2],[0,3,-2]];};
-			};
-		diag_log format ["*** found a pier object!"];
-		if ( ((getTerrainHeightASL (_x modelToWorldWorld (_boatpos select 0)) < -1.5) ) and {(random 1) > 0}) then //is the water deep enough and we are randomly going to make a boat
-		{
-			diag_log format ["***spawning a boat!"];
-			if (random 1 > 0.5 ) then // make a mil boat
-				{
-					_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
-					_myboat setdir _boatdir;
-					_myboat setpos _boatpos select 0;
-					if (random 1 > 0.5) then {createVehicleCrew _myboat};
-				}
-				else
-				{
-					_myboat = createvehicle [selectRandom ["C_Boat_Civil_01_f", "C_Boat_Civil_01_rescue_F", "C_Boat_Civil_01_police_F", "C_Boat_Transport_02_F", "C_Scooter_Transport_01_F"], [0,0,0], [],0,"NONE"];
-					_myboat setdir _boatdir;
-					_myboat setpos _boatpos select 0;
-					if (random 1 > 0.5) then {createVehicleCrew _myboat};
-				};
-		};
-		if ( ((getTerrainHeightASL (_x modelToWorldWorld (_boatpos select 1)) < -1.5) ) and {((random 1) > 0) and (not ((_boatpos select 0) isEqualTo (_boatpos select 1)))} ) then //is the water deep enough and we are randomly going to make a boat at the other position (and it's not the same as the first one)
-		{
-			if (random 1 > 0.5 ) then // make a mil boat
-				{
-					_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
-					_myboat setdir _boatdir;
-					_myboat setpos _boatpos select 1;
-					if (random 1 > 0.5) then {createVehicleCrew _myboat};
-				}
-				else
-				{
-					_myboat = createvehicle [selectRandom ["C_Boat_Civil_01_f", "C_Boat_Civil_01_rescue_F", "C_Boat_Civil_01_police_F", "C_Boat_Transport_02_F", "C_Scooter_Transport_01_F"], [0,0,0], [],0,"NONE"];
-					_myboat setdir _boatdir;
-					_myboat setpos _boatpos select 1;
-					if (random 1 > 0.5) then {createVehicleCrew _myboat};
-				};
-		};
 
+		_stname = str _x;// make it into a string
+		_namewithoutid = [_x] call tky_fnc_stripidandcolonandspace;
+		if (((count _stname) > 12) and {_namewithoutid in _linenames} ) then
+			{// get lines used for carparks
+			_cplines pushBack _x;
+			};
+		if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
+			{
+			if ((random 1) > 0.7) then
+				{
+				_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
+				_mbus setdir ( (getdir _x ) + 90);
+				_blah = [_mbus, "", []] call BIS_fnc_initvehicle;
+				};
+			};
+		// put boats in some port objects
+		diag_log format ["*** sptu boatspawn runs, object is %1, stripped name is %2", _x, _namewithoutid];
+		if (_namewithoutid in boatspawnobjs)   then
+		{
+			switch (_namewithoutid) do
+				{
+					case "pierconcrete_01_steps_f.psd": {_boatdir = (getdir _x); _boatpos = [-7,-3,3];};// done
+					case "pierconcrete_01_4m_ladders_f.p3d": {_boatdir = (getdir _x); _boatpos = [9,0,3];};// done
+					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,1,16];};
+					case "pierwooden_01_dock_f.p3d": {_boatdir = (getdir _x); _boatpos = [1.5,2,6];};//done
+					case "pierwooden_01_hut_f.p3d": {_boatdir = ((getdir _x) + 90); _boatpos = [1,2,17];};//done
+					case "pierwooden_03_f.p3d": {_boatdir = (getdir _x); _boatpos = [-1.6,6,17.5];};// didnt need changing
+					case "pier_small_f.p3d": {_boatdir = (getdir _x);  _boatpos =  [3.5,0,2];};
+					case "canal_wall_stairs_f.p3d": {_boatdir = (getdir _x); _boatpos = [0,-4.2,0];};
+					case "pier_addon_f.p3d": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [0,3,-2];};
+				};
+			diag_log format ["!!! found a pier object!"];
+			if ( ( (getTerrainHeightASL (_x modelToWorldWorld _boatpos)) < -1 ) and {(random 1) > 0}) then //is the water deep enough and we are randomly going to make a boat
+			{
+				diag_log format ["!!!spawning a boat!"];
+				if (random 1 > 0.5 ) then // make a mil boat
+					{
+						_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
+						_myboat setdir _boatdir;
+						_myboat setpos (_x modelToWorldWorld _boatpos);
+						if (random 1 > 0.5) then {createVehicleCrew _myboat};
+						diag_log format ["*** made a %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
+					}
+					else
+					{
+						_myboat = createvehicle [selectRandom ["C_Boat_Civil_01_f", "C_Boat_Civil_01_rescue_F", "C_Boat_Civil_01_police_F", "C_Boat_Transport_02_F", "C_Scooter_Transport_01_F"], [0,0,0], [],0,"NONE"];
+						_myboat setdir _boatdir;
+						_myboat setpos (_x modelToWorldWorld _boatpos);
+						if (random 1 > 0.5) then {createVehicleCrew _myboat};
+						diag_log format ["*** made a %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
+					};
+			};
+		};
 	};
 
 } foreach _obs;
