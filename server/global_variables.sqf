@@ -69,7 +69,7 @@ opfor_heli_cargomen =["O_T_Recon_TL_F","O_V_Soldier_LAT_ghex_F","O_T_Recon_LAT_F
 
 // Cleanup array of CQB
 CQBCleanupArr = [];
-boatspawnobjs = ["land_pierconcrete_01_steps_f","land_pierconcrete_01_4m_ladders_f", "land_pierwooden_02_ladder_f", "land_pierwooden_01_dock_f", "land_pierwooden_01_hut_f","land_pierwooden_03_f","land_pier_small_f","land_canal_wall_stairs_f", "land_pier_addon_f"];
+boatspawnobjs = ["pierconcrete_01_steps_f.p3d","pierconcrete_01_4m_ladders_f.p3d", "pierwooden_02_ladder_f.p3d", "pierwooden_01_dock_f.p3d", "pierwooden_01_hut_f.p3d","pierwooden_03_f.p3d","pier_small_f.p3d","canal_wall_stairs_f.p3d", "pier_addon_f.p3d"];
 // Prizes for Prim Targets
 prizes = ["B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","B_T_APC_Tracked_01_AA_F","B_MBT_01_cannon_F","B_MRAP_01_gmg_F", "B_MRAP_01_hmg_F" ,
 "B_Plane_CAS_01_F", "B_Heli_Transport_01_camo_F","B_Heli_Light_01_armed_F","B_Heli_Transport_03_F", "B_Heli_Attack_01_F", "B_T_VTOL_01_armed_F", "B_Plane_Fighter_01_F"];
