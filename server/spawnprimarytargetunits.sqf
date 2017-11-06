@@ -106,7 +106,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 					case "pier_addon_f.p3d": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [0,3,-2];};
 				};
 			//diag_log format ["!!! found a pier object!"];
-			if ( ( (getTerrainHeightASL (_x modelToWorldWorld _boatpos)) < -1 ) and {(random 1) > 0.3}) then //is the water deep enough and we are randomly going to make a boat
+			if ( ( (getTerrainHeightASL (_x modelToWorldWorld _boatpos)) < -1 ) and {(random 1) > 0.5}) then //is the water deep enough and we are randomly going to make a boat
 			{
 				diag_log format ["!!!spawning a boat near a pier"];
 				if (random 1 > 0.5 ) then // make a mil boat
