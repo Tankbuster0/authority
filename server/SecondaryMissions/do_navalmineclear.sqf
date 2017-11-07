@@ -53,7 +53,7 @@ diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-smmissionstring = format ["Local fishermen have told us there are mines in the water %1m %2of the edge of town. We need to defuse all of them. Only and engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir];
+smmissionstring = format ["Local fishermen have told us there are mines in the water %1m %2 of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir];
 smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 publicVariable "smmissionstring";
 while {missionactive} do

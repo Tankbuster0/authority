@@ -148,11 +148,11 @@ if ((count _linebx) > 0) then
 		{;
 		_carposx = (((getpos _linea) select 0) + ((getpos _lineb) select 0)) /2;
 		_carposy = (((getpos _linea) select 1) + ((getpos _lineb) select 1)) /2;
-		if ((random 1) > 0.7) then
+		if ( ((random 1) > 0.7) and {count ([_carposx, _carposy,0] nearObjects ["Car", 5]) < 10} ) then
 			{
 			_mycar = createvehicle [(selectRandom civsmallcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
-			_blah = [_mycar, "", []] call BIS_fnc_initvehicle;
-			if ((random 1) > 0.5 ) then
+			_blah = [_mycar, "",[]] call BIS_fnc_initvehicle;
+			if ((random 1) > 0.2  ) then
 				{
 				_mycar setdir (getdir _linea);
 				}
@@ -166,6 +166,7 @@ if ((count _linebx) > 0) then
 		};
 	};
 } foreach _cplines;
+comment "this is a comment";
 mortar_gunners = [];
 for "_count" from _start to _lc do
 {
