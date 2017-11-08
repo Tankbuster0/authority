@@ -150,8 +150,7 @@ if ((count _linebx) > 0) then
 		_carposy = (((getpos _linea) select 1) + ((getpos _lineb) select 1)) /2;
 		if ( ((random 1) > 0.7) and {count ([_carposx, _carposy,0] nearObjects ["Car", 5]) < 10} ) then
 			{
-			_mycar = createvehicle [(selectRandom civsmallcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
-			_blah = [_mycar, "",[]] call BIS_fnc_initvehicle;
+			_mycar = createvehicle [(selectRandom civcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
 			if ((random 1) > 0.2  ) then
 				{
 				_mycar setdir (getdir _linea);
@@ -383,7 +382,6 @@ if (_pt_type isEqualTo 1) then
 			_road2 = (roadsConnectedTo _road1) select 0;
 			_dir = _road1 getdir _road2;
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
-			_blah = [_veh, "", []] call BIS_fnc_initvehicle;
 			_veh setdir _dir;
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
 			_unit addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
@@ -433,7 +431,6 @@ if (_pt_type isEqualTo 1) then
 					if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 					};
 				_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
-				_blah = [_veh, "", []] call BIS_fnc_initvehicle;
 				_nb = nearestBuilding _veh;
 				if ((_veh distancesqr _nb) > 3.1) then
 					{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
