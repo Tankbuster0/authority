@@ -86,7 +86,7 @@ civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_
 	   "C_man_p_shorts_1_F_asia","C_man_shorts_1_F","C_man_shorts_1_F_afro","C_man_shorts_1_F_euro","C_man_shorts_1_F_asia","C_man_shorts_2_F","C_man_shorts_2_F_afro","C_man_shorts_2_F_euro","C_man_shorts_2_F_asia",
 	   "C_man_shorts_3_F","C_man_shorts_3_F_afro","C_man_shorts_3_F_euro","C_man_shorts_3_F_asia","C_man_shorts_4_F","C_man_shorts_4_F_afro","C_man_shorts_4_F_euro","C_man_shorts_4_F_asia"];// all the civs apart from named and story related ones
 civcars = [
-"C_Offroad_01_sand_F", "C_Offroad_01_white_F","C_Offroad_01_blue_F","C_Offroad_01_darkred_F", "C_Offroad_01_bluecustom_F", "C_Offroad_01_red_F"
+"C_Offroad_01_sand_F", "C_Offroad_01_white_F","C_Offroad_01_blue_F","C_Offroad_01_darkred_F", "C_Offroad_01_bluecustom_F", "C_Offroad_01_red_F",
 "C_Hatchback_01_grey_F", "C_Hatchback_01_green_F", "C_Hatchback_01_blue_F", "C_Hatchback_01_bluecustom_F", "C_Hatchback_01_beigecustom_F", "C_Hatchback_01_yellow_F", "C_Hatchback_01_white_F", "C_Hatchback_01_black_F", "C_Hatchback_01_dark_F",
 "C_Hatchback_01_sport_red_F", "C_Hatchback_01_sport_blue_F", "C_Hatchback_01_sport_orange_F", "C_Hatchback_01_sport_white_F", "C_Hatchback_01_sport_grey_F", "C_Hatchback_01_sport_green_F",
 "SUV_01_base_red_F", "SUV_01_base_black_F", "SUV_01_base_grey_F", "SUV_01_base_orange_F",
