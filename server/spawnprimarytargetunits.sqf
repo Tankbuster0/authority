@@ -81,7 +81,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			};
 		if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
 			{
-			if ((random 1) > 0.7) then
+			if (((random 1) > 0.7) and {(_x nearObjects ["car_f", 6]) isEqualTo []}) then
 				{
 				_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
 				_mbus setdir ( (getdir _x ) + 90);
