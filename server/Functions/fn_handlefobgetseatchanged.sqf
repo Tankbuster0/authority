@@ -1,6 +1,6 @@
  #include "..\includes.sqf"
 _myscript = "fn_handlefobgetseatchanged.sqf";
-__tky_starts;
+__tky_starts
 
 params ["_veh", "_seat1", "_seat2"];
 diag_log format ["***hfgsc gets vehicle = %1, seat1 = %2 and seat2 = %3", _veh, _seat1, _seat2];
