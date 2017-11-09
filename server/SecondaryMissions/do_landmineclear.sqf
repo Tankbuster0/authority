@@ -5,7 +5,7 @@ __tky_starts;
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
 //get a good place for minefield
 _myplaces = selectbestplaces [cpt_position, cpt_radius + 200, "meadow", 50,50];
-_meadows = _myplaces select {(_x select 1) == 1};
+_meadows = _myplaces select {((_x select 1) == 1)};
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _meadowdata = selectRandom _meadows;
