@@ -70,6 +70,7 @@ forward setVehiclePosition [_mypos, [],0];
 forward setObjectTextureGlobal [0,"a3\soft_f_exp\lsv_01\data\nato_lsv_01_dazzle_co.paa"];
 [forward,nil,["HideDoor1",0,"HideDoor2",1,"HideDoor3",0,"HideDoor4",1]] call bis_fnc_initVehicle;
 [forward] call tky_fnc_setvehicleloadout;
+[forward, "forward"] call fnc_setVehicleName;
 
 /*
 forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
@@ -90,82 +91,13 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 	}forEach _tmp;
 	CQBCleanupArr pushBack _unique;
 }forEach [ "backpack", "item", "magazine", "weapon" ];
-/*
-//find a pos for the frigate
-_fpos = locationPosition (nearestLocation [_mypos, "NameMarine"]);
-// if the below routine doesnt find anywhere nice for the frigate, the above line will put it in the nearest bay location
-_frigateposdata = selectBestPlaces [_mypos, 2000, "sea * waterDepth", 10,500];
-// ^^ returns an array [ [2d position array], expression result (in this case, sea depth)];
-if (isNil {_frigateposdata}) then
-	{
-	_fpos = _frigateposdata;
-	}// if selectbestplaces doesnt find anywhere, use the nearest marine
-	else
-	{
-	for "_l" from 0 to (count _frigateposdata) do
-		{
-		_mydata1 = (_frigateposdata select _l);
-		_raisedmypos = _mypos;
-		_raisedmypos set [2,10];
-		if (((_mydata1 select 1) > 30) and (not( terrainIntersect [(_mydata1 select 0), (_raisedmypos)] ) ) ) exitWith {_fpos = _mydata1 select 0};
 
-		};
-	};
-
-//Make stuff
-// Frig
-
-
-frigate = createVehicle ["C_Boat_Civil_04_F", _fpos, [], 0, "NONE"];
-frigate setdir (random 360);
-frigate setCaptive true;
-// Arty Vehicle
-_pos = position frigate;
-_az =  getDir frigate;
-_gopos = [position frigate, -17.5, +_az] call BIS_fnc_relPos;
-_gopos = [_gopos select 0, _gopos select 1, (_gopos select 2) + 16.4];
-frigate setVehicleLock "LOCKED";
-*/
 // Take out advanced ammo types;
 Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_AT_mine",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_mine",[0]];
 
-// Support Arty Frig
-//ArtySupport synchronizeObjectsAdd [Arty];
-//Arty synchronizeObjectsAdd [ArtySupport];
 
-//Setup requestor limit values
-/*
-{
-	[SupportReq, _x, 0] call BIS_fnc_limitSupport;
-}forEach [
-	"Artillery",
-	"CAS_Heli",
-	"CAS_Bombing",
-	"UAV",
-	"Drop",
-	"Transport"
-];
-
-
-//Setup provider values
-{
-	ArtySupport setVariable [(_x select 0),(_x select 1)];
-}forEach [
-	["BIS_SUPP_vehicles",[]],        //types of vehicles to use
-	["BIS_SUPP_vehicleinit",""],    //init code for vehicle
-	["BIS_SUPP_filter","SIDE"]        //whether default vehicles comes from "SIDE" or "FACTION"
-];
-
-//Set our limit on the requester for artillery to 1
-[SupportReq, "Artillery", -1] call BIS_fnc_limitSupport;
-
-
-BIS_supp_refresh = TRUE;
-
-publicVariable "BIS_supp_refresh";
-*/
 _id1 = addMissionEventHandler ["HandleDisconnect", {_this execVM "server\handleplayerdisconnect.sqf"}];
 //_id2 = addMissionEventHandler ["PlayerConnected", {	if ((west countSide allPlayers) < 1) then {0 setfog 0};}];
 //_id2 = addMissionEventHandler ["PlayerConnected", {	diag_log format  ["*** playerconnected EH says %1 players in mission when someone connects", (west countside allplayers)];}];
