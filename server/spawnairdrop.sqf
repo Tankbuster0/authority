@@ -162,6 +162,7 @@ if (_droptype == forwardpointvehicleclassname) then
 	[forward, "forward"] call fnc_setVehicleName;
 	forward setObjectTextureGlobal [0,"a3\soft_f_exp\lsv_01\data\nato_lsv_01_dazzle_co.paa"];
 	[forward,nil,["HideDoor1",0,"HideDoor2",1,"HideDoor3",0,"HideDoor4",1]] call bis_fnc_initVehicle;
+	[forward, "forward"] call fnc_setVehicleName;
 
 	};
 if (_droptype == fobvehicleclassname) then //it's a fob vehicle
@@ -169,6 +170,7 @@ if (_droptype == fobvehicleclassname) then //it's a fob vehicle
 
 	fobveh = _cargo;
 	fobveh addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
+	[fobveh, "fobveh"] call fnc_setVehicleName;
 	};
 if (_cargo iskindof "Cargo_Base_F") then //
 	{
