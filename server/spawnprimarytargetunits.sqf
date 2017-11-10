@@ -83,7 +83,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				{
 					case "pierconcrete_01_steps_f.psd": {_boatdir = (getdir _x); _boatpos = [-7,-3,4];};
 					case "pierconcrete_01_4m_ladders_f.p3d": {_boatdir = (getdir _x); _boatpos = [9,0,3];};
-					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,4.5,18];};e
+					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,4.5,18];};
 					case "pierwooden_01_dock_f.p3d": {_boatdir = (getdir _x); _boatpos = [1.5,2,6];};
 					case "pierwooden_01_hut_f.p3d": {_boatdir = ((getdir _x) + 90); _boatpos = [1,2,17];};
 					case "pierwooden_03_f.p3d": {_boatdir = (getdir _x); _boatpos = [-1.6,6,19];};
@@ -131,7 +131,7 @@ if ((count _linebx) > 0) then
 		{;
 		_carposx = (((getpos _linea) select 0) + ((getpos _lineb) select 0)) /2;
 		_carposy = (((getpos _linea) select 1) + ((getpos _lineb) select 1)) /2;
-		if ( ((random 1) > 0.4) and {([_carposx, _carposy,0] nearObjects ["Car", 5]) isEqualTo []} ) then
+		if ( ((random 1) > 0.3) and {([_carposx, _carposy,0] nearObjects ["Car", 5]) isEqualTo []} ) then
 			{
 			_mycar = createvehicle [(selectRandom civcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
 			[_mycar] call tky_fnc_initvehicle;
