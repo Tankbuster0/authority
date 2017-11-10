@@ -43,21 +43,9 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 			_x setVehicleLock "LOCKED";
 			_x setfuel 0;
 			};
-			if (_x isKindOf "Heli_Transport_02_base_F") then
+			if ((_x isKindOf "LandVehicle") or (_x isKindOf "Air")) then
 				{
-		    	if ((random 1) > 0.5  ) then
-	                {
-	                _x setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_dahoman_co.paa"];
-	                _x setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_dahoman_co.paa"];
-	                _x setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_dahoman_co.paa"];
-	                }
-	                else
-	                {
-	                _x setObjectTextureGlobal [0,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_1_ion_co.paa"];
-	                _x setObjectTextureGlobal [1,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_2_ion_co.paa"];
-	                _x setObjectTextureGlobal [2,"a3\air_f_beta\Heli_Transport_02\Data\Skins\heli_transport_02_3_ion_co.paa"];
-	                };
-       			_blah = [_x, "", []] call BIS_fnc_initvehicle;
+					[_x] call tky_fnc_initvehicle;
 				};
 	}foreach _allcompositionunits;
 	}
@@ -85,7 +73,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				{
 				_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
 				_mbus setdir ( (getdir _x ) + 90);
-				_blah = [_mbus, "", []] call BIS_fnc_initvehicle;
+				[_mbus] call tky_fnc_initvehicle;
 				};
 			};
 		// put boats in some port objects
@@ -131,6 +119,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 						//diag_log format ["*** made a civvy %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
 						sleep 1;
 						_myboat allowDamage true;
+						_[_myboat] call tky_fnc_initvehicle;
 					};
 			};
 		};
@@ -151,6 +140,7 @@ if ((count _linebx) > 0) then
 		if ( ((random 1) > 0.7) and {count ([_carposx, _carposy,0] nearObjects ["Car", 5]) < 10} ) then
 			{
 			_mycar = createvehicle [(selectRandom civcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
+			[_mycar] call tky_fnc_initvehicle;
 			if ((random 1) > 0.2  ) then
 				{
 				_mycar setdir (getdir _linea);
@@ -165,7 +155,6 @@ if ((count _linebx) > 0) then
 		};
 	};
 } foreach _cplines;
-comment "this is a comment";
 mortar_gunners = [];
 for "_count" from _start to _lc do
 {
@@ -202,7 +191,6 @@ for "_count" from _start to _lc do
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
-//if (testmode) then {diag_log "**** sptu adds a mortar"};
 	_veh = createVehicle ["O_Mortar_01_F", _mypos, [],0,"NONE"];
 	_veh setdir _mydir;
 	_mgunner = _staticgrp createUnit ["O_support_Mort_F", _mypos,[],0,"NONE"];
@@ -214,7 +202,6 @@ for "_count" from _start to _lc do
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending mortar groupa
 	sleep 0.05;
 	// statics end
-//if (testmode) then {diag_log "**** sptu adds infantry patrols"};
 	// patrolling infantry start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	switch ((floor (random 4))) do
@@ -227,7 +214,6 @@ for "_count" from _start to _lc do
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
 	sleep 0.05;
-//if (testmode) then {diag_log "**** sptu adds static IFV"};
 	// static IFV/ apc start
 	_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_findSafePos;
 
@@ -242,7 +228,6 @@ for "_count" from _start to _lc do
 		_veh = selectRandom opforpatrollandvehicles;
 		_patrolveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
-		//if (testmode) then {diag_log "**** sptu adds patyrolling apc/ifv because not microtown"};
 		}
 		else
 		{
@@ -383,6 +368,7 @@ if (_pt_type isEqualTo 1) then
 			_dir = _road1 getdir _road2;
 			_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0,"NONE"];
 			_veh setdir _dir;
+			[_veh] call tky_fnc_initvehicle;
 			_unit = _dcargroup createUnit [(selectRandom civs), (getpos _veh), [],0, "CAN_COLLIDE"];
 			_unit addEventHandler ["killed", {if (([_this select 0, true] call BIS_fnc_objectSide) isEqualTo west) then
 						{
@@ -415,7 +401,6 @@ if (_pt_type isEqualTo 1) then
 		_roadposarray = [];
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-		//if (testmode) then {diag_log "**** sptu adds civilian parked cars"};
 		_pcar = [];
 		_pcarcount = (2 * _lc);
 		if !(_microtown) then
@@ -431,6 +416,7 @@ if (_pt_type isEqualTo 1) then
 					if (((count _objs) < 1) and (count (roadsConnectedTo _road1) == 2))  then {_roadnogood = false};
 					};
 				_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
+				[_veh] call tky_fnc_initvehicle;
 				_nb = nearestBuilding _veh;
 				if ((_veh distancesqr _nb) > 3.1) then
 					{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
