@@ -61,7 +61,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 	if (not ((typeOf _x) isEqualTo "EmptyDetector")) then
 	{
 
-		_stname = str _x;// make it into a string
+		_stname = str _x;
 		_namewithoutid = [_x] call tky_fnc_stripidandcolonandspace;
 		if (((count _stname) > 12) and {_namewithoutid in _linenames} ) then
 			{// get lines used for carparks
@@ -69,7 +69,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			};
 		if (((count _stname) > 12) and {_namewithoutid in  ["rd_taxi.p3d", "rd_busstop.p3d"] } ) then
 			{
-			if (((random 1) > 0.7) and {(_x nearObjects ["car_f", 6]) isEqualTo []}) then
+			if (((random 1) > 0.3) and {(_x nearObjects ["car_f", 6]) isEqualTo []}) then
 				{
 				_mbus = createvehicle ["C_Van_02_transport_F", getpos _x, [],0, "CAN_COLLIDE" ];
 				_mbus setdir ( (getdir _x ) + 90);
@@ -77,27 +77,24 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				};
 			};
 		// put boats in some port objects
-		//diag_log format ["*** sptu boatspawn runs, object is %1, stripped name is %2", _x, _namewithoutid];
 		if (_namewithoutid in boatspawnobjs)   then
 		{
 			switch (_namewithoutid) do
 				{
-					case "pierconcrete_01_steps_f.psd": {_boatdir = (getdir _x); _boatpos = [-7,-3,4];};// done
-					case "pierconcrete_01_4m_ladders_f.p3d": {_boatdir = (getdir _x); _boatpos = [9,0,3];};// done
-					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,4.5,18];};//done
-					case "pierwooden_01_dock_f.p3d": {_boatdir = (getdir _x); _boatpos = [1.5,2,6];};//done
-					case "pierwooden_01_hut_f.p3d": {_boatdir = ((getdir _x) + 90); _boatpos = [1,2,17];};//done
-					case "pierwooden_03_f.p3d": {_boatdir = (getdir _x); _boatpos = [-1.6,6,19];};// didnt need changing
-					case "canal_dutch_01_stairs_f.p3d": {_boatdir = ((getdir _x ) + 90); _boatpos = [0,-11,4];};//new
+					case "pierconcrete_01_steps_f.psd": {_boatdir = (getdir _x); _boatpos = [-7,-3,4];};
+					case "pierconcrete_01_4m_ladders_f.p3d": {_boatdir = (getdir _x); _boatpos = [9,0,3];};
+					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,4.5,18];};e
+					case "pierwooden_01_dock_f.p3d": {_boatdir = (getdir _x); _boatpos = [1.5,2,6];};
+					case "pierwooden_01_hut_f.p3d": {_boatdir = ((getdir _x) + 90); _boatpos = [1,2,17];};
+					case "pierwooden_03_f.p3d": {_boatdir = (getdir _x); _boatpos = [-1.6,6,19];};
+					case "canal_dutch_01_stairs_f.p3d": {_boatdir = ((getdir _x ) + 90); _boatpos = [0,-11,4];};
 					case "pier_small_f.p3d": {_boatdir = (getdir _x);  _boatpos =  [3.5,0,2];};
 					case "canal_wall_stairs_f.p3d": {_boatdir = (getdir _x); _boatpos = [0,-4.2,0];};
 					case "pier_addon_f.p3d": {_boatdir = selectRandom [((getdir _x) - 90), ((getdir _x) + 90)]; _boatpos = [0,3,-2];};
 				};
-			//diag_log format ["!!! found a pier object!"];
 			if ( ( (getTerrainHeightASL (_x modelToWorldWorld _boatpos)) < -1 ) and {(random 1) > 0.5}) then //is the water deep enough and we are randomly going to make a boat
 			{
-				diag_log format ["!!!spawning a boat near a pier"];
-				if (random 1 > 0.5 ) then // make a mil boat
+				if (random 1 > 0.5 ) then
 					{
 						_myboat = createvehicle ["O_Boat_Armed_01_hmg_F", [0,0,0], [],0,"NONE"];
 						_myboat allowDamage false;
@@ -105,7 +102,6 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 						sleep 0.2;
 						_myboat setPosWorld (_x modelToWorld _boatpos);
 						if (random 1 > 0.5) then {createVehicleCrew _myboat};
-						//diag_log format ["*** made a military %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
 						sleep 1;
 						_myboat allowDamage true;
 					}
@@ -116,10 +112,9 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 						_myboat setdir _boatdir;
 						sleep 0.2;
 						_myboat setPosWorld (_x modelToWorld _boatpos);
-						//diag_log format ["*** made a civvy %1 at %2, should be at %3, crew is %4", typeOf _myboat, getPos _myboat, _boatpos, crew _myboat];
 						sleep 1;
 						_myboat allowDamage true;
-						_[_myboat] call tky_fnc_initvehicle;
+						[_myboat] call tky_fnc_initvehicle;
 					};
 			};
 		};
@@ -132,16 +127,15 @@ _linebx = _cplines select {(_linea distance2d _x) < 4.95};
 if ((count _linebx) > 0) then
 	{
 	_lineb = _linebx select 0;
-	//diag_log format ["*** linea is dir %1 and b is %2 and they are %3 apart", getdir _linea, getdir _lineb, _linea distance2d _lineb];
 	if ((_lineb distance2d _linea > 3) and {(floor (getdir _linea)) isEqualTo (floor (getdir _lineb))}) then
 		{;
 		_carposx = (((getpos _linea) select 0) + ((getpos _lineb) select 0)) /2;
 		_carposy = (((getpos _linea) select 1) + ((getpos _lineb) select 1)) /2;
-		if ( ((random 1) > 0.7) and {count ([_carposx, _carposy,0] nearObjects ["Car", 5]) < 10} ) then
+		if ( ((random 1) > 0.4) and {([_carposx, _carposy,0] nearObjects ["Car", 5]) isEqualTo []} ) then
 			{
 			_mycar = createvehicle [(selectRandom civcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
 			[_mycar] call tky_fnc_initvehicle;
-			if ((random 1) > 0.2  ) then
+			if ((random 1) > 0.5) then
 				{
 				_mycar setdir (getdir _linea);
 				}
@@ -159,12 +153,10 @@ mortar_gunners = [];
 for "_count" from _start to _lc do
 {
 	sleep 0.05;
-	//diag_log format ["***spu %1 from %2 to %3 ", _count, _start, _lc];
 	_staticgrpname = format ["staticgrp%1", _count];
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
-	//if (testmode) then {diag_log "**** sptu starts static spawn"};
 	switch ((floor (random 5))) do
 		{
 		case 0: {
@@ -228,29 +220,19 @@ for "_count" from _start to _lc do
 		_veh = selectRandom opforpatrollandvehicles;
 		_patrolveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
 		nul = [_patrolveh, _pt_pos, (_pt_radius /2)] call BIS_fnc_taskpatrol;
-		}
-		else
-		{
-		//if (testmode) then {diag_log "**** sptu not adding patrolling APC/AFC because its a microtown";};
 		};
 	// patrolling  apc/ifv group end
 	sleep 0.05;
 	//heavy armour and shit start
-	if ((_pt_type isEqualTo 1) and (cpt_radius > 150)  and ((random 5) > 4)) then //tanks only spawn at big towns, not at bases or airfields
+	if ((_pt_type isEqualTo 1) and (cpt_radius > 150)  and ((random 5) > 3)) then //tanks only spawn at big towns, not at bases or airfields
 	{
 		_mypos = [_pt_pos, 0, _pt_radius, 5,0,0.5,0,1,1] call tky_fnc_findSafePos;
 		_veh = selectRandom opfortanks;
 		_statictanks = [_mypos, east, [_veh, _veh], [[0,10,0], [5,0,0]] ]call BIS_fnc_spawngroup;
 		sleep 0.05;
-		if (testmode) then {diag_log "**** sptu adds MBT because its a large town"};
-	}
-	else
-	{
-		//if (testmode) then {diag_log "**** sptu skips adding mbt becuase it's an airfield or a small town or it was randomly not done"};
 	};
 	//heavy armour end
 	sleep 0.05;
-
 // add them all to cleanup arrays
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
@@ -280,35 +262,30 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 		};
 } foreach allgroups;
 	{
-		if (testmode) then {diag_log "**** sptu does actually start nasty mortar helper"};
-		{
-			[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
-			// ^^^ mortar gunners have best spotdistance and spottime
-			[_x] spawn // mortar gunner helper
-				{
-					private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
-					_mygunner = _this select 0;
-					while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
+		[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
+		// ^^^ mortar gunners have best spotdistance and spottime
+		[_x] spawn // mortar gunner helper
+			{
+				private ["_nearblufors", "_mygunner", "_artytarget", "_iroa", "_aeta", "_amags", "_aka"];
+				_mygunner = _this select 0;
+				while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
+					{
+					sleep 60 + (60 * random 5) ;
+					_nearblufors = (position _mygunner) nearEntities ["B_Soldier_base_f", 400];
+					if ((count _nearblufors) > 0) then
 						{
-						sleep 60 + (60 * random 5) ;
-						_nearblufors = (position _mygunner) nearEntities ["B_Soldier_base_f", 400];
-						if ((count _nearblufors) > 0) then
-							{
-							_artytarget = (selectRandom _nearblufors);
-							_mygunner reveal [_artytarget, 3];
-							_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 1 ];
-							};
+						_artytarget = (selectRandom _nearblufors);
+						_mygunner reveal [_artytarget, 3];
+						_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 1 ];
 						};
+					};
 
-				};
-		} foreach mortar_gunners;
-	};
+			};
+	} foreach mortar_gunners;
 //createcivilians
-//if (testmode) then {diag_log "**** sptu starts cvilian stuff"};
 if (_pt_type isEqualTo 1) then
-		{
-		//if (testmode) then {diag_log "**** sptu adds civilans on foot"};
+	{
 		//civs on foot
 		_townroadsx = _pt_pos nearRoads (_pt_radius + 75);// road find radius needs to be bigger than normal radius
 
@@ -338,7 +315,7 @@ if (_pt_type isEqualTo 1) then
 			};
 		if ((random 10) > 7) then //suicide bomber stuff
 			{
-			ssbgrp1 = createGroup [east, true];// suicide bomber stuff
+			ssbgrp1 = createGroup [east, true];
 			_ssman1 = ssbgrp1 createUnit ["O_SoldierU_unarmed_F", _pt_pos, [],0,"NONE" ];
 			removeAllWeapons _ssman1;
 			removeUniform _ssman1;
@@ -349,7 +326,6 @@ if (_pt_type isEqualTo 1) then
 			_d = [_ssman1, 200, 100] call Saro_fnc_bomber;
 			};
 		//driven cars
-		//if (testmode) then {diag_log "**** sptu adds civilian drive cars"};
 		_dcar = [];
 		_dcarcount = (1 * _lc);
 		for "_i" from 1 to _dcarcount do
