@@ -104,7 +104,7 @@ pt_radar = createVehicle [_radartype, _radarpos,[],0,"NONE"];
 pt_radar addeventhandler ["HandleDamage", {if (((_this select 4) isKindOf "MissileCore") or ((_this select 4 ) isKindOf "ShellCore")) then { 1; } else { _this select 2; }; }];
 pt_radar_alive = true;
 pt_radar addEventHandler ["killed", {[_this select 0] execVM "server\pt_radarkilled.sqf"}];
-
+pt_radar setVectorUp [0,0,1];
 // hq vehicle controls opfor air support
 _hqtype = selectRandom opforhqtypes;
 
