@@ -65,13 +65,4 @@ sepa = ["<t color='#ffff33'>Put on ear plugs</t>",{
 _this addAction sepa;
 
 
-
-
-
-
-
-
-
-
-
 __tky_ends;

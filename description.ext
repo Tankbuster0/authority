@@ -192,13 +192,13 @@ class Params
 			title = "Player Stamina:";
 			values[] = {1,0};
 			texts[] = {"ON","OFF"};
-			default = 0;
+			default = 1;
 		};
 			class PARAM_AimSway {
 			title = "Player Aiming Sway:";
 			values[] = {100,0,1,2,3,4,5,6,7,8,9,10};
 			texts[] = {"default","0","0.1","0.2","0.3","0.4","0.5","0.6","0.7","0.8","0.9","1.0"};
-			default = 2;
+			default = 100;
 		};
 		class line4 {
 		title = "---------------------- Difficulty Settings ----------------------";
