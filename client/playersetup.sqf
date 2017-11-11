@@ -45,4 +45,15 @@ if (player getUnitTrait "engineer") then
 	[] execVM "client\sm_repbld_action.sqf";
 	};
 player execVM "client\simpleEP.sqf";
+
+if ("PARAM_Fatigue" call BIS_fnc_getParamValue == 0) then
+	{
+		player enableStamina false;
+	};
+if !("PARAM_AimSway" call BIS_fnc_getParamValue == 100) then
+	{
+		private _coef = ("PARAM_AimSway" call BIS_fnc_getParamValue) / 10;
+		player setCustomAimCoef _coef;
+		player setUnitRecoilCoefficient 0.2 + _coef;
+	};
 __tky_ends
