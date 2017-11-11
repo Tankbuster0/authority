@@ -10,7 +10,3 @@ sepa = ["<t color='#ffff33'>Put on ear plugs</t>",{
 	}
 },[],-90,false,true,"","_target == vehicle player"];
 _this addAction sepa;
-_this addEventHandler ["Respawn",{
-	1 fadeSound 1;
-	(_this select 0) addAction sepa;
-}];
