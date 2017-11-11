@@ -44,4 +44,5 @@ if (player getUnitTrait "engineer") then
 	{
 	[] execVM "client\sm_repbld_action.sqf";
 	};
+player execVM "client\simpleEP.sqf";
 __tky_ends
