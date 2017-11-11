@@ -62,7 +62,6 @@ player addEventHandler [ "Respawn", {
 		//systemChat "Incapacitated";
 	};
 }];
-//player addEventHandler ["handleDamage", {_this call tky_fnc_hd}];// is respawn persistent. dont need to add it back after respawn or revive
 player setvariable ["isusingprizerecovery", false, true];
 // need to add these here as they used to be added by respawn eh at mission start. note that addaction is NOT respawn persistent.
 				fobdeployactionid = player addaction ["Deploy/ Undeploy FOB", "remoteexec ['tky_fnc_fobvehicledeploymanager',2]", "", 0,false,true, "", "( (typeof (vehicle player) isEqualTo fobvehicleclassname )  and ((assignedVehicleRole player) isEqualTo ['cargo'] ) and (not (isEngineOn (vehicle player))) ) "];
@@ -70,4 +69,12 @@ player setvariable ["isusingprizerecovery", false, true];
 				vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,true, "","(player distance2D fobdataterminal) < 2"];
 				bfboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "(player distance2d bfbox) < 3"];
 				prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "(player distance2D prizebox) < 3"];
+
+
+/************************************************************************
+*It's intended that ALL respawn eventhandlers be replaced with this one*
+************************************************************************/
+player addEventHandler ["Respawn", {execVM "client\playerrespawns.sqf"}];
+
+
 [] execVM "client\playersetup.sqf";
