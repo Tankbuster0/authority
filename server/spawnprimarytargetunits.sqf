@@ -131,7 +131,7 @@ if ((count _linebx) > 0) then
 		{;
 		_carposx = (((getpos _linea) select 0) + ((getpos _lineb) select 0)) /2;
 		_carposy = (((getpos _linea) select 1) + ((getpos _lineb) select 1)) /2;
-		if ( ((random 1) > 0.3) and {([_carposx, _carposy,0] nearObjects ["Car", 5]) isEqualTo []} ) then
+		if ( ((random 1) > 0.5) and {([_carposx, _carposy,0] nearObjects ["Car", 5]) isEqualTo []} ) then
 			{
 			_mycar = createvehicle [(selectRandom civcars), [_carposx, _carposy, 1.7], [],0,"CAN_COLLIDE"];
 			[_mycar] call tky_fnc_initvehicle;
