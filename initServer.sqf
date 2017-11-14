@@ -275,7 +275,8 @@ if not (false) then
 // ^^^^ hide dep safezone markers if not testmode
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
-waitUntil {scriptDone _handle2};
+//waitUntil {scriptDone _handle2};
+waitUntil {missionrunning};
 sleep 0.5;
 _nul = execVM "server\tky_fobveh_killed_eh.sqf";
 _nul = execVM "server\tky_forward_killed_eh.sqf";
