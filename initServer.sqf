@@ -276,7 +276,9 @@ if not (false) then
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
 //waitUntil {scriptDone _handle2};
+diag_log format ["*** IS back from missionsetup @ 279"];
 waitUntil {missionrunning};
+diag_log format ["*** IS missionrunning is true @ 281"];
 sleep 0.5;
 _nul = execVM "server\tky_fobveh_killed_eh.sqf";
 _nul = execVM "server\tky_forward_killed_eh.sqf";
