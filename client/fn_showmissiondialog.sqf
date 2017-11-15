@@ -1,3 +1,4 @@
+//showmissiondialog by tankbuster and HazJ
 disableSerialization;
 diag_log "*** fn_smd runs";
 private ["_d_roadblockfinal","_numberstrengths","_d_cpt_name","_d_hq_status","_d_radar_status","_d_roadblockdata1","_d_roadblockdata2","_d_enemystrength","_d_hq_status_output","_d_radar_status_output","_ctrl"];
