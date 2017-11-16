@@ -139,7 +139,7 @@ class Params
 		texts[] = {""};
 	};
 			class PARAM_testmode {
-			title = "Testmode. Extra debug IN rpt";
+			title = "Testmode. Extra debug in RPT";
 			values[] = {0,1};
 			default = 0;
 			texts[] = {"No", "Yes"};
