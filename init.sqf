@@ -8,7 +8,7 @@ if (worldName == "Altis") then
 	_location setText "Abdera airfield";
 	};
 testmode = false;
-if ((serverName in ["Tanky-Test", "Tanky test"]) or (isServer and hasInterface)) then {testmode = true;};
+if ((serverName in ["Tanky-Test", "Tanky test"]) or (isServer and hasInterface) or ("PARAM_testmode" call BIS_fnc_getParamValue) isEqualTo 1) then {testmode = true;};
 publicVariable "testmode";
 //initserverfinished = false;
 fobveh = objNull;

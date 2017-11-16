@@ -138,6 +138,12 @@ class Params
 		default = -99999;
 		texts[] = {""};
 	};
+			class PARAM_testmode {
+			title = "Testmode. Extra debug IN rpt";
+			values[] = {0,1};
+			default = 0;
+			texts[] = {"No", "Yes"};
+		};
 		class line2 {
 		title = "---------------------- Primary Missions Values ----------------------";
 		values[] = {-99999};
