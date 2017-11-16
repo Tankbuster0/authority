@@ -13,6 +13,7 @@ if (_pt_radius isEqualTo 75) then {_microtown = true} else {_microtown = false};
 _start = ["enemyspawnlevel", 2] call BIS_fnc_getParamValue;//default is 2
 if ((_start == 3) and (_pt_radius == 150)) then {_start = 2};
 _pt_radius = _pt_radius - 50;
+__tky_debug
 if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) then
 	{
 	switch (_pt_name) do
@@ -30,6 +31,7 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 	_allcompositionunits = [_pt_pos, 0, _composition] call tky_fnc_t_objectsmapper;
 	_compgrp = creategroup [east, true];
 	sleep 0.05;
+	__tky_debug
 	{
 		if (_x isKindOf "Air" and {faction _x in ["OPF_T_F", "OPF_F", "OPF_G_F"]} ) then
 			{
@@ -56,6 +58,7 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 _obs = nearestObjects [_pt_pos, [], (_pt_radius + 200), true];
 _obs = _obs - allMissionObjects "All";
 _cplines = [];
+__tky_debug
 _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_line_f.p3d"];
 {
 	if (not ((typeOf _x) isEqualTo "EmptyDetector")) then
@@ -76,6 +79,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				[_mbus] call tky_fnc_initvehicle;
 				};
 			};
+			__tky_debug
 		// put boats in some port objects
 		if (_namewithoutid in boatspawnobjs)   then
 		{
@@ -119,7 +123,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			};
 		};
 	};
-
+__tky_debug
 } foreach _obs;
 {// park some empty civ cars in car parks
 _linea = _x;
@@ -149,6 +153,7 @@ if ((count _linebx) > 0) then
 		};
 	};
 } foreach _cplines;
+__tky_debug
 mortar_gunners = [];
 for "_count" from _start to _lc do
 {
@@ -157,6 +162,7 @@ for "_count" from _start to _lc do
 	// statics start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
+	__tky_debug
 	switch ((floor (random 5))) do
 		{
 		case 0: {
@@ -180,6 +186,7 @@ for "_count" from _start to _lc do
 				[_mypos, _mydir, "O_GMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		};
+		__tky_debug
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
@@ -203,6 +210,7 @@ for "_count" from _start to _lc do
 		case 2: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_ReconSquad")] call BIS_fnc_spawnGroup;};
 		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_MG")] call BIS_fnc_spawnGroup;};
 		};
+		__tky_debug
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
 	sleep 0.05;
@@ -211,7 +219,7 @@ for "_count" from _start to _lc do
 
 		_veh = selectRandom opforstaticlandvehicles;
 		_staticveh = [_mypos, east, [_veh, "O_Soldier_SL_F", "O_Soldier_AT_F", "O_Soldier_GL_F"]] call BIS_fnc_spawngroup;
-
+__tky_debug
 	sleep 0.05;
 	// patrolling  apc /ifv group start
 	if not (_microtown) then
@@ -234,6 +242,7 @@ for "_count" from _start to _lc do
 	//heavy armour end
 	sleep 0.05;
 // add them all to cleanup arrays
+__tky_debug
 	{
 	if (_x isKindOf "Man") then {mancleanup pushback _x} else {vehiclecleanup pushback _x};
 	if ((_x isKindOf "Man") and (vehicle _x == _x)) then {vehiclecleanup pushback (vehicle _x) };
@@ -241,6 +250,7 @@ for "_count" from _start to _lc do
 	 }foreach ((units _staticgrp) + (units _patrolinf) + (units _patrolveh) );
 };
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
+__tky_debug
 {
 	if (side _x isEqualTo east) then
 		{
@@ -261,6 +271,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 			};
 		};
 } foreach allgroups;
+__tky_debug
 	{
 		[_x, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
 		// ^^^ mortar gunners have best spotdistance and spottime
@@ -271,8 +282,8 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 				while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
 					{
-					sleep 60 + (60 * random 5) ;
-					_nearblufors = (position _mygunner) nearEntities ["B_Soldier_base_f", 400];
+					sleep 120 + (60 * random 10) ;
+					_nearblufors = ((position _mygunner) nearEntities ["B_Soldier_base_f", 400]) select {(side _x) == west} ;
 					if ((count _nearblufors) > 0) then
 						{
 						_artytarget = (selectRandom _nearblufors);
@@ -283,6 +294,7 @@ _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 
 			};
 	} foreach mortar_gunners;
+	__tky_debug
 //createcivilians
 if (_pt_type isEqualTo 1) then
 	{
@@ -311,7 +323,7 @@ if (_pt_type isEqualTo 1) then
 				];
 			nul = [_cfunit, (str primarytargetcounter)] execVM "server\UPS.sqf";
 			_fciv pushback _civfootgroup;
-
+__tky_debug
 			};
 		if ((random 10) > 7) then //suicide bomber stuff
 			{
@@ -326,6 +338,7 @@ if (_pt_type isEqualTo 1) then
 			_d = [_ssman1, 200, 100] call Saro_fnc_bomber;
 			};
 		//driven cars
+		__tky_debug
 		_dcar = [];
 		_dcarcount = (1 * _lc);
 		for "_i" from 1 to _dcarcount do
@@ -374,13 +387,16 @@ if (_pt_type isEqualTo 1) then
 				};
 			_dcar pushback _dcargroup;
 			};
+			__tky_debug
 		_roadposarray = [];
 		{_roadposarray pushback (getpos _x)} foreach _townroads;
 		_null = [_fciv, _dcar, _roadposarray] execVM "server\cosPatrol.sqf";//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+		__tky_debug
 		_pcar = [];
 		_pcarcount = (2 * _lc);
 		if !(_microtown) then
 			{
+				__tky_debug
 			for "_i" from 1 to _pcarcount do
 				{
 				sleep 0.05;
@@ -394,6 +410,7 @@ if (_pt_type isEqualTo 1) then
 				_veh = createVehicle [(selectRandom civcars), (getpos _road1), [],0, "NONE"];
 				[_veh] call tky_fnc_initvehicle;
 				_nb = nearestBuilding _veh;
+				__tky_debug
 				if ((_veh distancesqr _nb) > 3.1) then
 					{_dir = (_veh getdir ((roadsConnectedTo _road1) select 0));}
 					 else
