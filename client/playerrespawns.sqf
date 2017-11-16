@@ -54,11 +54,12 @@ if ( GET_STATE( player ) == STATE_RESPAWNED ) then {
 
 sepa = ["<t color='#ffff33'>Put on ear plugs</t>",{
 	if (soundVolume == 1) then {
+		_i = _this select 2;
 		1 fadeSound 0.3;
-		_u setUserActionText [_i,"<t color='#ffff33'>Take off ear plugs</t>"]
+		player setUserActionText [_i,"<t color='#ffff33'>Take off ear plugs</t>"]
 	} else {
 		1 fadeSound 1;
-		_u setUserActionText [_i,"<t color='#ffff33'>Put on ear plugs</t>"]
+		player setUserActionText [_i,"<t color='#ffff33'>Put on ear plugs</t>"]
 	}
 },[],-90,false,true,"","_target == vehicle player"];
 player addAction sepa;
