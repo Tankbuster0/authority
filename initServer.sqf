@@ -1,3 +1,4 @@
+#include "includes.sqf"
 authenicatedAdmins = [];
 publicVariable "authenicatedAdmins";
 initserverfinished = false; publicVariable "initserverfinished";
@@ -45,6 +46,7 @@ pdflag = false;
 		   };
 		};
 	};
+__tky_debug
 if ((tolower worldName) in ["altis", "tanoa"]) then
 	{
 		diag_log "*** mission uses existing targetdata file";
@@ -247,6 +249,7 @@ if ((tolower worldName) in ["altis", "tanoa"]) then
 		_handle1 = [] execVM "server\getprimarytargetlocations.sqf";
 		waitUntil {scriptDone _handle1};
 	};
+__tky_debug
 //diag_log "*** initServer done targetdata stuff";
 sleep 0.5;
 if ((tolower worldName) isEqualTo "tanoa") then
@@ -261,7 +264,7 @@ if ((tolower worldName) isEqualTo "tanoa") then
 				};
 		} foreach _ntobjs;
 	};
-
+__tky_debug
 if not (false) then
 	{
 		for "_m" from 1 to 100 do
@@ -272,14 +275,17 @@ if not (false) then
 			_mname setMarkerAlpha 0; //marker exists and not testmode, so hide markers
 			};
 	};
+__tky_debug
 // ^^^^ hide dep safezone markers if not testmode
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
 //waitUntil {scriptDone _handle2};
 diag_log format ["*** IS back from missionsetup @ 279"];
+__tky_debug
 waitUntil {missionrunning};
 diag_log format ["*** IS missionrunning is true @ 281"];
 sleep 0.5;
+__tky_debug
 _nul = execVM "server\tky_fobveh_killed_eh.sqf";
 _nul = execVM "server\tky_forward_killed_eh.sqf";
 _nul = [] execVM "server\doprimary.sqf";
