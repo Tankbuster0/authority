@@ -56,12 +56,5 @@ if !("PARAM_AimSway" call BIS_fnc_getParamValue == 100) then
 		player setCustomAimCoef _coef;
 		player setUnitRecoilCoefficient 0.2 + _coef;
 	};
-[] spawn
-	{
-		waitUntil {sleep 0.5; (visibleScoretable and {((getPlayerScores player) select 4 ) > 0} )};
-		private _kdr = ( (getPlayerScores player ) select 0) / ((getPlayerScores player) select 4);
-		hint format ["KDR = %1", ([_kdr, 1 ] call BIS_fnc_cutDecimals) ];
-		waitUntil {sleep 0.5; (not visibleScoretable)};
-		hint "";
-	}
+
 __tky_ends
