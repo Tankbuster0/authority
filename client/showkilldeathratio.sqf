@@ -1,7 +1,7 @@
 //showkilldeathratio and tankbuster
  #include "..\includes.sqf"
  _myscript = "showkilldeathratio.sqf";
-
+__tky_starts
  while {true} do
 		{
 			__tky_debug
@@ -14,3 +14,4 @@
 			__tky_debug
 			hint "";
 		};
+__tky_ends
