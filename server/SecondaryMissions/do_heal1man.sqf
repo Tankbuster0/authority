@@ -10,10 +10,25 @@ switch (floor random 1) do
 		case 0:
 		{
 			comment "RTA heal game";
-			// find a road peice less than 100m outside town, away from forward and fob road traffic victim heal.
-			//
+			// find a road piece less than 100m outside town, away from forward and fob road traffic victim heal.
 
-			_nr= cpt_position nearRoads 700 select {not (_x inArea "cpt_marker")}
+			_nr= (cpt_position nearRoads 700) select {not (_x inArea "cpt_marker")}
+			// from _nr, find all the rps that have a nearestterrainobjects wall near them
+			//if there are some, select 1 at random, place the car there, face it towards the wall(usually a crashbarrier)
+			// find the vector and setvelocity it at 20 to crash it into the wall
+			// use sethitindex [1,1]and [3,1] to damage front wheels
+
+
+			// if no barriers, get road dir using getdir roadsconnectedto, add 90 and shift the car until it's !onroad
+
+
+			// get a position along side the car, spawn a civ and injure them, lay them down and disableai move them
+			// perhaps put a driver inside and kill him
+
+
+
+
+
 
 		};
 
