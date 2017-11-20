@@ -85,7 +85,7 @@ civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_
 	   "C_man_p_beggar_F","C_man_p_beggar_F_afro","C_man_p_beggar_F_euro","C_man_p_beggar_F_asia","C_man_w_worker_F","C_man_hunter_1_F","C_man_p_shorts_1_F","C_man_p_shorts_1_F_afro","C_man_p_shorts_1_F_euro",
 	   "C_man_p_shorts_1_F_asia","C_man_shorts_1_F","C_man_shorts_1_F_afro","C_man_shorts_1_F_euro","C_man_shorts_1_F_asia","C_man_shorts_2_F","C_man_shorts_2_F_afro","C_man_shorts_2_F_euro","C_man_shorts_2_F_asia",
 	   "C_man_shorts_3_F","C_man_shorts_3_F_afro","C_man_shorts_3_F_euro","C_man_shorts_3_F_asia","C_man_shorts_4_F","C_man_shorts_4_F_afro","C_man_shorts_4_F_euro","C_man_shorts_4_F_asia"];// all the civs apart from named and story related ones
-civcars = ["C_Offroad_01_F","C_Hatchback_01_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F","C_SUV_01_F","C_Offroad_02_unarmed_F", "I_C_Offroad_02_unarmed_F","C_Quadbike_01_F"];
+civcars = ["C_Offroad_01_F","C_Hatchback_01_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F","C_SUV_01_F","C_Offroad_02_unarmed_F", "I_C_Offroad_02_unarmed_F"];
 
 opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];

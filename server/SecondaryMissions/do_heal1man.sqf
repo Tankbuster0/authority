@@ -12,7 +12,7 @@ switch (floor random 1) do
 			comment "RTA heal game";
 			// find a road piece less than 100m outside town, away from forward and fob road traffic victim heal.
 
-			_nr= (cpt_position nearRoads 700) select {not (_x inArea "cpt_marker")}
+			_nr = (cpt_position nearRoads 700) select {not (_x inArea "cpt_marker")}
 			// from _nr, find all the rps that have a nearestterrainobjects wall near them
 			//if there are some, select 1 at random, place the car there, face it towards the wall(usually a crashbarrier)
 			// find the vector and setvelocity it at 20 to crash it into the wall
@@ -20,6 +20,13 @@ switch (floor random 1) do
 			_nrb = _nr select {(count (nearestTerrainObjects [_x, ["Wall", 10, false, false]])) > 1};
 			if (_nrb isEqualTo []) then
 				{// no barriers, so make a roadside crash
+
+				_roadpiece = selectRandom _nr;
+				while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 10]) isEqualTo [])} do
+					{
+						_roadpiece = selectRandom _nr;
+					};
+				_h1mc = createVehicle []
 
 
 				}
