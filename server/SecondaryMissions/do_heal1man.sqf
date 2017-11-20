@@ -22,11 +22,16 @@ switch (floor random 1) do
 				{// no barriers, so make a roadside crash
 
 				_roadpiece = selectRandom _nr;
-				while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 10]) isEqualTo [])} do
+				while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
 					{
 						_roadpiece = selectRandom _nr;
 					};
-				_h1mc = createVehicle []
+				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE" ];
+				_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));
+				_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);
+				[_h1mcar] call tky_fnc_initvehicle
+				_h1mcar setHitPointDamage
+
 
 
 				}
