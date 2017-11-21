@@ -29,7 +29,7 @@ switch (floor random 1) do
 				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE" ];
 				_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));
 				_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);
-				[_h1mcar] call tky_fnc_initvehicle
+				[_h1mcar] call tky_fnc_initvehicle;
 				_h1mcar setHitPointDamage
 
 
