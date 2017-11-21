@@ -71,8 +71,8 @@ switch (floor random 1) do
 
 
 
-_distanddir = [_mytarget] call tky_fnc_distanddirfromtown;
-smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
+_distanddir = [getpos _h1mcar] call tky_fnc_distanddirfromtown;
+smmissionstring = format ["There's been a car crash %1. There are fatalites and injuries. Our priority is to render first aid to those that require it and maybe transport them to hospital ", _distanddir];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 
