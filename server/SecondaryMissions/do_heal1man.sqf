@@ -33,9 +33,19 @@ switch (floor random 1) do
 					{// make sure there isn't already a vehicle on the road
 						_roadpiece = selectRandom _nr;
 					};
-				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE" ];
+				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE"];
 				[_h1mcar, "h1mcar"] call fnc_setvehiclename;
 				createUnit
+				_h1cardriver = _h1mgrp createUnit [(selectRandom civs), getpos _roadpiece,[],0,"NONE"];
+				_h1cardriver moveInDriver _h1mcar;
+				_h1cardriver setdamage 1;
+				_h1carcargo1 = _h1mgrp createUnit [(selectRandom civs), getpos _roadpiece, [],0,"NONE"];
+				_h1carcargo1 moveInCargo _h1mcar;
+				_h1carcargo1 setDamage 1;
+
+				_h1manmain = _h1mgrp createUnit [(selectRandom civs), getpos _roadpiece, [],0,"NONE"];
+				_h1manmain moveInCargo _h1mcar;
+				_h1manmain sethit ["legs",1];
 				_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
 				if ((count (nearestTerrainObjects [_x, ["Wall", 10, false, false]])) > 1) then
 					{//there's a roadbarrier or wall nearby, crash the veh into it
@@ -54,6 +64,8 @@ switch (floor random 1) do
 				_h1mcar setHitIndex [1,1];
 				_h1mcar setHitIndex [3,1];
 
+				sleep 1;
+				_h1manmain action ["eject", _h1mcar];
 
 	};
 
