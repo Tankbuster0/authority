@@ -17,24 +17,8 @@ switch (floor random 1) do
 			//if there are some, select 1 at random, place the car there, face it towards the wall(usually a crashbarrier)
 			// find the vector and setvelocity it at 20 to crash it into the wall
 			// use sethitindex [1,1]and [3,1] to damage front wheels
-			_nrb = _nr select {(count (nearestTerrainObjects [_x, ["Wall", 10, false, false]])) > 1};
-			if (_nrb isEqualTo []) then
-				{// no barriers, so make a roadside crash
-
-				_roadpiece = selectRandom _nr;
-				while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
-					{
-						_roadpiece = selectRandom _nr;
-					};
-				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE" ];
-				_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));
-				_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);
-				[_h1mcar] call tky_fnc_initvehicle;
-				_h1mcar setHitPointDamage
 
 
-
-				}
 			// if no barriers, get road dir using getdir roadsconnectedto, add 90 and shift the car until it's !onroad
 
 
@@ -42,10 +26,38 @@ switch (floor random 1) do
 			// perhaps put a driver inside and kill him
 
 		};
-
+// no barriers, so make a roadside crash
+				_h1mgrp = createGroup civilian;
+				_roadpiece = selectRandom _nr;
+				while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
+					{// make sure there isn't already a vehicle on the road
+						_roadpiece = selectRandom _nr;
+					};
+				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE" ];
+				[_h1mcar, "h1mcar"] call fnc_setvehiclename;
+				createUnit
+				_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
+				if ((count (nearestTerrainObjects [_x, ["Wall", 10, false, false]])) > 1) then
+					{//there's a roadbarrier or wall nearby, crash the veh into it
+						_vel = velocity _h1mcar;
+						_dir = getdir _h1mcar;
+						_h1mcar setVelocity [
+							(_vel select 0) + (sin _dir * 6),
+							(_vel select 1) + (cos _dir * 6),
+							(_vel select 2)];
+					}
+					else
+					{// no barrier/wall nearby, just move the vehicle off the road
+						_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);// move it to the edge of the road
+					};
+				[_h1mcar] call tky_fnc_initvehicle;
+				_h1mcar setHitIndex [1,1];
+				_h1mcar setHitIndex [3,1];
 
 
 	};
+
+
 
 _distanddir = [_mytarget] call tky_fnc_distanddirfromtown;
 smmissionstring = format ["Do some shit at %1 and blah blah etc", _sometown getVariable "targetname"];
