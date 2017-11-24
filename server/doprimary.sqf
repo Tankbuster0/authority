@@ -69,7 +69,7 @@ trg3 setTriggerStatements ["( (not (alive pt_radar)) and (not (alive pt_hq)) and
 // task stuff
 __tky_debug
 taskname = "task" + str primarytargetcounter;
-[west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces","cpt_marker"], cpt_position,1,2,true ] call bis_fnc_taskCreate;
+[west, [taskname], ["Clear the target of all enemy forces", "Clear target of enemy forces",(format ["cpt_marker_%1", primarytargetcounter])], cpt_position,1,2,true ] call bis_fnc_taskCreate;
 __tky_debug
 if (
 	    (primarytargetcounter == 1) or
