@@ -13,7 +13,7 @@ switch (floor random 1) do
 			// find a road piece less than 100m outside town, away from forward and fob road traffic victim heal.
 
 			_nr = (cpt_position nearRoads 700) select {not (_x inArea "cpt_marker")}
-		};
+
 				diag_log format ["*** doh1m has nearroads %1", _nr];
 				_h1mgrp = createGroup civilian;
 				_roadpiece = selectRandom _nr;
@@ -54,6 +54,7 @@ switch (floor random 1) do
 
 				sleep 1;
 				_h1manmain action ["eject", _h1mcar];
+		};
 
 	};
 
