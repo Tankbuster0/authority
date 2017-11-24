@@ -12,48 +12,45 @@ switch (floor random 1) do
 			comment "RTA heal game";
 			// find a road piece less than 100m outside town, away from forward and fob road traffic victim heal.
 
-			_nr = (cpt_position nearRoads 700) select {not (_x inArea "cpt_marker")}
+			_nr = (cpt_position nearRoads 700) select {(not (_x inArea (format["cpt_marker_%1", primarytargetcounter]))) and (isOnRoad _x)};
+			diag_log format ["*** doh1m has nearroads %1", _nr];
+			_h1mgrp = createGroup civilian;
+			_roadpiece = selectRandom _nr;
+			while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
+				{// make sure there isn't already a vehicle on the road
+					_roadpiece = selectRandom _nr;
+				};
+			diag_log format ["*** _roadpiece = %1 at %2", _roadpiece, getpos _roadpiece];
+			_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE"];
+			[_h1mcar, "h1mcar"] call fnc_setvehiclename;
+			_h1cardriver = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece),[],0,"NONE"];
+			_h1cardriver moveInDriver _h1mcar;
+			_h1cardriver setdamage 1;
 
-				diag_log format ["*** doh1m has nearroads %1", _nr];
-				_h1mgrp = createGroup civilian;
-				_roadpiece = selectRandom _nr;
-				while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
-					{// make sure there isn't already a vehicle on the road
-						_roadpiece = selectRandom _nr;
-					};
-				diag_log format ["*** _roadpiece = %1", _roadpiece];
-				_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE"];
-				[_h1mcar, "h1mcar"] call fnc_setvehiclename;
-				_h1cardriver = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece),[],0,"NONE"];
-				_h1cardriver moveInDriver _h1mcar;
-				_h1cardriver setdamage 1;
-				_h1carcargo1 = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece), [],0,"NONE"];
-				_h1carcargo1 moveInCargo _h1mcar;
-				_h1carcargo1 setDamage 1;
+			_h1manmain = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece), [],0,"NONE"];
+			_h1manmain moveInCargo _h1mcar;
+			_h1manmain sethit ["legs",1];
+			_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
+			if ((count (nearestTerrainObjects [_roadpiece, ["Wall"], 10, false, false])) > 0) then
+				{//there's a roadbarrier or wall nearby, crash the veh into it
+					_vel = velocity _h1mcar;
+					_dir = getdir _h1mcar;
+					_h1mcar setVelocity [
+						(_vel select 0) + (sin _dir * 6),
+						(_vel select 1) + (cos _dir * 6),
+						(_vel select 2)];
+				}
+				else
+				{// no barrier/wall nearby, just move the vehicle off the road
+					_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);// move it to the edge of the road
+				};
+			[_h1mcar] call tky_fnc_initvehicle;
+			_h1mcar setHitIndex [1,1];
+			_h1mcar setHitIndex [3,1];
 
-				_h1manmain = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece), [],0,"NONE"];
-				_h1manmain moveInCargo _h1mcar;
-				_h1manmain sethit ["legs",1];
-				_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
-				if ((count (nearestTerrainObjects [_x, ["Wall", 10, false, false]])) > 1) then
-					{//there's a roadbarrier or wall nearby, crash the veh into it
-						_vel = velocity _h1mcar;
-						_dir = getdir _h1mcar;
-						_h1mcar setVelocity [
-							(_vel select 0) + (sin _dir * 6),
-							(_vel select 1) + (cos _dir * 6),
-							(_vel select 2)];
-					}
-					else
-					{// no barrier/wall nearby, just move the vehicle off the road
-						_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);// move it to the edge of the road
-					};
-				[_h1mcar] call tky_fnc_initvehicle;
-				_h1mcar setHitIndex [1,1];
-				_h1mcar setHitIndex [3,1];
-
-				sleep 1;
-				_h1manmain action ["eject", _h1mcar];
+			sleep 1;
+			_h1manmain action ["eject", _h1mcar];
+			diag_log format ["*** doh1m says car is %1 at %2", typeOf _h1mcar, getpos _h1mcar];
 		};
 
 	};
