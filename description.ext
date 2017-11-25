@@ -89,6 +89,7 @@ class cfgFunctions
 			class findsafepos {};
 			class followLeader {};
 			class followLeader2 {};
+			class getvehiclecolour {};
 			class initvehicle {};
 			class loadDataFromDB {};
 			class mando_chute {};
