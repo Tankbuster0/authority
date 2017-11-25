@@ -50,6 +50,7 @@ switch (floor random 1) do
 
 			sleep 1;
 			_h1manmain action ["eject", _h1mcar];
+			_h1manmain setUnitPos "down";
 			diag_log format ["*** doh1m says car is %1 at %2", typeOf _h1mcar, getpos _h1mcar];
 		};
 
