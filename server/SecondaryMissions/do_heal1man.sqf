@@ -4,7 +4,7 @@ _myscript = "do_heal1man";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_nr","_h1mgrp","_roadpiece","_h1mcar","_h1cardriver","_h1carcargo1","_h1manmain","_vel","_dir","_distanddir","_smcleanup"];
+private ["_nr","_h1mgrp","_roadpiece","_h1mcar","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname"];
 switch (floor random 1) do
 	{
 		case 0:
@@ -16,7 +16,7 @@ switch (floor random 1) do
 			diag_log format ["*** doh1m has nearroads %1", _nr];
 			_h1mgrp = createGroup civilian;
 			_roadpiece = selectRandom _nr;
-			while {((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
+			while {not ((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
 				{// make sure there isn't already a vehicle on the road
 					_roadpiece = selectRandom _nr;
 				};
@@ -45,21 +45,24 @@ switch (floor random 1) do
 					_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);// move it to the edge of the road
 				};
 			[_h1mcar] call tky_fnc_initvehicle;
-			_h1mcar setHitIndex [1,1];
-			_h1mcar setHitIndex [3,1];
+			_h1mcar setHitIndex [0,1];
+			_h1mcar setHitIndex [2,1];
 
 			sleep 1;
 			_h1manmain action ["eject", _h1mcar];
 			_h1manmain setUnitPos "down";
 			diag_log format ["*** doh1m says car is %1 at %2", typeOf _h1mcar, getpos _h1mcar];
+			_distanddir = [getpos _h1mcar] call tky_fnc_distanddirfromtown;
+			_carcolour = tolower ([_h1mcar] call tky_fnc_getvehiclecolour);
+			_carscreenname = toLower ([_h1mcar] call tky_fnc_getscreenname);
+			smmissionstring = format ["Reports are a %2 %3 has gone off the road %1. There may be fatalites and injuries. Our priority is to render first aid to those that require it and maybe transport them to hospital ", _distanddir, _carcolour, _carscreenname];
 		};
 
 	};
 
 
 
-_distanddir = [getpos _h1mcar] call tky_fnc_distanddirfromtown;
-smmissionstring = format ["There's been a car crash %1. There are fatalites and injuries. Our priority is to render first aid to those that require it and maybe transport them to hospital ", _distanddir];
+
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 failtext = "Dudes. You suck texts";
