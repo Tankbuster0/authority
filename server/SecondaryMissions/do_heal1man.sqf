@@ -11,7 +11,6 @@ switch (floor random 1) do
 		{
 			comment "RTA heal game";
 			// find a road piece  outside town, away from forward and fob road traffic victim heal.
-
 			_nr = (cpt_position nearRoads 700) select {(not (_x inArea (format["cpt_marker_%1", primarytargetcounter]))) and (isOnRoad _x)};
 			diag_log format ["*** doh1m has nearroads %1", _nr];
 			_h1mgrp = createGroup civilian;
@@ -26,7 +25,6 @@ switch (floor random 1) do
 			_h1cardriver = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece),[],0,"NONE"];
 			_h1cardriver moveInDriver _h1mcar;
 			_h1cardriver setdamage 1;
-
 			_h1manmain = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece), [],0,"NONE"];
 			_h1manmain moveInCargo _h1mcar;
 			_h1manmain sethit ["legs",1];
@@ -47,7 +45,6 @@ switch (floor random 1) do
 			[_h1mcar] call tky_fnc_initvehicle;
 			_h1mcar setHitIndex [0,1];
 			_h1mcar setHitIndex [2,1];
-
 			sleep 1;
 			_h1manmain action ["eject", _h1mcar];
 			_h1manmain setUnitPos "down";
@@ -58,6 +55,12 @@ switch (floor random 1) do
 			_carscreenname = ([_h1mcar] call tky_fnc_getscreenname);
 			smmissionstring = format ["Reports are a %2 %3 has gone off the road %1. There may be fatalites and injuries. Our priority is to render first aid to those that require it and maybe transport them to hospital ", _distanddir, _carcolour, _carscreenname];
 		};
+		case 1:
+			{
+				_nb = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
+
+
+			}
 
 	};
 
