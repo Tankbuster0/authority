@@ -10,7 +10,7 @@ switch (floor random 1) do
 		case 0:
 		{
 			comment "RTA heal game";
-			// find a road piece less than 100m outside town, away from forward and fob road traffic victim heal.
+			// find a road piece  outside town, away from forward and fob road traffic victim heal.
 
 			_nr = (cpt_position nearRoads 700) select {(not (_x inArea (format["cpt_marker_%1", primarytargetcounter]))) and (isOnRoad _x)};
 			diag_log format ["*** doh1m has nearroads %1", _nr];
@@ -31,7 +31,7 @@ switch (floor random 1) do
 			_h1manmain moveInCargo _h1mcar;
 			_h1manmain sethit ["legs",1];
 			_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
-			if ((count (nearestTerrainObjects [_roadpiece, ["Wall"], 10, false, false])) > 0) then
+			if ((count (nearestTerrainObjects [_roadpiece, ["Wall", "Tree"], 10, false, true])) > 0) then
 				{//there's a roadbarrier or wall nearby, crash the veh into it
 					_vel = velocity _h1mcar;
 					_dir = getdir _h1mcar;
@@ -51,10 +51,11 @@ switch (floor random 1) do
 			sleep 1;
 			_h1manmain action ["eject", _h1mcar];
 			_h1manmain setUnitPos "down";
+			_h1manmain disableAI "Move";
 			diag_log format ["*** doh1m says car is %1 at %2", typeOf _h1mcar, getpos _h1mcar];
 			_distanddir = [getpos _h1mcar] call tky_fnc_distanddirfromtown;
 			_carcolour = tolower ([_h1mcar] call tky_fnc_getvehiclecolour);
-			_carscreenname = toLower ([_h1mcar] call tky_fnc_getscreenname);
+			_carscreenname = ([_h1mcar] call tky_fnc_getscreenname);
 			smmissionstring = format ["Reports are a %2 %3 has gone off the road %1. There may be fatalites and injuries. Our priority is to render first aid to those that require it and maybe transport them to hospital ", _distanddir, _carcolour, _carscreenname];
 		};
 
@@ -69,14 +70,14 @@ failtext = "Dudes. You suck texts";
 while {missionactive} do
 	{
 	sleep 3;
-	if (false) then
+	if (not alive _h1manmain) then
 		{
 		missionsuccess = false;
 		missionactive = false;
-		failtext = "You suck. Mission failed because of reasons"; publicVariable "failtext";
+		failtext = "You lost the patient. Mission Failed."; publicVariable "failtext";
 		};
 
-	if (false) then
+	if ((damage _h1manmain) < 0.25) then
 		{
 		missionsuccess = true;
 		missionactive = false;
