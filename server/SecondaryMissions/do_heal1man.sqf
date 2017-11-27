@@ -30,8 +30,6 @@ switch (floor random 1) do
 			_h1cardriver setdamage 1;
 			_h1manmain = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece), [],0,"NONE"];
 			_h1manmain moveInCargo _h1mcar;
-			_h1manmain sethit ["legs",1];
-			_smcleanup pushBack _h1manmain;
 			_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
 			if ((count (nearestTerrainObjects [_roadpiece, ["Wall", "Tree"], 10, false, true])) > 0) then
 				{//there's a roadbarrier or wall nearby, crash the veh into it
@@ -44,15 +42,12 @@ switch (floor random 1) do
 				}
 				else
 				{// no barrier/wall nearby, just move the vehicle off the road
-					_h1mcar setpos (_h1mcar modelToWorld [0,3,0]);// move it to the edge of the road
+					_h1mcar setpos (_h1mcar modelToWorld [0,4,0]);// move it to the edge of the road
 				};
 			[_h1mcar] call tky_fnc_initvehicle;
 			_h1mcar setHitIndex [0,1];
 			_h1mcar setHitIndex [2,1];
-			sleep 1;
 			_h1manmain action ["eject", _h1mcar];
-			_h1manmain setUnitPos "down";
-			_h1manmain disableAI "Move";
 			diag_log format ["*** doh1m says car is %1 at %2", typeOf _h1mcar, getpos _h1mcar];
 			_distanddir = [getpos _h1mcar] call tky_fnc_distanddirfromtown;
 			_carcolour = tolower ([_h1mcar] call tky_fnc_getvehiclecolour);
@@ -63,28 +58,42 @@ switch (floor random 1) do
 			{
 				_nb0 = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
 				//perhaps add a min distance to forward and fobveh because as the mission can spawn inside the cpt
-				_nb1 = _nb0 select {( not ([_x] call tky_fnc_inhouse))};// remove roof positions
+				_h1bld = selectRandom _nb1;
+				_h1bldname = [_h1bld] call tky_fnc_getscreenname;
+				_h1blddistanddir = [getpos _h1bld] call tky_fnc_distanddirfromtown;
 				_mode = selectRandom ["inside", "outside"];
 				if (_mode isEqualTo "inside") then
 					{
-						_h1bld = selectRandom _nb1;
-						_hpos = selectRandom ( _h1bld buildingPos -1);
+						_h1bldposs0 = (_h1bld buildingPos -1);
+						_h1bldposs1 = _h1bldposs0 select {( not ([_x] call tky_fnc_inhouse))};// remove roof positions
+						_hpos = selectRandom _h1bldposs1;
 						_h1manmain = _h1mgrp createUnit [(selectRandom civs), _hpos, [],0,"NONE"];
-						[_hpos] //take this pos away from the array of positions so it doesnt get reused
-
-						_h1manmain moveInCargo _h1mcar;
-						_h1manmain sethit ["legs",1];
-						_h1manmain setUnitPos "down";
-						_h1manmain disableAI "Move";
-						_smcleanup pushBack _h1manmain;
-					}else
-					{};
-
-
-			}
-
+						_h1bldposs1 = _h1bldposs1 - [_hpos];
+						_hpos = selectRandom _h1bldposs1;
+						_h1extra = _h1mgrp createUnit [(selectRandom civs), _hpos, [],0,"NONE"];
+						_h1extra setdamage 1;
+						_smcleanup pushBack _h1extra;
+						smmissionstring = format ["Local emergency services have taken a call from the %1 %2 where there are injured civilians inside the building. Send a medic to tend to them", _h1bldname, _h1blddistanddir];
+					}
+					else
+					{
+						_h1bldexits = [];
+						for "_z" from 0 to 20 do
+							{
+								_h1bdlcandidateexit = _h1bld buildingExit _z;
+								if ((_h1bdlcandidateexit select 1) > 0) then
+									{_h1bldexits pushBack _h1bdlcandidateexit};
+							};
+						_h1bldexit = selectRandom _h1bldexit;
+						_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1bldexit, [],0, "NONE"];
+						smmissionstring = format ["A civilian appears to have fallen from the roof of the %1 %2. Send a medic to tend to them", _h1bldname, _h1blddistanddir];
+					};
+			};
 	};
-
+_h1manmain sethit ["legs",1];
+_h1manmain setUnitPos "down";
+_h1manmain disableAI "Move";
+_smcleanup pushBack _h1manmain;
 
 ////////////////////////// dont forget to add all these to smcleanup
 
