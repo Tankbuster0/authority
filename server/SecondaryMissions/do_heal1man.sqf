@@ -5,6 +5,7 @@ __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private ["_nr","_h1mgrp","_roadpiece","_h1mcar","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname"];
+_h1mgrp = createGroup civilian;
 switch (floor random 1) do
 	{
 		case 0:
@@ -13,7 +14,7 @@ switch (floor random 1) do
 			// find a road piece  outside town, away from forward and fob road traffic victim heal.
 			_nr = (cpt_position nearRoads 700) select {(not (_x inArea (format["cpt_marker_%1", primarytargetcounter]))) and (isOnRoad _x)};
 			diag_log format ["*** doh1m has nearroads %1", _nr];
-			_h1mgrp = createGroup civilian;
+
 			_roadpiece = selectRandom _nr;
 			while {not ((_roadpiece nearEntities [["Man", "Air", "Car", "Motorcycle", "Tank"], 6]) isEqualTo [])} do
 				{// make sure there isn't already a vehicle on the road
@@ -22,12 +23,15 @@ switch (floor random 1) do
 			diag_log format ["*** _roadpiece = %1 at %2", _roadpiece, getpos _roadpiece];
 			_h1mcar = createVehicle [(selectRandom civcars), getpos _roadpiece, [],0, "NONE"];
 			[_h1mcar, "h1mcar"] call fnc_setvehiclename;
+			_smcleanup pushback _h1mcar;
 			_h1cardriver = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece),[],0,"NONE"];
 			_h1cardriver moveInDriver _h1mcar;
+			_smcleanup pushBack _h1cardriver;
 			_h1cardriver setdamage 1;
 			_h1manmain = _h1mgrp createUnit [(selectRandom civs), (getpos _roadpiece), [],0,"NONE"];
 			_h1manmain moveInCargo _h1mcar;
 			_h1manmain sethit ["legs",1];
+			_smcleanup pushBack _h1manmain;
 			_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
 			if ((count (nearestTerrainObjects [_roadpiece, ["Wall", "Tree"], 10, false, true])) > 0) then
 				{//there's a roadbarrier or wall nearby, crash the veh into it
@@ -57,8 +61,24 @@ switch (floor random 1) do
 		};
 		case 1:
 			{
-				_nb = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
+				_nb0 = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
 				//perhaps add a min distance to forward and fobveh because as the mission can spawn inside the cpt
+				_nb1 = _nb0 select {( not ([_x] call tky_fnc_inhouse))};// remove roof positions
+				_mode = selectRandom ["inside", "outside"];
+				if (_mode isEqualTo "inside") then
+					{
+						_h1bld = selectRandom _nb1;
+						_hpos = selectRandom ( _h1bld buildingPos -1);
+						_h1manmain = _h1mgrp createUnit [(selectRandom civs), _hpos, [],0,"NONE"];
+						[_hpos] //take this pos away from the array of positions so it doesnt get reused
+
+						_h1manmain moveInCargo _h1mcar;
+						_h1manmain sethit ["legs",1];
+						_h1manmain setUnitPos "down";
+						_h1manmain disableAI "Move";
+						_smcleanup pushBack _h1manmain;
+					}else
+					{};
 
 
 			}
@@ -66,7 +86,7 @@ switch (floor random 1) do
 	};
 
 
-
+////////////////////////// dont forget to add all these to smcleanup
 
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
