@@ -58,6 +58,7 @@ switch (floor random 1) do
 		case 1:
 			{
 				_nb = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
+				//perhaps add a min distance to forward and fobveh because as the mission can spawn inside the cpt
 
 
 			}
