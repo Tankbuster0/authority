@@ -55,7 +55,7 @@ switch (floor random 1) do
 			smmissionstring = format ["Reports are a %2 %3 has gone off the road %1. There may be fatalites and injuries. Our priority is to render first aid to those that require it and maybe transport them to hospital ", _distanddir, _carcolour, _carscreenname];
 		};
 		case 1:
-			{
+			{// inside a house or falls from roof
 				_nb0 = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
 				//perhaps add a min distance to forward and fobveh because as the mission can spawn inside the cpt
 				_h1bld = selectRandom _nb1;
@@ -88,6 +88,21 @@ switch (floor random 1) do
 						_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1bldexit, [],0, "NONE"];
 						smmissionstring = format ["A civilian appears to have fallen from the roof of the %1 %2. Send a medic to tend to them", _h1bldname, _h1blddistanddir];
 					};
+			};
+		case 2:
+			{// diver accident
+				//_ret =  [[centrepos], mindistfromcentrepos, maxdistfromcentre, distfrom nearobj, water 0 1 2 (dry, either, wet), grad, shoremode 0 1 (not, must), outside 0 1(yes, no), strict (use 1 for now), blacklist, default]
+				_h1mdivepos = islandcentre;
+				_maxradius = 128;
+				while {_h1mdivepos isEqualTo islandcentre} do
+					{
+						_maxradius = _maxradius * 2;
+						_h1mdivepos = [cpt_position, 200, _maxradius, 10, 0, 0.5, 1, 1,1] call tky_fnc_findsafepos;
+					};
+				diag_log format ["*** dh1m_dive chooses %1 as mission pos", _h1mdivepos];
+				_subposs = selectBestPlaces [_h1mdivepos, 10, "waterdepth",10,10];
+
+
 			};
 	};
 _h1manmain sethit ["legs",1];
