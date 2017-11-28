@@ -4,8 +4,9 @@ _myscript = "do_heal1man";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_nr","_h1mgrp","_roadpiece","_h1mcar","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname"];
+private ["_h1mgrp","_nr","_roadpiece","_h1mcar","_smcleanup","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_nb1","_h1bldname","_h1blddistanddir","_mode","_h1bldposs0","_h1bldposs1","_hpos","_h1extra","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_ret","_h1mdivepos","_maxradius","_subposs0","_subposs1","_subposfinal","_h1msub"];
 _h1mgrp = createGroup civilian;
+_smcleanup = [];
 switch (floor random 1) do
 	{
 		case 0:
@@ -42,7 +43,7 @@ switch (floor random 1) do
 				}
 				else
 				{// no barrier/wall nearby, just move the vehicle off the road
-					_h1mcar setpos (_h1mcar modelToWorld [0,4,0]);// move it to the edge of the road
+					_h1mcar setpos (_h1mcar modelToWorld [0,6,0]);// move it to the edge of the road
 				};
 			[_h1mcar] call tky_fnc_initvehicle;
 			_h1mcar setHitIndex [0,1];
@@ -109,11 +110,11 @@ switch (floor random 1) do
 					else
 					{
 						_subposfinal = (selectRandom _subposs1) select 0;
-					}
+					};
 				diag_log format ["*** dh11m dive chooses %1 as sub pos", _subposfinal];
 				_h1msub = createVehicle ["I_SDV_01_F", _subposfinal, [],0,"NONE"];
 				_h1msub setfuel 0;
-				_h1manmain = createUnit _h1mgrp [selectRandom civs, _h1mdivepos, [],0,"NONE"];
+				_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1mdivepos, [],0,"NONE"];
 				_h1manmain forceAddUniform "U_O_Wetsuit";
 				smmissionstring = format ["We're getting distress calls from a friendly diver operative. An SDV has been seen on the shore %1. Go and see if the diver needs medical help.", [_h1mdivepos] call tky_fnc_distanddirfromtown];
 			};
@@ -121,6 +122,7 @@ switch (floor random 1) do
 _h1manmain sethit ["legs",1];
 _h1manmain setUnitPos "down";
 _h1manmain disableAI "Move";
+_h1manmain setdamage 0.5;
 _smcleanup pushBack _h1manmain;
 
 ////////////////////////// dont forget to add all these to smcleanup
@@ -138,7 +140,7 @@ while {missionactive} do
 		failtext = "You lost the patient. Mission Failed."; publicVariable "failtext";
 		};
 
-	if ((damage _h1manmain) < 0.25) then
+	if ((damage _h1manmain) < 0.1) then
 		{
 		missionsuccess = true;
 		missionactive = false;
