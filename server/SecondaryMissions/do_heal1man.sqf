@@ -100,9 +100,22 @@ switch (floor random 1) do
 						_h1mdivepos = [cpt_position, 200, _maxradius, 10, 0, 0.5, 1, 1,1] call tky_fnc_findsafepos;
 					};
 				diag_log format ["*** dh1m_dive chooses %1 as mission pos", _h1mdivepos];
-				_subposs = selectBestPlaces [_h1mdivepos, 10, "waterdepth",10,10];
-
-
+				_subposs0 = selectBestPlaces [_h1mdivepos, 10, "waterdepth",10,10];
+				_subposs1 = _subposs0 select {((_x select 1) > 1) and ((_x select 1) < 3) and (surfaceIsWater (_x select 0))};
+				if (_subposs1 isEqualTo [] ) then
+					{//safety check, if failed to find good slightly offshore pos, fall back to a less filtered position
+						_subposfinal = selectRandom _h1mdivepos
+					}
+					else
+					{
+						_subposfinal = (selectRandom _subposs1) select 0;
+					}
+				diag_log format ["*** dh11m dive chooses %1 as sub pos", _subposfinal];
+				_h1msub = createVehicle ["I_SDV_01_F", _subposfinal, [],0,"NONE"];
+				_h1msub setfuel 0;
+				_h1manmain = createUnit _h1mgrp [selectRandom civs, _h1mdivepos, [],0,"NONE"];
+				_h1manmain forceAddUniform "U_O_Wetsuit";
+				smmissionstring = format ["We're getting distress calls from a friendly diver operative. An SDV has been seen on the shore %1. Go and see if the diver needs medical help.", [_h1mdivepos] call tky_fnc_distanddirfromtown];
 			};
 	};
 _h1manmain sethit ["legs",1];
