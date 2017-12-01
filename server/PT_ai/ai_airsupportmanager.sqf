@@ -35,7 +35,7 @@ while {(alive pt_hq) and ((playersNumber west) > 0) and testflag } do
 	_wp2 setWaypointFormation "COLUMN";
 
 	_wp3 = _opforairsupportgroup addWaypoint [pt_radar , 400];
-	_wp3 setwaypointtype "COMBAT";
+	_wp3 setwaypointtype "SAD";
 	_wp3 setWaypointSpeed "NORMAL";
 	_wp3 setwaypointtype "CYCLE";
 	//diag_log format [ "*** aasm spawn %1, %3 at %2", _chosenveh, _startpos, _opforairsupportveh];
