@@ -7,7 +7,9 @@ missionsuccess = false; publicVariable "missionsuccess";
 private ["_h1mgrp","_nr","_roadpiece","_h1mcar","_smcleanup","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_nb1","_h1bldname","_h1blddistanddir","_mode","_h1bldposs0","_h1bldposs1","_hpos","_h1extra","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_ret","_h1mdivepos","_maxradius","_subposs0","_subposs1","_subposfinal","_h1msub"];
 _h1mgrp = createGroup civilian;
 _smcleanup = [];
-switch (floor random 1) do
+_game = random floor 2;
+_game = 1;// for debug and testing only
+switch (_game) do
 	{
 		case 0:
 		{
@@ -33,21 +35,26 @@ switch (floor random 1) do
 			_h1manmain moveInCargo _h1mcar;
 			_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
 			if ((count (nearestTerrainObjects [_roadpiece, ["Wall", "Tree"], 10, false, true])) > 0) then
-				{//there's a roadbarrier or wall nearby, crash the veh into it
+				{//there's a roadbarrier or tree nearby, crash the veh into it
 					_vel = velocity _h1mcar;
 					_dir = getdir _h1mcar;
 					_h1mcar setVelocity [
-						(_vel select 0) + (sin _dir * 6),
-						(_vel select 1) + (cos _dir * 6),
+						(_vel select 0) + (sin _dir * 10),
+						(_vel select 1) + (cos _dir * 10),
 						(_vel select 2)];
 				}
 				else
 				{// no barrier/wall nearby, just move the vehicle off the road
-					_h1mcar setpos (_h1mcar modelToWorld [0,6,0]);// move it to the edge of the road
+					while {isOnRoad _h1mcar} do
+						{
+							_h1mcar setpos (_h1mcar modelToWorld [0,4,0]);// move it to the edge of the road
+						};
 				};
 			[_h1mcar] call tky_fnc_initvehicle;
 			_h1mcar setHitIndex [0,1];
 			_h1mcar setHitIndex [2,1];
+			_h1mcar setHitPointDamage ["HitlFWheel",1];
+			_h1mcar setHitPointDamage ["HitRFWheel",1];
 			_h1manmain action ["eject", _h1mcar];
 			diag_log format ["*** doh1m says car is %1 at %2", typeOf _h1mcar, getpos _h1mcar];
 			_distanddir = [getpos _h1mcar] call tky_fnc_distanddirfromtown;
@@ -57,7 +64,7 @@ switch (floor random 1) do
 		};
 		case 1:
 			{// inside a house or falls from roof
-				_nb0 = (nearestTerrainObjects [cpt_position, "house", 700]) select {(_x buildingPos -1) > 8};
+				_nb0 = (nearestTerrainObjects [cpt_position, ["house"], 700]) select {(_x buildingPos -1) > 8};
 				//perhaps add a min distance to forward and fobveh because as the mission can spawn inside the cpt
 				_h1bld = selectRandom _nb1;
 				_h1bldname = [_h1bld] call tky_fnc_getscreenname;
