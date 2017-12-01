@@ -79,7 +79,6 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 				[_mbus] call tky_fnc_initvehicle;
 				};
 			};
-			__tky_debug
 		// put boats in some port objects
 		if (_namewithoutid in boatspawnobjs)   then
 		{
@@ -123,7 +122,6 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 			};
 		};
 	};
-__tky_debug
 } foreach _obs;
 {// park some empty civ cars in car parks
 _linea = _x;
