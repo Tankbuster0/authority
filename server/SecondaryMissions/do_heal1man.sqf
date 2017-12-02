@@ -8,7 +8,7 @@ private ["_h1mgrp","_nr","_roadpiece","_h1mcar","_smcleanup","_h1cardriver","_h1
 _h1mgrp = createGroup civilian;
 _smcleanup = [];
 _game = random floor 2;
-_game = 1;// for debug and testing only
+_game = 2;// for debug and testing only
 switch (_game) do
 	{
 		case 0:
