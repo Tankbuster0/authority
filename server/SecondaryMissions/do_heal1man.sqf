@@ -64,16 +64,21 @@ switch (_game) do
 		};
 		case 1:
 			{// inside a house or falls from roof
-				_nb0 = (nearestTerrainObjects [cpt_position, ["house"], 700]) select {(_x buildingPos -1) > 8};
+				_nb0 = (nearestTerrainObjects [cpt_position, ["house"], 700]) select {(count (_x buildingPos -1)) > 8};
 				//perhaps add a min distance to forward and fobveh because as the mission can spawn inside the cpt
-				_h1bld = selectRandom _nb1;
-				_h1bldname = [_h1bld] call tky_fnc_getscreenname;
-				_h1blddistanddir = [getpos _h1bld] call tky_fnc_distanddirfromtown;
+				_h1bld = selectRandom _nb0;
 				_mode = selectRandom ["inside", "outside"];
 				if (_mode isEqualTo "inside") then
 					{
-						_h1bldposs0 = (_h1bld buildingPos -1);
-						_h1bldposs1 = _h1bldposs0 select {( not ([_x] call tky_fnc_inhouse))};// remove roof positions
+						_h1bldposs1 = [];
+						while {_h1bldposs1 isEqualTo []} do
+							{
+								_h1bld = selectRandom _nb0;
+								_h1bldposs0 = (_h1bld buildingPos -1);
+								diag_log format ["*** _h1bldposs0 is %1", _h1bldposs0];
+								_h1bldposs1 = _h1bldposs0 select {( not ([_x] call tky_fnc_inhouse))};// remove roof positions
+								diag_log format ["*** _h1bldposs1 is %1", _h1bldposs1];
+							};
 						_hpos = selectRandom _h1bldposs1;
 						_h1manmain = _h1mgrp createUnit [(selectRandom civs), _hpos, [],0,"NONE"];
 						_h1bldposs1 = _h1bldposs1 - [_hpos];
@@ -81,21 +86,28 @@ switch (_game) do
 						_h1extra = _h1mgrp createUnit [(selectRandom civs), _hpos, [],0,"NONE"];
 						_h1extra setdamage 1;
 						_smcleanup pushBack _h1extra;
+						_h1bldname = [_h1bld] call tky_fnc_getscreenname;
+						_h1blddistanddir = [getpos _h1bld] call tky_fnc_distanddirfromtown;
 						smmissionstring = format ["Local emergency services have taken a call from the %1 %2 where there are injured civilians inside the building. Send a medic to tend to them", _h1bldname, _h1blddistanddir];
 					}
 					else
 					{
+						_h1bld = selectRandom _nb0;
 						_h1bldexits = [];
 						for "_z" from 0 to 20 do
 							{
-								_h1bdlcandidateexit = _h1bld buildingExit _z;
+								_h1bdlcandidateexit = (_h1bld buildingExit _z);
+								diag_log format ["*** _h1bdlcandidateexit is %1", _h1bdlcandidateexit];
 								if ((_h1bdlcandidateexit select 1) > 0) then
 									{_h1bldexits pushBack _h1bdlcandidateexit};
 							};
-						_h1bldexit = selectRandom _h1bldexit;
+						_h1bldexit = selectRandom _h1bldexits;
 						_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1bldexit, [],0, "NONE"];
+						_h1bldname = [_h1bld] call tky_fnc_getscreenname;
+						_h1blddistanddir = [getpos _h1bld] call tky_fnc_distanddirfromtown;
 						smmissionstring = format ["A civilian appears to have fallen from the roof of the %1 %2. Send a medic to tend to them", _h1bldname, _h1blddistanddir];
 					};
+				diag_log format ["*** dh1m inhouse game is at %1", getpos _h1manmain];
 			};
 		case 2:
 			{// diver accident
