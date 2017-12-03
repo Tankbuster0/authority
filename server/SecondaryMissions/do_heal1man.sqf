@@ -143,14 +143,34 @@ switch (_game) do
 				_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1mdivepos, [],0,"NONE"];
 				_h1manmain forceAddUniform "U_O_Wetsuit";
 				smmissionstring = format ["We're getting distress calls from a friendly diver operative. An SDV has been seen on the shore %1. Go and see if the diver needs medical help.", [_h1mdivepos] call tky_fnc_distanddirfromtown];
+				_smcleanup pushback _h1msub;
+				_smcleanup pushBack _h1manmain;
 			};
 		case 3:
 			{// aircraft accident
-				//if we dont have aircraft, only spawn this on same landmass.
+				_h1pcpos0 = selectBestPlaces [cpt_position, 750, "meadow", 50, 25];
+				_h1pcpos1 = _h1pcpos0 select {(not ((_x select 0) inArea (format["cpt_marker_%1", primarytargetcounter])))};
+				// ^^^ select only those positions not in the cpt
+				if ((count _h1pcpos1) > 3) then
+					{
+						_rnd = floor random 3;
+						_h1pcpos = _h1pcpos select _rnd;
+					}
+					else
+					{
+						_h1pcpos = _h1pcpos1 select 0;
+					};
+				// check that most meadowy places are at the start of the array
 
-
-
-
+				_h1pcheli = createVehicle ["C_Heli_Light_01_civil_F", _h1pcpos, [],0,"NONE"];
+				_h1pcheli setdamage 0.8;
+				_h1pcheli setfuel 0;
+				[_h1pcheli] call tky_fnc_initvehicle;
+				_smcleanup pushback _h1pcheli;
+				_h1manmain = _h1mgrp createunit ["C_Story_Mechanic_01_F", _h1pcpos, [],0 "NONE"];
+				_h1manmain moveInDriver _h1pcheli;
+				_h1manmain action ["eject", _h1pcheli];
+				smmissionstring = format ["Air traffic control recieved a mayday call from a civilian aircraft %1. As we've had no further comms from them, you should get a medic team out there to see if they need any assistance", [_h1pcpos] call tky_fnc_distanddirfromtown];
 			};
 	};
 _h1manmain sethit ["legs",1];
