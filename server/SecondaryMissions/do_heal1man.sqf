@@ -120,7 +120,8 @@ switch (_game) do
 						_h1mdivepos = [cpt_position, 200, _maxradius, 10, 0, 0.5, 1, 1,1] call tky_fnc_findsafepos;
 					};
 				diag_log format ["*** dh1m_dive chooses %1 as mission pos", _h1mdivepos];
-				_subposs0 = selectBestPlaces [_h1mdivepos, 10, "waterdepth",10,10];
+				_subposs0 = selectBestPlaces [_h1mdivepos, 20, "waterdepth",10,50];
+				diag_log format ["*** _subposs0 is %1", _subposs0];
 				_subposs1 = [];
 				{
 					_thiselement = _x;
@@ -129,22 +130,23 @@ switch (_game) do
 							_subposs1 pushback (_thiselement select 0);
 						};
 				} forEach _subposs0;
+				diag_log format ["*** _subposs1 is %1", _subposs1];
 				if (_subposs1 isEqualTo [] ) then
 					{//safety check, if failed to find good slightly offshore pos, fall back to a less filtered position
-						_subposfinal = selectRandom _h1mdivepos
+						_subposfinal = _h1mdivepos;
 					}
 					else
 					{
 						_subposfinal = selectRandom _subposs1;
 					};
-				diag_log format ["*** dh11m dive chooses %1 as sub pos", _subposfinal];
+				diag_log format ["*** dh1m dive chooses %1 as sub pos", _subposfinal];
 				_h1msub = createVehicle ["I_SDV_01_F", _subposfinal, [],0,"NONE"];
 				_h1msub setfuel 0;
 				_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1mdivepos, [],0,"NONE"];
 				_h1manmain forceAddUniform "U_O_Wetsuit";
 				smmissionstring = format ["We're getting distress calls from a friendly diver operative. An SDV has been seen on the shore %1. Go and see if the diver needs medical help.", [_h1mdivepos] call tky_fnc_distanddirfromtown];
 				_smcleanup pushback _h1msub;
-				_smcleanup pushBack _h1manmain;
+				diag_log format ["*** sun is at %1 and diver is at %2", getpos _h1msub, _h1manmain];
 			};
 		case 3:
 			{// aircraft accident
@@ -167,7 +169,7 @@ switch (_game) do
 				_h1pcheli setfuel 0;
 				[_h1pcheli] call tky_fnc_initvehicle;
 				_smcleanup pushback _h1pcheli;
-				_h1manmain = _h1mgrp createunit ["C_Story_Mechanic_01_F", _h1pcpos, [],0 "NONE"];
+				_h1manmain = _h1mgrp createunit ["C_Story_Mechanic_01_F", _h1pcpos, [],0, "NONE"];
 				_h1manmain moveInDriver _h1pcheli;
 				_h1manmain action ["eject", _h1pcheli];
 				smmissionstring = format ["Air traffic control recieved a mayday call from a civilian aircraft %1. As we've had no further comms from them, you should get a medic team out there to see if they need any assistance", [_h1pcpos] call tky_fnc_distanddirfromtown];
