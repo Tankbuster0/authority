@@ -4,7 +4,7 @@ _myscript = "do_heal1man";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_h1mgrp","_nr","_roadpiece","_h1mcar","_smcleanup","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_nb1","_h1bldname","_h1blddistanddir","_mode","_h1bldposs0","_h1bldposs1","_hpos","_h1extra","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_ret","_h1mdivepos","_maxradius","_subposs0","_subposs1","_subposfinal","_h1msub"];
+private ["_h1mgrp","_nr","_roadpiece","_h1mcar","_smcleanup","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_nb1","_h1bldname","_h1blddistanddir","_mode","_h1bldposs0","_h1bldposs1","_hpos","_h1extra","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_ret","_h1mdivepos","_maxradius","_subposs0","_subposs1","_subposfinal","_h1msub", "_thiselement"];
 _h1mgrp = createGroup civilian;
 _smcleanup = [];
 _game = random floor 2;
@@ -111,7 +111,7 @@ switch (_game) do
 			};
 		case 2:
 			{// diver accident
-				//_ret =  [[centrepos], mindistfromcentrepos, maxdistfromcentre, distfrom nearobj, water 0 1 2 (dry, either, wet), grad, shoremode 0 1 (not, must), outside 0 1(yes, no), strict (use 1 for now), blacklist, default]
+
 				_h1mdivepos = islandcentre;
 				_maxradius = 128;
 				while {_h1mdivepos isEqualTo islandcentre} do
@@ -121,14 +121,21 @@ switch (_game) do
 					};
 				diag_log format ["*** dh1m_dive chooses %1 as mission pos", _h1mdivepos];
 				_subposs0 = selectBestPlaces [_h1mdivepos, 10, "waterdepth",10,10];
-				_subposs1 = _subposs0 select {((_x select 1) > 1) and ((_x select 1) < 3) and (surfaceIsWater (_x select 0))};
+				_subposs1 = [];
+				{
+					_thiselement = _x;
+					if (((_thiselement select 1) > 1) and {((_thiselement select 1) < 3) and (surfaceIsWater (_thiselement select 0))}) then
+						{
+							_subposs1 pushback (_thiselement select 0);
+						};
+				} forEach _subposs0;
 				if (_subposs1 isEqualTo [] ) then
 					{//safety check, if failed to find good slightly offshore pos, fall back to a less filtered position
 						_subposfinal = selectRandom _h1mdivepos
 					}
 					else
 					{
-						_subposfinal = (selectRandom _subposs1) select 0;
+						_subposfinal = selectRandom _subposs1;
 					};
 				diag_log format ["*** dh11m dive chooses %1 as sub pos", _subposfinal];
 				_h1msub = createVehicle ["I_SDV_01_F", _subposfinal, [],0,"NONE"];
@@ -136,6 +143,14 @@ switch (_game) do
 				_h1manmain = _h1mgrp createUnit [(selectRandom civs), _h1mdivepos, [],0,"NONE"];
 				_h1manmain forceAddUniform "U_O_Wetsuit";
 				smmissionstring = format ["We're getting distress calls from a friendly diver operative. An SDV has been seen on the shore %1. Go and see if the diver needs medical help.", [_h1mdivepos] call tky_fnc_distanddirfromtown];
+			};
+		case 3:
+			{// aircraft accident
+				//if we dont have aircraft, only spawn this on same landmass.
+
+
+
+
 			};
 	};
 _h1manmain sethit ["legs",1];
