@@ -75,7 +75,7 @@ tky_fnc_estimateddistance =
 	private ["_data1"];
 	// because this rounds down, this will add half the factor to the dist
 	_dist = _dist + (-1 + ( _factor /2));
-	_data1 = [_dist, _factor, 10] call BIS_fnc_roundNum;
+	_data1 = [_dist, 50, 10] call BIS_fnc_roundNum;
 
 	_data1
 
@@ -149,7 +149,7 @@ tky_fnc_distanddirfromtown =
 {
 	private ["_sortedtargets","_mytown","_tname","_tradius","_mydir","_mydist","_kmorm","_ret","_targets", "_pos", "_dist"];
 	_pos = _this select 0;
-	//takes a position and returns the nearest town/target to it
+	//takes an object or a position and returns the nearest town/target to it
 	_targets = (_pos nearEntities ["Logic", 4000]) select {((_x getVariable ["targetstatus", -1]) > -1)  };
 	_sortedtargets = [_targets, [] , {_pos distance2D _x}, "ASCEND"] call BIS_fnc_sortBy;
 	_mytown = _sortedtargets select 0;
