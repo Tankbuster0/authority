@@ -117,15 +117,16 @@ switch (_game) do
 				while {_h1mdivepos isEqualTo islandcentre} do
 					{
 						_maxradius = _maxradius * 2;
-						_h1mdivepos = [cpt_position, 200, _maxradius, 3, 2, 0, 1] call bis_fnc_findsafepos;
+						_h1mdivepos = [cpt_position, 200, _maxradius, 0, 0, 0, 1] call bis_fnc_findsafepos;
 					};
 				diag_log format ["*** dh1m_dive chooses %1 as mission pos", _h1mdivepos];
-				_subposs0 = selectBestPlaces [_h1mdivepos, 50, "waterdepth",10,50];
+				_subposs0 = (selectBestPlaces [_h1mdivepos, 50, "waterdepth",10,50]);
+				reverse _subposs0;
 				diag_log format ["*** _subposs0 is %1", _subposs0];
 				_subposs1 = [];
 				{
 					_thiselement = _x;
-					if (((_thiselement select 1) > 0.5) and {((_thiselement select 1) < 2) and (surfaceIsWater (_thiselement select 0))}) then
+					if (((_thiselement select 1) > 0.3) and {((_thiselement select 1) < 2) and (surfaceIsWater (_thiselement select 0))}) then
 						{
 							_subposs1 pushback (_thiselement select 0);
 						};
@@ -137,7 +138,7 @@ switch (_game) do
 					}
 					else
 					{
-						_subposfinal = selectRandom _subposs1;
+						_subposfinal = _subposs1 select 0;
 					};
 				diag_log format ["*** dh1m dive chooses %1 as sub pos", _subposfinal];
 				_h1msub = createVehicle ["I_SDV_01_F", _subposfinal, [],0,"NONE"];
