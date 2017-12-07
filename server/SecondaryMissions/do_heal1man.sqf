@@ -4,11 +4,11 @@ _myscript = "do_heal1man";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_h1mgrp","_nr","_roadpiece","_h1mcar","_smcleanup","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_nb1","_h1bldname","_h1blddistanddir","_mode","_h1bldposs0","_h1bldposs1","_hpos","_h1extra","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_ret","_h1mdivepos","_maxradius","_subposs0","_subposs1","_subposfinal","_h1msub", "_thiselement"];
+private ["_h1mgrp","_smcleanup","_game","_nr","_roadpiece","_h1mcar","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_mode","_h1bldposs1","_h1bldposs0","_hpos","_h1extra","_h1bldname","_h1blddistanddir","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_h1mdivepos","_maxradius","_subposs0","_subposs1","_thiselement","_subposfinal","_h1msub","_h1manpos","_h1pcpos0","_h1pcpos1","_rnd","_h1pcpos","_h1pcheli"];
 _h1mgrp = createGroup civilian;
 _smcleanup = [];
-_game = random floor 2;
-_game = 2;// for debug and testing only
+_game = random floor 4;
+//_game = 3;// for debug and testing only
 switch (_game) do
 	{
 		case 0:
@@ -159,28 +159,31 @@ switch (_game) do
 		case 3:
 			{// aircraft accident
 				_h1pcpos0 = selectBestPlaces [cpt_position, 750, "meadow", 50, 25];
+				diag_log format ["*** _h1pcpos0 is %1", _h1pcpos0];
 				_h1pcpos1 = _h1pcpos0 select {(not ((_x select 0) inArea (format["cpt_marker_%1", primarytargetcounter])))};
+				diag_log format ["*** _h1pcpos1 is %1", _h1pcpos1];
 				// ^^^ select only those positions not in the cpt
 				if ((count _h1pcpos1) > 3) then
 					{
 						_rnd = floor random 3;
-						_h1pcpos = _h1pcpos select _rnd;
+						_h1pcpos = ((_h1pcpos1 select _rnd) select 0);
 					}
 					else
 					{
-						_h1pcpos = _h1pcpos1 select 0;
+						_h1pcpos = ((_h1pcpos1 select 0) select 0);
 					};
 				// check that most meadowy places are at the start of the array
-
+				diag_log format ["*** _h1pcpos is %1", _h1pcpos];
 				_h1pcheli = createVehicle ["C_Heli_Light_01_civil_F", _h1pcpos, [],0,"NONE"];
-				_h1pcheli setdamage 0.8;
-				_h1pcheli setfuel 0;
 				[_h1pcheli] call tky_fnc_initvehicle;
 				_smcleanup pushback _h1pcheli;
 				_h1manmain = _h1mgrp createunit ["C_Story_Mechanic_01_F", _h1pcpos, [],0, "NONE"];
 				_h1manmain moveInDriver _h1pcheli;
-				_h1manmain action ["eject", _h1pcheli];
+				_h1manmain action ["GetOut", _h1pcheli];
+				_h1pcheli animateSource ['doorl_front_open',1];
 				smmissionstring = format ["Air traffic control recieved a mayday call from a civilian aircraft %1. As we've had no further comms from them, you should get a medic team out there to see if they need any assistance", [_h1pcpos] call tky_fnc_distanddirfromtown];
+				_h1pcheli setdamage 0.8;
+				_h1pcheli setfuel 0;
 			};
 	};
 _h1manmain sethit ["legs",1];

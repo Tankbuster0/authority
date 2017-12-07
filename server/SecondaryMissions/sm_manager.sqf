@@ -39,7 +39,8 @@ _smtypearray = [
 "destroyradiotower",
 "kill1man",
 "repairlocalbuilding",
-"hostageRescue"
+"hostageRescue",
+"heal1man"
  ];
 //_sm_required = 1;//debug only
 smcounter = 1;
