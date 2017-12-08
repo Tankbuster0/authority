@@ -36,12 +36,8 @@ switch (_game) do
 			_h1mcar setdir (90 + (_roadpiece getdir ((roadsConnectedTo _roadpiece) select 0)));// turn it towards road edge
 			if ((count (nearestTerrainObjects [_roadpiece, ["Wall", "Tree"], 10, false, true])) > 0) then
 				{//there's a roadbarrier or tree nearby, crash the veh into it
-					_vel = velocity _h1mcar;
-					_dir = getdir _h1mcar;
-					_h1mcar setVelocity [
-						(_vel select 0) + (sin _dir * 10),
-						(_vel select 1) + (cos _dir * 10),
-						(_vel select 2)];
+					_h1mcar setdir (_h1mcar getdir ((nearestTerrainObjects [_roadpiece, ["Wall", "Tree"], 10, false, true]) select 0)_);
+					_h1mcar setVelocityModelSpace [0,20,0]
 				}
 				else
 				{// no barrier/wall nearby, just move the vehicle off the road
