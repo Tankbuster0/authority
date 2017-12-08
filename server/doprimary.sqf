@@ -39,12 +39,12 @@ __tky_debug
 // Spawn Enemy Horde.
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 __tky_debug
-waitUntil {sleep 0.05;scriptDone _handle1};
+waitUntil {scriptDone _handle1};
 __tky_debug
 // Spawn Enemy CQB
 _handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 __tky_debug
-waitUntil {sleep 0.05;scriptDone _handle1};
+waitUntil {scriptDone _handle1};
 __tky_debug
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;
