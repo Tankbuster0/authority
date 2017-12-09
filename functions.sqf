@@ -184,5 +184,6 @@ tky_fnc_stripidandcolonandspace =
 	_obj = _this select 0;
 	//diag_log format ["*** fnc_strip gets %1 which is %2 and is objecttype %3 ", _obj, typeOf _obj, getObjectType _obj];
 	_ret = ((str _obj) splitString ":" select 1) select [1];
+	if (isNil "_ret") then {_ret = ""};
 	_ret
 };
