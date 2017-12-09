@@ -105,7 +105,6 @@ tky_fnc_medic_check =
 			{
 				_ret = true;
 			};
-
 	};
 tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input), returns true if indoors
 	{
