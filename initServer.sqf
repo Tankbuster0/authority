@@ -279,15 +279,13 @@ __tky_debug
 // ^^^^ hide dep safezone markers if not testmode
 forward allowDamage false;
 _handle2 = [] execVM "server\missionsetup.sqf";
-//waitUntil {scriptDone _handle2};
-diag_log format ["*** IS back from missionsetup @ 279"];
 __tky_debug
 waitUntil {missionrunning};
-diag_log format ["*** IS missionrunning is true @ 281"];
 sleep 0.5;
 __tky_debug
 _nul = execVM "server\tky_fobveh_killed_eh.sqf";
 _nul = execVM "server\tky_forward_killed_eh.sqf";
+__tky_debug
 _nul = [] execVM "server\doprimary.sqf";
 _nul = [] execVM "server\queuehints.sqf";
 Saro_fnc_bomber = compileFinal preProcessFileLineNumbers "server\PT_ai\sssb.sqf";

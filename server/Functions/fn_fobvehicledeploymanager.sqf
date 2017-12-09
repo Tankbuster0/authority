@@ -87,7 +87,8 @@ if not (fobdeployed) then
 			[fobveh, true] remoteexec ["lockdriver"];
 			sleep 2;
 			_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
-			waitUntil {scriptDone _handle22};
+			waitUntil {handle_bf_finished};
+
 			sleep 0.5;
 			fobbox setpos (position fobboxlocator);
 			// Make editing area for curator

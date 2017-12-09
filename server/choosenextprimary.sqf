@@ -1,7 +1,9 @@
 // by tankbuster
 // takes a position and returns a logic
 #include "..\includes.sqf"
+__tky_starts
 _myscript = "choosenextprimary.sqf";
+handle_cnp_finished = false;
 private ["_pos","_allpossibletargets","_mbi","_nvc","_notlegittargets","_overseastargets","_logics","_tstatus","_ttype","_tname","_dir","_dist","_onislandtargets","_finaltargetlist","_sortedtargetlist"];
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 _pos = _this select 0;// position of the old target
@@ -27,6 +29,7 @@ if (_rtoti < 2) then
 	};
 
 {
+	sleep 0.2;
 	_tstatus = _x getVariable ["targetstatus", -1];
 	_ttype = _x getVariable ["targettype", -1];
 	_tname = _x getVariable ["targetname", "Springfield"];
@@ -67,5 +70,6 @@ if ((nextpt getVariable ["targetlandmassid", -1] ) != cpt_island) then
 	};
 sleep 0.1;
 if (testmode) then {diag_log format ["***cnp chooses %1 which is radius %2", (nextpt getVariable "targetname"), nextpt getVariable "targetradius"]};
-diag_log format ["*** %1 ends %2, %3", _myscript, diag_tickTime, time];
+handle_cnp_finished = true;
+__tky_ends
 nextpt

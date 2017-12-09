@@ -9,7 +9,7 @@
  #include "..\includes.sqf"
 _myscript = "ai_populateCQBBuildings.sqf";
 __tky_starts;
-
+handle_ai_pcqb_finished = false;
 AM_fnc_checkInside = compile preprocessFile "Server\BuildingOccupation\isInsideBuilding.sqf";
 //AM_fnc_isWindowPos = compile preprocessFile "BuildingOccupation\isWindowPos.sqf";
 fn_p_getWindowPos = compile preprocessFile "Server\BuildingOccupation\getWindowedPos.sqf";
@@ -325,5 +325,5 @@ while { count _outskirtBuildings < _possibleOutskirtBuildingCount} do
 	if (_radius > 250) exitWith {diag_log "***No outskirt buildings found within 250 meters"};
 };
 */
-
+handle_ai_pcqb_finished = true;
 __tky_ends

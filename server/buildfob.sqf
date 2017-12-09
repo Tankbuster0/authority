@@ -2,6 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "buildfob.sqf";
 __tky_starts
+handle_bf_finished = false;
 diag_log format ["*** %1 starts %2, %3", _myscript, diag_tickTime, time];
 private ["_pos","_dir","_mypos","_testradius","_droppos","_hpad"];
 params [
@@ -73,6 +74,6 @@ if (isDedicated) then
 
 //previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
 sleep 0.5;
-
+handle_bf_finished = true;
 __tky_ends
 
