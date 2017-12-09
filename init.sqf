@@ -25,15 +25,11 @@ ArtySupport synchronizeObjectsAdd [SupportReq];
 SupportReq synchronizeObjectsAdd [ArtySupport];
 [] execVM "DEP\init.sqf";
 // MHQ Curator Build Stuff
-
 // Build Helipad, Can be NULL!
 FOBHelipad = objNull;
-
 //blubasedataterminal = objNull;
-
 //Hack around eventhandler crud
 LastSelectedObjects = objNull;
-
 // MHQ Curator Build Stuff
 // Objects that can be build by the MHQ curator
 [cur,"object"] call BIS_fnc_setCuratorAttributes;
