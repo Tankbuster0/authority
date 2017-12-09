@@ -3,6 +3,7 @@
 _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
+handle_smm_finished = false;
 private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle", "_previousmission", "_engineercount"];
 _previousmission = "none";
 typeselected = "";
@@ -98,7 +99,7 @@ while {smcounter < _sm_required} do
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
 	diag_log format ["***current sm number is %1 of %2", smcounter, _sm_required];
 	_smmanagerhandle = execVM _fname;
-	waitUntil {scriptDone _smmanagerhandle};
+	waitUntil {not missionactive};
 	//succeed or fail?
 	if not (missionsuccess) then
 		{
@@ -123,5 +124,5 @@ while {smcounter < _sm_required} do
 smmissionstring = "You've completed all the Secondary Missions for this town. The locals are happy with our work. Next Primary Mission orders coming soon.";
 publicVariable "smmissionstring";
 sleep 10;
-
+handle_smm_finished = true;
 __tky_ends

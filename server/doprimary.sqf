@@ -11,7 +11,7 @@ if (primarytargetcounter > 1) then
 	{
 	// 2nd, 3rd , 4th targets, etc
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";// creates global variable nextpt which is a logic
-	waitUntil {scriptDone _npt};
+	waitUntil {handle_cnp_finished};
 	sleep 0.1;
 	primarytarget = nextpt;// <-- dont forget nextpt is a logic
 	_handle = [primarytarget] execVM "server\PT_ai\ai_spawnroadblocks.sqf";
@@ -39,12 +39,12 @@ __tky_debug
 // Spawn Enemy Horde.
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 __tky_debug
-waitUntil {scriptDone _handle1};
+waitUntil {handle_spt_finished};
 __tky_debug
 // Spawn Enemy CQB
 _handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 __tky_debug
-waitUntil {scriptDone _handle1};
+waitUntil {handle_ai_pcqb_finished};
 __tky_debug
 _flagpos = [cpt_position,0,20,0,0,20,0] call bis_fnc_findSafePos;
 cpt_flag = "Flag_Red_F" createVehicleLocal _flagpos;

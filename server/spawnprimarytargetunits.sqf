@@ -2,6 +2,7 @@
 #include "..\includes.sqf"
 _myscript = "spawnprimarytargetunits";
 __tky_starts;
+handle_spt_finished = false;
 private ["_currentprimarytarget","_pt_pos","_pt_radius","_pt_type","_pt_name","_lc","_microtown","_start","_composition","_allcompositionunits","_compgrp","_plt","_blah","_obs","_cplines","_linenames","_stname","_namewithoutid","_mbus","_boatdir","_boatpos","_myboat","_linea","_linebx","_lineb","_carposx","_carposy","_mycar","_spawndir","_count","_staticgrpname","_mypos","_mydir","_staticgrp","_veh","_mgunner","_patrolinf","_staticveh","_patrolveh","_statictanks","_removeenemyvests","_mygroup","_nearblufors","_mygunner","_artytarget","_iroa","_aeta","_amags","_aka","_townroadsx","_townroads","_civcount","_fciv","_civfootgroup","_pos","_cfunit","_ssman1","_d","_dcar","_dcarcount","_dcargroup","_roadnogood","_road1","_objs","_road2","_dir","_unit","_crewcount","_ii","_unit2","_roadposarray","_null","_pcar","_pcarcount","_nb"];
 _currentprimarytarget = _this select 0;// receives a logic
 _pt_pos = getpos _currentprimarytarget;
@@ -418,4 +419,5 @@ __tky_debug
 				};
 			};
 	};
+handle_spt_finished = true;
 __tky_ends

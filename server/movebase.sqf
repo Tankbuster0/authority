@@ -3,6 +3,7 @@
  #include "..\includes.sqf"
 _myscript = "movebase";
 __tky_starts;
+handle_mb_finished = false;
 private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
@@ -189,4 +190,6 @@ _ahgvst = createTrigger ["EmptyDetector", getpos blubasehelipad, false];
 _ahgvst setTriggerArea [8,8,0,true];
 _ahgvst setTriggerActivation ["ANY", "PRESENT", true];
 _ahgvst setTriggerStatements [_con, _act, ""];
+handle_mb_finished = true;
+
 __tky_ends
