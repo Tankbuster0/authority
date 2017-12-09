@@ -53,6 +53,7 @@ if ( GET_STATE( player ) == STATE_RESPAWNED ) then {
 };
 
 sepa = ["<t color='#ffff33'>Put on ear plugs</t>",{
+	_i = _this select 2;
 	if (soundVolume == 1) then {
 		_i = _this select 2;
 		1 fadeSound 0.3;
