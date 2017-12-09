@@ -1,5 +1,5 @@
 _myscript = "init.sqf";
-
+diag_log format ["*** %1 on %2. %3 version %4, build %5, Platform %6 %7", briefingName, serverName, productVersion select 0, productVersion select 2, productVersion select 3, productVersion select 6, productVersion select 7];
 if (worldName == "Altis") then
 	{
 	_location = createlocation ["NameLocal",  [20983,7242,25.656], 100,100];
