@@ -98,7 +98,15 @@ tky_fnc_fleet_heli_vtols =
 	_whelivtols
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
+tky_fnc_medic_check =
+	{
+		_ret = false;
+		if ({_x getUnitTrait "medic"} count allPlayers) > 0 then
+			{
+				_ret = true;
+			};
 
+	};
 tky_fnc_inHouse = // by killzonekid, modified by tankbuster (to accept pos input), returns true if indoors
 	{
 	private _return = false;
