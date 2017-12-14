@@ -8,3 +8,4 @@ _myscript = "fnc_usefirstemptyinhintqueue";
 		{
 		if ((hintqueue select _i) isEqualTo "") exitWith {hintqueue set [_i, _tky_text]};
 		};
+// possible expansion.. mode switch? ["text in here", 0] remoteExecCall []
