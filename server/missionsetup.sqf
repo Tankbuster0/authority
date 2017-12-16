@@ -5,6 +5,7 @@ __tky_starts;
 private ["_airfield","_beachheadpos","_airfieldpos","_q","_mypos","_mytruck","_mymortar","_frigateposdata","_l","_mydata1","_fpos","_pos", "_refuse"];
 _airfield = selectRandom foundairfields;//choose a random airfield
 foundairfields = foundairfields - [_airfield];
+myairfield = _airfield getvariable ["targetname", "spingfield"]; publicVariable "myairfield";
 enableVehicleCrashes = false;
 //addMissionEventHandler ["BuildingChanged", {diag_log format ["from %1, to %2, isruin %3", _this select 0, _this select 1, _this select 2]}];
 _beachheadpos =[0,0,0];
