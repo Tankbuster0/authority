@@ -21,11 +21,11 @@ if ((_hasLaser > 0)) then
 		player addMagazine "LaserBatteries";
 	};
 };
-if ((score player < 1)) then
+/*if ((score player < 1)) then
 {
 	private _key = if ((count (actionKeys "User1") isEqualTo 0)) then {"Left Windows"} else {((actionKeysNamesArray "User1") joinString " | ")};
 	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Authority, %1! Briefing and notes are on the map screen in the top left corner. <br />Press %2 to open the mission status dialog.</t>", (name player), _key]), -1, -1, 10, 1, 0, 12345] remoteExec ["BIS_fnc_dynamicText", player, false];
-};
+};*/
 [] spawn
 {
 	waitUntil {(!isNull (findDisplay 46))};
@@ -56,5 +56,9 @@ if !("PARAM_AimSway" call BIS_fnc_getParamValue == 100) then
 		player setCustomAimCoef _coef;
 		player setUnitRecoilCoefficient 0.2 + _coef;
 	};
-
+if ((score player < 1)) then
+{
+	private _key = if ((count (actionKeys "User1") isEqualTo 0)) then {"Left Windows"} else {((actionKeysNamesArray "User1") joinString " | ")};
+	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Authority, %1! Briefing and notes are on the map screen in the top left corner. <br />Press %2 to open the mission status dialog.</t>", (name player), _key]), -1, -1, 10, 1, 0, 12345] remoteExec ["BIS_fnc_dynamicText", player, false];
+};
 __tky_ends
