@@ -55,6 +55,8 @@ if ((score player < 1)) then
 {
 	private _key = if ((count (actionKeys "User1") isEqualTo 0)) then {"Left Windows"} else {((actionKeysNamesArray "User1") joinString " | ")};
 	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Authority, %1! Briefing and notes are on the map screen in the top left corner. <br />Press %2 to open the mission status dialog.</t>", (name player), _key]), -1, -1, 10, 1, 0, 12345] remoteExec ["BIS_fnc_dynamicText", player, false];
+	0=[[["On a beach, not far from  ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '1.0'"]]] spawn BIS_fnc_typeText2;
+
 };
-0=[[["On a beach, not far from  ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '1.0'"]]] spawn BIS_fnc_typeText2;
+
 __tky_ends
