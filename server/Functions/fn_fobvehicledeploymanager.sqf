@@ -90,7 +90,7 @@ if not (fobdeployed) then
 			waitUntil {handle_bf_finished};
 
 			sleep 0.5;
-			fobbox setpos (position fobboxlocator);
+			fobbox setpos getpos fobboxlocator;
 			// Make editing area for curator
 			(effectiveCommander fobveh) assignCurator cur;
 			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
