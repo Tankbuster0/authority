@@ -4,7 +4,7 @@ _myscript = "do_landmineclear";
 __tky_starts;
 private ["_myplaces","_meadows","_smcleanup","_meadowdata","_mfpos","_numberofmines","_minecounter","_chosenmine","_realminepos","_mine","_minecone","_minename","_m1","_dirtohint"];
 //get a good place for minefield
-_myplaces = selectbestplaces [cpt_position, cpt_radius + 200, "meadow", 50,50];
+_myplaces = selectbestplaces [cpt_position, cpt_radius + 400, "meadow", 50,50];
 _meadows = _myplaces select {((_x select 1) == 1)};
 minearray = []; missionactive = true; missionsuccess = false; _smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
@@ -18,7 +18,7 @@ while
 		_meadowdata = selectRandom _meadows;
 		_mfpos = _meadowdata select 0;
 		};
-_numberofmines = ((selectrandom [2,3,4]) + (2 * playersnumber west)) min 10;
+_numberofmines = ((selectrandom [1,2,3]) + (2 * playersnumber west)) min 10;
 diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 for "_minecounter" from 1 to _numberofmines do
 	{
@@ -49,7 +49,7 @@ for "_minecounter" from 1 to _numberofmines do
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-smmissionstring = format ["Local elders have told us there's a minefield %1m %2of the edge of town. We need to defuse all of them. Only and engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir];
+smmissionstring = format ["Local elders have told us there's a minefield %1m %2of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 //
@@ -69,6 +69,7 @@ for "_zz" from 0 to _numberofmines do
 	};
 {
 	_x removeAllEventHandlers "explosion";
+	diag_log format ["*** removing eh from minecone %1 at %2", _x, getpos _x];
 } foreach (_mfpos nearEntities ["RoadCone_L_F", 110]);
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends

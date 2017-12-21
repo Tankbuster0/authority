@@ -99,6 +99,7 @@ while {smcounter < _sm_required} do
 	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
 	diag_log format ["***current sm number is %1 of %2", smcounter, _sm_required];
 	_smmanagerhandle = execVM _fname;
+	sleep 4;
 	waitUntil {not missionactive};
 	//succeed or fail?
 	if not (missionsuccess) then
