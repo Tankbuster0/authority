@@ -25,7 +25,7 @@ for "_minecounter" from 1 to _numberofmines do
 	_chosenmine = selectRandom aplandmines;
 	_realminepos = [_mfpos, (26 + random 74 ), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
-	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess'; failtext = 'One of the mines has gone off. You failed the task.'; publicVariable 'failtext'"];
+	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess'; failtext = 'One of the mines has gone off. You failed the task.'; publicVariable 'failtext'; "];
 	_minecone hideObjectGlobal true;
 	//diag_log format ["*** cone made at %1", getpos _minecone];
 	_mine = createMine [_chosenmine, _realminepos, [], 0];
@@ -67,5 +67,8 @@ for "_zz" from 0 to _numberofmines do
 	{
 	deleteMarker format ["mine%1", _zz];
 	};
+{
+	_x removeAllEventHandlers "explosion";
+} foreach (_mfpos nearEntities ["RoadCone_L_F", 110]);
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends
