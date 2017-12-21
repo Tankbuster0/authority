@@ -29,6 +29,7 @@ vehiclespawnerid1 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.
 vehiclespawnerid2 = player addaction ["Make Quadbike", "client\fn_spawnrunabout.sqf","",0,false,true, "","(player distance2D fobdataterminal) < 2"];
 bfboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "(player distance2d bfbox) < 3"];
 prizeboxactionid = player addaction ["Assemble Aircraft", "client\assembleaircraft.sqf", "", 0, false,false, "", "(player distance2D prizebox) < 3"];
+//unflipactionid = player addaction ["Unflip vehicle", ""]
 
 
 
