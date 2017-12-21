@@ -2,7 +2,7 @@
  #include "..\includes.sqf"
 _myscript = "do_slingloaddelivercontainer";
 __tky_starts;
-private ["_smcleanup","_conttype","_misstxt","_displayname","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir", "_smheli", "_smoke1", "_smoke2"];
+private ["_smcleanup","_hurons","_conttype","_misstxt","_displayname","_contpos","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir","_dist","_smgrp1","_smgrp2","_nul","_smoke1","_smoke2","_smheli","_smoker1","_smoker2"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
 _hurons = vehicles select {(((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and (alive _x) and (canMove _x))};
 _conttype = selectRandom huroncontainertypes;
