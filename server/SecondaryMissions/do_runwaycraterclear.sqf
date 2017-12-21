@@ -7,17 +7,22 @@ missionactive = true;missionsuccess = false; mycraters = [];_smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
 smmissionstring = format ["Enemy action has damaged our main airbase runways and taxiways, probably runway denial munitions. "];
 failtext = "The Bobcat has been lost and there are still some craters on the runways. You've failed this secondary mission";
-smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+//smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 publicVariable "smmissionstring";
 if (count (blubasehelipad nearEntities ["B_APC_Tracked_01_CRV_F", 200]) < 1) then
 	{
-	_txt = "Please clear the Airhead Helipad, use this vehicle to push craters clear of the runways and taxiways.";
-	_nul = [blubasehelipad, blufordropaircraft, "B_APC_Tracked_01_CRV_F", [0,0,0],_txt, "mybobcat"] execVM "server\spawnairdrop.sqf";
+	smmissionstring = smmissionstring + "Please clear the Airhead Helipad as a Bobcat CRV is being airdropped there. Use this to push the craters off the runways and taxiways.";
+	//_txt = "Please clear the Airhead Helipad, use this vehicle to push craters clear of the runways and taxiways.";
+	_nul = [blubasehelipad, blufordropaircraft, "B_APC_Tracked_01_CRV_F", [0,0,0],"", "mybobcat"] execVM "server\spawnairdrop.sqf";
 	}
 	else
 	{
-	"You already have a Bobcat CRV at the Airhead. Use it to push craters off the runways and taxiways" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+	smmissionstring = smmissionstring + " You already have a Bobcat CVR at the Airhead. Use it to push the craters off the runways and taxiways.";
+	//"You already have a Bobcat CRV at the Airhead. Use it to push craters off the runways and taxiways" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 	};
+
+smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+
 _candiposs = nearestObjects [blubasehelipad, [], 300, true];
 _runwayposs = _candiposs select {((str _x) find "bleroa" > 0) and ((_x distance2D blubasehelipad)> 100) };///find invisibleroadways more than 100m from helipad
 _runwayposshuffled = _runwayposs call BIS_fnc_arrayShuffle;
