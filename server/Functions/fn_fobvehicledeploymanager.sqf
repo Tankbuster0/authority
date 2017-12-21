@@ -90,7 +90,6 @@ if not (fobdeployed) then
 			waitUntil {handle_bf_finished};
 
 			sleep 0.5;
-			fobbox setpos getpos fobboxlocator;
 			// Make editing area for curator
 			(effectiveCommander fobveh) assignCurator cur;
 			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
@@ -99,7 +98,9 @@ if not (fobdeployed) then
 			// Hint press button to get in zeus mode
 			"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (effectiveCommander fobveh)];
 			fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
-			sleep 5;
+			sleep 2;
+			waitUntil {sleep 1; (fobboxlocator distance2d fobveh) < 10};
+			fobbox setpos getpos fobboxlocator;
 			nul = execVM "server\Functions\fn_cleanupoldprimary.sqf";
 			"The FOB has been built. There is a Virtual Arsenal and spawnpoint." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 			};
