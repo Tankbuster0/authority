@@ -185,7 +185,9 @@ for "_count" from _start to _lc do
 				[_mypos, _mydir, "O_GMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		};
-		__tky_debug
+	__tky_debug
+	__tky_throttle
+	if (diag_fpsmin < 10) then {sleep 0.};
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
@@ -209,7 +211,8 @@ for "_count" from _start to _lc do
 		case 2: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_ReconSquad")] call BIS_fnc_spawnGroup;};
 		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_MG")] call BIS_fnc_spawnGroup;};
 		};
-		__tky_debug
+	__tky_debug
+	__tky_throttle
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
 	sleep 0.05;
