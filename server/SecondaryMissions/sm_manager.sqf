@@ -114,7 +114,7 @@ while {smcounter < _sm_required} do
 		if (smcounter < _sm_required) then
 			{
 			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-			smmissionstring = "There are further Secondary Missions. Orders incomming soon";
+			smmissionstring = "There are further Secondary Missions. Orders incoming soon";
 			publicVariable "smmissionstring";
 			smcounter = smcounter + 1;
 			_previousmission = typeselected;
