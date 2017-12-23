@@ -7,8 +7,9 @@ missionsuccess = false; publicVariable "missionsuccess";
 private ["_h1mgrp","_smcleanup","_game","_nr","_roadpiece","_h1mcar","_h1cardriver","_h1manmain","_vel","_dir","_distanddir","_carcolour","_carscreenname","_nb0","_h1bld","_mode","_h1bldposs1","_h1bldposs0","_hpos","_h1extra","_h1bldname","_h1blddistanddir","_h1bldexits","_z","_h1bdlcandidateexit","_h1bldexit","_h1mdivepos","_maxradius","_subposs0","_subposs1","_thiselement","_subposfinal","_h1msub","_h1manpos","_h1pcpos0","_h1pcpos1","_rnd","_h1pcpos","_h1pcheli"];
 _h1mgrp = createGroup civilian;
 _smcleanup = [];
-_game = random floor 4;
+_game = floor random 4;
 //_game = 3;// for debug and testing only
+diag_log format ["*** _h1man game is %1", _game];
 switch (_game) do
 	{
 		case 0:
