@@ -243,6 +243,7 @@ __tky_debug
 	};
 	//heavy armour end
 	sleep 0.05;
+__tky_throttle
 // add them all to cleanup arrays
 __tky_debug
 	{
