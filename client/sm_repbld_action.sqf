@@ -1,5 +1,6 @@
 //by tankbuster
  #include "..\includes.sqf"
+ __tky_starts
 _myscript = "sm_repbld_action";
 private ["_tempbldpos","_tempbld"];
 while {true} do
