@@ -186,8 +186,7 @@ for "_count" from _start to _lc do
 				};
 		};
 	__tky_debug
-	__tky_throttle
-	if (diag_fpsmin < 10) then {sleep 0.};
+	if (diag_fpsmin < 10) then {diag_log format ["*** tky throttling %1 at %2 because fpsmin is %3",(__FILE__ select [(21 + (count worldName)), ((count __FILE__) - 4)]), __LINE__, diag_fpsmin ]; sleep 0.5;};
 	nul = [_staticgrp, _pt_pos] call bis_fnc_taskDefend;// defending infantry group
 	_mypos = [_pt_pos, 0, _pt_radius, 3,0,0.5,0,1,1] call tky_fnc_findSafePos;
 	_mydir = _pt_pos getdir _mypos;
@@ -212,7 +211,7 @@ for "_count" from _start to _lc do
 		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_MG")] call BIS_fnc_spawnGroup;};
 		};
 	__tky_debug
-	__tky_throttle
+	if (diag_fpsmin < 10) then {diag_log format ["*** tky throttling %1 at %2 because fpsmin is %3",(__FILE__ select [(21 + (count worldName)), ((count __FILE__) - 4)]), __LINE__, diag_fpsmin ]; sleep 0.5;};
 	nul = [_patrolinf, _pt_pos, (_pt_radius / 2)] call BIS_fnc_taskpatrol;
 	// patrolling infantry end
 	sleep 0.05;
@@ -243,7 +242,7 @@ __tky_debug
 	};
 	//heavy armour end
 	sleep 0.05;
-__tky_throttle
+if (diag_fpsmin < 10) then {diag_log format ["*** tky throttling %1 at %2 because fpsmin is %3",(__FILE__ select [(21 + (count worldName)), ((count __FILE__) - 4)]), __LINE__, diag_fpsmin ]; sleep 0.5;};
 // add them all to cleanup arrays
 __tky_debug
 	{
