@@ -7,8 +7,10 @@ private ["_ruinstartcount","_ruinendcount","_heartandmindscore","_sm_required","
 if (primarytargetcounter isEqualTo 1) then
 	{
 	taskbool = [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
+	handle_mb_finished = false;
 	_handle4 = execVM "server\movebase.sqf";
 	waitUntil {handle_mb_finished};
+
 	};
 if (cpt_type != 1) exitWith // if it wasn't a civ town, go straight to primary target cleared
 	{
@@ -26,6 +28,7 @@ cpt_marker setMarkerColor "ColorUNKNOWN";
 "Congratulations, you've driven the enemy from the AO." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 
 sleep 10;
+handle_smm_finished = false;
 _handle2 = [] execVM "server\SecondaryMissions\sm_manager.sqf";
 waitUntil {handle_smm_finished};
 smmissionstring = "There is currently no Secondary Mission";

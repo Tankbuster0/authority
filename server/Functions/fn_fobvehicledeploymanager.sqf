@@ -86,6 +86,7 @@ if not (fobdeployed) then
 			"Deploying FOB." remoteExec ["hint", fobveh];
 			[fobveh, true] remoteexec ["lockdriver"];
 			sleep 2;
+			handle_bf_finished = false;
 			_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 			waitUntil {handle_bf_finished};
 

@@ -10,6 +10,7 @@ if !(testmode) then {sleep 40;};
 if (primarytargetcounter > 1) then
 	{
 	// 2nd, 3rd , 4th targets, etc
+	handle_cnp_finished = false;
 	_npt = [cpt_position] execVM "server\choosenextprimary.sqf";// creates global variable nextpt which is a logic
 	waitUntil {handle_cnp_finished};
 	sleep 0.1;
@@ -37,11 +38,13 @@ primarytarget = nextpt;
 publicVariable "primarytarget";
 __tky_debug
 // Spawn Enemy Horde.
+handle_spt_finished = false;
 _handle1 = [primarytarget] execVM "server\spawnprimarytargetunits.sqf";//<< must send a target logic, ie on with variables stored on it
 __tky_debug
 waitUntil {handle_spt_finished};
 __tky_debug
 // Spawn Enemy CQB
+handle_ai_pcqb_finished = false;
 _handle1 = [position primarytarget, (primarytarget getVariable "targetradius")] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
 __tky_debug
 waitUntil {handle_ai_pcqb_finished};
