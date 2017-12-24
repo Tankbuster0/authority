@@ -4,7 +4,7 @@ _myscript = "do_slingloaddelivercontainer";
 __tky_starts;
 private ["_smcleanup","_hurons","_conttype","_misstxt","_displayname","_contpos","_redtargets","_mytarget","_tname","_deliverypos","_testradius","_dir","_dist","_smgrp1","_smgrp2","_nul","_smoke1","_smoke2","_smheli","_smoker1","_smoker2"];
 missionactive = true;missionsuccess = false;_smcleanup = [];
-_hurons = vehicles select {(((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and (alive _x) and (canMove _x))};
+_hurons = vehicles select {(((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and (alive _x) and (canMove _x) and (fuel _x > 0))};
 _conttype = selectRandom huroncontainertypes;
 switch (_conttype) do
 	{
@@ -54,7 +54,19 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 failtext = "Mission failure! You didn't get the supplies to the troops. They needed them badly.";
 _smoke1= false;
 _smoke2 = false;
-waitUntil {sleep 4; (((((getpos smcontainer) select 2) > 10) and ((speed (ropeAttachedTo smcontainer)) > 20)) or (damage smcontainer > 0.5) )};// mission underway..
+waitUntil {sleep 4; count ( vehicles select {(((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and (alive _x) and (canMove _x) and (fuel _x > 0))}) > 0 };// there's a huron actually in game...
+waitUntil {sleep 4; (
+	(
+	 	(((getpos smcontainer) select 2) > 10) and
+		((speed (ropeAttachedTo smcontainer)) > 20)
+	)
+	or (damage smcontainer > 0.5) or
+	(count (vehicles select
+	 	{
+	 		(((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F")
+			 and (alive _x) and (canMove _x) and (fuel _x > 0))
+		}) < 1 )
+	)};// mission underway..
 _smheli = ropeAttachedTo smcontainer;
 sleep 20;
 while {missionactive} do
@@ -74,8 +86,10 @@ while {missionactive} do
 		};
 	if (
 	    (!alive smcontainer) or
-	    ( ((getpos smcontainer select 2) < 2 ) and {((smcontainer distance2d _deliverypos) > 50) and ( (speed _smheli) < 20) and (isNull (ropeAttachedTo smcontainer)) } )
-	    ) then
+	    ( ((getpos smcontainer select 2) < 2 ) and {((smcontainer distance2d _deliverypos) > 50) and ( (speed _smheli) < 20) and (isNull (ropeAttachedTo smcontainer)) } ) or
+	    (count ( vehicles select {(((typeof _x) isEqualTo "B_Heli_Transport_03_unarmed_F") and (alive _x) and (canMove _x) and (fuel _x > 0))}) < 1)
+	    )
+	     then
 			{
 			missionsuccess = false; publicVariable "missionsuccess";
 			missionactive = false; publicVariable "missionactive";
