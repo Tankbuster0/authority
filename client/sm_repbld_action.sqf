@@ -24,7 +24,7 @@ while {true} do
 		{hint "Repair complete!"; deletevehicle tempbld; deepbld setdamage 0;},
 		{tempbld setpos [tempbldpos select 0, tempbldpos select 1, -24]},
 		[],
-		(if (count (player nearentities [["B_APC_Tracked_01_CRV_F", "B_Truck_01_Repair_F", "Offroad_01_repair_base_F",  "O_Truck_03_repair_F"],5]) > 0) then {6} else {12}),
+		(if (count (player nearentities [repvecs,5]) > 0) then {6} else {12}),
 		nil,
 		true,
 		false
