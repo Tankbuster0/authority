@@ -26,7 +26,7 @@ _nearbldsdeep = _nearblds select { (((getpos _x) select 2) < -50) and {(count (_
 	if ((count _nearruins ) > 0) then
 		{
 			_drlbmaster pushBack ([_x, (_nearruins select 0)]);
-		};// only pushback the ruin into the array if it actually exists
+		};// only pushback the ruin into the array if it actually existsm
 } forEach _nearbldsdeep;
 _randpair = selectRandom _drlbmaster;
 _deepbld = _randpair select 0;
