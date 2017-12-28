@@ -18,12 +18,12 @@ while
 		_meadowdata = selectRandom _meadows;
 		_mfpos = _meadowdata select 0;
 		};
-_numberofmines = ((selectrandom [1,2,3]) + (2 * playersnumber west)) min 10;
+_numberofmines = ((selectrandom [1,2,3]) + (playersnumber west)) min 10;
 diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _mfpos];
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom aplandmines;
-	_realminepos = [_mfpos, (26 + random 74 ), (random 360)] call BIS_fnc_relPos;
+	_realminepos = [_mfpos, (10 + random 40 ), (random 360)] call BIS_fnc_relPos;
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess'; failtext = 'One of the mines has gone off. You failed the task.'; publicVariable 'failtext'; "];
 	_minecone hideObjectGlobal true;
@@ -49,7 +49,7 @@ for "_minecounter" from 1 to _numberofmines do
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-smmissionstring = format ["Local elders have told us there's a minefield %1m %2of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this. Take a mine detector and a toolkit.", _mfdist, _mfreldir];
+smmissionstring = format ["Local elders have told us there's a minefield %1m %2of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this. Take a mine detector and a toolkit. (When you see the mine, you must 'reveal' it. Defautl key is 't')", _mfdist, _mfreldir];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 //
