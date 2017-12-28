@@ -5,10 +5,9 @@ __tky_starts;
 private ["_candiposs","_runwayposs","_runwayposshuffled","_nx","_craterpos","_crater","_cratereh", "_smcleanup", "_cratercount", "_craterclearedcount", "_thiscrater"];
 missionactive = true;missionsuccess = false; mycraters = [];_smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
-smmissionstring = format ["Enemy action has damaged our main airbase runways and taxiways, probably runway denial munitions. "];
+smmissionstring = format ["Enemy action has damaged our main airbase runways and taxiways, probably with runway denial munitions. "];
 failtext = "The Bobcat has been lost and there are still some craters on the runways. You've failed this secondary mission";
 //smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-publicVariable "smmissionstring";
 if (count (blubasehelipad nearEntities ["B_APC_Tracked_01_CRV_F", 200]) < 1) then
 	{
 	smmissionstring = smmissionstring + "Please clear the Airhead Helipad as a Bobcat CRV is being airdropped there. Use this to push the craters off the runways and taxiways.";
@@ -17,10 +16,10 @@ if (count (blubasehelipad nearEntities ["B_APC_Tracked_01_CRV_F", 200]) < 1) the
 	}
 	else
 	{
-	smmissionstring = smmissionstring + " You already have a Bobcat CVR at the Airhead. Use it to push the craters off the runways and taxiways.";
+	smmissionstring = smmissionstring + "You already have a Bobcat CRV at the Airhead. Use it to push the craters off the runways and taxiways.";
 	//"You already have a Bobcat CRV at the Airhead. Use it to push craters off the runways and taxiways" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 	};
-
+publicVariable "smmissionstring";
 smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 
 _candiposs = nearestObjects [blubasehelipad, [], 300, true];
