@@ -59,7 +59,8 @@ if ((score player < 1)) then
 };
 if (([missionNamespace, "primarytargetcounter", 99] call BIS_fnc_getServerVariable) == 1) then
 	{
-		0=[[["On a beach, not far from ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '2.0' '#FFFF00"]]] spawn BIS_fnc_typeText2;
+		//0=[[["On a beach, not far from ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '2.0', '#FFFF00"]]] spawn BIS_fnc_typeText2;
+		0=[[["On the shore, not far from ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '2.0'"]]] spawn BIS_fnc_typeText2;
 	}
 	else
 	{
