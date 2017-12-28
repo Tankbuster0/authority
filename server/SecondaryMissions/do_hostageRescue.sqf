@@ -105,19 +105,19 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 				_rescuedHostages = _rescuedHostages + 1;
 			};
 		} forEach _hostages;
-		if ((_rescuedHostages >= 2)) exitWith
+		if ((_rescuedHostages isEqualTo (count _hostages))) exitWith
 		{
 			missionsuccess = true;
 			publicVariable "missionsuccess";
 			missionactive = false;
 			publicVariable "missionactive";
 
-			completionText = "Mission completed. At least two hostages were rescued.";
+			completionText = "Mission completed. All the hostages were rescued.";
 			publicVariable "completionText";
 			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			diag_log format ["*** dhr succeeds. yey"];
 		};
 	};
-diag_log format ["***dhr drops out of main loop, presumably becuae mission not active"];
+diag_log format ["***dhr drops out of main loop, presumably because mission not active"];
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
 __tky_ends;
