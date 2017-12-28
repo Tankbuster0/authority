@@ -17,7 +17,8 @@ waitUntil {sleep 1;(getpos _startbldtodmg) select 2 < -95};
 
 // get the buildings that sink their good model
 _drlbmaster = []; //master array. [[buriedbld1,ruin1], [buriedbld2,ruin2], ~~~]
-_nearblds = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];// all good buildings whether on surface or sunk
+//_nearblds = nearestObjects [cpt_position, ["House_f"], cpt_radius + 50, true];// all good buildings whether on surface or sunk
+_nearblds = nearestTerrainObjects [cpt_radius, ["house"], cpt_radius + 25, false, true];// switch to this for better perf
 _nearbldsdeep = _nearblds select { (((getpos _x) select 2) < -50) and {(count (_x buildingPos -1)) > 4 }};// good buildings that are deep
 {
 	_goodbpos = getpos _x,
