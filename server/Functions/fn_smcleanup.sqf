@@ -15,7 +15,10 @@ diag_log format ["*** smc gets %1", _cleanup];
 		{
 		if (isNull objectParent _myelement ) then
 			{
-			deleteVehicle _myelement;
+			if not (_myelement in preservedvehicles) then
+				{
+					deleteVehicle _myelement;
+				};
 			}
 			else
 			{

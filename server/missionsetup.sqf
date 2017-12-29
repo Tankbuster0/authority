@@ -53,7 +53,6 @@ for "_q" from 1 to 3 do
 		_mypos = [_beachheadpos, 4,_testradius, 6, 0,0.5,0] call bis_fnc_findSafePos;
 		_testradius = _testradius * 2;
 	};
-
 	_mytruck = createVehicle ["B_Quadbike_01_F", _mypos,[],0,"NONE"];
 	};
 
@@ -66,20 +65,12 @@ for "_q" from 1 to 3 do
 		_testradius = _testradius * 2;
 	};
 
-
 forward setVehiclePosition [_mypos, [],0];
 forward setObjectTextureGlobal [0,"a3\soft_f_exp\lsv_01\data\nato_lsv_01_dazzle_co.paa"];
 [forward,nil,["HideDoor1",0,"HideDoor2",1,"HideDoor3",0,"HideDoor4",1]] call bis_fnc_initVehicle;
 [forward] call tky_fnc_setvehicleloadout;
 [forward, "forward"] call fnc_setVehicleName;
 
-/*
-forward addEventHandler ["GetOut", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetout.sqf"}];
-forward addEventHandler ["GetIn", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetin.sqf"}];
-forward addEventHandler ["SeatSwitched", {_nul = [_this select 0, _this select 1, _this select 2] execVM "server\functions\fn_handlefobgetseatchanged.sqf"}];
-forward addEventHandler ["Engine", {_nul = [_this select 0, _this select 1] execVM "server\functions\fn_handlefobengine.sqf"}];
-*/
-// ^^^ removed to test client side arty permission system in tky_supportmanager
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
 
 {
@@ -98,16 +89,7 @@ Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_AT_mine",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_mine",[0]];
 
-
 _id1 = addMissionEventHandler ["HandleDisconnect", {_this execVM "server\handleplayerdisconnect.sqf"}];
-//_id2 = addMissionEventHandler ["PlayerConnected", {	if ((west countSide allPlayers) < 1) then {0 setfog 0};}];
-//_id2 = addMissionEventHandler ["PlayerConnected", {	diag_log format  ["*** playerconnected EH says %1 players in mission when someone connects", (west countside allplayers)];}];
-// might need to change the <1 depending on how quick allplayers updated. if the player connecting counts as an allplayer, this wont work
-//we are trying to trigger when first player joins an empty server.
-/*WORKING
-Arty setpos _gopos;
-Arty attachTo [frigate];
-*/
 
 if (toLower (worldName) isEqualTo "tanoa") then
 	{
