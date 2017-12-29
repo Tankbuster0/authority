@@ -19,6 +19,7 @@ switch (typeof _vec) do
 		_vec addMagazineCargoGlobal ["SatchelCharge_Remote_Mag", 8];
 		_vec addMagazineCargoGlobal ["Titan_AT", 10];
 		_vec addMagazineCargoGlobal ["Titan_AA", 10];
+		_vec addMagazineCargoGlobal ["RPG7_F", 10];
 		_vec addMagazineCargoGlobal ["B_IR_Grenade", 5];
 		_vec addItemCargoGlobal ["Laserdesignator_02_ghex_F", 2];
 		_vec addItemCargoGlobal ["FirstAidKit",15];
