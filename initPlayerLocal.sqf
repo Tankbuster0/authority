@@ -21,4 +21,5 @@ endLoadingScreen;
 player setvariable ["isusingprizerecovery", false, true];
 [] execvm "client\addactions.sqf";
 player addEventHandler ["Respawn", {execVM "client\playerrespawns.sqf"}];
+player addEventHandler ["GetInMan", {gotinvec = _this select 2; publicvariableserver "gotinvec"}];
 [] execVM "client\playersetup.sqf";

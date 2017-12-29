@@ -288,6 +288,8 @@ _nul = execVM "server\tky_forward_killed_eh.sqf";
 __tky_debug
 _nul = [] execVM "server\doprimary.sqf";
 _nul = [] execVM "server\queuehints.sqf";
+_nul = [] execVM "server\preservevehicles.sqf";
+"gotinvec" addPublicVariableEventHandler {preservedvehicles pushBackUnique gotinvec};
 Saro_fnc_bomber = compileFinal preProcessFileLineNumbers "server\PT_ai\sssb.sqf";
 initserverfinished = true;
 publicVariable "initserverfinished";

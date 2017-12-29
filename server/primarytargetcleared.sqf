@@ -37,11 +37,14 @@ if (_droptype isKindOf "Air") then
 	{_txt = "This is your prize for clearing the primary target";};
 _nul = [_pos, blufordropaircraft, _droptype, [0,0,0],_txt] execVM "server\spawnairdrop.sqf";
 {
-	_veh = _x;
+	if not (_x in preservedvehicles {and alive _x}) then
 	{
-		_veh deleteVehicleCrew _x;
-	} foreach crew _veh;
-	deletevehicle _x;
+		_veh = _x;
+		{
+			_veh deleteVehicleCrew _x;
+		} foreach crew _veh;
+		deletevehicle _x;
+	};
 } foreach vehiclecleanup;
 {
 	deletevehicle _x;
