@@ -30,7 +30,8 @@ while {_inrange} do {
     };
 };
 
-if (!isNull _vehicle) and {not (_vehicle in preservedvehicles)} then {
+if ((!isNull _vehicle) and {not (_vehicle in preservedvehicles)}) then
+{
     {
         deleteVehicle _x;
     } forEach (crew _vehicle) + [_vehicle];
