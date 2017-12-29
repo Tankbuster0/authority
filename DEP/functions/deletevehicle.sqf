@@ -1,5 +1,5 @@
 /*  Copyright 2017 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ while {_inrange} do {
     };
 };
 
-if (!isNull _vehicle) then {
+if (!isNull _vehicle) and {not (_vehicle in preservedvehicles)} then {
     {
         deleteVehicle _x;
     } forEach (crew _vehicle) + [_vehicle];
