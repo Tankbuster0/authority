@@ -16,7 +16,7 @@ _nvc = 0.75 * (["notveryclose",400] call BIS_fnc_getParamValue);
 {
 	if not ([_x, true] call BIS_fnc_objectSide isEqualTo WEST) then
 	{
-		if not ((_x in preservedvehicles) and (alive _x)) then {deleteVehicle _x};
+		if not (_x in preservedvehicles)  then {deleteVehicle _x};
 		//diag_log format ["*** cleanupoldprimary deletes an old %1 vehicle ", typeof _x];
 	};
 } foreach  ((getpos previousmission) nearEntities [["LandVehicle", "Air", "Ship"], _nvc]);

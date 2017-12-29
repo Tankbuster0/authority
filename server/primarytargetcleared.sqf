@@ -37,7 +37,7 @@ if (_droptype isKindOf "Air") then
 	{_txt = "This is your prize for clearing the primary target";};
 _nul = [_pos, blufordropaircraft, _droptype, [0,0,0],_txt] execVM "server\spawnairdrop.sqf";
 {
-	if not (_x in preservedvehicles {and alive _x}) then
+	if not (_x in preservedvehicles) then
 	{
 		_veh = _x;
 		{
