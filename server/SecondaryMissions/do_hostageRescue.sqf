@@ -10,6 +10,7 @@ private _smcleanup = [];
 private _potentialStarts = (cpt_position nearEntities ["Logic", 3000]) select {((_x getVariable ["targetstatus", -1]) isEqualTo 1) && {(_x distance2D cpt_position > 500)} && ((_x getVariable "targetlandmassid") isEqualTo cpt_island)};
 private _start = selectRandom _potentialStarts;
 private _locationName = _start getVariable ["targetname", "Tanky fucked up"];
+//private ["_hostage"];
 
 _spawnPos =  [_start, 0, 400, 15, 0, 0.5, 0 , 0, 1] call tky_fnc_findsafepos;
 
@@ -22,7 +23,9 @@ private _enemyGroup = [_spawnPos, opfor, (configFile >> "CfgGroups" >> "East" >>
 _smcleanup pushBack _enemyGroup;
 private _hostageGroup = createGroup blufor;
 private _hostageClassnames = [
-["B_officer_F", "B_helicrew_F", "B_crew_F"], ["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"],["B_GEN_Soldier_F","B_GEN_Commander_F", "B_GEN_Soldier_F"],
+["C_man_sport_1_F_euro", "C_man_sport_2_F_afro", "C_man_sport_3_F_asia", "C_man_sport_2_F_tanoan"],
+["C_man_1_1_F", "C_man_1_2_F", "C_man_1_3_F"],["C_Man_casual_1_F_afro","C_Man_casual_1_F_tanoan", "C_Man_casual_2_F_asia", "C_Man_casual_3_F_euro"],
+["C_Man_casual_4_F_tanoan","C_Man_casual_5_F_afro", "C_Man_casual_6_F_euro", "C_Man_French_universal_F"],
 ["C_IDAP_Man_AidWorker_01_F","C_IDAP_Man_AidWorker_07_F","C_IDAP_Man_AidWorker_08_F","C_IDAP_Man_AidWorker_09_F","C_IDAP_Man_AidWorker_02_F","C_IDAP_Man_AidWorker_03_F"],
 ["C_Man_ConstructionWorker_01_Vrana_F","C_Man_ConstructionWorker_01_Red_F","C_Man_ConstructionWorker_01_Blue_F","C_Man_ConstructionWorker_01_Black_F"],
 ["C_Man_Messenger_01_F","C_journalist_F","C_Journalist_01_War_F","C_Nikos_aged"],
@@ -45,11 +48,10 @@ for "_i" from 0 to (_numHostages - 1) do
 	sleep 0.1;
 	_hostages pushBack _hostage;
 	_smcleanup pushBack _hostage;
-	_hostage setVariable ["mode", "captured", true];
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
-	diag_log format ["***dhr makes hostage %1, %2", _i, _hostage];
+	diag_log format ["***dhr makes %1, %2, %3", _i, _hostage, name _hostage, typeOf _hostage];
+	[_hostage] spawn tky_fnc_followLeader;
 };
-[_hostages] spawn tky_fnc_followLeader2;
 private _hostagePos = getPosATL hostage0;
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnPos, [], 0, "CAN_COLLIDE"];
 private _lightSource = "#lightPoint" createVehicle _spawnPos;
@@ -117,6 +119,7 @@ diag_log format ["*** dhr says hostages %1", _hostages];
 			completionText remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			diag_log format ["*** dhr succeeds. yey"];
 		};
+
 	};
 diag_log format ["***dhr drops out of main loop, presumably because mission not active"];
 [_smcleanup, 60] execVM "server\Functions\fn_smcleanup.sqf";
