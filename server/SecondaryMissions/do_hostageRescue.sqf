@@ -38,7 +38,7 @@ private _numHostages = 3 + (ceil (random 2));
 private _hostages = [];
 for "_i" from 0 to (_numHostages - 1) do
 {
-	sleep 0.5;
+	sleep 0.3;
 	private _hostage = _hostageGroup createUnit [(selectrandom _hostageClassname), _spawnPos, [], 0, "FORM"];
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";

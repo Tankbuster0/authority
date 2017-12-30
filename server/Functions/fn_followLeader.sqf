@@ -2,8 +2,7 @@
 #include "..\includes.sqf"
 _myscript = "fn_followleader";
 __tky_starts
-
-private ["_rescuer","_hostages","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer", "_myhostage"];
+private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer"];
 /* custom AI for hostages.
 1. Allows them to determine who their rescuer is
 2. Sets follow mode so they move towards their rescuer
@@ -62,7 +61,7 @@ while {missionactive} do
 		case "following":
 			{
 				_myhostage domove getpos _rescuer;
-				//diag_log format ["*** %1 following  to %2", _myhostage, _rescuer];
+				_rescuerinvec = false;
 			};
 		case "waiting":
 			{
@@ -91,11 +90,8 @@ while {missionactive} do
 		case "invec":
 			{
 				if (not (_rescuer in _rescuevec)) then
-				{// rescuer is not onboard
-					unassignVehicle _myhostage;
+				{
 					_mode = "getout";
-					[_myhostage] orderGetIn false;
-					_rescuerinvec = false;
 				};
 			};
 		case "rescued":
@@ -108,16 +104,17 @@ while {missionactive} do
 		case "getout":
 			{
 				unassignVehicle _myhostage;
-				doStop _myhostage;
 				[_myhostage] orderGetIn false;
+				doStop _myhostage;
 				_rescuer = objNull;
 				_rescuerinvec = false;
+				_rescuevec = objNull;
 				_mode = "waiting";
 			};
 	};
 	if (testmode) then
 	{
-		diag_log format ["*** %1 is mode %2. Rescuer is %3 who is in the  %4 vehicle, %5 ", _myhostage, _mode,name _rescuer, _rescuevec, _rescuerinvec];
+		diag_log format ["*** %1 is mode %2 and assigned to %5. Rescuer is %3 who is in the  %4 vehicle, %5 ", _myhostage, _mode,name _rescuer, _rescuevec, _rescuerinvec, assignedVehicle _myhostage];
 	};
 };
 __tky_ends
