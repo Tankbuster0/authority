@@ -43,6 +43,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	removeAllWeapons _hostage;
 	_hostage disableAI "ALL";
 	_hostage setCaptive true;
+	_hostage setBehaviour "Careless";
 	_hostageAnimation = selectRandom _hostageAnimations;
 	[_hostage, (format ["hostage%1", _i])] call fnc_setVehicleName;
 	sleep 0.1;
@@ -50,6 +51,8 @@ for "_i" from 0 to (_numHostages - 1) do
 	_smcleanup pushBack _hostage;
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
 	diag_log format ["***dhr makes %1, %2, %3", _i, _hostage, name _hostage, typeOf _hostage];
+
+
 	[_hostage] spawn tky_fnc_followLeader;
 };
 private _hostagePos = getPosATL hostage0;

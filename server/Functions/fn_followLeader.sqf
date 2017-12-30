@@ -9,14 +9,35 @@ private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopos
 3. Makes them get in their rescuers vehicle if there's cargo space, if not, makes them wait for another dismounted rescuer
 4
 possible modes are captured, waiting, following, getin, invec and rescued and getout
-isNull objectParent
 */
 _myhostage = _this select 0;
+_mode = "captured";
 diag_log format ["*** fn_fl gets %1", _myhostage];
-sleep 10;// wait for the hostages array to be populated by do_hr
-waitUntil {sleep 1;( isplayer ((_myhostage nearEntities ["SoldierWB", 4]) select 0) )};
+[
+	_myhostage,
+	"Free Hostage",
+	"\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_unbind_ca.paa",
+	"\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_unbind_ca.paa",
+	"(_this distance2D _target) < 3",
+	"(_caller distance2D _target) < 3",
+	{},
+	{},
+   	{
+	    [(_this select 0), ""] remoteExec ["switchMove", 0, false];
+		(_this select 0) enableAI "ALL";
+		[_this select 0, "safe"] remoteExec ["setBehaviour", 2, false];
+		(_this select 0) setUnitPos "UP";
+	},
+    {},
+    [],
+    5,
+    0,
+    true,
+    false
+] remoteExec ["BIS_fnc_holdActionAdd",[0,-2] select isDedicated,true];
+sleep 1;
+waitUntil {sleep 1; ((behaviour _myhostage) == "safe")};
 _rescuer = (_myhostage nearEntities ["SoldierWB", 4]) select 0;
-[_myhostage, ""] remoteExec ["switchMove", 0, false];
 _myhostage enableAI "ALL";
 _myhostage doMove (getPosATL _rescuer);
 _mode = "following";
