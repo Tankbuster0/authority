@@ -3,13 +3,7 @@
 _myscript = "fn_followleader";
 __tky_starts
 private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer"];
-/* custom AI for hostages.
-1. Allows them to determine who their rescuer is
-2. Sets follow mode so they move towards their rescuer
-3. Makes them get in their rescuers vehicle if there's cargo space, if not, makes them wait for another dismounted rescuer
-4
-possible modes are captured, waiting, following, getin, invec and rescued and getout
-*/
+/* custom AI for hostages. possible modes are captured, waiting, following, getin, invec and rescued and getout*/
 _myhostage = _this select 0;
 _mode = "captured";
 diag_log format ["*** fn_fl gets %1", _myhostage];
@@ -123,7 +117,6 @@ while {missionactive} do
 				sleep 3;
 				[_myhostage, "Acts_CivilIdle_1"] remoteExec ["switchMove", 0, false];
 				_myhostage disableAI "MOVE";
-
 			};
 		case "getout":
 			{
