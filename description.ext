@@ -24,7 +24,7 @@ loadScreen = "pics\authlogo512x256.paa";
 class Header {
 	gameType = COOP;
 	minPlayers = 1;
-	maxPlayers = 40;
+	maxPlayers = 20;
 	playerCountMultipleOf = 1;
 };
 disabledAI = 1;
