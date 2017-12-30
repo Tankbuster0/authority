@@ -87,7 +87,7 @@ class cfgFunctions
 			class findhighground {};
 			class fobvehicledeploymanager {};
 			class findsafepos {};
-			class followLeader2 {};
+			class followLeader {};
 			class getvehiclecolour {};
 			class initvehicle {};
 			class loadDataFromDB {};
