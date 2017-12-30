@@ -117,10 +117,13 @@ while {missionactive} do
 			};
 		case "rescued":
 			{
-				[_myhostage, "Acts_CivilIdle_1"] remoteExec ["switchMove", 0, false];
-				_myhostage disableAI "MOVE";
 				_rescuerinvec = false;
 				_rescuer = objNull;
+				_myhostage domove (getpos blubasewhiteboard);
+				sleep 3;
+				[_myhostage, "Acts_CivilIdle_1"] remoteExec ["switchMove", 0, false];
+				_myhostage disableAI "MOVE";
+
 			};
 		case "getout":
 			{
