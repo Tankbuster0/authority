@@ -106,6 +106,7 @@ while {smcounter < _sm_required} do
 		{
 		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 		diag_log format ["***smm after mission failure, smcounter is %1 or %2", smcounter, _sm_required];
+		_previousmission = typeselected;
 		sleep 10;
 		}
 		else
