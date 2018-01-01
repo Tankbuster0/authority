@@ -15,7 +15,7 @@ _scriptime = time;
 switch (cpt_name) do
 	{
 	case "AAC airfield":
-		{
+		{//122
 		_blubasedroppos = [11526.2,11812.8,0];
 		_composition = aac_blubase;
 		};
@@ -25,46 +25,47 @@ switch (cpt_name) do
 		_composition = almyra_blubase;
 		};
 	case "Abdera airfield":
-		{
+		{//150
 		_blubasedroppos = [9186.27,21649,0];
 		_composition = abdera_blubase;
 		};
 	case "Feres airfield":
-		{
+		{//48
 		_blubasedroppos = [20813.1,7243.86,0];
 		_composition = feres_blubase;
 		};
 	case "Molos Airfield":
-		{
+		{//132
 		_blubasedroppos = [26750.2,24615,0];
 		_composition = molos_blubase;
 		};
 	case "La Rochelle Aerodrome":
-		{
+		{//
 		_blubasedroppos = [11689.1,13117.5,0];
 		_composition = la_rochelle_blubase;
 		};
 	case "Aéroport de Tanoa":
-		{
+		{//
 		_blubasedroppos = [6920.95,7243.08,0];
 		_composition = aeroporto_de_tanoa_blubase;
 		};
 	case "Saint-George Airstrip":
-		{
+		{//
 		_blubasedroppos = [11740.6,3138.2,0.00143909];
 		_composition = st_george_blubase;
 		};
 	case "Bala Airstrip":
-		{
+		{//341
 		_blubasedroppos = [2138.08,3446.05,0];
 		_composition = bala_blubase;
 		};
 	case "Tuvanaka Airbase":
-		{
+		{//51
 		_blubasedroppos = [2120.12,13330.4,0];
 		_composition = tuvanaka_blubase;
 		};
 	};
+
 airheadname = cpt_name;
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 //first get all the secondary airstrips
@@ -72,7 +73,7 @@ _airstripdata = [];
 
 // clean up opfor statics... they are too messy
 
-_ostatics = (vehicles select {(_x isKindOf "StaticWeapon") and (((typeOf _x ) find "O_") > -1)}) inAreaArray "cpt_marker_1";
+_ostatics = (vehicles select {(_x isKindOf "StaticWeapon") and {((typeOf _x ) find "O_") > -1} }) inAreaArray "cpt_marker_1";
 {deleteVehicle _x } foreach _ostatics;// find and delete all the statics on the airfield
 for  "_i" from 1 to 10 do // get airstrip data
 	{
