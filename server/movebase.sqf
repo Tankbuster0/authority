@@ -4,13 +4,13 @@
 _myscript = "movebase";
 __tky_starts;
 handle_mb_finished = false;
-private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos"];
+private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos", "_blubasedir"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
 _scriptime = time;
 
 //get the position for the airdrop.
-
+/*
 //which airfield are we at?
 switch (cpt_name) do
 	{
@@ -64,8 +64,9 @@ switch (cpt_name) do
 		_blubasedroppos = [2120.12,13330.4,0];
 		_composition = tuvanaka_blubase;
 		};
-	};
-
+	};*/
+_blubasedroppos = getpos blubasepos;
+_blubasedir = getdir blubasepos;
 airheadname = cpt_name;
 // try to find the nearest ilsTaxiIn to the current airfield, its going to be the drop pos for containerised air prizes
 //first get all the secondary airstrips
@@ -141,21 +142,22 @@ if (count _naughtybaseobjects > 0) then
 		} foreach _naughtybaseobjects;
 	};
 sleep 2;
-waitUntil {(getposATL mycontainer select 2) < 2};
+waitUntil {(getposATL mycontainer select 2) < 1};
 deletevehicle mycontainer;
-blubaseobjects = [getpos previousmission, 0, _composition] call tky_fnc_t_objectsmapper;
+//blubaseobjects = [getpos previousmission, 0, _composition] call tky_fnc_t_objectsmapper;
+blubaseobjects = [_blubasedroppos, _blubasedir, blubasecomposition] call tky_fnc_t_objectsmapper;
 {
 	_x setdamage 0;
 } foreach blubaseobjects;
 _mypos = getpos ammoboxcone;
-deleteVehicle ammoboxcone;
+//deleteVehicle ammoboxcone;
 ammoboxpad setpos _mypos;
 baseflag setFlagTexture "pics\hom_flag_white_stripe512.paa";
 blubasewhiteboard setObjectTextureGlobal [0, "\a3\missions_f_epa\data\img\whiteboards\whiteboard_a_in_camp_co.paa"];
 blueflags pushback baseflag;
 blueflags = blueflags - [beachflag];// removes beachhead flag from array so that now we have airhead, spawnairdrop cannot chose the old beachhead
 _mypos = getpos terminalcone;
-deleteVehicle terminalcone;
+//deleteVehicle terminalcone;
 blubasedataterminal setpos _mypos;
 
 if (isDedicated) then
