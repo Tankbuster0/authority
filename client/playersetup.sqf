@@ -3,7 +3,7 @@ _myscript = "playersetup.sqf";
 [islandcentre,2] params ["_spawnpos", "_testradius"];// <-- funcky new private :)
 __tky_starts;
 waitUntil {!isNull player};
-//sleep 0.5;
+
 [] execVM "client\tky_supportmanager.sqf";
 [] execVM "client\makediary.sqf";
 while {_spawnpos isEqualTo islandcentre } do
@@ -12,6 +12,8 @@ while {_spawnpos isEqualTo islandcentre } do
 	_testradius = _testradius * 2;
 	};
 player setpos _spawnpos;
+
+sleep 5;
 [ player, [ profileNamespace, "currentInventory" ] ] call BIS_fnc_loadInventory;
 _hasLaser = {_x in (weapons player)} count ["Laserdesignator", "Laserdesignator_01_khk_F", "Laserdesignator_02", "Laserdesignator_02_ghex_F", "Laserdesignator_03", "Laserdesignator_mounted", "Laserdesignator_pilotCamera"];
 if ((_hasLaser > 0)) then

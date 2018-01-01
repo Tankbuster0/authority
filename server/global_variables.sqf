@@ -127,7 +127,8 @@ aaccomposition = [
 	["Land_BagBunker_Small_F",[257.51,236.387,-0.00294876],0,1,0,[0.30519,-0.0766178],"","",true,false],
 	["Land_Cargo_Tower_V1_No1_F",[179.239,307.16,0],326.702,1,0,[0,0],"","",true,false],
 	["O_Truck_02_fuel_F",[130.758,330.347,0.0448475],122.056,1,0,[-0.0594779,-0.13136],"","",true,false],
-	["Land_LampAirport_F",[285.452,230.627,-0.000343323],0,1,0,[0,0],"","",true,false]
+	["Land_LampAirport_F",[285.452,230.627,-0.000343323],0,1,0,[0,0],"","",true,false],
+	["RoadCone_F",[11526.2,11812.8,0],122,0,0, [0,0], "blubasepos", "", true, false]
 ];
 abderacomposition = [
 	["O_Truck_02_transport_F",[39.8223,22.0195,0.0717316],327.707,1,0,[-0.360478,-0.833786],"","",true,false],
@@ -166,7 +167,8 @@ abderacomposition = [
 	["Land_Cargo_Tower_V1_No1_F",[85.0098,146.002,0],326.702,1,0,[0,0],"","",true,false],
 	["Land_Wreck_BMP2_F",[127.075,129.035,-0.00849247],0,1,0,[-1.29845,0],"","",true,false],
 	["Land_Wreck_BRDM2_F",[230.077,10.8496,-0.0233746],0,1,0,[-1.37473,-1.98601],"","",true,false],
-	["Land_BagBunker_Large_F",[-151.681,-208.986,0.00858688],322.645,1,0,[-0.835742,0.541573],"","",true,false]
+	["Land_BagBunker_Large_F",[-151.681,-208.986,0.00858688],322.645,1,0,[-0.835742,0.541573],"","",true,false],
+	["RoadCone_F",   [9186.27,21649,0],150,0,0, [0,0], "blubasepos", "", true, false]
 ];
 almyracomposition = [
 	["Windsock_01_F",[43.8164,-4.88672,3.29018e-005],0,1,0,[0,0],"","",true,false],
@@ -228,7 +230,9 @@ ferescomposition = [
 	["Land_Wreck_BRDM2_F",[-117.813,105.424,-0.0580921],0,1,0,[-2.4432,-2.90313],"","",true,false],
 	["Land_Wreck_BMP2_F",[-76.9316,148.053,0.0259361],0,1,0,[-0.764127,-4.65024],"","",true,false],
 	["Land_LampAirport_F",[-158.838,58.9468,0],171.175,1,0,[0,-0],"","",true,false],
-	["Land_LampAirport_F",[-203.287,-65.4473,0],0,1,0,[0,0],"","",true,false]
+	["Land_LampAirport_F",[-203.287,-65.4473,0],0,1,0,[0,0],"","",true,false],
+	["RoadCone_F",  [20813.1,7243.86,0], 48,0,0, [0,0], "blubasepos", "", true, false]
+
 ];
 
 moloscomposition = [
@@ -261,7 +265,8 @@ moloscomposition = [
 	["Land_u_Shed_Ind_F",[-209.4,-200.521,0.0594063],130,1,0,[0,-0],"","",true,false],
 	["Land_Shed_Big_F",[-192.328,-206.357,0.0636578],220,1,0,[0,0],"","",true,false],
 	["Land_i_Shed_Ind_F",[-230.998,-183.521,0.0666714],130,1,0,[0,-0],"","",true,false],
-	["Land_ReservoirTank_Airport_F",[-271.477,-143.178,0.00749207],0,1,0,[0,0],"","",true,false]
+	["Land_ReservoirTank_Airport_F",[-271.477,-143.178,0.00749207],0,1,0,[0,0],"","",true,false],
+	["RoadCone_F",  [20813.1,7243.86,0],132,0,0, [0,0], "blubasepos", "", true, false]
 ];
 /*
 Grab data:
@@ -457,7 +462,8 @@ aeroporto_de_tanoa_compostion =
 	["Land_Cargo_Tower_V4_F",[-119.782,240.979,0.0136328],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[245.621,-161.628,0],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-318.987,74.8652,0.0338631],0,1,0,[0,0],"","",true,false],
-	["Land_Cargo_Tower_V4_F",[-151.01,-309.747,0],0,1,0,[0,0],"","",true,false]
+	["Land_Cargo_Tower_V4_F",[-151.01,-309.747,0],0,1,0,[0,0],"","",true,false],
+	["RoadCone_F",  [6920.95,7243.08,0], 50,0,0, [0,0], "blubasepos", "", true, false];
 ];
 
 aeroporto_de_tanoa_blubase = /*
@@ -518,7 +524,9 @@ Using orientation of objects: yes
 	["C_IDAP_Heli_Transport_02_F",[140.95,-163.868,-0.131138],36.8542,1,0,[4.73,-0.735943],"","",true,false],
 	["Land_HelipadCircle_F",[141.674,-164.424,0],36.9361,1,0,[3.26816,-0.792097],"","",true,false],
 	["O_Truck_02_box_F",[143.042,-182.771,0.0676913],40.4315,1,0,[0.00618738,0.0199528],"","",true,false],
-	["Land_Cargo_Tower_V4_F",[-233.514,0.495605,0],200.742,1,0,[0,0],"","",true,false]
+	["Land_Cargo_Tower_V4_F",[-233.514,0.495605,0],200.742,1,0,[0,0],"","",true,false],
+	["RoadCone_F", [11740.6,3138.2,0.00143909],214,0,0, [0,0], "blubasepos", "", true, false];
+
 ];
 st_george_blubase =
 /*
@@ -601,7 +609,8 @@ Using orientation of objects: yes
 	["Land_HistoricalPlaneDebris_04_F",[446.973,-4.87793,0.0127966],359.994,1,0,[-7.44236,1.40787],"","",true,false],
 	["Land_HistoricalPlaneWreck_02_front_F",[455.826,-0.0595703,0.331656],291.143,1,0,[6.70799,-4.81853],"","",true,false],
 	["Land_HistoricalPlaneDebris_01_F",[458.488,-13.3779,0.0423096],62.2358,1,0,[-0.799747,-168.066],"","",true,false],
-	["Land_HistoricalPlaneDebris_04_F",[462.026,-14.8096,-0.883949],0.0998101,1,0,[5.47785,1.34865],"","",true,false]
+	["Land_HistoricalPlaneDebris_04_F",[462.026,-14.8096,-0.883949],0.0998101,1,0,[5.47785,1.34865],"","",true,false],
+	["RoadCone_F",  [11689.1,13117.5,0], 20,0,0, [0,0], "blubasepos", "", true, false];
 ];
 
 la_rochelle_blubase =
@@ -667,7 +676,9 @@ Using orientation of objects: yes
 	["C_Plane_Civil_01_F",[-138.874,-90.7583,-0.00674534],359.997,1,0,[-0.00223486,-0.153807],"","",true,false],
 	["O_Truck_02_transport_F",[-47.8552,-169.034,0.0776606],264.048,1,0,[-0.888803,-0.804631],"","",true,false],
 	["C_Heli_light_01_ion_F",[-186.03,-77.2561,0.00469017],0.00166547,1,0,[0.0908428,0.00314917],"","",true,false],
-	["Land_Cargo_Tower_V4_F",[-157.009,-141.252,0],35.441,1,0,[0,0],"","",true,false]
+	["Land_Cargo_Tower_V4_F",[-157.009,-141.252,0],35.441,1,0,[0,0],"","",true,false],
+	["RoadCone_F", [2138.08,3446.05,0],341,0,0, [0,0], "blubasepos", "", true, false];
+
 ];
 
 
@@ -735,7 +746,8 @@ Using orientation of objects: yes
 	["O_T_Truck_03_repair_ghex_F",[320.321,159.248,0.0682106],359.987,1,0,[0.857157,-0.78778],"","",true,false],
 	["C_IDAP_Heli_Transport_02_F",[322.063,208.063,-0.127471],359.945,1,0,[3.03358,0.0860202],"","",true,false],
 	["Land_HelipadCircle_F",[322.691,208.271,0],0,1,0,[0,0],"","",true,false],
-	["Land_Cargo_Tower_V4_F",[208.94,329.509,0],0,1,0,[0,0],"","",true,false]
+	["Land_Cargo_Tower_V4_F",[208.94,329.509,0],0,1,0,[0,0],"","",true,false],
+	["RoadCone_F",[2120.12,13330.4,0],51,0,0, [0,0], "blubasepos", "", true, false];
 ];
 
 tuvanaka_blubase = /*
