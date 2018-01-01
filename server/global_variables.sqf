@@ -395,7 +395,7 @@ aeroporto_de_tanoa_compostion =
 	["Land_Cargo_Tower_V4_F",[245.621,-161.628,0],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-318.987,74.8652,0.0338631],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-151.01,-309.747,0],0,1,0,[0,0],"","",true,false],
-	["Sign_Arrow_Direction_Blue_F",  [132,94,0], 50,0,0, [0,0], "blubasepos", "", true, false]
+	["Sign_Arrow_Direction_Blue_F",[-132,-94,0], 50,0,0, [0,0], "blubasepos", "", true, false]
 ];//[6920.95,7243.08,0]
 aeroporto_de_tanoa_blubase = /*
 Grab data:
@@ -455,7 +455,7 @@ Using orientation of objects: yes
 	["Land_HelipadCircle_F",[141.674,-164.424,0],36.9361,1,0,[3.26816,-0.792097],"","",true,false],
 	["O_Truck_02_box_F",[143.042,-182.771,0.0676913],40.4315,1,0,[0.00618738,0.0199528],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-233.514,0.495605,0],200.742,1,0,[0,0],"","",true,false],
-	["Sign_Arrow_Direction_Blue_F", [-1.6,46.8,0],214,0,0, [0,0], "blubasepos", "", true, false]
+	["Sign_Arrow_Direction_Blue_F", [136,-48,0],214,0,0, [0,0], "blubasepos", "", true, false]
 ];// [11740.6,3138.2,0.00143909]
 st_george_blubase =
 /*
@@ -539,7 +539,7 @@ Using orientation of objects: yes
 	["Land_HistoricalPlaneWreck_02_front_F",[455.826,-0.0595703,0.331656],291.143,1,0,[6.70799,-4.81853],"","",true,false],
 	["Land_HistoricalPlaneDebris_01_F",[458.488,-13.3779,0.0423096],62.2358,1,0,[-0.799747,-168.066],"","",true,false],
 	["Land_HistoricalPlaneDebris_04_F",[462.026,-14.8096,-0.883949],0.0998101,1,0,[5.47785,1.34865],"","",true,false],
-	["Sign_Arrow_Direction_Blue_F",  [85.9,6.5,0], 20,0,0, [0,0], "blubasepos", "", true, false]
+	["Sign_Arrow_Direction_Blue_F",  [-85.9,-6.5,0], 20,0,0, [0,0], "blubasepos", "", true, false]
 ];// [11689.1,13117.5,0]
 
 la_rochelle_blubase =
@@ -606,7 +606,7 @@ Using orientation of objects: yes
 	["O_Truck_02_transport_F",[-47.8552,-169.034,0.0776606],264.048,1,0,[-0.888803,-0.804631],"","",true,false],
 	["C_Heli_light_01_ion_F",[-186.03,-77.2561,0.00469017],0.00166547,1,0,[0.0908428,0.00314917],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[-157.009,-141.252,0],35.441,1,0,[0,0],"","",true,false],
-	["Sign_Arrow_Direction_Blue_F", [44,80,0],341,0,0, [0,0], "blubasepos", "", true, false]
+	["Sign_Arrow_Direction_Blue_F", [-44,-80,0],341,0,0, [0,0], "blubasepos", "", true, false]
 ];//[2138.08,3446.05,0]
 bala_blubase =
 /*
@@ -673,8 +673,8 @@ Using orientation of objects: yes
 	["C_IDAP_Heli_Transport_02_F",[322.063,208.063,-0.127471],359.945,1,0,[3.03358,0.0860202],"","",true,false],
 	["Land_HelipadCircle_F",[322.691,208.271,0],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[208.94,329.509,0],0,1,0,[0,0],"","",true,false],
-	["Sign_Arrow_Direction_Blue_F",[2120.12,13330.4,0],51,0,0, [0,0], "blubasepos", "", true, false]
-];
+	["Sign_Arrow_Direction_Blue_F",[1,162,0],51,0,0, [0,0], "blubasepos", "", true, false]
+];// 2120.12,13330.4
 
 tuvanaka_blubase = /*
 Grab data:
