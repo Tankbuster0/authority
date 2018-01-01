@@ -16,7 +16,7 @@ __tky_starts;
 		   (side _x isEqualTo independent)
 	   ) then
 		{
-			_x setdamage 1;
+			if ((not (_x in preservedvehicles)) and {_x isKindOf "AllVehicles"}) then {_x setdamage 1;};
 		}
 }foreach (cpt_position nearentities (cpt_radius + 300));
 if (cpt_type ==1 ) then
