@@ -4,7 +4,7 @@ _myscript = "sm_manager";
 // execvmd by the assaultphasefinished
 __tky_starts;
 handle_smm_finished = false;
-private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle", "_previousmission", "_engineercount"];
+private ["_sm_required","_sm_hint","_pt_name","_smtypearray","_deepest","_deepestdepth","_wvecs","_whelivtols","_wairarmed","_fname","_smmanagerhandle", "_previousmission", "_engineercount", "_donotchoose"];
 _previousmission = "none";
 typeselected = "";
 _sm_required = ((2 + ( floor (heartandmindscore / 2))) min 9);
@@ -48,19 +48,22 @@ smcounter = 1;
 while {smcounter < _sm_required} do
 	{
 	sleep 10;
+	_donotchoose = [];
 	// custom exclusions ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1 dont do navalmine clearance if theres no deep water nearby
 	_deepest = 	(selectBestPlaces [cpt_position, 2000, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
 	if (_deepestdepth < 40) then
 		{
-		_smtypearray = _smtypearray - ["navalmineclear"];
+		//_smtypearray = _smtypearray - ["navalmineclear"];
+		_donotchoose pushback "navalmineclear";
 		diag_log "***sm manager couldnt find deep enough sea nearby so removed naval mine cleareance from sm roster";
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
 	//#2 dont do crater clearance on Almyra as it lacks the runways objects the sm needs
 	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then
 		{
-		_smtypearray = _smtypearray - ["runwaycraterclear"];
+		//_smtypearray = _smtypearray - ["runwaycraterclear"];
+		_donotchoose pushback "runwaycraterclear";
 		diag_log "*** sm manager removes runwaycraterclear from the sm array because we're at Almyra";
 		};
 	//#3 only do aircraft steal if we have a helicopter (its to hard to check other island for target)
@@ -68,8 +71,9 @@ while {smcounter < _sm_required} do
 	_whelivtols = call tky_fnc_fleet_heli_vtols;
 	if	 ((count _whelivtols) < 1)  then
 		 	{
-		 	_smtypearray = _smtypearray - ["stealaircraft"];
+		 	//_smtypearray = _smtypearray - ["stealaircraft"];
 		 	diag_log "***sm manager removes stealaircraft from the sm array because we have no helis";
+		 	_donotchoose pushback "stealaircraft";
 		 	};
 	//#4 dont do sinktrawler if theres no deep water within 10k or if they dont have attack aircraft
 	_deepest = 	(selectBestPlaces [cpt_position, 2500, "waterdepth", 100, 100]) select 0;
@@ -77,19 +81,26 @@ while {smcounter < _sm_required} do
 	_wairarmed  = call tky_fnc_fleet_armed_aircraft;
 	if ( (_deepestdepth < 25) or ((count _wairarmed) < 1 )) then
 		{
-		_smtypearray = _smtypearray - ["sinktrawler"];
+		//_smtypearray = _smtypearray - ["sinktrawler"];
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
+		_donotchoose pushBack "sinktrawler";
 		};
 	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
 		{
-		_smtypearray = _smtypearray - ["blueconvoytoab"];
+		//_smtypearray = _smtypearray - ["blueconvoytoab"];
+		_donotchoose pushBack "blueconvoytoab";
 		};
 	//#5 dont do repairbuilding if no engineer in squad
 	if  (count (allplayers select {_x getUnitTrait "engineer"}) isEqualTo 0)  then
-		{_smtypearray - _smtypearray - ["repairlocalbuilding"];};
+		{
+		//_smtypearray - _smtypearray - ["repairlocalbuilding"];};
+		_donotchoose pushBack "repairlocalbuilding";
+		_diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
+		};
 // end of exclusions///////////////////////////////////////////////////////////////////
+	diag_log format ["*** smm says donotchoose it %1", _donotchoose];
 	typeselected = selectRandom _smtypearray;
-	while  {(typeselected isEqualTo _previousmission)} do
+	while  {(typeselected isEqualTo _previousmission) or (typeselected in _donotchoose)} do
 		{
 		typeselected = selectRandom _smtypearray;
 		diag_log format ["***smm says smarray is %1 and chooses %2, _previousmission is %3", _smtypearray, typeselected, _previousmission];
