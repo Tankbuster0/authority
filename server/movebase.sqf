@@ -131,8 +131,17 @@ if (isDedicated) then
 		};
 };
 sleep 10;
-lp1 = getpos gvslight1;
-lp2 = getpos gvslight2;
+gvsredlight1 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight1, [], 0, "CAN_COLLIDE"];
+gvsredlight2 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight2, [], 0, "CAN_COLLIDE"];
+gvsredlight3 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
+gvsredlight4 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
+
+gvsyellowlight1 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight1, [], 0, "CAN_COLLIDE"];
+gvsyellowlight2 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight2, [], 0, "CAN_COLLIDE"];
+gvsyellowlight3 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
+gvsyellowlight4 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
+
+
 lp3 = getpos gvslight3;
 lp4 = getpos gvslight4;
 [] spawn
@@ -152,7 +161,22 @@ lp4 = getpos gvslight4;
 				};
 		};
 	};
+[] spawn
+	{// airhead gvs lights system
+	whilte {true} do
+		{
+		sleep 1;
+		if (airheadserviceinuse) then
+		{// red
+			{gvsmode= "purple"};
+		}
+		private _nro2 = (blubasehelipad nearEntities [["Land", "Air"], 6]) select 0;
+		if (!airheadserviceinuse and { _nro2 fuel < 1 or _nro }) then
 
+//redmode{hideObjectGlobal _x} foreach [gvsgreenlight1, gvsgreenlight2,gvsgreenlight3,gvsgreenlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4];
+
+		};
+	};
 handle_mb_finished = true;
 
 __tky_ends
