@@ -1,13 +1,11 @@
 // Script that processes objects placed by the curatorAddons
 // Important things this script does: Make sure only 1 helipad can be placed and put scripts on placed helipad.
-
 // Get curator object and the placed object
 params [
 ["_cur", ""],
 ["_obj", ""]];
 fobjects pushback _obj;
 if ((typeOf _obj) == "Land_HelipadSquare_F") then{
-
 	// Remove Helipad out of list
 	cur addEventHandler [
 	"CuratorObjectRegistered",
@@ -34,9 +32,7 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 		_costs
 	}
 ];
-
 	findDisplay 312 closeDisplay 2;
-
 	"Deploying Helipad." remoteExec ["hint", _cur];
 	FOBHelipad = _obj;
 	_con = "(!fobserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
@@ -48,23 +44,3 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 	fobjects pushback _fgvst;
 publicVariable "fobjects";
 };
-/*
-switch (typeOf _obj) do {
-				case "RHS_Stinger_AA_pod_WD";
-				case "RHS_M252_WD";
-				case "RHS_M2StaticMG_MiniTripod_WD";
-				case "RHS_M2StaticMG_WD": {
-
-				alpha_1 addEventHandler ["WeaponDisassembled", {
-					if (cursorTarget == MGTEST) then
-					{
-					KWAK = _this select 1;
-					deleteVehicle (_this select 1);
-					deleteVehicle (_this select 2);
-					};
-				}];
-
-				};
-				default {[false,0]};
-			};
-/*
