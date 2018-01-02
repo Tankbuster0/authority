@@ -141,6 +141,11 @@ gvsyellowlight2 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight2, []
 gvsyellowlight3 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
 gvsyellowlight4 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
 
+gvsredlight1 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight1, [], 0, "CAN_COLLIDE"];
+gvsredlight2 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight2, [], 0, "CAN_COLLIDE"];
+gvsredlight3 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
+gvsredlight4 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
+
 
 lp3 = getpos gvslight3;
 lp4 = getpos gvslight4;
@@ -162,19 +167,59 @@ lp4 = getpos gvslight4;
 		};
 	};
 [] spawn
-	{// airhead gvs lights system
-	whilte {true} do
+	{// airhead gvs lights logic
+	while {true} do
 		{
 		sleep 1;
+		private _nro2 = blubasehelipad nearEntities [["Land", "Air"], 6];
 		if (airheadserviceinuse) then
-		{// red
+			{// purple. it's in use
 			{gvsmode= "purple"};
-		}
-		private _nro2 = (blubasehelipad nearEntities [["Land", "Air"], 6]) select 0;
-		if (!airheadserviceinuse and { _nro2 fuel < 1 or _nro }) then
+			waitUntil {!airheadserviceinuse}; // waituntil service finishes
+			gvsmode = "green";
+			waitUntil {count (blubasehelipad nearEntities [["Land", "Air"], 6]) isEqualTo 0;}; //wait until vehicle leaves
+			gvsmode = "yellow";
+			};
+		if ( ((count _nro2) > 0) and
+		    {	(!airheadserviceinuse) and
+		    	((fuel (_nro2 select 0) isEqualTo 1)) or
+		    	((damage (_nro2 select 0) isEqualTo 0)) or
+		    	((_nro2 select 0) in Public_Banned_Vehicle_Service_List) or
+		    	(([_nro2, true] call BIS_fnc_objectSide) = east)
+		    }) then
+			{// service refused
+			gvsmode = "red";
+			};
+		if ((count _nro2 isEqualTo 0) and {!airheadserviceinuse}) then
+			{// not in use and nothing nearby
+			gvsmode = "yellow";
+			};
+		};
+	};
 
-//redmode{hideObjectGlobal _x} foreach [gvsgreenlight1, gvsgreenlight2,gvsgreenlight3,gvsgreenlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4];
-
+[] spawn
+	{// light changer
+		while {true} do
+		{
+		switch (gvsmode) do
+			{
+			case "purple":
+				{
+					{hideObjectGlobal _x} forEach [gvsgreenlight1, gvsgreenlight2,gvsgreenlight3,gvsgreenlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4, gvsredlight1, gvsredlight2, gvsredlight3, gvsredlight4];
+				};
+			case "red":
+				{
+					{hideObjectGlobal _x} forEach [gvsgreenlight1, gvsgreenlight2,gvsgreenlight3,gvsgreenlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4, gvspurplelight1, gvspurplelight2, gvspurplelight3, gvspurplelight4];
+				};
+			case "green":
+				{
+					{hideObjectGlobal _x} forEach [gvsredlight1, gvsredlight2,gvsredlight3,gvsredlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4, gvspurplelight1, gvspurplelight2, gvspurplelight3, gvspurplelight4];
+				};
+			case "yellow":
+				{
+					{hideObjectGlobal _x} forEach [gvsredlight1, gvsredlight2,gvsredlight3,gvsredlight4, gvsgreenlight1, gvsgreenlight2, gvsgreenlight3, gvsgreenlight4, gvspurplelight1, gvspurplelight2, gvspurplelight3, gvspurplelight4];
+				};
+			};
 		};
 	};
 handle_mb_finished = true;
