@@ -4,67 +4,11 @@
 _myscript = "movebase";
 __tky_starts;
 handle_mb_finished = false;
-private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos", "_blubasedir"];
+private ["_blubasedroppos","_composition","_airstripdata","_secairstrip","_airstripilsindata","_ils1indata","_ilsindata","_airbaseilsindata","_closestdistance","_closestone","_mydistance","_handle","_naughtybaseobjects","_naughtybaseobject","_dir1","_candidatepos","_testradius","_sizeof","_candidatepos2","_mypos", "_blubasedir", "_nro"];
 // when the first airbase is taken this scipt makes an airdrop of a container that lands on the spot where the blufor base is moving too
 // the container unpacks into the blufor base. the base ammobox is moved (the respawn moves automatically)
 _scriptime = time;
 
-//get the position for the airdrop.
-/*
-//which airfield are we at?
-switch (cpt_name) do
-	{
-	case "AAC airfield":
-		{//122
-		_blubasedroppos = [11526.2,11812.8,0];
-		_composition = aac_blubase;
-		};
-	case "Almyra airfield":
-		{
-		_blubasedroppos = [23231.6,18459.3,0];
-		_composition = almyra_blubase;
-		};
-	case "Abdera airfield":
-		{//150
-		_blubasedroppos = [9186.27,21649,0];
-		_composition = abdera_blubase;
-		};
-	case "Feres airfield":
-		{//48
-		_blubasedroppos = [20813.1,7243.86,0];
-		_composition = feres_blubase;
-		};
-	case "Molos Airfield":
-		{//132
-		_blubasedroppos = [26750.2,24615,0];
-		_composition = molos_blubase;
-		};
-	case "La Rochelle Aerodrome":
-		{//
-		_blubasedroppos = [11689.1,13117.5,0];
-		_composition = la_rochelle_blubase;
-		};
-	case "Aéroport de Tanoa":
-		{//
-		_blubasedroppos = [6920.95,7243.08,0];
-		_composition = aeroporto_de_tanoa_blubase;
-		};
-	case "Saint-George Airstrip":
-		{//
-		_blubasedroppos = [11740.6,3138.2,0.00143909];
-		_composition = st_george_blubase;
-		};
-	case "Bala Airstrip":
-		{//341
-		_blubasedroppos = [2138.08,3446.05,0];
-		_composition = bala_blubase;
-		};
-	case "Tuvanaka Airbase":
-		{//51
-		_blubasedroppos = [2120.12,13330.4,0];
-		_composition = tuvanaka_blubase;
-		};
-	};*/
 _blubasedroppos = getpos blubasepos;
 _blubasedir = getdir blubasepos;
 airheadname = cpt_name;
@@ -186,13 +130,29 @@ if (isDedicated) then
 			};
 		};
 };
+sleep 10;
+lp1 = getpos gvslight1;
+lp2 = getpos gvslight2;
+lp3 = getpos gvslight3;
+lp4 = getpos gvslight4;
+[] spawn
+	{// brute force for airhead GVS broken trigger
+	while {true} do
+		{
+			sleep 1;
+			_nro = (blubasehelipad nearEntities [["Land", "Air"], 6]);
+			if (((count _nro) > 0 ) and {(!airheadserviceinuse) and ((typeof (_nro select 0)) in allbluvehicles) and (isPlayer driver (_nro select 0))}) then
+				{
+				{hideObjectGlobal _x} foreach [gvslight1, gvslight2, gvslight3, gvslight4];
+				{_nul = createvehicle ["PortableHelipadLight_01_red_F", _x, [], 0, "CAN_COLLIDE"];} foreach [lp1,lp2,lp3,lp4];
+				airheadserviceinuse = true;
+				publicVariable "airheadserviceinuse";
+				[['airheadserviceinuse', _nro, getpos blubasehelipad], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (_nro select 0))];
 
-_con = "(!airheadserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0))";
-_act = "airheadserviceinuse = true; publicVariable 'airheadserviceinuse'; [['airheadserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
-_ahgvst = createTrigger ["EmptyDetector", getpos blubasehelipad, false];
-_ahgvst setTriggerArea [8,8,0,true];
-_ahgvst setTriggerActivation ["ANY", "PRESENT", true];
-_ahgvst setTriggerStatements [_con, _act, ""];
+				};
+		};
+	};
+
 handle_mb_finished = true;
 
 __tky_ends
