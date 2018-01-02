@@ -759,9 +759,9 @@ blubasecomposition =
 	["Land_PortableLight_double_F",[10.0347,7.68262,0.000351906],45.925,1,0,[0,0],"","",true,false],
 	["Land_Cargo_House_V4_F",[11.6802,7.91064,0],0,1,0,[0,0],"","",true,false],
 	["Land_LampHalogen_F",[-14.8652,-2.90723,-8],180,1,0,[0,0],"","",true,false],
-	["PortableHelipadLight_01_green_F",[0.100098,19.4873,0],359.996,1,0,[-0.000763383,-0.00083898],"gvslight2","",true,false],
+	["PortableHelipadLight_01_green_F",[0.100098,19.4873,0],359.996,1,0,[-0.000763383,-0.00083898],"gvsgreenlight2","",true,false],
 	["Land_JumpTarget_F",[0.0429688,25.0684,0],0,1,0,[0,0],"blubasehelipad","",true,false],
-	["PortableHelipadLight_01_green_F",[-5.54614,25.0562,0],359.996,1,0,[-0.000763405,-0.000839073],"gvslight3","",true,false],
-	["PortableHelipadLight_01_green_F",[5.60107,25.1157,0],359.996,1,0,[-0.000763405,-0.000839073],"gvslight1","",true,false],
-	["PortableHelipadLight_01_green_F",[0.0537109,30.4941,0],359.994,1,0,[-0.00227563,0.00118212],"gvslight4","",true,false]
+	["PortableHelipadLight_01_green_F",[-5.54614,25.0562,0],359.996,1,0,[-0.000763405,-0.000839073],"gvsgreenlight3","",true,false],
+	["PortableHelipadLight_01_green_F",[5.60107,25.1157,0],359.996,1,0,[-0.000763405,-0.000839073],"gvsgreenlight1","",true,false],
+	["PortableHelipadLight_01_green_F",[0.0537109,30.4941,0],359.994,1,0,[-0.00227563,0.00118212],"gvsgreenlight4","",true,false]
 ];
