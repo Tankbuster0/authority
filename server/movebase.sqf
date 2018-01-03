@@ -130,25 +130,31 @@ if (isDedicated) then
 			};
 		};
 };
+
+
 sleep 10;
-gvsredlight1 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight1, [], 0, "CAN_COLLIDE"];
-gvsredlight2 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight2, [], 0, "CAN_COLLIDE"];
-gvsredlight3 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
-gvsredlight4 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
 
-gvsyellowlight1 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight1, [], 0, "CAN_COLLIDE"];
-gvsyellowlight2 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight2, [], 0, "CAN_COLLIDE"];
-gvsyellowlight3 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
-gvsyellowlight4 = ["PortableHelipadLight_01_yellow_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
+gr1 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg1, [], 0, "CAN_COLLIDE"];
+gr2 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg2, [], 0, "CAN_COLLIDE"];
+gr3 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg3, [], 0, "CAN_COLLIDE"];
+gr4 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg4, [], 0, "CAN_COLLIDE"];
 
-gvsredlight1 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight1, [], 0, "CAN_COLLIDE"];
-gvsredlight2 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight2, [], 0, "CAN_COLLIDE"];
-gvsredlight3 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight3, [], 0, "CAN_COLLIDE"];
-gvsredlight4 = ["PortableHelipadLight_01_red_F", getpos gvsgreenlight4, [], 0, "CAN_COLLIDE"];
+gy1 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg1, [], 0, "CAN_COLLIDE"];
+gy2 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg2, [], 0, "CAN_COLLIDE"];
+gy3 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg3, [], 0, "CAN_COLLIDE"];
+gy4 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg4, [], 0, "CAN_COLLIDE"];
+
+gp1 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg1, [], 0, "CAN_COLLIDE"];
+gp2 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg2, [], 0, "CAN_COLLIDE"];
+gp3 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg3, [], 0, "CAN_COLLIDE"];
+gp4 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg4, [], 0, "CAN_COLLIDE"];
+
+{_x attachTo [blubasehelipad, [5.5,0,0]];} forEach [gg1, gr1, gy1, gp1];
+{_x attachTo [blubasehelipad, [0,5.5,0]];} forEach [gg2, gr2, gy2, gp2];
+{_x attachTo [blubasehelipad, [-5.5,0,0]];} forEach [gg3, gr3, gy3, gp3];
+{_x attachTo [blubasehelipad, [0,-5.5,0]];} forEach [gg4, gr4, gy4, gp4];
 
 
-lp3 = getpos gvslight3;
-lp4 = getpos gvslight4;
 [] spawn
 	{// brute force for airhead GVS broken trigger
 	while {true} do
@@ -157,8 +163,6 @@ lp4 = getpos gvslight4;
 			_nro = (blubasehelipad nearEntities [["Land", "Air"], 6]);
 			if (((count _nro) > 0 ) and {(!airheadserviceinuse) and ((typeof (_nro select 0)) in allbluvehicles) and (isPlayer driver (_nro select 0))}) then
 				{
-				{hideObjectGlobal _x} foreach [gvslight1, gvslight2, gvslight3, gvslight4];
-				{_nul = createvehicle ["PortableHelipadLight_01_red_F", _x, [], 0, "CAN_COLLIDE"];} foreach [lp1,lp2,lp3,lp4];
 				airheadserviceinuse = true;
 				publicVariable "airheadserviceinuse";
 				[['airheadserviceinuse', _nro, getpos blubasehelipad], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (_nro select 0))];
@@ -166,6 +170,7 @@ lp4 = getpos gvslight4;
 				};
 		};
 	};
+gvsmode ="yellow";
 [] spawn
 	{// airhead gvs lights logic
 	while {true} do
@@ -185,7 +190,7 @@ lp4 = getpos gvslight4;
 		    	((fuel (_nro2 select 0) isEqualTo 1)) or
 		    	((damage (_nro2 select 0) isEqualTo 0)) or
 		    	((_nro2 select 0) in Public_Banned_Vehicle_Service_List) or
-		    	(([_nro2, true] call BIS_fnc_objectSide) = east)
+		    	(([_nro2 select 0, true] call BIS_fnc_objectSide) isEqualTo east)
 		    }) then
 			{// service refused
 			gvsmode = "red";
@@ -205,19 +210,19 @@ lp4 = getpos gvslight4;
 			{
 			case "purple":
 				{
-					{hideObjectGlobal _x} forEach [gvsgreenlight1, gvsgreenlight2,gvsgreenlight3,gvsgreenlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4, gvsredlight1, gvsredlight2, gvsredlight3, gvsredlight4];
+					{hideObjectGlobal _x} forEach [gg1, gg1,gg3,gg4, gy1, gy2, gy3, gy4, gr1, gr2, gr3, gr4];
 				};
 			case "red":
 				{
-					{hideObjectGlobal _x} forEach [gvsgreenlight1, gvsgreenlight2,gvsgreenlight3,gvsgreenlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4, gvspurplelight1, gvspurplelight2, gvspurplelight3, gvspurplelight4];
+					{hideObjectGlobal _x} forEach [gg1, gg2,gg3,gg4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
 				};
 			case "green":
 				{
-					{hideObjectGlobal _x} forEach [gvsredlight1, gvsredlight2,gvsredlight3,gvsredlight4, gvsyellowlight1, gvsyellowlight2, gvsyellowlight3, gvsyellowlight4, gvspurplelight1, gvspurplelight2, gvspurplelight3, gvspurplelight4];
+					{hideObjectGlobal _x} forEach [gr1, gr2,gr3,gr4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
 				};
 			case "yellow":
 				{
-					{hideObjectGlobal _x} forEach [gvsredlight1, gvsredlight2,gvsredlight3,gvsredlight4, gvsgreenlight1, gvsgreenlight2, gvsgreenlight3, gvsgreenlight4, gvspurplelight1, gvspurplelight2, gvspurplelight3, gvspurplelight4];
+					{hideObjectGlobal _x} forEach [gr1, gr2,gr3,gr4, gg1, gg2, gg3, gg4, gp1, gp2, gp3, gp4];
 				};
 			};
 		};
