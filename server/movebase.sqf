@@ -170,6 +170,7 @@ gp4 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg4, [], 0, "CAN_C
 				};
 		};
 	};
+/*
 gvsmode ="yellow";
 [] spawn
 	{// airhead gvs lights logic
@@ -227,6 +228,7 @@ gvsmode ="yellow";
 			};
 		};
 	};
+*/
 handle_mb_finished = true;
 
 __tky_ends
