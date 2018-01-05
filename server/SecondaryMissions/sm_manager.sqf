@@ -51,7 +51,7 @@ while {smcounter < _sm_required} do
 	_donotchoose = [];
 	// custom exclusions ///////////////////////////////////////////////////////////////////////////////////////////////////////
 	// #1 dont do navalmine clearance if theres no deep water nearby
-	_deepest = 	(selectBestPlaces [cpt_position, 2000, "waterdepth", 100, 100]) select 0;
+	_deepest = 	(selectBestPlaces [cpt_position, 3000, "waterdepth", 100, 100]) select 0;
 	_deepestdepth = _deepest select 1;
 	if (_deepestdepth < 40) then
 		{
@@ -66,7 +66,7 @@ while {smcounter < _sm_required} do
 		_donotchoose pushback "runwaycraterclear";
 		diag_log "*** sm manager removes runwaycraterclear from the sm array because we're at Almyra";
 		};
-	//#3 only do aircraft steal if we have a helicopter (its to hard to check other island for target)
+	//#3 only do aircraft steal if we have a helicopter (its too hard to check other island for target)
 	_wvecs = vehicles select {(([_x, true] call BIS_fnc_objectSide) isEqualTo west) and {(alive _x) and (canMove _x)}};
 	_whelivtols = call tky_fnc_fleet_heli_vtols;
 	if	 ((count _whelivtols) < 1)  then
@@ -95,41 +95,44 @@ while {smcounter < _sm_required} do
 		{
 		//_smtypearray - _smtypearray - ["repairlocalbuilding"];};
 		_donotchoose pushBack "repairlocalbuilding";
-		_diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
+		diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
 		};
 // end of exclusions///////////////////////////////////////////////////////////////////
 	diag_log format ["*** smm says donotchoose it %1", _donotchoose];
-	typeselected = selectRandom _smtypearray;
-	while  {(typeselected isEqualTo _previousmission) or (typeselected in _donotchoose)} do
+	if (count _smtypearray > (( count _donotchoose)+ 2)) then
 		{
 		typeselected = selectRandom _smtypearray;
-		diag_log format ["***smm says smarray is %1 and chooses %2, _previousmission is %3", _smtypearray, typeselected, _previousmission];
-		};
-	//typeselected = "hostageRescue";// debug only//////////////////////////////////////////////////////////////////////////////////////////
-	publicVariable "typeselected";
-	_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
-	diag_log format ["***current sm number is %1 of %2", smcounter, _sm_required];
-	_smmanagerhandle = execVM _fname;
-	sleep 4;
-	waitUntil {not missionactive};
-	//succeed or fail?
-	if not (missionsuccess) then
-		{
-		format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-		diag_log format ["***smm after mission failure, smcounter is %1 or %2", smcounter, _sm_required];
-		_previousmission = typeselected;
-		sleep 10;
-		}
-		else
-		{
-		_smtypearray = _smtypearray - [typeselected];// only remove selected mission if it's completed successfully
-		if (smcounter < _sm_required) then
+		while  {(typeselected isEqualTo _previousmission) or (typeselected in _donotchoose)} do
 			{
-			"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-			smmissionstring = "There are further Secondary Missions. Orders incoming soon";
-			publicVariable "smmissionstring";
-			smcounter = smcounter + 1;
+			typeselected = selectRandom _smtypearray;
+			diag_log format ["***smm says smarray is %1 and chooses %2, _previousmission is %3", _smtypearray, typeselected, _previousmission];
+			};
+		//typeselected = "hostageRescue";// debug only//////////////////////////////////////////////////////////////////////////////////////////
+		publicVariable "typeselected";
+		_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
+		diag_log format ["***current sm number is %1 of %2", smcounter, _sm_required];
+		_smmanagerhandle = execVM _fname;
+		sleep 4;
+		waitUntil {not missionactive};
+		//succeed or fail?
+		if not (missionsuccess) then
+			{
+			format ["%1", failtext] remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			diag_log format ["***smm after mission failure, smcounter is %1 or %2", smcounter, _sm_required];
 			_previousmission = typeselected;
+			sleep 10;
+			}
+			else
+			{
+			_smtypearray = _smtypearray - [typeselected];// only remove selected mission if it's completed successfully
+			if (smcounter < _sm_required) then
+				{
+				"Good work. Next mission incoming." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+				smmissionstring = "There are further Secondary Missions. Orders incoming soon";
+				publicVariable "smmissionstring";
+				smcounter = smcounter + 1;
+				_previousmission = typeselected;
+				};
 			};
 		};
 	};
