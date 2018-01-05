@@ -673,7 +673,7 @@ Using orientation of objects: yes
 	["C_IDAP_Heli_Transport_02_F",[322.063,208.063,-0.127471],359.945,1,0,[3.03358,0.0860202],"","",true,false],
 	["Land_HelipadCircle_F",[322.691,208.271,0],0,1,0,[0,0],"","",true,false],
 	["Land_Cargo_Tower_V4_F",[208.94,329.509,0],0,1,0,[0,0],"","",true,false],
-	["Sign_Arrow_Direction_Blue_F",[1,162,0],51,0,0, [0,0], "blubasepos", "", true, false]
+	["Sign_Arrow_Direction_Blue_F",[6,153,0],51,0,0, [0,0], "blubasepos", "", true, false]
 ];// 2120.12,13330.4
 
 tuvanaka_blubase = /*
