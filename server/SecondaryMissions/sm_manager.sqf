@@ -99,7 +99,7 @@ while {smcounter < _sm_required} do
 		};
 // end of exclusions///////////////////////////////////////////////////////////////////
 	diag_log format ["*** smm says donotchoose it %1", _donotchoose];
-	if (count _smtypearray > (( count _donotchoose)+ 2)) then
+	if ((count _smtypearray) < (( count _donotchoose) + 3)) then
 		{
 		typeselected = selectRandom _smtypearray;
 		while  {(typeselected isEqualTo _previousmission) or (typeselected in _donotchoose)} do
