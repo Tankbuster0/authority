@@ -6,13 +6,6 @@ missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private _smcleanup = [];
 
-// find
-
-_possiblecastartpoints = (cpt_position nearEntities ["Logic", 5000]) select {cpt_island isEqualTo (_x getVariable ["landmassID", -1]) and {((_x getVariable ["targetstatus", -1]) in [1, 6])} };
-
-_sorted_pcasp = [_possiblecastartpoints]
-
-
 while {missionactive} do
 	{
 	sleep 3;
