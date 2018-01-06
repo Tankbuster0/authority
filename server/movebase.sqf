@@ -133,7 +133,7 @@ if (isDedicated) then
 
 
 sleep 10;
-
+/*
 gr1 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg1, [], 0, "CAN_COLLIDE"];
 gr2 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg2, [], 0, "CAN_COLLIDE"];
 gr3 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg3, [], 0, "CAN_COLLIDE"];
@@ -153,8 +153,12 @@ gp4 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg4, [], 0, "CAN_C
 {_x attachTo [blubasehelipad, [0,5.5,0]];} forEach [gg2, gr2, gy2, gp2];
 {_x attachTo [blubasehelipad, [-5.5,0,0]];} forEach [gg3, gr3, gy3, gp3];
 {_x attachTo [blubasehelipad, [0,-5.5,0]];} forEach [gg4, gr4, gy4, gp4];
-
-
+*/
+[gg1, "gg1"] call fnc_setVehicleName;
+[gg2, "gg2"] call fnc_setVehicleName;
+[gg3, "gg3"] call fnc_setVehicleName;
+[gg4, "gg4"] call fnc_setvehicleName;
+{_x enableSimulationGlobal false} foreach [gg1,gg2,gg3,gg4];
 [] spawn
 	{// brute force for airhead GVS broken trigger
 	while {true} do
@@ -205,25 +209,39 @@ gvsmode ="yellow";
 
 [] spawn
 	{// light changer
+		private ["_oldgvsmode"];
 		while {true} do
 		{
+		sleep 0.5;
 		switch (gvsmode) do
 			{
 			case "purple":
 				{
-					{hideObjectGlobal _x} forEach [gg1, gg1,gg3,gg4, gy1, gy2, gy3, gy4, gr1, gr2, gr3, gr4];
+					//{_x setpos [0,0,0]} forEach [gg1, gg1,gg3,gg4, gy1, gy2, gy3, gy4, gr1, gr2, gr3, gr4];
+					//{[_x, [0.5,0,0.5]] call tky_fnc_showlight} foreach [gg1, gg1,gg3,gg4];
+					if not (gvsmode isEqualTo _oldgvsmode) then {[[0.5,0.0,0.5]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					_oldgvsmode = gvsmode;
 				};
 			case "red":
 				{
-					{hideObjectGlobal _x} forEach [gg1, gg2,gg3,gg4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
+					//{_x setpos [0,0,0]} forEach [gg1, gg2,gg3,gg4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
+					//{[_x, [1,0,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
+					if not (gvsmode isEqualTo _oldgvsmode) then {[[1,0.0,0]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					_oldgvsmode = gvsmode;
 				};
 			case "green":
 				{
-					{hideObjectGlobal _x} forEach [gr1, gr2,gr3,gr4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
+					//{_x setpos [0,0,0]} forEach [gr1, gr2,gr3,gr4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
+					//{ [_x, [0,1,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
+					if not (gvsmode isEqualTo _oldgvsmode) then {[[0,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					_oldgvsmode = gvsmode;
 				};
 			case "yellow":
 				{
-					{hideObjectGlobal _x} forEach [gr1, gr2,gr3,gr4, gg1, gg2, gg3, gg4, gp1, gp2, gp3, gp4];
+					//{_x setpos [0,0,0]} forEach [gr1, gr2,gr3,gr4, gg1, gg2, gg3, gg4, gp1, gp2, gp3, gp4];
+					//{[_x, [1,1,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
+					if not (gvsmode isEqualTo _oldgvsmode) then {[[1,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					_oldgvsmode = gvsmode;
 				};
 			};
 		};
