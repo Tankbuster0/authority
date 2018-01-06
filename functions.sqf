@@ -194,3 +194,15 @@ tky_fnc_stripidandcolonandspace =
 	if (isNil "_ret") then {_ret = ""};
 	_ret
 };
+
+tky_fnc_showlight =
+	{
+		params ["_colour"];
+		{
+		_mylight = "#lightpoint" createVehicleLocal (getpos _x);
+		_mylight setLightBrightness 1;
+		_mylight setLightAmbient _colour;
+		_mylight setLightColor _colour;
+		_mylight lightAttachObject [_x, [0,0,0.2]];
+		} foreach [gg1,gg2,gg3,gg4];
+	};
