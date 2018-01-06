@@ -176,6 +176,7 @@ gp4 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg4, [], 0, "CAN_C
 	};
 /*
 gvsmode ="yellow";
+
 [] spawn
 	{// airhead gvs lights logic
 	while {true} do
@@ -210,6 +211,7 @@ gvsmode ="yellow";
 [] spawn
 	{// light changer
 		private ["_oldgvsmode"];
+		_oldgvsmode = "gaypink";
 		while {true} do
 		{
 		sleep 0.5;
@@ -219,28 +221,45 @@ gvsmode ="yellow";
 				{
 					//{_x setpos [0,0,0]} forEach [gg1, gg1,gg3,gg4, gy1, gy2, gy3, gy4, gr1, gr2, gr3, gr4];
 					//{[_x, [0.5,0,0.5]] call tky_fnc_showlight} foreach [gg1, gg1,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then {[[0.5,0.0,0.5]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					if not (gvsmode isEqualTo _oldgvsmode) then
+						{
+							//[[0.5,0.0,0.5]] remoteExecCall ["tky_fnc_showlight",0,false];
+							[[0.5,0,0.5]] call tky_fnc_showlight;
+
+						};
 					_oldgvsmode = gvsmode;
 				};
 			case "red":
 				{
 					//{_x setpos [0,0,0]} forEach [gg1, gg2,gg3,gg4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
 					//{[_x, [1,0,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then {[[1,0.0,0]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					if not (gvsmode isEqualTo _oldgvsmode) then
+						{
+							//[[1,0.0,0]] remoteExecCall ["tky_fnc_showlight",0,false];
+							[[1,0,0]] call tky_fnc_showlight;
+						};
 					_oldgvsmode = gvsmode;
 				};
 			case "green":
 				{
 					//{_x setpos [0,0,0]} forEach [gr1, gr2,gr3,gr4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
 					//{ [_x, [0,1,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then {[[0,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					if not (gvsmode isEqualTo _oldgvsmode) then
+						{
+							//[[0,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];
+							[[1,0,1]] call tky_fnc_showlight;
+						};
 					_oldgvsmode = gvsmode;
 				};
 			case "yellow":
 				{
 					//{_x setpos [0,0,0]} forEach [gr1, gr2,gr3,gr4, gg1, gg2, gg3, gg4, gp1, gp2, gp3, gp4];
 					//{[_x, [1,1,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then {[[1,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];};
+					if not (gvsmode isEqualTo _oldgvsmode) then
+						{
+							//[[1,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];
+							[[1,1,0]] call tky_fnc_showlight;
+						};
 					_oldgvsmode = gvsmode;
 				};
 			};

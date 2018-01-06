@@ -197,12 +197,35 @@ tky_fnc_stripidandcolonandspace =
 
 tky_fnc_showlight =
 	{
-		params ["_colour"];
-		{
-		_mylight = "#lightpoint" createVehicleLocal (getpos _x);
-		_mylight setLightBrightness 1;
-		_mylight setLightAmbient _colour;
-		_mylight setLightColor _colour;
-		_mylight lightAttachObject [_x, [0,0,0.2]];
-		} foreach [gg1,gg2,gg3,gg4];
+		params ["_colour", "_nothing"];
+
+		if (not (isNull glight1)) then {deleteVehicle glight1;};
+		glight1 = "#lightpoint" createVehicleLocal (getpos gg1);
+		glight1 setLightBrightness 1;
+		glight1 setLightAmbient _colour;
+		glight1 setLightColor _colour;
+		glight1 lightAttachObject [gg1, [0,0,0.2]];
+
+		if (not (isNull glight2)) then {deleteVehicle glight2;};
+		glight2 = "#lightpoint" createVehicleLocal (getpos gg2);
+		glight2 setLightBrightness 1;
+		glight2 setLightAmbient _colour;
+		glight2 setLightColor _colour;
+		glight2 lightAttachObject [gg2, [0,0,0.2]];
+
+		if (not (isNull glight3)) then {deleteVehicle glight3;};
+		glight3 = "#lightpoint" createVehicleLocal (getpos gg3);
+		glight3 setLightBrightness 1;
+		glight3 setLightAmbient _colour;
+		glight3 setLightColor _colour;
+		glight3 lightAttachObject [gg3, [0,0,0.2]];
+
+		if (not (isNull glight4)) then {deleteVehicle glight4;};
+		glight4 = "#lightpoint" createVehicleLocal (getpos gg4);
+		glight4 setLightBrightness 1;
+		glight4 setLightAmbient _colour;
+		glight4 setLightColor _colour;
+		glight4 lightAttachObject [gg4, [0,0,0.2]];
+
+
 	};
