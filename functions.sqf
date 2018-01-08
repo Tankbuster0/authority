@@ -229,3 +229,14 @@ tky_fnc_showlight =
 
 
 	};
+
+GOM_fnc_isNumInRange = {
+
+	params ["_toCheck","_reference","_variance"];
+
+	systemchat format ["Checking if %1 is within %2 of %3!",_toCheck,_variance,_reference];
+	_result = ((abs (_reference - _toCheck)) <= _variance);
+	systemchat format ["Result: %1",["False","True"] select _result];
+	_result
+
+};
