@@ -98,8 +98,8 @@ while {smcounter < _sm_required} do
 		diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
 		};
 // end of exclusions///////////////////////////////////////////////////////////////////
-	diag_log format ["*** smm says donotchoose it %1", _donotchoose];
-	if ((count _smtypearray) < (( count _donotchoose) + 3)) then
+	diag_log format ["*** smm says donotchoose is %1 and typearay is %2", _donotchoose, _smtypearray];
+	if ((count _smtypearray) > (( count _donotchoose) + 3)) then
 		{
 		typeselected = selectRandom _smtypearray;
 		while  {(typeselected isEqualTo _previousmission) or (typeselected in _donotchoose)} do
