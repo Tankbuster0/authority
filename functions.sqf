@@ -230,13 +230,10 @@ tky_fnc_showlight =
 
 	};
 
-GOM_fnc_isNumInRange = {
-
-	params ["_toCheck","_reference","_variance"];
-
-	systemchat format ["Checking if %1 is within %2 of %3!",_toCheck,_variance,_reference];
-	_result = ((abs (_reference - _toCheck)) <= _variance);
-	systemchat format ["Result: %1",["False","True"] select _result];
+tky_fnc_isNumInRangeDegrees = {//thanks to Grumpy Old Man, pierreMGI and HallyG!
+	params ["_toCheck", "_reference", "_variance"];
+	_difference = abs (_reference - _toCheck);
+	_result = ((360 - _difference) % 360) <= _variance || (_difference % 360) <= _variance;
+	//systemchat format ["Result: %1", ["False","True"] select _result];
 	_result
-
 };
