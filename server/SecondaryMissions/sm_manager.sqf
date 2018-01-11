@@ -97,10 +97,10 @@ while {smcounter < _sm_required} do
 		_donotchoose pushBack "repairlocalbuilding";
 		diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
 		};
-// end of exclusions///////////////////////////////////////////////////////////////////
+	// end of exclusions///////////////////////////////////////////////////////////////////
 	diag_log format ["*** smm says donotchoose is %1 and typearay is %2", _donotchoose, _smtypearray];
 	if ((count _smtypearray) > (( count _donotchoose) + 3)) then
-		{
+		{// still some missions available
 		typeselected = selectRandom _smtypearray;
 		while  {(typeselected isEqualTo _previousmission) or (typeselected in _donotchoose)} do
 			{
@@ -134,6 +134,12 @@ while {smcounter < _sm_required} do
 				_previousmission = typeselected;
 				};
 			};
+		}
+		else
+		{
+			// type array nearly empty, tells players they've done enough and complete the town
+			// by pushing the counter way up so the main loop can exit
+			smcounter = smcounter + 100;
 		};
 	};
 "ALL MISSIONS COMPLETED" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
