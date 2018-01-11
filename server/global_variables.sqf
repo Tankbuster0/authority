@@ -37,6 +37,8 @@ switch (tolower worldName) do
 			opforstaticlandvehicles =["O_APC_Tracked_02_AA_F", "O_APC_Tracked_02_cannon_F"];
 			opfortanks = ["O_MBT_02_cannon_F"];
 			opforhqtypes = ["O_Truck_03_covered_F", "Land_Cargo_House_V4_F"];
+			opforcavecs = ["O_G_Offroad_01_armed_F","O_Truck_02_transport_F", "O_APC_Wheeled_02_rcws_F"];
+			opforcahelis = ["O_Heli_Light_02_F", "O_Heli_Transport_04_bench_F"];
 			};
 		case "tanoa" :
 			{
@@ -46,6 +48,8 @@ switch (tolower worldName) do
 			opforstaticlandvehicles =["O_T_APC_Tracked_02_AA_ghex_F", "O_T_APC_Tracked_02_cannon_ghex_F"];
 			opfortanks = ["O_T_MBT_02_cannon_ghex_F"];
 			opforhqtypes = ["O_T_Truck_03_covered_ghex_F", "Land_Cargo_House_V4_F"];
+			opforcavecs = ["O_G_Offroad_01_armed_F", "O_T_APC_Wheeled_02_rcws_ghex_F"];
+			opforcahelis = ["O_Heli_Light_02_F", "O_Heli_Transport_04_bench_F"];
 			};
 	};
 cpt_name = "None";
