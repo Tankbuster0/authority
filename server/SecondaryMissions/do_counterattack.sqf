@@ -42,6 +42,7 @@ if ((count _edgeroads1)> 2) then
 				// choose which quilin to spawn according to island
 				_cavec = selectRandom opforcaves;
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
+
 				// work out what comes back from this fnc so we can add them to caunits and smcleanup
 				_cagroup addWaypoint [cpt_position, 0, 0];
 
