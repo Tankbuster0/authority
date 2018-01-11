@@ -8,6 +8,7 @@ private ["_ep"];
 private _smcleanup = [];
 private _edgeroads0 = [];
 private _edgeroads1 = [];
+caunits = [];
 for "_deg" from 0 to 355 step 5 do
 	{
 		_ep = getpos [(cpt_radius + 250), _deg];
@@ -20,15 +21,42 @@ for "_deg" from 0 to 355 step 5 do
 	_myrp1 = (roadsConnectedTo _myrp0) select 0;
 	_rpdir = _myrp0 getdir _myrp1;
 	_refdir = cpt_position getdir _myrp0;
-	if ( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees  ) and
-		{((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and ((_mfpos distance2D forward) < 75) }
-	    then
+	if ( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) and {((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and ((_mfpos distance2D forward) < 75) } then
 		{
 			_edgeroads1 pushBack _myrp0;
 		};
 } forEach _edgeroads0;
 // edgeroads1 should now contain only roadpeices that, more or less, point towards the cpt and are not near the forward or fob
 diag_log format ["*** er1 has count %1 elements ", count _edgeroads1];
+
+if ((count _edgeroads1)> 2) then
+	{// a couple of good places to spawn CA  troops
+		_casquadcnt = (1 + floor ( random (count _edgeroads1 / 3))) min 5;
+		diag_log format ["*** dca going to make %1 squads", _casquadcnt];
+		for "_c" from 1 to _casquadcnt do
+			{
+				_cagroup = createGroup [east, true];
+				_carp = selectRandom _edgeroads1;
+				_edgeroads1 = _edgeroads1 - [_carp];
+				_carp2 = (roadsConnectedTo _carp) select 0;
+				// choose which quilin to spawn according to island
+				_cavec = selectRandom opforcaves;
+				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
+				// work out what comes back from this fnc so we can add them to caunits and smcleanup
+				_cagroup addWaypoint [cpt_position, 0, 0];
+
+
+
+
+			};
+
+
+	}
+	else
+	{// not enough good places found for spawning CA troops
+
+
+	};
 
 
 
