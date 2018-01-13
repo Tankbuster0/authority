@@ -12,7 +12,7 @@ _myroadarray1 = [];
 for "_i" from 0 to 355 step 5 do
 	{
 	_road1 =  nil; _road2 = nil;
-	_mypos2 = [_mypos, _myradius, _i] call BIS_fnc_relPos;
+	_mypos2 = _mypos getpos [_myradius, _i];
 	_myroads = _mypos2 nearroads 15;
 	if ((count _myroads) > 0) then //found a road at edge of circle
 		{
