@@ -93,9 +93,16 @@ tky_fnc_fleet_armed_aircraft =
 tky_fnc_fleet_heli_vtols =
 	{
 	private ["_wvecs","_whelivtols"];
-	_wvecs = vehicles select {(faction _x) in ["BLU_F", "BLU_T_F"] and {(alive _x) and ((fuel _x) > 0.5) and ((damage _x) < 0.3)}};
+	_wvecs = vehicles select {(faction _x) in ["BLU_F", "BLU_T_F", "CIV_F"] and {(alive _x) and ((fuel _x) > 0.3) and ((damage _x) < 0.3)}};
 	_whelivtols = _wvecs select	{( ((typeof _x) isKindof  "Helicopter_Base_F") or ((typeof _x) isKindof  "VTOL_Base_F") )	};
 	_whelivtols
+	};
+tky_fnc_fleet_boats =
+	{
+	private ["_wvecs","_wboats"];
+	_wvecs = vehicles select {(faction _x) in ["BLU_F", "BLU_T_F", "CIV_F"] and {(alive _x) and ((fuel _x) > 0.3) and ((damage _x) < 0.3)}};
+	_wboats = _wvecs select	{ (typeof _x) isKindof  "Ship_F" };
+	_wboats
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
 tky_fnc_medic_check =
@@ -190,7 +197,7 @@ tky_fnc_stripidandcolonandspace =
 	private ["_obj", "_ret"];
 	_obj = _this select 0;
 	//diag_log format ["*** fnc_strip gets %1 which is %2 and is objecttype %3 ", _obj, typeOf _obj, getObjectType _obj];
-	_ret = ((str _obj) splitString ":" select 1) select [1];
+	_ret = (getModelInfo _obj) select 0;
 	if (isNil "_ret") then {_ret = ""};
 	_ret
 };
