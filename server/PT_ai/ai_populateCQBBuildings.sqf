@@ -69,6 +69,7 @@ AM_fnc_CreateUnit = {
 	if (!_dbg) exitWith {_unit};
 	_marker1 = createMarker ["Marker1", position _unit];
 	_marker1 setMarkerType "hd_dot";
+	[_unit, true, true] call tky_fnc_tc_setskill
 	_unit
 };
 
@@ -88,6 +89,7 @@ AM_fnc_CreateStatic = {
 	if (!_dbg) exitWith {_unit};
 	_marker1 = createMarker ["Marker1", position _unit];
 	_marker1 setMarkerType "hd_dot";
+	[_unit, true, true] call tky_fnc_tc_setskill
 	_unit
 };
 
@@ -217,113 +219,5 @@ _ballistradeCount = 0;
 
 } forEach _buildingPosList;
 
-//****************************************************
-////////////////////////////////////////////////////
-// Occupy outskirt buildings.
-////////////////////////////////////////////////////
-/* temporarly disabled this while we figure out how to stop it slowing down ar and mil base missions
-_radius = 20;
-
-// First index is buildingObj, second index is array of positions.
-_buildingPosList = [];
-
-_currOutskirtSoldiers = 0;
-_currOutskirtSquadNr = 0;
-while { count _buildingPosList < _possibleOutskirtBuildingCount} do
-{
-	// Probe outskirt positions
-	_probePos = [_position, (_radiusTarget + random[-(_radiusTarget/3),50,250]), random 360] call BIS_fnc_relPos;
-	_nBuilding = _probePos nearestObject "House";
-
-	_buildPos = [_nBuilding] call BIS_fnc_buildingPositions;
-	if (! (_buildPos isEqualTo []) && !(typeOf _nBuilding isEqualTo "Land_Metal_Shed_F")) then
-	{
-		if (! ([_nBuilding,_buildPos] in _buildingPosList) ) then
-		{
-			_buildingPosList pushBack [_nBuilding,_buildPos];
-		};
-	};
-
-};
-BLis = _buildingPosList;
-{
-	_grp = createGroup east;
-
-	// Limiter
-	if (_currOutskirtSoldiers >= _maxOutskirtSoldiers) exitWith{};
-	_currOutskirtSquadNr = 0;
-
-	_windowarray = [_x select 0] call fn_p_getWindowPos;
-	{
-		if (random 100 > ( 100 - _chanceOfOutskirtSoldier)) then
-		{
-			_watchpos = [_x select 0, 5, _x select 1] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
-			_unit = [selectRandom opfor_CQB_Outskirt, _x select 0, _watchpos , _grp, false] call AM_fnc_CreateUnit;
-		};
-
-		if (_currOutskirtSquadNr >= _maxSquadSizeOutskirt) exitWith{};
-
-		_currOutskirtSquadNr = _currOutskirtSquadNr + 1;
-		_currOutskirtSoldiers = _currOutskirtSoldiers + 1;
-
-	}foreach _windowarray;// interate through each position within the building
-
-} forEach _buildingPosList;
-*/
-/*
-{
-	_grp = createGroup west;
-	_chosenBPos = [];
-	for "_i" from 1 to _maxOccupancyNumber do
-	{
-		// No Doubles
-		_rndBPos = selectRandom (_x select 1);
-		if (! (_rndBPos in _chosenBPos)) then
-		{
-			_chosenBPos pushBack _rndBPos;
-		};
-	};
-
-	diag_log format ["***chosen positions %1",_chosenBPos];
-
-	{
-		if ([_x] call AM_fnc_checkInside) then
-		{
-			_wndwInfo = [_x] call AM_fnc_isWindowPos;
-			if(_wndwInfo select 1 > 0) then
-			{
-				diag_log format ["*** watchdir %1",_wndwInfo select 0];
-				_unit = ["B_crew_F", _x, _wndwInfo select 0 , _grp, true] call AM_fnc_CreateUnit
-			}else
-			{
-				_unit = ["B_crew_F", _x, random 360, _grp, true] call AM_fnc_CreateUnit
-			};
-
-		} else
-		{
-			_unit = ["B_HeavyGunner_F", _x, 0 , _grp, true] call AM_fnc_CreateUnit;
-		};
-
-	} forEach _chosenBPos;
-} forEach _buildingPosList;
-*/
-
-/*
-// Find outskirt buildings to occupy.
-_radius = 20;
-
-_outskirtBuildings = [];
-_possibleOutskirtBuildingCount = random [0,2,5];
-
-while { count _outskirtBuildings < _possibleOutskirtBuildingCount} do
-{
-	_tempPos =  [_position, _radius, random 360] call BIS_fnc_relPos
-	_buildings pushBack (_tempPos nearestObject "House");
-
-	_radius = _radius + 50;
-
-	if (_radius > 250) exitWith {diag_log "***No outskirt buildings found within 250 meters"};
-};
-*/
 handle_ai_pcqb_finished = true;
 __tky_ends
