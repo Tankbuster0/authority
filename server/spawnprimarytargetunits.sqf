@@ -85,7 +85,7 @@ _linenames = ["rd_line_5m.p3d", "runway_01_centerline_5m_f.p3d", "decal_white_li
 		{
 			switch (_namewithoutid) do
 				{
-					case "pierconcrete_01_steps_f.psd": {_boatdir = (getdir _x); _boatpos = [-7,-3,4];};
+					case "pierconcrete_01_steps_f.p3d": {_boatdir = (getdir _x); _boatpos = [-7,-3,4];};
 					case "pierconcrete_01_4m_ladders_f.p3d": {_boatdir = (getdir _x); _boatpos = [9,0,3];};
 					case "pierwooden_02_ladder_f.p3d": {_boatdir = ((getdir _x) - 90), _boatpos = [0,4.5,18];};
 					case "pierwooden_01_dock_f.p3d": {_boatdir = (getdir _x); _boatpos = [1.5,2,6];};
