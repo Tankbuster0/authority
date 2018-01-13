@@ -60,10 +60,10 @@ if ((random 100 > _chance) || (isNull _civ)) exitWith {true};
    // get nearest player
    _target_players = _target_players apply {[(_x distance _bomber), _x]};
    _target_players sort true;
-   _target_plyr = _target_players select 0 select 1;
+   _target_plyr = (_target_players select 0) select 1;
 
    // check distance and visibility
-   _dist_target = _target_players select 0 select 0;
+   _dist_target = (_target_players select 0) select 0;
    _can_see = [_target_plyr, "VIEW", _bomber] checkVisibility [(eyePos _target_plyr), (eyePos _bomber)];
 
    // add waypoint and set bombers behavior
