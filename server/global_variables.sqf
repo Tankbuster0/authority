@@ -88,7 +88,7 @@ allbluvehicles = prizes + [fobvehicleclassname, forwardpointvehicleclassname, "B
 publicVariable "allbluvehicles";
 // List of useable landmines
 aplandmines = ["APERSBoundingMine", "APERSMine" ]; // <--vanilla from weapons/explosives
-seamines =["UnderwaterMine", "UnderwaterMineAB", "UnderwaterMinePDM"];// moored, bottom , surface
+seamines =["UnderwaterMine", "UnderwaterMinePDM"];// moored, bottom , surface
 civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_man_polo_1_F_afro","C_man_polo_1_F_euro","C_man_polo_1_F_asia","C_man_polo_2_F","C_man_polo_2_F_afro","C_man_polo_2_F_euro","C_man_polo_2_F_asia","C_man_polo_3_F",
 	   "C_man_polo_3_F_afro","C_man_polo_3_F_euro","C_man_polo_3_F_asia","C_man_polo_4_F","C_man_polo_4_F_afro","C_man_polo_4_F_euro","C_man_polo_4_F_asia","C_man_polo_5_F","C_man_polo_5_F_afro","C_man_polo_5_F_euro",
 	   "C_man_polo_5_F_asia","C_man_polo_6_F","C_man_polo_6_F_afro","C_man_polo_6_F_euro","C_man_polo_6_F_asia","C_man_p_fugitive_F","C_man_p_fugitive_F_afro","C_man_p_fugitive_F_euro","C_man_p_fugitive_F_asia",
