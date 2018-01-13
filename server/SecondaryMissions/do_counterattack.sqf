@@ -4,15 +4,15 @@ _myscript = "do_counterattack";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_ep"];
+private ["_smcleanup","_deg","_ep","_myroads","_myrp0","_myrp1","_rpdir","_refdir","_mfpos","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh"];
 private _smcleanup = [];
 private _edgeroads0 = [];
 private _edgeroads1 = [];
 caunits = [];
 for "_deg" from 0 to 355 step 5 do
 	{
-		_ep = getpos [(cpt_radius + 250), _deg];
-		_myroads = _ep nearRoads 20 select ;
+		_ep = cpt_position getpos [(cpt_radius + 250), _deg];
+		_myroads = _ep nearRoads 20;
 		{_edgeroads0 pushBackUnique _x} forEach _myroads;
 	}; // array of roadpieces within 20 of a radius 250 outside the OA
 // note roadpieces dont have a dir
