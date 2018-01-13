@@ -69,7 +69,7 @@ AM_fnc_CreateUnit = {
 	if (!_dbg) exitWith {_unit};
 	_marker1 = createMarker ["Marker1", position _unit];
 	_marker1 setMarkerType "hd_dot";
-	[_unit, true, true] call tky_fnc_tc_setskill
+	[_unit, true, true] call tky_fnc_tc_setskill;
 	_unit
 };
 
@@ -89,7 +89,7 @@ AM_fnc_CreateStatic = {
 	if (!_dbg) exitWith {_unit};
 	_marker1 = createMarker ["Marker1", position _unit];
 	_marker1 setMarkerType "hd_dot";
-	[_unit, true, true] call tky_fnc_tc_setskill
+	[_unit, true, true] call tky_fnc_tc_setskill;
 	_unit
 };
 
