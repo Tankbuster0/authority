@@ -55,14 +55,12 @@ while {smcounter < _sm_required} do
 	_deepestdepth = _deepest select 1;
 	if (_deepestdepth < 40) then
 		{
-		//_smtypearray = _smtypearray - ["navalmineclear"];
 		_donotchoose pushback "navalmineclear";
 		diag_log "***sm manager couldnt find deep enough sea nearby so removed naval mine cleareance from sm roster";
 		};// if there's no deep ( > 25m) water within 1000m, remove navalmineclearance from possible missions)
 	//#2 dont do crater clearance on Almyra as it lacks the runways objects the sm needs
 	if (getMarkerPos "cpt_marker_1" isEqualTo [23145,18443.6,3.19]) then
 		{
-		//_smtypearray = _smtypearray - ["runwaycraterclear"];
 		_donotchoose pushback "runwaycraterclear";
 		diag_log "*** sm manager removes runwaycraterclear from the sm array because we're at Almyra";
 		};
@@ -71,7 +69,6 @@ while {smcounter < _sm_required} do
 	_whelivtols = call tky_fnc_fleet_heli_vtols;
 	if	 ((count _whelivtols) < 1)  then
 		 	{
-		 	//_smtypearray = _smtypearray - ["stealaircraft"];
 		 	diag_log "***sm manager removes stealaircraft from the sm array because we have no helis";
 		 	_donotchoose pushback "stealaircraft";
 		 	};
@@ -81,21 +78,26 @@ while {smcounter < _sm_required} do
 	_wairarmed  = call tky_fnc_fleet_armed_aircraft;
 	if ( (_deepestdepth < 25) or ((count _wairarmed) < 1 )) then
 		{
-		//_smtypearray = _smtypearray - ["sinktrawler"];
 		diag_log "***sm manager removes sinktrawler because there's no deep water nearby or blufor dont have attack aircraft in fleet";
 		_donotchoose pushBack "sinktrawler";
 		};
 	if ((cpt_island isEqualTo 2) and ((toLower worldName) isEqualTo "tanoa")) then //tuvanaka island
 		{
-		//_smtypearray = _smtypearray - ["blueconvoytoab"];
 		_donotchoose pushBack "blueconvoytoab";
 		};
-	//#5 dont do repairbuilding if no engineer in squad
+	//#5 dont do repairbuilding or any mine clearance if no engineer in squad
 	if  (count (allplayers select {_x getUnitTrait "engineer"}) isEqualTo 0)  then
 		{
-		//_smtypearray - _smtypearray - ["repairlocalbuilding"];};
 		_donotchoose pushBack "repairlocalbuilding";
+		_donotchoose pushback "navalmineclear";
+		_donotchoose pushBack "landmineclear";
 		diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
+		};
+	//#6 dont do heal1man if no medic in squad
+	if  (count (allplayers select {_x getUnitTrait "medic"}) isEqualTo 0)  then
+		{
+		_donotchoose pushBack "heal1man";
+		diag_log format ["***sm mananger removes heal1man because there's no medic playing"];
 		};
 	// end of exclusions///////////////////////////////////////////////////////////////////
 	diag_log format ["*** smm says donotchoose is %1 and typearay is %2", _donotchoose, _smtypearray];
