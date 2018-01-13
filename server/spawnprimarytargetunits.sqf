@@ -254,7 +254,7 @@ __tky_debug
 _removeenemyvests = ["removeenemyvests",0] call BIS_fnc_getParamValue;
 __tky_debug
 {
-	if (side _x isEqualTo east) then
+	if ((side _x) isEqualTo east) then
 		{
 		_mygroup = _x;
 		[_mygroup, true, true] call tky_fnc_tc_setskill;
