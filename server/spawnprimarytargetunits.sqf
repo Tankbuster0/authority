@@ -327,7 +327,7 @@ if (_pt_type isEqualTo 1) then
 			_fciv pushback _civfootgroup;
 __tky_debug
 			};
-		if ((random 10) > 5) then //suicide bomber stuff
+		if ((random 10) > 4) then //suicide bomber stuff
 			{
 			ssbgrp1 = createGroup [east, true];
 			_ssman1 = ssbgrp1 createUnit ["O_SoldierU_unarmed_F", _pt_pos, [],0,"NONE" ];
