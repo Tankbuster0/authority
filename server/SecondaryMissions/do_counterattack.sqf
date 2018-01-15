@@ -19,9 +19,10 @@ for "_deg" from 0 to 355 step 5 do
 {
 	_myrp0 = _x;
 	_myrp1 = (roadsConnectedTo _myrp0) select 0;
+	diag_log format ["*** dc #22 says rp0 is %1, and has %2 connected pieces", _myrp0, count (roadsConnectedTo _myrp0)];
 	_rpdir = _myrp0 getdir _myrp1;
 	_refdir = cpt_position getdir _myrp0;
-	if ( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) and {((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and ((_mfpos distance2D forward) < 75) } then
+	if (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) and {((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and ((_mfpos distance2D forward) < 75) }) then
 		{
 			_edgeroads1 pushBack _myrp0;
 		};
