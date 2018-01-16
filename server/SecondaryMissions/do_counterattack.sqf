@@ -4,27 +4,48 @@ _myscript = "do_counterattack";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_smcleanup","_deg","_ep","_myroads","_myrp0","_myrp1","_rpdir","_refdir","_mfpos","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh"];
 private _smcleanup = [];
 private _edgeroads0 = [];
 private _edgeroads1 = [];
+private ["_deg","_ep","_myroads","_edgeroads0","_mname","_foreachindex","_c1","_myrp0","_rcrp1","_rpdir","_myrp1","_refdir","_edgeroads1","_mine","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_smcleanup"];
 caunits = [];
 for "_deg" from 0 to 355 step 5 do
 	{
-		_ep = cpt_position getpos [(cpt_radius + 250), _deg];
-		_myroads = _ep nearRoads 20;
+		_ep = cpt_position getpos [(cpt_radius + 500), _deg];
+		_myroads = _ep nearRoads 50;
 		{_edgeroads0 pushBackUnique _x} forEach _myroads;
 	}; // array of roadpieces within 20 of a radius 250 outside the OA
 // note roadpieces dont have a dir
+diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgeroads0, _edgeroads0 ];
+	{
+			_mname = format ["ca1%1", _foreachindex];
+			_c1 = createmarker [_mname ,getpos _x];
+	  		_c1 setMarkerShape "ICON";
+	  		_c1 setMarkerType "hd_dot";
+
+	} foreach _edgeroads0;
 {
 	_myrp0 = _x;
-	_myrp1 = (roadsConnectedTo _myrp0) select 0;
-	diag_log format ["*** dc #22 says rp0 is %1, and has %2 connected pieces", _myrp0, count (roadsConnectedTo _myrp0)];
-	_rpdir = _myrp0 getdir _myrp1;
-	_refdir = cpt_position getdir _myrp0;
-	if (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) and {((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and ((_mfpos distance2D forward) < 75) }) then
+	_rcrp1 = roadsConnectedTo _myrp0;
+	if ((count _rcrp1) > 1) then
 		{
-			_edgeroads1 pushBack _myrp0;
+			diag_log format ["*** dc #30 says rp0 is %1, is at %3 and has %2 connected pieces", _myrp0, count (roadsConnectedTo _myrp0), getpos _myrp0];
+			_rpdir = _myrp0 getdir (_rcrp1 select 0);
+			_refdir = cpt_position getdir _myrp0;
+			if ( (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) or ([(180 + _rpdir), (180 + _refdir), 45] call tky_fnc_isNumInRangeDegrees)) and
+			    	{
+			    		((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and
+			    		((_myrp0 distance2D forward) < 75) and
+			    		(count (nearestTerrainObjects [player, ["bush"], 10, false, true]) < 3) and
+			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 1)
+			    	}) then
+				{
+					_edgeroads1 pushBack _myrp0;
+					_mname = format ["ca2%1", _foreachindex];
+					_c1 = createmarker [_mname ,getpos _mine];
+			  		_c1 setMarkerShape "ICON";
+			  		_c1 setMarkerType "mil_flag";
+				};
 		};
 } forEach _edgeroads0;
 // edgeroads1 should now contain only roadpeices that, more or less, point towards the cpt and are not near the forward or fob
