@@ -293,7 +293,7 @@ preservedvehicles = [];
 [] spawn
 	{
 		while {true} do
-			{
+			{// remove deads
 				sleep 5;
 				preservedvehicles = preservedvehicles select {alive _x};
 			};

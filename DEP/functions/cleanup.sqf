@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -20,4 +20,5 @@ _unit = _this;
 sleep 300;
 hideBody _unit;
 sleep 30;
-deleteVehicle _unit;
+if (not (_unit) in preservedvehicles) then
+    {deleteVehicle _unit;};
