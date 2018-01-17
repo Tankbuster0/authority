@@ -20,5 +20,5 @@ _unit = _this;
 sleep 300;
 hideBody _unit;
 sleep 30;
-if (not (_unit) in preservedvehicles) then
+if not ((_unit) in preservedvehicles) then
     {deleteVehicle _unit;};
