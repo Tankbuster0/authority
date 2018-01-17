@@ -1,7 +1,7 @@
 #include "..\includes.sqf"
 _myscript = "fn_fobvehicledeploymanager.sqf";
 __tky_starts;
-private ["_allowed_nearobjs","_allowed_notflat","_allowed_outdoors","_allowed_lineintersects","_allowed_deploy","_buildingobjs","_house","_nobjs1","_nobjs2","_nobjs3","_nobjs4","_begpos0","_begpos1","_begpos2","_intersectobjectscount","_objs1","_objs2","_objs","_endpos1","_endpos2","_endpos3","_endpos4","_foundobj","_tc","_reasonstring","_reasonstring2","_candidatepos","_nul","_cobj","_veh"];
+private ["_allowed_nearobjs","_allowed_notflat","_allowed_outdoors","_allowed_lineintersects","_allowed_deploy","_buildingobjs","_house","_nobjs1","_nobjs2","_nobjs3","_nobjs4","_begpos0","_begpos1","_begpos2","_intersectobjectscount","_objs1","_objs2","_objs","_endpos1","_endpos2","_endpos3","_endpos4","_foundobj","_tc","_reasonstring","_reasonstring2","_handle22","_nrobjs","_nrtrgs","_cobj"];
 if not (fobdeployed) then
 {
 	//new code starts
@@ -94,8 +94,8 @@ if not (fobdeployed) then
 			// Make editing area for curator
 			(effectiveCommander fobveh) assignCurator cur;
 			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
-			cur addCuratorEditingArea [1,(position fobveh),50];
-			cur addCuratorCameraArea [1,(position fobveh),50];
+			cur addCuratorEditingArea [1,(position fobveh),30];
+			cur addCuratorCameraArea [1,(position fobveh),30];
 			// Hint press button to get in zeus mode
 			"Press Zeus Button (Default Y) to open buildmode when deployed." remoteExec ["hint", (effectiveCommander fobveh)];
 			fobrespawnpositionid = [west,"fobmarker", "FOB"] call BIS_fnc_addRespawnPosition;
@@ -114,10 +114,15 @@ else
 		{
 		"Removing FOB" remoteexec ["hint", fobveh];
 		sleep 1;
-		{deleteVehicle _x} foreach fobjects;
-		fobjects = [];
-		publicVariable "fobjects";
 		fobdeployed = false;
+		_nrobjs = fobflagpole nearObjects 32;
+		_nrtrgs = _nrobjs select {((typeof _x) isEqualTo "EmptyDetector") and {((getdir _x) < 334) or ((getDir _x) > 332)} };
+		// gvs triggers are setdir 333 to distinguish them from other triggers. dont want to delete those by accident
+		if ((count _nrtrgs) > 0) then
+			{
+				deleteVehicle (_nrtrgs select 0);
+				diag_log format ["*** fvdm found a trigger and is deleting it!"];
+			};
 		[fobveh, false] remoteexec ["lockdriver"];
 		fobveh setHitPointDamage ["HitEngine", 0 ];
 		fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
@@ -131,7 +136,11 @@ else
 		fobbox setpos (getpos fobboxsecretlocation);
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
-		{deleteVehicle _x} foreach fobjects;
+		{
+			diag_log format ["*** fvdm about to delete %1 which is at %2 and is a %3 / %4", _x, getpos _x, typeOf _x, (getModelInfo _x) select 0];
+			deleteVehicle _x;
+			diag_log format ["*** fvdm has deleted it, should be nul now %1", _x];
+		} foreach fobjects;
 		fobjects = [];
 		publicVariable "fobjects";
 		sleep 1;
