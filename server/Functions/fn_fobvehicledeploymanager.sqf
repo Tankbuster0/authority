@@ -106,7 +106,6 @@ if not (fobdeployed) then
 			"The FOB has been built. There is a Virtual Arsenal and spawnpoint." remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 			};
 		};
-
 }
 else
 {
@@ -116,8 +115,8 @@ else
 		sleep 1;
 		fobdeployed = false;
 		_nrobjs = fobflagpole nearObjects 32;
-		_nrtrgs = _nrobjs select {((typeof _x) isEqualTo "EmptyDetector") and {((getdir _x) < 334) or ((getDir _x) > 332)} };
-		// gvs triggers are setdir 333 to distinguish them from other triggers. dont want to delete those by accident
+		_nrtrgs = _nrobjs select {((getdir _x) < 334) or ((getDir _x) > 332) };
+		// gvs triggers are setdir 333 to distinguish them from other triggers. dont want to delete those by accident. this doesnt work stilll :(
 		if ((count _nrtrgs) > 0) then
 			{
 				deleteVehicle (_nrtrgs select 0);
@@ -137,9 +136,7 @@ else
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
 		{
-			diag_log format ["*** fvdm about to delete %1 which is at %2 and is a %3 / %4", _x, getpos _x, typeOf _x, (getModelInfo _x) select 0];
 			deleteVehicle _x;
-			diag_log format ["*** fvdm has deleted it, should be nul now %1", _x];
 		} foreach fobjects;
 		fobjects = [];
 		publicVariable "fobjects";
