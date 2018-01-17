@@ -32,7 +32,8 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			diag_log format ["*** dc #30 says rp0 is %1, is at %3 and has %2 connected pieces", _myrp0, count (roadsConnectedTo _myrp0), getpos _myrp0];
 			_rpdir = _myrp0 getdir (_rcrp1 select 0);
 			_refdir = cpt_position getdir _myrp0;
-			if ( (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) or ([(180 + _rpdir), (180 + _refdir), 45] call tky_fnc_isNumInRangeDegrees)) and
+			//if (_rpdir > 180) then {_refdir2 = _refdir - 180};
+			if ( (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) or ([(_rpdir), (180 + _refdir), 45] call tky_fnc_isNumInRangeDegrees)) and
 			    	{
 			    		((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and
 			    		((_myrp0 distance2D forward) < 75) and
