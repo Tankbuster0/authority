@@ -131,6 +131,9 @@ else
 		fobbox setpos (getpos fobboxsecretlocation);
 		[[(position fobveh select 0),(position fobveh select 1),8],(position fobveh),2] call BIS_fnc_setCuratorCamera;
 		unassignCurator cur;
+		{deleteVehicle _x} foreach fobjects;
+		fobjects = [];
+		publicVariable "fobjects";
 		sleep 1;
 		"The FOB has been packed into the Hunter FOB vehicle. You cannot spawn there until the FOB is deployed" remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 		};
