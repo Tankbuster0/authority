@@ -14,7 +14,7 @@ _nvc = 0.75 * (["notveryclose",400] call BIS_fnc_getParamValue);
 }foreach allDead;
 // ^^ finds and deletes all dead vehicles and men
 {
-	if not ([_x, true] call BIS_fnc_objectSide isEqualTo WEST) then
+	if ([_x, true] call BIS_fnc_objectSide isEqualTo EAST) then
 	{
 		if not (_x in preservedvehicles)  then {deleteVehicle _x};
 		//diag_log format ["*** cleanupoldprimary deletes an old %1 vehicle ", typeof _x];
