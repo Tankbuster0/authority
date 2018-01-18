@@ -33,10 +33,10 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			_rpdir = _myrp0 getdir (_rcrp1 select 0);
 			_refdir = cpt_position getdir _myrp0;
 			//if (_rpdir > 180) then {_refdir2 = _refdir - 180};
-			if ( (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) or ([(_rpdir), (180 + _refdir), 45] call tky_fnc_isNumInRangeDegrees)) and
+			if ( (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) or ([(_rpdir + 180), (_refdir), 45] call tky_fnc_isNumInRangeDegrees)) and
 			    	{
 			    		((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and
-			    		((_myrp0 distance2D forward) < 75) and
+			    		((_myrp0 distance2D forward) > 75) and
 			    		(count (nearestTerrainObjects [player, ["bush"], 10, false, true]) < 3) and
 			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 1)
 			    	}) then
