@@ -38,7 +38,8 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			    		((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and//not near fob
 			    		((_myrp0 distance2D forward) > 75) and// not near forward
 			    		(count (nearestTerrainObjects [player, ["bush", "tree", "rock"], 7, false, true]) < 3) and //not on a forest trail
-			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 0.9)//not on a forest trail
+			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 0.9) and //not on a forest trail
+			    		((_myrp0 distance2d blubasehelipad) > 100) //not near the airbase
 			    	}) then
 				{
 					_edgeroads1 pushBack _myrp0;
@@ -47,7 +48,6 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			  		_c1 setMarkerShape "ICON";
 			  		_c1 setMarkerType "mil_flag";
 			  		diag_log format ["*** rp at %1 has dir %2 and dir to cpt is %3", getpos _myrp0, floor _rpdir, floor _refdir];
-
 				};
 		};
 } forEach _edgeroads0;
@@ -74,13 +74,14 @@ if ((count _edgeroads1)> 2) then
 				_cawp setWaypointCompletionRadius (floor random 25);
 				_cawp setWaypointCombatMode "red";
 				_cawp setWaypointSpeed "limited";
-				_cawp setWaypointStatements ["true", "[group this,(getpos forward)] call BIS_fnc_taskAttack"];
+				_cawp setWaypointStatements ["true", "[this] execVM 'server\SecondaryMissions\choosetargetforcounterattack.sqf' "];
 				_cagroup setCombatMode "red";
 				_cagroup setSpeedMode "limited";
 				_camarkername = format ["camname%1", _c];
 				_cavehmarker = createMarker [_camarkername, _veh];
 				_cavehmarker setMarkerShape "icon";
 				_cavehmarker setMarkerType "o_support";
+				_cavehmarker setMarkerText format ["%1, %2",(str (floor (speed _veh))), (expectedDestination (leader _cagroup)) select 0];
 				[_veh, _cavehmarker] spawn
 					{
 						while {true} do
