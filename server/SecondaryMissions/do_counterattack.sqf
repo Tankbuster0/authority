@@ -11,34 +11,27 @@ caunits = [];
 for "_deg" from 0 to 355 step 5 do
 	{
 		_ep = cpt_position getpos [(cpt_radius + 500), _deg];
-		_myroads = _ep nearRoads 50;
+		_myroads = _ep nearRoads 40;
 		{_edgeroads0 pushBackUnique _x} forEach _myroads;
-	}; // array of roadpieces within 20 of a radius 250 outside the OA
+	}; // array of roadpieces within 40 of a radius 500 outside the OA
 // note roadpieces dont have a dir
 diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgeroads0, _edgeroads0 ];
-	{
-			_mname = format ["ca1%1", _foreachindex];
-			_c1 = createmarker [_mname ,getpos _x];
-	  		_c1 setMarkerShape "ICON";
-	  		_c1 setMarkerType "hd_dot";
-// polyline
-	} foreach _edgeroads0;
 {
 	_myrp0 = _x;
 	_rcrp1 = roadsConnectedTo _myrp0;
 	if ((count _rcrp1) > 1) then
 		{
-			//diag_log format ["*** dc #30 says rp0 is %1, is at %3 and has %2 connected pieces", _myrp0, count (roadsConnectedTo _myrp0), getpos _myrp0];
 			_rpdir = _myrp0 getdir (_rcrp1 select 0);
 			_refdir = cpt_position getdir _myrp0;
-			//if (_rpdir > 180) then {_refdir2 = _refdir - 180};
+
 			if ( (( [_rpdir, _refdir, 45] call  tky_fnc_isNumInRangeDegrees) or ([(_rpdir + 180), (_refdir), 45] call tky_fnc_isNumInRangeDegrees)) and// find rp realy facing towards cpt
 			    	{
 			    		((_myrp0 distance2D getMarkerPos "fobmarker") > 75) and//not near fob
 			    		((_myrp0 distance2D forward) > 75) and// not near forward
 			    		(count (nearestTerrainObjects [player, ["bush", "tree", "rock"], 7, false, true]) < 3) and //not on a forest trail
 			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 0.9) and //not on a forest trail
-			    		((_myrp0 distance2d blubasehelipad) > 300) //not near the airbase
+			    		((_myrp0 distance2d blubasehelipad) > 300) and //not near the airbase
+			    		(not ( surfaceIsWater (_myrp0 getpos [((_myrp0 distance2d cpt_position) /2),  (_myrp0 getdir cpt_position ) ])) )// no water inbetween rp and cpt
 			    	}) then
 				{
 					_edgeroads1 pushBack _myrp0;
