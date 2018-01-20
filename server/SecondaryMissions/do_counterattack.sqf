@@ -7,7 +7,7 @@ missionsuccess = false; publicVariable "missionsuccess";
 private _smcleanup = [];
 private _edgeroads0 = []; private _edgeroads1 = [];
 private ["_deg","_ep","_myroads","_mname","_foreachindex","_c1","_myrp0","_rcrp1","_rpdir","_refdir","_refdir2","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_cadest","_cawp","_camarkername","_cavehmarker"];
-caunits = [];
+caunits = []; cavecintowncounter = 0;
 for "_deg" from 0 to 355 step 5 do
 	{
 		_ep = cpt_position getpos [(cpt_radius + 500), _deg];
@@ -43,7 +43,7 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 				};
 		};
 } forEach _edgeroads0;
-// edgeroads1 should now contain only roadpeices that, more or less, point towards the cpt and are not near the forward or fob
+// edgeroads1 should now contain only roadpieces that, more or less, point towards the cpt and are not near the forward or fob
 diag_log format ["*** er1 has count %1 elements ", count _edgeroads1];
 
 if ((count _edgeroads1)> 2) then
@@ -82,8 +82,6 @@ if ((count _edgeroads1)> 2) then
 						};
 					};
 			};
-
-
 	}
 	else
 	{// not enough good places found for spawning CA troops
