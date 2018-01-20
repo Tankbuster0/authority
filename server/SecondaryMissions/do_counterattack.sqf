@@ -5,9 +5,8 @@ __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private _smcleanup = [];
-private _edgeroads0 = [];
-private _edgeroads1 = [];
-private ["_deg","_ep","_myroads","_mname","_foreachindex","_c1","_myrp0","_rcrp1","_rpdir","_refdir","_refdir2","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_cawp","_camarkername","_cavehmarker"];
+private _edgeroads0 = []; private _edgeroads1 = [];
+private ["_deg","_ep","_myroads","_mname","_foreachindex","_c1","_myrp0","_rcrp1","_rpdir","_refdir","_refdir2","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_cadest","_cawp","_camarkername","_cavehmarker"];
 caunits = [];
 for "_deg" from 0 to 355 step 5 do
 	{
@@ -22,7 +21,7 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			_c1 = createmarker [_mname ,getpos _x];
 	  		_c1 setMarkerShape "ICON";
 	  		_c1 setMarkerType "hd_dot";
-
+// polyline
 	} foreach _edgeroads0;
 {
 	_myrp0 = _x;
@@ -39,7 +38,7 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			    		((_myrp0 distance2D forward) > 75) and// not near forward
 			    		(count (nearestTerrainObjects [player, ["bush", "tree", "rock"], 7, false, true]) < 3) and //not on a forest trail
 			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 0.9) and //not on a forest trail
-			    		((_myrp0 distance2d blubasehelipad) > 100) //not near the airbase
+			    		((_myrp0 distance2d blubasehelipad) > 300) //not near the airbase
 			    	}) then
 				{
 					_edgeroads1 pushBack _myrp0;
@@ -68,26 +67,25 @@ if ((count _edgeroads1)> 2) then
 				_cavec = selectRandom opforcavecs;
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
 
-				// work out what comes back from this fnc so we can add them to caunits and smcleanup
-				_cawp = _cagroup addWaypoint [cpt_position, 0];
+				_cadest = selectRandom (cpt_position nearRoads 75);
+				_cawp = _cagroup addWaypoint [_cadest, 5];
 				_cawp setWaypointType "unload";
-				_cawp setWaypointCompletionRadius (floor random 25);
 				_cawp setWaypointCombatMode "red";
-				_cawp setWaypointSpeed "limited";
-				_cawp setWaypointStatements ["true", "[this] execVM 'server\SecondaryMissions\choosetargetforcounterattack.sqf' "];
+				_cawp setWaypointBehaviour "careless";
+				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol"];
 				_cagroup setCombatMode "red";
-				_cagroup setSpeedMode "limited";
+				_veh limitSpeed 50;
 				_camarkername = format ["camname%1", _c];
 				_cavehmarker = createMarker [_camarkername, _veh];
 				_cavehmarker setMarkerShape "icon";
 				_cavehmarker setMarkerType "o_support";
-				_cavehmarker setMarkerText format ["%1, %2",(str (floor (speed _veh))), (expectedDestination (leader _cagroup)) select 0];
 				[_veh, _cavehmarker] spawn
 					{
 						while {true} do
 						{
 						(_this select 1) setMarkerPos (getpos (_this select 0));
-						sleep 1;
+						(_this select 1) setMarkerText format ["%1, %2",floor (speed (_this select 0)), (expectedDestination (driver (_this select 0 ))) select 0];
+						sleep 0.2;
 						};
 					};
 			};
@@ -96,15 +94,7 @@ if ((count _edgeroads1)> 2) then
 	}
 	else
 	{// not enough good places found for spawning CA troops
-
-
 	};
-
-
-
-
-
-
 while {missionactive} do
 	{
 	sleep 3;
