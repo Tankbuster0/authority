@@ -7,7 +7,7 @@ missionsuccess = false; publicVariable "missionsuccess";
 private _smcleanup = [];
 private _edgeroads0 = []; private _edgeroads1 = [];
 private ["_deg","_ep","_myroads","_mname","_foreachindex","_c1","_myrp0","_rcrp1","_rpdir","_refdir","_refdir2","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_cadest","_cawp","_camarkername","_cavehmarker"];
-caunits = []; cavecintowncounter = 0;
+cavecs = []; caunits = []; cavecintowncounter = 0;
 for "_deg" from 0 to 355 step 5 do
 	{
 		_ep = cpt_position getpos [(cpt_radius + 500), _deg];
@@ -59,7 +59,8 @@ if ((count _edgeroads1)> 2) then
 				// choose which quilin to spawn according to island
 				_cavec = selectRandom opforcavecs;
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
-
+				cavecs pushback _veh;
+				caunits append (crew _veh);
 				_cadest = selectRandom (cpt_position nearRoads 75);
 				_cawp = _cagroup addWaypoint [_cadest, 5];
 				_cawp setWaypointType "unload";
@@ -86,6 +87,32 @@ if ((count _edgeroads1)> 2) then
 	else
 	{// not enough good places found for spawning CA troops
 	};
+caaction = "wait";
+while {caaction isEqualTo "wait"} do
+	{
+		if ( (count (vehicles inAreaArray [cpt_position, 75, 75, 0, false, -1] select {(typeOf _x) in cavecs})) isEqualTo (count cavecs) ) then
+			{// all the vecs are in the town, start checking
+				caaction = "go-arrived";
+				diag_log format ["*** caaction says all vecs in town"];
+			};
+		if ( count (cavecs select {alive _x}) < count cavecs) then
+			{// a vec has died on the way
+				caaction = "wait";
+				cavecs = cavecs - [(cavecs select {not (alive _x)})];
+				diag_log format ["*** caaction says a vec is dead in transit"];
+			};
+		if (count (cavecs select {(fuel _x) < 0.1 }) > 0) then
+			{// a vec has run out of fuel
+				caaction = "wait";
+				caves = cavevs - [(cavecs select {((fuel _x) < 0.1)})];
+				diag_log format ["***caaction says a vec is out of fuel in transit"];
+
+
+
+			};
+
+
+	};
 while {missionactive} do
 	{
 	sleep 3;
@@ -95,7 +122,7 @@ while {missionactive} do
 		missionactive = false;
 		};
 
-	if (false) then // success. all or most enemy forces are destroyed (or they are stationary for a while)
+	if (({alive _x} count caunits) < 3) then // success. all or most enemy forces are destroyed
 		{
 		missionsuccess = true;
 		missionactive = false;
