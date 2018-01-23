@@ -69,6 +69,7 @@ if ((count _edgeroads1)> 2) then
 				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol"];
 				_cagroup setCombatMode "red";
 				_veh limitSpeed 20;
+				[_cagroup, true, true] call tky_fnc_tc_setskill
 			};
 	}
 	else
