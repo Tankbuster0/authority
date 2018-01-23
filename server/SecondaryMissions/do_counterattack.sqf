@@ -13,7 +13,7 @@ private _edgeroads0 = []; private _edgeroads1 = []; private _castarttime = floor
 cavecs = []; caunits = []; cavecintowncounter = 0;
 for "_deg" from 0 to 355 step 5 do
 	{
-		_ep = cpt_position getpos [(cpt_radius + 750), _deg];
+		_ep = cpt_position getpos [(cpt_radius + 500), _deg];
 		_myroads = _ep nearRoads 40;
 		{_edgeroads0 pushBackUnique _x} forEach _myroads;
 	}; // array of roadpieces within 40 of a radius 500 outside the OA
@@ -34,7 +34,9 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 			    		(count (nearestTerrainObjects [player, ["bush", "tree", "rock"], 7, false, true]) < 3) and //not on a forest trail
 			    		(((getpos _myrp0) getEnvSoundController "forest" ) < 0.9) and //not on a forest trail
 			    		((_myrp0 distance2d blubasehelipad) > 300) and //not near the airbase
-			    		(not ( surfaceIsWater (_myrp0 getpos [((_myrp0 distance2d cpt_position) /2),  (_myrp0 getdir cpt_position ) ])) )// no water inbetween rp and cpt
+			    		(not (surfaceIsWater (_myrp0 getpos [((_myrp0 distance2d cpt_position) /2),  (_myrp0 getdir cpt_position ) ])) ) and// no water inbetween rp and cpt
+			    		(not (surfaceIsWater (_myrp0 getpos [((_myrp0 distance2d cpt_position) /4),  (_myrp0 getdir cpt_position ) ])) ) and
+			    		(not (surfaceIsWater (_myrp0 getpos [((_myrp0 distance2d cpt_position) /1.35),  (_myrp0 getdir cpt_position ) ])) )
 			    	}) then
 				{
 					_edgeroads1 pushBack _myrp0;
@@ -57,17 +59,18 @@ if ((count _edgeroads1)> 2) then
 				_cavec = selectRandom opforcavecs;
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
 				_veh setvariable ["startingpos", getpos _veh];
+				_veh setUnloadInCombat [false, false];
 				cavecs pushback _veh;
 				caunits append (crew _veh);
 				_smcleanup append (crew _veh);
-				_smcleanup pushBack _veh
+				_smcleanup pushBack _veh;
 				_cadest = selectRandom (cpt_position nearRoads 75);
 				_cawp = _cagroup addWaypoint [_cadest, 5];
 				_cawp setWaypointType "unload";
-				_cawp setWaypointCombatMode "red";
+				_cawp setWaypointCombatMode "green";
 				_cawp setWaypointBehaviour "careless";
 				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol"];
-				_cagroup setCombatMode "red";
+				_cagroup setCombatMode "green";
 				_veh limitSpeed 20;
 				[_cagroup, true, true] call tky_fnc_tc_setskill
 			};
@@ -109,7 +112,7 @@ while {missionactive} do
 				}foreach cavecs;
 			};
 		{
-			if ( (isNull objectParent _x) and {(not (_x inArea ("cpt_marker_" + str primarytargetcounter))) and (alive _x) }) then
+			if ( (isNull (objectParent _x)) and {(not (_x inArea [cpt_position, 75,75,0,false,-1])) and (alive _x) }) then
 				{// caunit is not in a vehicle, alive and away from the cpt (probably bailed from a damaged vec)
 					(leader _x) doMove cpt_position;
 				};
