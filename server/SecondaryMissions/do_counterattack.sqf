@@ -47,7 +47,7 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 diag_log format ["*** er1 has count %1 elements ", count _edgeroads1];
 if ((count _edgeroads1)> 2) then
 	{// a couple of good places to spawn CA  troops
-		_casquadcnt = (1 + floor ( random (count _edgeroads1 / 3))) min 5;
+		_casquadcnt = ( (floor (((playersNumber west) min 3)/2)) + floor ( random (count _edgeroads1 / 4))) min 7;
 		diag_log format ["*** dca going to make %1 squads", _casquadcnt];
 		for "_c" from 1 to _casquadcnt do
 			{
@@ -55,7 +55,6 @@ if ((count _edgeroads1)> 2) then
 				_carp = selectRandom _edgeroads1;
 				_edgeroads1 = _edgeroads1 - [_carp];
 				_carp2 = (roadsConnectedTo _carp) select 0;
-				// choose which quilin to spawn according to island
 				_cavec = selectRandom indicavecs;
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
 				_veh setvariable ["startingpos", getpos _veh];
@@ -127,7 +126,8 @@ while {missionactive} do
 			{
 			missionsuccess = true;
 			missionactive = false;
-			"Your team defeated the counterattack. Good work guys." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			"Your team defeated the attack. Good work guys." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+			{setDamage 1} forEach caunits;
 			};
 	};
 publicVariable "missionsuccess";
