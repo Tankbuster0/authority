@@ -51,12 +51,12 @@ if ((count _edgeroads1)> 2) then
 		diag_log format ["*** dca going to make %1 squads", _casquadcnt];
 		for "_c" from 1 to _casquadcnt do
 			{
-				_cagroup = createGroup [east, true];
+				_cagroup = createGroup [independent, true];
 				_carp = selectRandom _edgeroads1;
 				_edgeroads1 = _edgeroads1 - [_carp];
 				_carp2 = (roadsConnectedTo _carp) select 0;
 				// choose which quilin to spawn according to island
-				_cavec = selectRandom opforcavecs;
+				_cavec = selectRandom indicavecs;
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
 				_veh setvariable ["startingpos", getpos _veh];
 				_veh setUnloadInCombat [false, false];
@@ -93,7 +93,7 @@ while {missionactive} do
 		if (not(_warnflag)) then
 			{
 				{
-					if ((_x distance2d cpt_position) < cpt_radius + 100) then
+					if ((_x distance2d cpt_position) < (cpt_radius + 100)) then
 					{
 						_dirtext = "Satellite is tracking inbound enemy vehicles just " + ((cpt_position getDir _x) call TKY_fnc_cardinaldirection) + " of the town";
 						_dirtext remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
@@ -115,6 +115,7 @@ while {missionactive} do
 			if ( (isNull (objectParent _x)) and {(not (_x inArea [cpt_position, 75,75,0,false,-1])) and (alive _x) }) then
 				{// caunit is not in a vehicle, alive and away from the cpt (probably bailed from a damaged vec)
 					(leader _x) doMove cpt_position;
+					(group _x) setCombatMode "red";
 				};
 		} foreach caunits;
 		if (FALSE) then// failure. enemy get a vehicle or aircraft into the middle of the town

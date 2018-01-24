@@ -9,6 +9,7 @@ debugendmission = false;
 testservernames = ["Tanky-Test", "Tanky test"];
 opfor_planes = ["O_Plane_CAS_02_F", "I_Plane_Fighter_04_F","O_Plane_Fighter_02_Stealth_F", "I_Plane_Fighter_03_CAS_F","I_Plane_Fighter_04_F","C_Plane_Civil_01_racing_F" ]; //doesnt include "O_T_VTOL_02_infantry_F"
 opfor_helis = ["O_Heli_Light_02_F", "O_Heli_Light_02_v2_F","O_Heli_Attack_02_F", "O_Heli_Attack_02_black_F", "O_Heli_Transport_04_covered_F", "I_Heli_Transport_02_F", "I_Heli_light_03_F"];
+indicavecs = ["I_Truck_02_transport_F","I_MRAP_03_hmg_F","I_MRAP_03_gmg_F", "I_APC_Wheeled_03_cannon_F" ];
 opfor_reinf_truck_soldier = "O_Soldier_GL_F";
 opfor_reinf_truck =  "O_Truck_03_transport_F";
 islandhop = false; publicVariable "islandhop";
