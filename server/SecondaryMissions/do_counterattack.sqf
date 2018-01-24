@@ -95,7 +95,7 @@ while {missionactive} do
 				{
 					if ((_x distance2d cpt_position) < cpt_radius + 100) then
 					{
-						_dirtext = "Satellite is tracking inbound enemy vehicles just outside the " + ((cpt_position getDir _x) call TKY_fnc_cardinaldirection) + " of town";
+						_dirtext = "Satellite is tracking inbound enemy vehicles just " + ((cpt_position getDir _x) call TKY_fnc_cardinaldirection) + " of the town";
 						_dirtext remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 						_warnflag = true;
 					};
