@@ -47,7 +47,7 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 diag_log format ["*** er1 has count %1 elements ", count _edgeroads1];
 if ((count _edgeroads1)> 2) then
 	{// a couple of good places to spawn CA  troops
-		_casquadcnt = ( (floor (((playersNumber west) min 3)/2)) + floor ( random (count _edgeroads1 / 4))) min 7;
+		_casquadcnt = ( (floor (((playersNumber west) min 6)/2)) + floor ( random (count _edgeroads1 / 4))) min 7;
 		diag_log format ["*** dca going to make %1 squads", _casquadcnt];
 		for "_c" from 1 to _casquadcnt do
 			{
