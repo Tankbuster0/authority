@@ -106,7 +106,7 @@ while {missionactive} do
 					if  (((_x getVariable ["startingpos", [0,0,0]]) distance2D _x) < 20) then
 						{//vehicle stuck at start and not inside the cpt
 							_x setdamage 1;
-							diag_log format ["*** dca kills %1 which is a %2 because it's stuck at startpos ", _x, typeOf _x];
+							diag_log format ["*** dca kills %1 which is a %2 because it's stuck at startpos %3 ", _x, typeOf _x, getpos _x];
 						};
 				}foreach cavecs;
 			};
