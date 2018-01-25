@@ -127,7 +127,7 @@ while {missionactive} do
 			missionsuccess = true;
 			missionactive = false;
 			"Your team defeated the attack. Good work guys." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-			{setDamage 1} forEach caunits;
+			{_x setDamage 1;} forEach caunits;
 			};
 	};
 publicVariable "missionsuccess";
