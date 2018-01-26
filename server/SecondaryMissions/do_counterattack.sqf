@@ -47,7 +47,7 @@ diag_log format ["*** dca edgeroads0 @ 19 is count %1 and is %2 ", count _edgero
 diag_log format ["*** er1 has count %1 elements ", count _edgeroads1];
 if ((count _edgeroads1)> 2) then
 	{// a couple of good places to spawn CA  troops
-		_casquadcnt = ( (floor (((playersNumber west) min 6)/2)) + floor ( random (count _edgeroads1 / 4))) min 7;
+		_casquadcnt = 1 + (( (floor (((playersNumber west) min 6)/2)) + floor ( random (count _edgeroads1 / 3))) min 7);
 		diag_log format ["*** dca going to make %1 squads", _casquadcnt];
 		for "_c" from 1 to _casquadcnt do
 			{
@@ -59,6 +59,7 @@ if ((count _edgeroads1)> 2) then
 				_veh = [getpos _carp, _carp getdir cpt_position, _cavec, _cagroup] call tky_fnc_spawnandcrewvehicle;
 				_veh setvariable ["startingpos", getpos _veh];
 				_veh setUnloadInCombat [false, false];
+				_cagroup allowFleeing 0;
 				cavecs pushback _veh;
 				caunits append (crew _veh);
 				_smcleanup append (crew _veh);
@@ -66,12 +67,44 @@ if ((count _edgeroads1)> 2) then
 				_cadest = selectRandom (cpt_position nearRoads 75);
 				_cawp = _cagroup addWaypoint [_cadest, 5];
 				_cawp setWaypointType "unload";
-				_cawp setWaypointCombatMode "green";
+				_cawp setWaypointCombatMode "blue";
 				_cawp setWaypointBehaviour "careless";
+				_cawp setWaypointForceBehaviour true;
 				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol; (group this setCombatMode 'red' )"];
-				_cagroup setCombatMode "green";
 				_veh limitSpeed 20;
-				[_cagroup, true, true] call tky_fnc_tc_setskill
+				[_cagroup, true, true] call tky_fnc_tc_setskill;
+				_camarkername = format ["camname%1", _c];
+				_cavehmarker = createMarker [_camarkername, _veh];
+				_cavehmarker setMarkerShape "icon";
+				_cavehmarker setMarkerType "o_support";
+				[_veh, _cavehmarker] spawn
+					{
+						while {true} do
+						{
+						(_this select 1) setMarkerPos (getpos (_this select 0));
+						(_this select 1) setMarkerText format ["%1, %2, %3, %4",floor (speed (_this select 0)),floor ( (_this select 0) distance2d ((expectedDestination (driver (_this select 0 ))) select 0)), count ((effectiveCommander (_this select 0)) targetsQuery [objNull, west, "SoldierWB", [],30]), waypointBehaviour [(group (effectiveCommander (_this select 0))),1] ];
+						(_this select 1) setMarkerColor ("color" + (if (combatMode (driver (_this select 0)) != "Error") then {(combatMode (driver (_this select 0)))} else {"black"}));
+						sleep 0.2;
+						};
+					};
+				[_veh] spawn
+					{
+						private ["_pos1", "_killgrp"];
+						while {alive (_this select 0)} do
+							{
+								_pos1 = getpos (_this select 0);
+								sleep 30;
+								if ((((getpos (_this select 0)) distance2D _pos1) < 4) and {(_pos1 distance2d cpt_position) > cpt_radius}) then
+									{// vehicle stalled (mybe confused by forest track) and away from cpt, so killing and removing
+										diag_log format ["*** dca spawned bit removes a %1 because it's stalled at %2", typeOf (_this select 0), getpos (this select 0)];
+										_killgrp = units (group (_this select 0));
+										caunits = caunits - _killgrp;
+										cavecs = cavecs - [(_this select 0)];
+										{deleteVehicle _x;} foreach _killgrp;
+										 (_this select 0) setdamage 1;
+									};
+							};
+					};
 			};
 	}
 	else
@@ -111,12 +144,24 @@ while {missionactive} do
 				}foreach cavecs;
 			};
 		{
+			private _myvec = _x;
+			if (((speed _x) isEqualTo 0) and {(count ((effectiveCommander _x) targetsQuery [objNull, west, "SoldierWB", (getpos _x), 30]) < 1) and (combatMode (group (effectiveCommander _x)) == "RED")}) then
+				{// get them back in the vehicle and reset it so its carries on, hopefully
+					{
+						_x assignascargo _myvec;
+            			_x moveincargo _myvec;
+					} forEach units (effectiveCommander _x);
+					group (effectiveCommander _x) setCombatMode "green";
+					DIAG_LOG FORMAT ["*** DCA sets %1 at %2 combatmode green because its not under sttack anymore", typeof _myvec, getpos _myvec];
+				};
+		} forEach cavecs;
+		/*{
 			if ( (isNull (objectParent _x)) and {(not (_x inArea [cpt_position, 75,75,0,false,-1])) and (alive _x) }) then
 				{// caunit is not in a vehicle, alive and away from the cpt (probably bailed from a damaged vec)
 					(leader _x) doMove cpt_position;
 					(group _x) setCombatMode "red";
 				};
-		} foreach caunits;
+		} foreach caunits;*/
 		if (FALSE) then// failure. enemy get a vehicle or aircraft into the middle of the town
 			{// currently, there's no failure condition for this
 			missionsuccess = false;
