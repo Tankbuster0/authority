@@ -8,6 +8,7 @@ if (primarytargetcounter isEqualTo 1) then
 	{
 	taskbool = [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
 	handle_mb_finished = false;
+	run_replacequads = false;
 	_handle4 = execVM "server\movebase.sqf";
 	waitUntil {handle_mb_finished};
 
