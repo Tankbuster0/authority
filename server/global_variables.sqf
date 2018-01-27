@@ -22,6 +22,7 @@ handle_mb_finished = false;
 handle_smm_finished = false;
 handle_cnp_finished = false;
 handle_bf_finished = false;
+run_replacequads = true;
 opfor_reinf_helos = ["O_Heli_Light_02_F","O_Heli_Transport_04_covered_F"];
 smmissionstring = "There is currently no Secondary Mission"; publicVariable "smmissionstring";
 typeselected = "none"; publicVariable "typeselected";
