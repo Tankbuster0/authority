@@ -72,6 +72,15 @@ if ((count _edgeroads1)> 2) then
 				_cawp setWaypointForceBehaviour true;
 				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol; (group this setCombatMode 'red' )"];
 				_veh limitSpeed 20;
+				_cavecshooters = fullcrew [_vec, "gunner", false];
+				_cavecshooters append (fullcrew [_vec, "turret", false]);
+				{// get all the shooter (gunners + turrets) and put them in a more aggresive group so they engage while driving
+					_shootergrp = createGroup independent;
+					_mygunner = _x select 0;
+					[_mygunner] joinSilent grpNull
+					[_mygunner] joinSilent _cavecshooters;
+				} foreach _cavecshooters;
+				_cavecshooters setcombatmode "red";
 				[_cagroup, true, true] call tky_fnc_tc_setskill;
 				_camarkername = format ["camname%1", _c];
 				_cavehmarker = createMarker [_camarkername, _veh];
