@@ -133,32 +133,7 @@ if (isDedicated) then
 
 
 sleep 10;
-/*
-gr1 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg1, [], 0, "CAN_COLLIDE"];
-gr2 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg2, [], 0, "CAN_COLLIDE"];
-gr3 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg3, [], 0, "CAN_COLLIDE"];
-gr4 = createVehicle ["PortableHelipadLight_01_red_F", getpos gg4, [], 0, "CAN_COLLIDE"];
 
-gy1 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg1, [], 0, "CAN_COLLIDE"];
-gy2 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg2, [], 0, "CAN_COLLIDE"];
-gy3 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg3, [], 0, "CAN_COLLIDE"];
-gy4 = createVehicle ["PortableHelipadLight_01_yellow_F", getpos gg4, [], 0, "CAN_COLLIDE"];
-
-gp1 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg1, [], 0, "CAN_COLLIDE"];
-gp2 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg2, [], 0, "CAN_COLLIDE"];
-gp3 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg3, [], 0, "CAN_COLLIDE"];
-gp4 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg4, [], 0, "CAN_COLLIDE"];
-
-{_x attachTo [blubasehelipad, [5.5,0,0]];} forEach [gg1, gr1, gy1, gp1];
-{_x attachTo [blubasehelipad, [0,5.5,0]];} forEach [gg2, gr2, gy2, gp2];
-{_x attachTo [blubasehelipad, [-5.5,0,0]];} forEach [gg3, gr3, gy3, gp3];
-{_x attachTo [blubasehelipad, [0,-5.5,0]];} forEach [gg4, gr4, gy4, gp4];
-*/
-[gg1, "gg1"] call fnc_setVehicleName;
-[gg2, "gg2"] call fnc_setVehicleName;
-[gg3, "gg3"] call fnc_setVehicleName;
-[gg4, "gg4"] call fnc_setvehicleName;
-{_x enableSimulationGlobal false} foreach [gg1,gg2,gg3,gg4];
 [] spawn
 	{// brute force for airhead GVS broken trigger
 	while {true} do
@@ -174,98 +149,7 @@ gp4 = createVehicle ["Land_PortableHelipadLight_01_F", getpos gg4, [], 0, "CAN_C
 				};
 		};
 	};
-/*
-gvsmode ="yellow";
 
-[] spawn
-	{// airhead gvs lights logic
-	while {true} do
-		{
-		sleep 1;
-		private _nro2 = blubasehelipad nearEntities [["Land", "Air"], 6];
-		if (airheadserviceinuse) then
-			{// purple. it's in use
-			{gvsmode= "purple"};
-			waitUntil {!airheadserviceinuse}; // waituntil service finishes
-			gvsmode = "green";
-			waitUntil {count (blubasehelipad nearEntities [["Land", "Air"], 6]) isEqualTo 0;}; //wait until vehicle leaves
-			gvsmode = "yellow";
-			};
-		if ( ((count _nro2) > 0) and
-		    {	(!airheadserviceinuse) and
-		    	((fuel (_nro2 select 0) isEqualTo 1)) or
-		    	((damage (_nro2 select 0) isEqualTo 0)) or
-		    	((_nro2 select 0) in Public_Banned_Vehicle_Service_List) or
-		    	(([_nro2 select 0, true] call BIS_fnc_objectSide) isEqualTo east)
-		    }) then
-			{// service refused
-			gvsmode = "red";
-			};
-		if ((count _nro2 isEqualTo 0) and {!airheadserviceinuse}) then
-			{// not in use and nothing nearby
-			gvsmode = "yellow";
-			};
-		};
-	};
-
-[] spawn
-	{// light changer
-		private ["_oldgvsmode"];
-		_oldgvsmode = "gaypink";
-		while {true} do
-		{
-		sleep 0.5;
-		switch (gvsmode) do
-			{
-			case "purple":
-				{
-					//{_x setpos [0,0,0]} forEach [gg1, gg1,gg3,gg4, gy1, gy2, gy3, gy4, gr1, gr2, gr3, gr4];
-					//{[_x, [0.5,0,0.5]] call tky_fnc_showlight} foreach [gg1, gg1,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then
-						{
-							//[[0.5,0.0,0.5]] remoteExecCall ["tky_fnc_showlight",0,false];
-							[[0.5,0,0.5]] call tky_fnc_showlight;
-
-						};
-					_oldgvsmode = gvsmode;
-				};
-			case "red":
-				{
-					//{_x setpos [0,0,0]} forEach [gg1, gg2,gg3,gg4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
-					//{[_x, [1,0,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then
-						{
-							//[[1,0.0,0]] remoteExecCall ["tky_fnc_showlight",0,false];
-							[[1,0,0]] call tky_fnc_showlight;
-						};
-					_oldgvsmode = gvsmode;
-				};
-			case "green":
-				{
-					//{_x setpos [0,0,0]} forEach [gr1, gr2,gr3,gr4, gy1, gy2, gy3, gy4, gp1, gp2, gp3, gp4];
-					//{ [_x, [0,1,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then
-						{
-							//[[0,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];
-							[[1,0,1]] call tky_fnc_showlight;
-						};
-					_oldgvsmode = gvsmode;
-				};
-			case "yellow":
-				{
-					//{_x setpos [0,0,0]} forEach [gr1, gr2,gr3,gr4, gg1, gg2, gg3, gg4, gp1, gp2, gp3, gp4];
-					//{[_x, [1,1,0]] call tky_fnc_showlight} foreach [gg1,gg2,gg3,gg4];
-					if not (gvsmode isEqualTo _oldgvsmode) then
-						{
-							//[[1,1,0]] remoteExecCall ["tky_fnc_showlight",0,false];
-							[[1,1,0]] call tky_fnc_showlight;
-						};
-					_oldgvsmode = gvsmode;
-				};
-			};
-		};
-	};
-*/
 handle_mb_finished = true;
 
 __tky_ends
