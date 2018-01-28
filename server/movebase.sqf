@@ -132,7 +132,7 @@ if (isDedicated) then
 };
 
 
-sleep 10;
+sleep 1;
 
 [] spawn
 	{// brute force for airhead GVS broken trigger
