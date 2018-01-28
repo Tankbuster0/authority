@@ -7,7 +7,7 @@ missionsuccess = false; publicVariable "missionsuccess";
 smmissionstring = format ["The enemy reserves are attacking %1. Get your forces organised there and kill them all. Expect mostly mechanised infantry and perhaps an aircraft or two.", cpt_name];
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
-private ["_deg","_ep","_myroads","_mname","_foreachindex","_c1","_myrp0","_rcrp1","_rpdir","_refdir","_refdir2","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_cadest","_cawp","_camarkername","_cavehmarker", "_dirtext"];
+private ["_deg","_ep","_myroads","_myrp0","_rcrp1","_rpdir","_refdir","_casquadcnt","_c","_cagroup","_carp","_carp2","_cavec","_veh","_cadest","_cawp","_cavecshooters","_vec","_shootergrp","_mygunner","_camarkername","_cavehmarker","_pos1","_killgrp","_dirtext","_myvec"];
 private _smcleanup = [];
 private _edgeroads0 = []; private _edgeroads1 = []; private _castarttime = floor serverTime; private _warnflag = false;
 cavecs = []; caunits = []; cavecintowncounter = 0;
@@ -67,20 +67,22 @@ if ((count _edgeroads1)> 2) then
 				_cadest = selectRandom (cpt_position nearRoads 75);
 				_cawp = _cagroup addWaypoint [_cadest, 5];
 				_cawp setWaypointType "unload";
-				_cawp setWaypointCombatMode "blue";
+				_cawp setWaypointCombatMode "red";
 				_cawp setWaypointBehaviour "careless";
 				_cawp setWaypointForceBehaviour true;
 				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol; (group this setCombatMode 'red' )"];
 				_veh limitSpeed 20;
-				_cavecshooters = fullcrew [_vec, "gunner", false];
-				_cavecshooters append (fullcrew [_vec, "turret", false]);
+				_cavecshooters = fullcrew [_veh, "gunner", false];
+				_cavecshooters append (fullcrew [_veh, "turret", false]);
+				_shootergrp = createGroup [independent, true];
 				{// get all the shooter (gunners + turrets) and put them in a more aggresive group so they engage while driving
-					_shootergrp = createGroup independent;
 					_mygunner = _x select 0;
-					[_mygunner] joinSilent grpNull
-					[_mygunner] joinSilent _cavecshooters;
+					[_mygunner] joinSilent grpNull;
+					sleep 1;
+					[_mygunner] joinSilent _shootergrp;
+					_mygunner setCombatMode "red";
 				} foreach _cavecshooters;
-				_cavecshooters setcombatmode "red";
+				_shootergrp setcombatmode "red";
 				[_cagroup, true, true] call tky_fnc_tc_setskill;
 				_camarkername = format ["camname%1", _c];
 				_cavehmarker = createMarker [_camarkername, _veh];
@@ -105,7 +107,7 @@ if ((count _edgeroads1)> 2) then
 								sleep 30;
 								if ((((getpos (_this select 0)) distance2D _pos1) < 4) and {(_pos1 distance2d cpt_position) > cpt_radius}) then
 									{// vehicle stalled (mybe confused by forest track) and away from cpt, so killing and removing
-										diag_log format ["*** dca spawned bit removes a %1 because it's stalled at %2", typeOf (_this select 0), getpos (this select 0)];
+										diag_log format ["*** dca spawned bit removes a %1 because it's stalled at %2", typeOf (_this select 0), getpos (_this select 0)];
 										_killgrp = units (group (_this select 0));
 										caunits = caunits - _killgrp;
 										cavecs = cavecs - [(_this select 0)];
