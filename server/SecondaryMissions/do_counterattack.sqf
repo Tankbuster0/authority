@@ -67,7 +67,7 @@ if ((count _edgeroads1)> 2) then
 				_cadest = selectRandom (cpt_position nearRoads 75);
 				_cawp = _cagroup addWaypoint [_cadest, 5];
 				_cawp setWaypointType "unload";
-				_cawp setWaypointCombatMode "red";
+				_cawp setWaypointCombatMode "blue";
 				_cawp setWaypointBehaviour "careless";
 				_cawp setWaypointForceBehaviour true;
 				_cawp setWaypointStatements ["true", "(group this) leavevehicle (vehicle this); (group this) setBehaviour 'combat'; [(group this), getpos this, 150] call BIS_fnc_taskPatrol; (group this setCombatMode 'red' )"];
@@ -81,21 +81,25 @@ if ((count _edgeroads1)> 2) then
 					sleep 1;
 					[_mygunner] joinSilent _shootergrp;
 					_mygunner setCombatMode "red";
+					[_mygunner, [0.17,0.17,0.60,0.40,1,1,0.40,0.50,1,0.50], false,0] call tky_fnc_tc_setskill;
 				} foreach _cavecshooters;
 				_shootergrp setcombatmode "red";
 				[_cagroup, true, true] call tky_fnc_tc_setskill;
-				_camarkername = format ["camname%1", _c];
-				_cavehmarker = createMarker [_camarkername, _veh];
-				_cavehmarker setMarkerShape "icon";
-				_cavehmarker setMarkerType "o_support";
-				[_veh, _cavehmarker] spawn
+				if (testmode) then
 					{
-						while {true} do
+					_camarkername = format ["camname%1", _c];
+					_cavehmarker = createMarker [_camarkername, _veh];
+					_cavehmarker setMarkerShape "icon";
+					_cavehmarker setMarkerType "o_support";
+					[_veh, _cavehmarker] spawn
 						{
-						(_this select 1) setMarkerPos (getpos (_this select 0));
-						(_this select 1) setMarkerText format ["%1, %2, %3, %4",floor (speed (_this select 0)),floor ( (_this select 0) distance2d ((expectedDestination (driver (_this select 0 ))) select 0)), count ((effectiveCommander (_this select 0)) targetsQuery [objNull, west, "SoldierWB", [],30]), waypointBehaviour [(group (effectiveCommander (_this select 0))),1] ];
-						(_this select 1) setMarkerColor ("color" + (if (combatMode (driver (_this select 0)) != "Error") then {(combatMode (driver (_this select 0)))} else {"black"}));
-						sleep 0.2;
+							while {true} do
+							{
+							(_this select 1) setMarkerPos (getpos (_this select 0));
+							(_this select 1) setMarkerText format ["%1, %2, %3, %4",floor (speed (_this select 0)),floor ( (_this select 0) distance2d ((expectedDestination (driver (_this select 0 ))) select 0)), count ((effectiveCommander (_this select 0)) targetsQuery [objNull, west, "SoldierWB", [],30]), waypointBehaviour [(group (effectiveCommander (_this select 0))),1] ];
+							(_this select 1) setMarkerColor ("color" + (if (combatMode (driver (_this select 0)) != "Error") then {(combatMode (driver (_this select 0)))} else {"black"}));
+							sleep 0.2;
+							};
 						};
 					};
 				[_veh] spawn
