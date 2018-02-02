@@ -58,7 +58,6 @@ Westerncenter_UK was ERE
 				//30 meter check: any object
 				//_counterPosASL = [_samplePosASL, 30, _lookDir] call BIS_fnc_relPos;
 				_counterPosASL = _samplePosASL getpos [30, _lookDir];
-				getrelpos
 				if (!lineIntersects [_samplePosASL,_counterPosASL]) then {_quality = 1};
 				//80 meter check: object or terrain
 				if (_quality isEqualTo 1) then
