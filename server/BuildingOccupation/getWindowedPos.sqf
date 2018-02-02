@@ -4,7 +4,7 @@
 _myscript = "fn_p_getWindowPos.sqf";
 /*
 		function returns the window positions of a house
-
+Westerncenter_UK was ERE
 		Input:
 			0: house object
 
