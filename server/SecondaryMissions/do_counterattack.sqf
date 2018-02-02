@@ -93,7 +93,7 @@ if ((count _edgeroads1)> 2) then
 					_cavehmarker setMarkerType "o_support";
 					[_veh, _cavehmarker] spawn
 						{
-							while {true} do
+							while {typeselected isEqualTo "counterattack"} do
 							{
 							(_this select 1) setMarkerPos (getpos (_this select 0));
 							(_this select 1) setMarkerText format ["%1, %2, %3, %4",floor (speed (_this select 0)),floor ( (_this select 0) distance2d ((expectedDestination (driver (_this select 0 ))) select 0)), count ((effectiveCommander (_this select 0)) targetsQuery [objNull, west, "SoldierWB", [],30]), waypointBehaviour [(group (effectiveCommander (_this select 0))),1] ];
@@ -105,7 +105,7 @@ if ((count _edgeroads1)> 2) then
 				[_veh] spawn
 					{
 						private ["_pos1", "_killgrp"];
-						while {alive (_this select 0)} do
+						while {alive (_this select 0) and {typeselected isEqualTo "counterattack"}} do
 							{
 								_pos1 = getpos (_this select 0);
 								sleep 30;
