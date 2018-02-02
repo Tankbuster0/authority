@@ -56,12 +56,15 @@ _myscript = "fn_p_getWindowPos.sqf";
 				_lookDir = _samplePosASL getdir _counterPosASL;
 				_quality = 0;
 				//30 meter check: any object
-				_counterPosASL = _samplePosASL getdir [30, _lookDir];
+				_counterPosASL = _samplePosASL getreldir [30, _lookDir];
+				_counterPosASL = [_samplePosASL, 30, _lookDir] call BIS_fnc_relPos;
+				_counterPosASL = _samplePosASL getpos
+				getrelpos
 				if (!lineIntersects [_samplePosASL,_counterPosASL]) then {_quality = 1};
 				//80 meter check: object or terrain
 				if (_quality isEqualTo 1) then
 				{
-					_counterPosASL = _samplePosASL getdir [80, _lookDir];
+					_counterPosASL = _samplePosASL getreldir [80, _lookDir];
 					if (!lineIntersects [_samplePosASL,_counterPosASL] && {!terrainIntersectASL[_samplePosASL, _counterPosASL]} ) then {_quality = 2};
 					/*_liw = lineIntersectsWith [_samplePosASL, _counterPosASL];
 					if
@@ -73,7 +76,7 @@ _myscript = "fn_p_getWindowPos.sqf";
 				//200 meter check: terrain
 				if (_quality isEqualTo 2) then
 				{
-					_counterPosASL = _samplePosASL getdir [200, _lookDir];
+					_counterPosASL = _samplePosASL getreldir [200, _lookDir];
 					if (!terrainIntersectASL[_samplePosASL, _counterPosASL]) then {_quality = 3};
 				};
 				_return set [count _return, [_x,_lookDir, _quality]];
