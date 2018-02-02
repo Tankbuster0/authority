@@ -30,10 +30,9 @@ _myscript = "fn_p_getWindowPos.sqf";
 	if (isNil("fn_p_buildingPos")) then {fn_p_buildingPos = compile preprocessFile "Server\BuildingOccupation\getBuildingPos.sqf";};
 	//if (isNil("fn_p_relativePos")) then {fn_p_buildingPos = compile preprocessFile "BuildingOccupation\relativePos.sqf";};
 	_roofedPoses = [];
-	_roofedPoses = [_house,-1,true] call fn_p_buildingPos;
-
+	//_roofedPoses = [_house,-1,true] call fn_p_buildingPos;
+	_roofedPoses = _house buildingpos -1;
 	if (count _roofedPoses isEqualTo 0) exitWith {[]};
-
 	{
 		_samplePosASL = ATLtoASL[_x select 0, _x select 1, (_x select 2) + 1.5];
 
@@ -42,34 +41,27 @@ _myscript = "fn_p_getWindowPos.sqf";
 
 			_counterPosASL =  [(_samplePosASL select 0) + sin _rayDir * _chkdst,(_samplePosASL select 1) + cos _rayDir * _chkdst,_samplePosASL select 2];
 			_counterPosAboveASL = [_counterPosASL select 0, _counterPosASL select 1, (_counterPosASL select 2) + 30];
-
 			_isWindow = true;
 			//counterpos mustn't be under roof
 			_liw = lineIntersectsWith [_counterPosAboveASL, _counterPosASL];
 			if (count _liw > 0 &&{(_liw select 0) isKindOf "House"}) then {_isWindow = false};
-
 			//counterpos must have free los
 			if(_isWindow) then
 			{
 				_liw = lineIntersectsWith [_samplePosASL, _counterPosASL];
 				if (count _liw > 0 &&{(_liw select 0) isKindOf "House"}) then {_isWindow = false};
 			};
-
 			if (_isWindow) then
 			{
-				_lookDir = ([_samplePosASL,_counterPosASL] call BIS_fnc_dirTo);
+				_lookDir = _samplePosASL getdir _counterPosASL;
 				_quality = 0;
-
 				//30 meter check: any object
-				//_counterPosASL = [_samplePosASL, _lookDir, 30, _samplePosASL select 2]call fn_p_relativePos;
-				_counterPosASL = [_samplePosASL, 30, _lookDir] call BIS_fnc_relPos;
+				_counterPosASL = _samplePosASL getdir [30, _lookDir];
 				if (!lineIntersects [_samplePosASL,_counterPosASL]) then {_quality = 1};
-
 				//80 meter check: object or terrain
 				if (_quality isEqualTo 1) then
 				{
-					//_counterPosASL = [_samplePosASL, _lookDir, 80, _samplePosASL select 2]call fn_p_relativePos;
-					_counterPosASL = [_samplePosASL, 80, _lookDir] call BIS_fnc_relPos;
+					_counterPosASL = _samplePosASL getdir [80, _lookDir];
 					if (!lineIntersects [_samplePosASL,_counterPosASL] && {!terrainIntersectASL[_samplePosASL, _counterPosASL]} ) then {_quality = 2};
 					/*_liw = lineIntersectsWith [_samplePosASL, _counterPosASL];
 					if
@@ -78,18 +70,14 @@ _myscript = "fn_p_getWindowPos.sqf";
 						{!terrainIntersectASL[_samplePosASL, _counterPosASL]}
 					) then {_quality = 2};*/
 				};
-
 				//200 meter check: terrain
 				if (_quality isEqualTo 2) then
 				{
-					//_counterPosASL = [_samplePosASL, _lookDir, 200, _samplePosASL select 2]call fn_p_relativePos;
-					_counterPosASL = [_samplePosASL, 200, _lookDir] call BIS_fnc_relPos;
+					_counterPosASL = _samplePosASL getdir [200, _lookDir];
 					if (!terrainIntersectASL[_samplePosASL, _counterPosASL]) then {_quality = 3};
 				};
-
 				_return set [count _return, [_x,_lookDir, _quality]];
 			};
-
 		};
 	} foreach _roofedPoses;
 
