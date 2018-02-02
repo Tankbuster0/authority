@@ -30,7 +30,6 @@ Westerncenter_UK was ERE
 	if (isNil("fn_p_buildingPos")) then {fn_p_buildingPos = compile preprocessFile "Server\BuildingOccupation\getBuildingPos.sqf";};
 	//if (isNil("fn_p_relativePos")) then {fn_p_buildingPos = compile preprocessFile "BuildingOccupation\relativePos.sqf";};
 	_roofedPoses = [];
-	//_roofedPoses = [_house,-1,true] call fn_p_buildingPos;
 	_roofedPoses = _house buildingpos -1;
 	if (count _roofedPoses isEqualTo 0) exitWith {[]};
 	{
@@ -56,27 +55,18 @@ Westerncenter_UK was ERE
 				_lookDir = _samplePosASL getdir _counterPosASL;
 				_quality = 0;
 				//30 meter check: any object
-				//_counterPosASL = [_samplePosASL, 30, _lookDir] call BIS_fnc_relPos;
 				_counterPosASL = _samplePosASL getpos [30, _lookDir];
 				if (!lineIntersects [_samplePosASL,_counterPosASL]) then {_quality = 1};
 				//80 meter check: object or terrain
 				if (_quality isEqualTo 1) then
 				{
 
-					//_counterPosASL = _samplePosASL getreldir [80, _lookDir];
 					_counterPosASL = _samplePosASL getPos [80, _lookDir];
 					if (!lineIntersects [_samplePosASL,_counterPosASL] && {!terrainIntersectASL[_samplePosASL, _counterPosASL]} ) then {_quality = 2};
-					/*_liw = lineIntersectsWith [_samplePosASL, _counterPosASL];
-					if
-					(
-						( count _liw isEqualTo 0 || { count _liw > 0 && !((_liw select 0) isKindOf "House") } ) &&
-						{!terrainIntersectASL[_samplePosASL, _counterPosASL]}
-					) then {_quality = 2};*/
 				};
 				//200 meter check: terrain
 				if (_quality isEqualTo 2) then
 				{
-					//_counterPosASL = _samplePosASL getreldir [200, _lookDir];
 					_counterPosASL = _samplePosASL getpos [200, _lookDir];
 					if (!terrainIntersectASL[_samplePosASL, _counterPosASL]) then {_quality = 3};
 				};
