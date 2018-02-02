@@ -16,7 +16,7 @@ if (count (blubasehelipad nearEntities ["B_APC_Tracked_01_CRV_F", 5000]) < 1) th
 	}
 	else
 	{
-	smmissionstring = smmissionstring + "You already have a Bobcat CRV at the Airhead. Use it to push the craters off the runways and taxiways.";
+	smmissionstring = smmissionstring + "You already have a Bobcat CRV. Use it to push the craters off the runways and taxiways.";
 	//"You already have a Bobcat CRV at the Airhead. Use it to push craters off the runways and taxiways" remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 	};
 publicVariable "smmissionstring";
