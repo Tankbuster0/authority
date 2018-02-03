@@ -19,7 +19,7 @@ diag_log format ["*** pcqb2 finds %1 buildings with more than 4 poss", count _nr
 	_myblding = _x;
 	if ((random 1) < _amount) then
 		{
-			_cqbbldposs = (_myblding buildingPos -1) select {[_x] call tky_fnc_inhouse};
+			_cqbbldposs = (_myblding buildingPos -1) select {[atltoasl _x] call tky_fnc_inhouse};
 			// ^^^ all the non roof positions in the house
 			{
 				_cqbgrp = createGroup ["east", true];
