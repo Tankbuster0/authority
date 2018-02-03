@@ -34,13 +34,13 @@ _centerSearchMax = (_radiusTarget);
 
 _chanceOfOccupiedSoldier = 80;
 _chanceOfOccupiedStaticMG = 5;
-_maxOccupiedCenterSoldiers = 45;
+_maxOccupiedCenterSoldiers = 55;
 
 _chanceOfBallistradeSoldier = 50;
 _maxCenterBallistradeSoldiers = 15;
 
-_chanceTripwireMinesBuildings = 35;
-_maxTripwireMinesBuildings = 5;
+_chanceTripwireMinesBuildings = 45;
+_maxTripwireMinesBuildings = 7;
 
 _possibleOutskirtBuildingCount = random [0,3,6];
 
@@ -121,10 +121,10 @@ _currOccupiedCenterSoldiers = 0;
 while { count _buildingPosList < _possibleCenterBuildingCount} do
 {
 	_centerBuildings = _position nearObjects ["House", _radius];
+	_centerBuildings call BIS_fnc_arrayShuffle;
 	_buildingPosList = [];
 
 	{
-		//_buildPos = [_x] call BIS_fnc_buildingPositions;
 		_buildPos = (_x buildingpos -1) select {[atltoasl _x] call tky_fnc_inhouse};
 		if (! (_buildPos isEqualTo [])) then
 		{
@@ -145,7 +145,8 @@ while { count _buildingPosList < _possibleCenterBuildingCount} do
 	_grp = createGroup east;
 	_windowarray = [_x select 0] call fn_p_getWindowPos;
 	{
-		_watchpos = [_x select 0, 5, _x select 1] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
+		//_watchpos = [_x select 0, 5, _x select 1] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
+		_watchpos = _x select 0 getPos [5, _x select 1];
 		if (random 100 < _chanceOfOccupiedSoldier) then
 		{
 			if (random 100 > (100 - _chanceOfOccupiedStaticMG)) then
@@ -190,35 +191,6 @@ _currentTripMinesBuild = 0;
 	if (_currentTripMinesBuild >= _maxTripwireMinesBuildings) exitWith{};
 
 } forEach _buildingPosList;
-/*
-//***************************************
-// Create machinegunners on balistrade
-//****************************************
-_ballistradeCount = 0;
-{
-	_ballistradeArray = [];
-	_grp = createGroup east;
 
-	{
-		// Limiter
-		if (_ballistradeCount >= _maxCenterBallistradeSoldiers) exitWith{};
-
-		if (! ([_x] call AM_fnc_checkInside) ) then
-		{
-			_ballistradeArray pushBack _x;
-		};
-	} forEach (_x select 1) ;
-
-	{
-		if (random 100 > (100 - _chanceOfBallistradeSoldier)) then
-		{
-			_watchpos = [_x, 5, (random 360)] call BIS_fnc_relPos;// get a position 5 meters away from position in the watchdirection
-			_unit = [selectRandom opfor_CQB_Pattio, _x, _watchpos , _grp, false] call AM_fnc_CreateUnit;
-		};
-		_ballistradeCount = _ballistradeCount + 1;
-	}foreach _ballistradeArray;// interate through each position within the building
-
-} forEach _buildingPosList;
-*/
 handle_ai_pcqb_finished = true;
 __tky_ends
