@@ -74,7 +74,7 @@ roadblockscleared = false;
 
 // CQB Arrs
 // CQB Center Troops
-opfor_CQB_soldier = ["O_Soldier_TL_F","O_soldierU_exp_F","O_SoldierU_GL_F","O_soldierU_M_F","O_soldierU_TL_F","O_SoldierU_GL_F","O_SoldierU_GL_F","O_soldierU_exp_F"];
+opfor_CQB_soldier = ["O_soldierU_exp_F","O_SoldierU_GL_F","O_soldierU_M_F","O_soldierU_TL_F","O_SoldierU_GL_F","O_SoldierU_GL_F","O_soldierU_exp_F"];
 opfor_CQB_Outskirt = ["O_recon_M_F","O_ghillie_sard_F","O_Soldier_GL_F","O_spotter_F","O_recon_TL_F"];
 opfor_CQB_Pattio = ["O_Soldier_GL_F","O_HeavyGunner_F","O_Soldier_AR_F"];
 opfor_heli_cargomen =["O_T_Recon_TL_F","O_V_Soldier_LAT_ghex_F","O_T_Recon_LAT_F", "O_V_Soldier_ghex_F", "O_T_Sniper_F", "O_T_Sniper_F","O_V_Soldier_ghex_F","O_V_Soldier_ghex_F"];
