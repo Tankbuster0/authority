@@ -30,7 +30,7 @@ Westerncenter_UK was ERE
 	if (isNil("fn_p_buildingPos")) then {fn_p_buildingPos = compile preprocessFile "Server\BuildingOccupation\getBuildingPos.sqf";};
 	//if (isNil("fn_p_relativePos")) then {fn_p_buildingPos = compile preprocessFile "BuildingOccupation\relativePos.sqf";};
 	_roofedPoses = [];
-	_roofedPoses = (_house buildingpos -1) select {[_x] call tky_fnc_inhouse };
+	_roofedPoses = (_house buildingpos -1) select {[atltoasl _x] call tky_fnc_inhouse };
 
 	if (count _roofedPoses isEqualTo 0) exitWith {[]};
 	{
@@ -45,7 +45,7 @@ Westerncenter_UK was ERE
 			_isWindow = true;
 			//counterpos mustn't be under roof
 			//_liw = lineIntersectsWith [_counterPosAboveASL, _counterPosASL];
-			_liw = lineIntersectsWith [_samplePosASL, _counterPosAboveASL, objNull, objNull, false];
+			_liw = lineIntersectsWith [_counterPosASL, _counterPosAboveASL, objNull, objNull, false];
 			if (count _liw > 0 &&{(_liw select 0) isKindOf "House"}) then {_isWindow = false};
 			//counterpos must have free los
 			if(_isWindow) then

@@ -125,7 +125,7 @@ while { count _buildingPosList < _possibleCenterBuildingCount} do
 
 	{
 		//_buildPos = [_x] call BIS_fnc_buildingPositions;
-		_buildPos = (_x buildingpos -1) select {[_x] call tky_fnc_inhouse};
+		_buildPos = (_x buildingpos -1) select {[atltoasl _x] call tky_fnc_inhouse};
 		if (! (_buildPos isEqualTo [])) then
 		{
 			_buildingPosList pushBack [_x,_buildPos];
@@ -190,7 +190,7 @@ _currentTripMinesBuild = 0;
 	if (_currentTripMinesBuild >= _maxTripwireMinesBuildings) exitWith{};
 
 } forEach _buildingPosList;
-
+/*
 //***************************************
 // Create machinegunners on balistrade
 //****************************************
@@ -219,6 +219,6 @@ _ballistradeCount = 0;
 	}foreach _ballistradeArray;// interate through each position within the building
 
 } forEach _buildingPosList;
-
+*/
 handle_ai_pcqb_finished = true;
 __tky_ends
