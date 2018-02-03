@@ -61,7 +61,7 @@ AM_fnc_CreateUnit = {
 
 	params ["_type","_pos","_watchPos","_grp","_dbg"];
 
-	_unit = _grp createUnit [_type, _pos, [], 0, "NONE"];
+	_unit = _grp createUnit [_type, _pos, [], 0, "CAN_COLLIDE"];
 	doStop _unit;
 	_unit setUnitPos "UP";
 	_unit doWatch _watchpos;
@@ -121,11 +121,12 @@ _currOccupiedCenterSoldiers = 0;
 while { count _buildingPosList < _possibleCenterBuildingCount} do
 {
 	_centerBuildings = _position nearObjects ["House", _radius];
-	_centerBuildings call BIS_fnc_arrayShuffle;
+	[_centerBuildings] call BIS_fnc_arrayShuffle;
 	_buildingPosList = [];
 
 	{
 		_buildPos = (_x buildingpos -1) select {[atltoasl _x] call tky_fnc_inhouse};
+
 		if (! (_buildPos isEqualTo [])) then
 		{
 			_buildingPosList pushBack [_x,_buildPos];
