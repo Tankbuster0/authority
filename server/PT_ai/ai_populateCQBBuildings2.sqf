@@ -36,6 +36,7 @@ if (count _nreadblds2 > 20) then
 			{
 				_cqbgrp = createGroup [east, true];
 				_cqbman = _cqbgrp createUnit [(selectRandom opfor_CQB_soldier), _x, [],0,"NONE"];
+				[_cqbman, true, true] call tky_fnc_tc_setskill;
 				_cqbman dowatch (_cqbman getpos [10,(_myblding getdir _cqbman)]);
 				diag_log format ["*** cqbman spawned at %1", getpos _cqbman];
 				for "_d" from 0 to 359 step 45 do
