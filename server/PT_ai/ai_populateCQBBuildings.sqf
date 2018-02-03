@@ -124,7 +124,8 @@ while { count _buildingPosList < _possibleCenterBuildingCount} do
 	_buildingPosList = [];
 
 	{
-		_buildPos = [_x] call BIS_fnc_buildingPositions;
+		//_buildPos = [_x] call BIS_fnc_buildingPositions;
+		_buildPos = (_x buildingpos -1) select {[_x] call tky_fnc_inhouse};
 		if (! (_buildPos isEqualTo [])) then
 		{
 			_buildingPosList pushBack [_x,_buildPos];
