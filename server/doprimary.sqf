@@ -45,7 +45,7 @@ waitUntil {handle_spt_finished};
 __tky_debug
 // Spawn Enemy CQB
 handle_ai_pcqb_finished = false;
-_handle1 = [position primarytarget, cpt_radius + 25] execVM "server\PT_ai\ai_populateCQBBuildings.sqf";//
+_handle1 = [position primarytarget, cpt_radius] execVM "server\PT_ai\ai_populateCQBBuildings2.sqf";//
 __tky_debug
 waitUntil {handle_ai_pcqb_finished};
 __tky_debug

@@ -34,18 +34,18 @@ Westerncenter_UK was ERE
 
 	if (count _roofedPoses isEqualTo 0) exitWith {[]};
 	{
-		_samplePosASL = ATLtoASL[_x select 0, _x select 1, (_x select 2) + 1.5];
+		_samplePosASL = ATLtoASL[_x select 0, _x select 1, (_x select 2) + 1];
 
 		for "_rayDir" from _houseDir to (_houseDir + 270) step 90 do
 		{
 
 			_counterPosASL =  [(_samplePosASL select 0) + sin _rayDir * _chkdst,(_samplePosASL select 1) + cos _rayDir * _chkdst,_samplePosASL select 2];
 			//_counterPosAboveASL = [_counterPosASL select 0, _counterPosASL select 1, (_counterPosASL select 2) + 30];
-			_counterPosAboveASL = _counterPosASL vectorAdd [0,0,25];
+			_counterPosAboveASL = _samplePosASL vectorAdd [0,0,25];
 			_isWindow = true;
 			//counterpos mustn't be under roof
 			//_liw = lineIntersectsWith [_counterPosAboveASL, _counterPosASL];
-			_liw = lineIntersectsWith [_counterPosASL, _counterPosAboveASL, objNull, objNull, false];
+			_liw = lineIntersectsWith [_samplePosASL, _counterPosAboveASL, objNull, objNull, false];
 			if (count _liw > 0 &&{(_liw select 0) isKindOf "House"}) then {_isWindow = false};
 			//counterpos must have free los
 			if(_isWindow) then
