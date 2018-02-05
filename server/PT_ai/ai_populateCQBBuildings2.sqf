@@ -28,10 +28,11 @@ if (count _nreadblds2 > 20) then
 		{
 			_cqbbldposs = (_myblding buildingPos -1) select {[atltoasl _x] call tky_fnc_inhouse};
 			_cqbbldposs1 = _cqbbldposs call BIS_fnc_arrayShuffle;
-			if ((count _cqbbldposs1) > 20) then
+			/*if ((count _cqbbldposs1) > 10) then
 				{
-					_cqbbldposs1 resize 20;
-				};
+					_cqbbldposs1 resize 10;
+				};*/
+			_cqbbldposs1 resize (ceil (count _cqbbldposs1 /2));
 			diag_log format ["*** in building %1, a %2, there are %3 non roofed poses", _myblding, typeof _myblding, count _cqbbldposs1];
 			// ^^^ all the non roof positions in the house
 			{
@@ -45,7 +46,7 @@ if (count _nreadblds2 > 20) then
 						_curobsfactor = lineIntersectsObjs [eyePos _cqbman, ATLToASL (_cqbman getpos [10,_d]), objNull, _cqbman, true, 32];
 						if (_curobsfactor isEqualTo []) then
 							{
-								diag_log format ["*** fella at %1 in the %2 is going to look %3", getpos _cqbman, typeof _myblding, _d];
+								//diag_log format ["*** fella at %1 in the %2 is going to look %3", getpos _cqbman, typeof _myblding, _d];
 								_cqbman doWatch (_cqbman getpos [5, _d]);
 							};
 					};
@@ -75,8 +76,8 @@ _currentTripMinesBuild = 0;
 		if ( (_x select 0) isEqualTo (typeOf _bdng) ) then
 		{
 			{
-				//diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
-				if ((random 1) > 0.85) then
+				diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
+				if ((random 1) > 0.1) then
 				{
 					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
 				};
