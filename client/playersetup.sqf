@@ -18,7 +18,7 @@ sleep 5;
 _hasLaser = {_x in (weapons player)} count ["Laserdesignator", "Laserdesignator_01_khk_F", "Laserdesignator_02", "Laserdesignator_02_ghex_F", "Laserdesignator_03", "Laserdesignator_mounted", "Laserdesignator_pilotCamera"];
 if ((_hasLaser > 0)) then
 {
-	if ((!("LaserBatteries" in (magazines player)))) then
+	if (!("LaserBatteries" in (magazines player))) then
 	{
 		player addMagazine "LaserBatteries";
 	};
