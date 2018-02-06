@@ -3,7 +3,7 @@
 private _data4 = [];
 private _data3 = [];
 private _data2 = [];
-private _data1 = alpha_1 nearobjects ["house", 350];
+private _data1 = alpha_1 nearobjects ["house", 12000];
 {
 
 	if ((count (_x buildingPos -1)> 4) and {(gettext (configfile/"CfgVehicles"/typeOf _x/"UserActions"/"CloseDoor_1"/"actionNamedSel")) != ""}) then
@@ -12,9 +12,9 @@ private _data1 = alpha_1 nearobjects ["house", 350];
 	};
 } foreach _data1;
 _data3 = _data2 call BIS_fnc_consolidateArray;
-diag_log "unsorted";
+//diag_log "unsorted";
 {
-	diag_log format ["%1", _x];
+//	diag_log format ["%1", _x];
 } foreach _data3;
 diag_log "sorted";
 {
