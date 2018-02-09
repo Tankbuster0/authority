@@ -11,6 +11,7 @@ params [
 	];
 private ["_nreadblds1","_nreadblds2","_cqbcentrepos","_cqbradius","_myblding","_amount","_cqbbldposs","_cqbgrp","_cqbman","_d","_curobsfactor"];
 _nreadblds1 = ((_cqbcentrepos) nearObjects ["house", _cqbradius]) select {((count (_x buildingpos -1)) > 6)};
+_nreadblds3 = ((_cqbcentrepos) nearObjects ["house", _cqbradius]) select {((count (_x buildingpos -1)) > 4)};
 if ((count _nreadblds1) < 8) then
 	{
 		_nreadblds1 = ((_cqbcentrepos) nearObjects ["house", _cqbradius + 15]) select {((count (_x buildingpos -1)) > 4)};
@@ -53,13 +54,13 @@ if (count _nreadblds2 > 20) then
 			} foreach _cqbbldposs1;
 		};
 } foreach _nreadblds2;
-
+diag_log format ["*** aicqb2 starts tripmine stuff"];
 _elligableTripMineBuildings = [
 ["Land_i_House_Big_01_V2_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]],
 ["Land_u_House_Big_01_V1_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]],
 ["Land_i_House_Big_02_V2_F",[[[0,4,-2.5], 0],[[-2.5,-3,-2.5], 0]]],
 ["Land_i_House_Big_02_V1_F",[[[0,4,-2.5], 0],[[-2.5,-3,-2.5], 0]]],
-["Land_Shed_02_F", [[[0,-1.1,0],0]]]
+["Land_Shed_02_F", [[[0,-1.0,-1],-90]]]
 ];
 AM_fnc_CreateMine = {
 	params ["_building","_localPos","_dir"];
@@ -78,16 +79,19 @@ _currentTripMinesBuild = 0;
 		//diag_log FORMAT ["***populateCQBBuildings: checking house %1 for %2 is %3",(_x select 0), (typeOf _bdng), (_x select 0) isEqualTo (typeOf _bdng)] ;
 		if ( (_x select 0) isEqualTo (typeOf _bdng) ) then
 		{
+			diag_log format ["*** cqb2 tripmine found a %1", _x];
 			{
 				diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
-				if ((random 1) > 0.1) then
+				if ((random 1) > 0) then
 				{
 					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
+					diag_log format ["*** cqb2 mine %1 is at %2", _m, getpos _m];
+					[getpos _m] execVM "server\Debug\debug_makemarker.sqf";
 				};
 			} forEach (_x select 1);
 			_currentTripMinesBuild = _currentTripMinesBuild + 1;
 		};
 	} forEach _elligableTripMineBuildings;
-} forEach _nreadblds2;
+} forEach _nreadblds3;
 handle_ai_pcqb_finished = true;
 __tky_ends
