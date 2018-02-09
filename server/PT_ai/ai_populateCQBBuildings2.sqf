@@ -34,14 +34,14 @@ if (count _nreadblds2 > 20) then
 					_cqbbldposs1 resize 10;
 				};*/
 			_cqbbldposs1 resize (ceil (count _cqbbldposs1 /2));
-			diag_log format ["*** in building %1, a %2, there are %3 non roofed poses", _myblding, typeof _myblding, count _cqbbldposs1];
+			//diag_log format ["*** in building %1, a %2, there are %3 non roofed poses", _myblding, typeof _myblding, count _cqbbldposs1];
 			// ^^^ all the non roof positions in the house
 			{
 				_cqbgrp = createGroup [east, true];
 				_cqbman = _cqbgrp createUnit [(selectRandom opfor_CQB_soldier), _x, [],0,"NONE"];
 				[_cqbman, true, true] call tky_fnc_tc_setskill;
 				_cqbman dowatch (_cqbman getpos [10,(_cqbman getdir _myblding)]);
-				diag_log format ["*** cqbman spawned at %1", getpos _cqbman];
+				//diag_log format ["*** cqbman spawned at %1", getpos _cqbman];
 				for "_d" from 0 to 359 step 45 do
 					{//find the view direction that isnt obscured by a building
 						_curobsfactor = lineIntersectsObjs [eyePos _cqbman, ATLToASL (_cqbman getpos [10,_d]), objNull, _cqbman, true, 32];
@@ -60,15 +60,16 @@ _elligableTripMineBuildings = [
 ["Land_u_House_Big_01_V1_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]],
 ["Land_i_House_Big_02_V2_F",[[[0,4,-2.5], 0],[[-2.5,-3,-2.5], 0]]],
 ["Land_i_House_Big_02_V1_F",[[[0,4,-2.5], 0],[[-2.5,-3,-2.5], 0]]],
-["Land_Shed_02_F", [[[0,-1.0,-1],-90]]]
+["Land_Shed_02_F", [[[0,-1.0,-0.9],0]]]
 ];
 AM_fnc_CreateMine = {
 	params ["_building","_localPos","_dir"];
 	_m = createMine ["APERSTripMine", (_building modelToWorld _localPos) ,[], 0];
 	// Add mine to cleanup array;
-	CQBCleanupArr pushBack _m;
-
-	_m setDir (getDir _building + _dir);
+	//CQBCleanupArr pushBack _m;
+	[_m, "mymine"] call fnc_setvehiclename;
+	_minedir = ((getdir _building)+ _dir);
+	[mymine, _minedir] remoteExec ["setdir"];
 	_m
 };
 _currentTripMinesBuild = 0;
@@ -85,7 +86,7 @@ _currentTripMinesBuild = 0;
 				if ((random 1) > 0) then
 				{
 					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
-					diag_log format ["*** cqb2 mine %1 is at %2", _m, getpos _m];
+					diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];
 					[getpos _m] execVM "server\Debug\debug_makemarker.sqf";
 				};
 			} forEach (_x select 1);
