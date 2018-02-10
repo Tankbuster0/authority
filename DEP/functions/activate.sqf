@@ -111,7 +111,7 @@ if ((_location select 1) in ["roadpop","town"]) then {
     };
     _spawnpositions = [];
     {
-        _temp = _x call dep_fnc_buildingpositions;
+        _temp = _x buildingpos -1;
         _spawnpositions = _spawnpositions + _temp;
     } forEach _validhouses;
     _spawnpositions = _spawnpositions call dep_fnc_shuffle;
@@ -206,7 +206,7 @@ if ((_location select 1) == "military") then {
     _validhouses = [_pos, _size] call dep_fnc_findmilitarybuildings;
     _spawnpositions = [];
     {
-        _temp = _x call dep_fnc_buildingpositions;
+        _temp = _x buildingpos -1;
         _spawnpositions = _spawnpositions + _temp;
     } forEach _validhouses;
     _spawnpositions = _spawnpositions call dep_fnc_shuffle;

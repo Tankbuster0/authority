@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ for "_y" from 0 to 8 do {
         if (random 1 < 0.4) then {
             _newpos = _houses call BIS_fnc_selectRandom;
             _houses = _houses - [_newpos];
-            _newpos = _newpos call dep_fnc_buildingpositions;
+            _newpos = _newpos buildingpos -1;
             if ((count _newpos) > 0) then {
                 _newpos = _newpos call BIS_fnc_selectRandom;
             };

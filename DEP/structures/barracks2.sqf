@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ _prop = (["Land_BakedBeans_F","Land_Canteen_F","Land_CerealsBox_F","Land_Matches
 _newpos = [_fire, 11, (_dir + 90)] call BIS_fnc_relPos;
 _prop = (["Land_i_Stone_HouseSmall_V1_F", "Land_i_Stone_HouseSmall_V2_F", "Land_i_Stone_HouseSmall_V3_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
 _prop setDir (_dir + 90);
-_enemypositions = _prop call dep_fnc_buildingpositions;
+_enemypositions = _prop buildingpos -1;
 
 _newpos = [_fire, 6, (_dir + 90)] call BIS_fnc_relPos;
 _prop = "Land_WoodenTable_large_F" createVehicle _newpos;
@@ -49,7 +49,7 @@ _prop setDir _dir;
 _newpos = [_fire, 13, (_dir)] call BIS_fnc_relPos;
 _prop = (["Land_i_Stone_Shed_V1_F", "Land_i_Stone_Shed_V2_F", "Land_i_Stone_Shed_V3_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
 _prop setDir (_dir);
-_buildpos = _prop call dep_fnc_buildingpositions;
+_buildpos = _prop buildingpos -1;
 _enemypositions = _enemypositions + _buildpos;
 
 _newpos = [_fire, 2, (random 360)] call BIS_fnc_relPos;
@@ -59,7 +59,7 @@ _enemypositions = _enemypositions + [_newpos];
 _newpos = [_fire, 2, (random 360)] call BIS_fnc_relPos;
 _enemypositions = _enemypositions + [_newpos];
 
-if ((random 1) < 0.5) then 
+if ((random 1) < 0.5) then
 {
     _newpos = [_fire, 10, (_dir + 270)] call BIS_fnc_relPos;
     _prop = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle _newpos;
@@ -81,7 +81,7 @@ for "_e" from 1 to dep_max_ai_loc do {
         if ((count _newbuildpos) == 0) then { _newbuildpos = (getPos _fire); };
     };
     _soldiername = dep_guer_units call BIS_fnc_selectRandom;
-    
+
     _soldier = [_campgroup, _soldiername, _newbuildpos] call dep_fnc_createunit;
     _soldier setDir (random 360);
 };

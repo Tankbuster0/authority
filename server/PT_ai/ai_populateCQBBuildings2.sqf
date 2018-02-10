@@ -87,7 +87,7 @@ AM_fnc_CreateMine = {
 _currentTripMinesBuild = 0;
 {
 	// Array structure is [["Land_i_House_Big_01_V2_F",[[[-0.8,-5.5,-2.5], - 90],[4.5,5,-2.5], + 90]]];
-	//                             classname			pos relative to building, dir relative to building
+	//                       classname			pos relative to building, dir relative to building
 	_bdng = _x;
 	{
 		//diag_log FORMAT ["***populateCQBBuildings: checking house %1 for %2 is %3",(_x select 0), (typeOf _bdng), (_x select 0) isEqualTo (typeOf _bdng)] ;
