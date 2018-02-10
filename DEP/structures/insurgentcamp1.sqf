@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -29,25 +29,25 @@ _campgroup setFormDir _dir;
 _groups = _groups + [_campgroup];
 
 _fire = "Campfire_burning_F" createVehicle _pos;
-_newpos = [_pos, 2, (_dir - 70)] call BIS_fnc_relPos;
+_newpos = _pos getpos [2, (_dir - 70)];
 _prop = "Land_WoodPile_F" createVehicle _newpos;
 
-_newpos = [_pos, 5, _dir] call BIS_fnc_relPos;
+_newpos = _pos getPos [5, _dir];
 _gun1 = dep_static_hmg_tri createVehicle _newpos;
 waitUntil {alive _gun1};
 _gun1 setDir _dir;
 _objects = _objects + [_gun1];
-_newpos = [_newpos, 1, (_dir + 180)] call BIS_fnc_relPos;
+_newpos = _newpos getpos [1, (_dir + 180)];
 _gunner1 = [_campgroup, dep_u_g_soldier, _newpos] call dep_fnc_createunit;
 _gunner1 assignAsGunner _gun1;
 _gunner1 moveInGunner _gun1;
 _gunner1 setDir _dir;
 _totalenemies = _totalenemies + 1;
 
-_newpos = [_pos, 5, (_dir + 70)] call BIS_fnc_relPos;
+_newpos = _pos getPos [5, (_dir + 70)];
 _prop = "Land_Sleeping_bag_F" createVehicle _newpos;
 _prop setDir (_dir + 90);
-_newpos = [_pos, 5, (_dir + 110)] call BIS_fnc_relPos;
+_newpos = _pos getPos [5, (_dir + 110)];
 _prop = "Land_TentDome_F" createVehicle _newpos;
 _prop setDir (_dir + 90);
 
@@ -55,7 +55,7 @@ for "_e" from 1 to 3 do {
     _newpos = (getPos _fire) findEmptyPosition [0,20];
     if ((count _newpos) == 0) then { _newpos = (getPos _fire); };
     _soldiername = dep_guer_units call BIS_fnc_selectRandom;
-    
+
     _soldier = [_campgroup, _soldiername, _newpos] call dep_fnc_createunit;
     _soldier setDir (random 360);
 	_totalenemies = _totalenemies + 1;
@@ -66,8 +66,8 @@ doStop (units _campgroup);
 {
     if ((_x distance _fire) <= 5 && (vehicle _x) == _x) then {
         _x setBehaviour "SAFE";
-		_x lookAt _fire; 
-		_x switchMove "AmovPsitMstpSlowWrflDnon_Smoking"; 
+		_x lookAt _fire;
+		_x switchMove "AmovPsitMstpSlowWrflDnon_Smoking";
     };
 } forEach(units _campgroup);
 [_totalenemies,_groups,_objects];

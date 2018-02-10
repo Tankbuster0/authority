@@ -33,35 +33,35 @@ _objects = [];
 _prop = "Land_ClutterCutter_medium_F" createVehicle _pos;
 _fire = "Campfire_burning_F" createVehicle _pos;
 
-_newpos = [_fire, 1, (_dir + 270)] call BIS_fnc_relPos;
+_newpos = _fire getPos [1, (_dir + 270)];
 _prop = "Land_WoodenLog_F" createVehicle _newpos;
 _prop = (["Land_BakedBeans_F","Land_Canteen_F","Land_CerealsBox_F","Land_Matches_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
 
-_newpos = [_fire, 11, (_dir + 90)] call BIS_fnc_relPos;
+_newpos =  _fire getPos [11, (_dir + 90)];
 _prop = (["Land_i_Stone_HouseSmall_V1_F", "Land_i_Stone_HouseSmall_V2_F", "Land_i_Stone_HouseSmall_V3_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
 _prop setDir (_dir + 90);
 _enemypositions = _prop buildingpos -1;
 
-_newpos = [_fire, 6, (_dir + 90)] call BIS_fnc_relPos;
+_newpos = _fire getPos [6, (_dir + 90)];
 _prop = "Land_WoodenTable_large_F" createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_fire, 13, (_dir)] call BIS_fnc_relPos;
+_newpos = _fire getPos [13, (_dir)];
 _prop = (["Land_i_Stone_Shed_V1_F", "Land_i_Stone_Shed_V2_F", "Land_i_Stone_Shed_V3_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
 _prop setDir (_dir);
 _buildpos = _prop buildingpos -1;
 _enemypositions = _enemypositions + _buildpos;
 
-_newpos = [_fire, 2, (random 360)] call BIS_fnc_relPos;
+_newpos = _fire getpos [2, (random 360)];
 _enemypositions = _enemypositions + [_newpos];
-_newpos = [_fire, 2, (random 360)] call BIS_fnc_relPos;
+_newpos = _fire getpos [2, (random 360)];
 _enemypositions = _enemypositions + [_newpos];
-_newpos = [_fire, 2, (random 360)] call BIS_fnc_relPos;
+_newpos = _fire getPos [2, (random 360)];
 _enemypositions = _enemypositions + [_newpos];
 
 if ((random 1) < 0.5) then
 {
-    _newpos = [_fire, 10, (_dir + 270)] call BIS_fnc_relPos;
+    _newpos = _fire getPos [10, (_dir + 270)];
     _prop = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle _newpos;
     _prop setDir _dir;
     _prop setFuel (1 - (random 1));

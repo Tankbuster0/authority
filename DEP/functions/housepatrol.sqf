@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -22,13 +22,13 @@ _pos    = getPos (leader _group);
 _validhouses = [_pos] call dep_fnc_findnearhouses;
 
 _grouppos = _pos;
-if ((count _validhouses) > 0) then { 
+if ((count _validhouses) > 0) then {
     _house = _validhouses call BIS_fnc_selectRandom;
     _grouppos = getPos _house;
 };
 
 for "_y" from 0 to 8 do {
-    _newpos = [_grouppos, 10, (45 * _y)] call BIS_fnc_relPos;
+    _newpos = _grouppos getpos [10, (45 * _y)];
     _wp = _group addWaypoint [_newpos, _y];
     _wp setWaypointBehaviour "SAFE";
     _wp setWaypointSpeed "LIMITED";

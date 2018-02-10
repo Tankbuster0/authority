@@ -79,7 +79,7 @@ dep_fnc_spawn_air =
         _player = getPos _player;
         _safe = [_player] call dep_fnc_outsidesafezone;
         if !(_safe) then {
-            _player = [_player, dep_safe_rad, random 360] call BIS_fnc_relPos;
+            _player = _player getpos [dep_safe_rad, random 360];
         };
         _wp = _group addWaypoint [_player, 1000];
         _wp setWaypointBehaviour "SAFE";
@@ -119,7 +119,7 @@ _vehicles = [];
 _newdir = 0;
 for "_c" from 0 to 15 do
 {
-    _pos = [dep_map_center, dep_map_radius + 1000, _newdir] call BIS_fnc_relPos;
+    _pos = dep_map_center getpos [dep_map_radius + 1000, _newdir];
     _newdir = _newdir + (360 / 16);
     if (dep_debug) then
     {

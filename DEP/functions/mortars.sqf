@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ _seq = 0;
 while {true} do {
     waitUntil {dep_mortars > 0};
     waitUntil {dep_num_players > 0};
-    
+
     // Wait until a mortar camp is active
     _continue = false;
     while {!_continue} do {
@@ -51,7 +51,7 @@ while {true} do {
         } forEach _mortar_loctations;
         sleep 5;
     };
-    
+
     _fired = false;
     _firepos = [];
     _mortars = [];
@@ -59,7 +59,7 @@ while {true} do {
     _spotter = objNull;
     _tranmissionduration = 40;
     _players = dep_players call dep_fnc_shuffle;
-    
+
     // Select a player as a possible target
     {
         _spotter = leader _x;
@@ -77,28 +77,28 @@ while {true} do {
             sleep 1;
         };
     } forEach dep_allgroups;
-    
+
     // Transmit fire mission
     if !(isNull _player) then {
         ["The enemy is calling a mortar strike on %1.", _player] spawn dep_fnc_log;
         // Estimate the player's position
-        _firepos = [getPos _player, random 30, random 360] call BIS_fnc_relPos;
-        
+        _firepos = (getPos _player) getpos [random 30, random 360];
+
         // Wait until the transmission is sent
         sleep _tranmissionduration;
-        
+
         _continue = false;
         if (alive _spotter && alive _player) then {
             _continue = true;
         };
-        
+
         // Cancel fire mission if the spotter or player is dead
         if !(_continue) then {
             "Cancelling mortar strike" spawn dep_fnc_log;
             _player = objNull;
         };
     };
-    
+
     // Check if enemy units are near target position
     if !(isNull _player) then {
         _nearunits = _firepos nearObjects ["Man", 70];
@@ -109,7 +109,7 @@ while {true} do {
             };
         } forEach _nearunits;
     };
-    
+
     // Fire mission received...
     if !(isNull _player) then {
         // Select valid mortars for fire mission
@@ -128,15 +128,15 @@ while {true} do {
                 } forEach (_location select 8);
             };
         } forEach _mortar_loctations;
-        
+
         // Begin mortar strike
-        if ((count _mortars) > 0) then {            
+        if ((count _mortars) > 0) then {
             ["Firing mortar at player %1", _player] spawn dep_fnc_log;
             {
                 if (alive _x) then {
                     sleep 15 + (random 25);
                     for "_g" from 0 to (ceil random 3) do {
-                        _newpos = [_firepos, 5 + (random 50), random 360] call BIS_fnc_relPos;
+                        _newpos = _firepos getpos [5 + (random 50), random 360];
                         _x setVehicleAmmo 1;
                         _x commandArtilleryFire [_newpos, "8Rnd_82mm_Mo_shells", 1];
                         _fired = true;
@@ -145,12 +145,12 @@ while {true} do {
                     _x addMagazine "8Rnd_82mm_Mo_shells";
                     sleep 3;
                 };
-            } forEach _mortars; 
+            } forEach _mortars;
         } else {
             "Cancelling mortar strike. Mortar not available" spawn dep_fnc_log;
         };
     };
-    
+
     // Handle timeouts
     if (_fired) then {
         _seq = _seq + 1;
