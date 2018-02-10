@@ -63,19 +63,22 @@ _elligableTripMineBuildings = [
 ["Land_Shed_02_F", [[[0,-1.0,-0.8],0]]],
 ["Land_Shed_05_F", [[[-0.4,1.4,-0.7],0]]],
 ["Land_House_Small_02_F", [[[0.6,-1.7,-0.5], +90],[[0.5,4.6,-0.5], +90]]],
-["Land_House_Small_01_F", [[[4.2,3.4,-0.4], 0],[1.1,-0.1,-0.4], +90]],
+["Land_House_Small_01_F", [[[4.2,3.4,-0.4], 0],[[1.1,-0.1,-0.4], +90]]],
 ["Land_House_Small_03_F", [[[-0.7,-2,-1],0 ],[[2.8,3.4,-1], 90]]],
-["Land_House_Small_05_F", [[[0,-0.9,-0.7], 0],[-3.6,0.7,-0.7], 90]],
+["Land_House_Small_05_F", [[[0,-0.9,-0.7], 0],[[-3.6,0.7,-0.7], 90]]],
 ["Land_Slum_01_F", [[[-0.7,-0.7,1],90]]],
 ["Land_House_Small_06_F", [[[-4.2,-1.6,-0.7], 270], [[0.8,1.9,-0.7], 0]]],
-["Land_Slum_03_F", [[[3.6,-1,-0.2], 0], [[-2.7,-1.23,-0.2],0]]]
-
+["Land_Slum_03_F", [[[3.6,-1,-0.2], 0], [[-2.7,-1.23,-0.2],0]]],
+["Land_House_Small_04_F", [[[2.4,-4.6,-0.7],0], [[-0.6,4.2,-0.7],0], [[-2.1,-0.6,-0.7], 90]]],
+["Land_House_Big_01_F", [[[6,5.8,-0.8],0], [[2.8,-1.2,-0.8],0]]],
+["Land_Shop_Town_03_F", [[[2.8,-6.,-3],0], [[-3.2,-6.1,-3],0] ,[[-3,7.7,-3],0]]],
+["Land_Shop_Town_01_F", [[[0,-4.1,-3],0], [[-1.8,5.9,-3],0] ]]
 ];
 AM_fnc_CreateMine = {
 	params ["_building","_localPos","_dir"];
 	_m = createMine ["APERSTripMine", (_building modelToWorld _localPos) ,[], 0];
 	// Add mine to cleanup array;
-	//CQBCleanupArr pushBack _m;
+	CQBCleanupArr pushBack _m;
 	[_m, "mymine"] call fnc_setvehiclename;
 	_minedir = ((getdir _building)+ _dir);
 	[mymine, _minedir] remoteExec ["setdir"];
@@ -84,19 +87,20 @@ AM_fnc_CreateMine = {
 _currentTripMinesBuild = 0;
 {
 	// Array structure is [["Land_i_House_Big_01_V2_F",[[[-0.8,-5.5,-2.5], - 90],[4.5,5,-2.5], + 90]]];
+	//                             classname			pos relative to building, dir relative to building
 	_bdng = _x;
 	{
 		//diag_log FORMAT ["***populateCQBBuildings: checking house %1 for %2 is %3",(_x select 0), (typeOf _bdng), (_x select 0) isEqualTo (typeOf _bdng)] ;
 		if ( (_x select 0) isEqualTo (typeOf _bdng) ) then
 		{
-			diag_log format ["*** cqb2 tripmine found a %1", _x];
+			//diag_log format ["*** cqb2 tripmine found a %1", _x];
 			{
-				diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
-				if ((random 1) > 0) then
+				//diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
+				if ((random 1) > 0.9) then
 				{
 					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
-					diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];
-					[getpos _m] execVM "server\Debug\debug_makemarker.sqf";
+					//diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];
+					//[getpos _m] execVM "server\Debug\debug_makemarker.sqf";
 				};
 			} forEach (_x select 1);
 			_currentTripMinesBuild = _currentTripMinesBuild + 1;
