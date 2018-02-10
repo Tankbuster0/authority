@@ -23,7 +23,7 @@ diag_log format ["***do_lnmcle going to make  %1 mines at %2", _numberofmines, _
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom aplandmines;
-	_realminepos = [_mfpos, (10 + random 40 ), (random 360)] call BIS_fnc_relPos;
+	_realminepos = _mfpos getpos  [(10 + random 40 ), (random 360)];
 	_minecone = createVehicle ["RoadCone_L_F", _realminepos, [],0, "NONE"];
 	_minecone addEventHandler ["explosion", "missionsuccess = false; missionactive = false; publicVariable 'missionactive'; publicVariable 'missionsuccess'; failtext = 'One of the mines has gone off. You failed the task.'; publicVariable 'failtext'; "];
 	_minecone hideObjectGlobal true;

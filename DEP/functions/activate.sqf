@@ -253,7 +253,7 @@ if ((_location select 1) in ["patrol"]) then {
     _groups = _groups + [_depgroup];
     _enemyamount = round((dep_max_ai_loc / 2) + random (dep_max_ai_loc / 2));
     _totalenemies = _totalenemies + _enemyamount;
-    _newpos = [_pos, 200, (random 360)] call BIS_fnc_relPos;
+    _newpos = _pos getpos [200, (random 360)];
 
     for "_e" from 1 to _enemyamount do {
         _soldiername = dep_mil_units call BIS_fnc_selectRandom;
@@ -283,18 +283,18 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
 			};
 			switch (_type) do {
 				case "car": {
-					_iedpos = [_iedpos, 4, _dir + 90] call BIS_fnc_relPos;
+					_iedpos = _iedpos getpos [4, _dir + 90];
 					_ied = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle _iedpos;
 					_ied setDir (_dir);
 					_ied setFuel (1 - (random 1));
 				};
 				case "rubble": {
-					_iedpos = [_iedpos, (5 + (round random 2)), _dir + 90] call BIS_fnc_relPos;
+					_iedpos = _iedpos getpos [(5 + (round random 2)), _dir + 90];
 					_ied = (dep_clutter call BIS_fnc_selectRandom) createVehicle _iedpos;
 					_ied setDir (_dir + 90);
 				};
 				default {
-					_iedpos = [_iedpos, 3, (random 360)] call BIS_fnc_relPos;
+					_iedpos = _iedpos getpos [3, (random 360)];
 					_ied = createMine [["IEDUrbanBig_F","IEDLandBig_F","IEDUrbanSmall_F","IEDLandSmall_F"] call BIS_fnc_selectRandom, _iedpos, [], 0];
 				};
 			};
@@ -347,7 +347,7 @@ if ((_location select 1) in ["roadpop", "patrol"]) then {
 					_road = _list call BIS_fnc_selectRandom;
 					_list = _list - [_road];
 					_dir = [_road] call dep_fnc_roaddir;
-					_minepos = [_road, 1, _dir + 270] call BIS_fnc_relPos;
+					_minepos = _road getpos [1, _dir + 270];
 					_mine = createMine ["ATMine", _minepos, [], 0];
 					dep_side revealMine _mine;
 					civilian revealMine _mine;

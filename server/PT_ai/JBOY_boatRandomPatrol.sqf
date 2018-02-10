@@ -38,10 +38,10 @@ _fnc_getRandomPos = {
             _dir = random 360;
         };
         ////diag_log ["in func",_obj,_distance, _dir];
-        _randomPos = [_obj, _distance, _dir] call BIS_fnc_relPos;
-        _randomPos2 = [_obj, (_distance+50), _dir] call BIS_fnc_relPos;
-        _randomPos3 = [_randomPos, (_distance+50), (_dir -90)] call BIS_fnc_relPos;
-        _randomPos4 = [_randomPos, (_distance+50), (_dir +90)] call BIS_fnc_relPos;
+        _randomPos = _obj getpos  [_distance, _dir];
+        _randomPos2 = _obj getpos [(_distance+50), _dir];
+        _randomPos3 = _randomPos getpos [(_distance+50), (_dir -90)];
+        _randomPos4 = _randomPos getPos [(_distance+50), (_dir +90)];
        // _randomPos5 = [_randomPos, (_distance+50), (_dir -45)] call BIS_fnc_relPos;
         //_randomPos6 = [_randomPos, (_distance+50), (_dir +45)] call BIS_fnc_relPos;
         // Check that water extends in front of pos, left of pos, and right of pos,

@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -25,11 +25,11 @@ _objects = [];
 
 _wrecks = ["Land_Wreck_HMMWV_F","Land_Wreck_Offroad_F","Land_Wreck_Offroad2_F","Land_Wreck_Truck_dropside_F","Land_Wreck_Truck_F","Land_Wreck_UAZ_F","Land_Wreck_Van_F"];
 
-_newpos = [_pos, 2, (_dir + 90)] call BIS_fnc_relPos;
+_newpos = _pos getpos [2, (_dir + 90)];
 _wreck = (_wrecks call BIS_fnc_selectRandom) createVehicle _newpos;
 _wreck setDir _dir;
 
-if (((random 1) <= dep_ied_chance) && dep_ieds) then 
+if (((random 1) <= dep_ied_chance) && dep_ieds) then
 {
 	_wreck setVariable ["workingon",false,true];
 	_wreck setVariable ["IED",true,true];
@@ -38,17 +38,17 @@ if (((random 1) <= dep_ied_chance) && dep_ieds) then
 	_wreck execFSM (dep_directory + "functions\ied_veh.fsm");
 
 	[[[_wreck],format["%1functions\disable_ied_addactions.sqf", dep_directory]],"BIS_fnc_execVM",nil,true] spawn BIS_fnc_MP;
-	
+
 	if (dep_debug) then {
 		_m = createMarker[format["ied%1", (str _newpos)], _newpos];
 		_m setMarkerType "mil_dot";
 		_m setMarkerText "ied";
 		_m setMarkerColor "ColorRed";
 	};
-			
-	_wreck addEventHandler 
-	["Explosion", 
-		{                       
+
+	_wreck addEventHandler
+	["Explosion",
+		{
 			_object = (_this select 0);
 			if (_object getVariable "IED") then {
 				_boomtype = ["Bomb_03_F", "Bomb_04_F", "Bo_GBU12_LGB"] select round random 2;
@@ -66,7 +66,7 @@ if (dep_mines) then
 	_newdir = 0;
 	for "_c" from 1 to _numberofmines do
 	{
-		_newpos = [_pos, 9, _newdir] call BIS_fnc_relPos;
+		_newpos = _pos getpos [9, _newdir];
 		_newpos set [2, 0.01];
 		_mine = createMine [["APERSMine","APERSBoundingMine","SLAMDirectionalMine", "ATMine"] call BIS_fnc_selectRandom, _newpos, [], 0];
 		_mine setDir _newdir;

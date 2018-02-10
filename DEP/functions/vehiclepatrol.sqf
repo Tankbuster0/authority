@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -28,34 +28,34 @@ _waypoints = [];
 for "_y" from 0 to (_numwp - 1) do {
 	_tooclose = true;
 	_valid = false;
-	while {!_valid && (count _list) > 0} do 
+	while {!_valid && (count _list) > 0} do
 	{
 		_road = _list call BIS_fnc_selectRandom;
 		_list = _list - [_road];
 		_wppos = getPos _road;
 		_tooclose = false;
 		_toocentered = false;
-		
+
 		// Check if too close to other waypoints
 		{
 			if ((_x distance _wppos) < (_rad * 0.2)) exitWith { _tooclose = true; };
 		} forEach _waypoints;
-		
+
 		// Check if too close to location center
 		if ((_wppos distance _pos) < (_rad / 3)) then { _toocentered = true; };
-		
+
 		if (!_toocentered && !_tooclose) then { _valid = true; };
 	};
-	if (_valid) then { _waypoints = _waypoints + [_wppos]; };    
+	if (_valid) then { _waypoints = _waypoints + [_wppos]; };
 };
 
-if ((count _waypoints) < _numwp) then 
+if ((count _waypoints) < _numwp) then
 {
     "Vehicle patrol couldn't find enough roads, finding random waypoints instead." spawn dep_fnc_log;
-    while {(count _waypoints) < _numwp} do 
+    while {(count _waypoints) < _numwp} do
 	{
-        _wppos = [_pos, (_rad / 3) + (random (_rad * (2/3))), (random 360)] call BIS_fnc_relPos;
-		if !(surfaceIsWater _wppos) then 
+        _wppos = _pos getpos [(_rad / 3) + (random (_rad * (2/3))), (random 360)];
+		if !(surfaceIsWater _wppos) then
 		{
 			_waypoints = _waypoints + [_wppos];
 		};
@@ -74,12 +74,12 @@ _y = 0;
 	} else {
 		_wp setWaypointType "CYCLE";
 	};
-	
+
 	//_m = createMarker[format["wptest%1%2", _y, time], _x];
 	//_m setMarkerType "mil_dot";
 	//_m setMarkerText format ["%1", _y];
 	//_m setMarkerColor "ColorBlue";
-	
+
 	_y = _y + 1;
 } forEach _waypoints;
 true;

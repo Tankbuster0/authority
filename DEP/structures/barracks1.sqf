@@ -33,37 +33,37 @@ _objects = [];
 _building = (["Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F"] call BIS_fnc_selectRandom) createVehicle _pos;
 _building setDir (_dir);
 
-_newpos = [_building, 13, _dir] call BIS_fnc_relPos;
+_newpos = _building getPos [13, _dir];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir (_dir);
 
-_newpos = [_building, 13, (_dir + 90)] call BIS_fnc_relPos;
+_newpos = _building getPos [13, (_dir + 90)];
 _prop = "Land_HBarrierBig_F" createVehicle _newpos;
 _prop setDir (_dir + 90);
 
-_newpos = [_building, 13, (_dir + 180)] call BIS_fnc_relPos;
+_newpos = _building getpos [13, (_dir + 180)];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir (_dir + 180);
 
-_newpos = [_building, 13, (_dir + 270)] call BIS_fnc_relPos;
+_newpos = _building getpos [13, (_dir + 270)];
 _prop = "Land_HBarrierBig_F" createVehicle _newpos;
 _prop setDir (_dir + 270);
 
 if ((random 1) < 0.5) then
 {
-    _newpos = [_building, 15, (_dir + 45)] call BIS_fnc_relPos;
+    _newpos = _building getpos [15, (_dir + 45)];
     _prop = "Land_HBarrier_5_F" createVehicle _newpos;
     _prop setDir (_dir + 45);
 
-    _newpos = [_building, 15, (_dir + 135)] call BIS_fnc_relPos;
+    _newpos = _building getpos [15, (_dir + 135)];
     _prop = "Land_HBarrier_5_F" createVehicle _newpos;
     _prop setDir (_dir + 135);
 
-    _newpos = [_building, 15, (_dir + 225)] call BIS_fnc_relPos;
+    _newpos = _building getpos [15, (_dir + 225)];
     _prop = "Land_HBarrier_5_F" createVehicle _newpos;
     _prop setDir (_dir + 225);
 
-    _newpos = [_building, 15, (_dir + 315)] call BIS_fnc_relPos;
+    _newpos = _building getpos [15, (_dir + 315)];
     _prop = "Land_HBarrier_5_F" createVehicle _newpos;
     _prop setDir (_dir + 315);
 };

@@ -42,7 +42,7 @@ for "_y" from 0 to 8 do {
     if ((count _newpos) == 0) then {
         _water = true;
         while {_water} do {
-            _newpos = [_pos, (_radius * 0.3) + (random (_radius * 0.7)), (random 360)] call BIS_fnc_relPos;
+            _newpos = _pos getpos [(_radius * 0.3) + (random (_radius * 0.7)), (random 360)];
             _water = surfaceIsWater _newpos;
         };
     };

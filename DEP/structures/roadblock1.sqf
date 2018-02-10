@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -30,51 +30,51 @@ _campgroup setFormDir _dir;
 _gate = "Land_BarGate_F" createVehicle _pos;
 _gate setDir _dir;
 
-if ((random 1) < 0.7) then 
+if ((random 1) < 0.7) then
 {
-    _newpos = [_gate, 6, _dir] call BIS_fnc_relPos;
-    _newpos = [_newpos, 11, _dir - 90] call BIS_fnc_relPos;
+    _newpos = _gate getpos [6, _dir];
+    _newpos = _newpos getPos [11, _dir - 90];
     _prop = "Land_Sign_WarningMilitaryArea_F" createVehicle _newpos;
     _prop setDir _dir + 180;
 };
 
-_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
-_newpos = [_newpos, 11, _dir - 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [7, _dir];
+_newpos = _newpos getPos [11, _dir - 90];
 _prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
-_newpos = [_newpos, 16, _dir - 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [7, _dir];
+_newpos = _newpos getPos [16, _dir - 90];
 _prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
-_newpos = [_newpos, 3, _dir + 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [7, _dir];
+_newpos = _newpos getPos [3, _dir + 90];
 _prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_gate, 7, _dir] call BIS_fnc_relPos;
-_newpos = [_newpos, 7, _dir + 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [7, _dir];
+_newpos = _newpos getPos [7, _dir + 90];
 _prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
 _prop setDir _dir;
 
 
-_newpos = [_gate, 9, _dir + 180] call BIS_fnc_relPos;
-_newpos = [_newpos, 4, _dir + 90] call BIS_fnc_relPos;
+_newpos = _gate [9, _dir + 180];
+_newpos = _newpos getPos [4, _dir + 90];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_gate, 9, _dir + 180] call BIS_fnc_relPos;
-_newpos = [_newpos, 13, _dir - 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [9, _dir + 180];
+_newpos = _newpos getPos [13, _dir - 90];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_gate, 4, _dir + 180] call BIS_fnc_relPos;
-_newpos = [_newpos, 5, _dir + 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [4, _dir + 180];
+_newpos = _newpos getPos [5, _dir + 90];
 _prop = (["Land_LampShabby_F","Land_TTowerSmall_1_F","Land_FieldToilet_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
 _prop setDir _dir;
 
-_newpos = [_gate, 14, _dir - 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [14, _dir - 90];
 if (random 1 > 0.5) then {
     _prop = "Land_BagBunker_Small_F" createVehicle _newpos;
     _prop setDir (_dir + 180);
@@ -84,11 +84,11 @@ if (random 1 > 0.5) then {
 };
 
 _newpos = (position _gate) findEmptyPosition[0, 30, dep_box_ammo];
-_prop = ([dep_box_ammo, dep_box_special, dep_box_weapons, dep_box_ord] call BIS_fnc_selectRandom) createVehicle _newpos;  
+_prop = ([dep_box_ammo, dep_box_special, dep_box_weapons, dep_box_ord] call BIS_fnc_selectRandom) createVehicle _newpos;
 _prop setDir (_dir + 90);
 sleep 0.02;
 
-_newpos = [_gate, 6, _dir + 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [6, _dir + 90];
 _gun1 = objNull;
 if (random 1 < 0.3) then {
     _gun1 = dep_static_gmg createVehicle _newpos;
@@ -97,7 +97,7 @@ if (random 1 < 0.3) then {
 };
 _objects = _objects + [_gun1];
 _gun1 setDir _dir;
-_newpos = [_newpos, 1, (_dir + 180)] call BIS_fnc_relPos;
+_newpos = _newpos getPos [1, (_dir + 180)];
 _gunner1 = [_campgroup, dep_u_g_soldier, _newpos] call dep_fnc_createunit;
 _gunner1 assignAsGunner _gun1;
 _gunner1 moveInGunner _gun1;
@@ -105,8 +105,8 @@ _gunner1 setDir _dir;
 _totalenemies = _totalenemies + 1;
 
 sleep 0.2;
-_newpos = [_gate, 4, _dir + 180] call BIS_fnc_relPos;
-_newpos = [_newpos, 4, _dir  - 90] call BIS_fnc_relPos;
+_newpos = _gate getPos [4, _dir + 180];
+_newpos = _newpos getPos [4, _dir  - 90];
 _soldier = [_campgroup, dep_u_g_sl, _newpos] call dep_fnc_createunit;
 _totalenemies = _totalenemies + 1;
 doStop _soldier;
@@ -117,7 +117,7 @@ for "_c" from 1 to (1 + round (random 1)) do
     _soldier setDir (random 360);
     _totalenemies = _totalenemies + 1;
     doStop _soldier;
-    
+
     _newpos = (position _gate) findEmptyPosition[0, 50, dep_u_g_gl];
     _soldier = [_campgroup, dep_u_g_gl, _newpos] call dep_fnc_createunit;
     _soldier setDir (random 360);

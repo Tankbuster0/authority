@@ -51,7 +51,7 @@ _dropgroup = createGroup west;
 _spawndir = floor (random 360);
 if ((_spawnpoint select 0) isEqualTo 0) then
 	{
-	_startpos = [_droppos, ((if (testmode) then {0} else {4000}) + random 4000), _spawndir] call bis_fnc_relPos;
+	_startpos = _droppos getPos [((if (testmode) then {0} else {4000}) + random 4000), _spawndir];
 	} else
 	{
 	_startpos = _spawnpoint;
@@ -126,7 +126,7 @@ if (serverTime > (_mytime + 90)) exitWith
 	sleep 5;
 	_spawndir = _spawndir -180;
 	if (_spawndir < 0) then {_spawndir = _spawndir + 360};
-	nul = [_droppos, _airtype, _droptype, ([_droppos, (3000 + random 3000), _spawndir] call bis_fnc_relPos)] execVM "server\spawnairdrop.sqf";
+	nul = [_droppos, _airtype, _droptype, (_droppos getPos [(3000 + random 3000), _spawndir])] execVM "server\spawnairdrop.sqf";
 	//^^^ if after 1.5 mins, the herc hasn't dropped, delete it and go again having him approach from the opposite direction
 	};
 _smokepos = _droppos; _smokepos set [2,0];

@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ _campgroup setFormDir _dir;
 _groups = _groups + [_campgroup];
 
 _prop = objNull;
-switch (dep_side) do 
+switch (dep_side) do
 {
     case east: {
         _prop = "CamoNet_OPFOR_open_F" createVehicle _pos;
@@ -53,7 +53,7 @@ if (random 1 < 0.5) then {
     waitUntil {alive _gun1};
     _gun1 setDir _dir;
     _objects = _objects + [_gun1];
-    _newpos = [_pos, 1, (_dir + 180)] call BIS_fnc_relPos;
+    _newpos = _pos getpos [1, (_dir + 180)];
     _gunner1 = [_campgroup, dep_u_g_soldier, _newpos] call dep_fnc_createunit;
     _gunner1 assignAsGunner _gun1;
     _gunner1 moveInGunner _gun1;
@@ -67,7 +67,7 @@ if ((random 1) < 0.6) then
     _newdir = 0;
     for "_c" from 1 to _numberofbarriers do
     {
-        _newpos = [_pos, 9, _newdir] call BIS_fnc_relPos;
+        _newpos = _pos getpos [9, _newdir];
         _prop = "Land_CncBarrier_F" createVehicle _newpos;
         _prop setDir _newdir;
         _newdir = _newdir + (360 / _numberofbarriers);
@@ -79,13 +79,13 @@ _prop setDir _dir;
 
 _soldier = [_campgroup, dep_u_g_sl, _pos] call dep_fnc_createunit;
 doStop _soldier;
-for "_c" from 1 to (1 + round (random 1)) do { 
-    _newpos = [_pos, ceil (random 10), random 360] call BIS_fnc_relPos;
+for "_c" from 1 to (1 + round (random 1)) do {
+    _newpos = _pos getPos [ceil (random 10), random 360];
     _soldier = [_campgroup, dep_u_g_at, _newpos] call dep_fnc_createunit;
     doStop _soldier;
     _totalenemies = _totalenemies + 1;
-    
-    _newpos = [_pos, ceil (random 10), random 360] call BIS_fnc_relPos;
+
+    _newpos = _pos getPos [ceil (random 10), random 360];
     _soldier = [_campgroup, ([dep_u_g_medic, dep_u_g_ar, dep_u_g_gl] call BIS_fnc_selectRandom), _newpos] call dep_fnc_createunit;
     doStop _soldier;
     _totalenemies = _totalenemies + 1;
