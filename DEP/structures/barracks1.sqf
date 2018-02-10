@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -68,7 +68,7 @@ if ((random 1) < 0.5) then
     _prop setDir (_dir + 315);
 };
 
-_buildpos = _building call dep_fnc_buildingpositions;
+_buildpos = _building buildingPos -1;
 _num_buildpos = ceil (random dep_max_ai_loc);
 if (_num_buildpos < 4) then { _num_buildpos = 4; };
 
@@ -86,9 +86,9 @@ for "_e" from 1 to _num_buildpos do {
         if ((count _newbuildpos) == 0) then { _newbuildpos = (getPos _building); };
     };
     _soldiername = dep_guer_units call BIS_fnc_selectRandom;
-    
+
     _soldier = [_campgroup, _soldiername, _newbuildpos] call dep_fnc_createunit;
-    _soldier setDir (random 360); 
+    _soldier setDir (random 360);
 };
 doStop (units _campgroup);
 
