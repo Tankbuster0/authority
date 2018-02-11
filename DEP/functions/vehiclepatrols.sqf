@@ -42,7 +42,7 @@ dep_fnc_spawn_vehiclepatrol =
     _y = 1;
     _target = objNull;
     while {_try} do {
-        _target = _roads call BIS_fnc_selectRandom;
+        _target = selectRandom _roads;
         if ([getPos _target] call dep_fnc_outsidesafezone) then {
             _try = false;
         };
@@ -61,7 +61,7 @@ dep_fnc_spawn_vehiclepatrol =
     _start = objNull;
     _roads = [getPos _target, dep_act_dist * 3] call dep_fnc_findroads;
     while {_try} do {
-        _start = _roads call BIS_fnc_selectRandom;
+        _start = selectRandom _roads;
         if !([getPos _start, dep_act_dist] call dep_fnc_players_within_range) then {
             if ([getPos _start] call dep_fnc_outsidesafezone) then {
                 _try = false;
@@ -81,7 +81,7 @@ dep_fnc_spawn_vehiclepatrol =
     _y = 1;
     _end = objNull;
     while {_try} do {
-        _end = _roads call BIS_fnc_selectRandom;
+        _end = selectRandom _roads
         if !([getPos _end, dep_act_dist] call dep_fnc_players_within_range) then {
             if ([getPos _end] call dep_fnc_outsidesafezone) then {
                 _try = false;
@@ -101,18 +101,18 @@ dep_fnc_spawn_vehiclepatrol =
     _group = grpNull;
     if (dep_civilians && (random 1) < 0.5) then {
         // Civilian vehicle
-        _vehicle = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle (getPos _start);
+        _vehicle = (selectRandom dep_civ_veh) createVehicle (getPos _start);
         _vehicle setDir ([_start] call dep_fnc_roaddir);
         [_vehicle] spawn dep_fnc_vehicledamage;
 
         _group = createGroup civilian;
         _spawnpos = (getPos _start) findEmptyPosition [0, 10];
-        _soldier = [_group, (dep_civ_units call bis_fnc_selectRandom), _spawnpos] call dep_fnc_createcivilian;
+        _soldier = [_group, (selectrandom dep_civ_units), _spawnpos] call dep_fnc_createcivilian;
         _soldier assignAsDriver _vehicle;
         _soldier moveInDriver _vehicle;
     } else {
         // Enemy vehicle
-        _vehicle = (dep_ground_vehicles call BIS_fnc_selectRandom) createVehicle (getPos _start);
+        _vehicle = (selectRandom dep_ground_vehicles) createVehicle (getPos _start);
         _vehicle setDir ([_start] call dep_fnc_roaddir);
         [_vehicle] spawn dep_fnc_vehicledamage;
         _group = [_vehicle] call dep_fnc_vehicle_fill;

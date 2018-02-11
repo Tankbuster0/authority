@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -34,15 +34,15 @@ _campgroup setFormDir _dir + 180;
 _groups = _groups + [_campgroup];
 
 _objs = [
-	["Land_BagFence_01_round_green_F",[-0.0239258,-2.19629,-0.00130129],179.93,1,0,[],"","",true,false], 
-	["Land_BagFence_01_round_green_F",[0.0180664,2.56201,-0.00130129],0,1,0,[],"","",true,false], 
-	["B_static_AA_F",[0.13623,-3.6123,-0.0702686],179.934,1,0,[],"aa2","",true,false], 
-	["B_static_AA_F",[-0.138672,3.97656,-0.0702686],0.00401756,1,0,[],"aa1","",true,false], 
-	["Land_BagFence_01_round_green_F",[-1.66064,-3.89014,-0.00130129],89.9072,1,0,[],"","",true,false], 
-	["Land_BagFence_01_round_green_F",[1.73682,-3.93115,-0.00130129],269.908,1,0,[],"","",true,false], 
-	["Land_BagFence_01_round_green_F",[1.65771,4.24512,-0.00130129],270,1,0,[],"","",true,false], 
-	["Land_BagFence_01_round_green_F",[-1.74512,4.2915,-0.00130129],90,1,0,[],"","",true,false], 
-	["Land_BagFence_01_round_green_F",[0.0522461,-5.55908,-0.00130129],359.906,1,0,[],"","",true,false], 
+	["Land_BagFence_01_round_green_F",[-0.0239258,-2.19629,-0.00130129],179.93,1,0,[],"","",true,false],
+	["Land_BagFence_01_round_green_F",[0.0180664,2.56201,-0.00130129],0,1,0,[],"","",true,false],
+	["B_static_AA_F",[0.13623,-3.6123,-0.0702686],179.934,1,0,[],"aa2","",true,false],
+	["B_static_AA_F",[-0.138672,3.97656,-0.0702686],0.00401756,1,0,[],"aa1","",true,false],
+	["Land_BagFence_01_round_green_F",[-1.66064,-3.89014,-0.00130129],89.9072,1,0,[],"","",true,false],
+	["Land_BagFence_01_round_green_F",[1.73682,-3.93115,-0.00130129],269.908,1,0,[],"","",true,false],
+	["Land_BagFence_01_round_green_F",[1.65771,4.24512,-0.00130129],270,1,0,[],"","",true,false],
+	["Land_BagFence_01_round_green_F",[-1.74512,4.2915,-0.00130129],90,1,0,[],"","",true,false],
+	["Land_BagFence_01_round_green_F",[0.0522461,-5.55908,-0.00130129],359.906,1,0,[],"","",true,false],
 	["Land_BagFence_01_round_green_F",[-0.0498047,5.92432,-0.00130129],180,1,0,[],"","",true,false]
 ];
 _return = [_pos, _dir, _objs] call BIS_fnc_ObjectsMapper;
@@ -83,8 +83,8 @@ doStop _soldier;
 _totalenemies = _totalenemies + 1;
 
 for "_c" from 1 to (ceil random (dep_max_ai_loc - _totalenemies)) do
-{ 
-    _soldiername = [dep_u_aa, dep_u_aaa] call BIS_fnc_selectRandom;
+{
+    _soldiername = selectRandom [dep_u_aa, dep_u_aaa];
     _newpos = _pos findEmptyPosition[0, 20, _soldiername];
     _soldier = [_campgroup, _soldiername, _newpos] call dep_fnc_createunit;
     doStop _soldier;

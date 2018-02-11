@@ -30,7 +30,7 @@ _totalenemies = 0;
 _groups = [];
 _objects = [];
 
-_building = (["Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F"] call BIS_fnc_selectRandom) createVehicle _pos;
+_building = (selectRandom ["Land_Cargo_HQ_V1_F","Land_Cargo_HQ_V2_F","Land_Cargo_HQ_V3_F"]) createVehicle _pos;
 _building setDir (_dir);
 
 _newpos = _building getPos [13, _dir];
@@ -79,13 +79,13 @@ _totalenemies = _totalenemies + _num_buildpos;
 for "_e" from 1 to _num_buildpos do {
     _newbuildpos = [];
     if ((count _buildpos) > 0) then {
-        _newbuildpos = _buildpos call BIS_fnc_selectRandom;
+        _newbuildpos = selectRandom _buildpos;
         _buildpos = _buildpos - [_newbuildpos];
     } else {
         _newbuildpos = (getPos _building) findEmptyPosition [0,20];
         if ((count _newbuildpos) == 0) then { _newbuildpos = (getPos _building); };
     };
-    _soldiername = dep_guer_units call BIS_fnc_selectRandom;
+    _soldiername = selectrandom dep_guer_units
 
     _soldier = [_campgroup, _soldiername, _newbuildpos] call dep_fnc_createunit;
     _soldier setDir (random 360);

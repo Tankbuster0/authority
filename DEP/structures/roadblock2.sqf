@@ -56,7 +56,7 @@ _objs = [
 ];
 _return = [_pos, _dir, _objs] call BIS_fnc_ObjectsMapper;
 
-_gun1 = [gun1, gun2, gun3, gun4] call BIS_fnc_selectRandom;
+_gun1 = selectRandom [gun1, gun2, gun3, gun4];
 
 _newpos = getPos _gun1;
 _newdir = getDir _gun1;
@@ -81,19 +81,19 @@ _gunner1 setDir _newdir;
 
 _spawnpos = [_pos, 30, true] call dep_fnc_scriptedspawnpos;
 
-_newpos = (_spawnpos call BIS_fnc_selectRandom) findEmptyPosition[0, 50, dep_u_g_sl];
+_newpos = (selectrandom _spawnpos) findEmptyPosition[0, 50, dep_u_g_sl];
 _soldier = [_campgroup, dep_u_g_sl, _newpos] call dep_fnc_createunit;
 _totalenemies = _totalenemies + 1;
 doStop _soldier;
 for "_c" from 1 to (1 + round (random 1)) do
 {
-    _newpos = (_spawnpos call BIS_fnc_selectRandom) findEmptyPosition[0, 50, dep_u_g_at];
+    _newpos = (selectrandom _spawnpos) findEmptyPosition[0, 50, dep_u_g_at];
     _soldier = [_campgroup, dep_u_g_at, _newpos] call dep_fnc_createunit;
     _soldier setDir _dir;
     _totalenemies = _totalenemies + 1;
     doStop _soldier;
 
-    _newpos = (_spawnpos call BIS_fnc_selectRandom) findEmptyPosition[0, 50, dep_u_g_at];
+    _newpos = (selectrandom _spawnpos) findEmptyPosition[0, 50, dep_u_g_at];
     _soldier = [_campgroup, dep_u_g_gl, _newpos] call dep_fnc_createunit;
     _soldier setDir (_dir + 180);
     _totalenemies = _totalenemies + 1;

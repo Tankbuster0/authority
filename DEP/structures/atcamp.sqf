@@ -74,7 +74,7 @@ if ((random 1) < 0.6) then
     };
 };
 
-_prop = ([dep_box_ammo, dep_box_special, dep_box_weapons, dep_box_ord] call BIS_fnc_selectRandom) createVehicle _pos;
+_prop = (selectRandom [dep_box_ammo, dep_box_special, dep_box_weapons, dep_box_ord]) createVehicle _pos;
 _prop setDir _dir;
 
 _soldier = [_campgroup, dep_u_g_sl, _pos] call dep_fnc_createunit;
@@ -86,7 +86,7 @@ for "_c" from 1 to (1 + round (random 1)) do {
     _totalenemies = _totalenemies + 1;
 
     _newpos = _pos getPos [ceil (random 10), random 360];
-    _soldier = [_campgroup, ([dep_u_g_medic, dep_u_g_ar, dep_u_g_gl] call BIS_fnc_selectRandom), _newpos] call dep_fnc_createunit;
+    _soldier = [_campgroup, (selectRandom [dep_u_g_medic, dep_u_g_ar, dep_u_g_gl]), _newpos] call dep_fnc_createunit;
     doStop _soldier;
     _totalenemies = _totalenemies + 1;
 };

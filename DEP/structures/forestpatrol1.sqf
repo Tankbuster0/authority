@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ _groups = _groups + [_group];
 _enemyamount = round((dep_max_ai_loc / 2) + (random (dep_max_ai_loc / 2)));
 
 for "_c" from 1 to _enemyamount do {
-    _soldiername = dep_guer_units call BIS_fnc_selectRandom;
+    _soldiername = selectrandom dep_guer_units
     _soldier = [_group, _soldiername, _pos] call dep_fnc_createunit;
     _totalenemies = _totalenemies + 1;
 };
@@ -42,9 +42,9 @@ if (dep_mines && (random 1) < 0.4) then {
         if ((_pos distance _x) > _temp) then {
             _temp = _pos distance _x;
             _minepos = getPos _x;
-        }; 
+        };
     } forEach _paths;
-    
+
     if (dep_debug) then {
         _m = createMarker[format["APmine%1", _minepos], _minepos];
         _m setMarkerType "Minefield";
@@ -55,7 +55,7 @@ if (dep_mines && (random 1) < 0.4) then {
     _mine setDir _temp;
 };
 
-_formation = dep_formations call BIS_fnc_selectRandom;
+_formation = selectrandom dep_formations;
 
 _wp = _group addWaypoint [_pos, 0];
 _wp setWaypointBehaviour "SAFE";
@@ -66,7 +66,7 @@ _wp setWaypointType "MOVE";
 
 _houses = [_pos, _radius] call dep_fnc_enterablehouses;
 if ((count _houses) > 0) then {
-    _temp = _houses call BIS_fnc_selectRandom;
+    _temp = selectrandom _houses;
     _wp = _group addWaypoint [(getPos _temp), 0];
     _wp setWaypointBehaviour "SAFE";
     _wp setWaypointSpeed "LIMITED";
@@ -82,7 +82,7 @@ _paths = [_pos, _radius] call dep_fnc_findpaths;
     if ((_pos distance _x) > _temp && (_minepos distance _x) > 10) then {
         _temp = _pos distance _x;
         _wp1 = getPos _x;
-    }; 
+    };
 } forEach _paths;
 
 _wp = _group addWaypoint [_wp1, 0];
@@ -98,7 +98,7 @@ _wp2 = _pos;
     if ((_wp1 distance _x) > _temp  && (_minepos distance _x) > 10) then {
         _temp = _wp1 distance _x;
         _wp2 = getPos _x;
-    }; 
+    };
 } forEach _paths;
 
 _wp = _group addWaypoint [_wp2, 0];

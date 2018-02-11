@@ -100,7 +100,7 @@ for "_i" from 0 to 355 step 5 do
 	_prop setDir _dir;
 	_newpos = _gate getPos [4, _dir + 180];
 	_newpos = _newpos getPos [5, _dir + 90];
-	_prop = (["Land_LampShabby_F","Land_TTowerSmall_1_F","Land_FieldToilet_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+	_prop = (selectRandom ["Land_LampShabby_F","Land_TTowerSmall_1_F","Land_FieldToilet_F"]) createVehicle _newpos;
 	vehiclecleanup pushback _prop;
 	_prop setDir _dir;
 	_newpos = _gate getpos [10, _dir - 90];
@@ -112,7 +112,7 @@ for "_i" from 0 to 355 step 5 do
 	    _prop setDir (_dir - 90);
 	};
 	_newpos = (position _gate) findEmptyPosition[0, 30, "Box_East_Ammo_F"];
-	_prop = (["Box_East_Ammo_F", "Box_East_WpsLaunch_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+	_prop = (selectRandom ["Box_East_Ammo_F", "Box_East_WpsLaunch_F"]) createVehicle _newpos;
 	vehiclecleanup pushback _prop;
 	_prop setDir (_dir + 90);
 	sleep 0.02;

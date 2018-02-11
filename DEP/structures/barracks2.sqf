@@ -35,10 +35,10 @@ _fire = "Campfire_burning_F" createVehicle _pos;
 
 _newpos = _fire getPos [1, (_dir + 270)];
 _prop = "Land_WoodenLog_F" createVehicle _newpos;
-_prop = (["Land_BakedBeans_F","Land_Canteen_F","Land_CerealsBox_F","Land_Matches_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+_prop = (selectRandom ["Land_BakedBeans_F","Land_Canteen_F","Land_CerealsBox_F","Land_Matches_F"]) createVehicle _newpos;
 
 _newpos =  _fire getPos [11, (_dir + 90)];
-_prop = (["Land_i_Stone_HouseSmall_V1_F", "Land_i_Stone_HouseSmall_V2_F", "Land_i_Stone_HouseSmall_V3_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+_prop = (selectRandom ["Land_i_Stone_HouseSmall_V1_F", "Land_i_Stone_HouseSmall_V2_F", "Land_i_Stone_HouseSmall_V3_F"]) createVehicle _newpos;
 _prop setDir (_dir + 90);
 _enemypositions = _prop buildingpos -1;
 
@@ -47,7 +47,7 @@ _prop = "Land_WoodenTable_large_F" createVehicle _newpos;
 _prop setDir _dir;
 
 _newpos = _fire getPos [13, (_dir)];
-_prop = (["Land_i_Stone_Shed_V1_F", "Land_i_Stone_Shed_V2_F", "Land_i_Stone_Shed_V3_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+_prop = (selectRandom ["Land_i_Stone_Shed_V1_F", "Land_i_Stone_Shed_V2_F", "Land_i_Stone_Shed_V3_F"]) createVehicle _newpos;
 _prop setDir (_dir);
 _buildpos = _prop buildingpos -1;
 _enemypositions = _enemypositions + _buildpos;
@@ -62,7 +62,7 @@ _enemypositions = _enemypositions + [_newpos];
 if ((random 1) < 0.5) then
 {
     _newpos = _fire getPos [10, (_dir + 270)];
-    _prop = (dep_civ_veh call BIS_fnc_selectRandom) createVehicle _newpos;
+    _prop = (selectRandom dep_civ_veh) createVehicle _newpos;
     _prop setDir _dir;
     _prop setFuel (1 - (random 1));
 };
@@ -74,13 +74,13 @@ _totalenemies = _totalenemies + dep_max_ai_loc;
 for "_e" from 1 to dep_max_ai_loc do {
     _newbuildpos = [];
     if ((count _enemypositions) > 0) then {
-        _newbuildpos = _enemypositions call BIS_fnc_selectRandom;
+        _newbuildpos = selectRandom _enemypositions;
         _enemypositions = _enemypositions - [_newbuildpos];
     } else {
         _newbuildpos = (getPos _fire) findEmptyPosition [0,20];
         if ((count _newbuildpos) == 0) then { _newbuildpos = (getPos _fire); };
     };
-    _soldiername = dep_guer_units call BIS_fnc_selectRandom;
+    _soldiername = selectrandom dep_guer_units
 
     _soldier = [_campgroup, _soldiername, _newbuildpos] call dep_fnc_createunit;
     _soldier setDir (random 360);

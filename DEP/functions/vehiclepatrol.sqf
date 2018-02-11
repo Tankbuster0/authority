@@ -30,7 +30,7 @@ for "_y" from 0 to (_numwp - 1) do {
 	_valid = false;
 	while {!_valid && (count _list) > 0} do
 	{
-		_road = _list call BIS_fnc_selectRandom;
+		_road = selectRandom _list;
 		_list = _list - [_road];
 		_wppos = getPos _road;
 		_tooclose = false;

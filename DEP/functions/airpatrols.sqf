@@ -33,7 +33,7 @@ dep_fnc_spawn_air =
 
 	["Begin air patrol from %1 to %2", _start, _end] spawn dep_fnc_log;
 
-	_return = [_startpos, 0, (dep_air_vehicles call BIS_fnc_selectRandom), civilian] call BIS_fnc_spawnVehicle;
+	_return = [_startpos, 0, (selectrandom dep_air_vehicles), civilian] call BIS_fnc_spawnVehicle;
 	_vehicle = _return select 0;
 	_group = _return select 2;
     switch (typeOf _vehicle) do
@@ -60,7 +60,7 @@ dep_fnc_spawn_air =
     if (_freeCargoPositions >= 1) then {
         _freeCargoPositions = ceil random _freeCargoPositions;
         for "_y" from 1 to _freeCargoPositions do {
-            _soldiername = dep_mil_units call BIS_fnc_selectRandom;
+            _soldiername = selectrandom dep_mil_units;
             _soldier = [_group, _soldiername, (getPosATL _vehicle)] call dep_fnc_createunit;
             _soldier assignAsCargo _vehicle;
             _soldier moveInCargo _vehicle;
@@ -74,7 +74,7 @@ dep_fnc_spawn_air =
         _group setCombatMode "RED";
     };
 
-    _player = dep_players call BIS_fnc_selectRandom;
+    _player = selectRandom dep_players;
     if !(isNil "_player") then {
         _player = getPos _player;
         _safe = [_player] call dep_fnc_outsidesafezone;

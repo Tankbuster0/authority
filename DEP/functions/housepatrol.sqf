@@ -23,7 +23,7 @@ _validhouses = [_pos] call dep_fnc_findnearhouses;
 
 _grouppos = _pos;
 if ((count _validhouses) > 0) then {
-    _house = _validhouses call BIS_fnc_selectRandom;
+    _house = selectRandom _validhouses;
     _grouppos = getPos _house;
 };
 
@@ -32,7 +32,7 @@ for "_y" from 0 to 8 do {
     _wp = _group addWaypoint [_newpos, _y];
     _wp setWaypointBehaviour "SAFE";
     _wp setWaypointSpeed "LIMITED";
-    _wp setWaypointFormation (dep_formations call BIS_fnc_selectRandom);
+    _wp setWaypointFormation ( selectrandom dep_formations);
     _wp setWaypointTimeOut [0,5,10];
     if (_y < 8) then {
         _wp setWaypointType "MOVE";

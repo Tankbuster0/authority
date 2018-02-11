@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ _unitname = "";
 if (_vehicle isKindOf "Tank" || _vehicle isKindOf "Wheeled_APC_F") then {
     _unitname = dep_u_veh_crew;
 } else {
-    _unitname = dep_guer_units call BIS_fnc_selectRandom;
+    _unitname = selectrandom dep_guer_units;
 };
 for "_y" from 1 to (_vehicle emptyPositions "Gunner") do {
     _unit = [_group, _unitname, (getPos _vehicle) findEmptyPosition[0, 30]] call dep_fnc_createunit;
