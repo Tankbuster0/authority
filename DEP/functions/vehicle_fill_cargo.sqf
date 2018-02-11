@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ if (_maxpositions > 0) then {
         _positions = _maxpositions;
     };
     for "_y" from 1 to _positions do {
-        _unit = [_group, (_units call BIS_fnc_selectRandom), (getPos _vehicle) findEmptyPosition[0, 30]] call dep_fnc_createunit;
+        _unit = [_group, (selectRandom _units), (getPos _vehicle) findEmptyPosition[0, 30]] call dep_fnc_createunit;
         _unit assignAsCargo _vehicle;
         _unit moveInCargo _vehicle;
     };

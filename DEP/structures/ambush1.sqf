@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ _groups = [];
 _totalenemies = 0;
 _objects = [];
 
-if ((random 1) < 0.5 && dep_mines) then 
+if ((random 1) < 0.5 && dep_mines) then
 {
 	_newpos = _pos;
 	_newpos set [2, 0.01];
@@ -46,7 +46,7 @@ if (_y < 4) then { _y = 4; };
 
 {
 	if (_totalenemies >= dep_max_ai_loc) exitWith {};
-	_soldiername = dep_guer_units call BIS_fnc_selectRandom;
+	_soldiername = selectrandom dep_guer_units
 	_newpos = getPos _x;
 	_newpos set [2, 0];
 	_soldier = [_campgroup, _soldiername, _newpos] call dep_fnc_createunit;

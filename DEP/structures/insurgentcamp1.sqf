@@ -54,7 +54,7 @@ _prop setDir (_dir + 90);
 for "_e" from 1 to 3 do {
     _newpos = (getPos _fire) findEmptyPosition [0,20];
     if ((count _newpos) == 0) then { _newpos = (getPos _fire); };
-    _soldiername = dep_guer_units call BIS_fnc_selectRandom;
+    _soldiername = selectrandom dep_guer_units
 
     _soldier = [_campgroup, _soldiername, _newpos] call dep_fnc_createunit;
     _soldier setDir (random 360);

@@ -71,7 +71,7 @@ _prop setDir _dir;
 
 _newpos = _gate getPos [4, _dir + 180];
 _newpos = _newpos getPos [5, _dir + 90];
-_prop = (["Land_LampShabby_F","Land_TTowerSmall_1_F","Land_FieldToilet_F"] call BIS_fnc_selectRandom) createVehicle _newpos;
+_prop = (selectRandom ["Land_LampShabby_F","Land_TTowerSmall_1_F","Land_FieldToilet_F"]) createVehicle _newpos;
 _prop setDir _dir;
 
 _newpos = _gate getPos [14, _dir - 90];
@@ -84,7 +84,7 @@ if (random 1 > 0.5) then {
 };
 
 _newpos = (position _gate) findEmptyPosition[0, 30, dep_box_ammo];
-_prop = ([dep_box_ammo, dep_box_special, dep_box_weapons, dep_box_ord] call BIS_fnc_selectRandom) createVehicle _newpos;
+_prop = (selectRandom [dep_box_ammo, dep_box_special, dep_box_weapons, dep_box_ord]) createVehicle _newpos;
 _prop setDir (_dir + 90);
 sleep 0.02;
 

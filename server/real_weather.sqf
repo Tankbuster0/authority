@@ -51,7 +51,7 @@
 	_startingdate = [2015, 07, 01, 07, 00];
 
 	// Mission starting weather "CLEAR|CLOUDY|RAIN";
-	_startingweather = ["CLEAR", "CLOUDY", "RAIN"] call BIS_fnc_selectRandom;
+	_startingweather = selectRandom ["CLEAR", "CLOUDY", "RAIN"];
 
 	/////////////////////////////////////////////////////////////////
 	// Do not edit below

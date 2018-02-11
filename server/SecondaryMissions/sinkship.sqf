@@ -51,7 +51,7 @@ _sinkside = toUpper (_sinkside);
 
 // If _sinkside is "RANDOM", choose a random side from the array
 if (_sinkside == "RANDOM") then {
-_sinkside = ["LEFT", "RIGHT", "LEFT FRONT", "RIGHT FRONT", "LEFT BACK", "RIGHT BACK"] call BIS_fnc_selectRandom;
+_sinkside = selectRandom ["LEFT", "RIGHT", "LEFT FRONT", "RIGHT FRONT", "LEFT BACK", "RIGHT BACK"];
 };
 
 // Declare the variables for setCenterOfMass

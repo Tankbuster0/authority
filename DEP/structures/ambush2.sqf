@@ -26,7 +26,7 @@ _objects = [];
 _wrecks = ["Land_Wreck_HMMWV_F","Land_Wreck_Offroad_F","Land_Wreck_Offroad2_F","Land_Wreck_Truck_dropside_F","Land_Wreck_Truck_F","Land_Wreck_UAZ_F","Land_Wreck_Van_F"];
 
 _newpos = _pos getpos [2, (_dir + 90)];
-_wreck = (_wrecks call BIS_fnc_selectRandom) createVehicle _newpos;
+_wreck = (selectRandom _wrecks) createVehicle _newpos;
 _wreck setDir _dir;
 
 if (((random 1) <= dep_ied_chance) && dep_ieds) then
@@ -68,7 +68,7 @@ if (dep_mines) then
 	{
 		_newpos = _pos getpos [9, _newdir];
 		_newpos set [2, 0.01];
-		_mine = createMine [["APERSMine","APERSBoundingMine","SLAMDirectionalMine", "ATMine"] call BIS_fnc_selectRandom, _newpos, [], 0];
+		_mine = createMine [selectRandom ["APERSMine","APERSBoundingMine","SLAMDirectionalMine", "ATMine"], _newpos, [], 0];
 		_mine setDir _newdir;
 		if (dep_debug) then {
 			_m = createMarker[format["ambush%1", (str _newpos)], _newpos];

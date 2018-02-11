@@ -30,13 +30,13 @@ if (_range == 0) then
 };
 
 if ((count _validhouses) > 0) then {
-    _house = _validhouses call BIS_fnc_selectRandom;
+    _house = selectRandom _validhouses;
     _buildpos = _house buildingpos -1;
     {
         if (alive _x) then {
             _newbuildpos = [];
             if ((count _buildpos) > 0) then {
-                _newbuildpos = _buildpos call BIS_fnc_selectRandom;
+                _newbuildpos = selectRandom _buildpos;
                 _buildpos = _buildpos - [_newbuildpos];
             } else {
                 _newbuildpos = (getPos _house) findEmptyPosition [0, 15];

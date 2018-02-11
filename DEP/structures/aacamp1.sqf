@@ -49,7 +49,7 @@ _prop setDir _dir + 90;
 
 _barrels = ["Land_BarrelWater_grey_F", "Land_BarrelEmpty_grey_F", "Land_GarbageBarrel_01_F", "Land_BarrelTrash_grey_F"];
 _newpos = _housepos getpos [4, _dir + 200];
-_prop = (_barrels call BIS_fnc_selectRandom) createVehicle _newpos;
+_prop = (selectrandom _barrels) createVehicle _newpos;
 _prop setDir _dir;
 
 _newpos = _pos findEmptyPosition[0, 20, dep_static_aa];

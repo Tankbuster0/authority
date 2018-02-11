@@ -1,5 +1,5 @@
 /*  Copyright 2016 Fluit
-    
+
     This file is part of Dynamic Enemy Population.
 
     Dynamic Enemy Population is free software: you can redistribute it and/or modify
@@ -51,7 +51,7 @@ _totalobjects = [];
                 _list = _locpos nearRoads (_location select 2);
                 if ((count _list) > 0) then
                 {
-                    _road = _list call BIS_fnc_selectRandom;
+                    _road = selectRandom _list;
                     _pos = (getPos _road);
                 } else {
                     _pos = _locpos findEmptyPosition[0, _location select 2];
@@ -65,7 +65,7 @@ _totalobjects = [];
     _totalobjects = _totalobjects + [_obj];
     _obj setDir (_objeach select 1);
     _damage = (_objeach select 3);
-    if (typeName (_damage) == "ARRAY") then 
+    if (typeName (_damage) == "ARRAY") then
     {
         _selections = _damage select 0;
         _gethit = _damage select 1;
@@ -84,7 +84,7 @@ _totalobjects = [];
         _obj setDamage _damage;
     };
     if (_obj isKindOf "Tank" || _obj isKindOf "Car") then { [_obj] spawn dep_fnc_vehicledamage; };
-    
+
     if ((count (_objeach select 4)) > 0) then {
         _grp = createGroup dep_side;
         _totalgroups = _totalgroups + [_grp];
@@ -95,7 +95,7 @@ _totalobjects = [];
                 _unit = [_grp, (_crewunit select 0), _pos] call dep_fnc_createunit;
                 _totalenemies = _totalenemies + 1;
                 _roles = _crewunit select 1;
-                
+
                 if ((count _roles) > 0) then {
                     _role = _roles select 0;
                     switch (_role) do {
@@ -148,7 +148,7 @@ _totalobjects = [];
     } foreach _group;
     switch ((_location select 1)) do
     {
-        default { 
+        default {
             _unit = _group select 0;
             if (count _unit > 5) then {
                 _waypoints = _unit select 5;
@@ -158,7 +158,7 @@ _totalobjects = [];
             };
         };
     };
-    
+
     // If the group has no waypoints, stop them from moving into formation
     if ((count (waypoints (leader _grp))) <= 1 && (count _waypoints) <= 1 ) then
     {
@@ -171,7 +171,7 @@ _totalobjects = [];
     _totalgroupsciv = _totalgroupsciv + [_grp];
     _group = _x;
     _obj = objNull;
-    
+
     {
         _pos = (_x select 0);
         // Prevent objects from spawning outside the location
@@ -190,13 +190,13 @@ _totalobjects = [];
     if (count _unit > 5) then {
         _waypoints = _unit select 5;
         if (count _waypoints > 0) then {
-            [_grp, _waypoints] spawn dep_fnc_setwaypoints;              
+            [_grp, _waypoints] spawn dep_fnc_setwaypoints;
         };
     };
-    
-    if ((_location select 1) == "patrol") then 
+
+    if ((_location select 1) == "patrol") then
     {
-        _vehname = dep_civ_veh call BIS_fnc_selectRandom;
+        _vehname = selectRandom dep_civ_veh;
         _veh = _vehname createVehicle ((position _obj) findEmptyPosition[0, 20, _vehname]);
         _obj assignAsDriver _veh;
         _obj moveInDriver _veh;
