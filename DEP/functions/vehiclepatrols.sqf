@@ -81,7 +81,7 @@ dep_fnc_spawn_vehiclepatrol =
     _y = 1;
     _end = objNull;
     while {_try} do {
-        _end = selectRandom _roads
+        _end = selectRandom _roads;
         if !([getPos _end, dep_act_dist] call dep_fnc_players_within_range) then {
             if ([getPos _end] call dep_fnc_outsidesafezone) then {
                 _try = false;

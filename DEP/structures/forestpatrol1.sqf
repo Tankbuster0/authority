@@ -29,7 +29,7 @@ _groups = _groups + [_group];
 _enemyamount = round((dep_max_ai_loc / 2) + (random (dep_max_ai_loc / 2)));
 
 for "_c" from 1 to _enemyamount do {
-    _soldiername = selectrandom dep_guer_units
+    _soldiername = selectrandom dep_guer_units;
     _soldier = [_group, _soldiername, _pos] call dep_fnc_createunit;
     _totalenemies = _totalenemies + 1;
 };

@@ -59,7 +59,7 @@ _prop = "Land_CncBarrier_stripes_F" createVehicle _newpos;
 _prop setDir _dir;
 
 
-_newpos = _gate [9, _dir + 180];
+_newpos = _gate getpos [9, _dir + 180];
 _newpos = _newpos getPos [4, _dir + 90];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir _dir;
