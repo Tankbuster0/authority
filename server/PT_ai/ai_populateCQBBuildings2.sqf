@@ -9,7 +9,7 @@ params [
 	["_amount", 0.66],// chance each building will be populated
 	["_scalebyplayercount", false]// if true, number of poss in each house is playercount * 2
 	];
-private ["_nreadblds1","_nreadblds2","_cqbcentrepos","_cqbradius","_myblding","_amount","_cqbbldposs","_cqbgrp","_cqbman","_d","_curobsfactor"];
+private ["_nreadblds1","_cqbcentrepos","_cqbradius","_nreadblds3","_nreadblds2","_myblding","_amount","_cqbbldposs","_cqbbldposs1","_cqbgrp","_cqbman","_d","_curobsfactor","_elligableTripMineBuildings","_building","_localPos","_dir","_m","_minedir","_currentTripMinesBuild","_bdng","_minepos","_mindist","_nearestdoor","_nearestmine","_mydoor","_sound_source","_spmine","_spdoor","_spbldng"];
 _nreadblds1 = ((_cqbcentrepos) nearObjects ["house", _cqbradius]) select {((count (_x buildingpos -1)) > 6)};
 _nreadblds3 = ((_cqbcentrepos) nearObjects ["house", _cqbradius]) select {((count (_x buildingpos -1)) > 4)};
 if ((count _nreadblds1) < 8) then
@@ -101,10 +101,44 @@ _currentTripMinesBuild = 0;
 					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
 					//diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];
 					//[getpos _m] execVM "server\Debug\debug_makemarker.sqf";
+					_minepos = (getpos _m);
+					_mindist = 10;
+					_nearestdoor = "";
+					{
+						if ((_minepos distance2d (_bdng selectionPosition _x)) < _mindist) then
+							{
+								_mindist = (_minepos distance2d (_bdng selectionPosition _x));
+								_nearestdoor = _x;
+							};
+					} foreach ["door_1", "door_2", "door_3"];// find the nearest door to each mine
+					if (_mindist < 2) then
+						{
+							_nearestmine = nearestobject [_nearestdoor, "timebombcore"];
+							_mydoor = _nearestdoor + "_sound_source";
+							[_nearestmine, _mydoor, _bdng] spawn
+								{
+									params ["_spmine","_spdoor", "_spbldng"];
+									diag_log format ["*** spawned doorwatcher gets mine %1, door %2, building %3", _spmine, _spdoor, _spbldng];
+									while {alive _spmine} do
+										{
+											sleep 0.3;
+											if (not ((animationSourcePhase _spdoor) isEqualTo 0)) then
+												{
+													diag_log format ["***dooropening, detting mine %1 near door %2 in building %3", _spmine, _spdoor, _spbldng];
+													_spmine setdamage 1;
+												};
+										};
+								};
+						};
 				};
 			} forEach (_x select 1);
 			_currentTripMinesBuild = _currentTripMinesBuild + 1;
 		};
+
+
+
+
+
 	} forEach _elligableTripMineBuildings;
 } forEach _nreadblds3;
 handle_ai_pcqb_finished = true;
