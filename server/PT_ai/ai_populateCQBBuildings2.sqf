@@ -96,7 +96,7 @@ _currentTripMinesBuild = 0;
 			//diag_log format ["*** cqb2 tripmine found a %1", _x];
 			{
 				//diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
-				if ((random 1) > 0.9) then
+				if ((random 1) > 0.5) then
 				{
 					_m = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
 					//diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];
@@ -122,7 +122,7 @@ _currentTripMinesBuild = 0;
 									while {alive _spmine} do
 										{
 											sleep 0.3;
-											if (not ((animationSourcePhase _spdoor) isEqualTo 0)) then
+											if (not ((_spbldng animationSourcePhase _spdoor) isEqualTo 0)) then
 												{
 													diag_log format ["***dooropening, detting mine %1 near door %2 in building %3", _spmine, _spdoor, _spbldng];
 													_spmine setdamage 1;
