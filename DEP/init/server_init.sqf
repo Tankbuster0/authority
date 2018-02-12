@@ -127,7 +127,7 @@ if (dep_town_occupation > 0 && dep_town_occupation <= 1) then
     _ownradius = 200;
     _createdzones = 0;
     for "_c" from 0 to (_numberoftowns - 1) do {
-        _pos = selectrandom _towns
+        _pos = selectrandom _towns;
         _towns = _towns - [_pos];
         _safe = [_pos, dep_safe_rad + _ownradius] call dep_fnc_outsidesafezone;
 		if (_safe) then {
@@ -180,7 +180,7 @@ if (dep_housepop > 0) then
 	};
 
 	while {_createdzones < dep_housepop} do {
-		_building = selectrandom _buildings
+		_building = selectrandom _buildings;
 		if (count _buildings == 0) exitWith {
 			["Not enough buildings, found %1 of %2.", _createdzones, dep_housepop] spawn dep_fnc_log;
 		};
@@ -252,7 +252,7 @@ if (dep_roadblocks > 0) then
 			if ((time - _starttime) > 30) exitWith {
 				_fckit = true;
 			};
-			_road = selectRandom dep_roads
+			_road = selectRandom dep_roads;
 			_pos = getPos _road;
 			_safe = [_pos, dep_safe_rad + 100] call dep_fnc_outsidesafezone;
 			if (_safe) then {
@@ -328,7 +328,7 @@ if (dep_ambushes > 0) then
 				_fckit = true;
 			};
 
-			_road = selectRandom dep_roads
+			_road = selectRandom dep_roads;
 			_pos = getPos _road;
 			_vegetation = [_pos, 20] call dep_fnc_vegetation;
 			_safe = [_pos, dep_safe_rad + 100, 1000] call dep_fnc_outsidesafezone;
@@ -549,7 +549,7 @@ if (dep_patrols > 0) then
 			if ((time - _starttime) > 30) exitWith {
 				_fckit = true;
 			};
-			_road = selectRandom dep_roads
+			_road = selectRandom dep_roads;
 			_pos = getPos _road;
 			_safe = [_pos, (dep_safe_rad + dep_veh_pat_rad), (dep_veh_pat_rad + 350)] call dep_fnc_outsidesafezone;
 			_locationroads = [_pos, dep_veh_pat_rad] call dep_fnc_findroads;
