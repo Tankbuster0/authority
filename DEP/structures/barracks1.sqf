@@ -85,8 +85,7 @@ for "_e" from 1 to _num_buildpos do {
         _newbuildpos = (getPos _building) findEmptyPosition [0,20];
         if ((count _newbuildpos) == 0) then { _newbuildpos = (getPos _building); };
     };
-    _soldiername = selectrandom dep_guer_units
-
+    _soldiername = selectrandom dep_guer_units;
     _soldier = [_campgroup, _soldiername, _newbuildpos] call dep_fnc_createunit;
     _soldier setDir (random 360);
 };

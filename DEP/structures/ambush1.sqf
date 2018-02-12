@@ -46,7 +46,7 @@ if (_y < 4) then { _y = 4; };
 
 {
 	if (_totalenemies >= dep_max_ai_loc) exitWith {};
-	_soldiername = selectrandom dep_guer_units
+	_soldiername = selectrandom dep_guer_units;
 	_newpos = getPos _x;
 	_newpos set [2, 0];
 	_soldier = [_campgroup, _soldiername, _newpos] call dep_fnc_createunit;

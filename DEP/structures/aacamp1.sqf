@@ -42,7 +42,7 @@ _newpos = _newpos getpos [ 3, _dir];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir _dir + 90;
 
-_newpos = _pos [6, _dir + 90];
+_newpos = _pos getpos [6, _dir + 90];
 _newpos = _newpos getpos [3, _dir + 180];
 _prop = "Land_HBarrier_5_F" createVehicle _newpos;
 _prop setDir _dir + 90;

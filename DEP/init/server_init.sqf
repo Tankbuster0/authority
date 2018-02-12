@@ -65,7 +65,7 @@ if (dep_military > 0) then
 	for [{_x=0}, {_x<=_numbuildings}, {_x=_x+1}] do {
 		if (_createdzones >= dep_military) exitWith {};
 		if (count _buildings == 0) exitWith {};
-		_building = selectrandom _buildings
+		_building = selectrandom _buildings;
 		_buildings = _buildings - [_building];
 		_pos = getPos _building;
 		_ownradius = 75 + (round random 50);
