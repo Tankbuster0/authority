@@ -105,9 +105,9 @@ _currentTripMinesBuild = 0;
 					_mindist = 10;
 					_nearestdoor = "";
 					{
-						if ((_minepos distance2d (_bdng selectionPosition _x)) < _mindist) then
+						if ((_minepos distance2d (_bdng modelToWorld (_bdng selectionPosition _x))) < _mindist) then
 							{
-								_mindist = (_minepos distance2d (_bdng selectionPosition _x));
+								_mindist = (_minepos distance2d (_bdng modeltoworld (_bdng selectionPosition _x)));
 								_nearestdoor = _x;
 							};
 					} foreach ["door_1", "door_2", "door_3"];// find the nearest door to each mine
