@@ -126,6 +126,7 @@ _currentTripMinesBuild = 0;
 											if (not ((_spbldng animationSourcePhase _spdoor) isEqualTo 0)) then
 												{
 													//diag_log format ["***dooropening, detting mine %1 near door %2 in building %3", _spmine, _spdoor, _spbldng];
+													sleep random 1;
 													_spmine setdamage 1;
 												};
 										};
