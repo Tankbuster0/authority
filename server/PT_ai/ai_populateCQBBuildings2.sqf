@@ -119,16 +119,18 @@ _currentTripMinesBuild = 0;
 							[_nearestmine, _mydoor, _bdng] spawn
 								{
 									params ["_spmine","_spdoor", "_spbldng"];
-									diag_log format ["*** spawned doorwatcher gets mine %1, door %2, building %3", _spmine, _spdoor, _spbldng];
+									//diag_log format ["*** spawned doorwatcher gets mine %1, door %2, building %3", _spmine, _spdoor, _spbldng];
 									while {alive _spmine} do
 										{
 											sleep 0.5;
 											if (not ((_spbldng animationSourcePhase _spdoor) isEqualTo 0)) then
 												{
-													diag_log format ["***dooropening, detting mine %1 near door %2 in building %3", _spmine, _spdoor, _spbldng];
+													//diag_log format ["***dooropening, detting mine %1 near door %2 in building %3", _spmine, _spdoor, _spbldng];
 													_spmine setdamage 1;
 												};
 										};
+
+
 								};
 						};
 				};
