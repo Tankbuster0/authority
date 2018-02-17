@@ -53,6 +53,17 @@ switch (tolower worldName) do
 			opforcavecs = ["O_Truck_02_transport_F","O_T_LSV_02_armed_F", "O_T_APC_Wheeled_02_rcws_ghex_F"];
 			opforcahelis = ["O_Heli_Light_02_F", "O_Heli_Transport_04_bench_F"];
 			};
+		case "panthera3" :
+			{
+			forwardpointvehicleclassname = "B_LSV_01_armed_F";
+			fobvehicleclassname = "B_MRAP_01_F";
+			opforpatrollandvehicles = ["O_APC_Tracked_02_cannon_F", "O_APC_Wheeled_02_rcws_F", "O_MRAP_02_gmg_F", "O_MRAP_02_hmg_F", "O_LSV_02_armed_F"];
+			opforstaticlandvehicles =["O_APC_Tracked_02_AA_F", "O_APC_Tracked_02_cannon_F"];
+			opfortanks = ["O_MBT_02_cannon_F"];
+			opforhqtypes = ["O_Truck_03_covered_F", "Land_Cargo_House_V4_F"];
+			opforcavecs = ["O_Truck_02_transport_F", "O_APC_Wheeled_02_rcws_F", "O_LSV_02_armed_F"];
+			opforcahelis = ["O_Heli_Light_02_F", "O_Heli_Transport_04_bench_F"];
+			};
 	};
 cpt_name = "None";
 publicVariable "fobvehicleclassname";
