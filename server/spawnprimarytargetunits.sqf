@@ -28,6 +28,12 @@ if ((worldname in ["Altis", "altis", "Tanoa", "tanoa"]) and (_pt_type == 2)) the
 		case "La Rochelle Aerodrome": {_composition = la_rochelle_composition};
 		case "Bala Airstrip": {_composition = bala_composition};
 		case "Tuvanaka Airbase": {_composition = tuvanaka_composition};
+		case "Arnoldstein Airport": {composition = arnold_composition};
+		case "Airport Lesce": {composition = lesce_composition};
+		case "Airbase Boriana": {composition = boriana_composition};
+		case "Maleficio Grass Strip": {composition = maleficio_composition};
+		case "Airport Vatra": {composition = vatra_composition};
+		case "Airport Fortieste": {composition = fortieste_composition};
 		};
 	_allcompositionunits = [_pt_pos, 0, _composition] call tky_fnc_t_objectsmapper;
 	_compgrp = creategroup [east, true];
