@@ -262,21 +262,16 @@ __tky_debug
 {
 	if ((side _x) isEqualTo east) then
 		{
-		_mygroup = _x;
-		[_mygroup, true, true] call tky_fnc_tc_setskill;
-		if (_removeenemyvests > 0) then
+			_mygroup = _x;
 			{
+				[_mygroup, true, true] call tky_fnc_tc_setskill;
+				if ((_removeenemyvests > 0) and {(random 1) > 0.2}) then
 				{
-				if (_removeenemyvests < 0)  then
-				    {
-				    if (random 1 > 0.3) then
-						{
-						removeVest _x;
-						_x setDamage 0.5;
-						};
-					};
-				} foreach units _mygroup;
-			};
+					removeVest _x;
+					_x setDamage 0.5;
+					_x removeItems "FirstAidKit";
+				};
+			} foreach units _mygroup;
 		};
 } foreach allgroups;
 __tky_debug
