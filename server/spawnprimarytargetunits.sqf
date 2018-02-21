@@ -268,7 +268,7 @@ __tky_debug
 				if ((_removeenemyvests > 0) and {(random 1) > 0.2}) then
 				{
 					removeVest _x;
-					_x setDamage 0.5;
+					_x setDamage 0.3;
 					_x removeItems "FirstAidKit";
 				};
 			} foreach units _mygroup;
