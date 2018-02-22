@@ -267,9 +267,13 @@ __tky_debug
 				[_mygroup, true, true] call tky_fnc_tc_setskill;
 				if ((_removeenemyvests > 0) and {(random 1) > 0.2}) then
 				{
-					removeVest _x;
+					//removeVest _x;
 					_x setDamage 0.3;
 					_x removeItems "FirstAidKit";
+					_x addEventHandler ["HandleDamage",{
+														_damage = (_this select 2)*2;
+														_damage
+														}];
 				};
 			} foreach units _mygroup;
 		};
@@ -285,7 +289,7 @@ __tky_debug
 				while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
 					{
-					sleep 120 + (60 * random 10) ;
+					sleep 240 + (60 * random 10) ;
 					_nearblufors = ((position _mygunner) nearEntities ["B_Soldier_base_f", 400]) select {(side _x) == west} ;
 					if ((count _nearblufors) > 0) then
 						{
