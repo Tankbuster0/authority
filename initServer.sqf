@@ -47,7 +47,7 @@ pdflag = false;
 		};
 	};
 __tky_debug
-if ((tolower worldName) in ["altis", "tanoa"]) then
+if ((tolower worldName) in ["altis", "tanoa", "panthera3"]) then
 	{
 		diag_log "*** mission uses existing targetdata file";
 		_airportlogicgroup = createGroup logiccenter;
