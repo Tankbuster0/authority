@@ -289,13 +289,13 @@ __tky_debug
 				while {(alive _mygunner) and ("8Rnd_82mm_Mo_shells" in (getArtilleryAmmo [(vehicle _mygunner)]))} do
 
 					{
-					sleep 240 + (60 * random 10) ;
-					_nearblufors = ((position _mygunner) nearEntities ["B_Soldier_base_f", 400]) select {(side _x) == west} ;
+					sleep 240 + (120 * random 10) ;
+					_nearblufors = ((position _mygunner) nearEntities ["B_Soldier_base_f", 400]) select {(side _x) isEqualTo west} ;
 					if ((count _nearblufors) > 0) then
 						{
 						_artytarget = (selectRandom _nearblufors);
-						_mygunner reveal [_artytarget, 3];
-						_mygunner doArtilleryFire [(position _artytarget), "8Rnd_82mm_Mo_shells", 1 ];
+						//_mygunner reveal [_artytarget, 3];
+						_mygunner doArtilleryFire [(_artytarget getpos [(5 + (random 10)), random 360]), "8Rnd_82mm_Mo_shells", 1 ];
 						};
 					};
 
