@@ -271,7 +271,7 @@ __tky_debug
 					_x setDamage 0.3;
 					_x removeItems "FirstAidKit";
 					_x addEventHandler ["HandleDamage",{
-														_damage = (_this select 2)*2;
+														_damage = (_this select 2) * (1 + (random 1.5));
 														_damage
 														}];
 				};
