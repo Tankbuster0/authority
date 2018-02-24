@@ -96,7 +96,7 @@ while {missionactive} do
 		missionactive = false; publicVariable "missionactive";
 		missionsuccess = false; publicVariable "missionsuccess";
 		failtext = "One of the convoy vehicles has been destroyed. Mission failed"; publicVariable "failtext";
-		}
+		};
 
 	if ( (count ((vehicles inAreaArray [cpt_position, 75,75,0, false, 5]) select {_x in _smcleanup})) isEqualTo (count _smcleanup) ) then
 		{// all cleanup vehicles get into a 75m circle at the centre of the town marker. check 75 is radius or circumference
