@@ -109,7 +109,8 @@ civs = ["C_man_1","C_man_1_1_F","C_man_1_2_F","C_man_1_3_F","C_man_polo_1_F","C_
 	   "C_man_p_shorts_1_F_asia","C_man_shorts_1_F","C_man_shorts_1_F_afro","C_man_shorts_1_F_euro","C_man_shorts_1_F_asia","C_man_shorts_2_F","C_man_shorts_2_F_afro","C_man_shorts_2_F_euro","C_man_shorts_2_F_asia",
 	   "C_man_shorts_3_F","C_man_shorts_3_F_afro","C_man_shorts_3_F_euro","C_man_shorts_3_F_asia","C_man_shorts_4_F","C_man_shorts_4_F_afro","C_man_shorts_4_F_euro","C_man_shorts_4_F_asia"];// all the civs apart from named and story related ones
 civcars = ["C_Offroad_01_F","C_Hatchback_01_F", "C_Hatchback_01_F", "C_Hatchback_01_sport_F","C_SUV_01_F","C_Offroad_02_unarmed_F", "I_C_Offroad_02_unarmed_F"];
-
+vips = ["C_journalist_F","C_scientist_F","C_Man_Messenger_01_F","C_Nikos_aged","C_Man_Paramedic_01_F"];
+vipdestinations = ["Land_Hotel_01_F", "Land_Hotel_02_F","Land_GH_Gazebo_F","Land_GH_MainBuilding_middle_F","Land_MilOffices_V1_F", "Land_Dome_Big_F", "Land_Dome_Small_F", "Land_Research_HQ_F", "Land_Stadium_p4_F", "Land_Supermarket_01_F","Land_Supermarket_01_malden_F","Land_Monument_01_F", "Land_Castle_01_tower_F","Land_Kiosk_redburger_F","Land_Offices_01_V1_F","Land_Factory_Main_F"];
 opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];
 opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F", "O_Plane_Fighter_02_F"];
