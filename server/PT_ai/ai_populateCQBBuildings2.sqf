@@ -74,7 +74,7 @@ _elligableTripMineBuildings = [
 ["Land_Shop_Town_03_F", [[[2.8,-6.1,-3],0], [[-3.2,-6.1,-3],0] ,[[-3,7.7,-3],0]]],
 ["Land_Shop_Town_01_F", [[[0,-4.1,-3],0], [[-1.8,5.9,-3],0] ]],
 ["Land_u_House_Small_02_V1_F", [[[-3.2,-1.6,-2.2],0]]],
-["Land_i_Stone_HouseSmall_V2_F",[[[-7.9,-0.5,-0.3],0], [[7.1,-0.25,-0.25]0]]],
+["Land_i_Stone_HouseSmall_V2_F",[[[-7.9,-0.5,-0.3],0], [[7.1,-0.25,-0.25],0]]],
 ["Land_i_House_Small_02_V3_F", [[[-2.8,-1.4,-0.1], 90]]],
 ["Land_i_Stone_HouseSmall_V1_F",[[[-7.6,-0.3,-0.2],0], [[7.,-0.4,-0.2],0]]],
 ["Land_i_House_Small_02_V2_F",[[[-3.1,-1.7,-0.5],0]]],
@@ -109,7 +109,7 @@ _currentTripMinesBuild = 0;
 				{
 					_mymine = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
 					//diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];
-					//[getpos _m] execVM "server\Debug\debug_makemarker.sqf";
+					if (testmode) then {[getpos _m] execVM "server\Debug\debug_makemarker.sqf";};
 					_mindist = 10;
 					_nearestdoor = objNull;
 					{
