@@ -219,7 +219,7 @@ class Params
 			texts[] = {"Few", "Normal", "Lots"};
 		};
 			class removeenemyvests {
-			title = "Remove enemy vests (makes them easier to kill)";
+			title = "AI reduced armour (makes them easier to kill)";
 			values[] = {0,1,2};
 			default = 1;
 			texts[] = {"No", "Random for some AI", "Yes"};
