@@ -7,7 +7,7 @@ missionsuccess = false; publicVariable "missionsuccess";
 
 _myvip = selectrandom vips;
 
-_buildings1 = (nearestterrainobjects [alpha_1, ["house", "church", "chapel", "tourism"], 10000, false,true]) select {(sizeof (typeof _x) > 28) and (count (_x buildingpos -1) > 13)};
+_buildings1 = (nearestterrainobjects [cpt_position, ["house", "church", "chapel", "tourism"], 5000, false,true]) select {(sizeof (typeof _x) > 28) and (count (_x buildingpos -1) > 13)};
 diag_log format ["***b1 counts %1", count _buildings1];
 _buildings2 = _buildings1 select {
 		(((str _x) find "bagasse") isequalto -1) and
