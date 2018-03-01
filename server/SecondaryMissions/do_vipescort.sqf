@@ -18,7 +18,14 @@ _buildings2 = _buildings1 select {
 		(((str _x) find "storagetank") isequalto -1) and
 		(((str _x) find "hangar") isequalto -1)
 		 };
-diag_log format ["***bb2 counts %1", _buildings2];
+if ((count _buildings2 ) > 100) then
+	{
+		_buildings2 = _buildings2 select {(((str _x) find "warehouse") isEqualTo -1)};
+		_buildings2 = _buildings2 select {(((str _x) find "barracks") isEqualTo -1)};
+		diag_log format ["***lots of buildings so removed the warehouses and barracks"];
+	};
+diag_log format ["***bb2 counts %1", count _buildings2];
+/*
 _buildings3 = [];
 {
 _buildings3 pushBack ([_x] call tky_fnc_stripidandcolonandspace);
@@ -36,7 +43,11 @@ diag_log format ["*** b5 post sort is %1", _buildings5];
 {
 	diag_log format ["%1", _x];
 } foreach _buildings5;
+*/
+_potdests = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
 
+
+_dest = selectrandom _buildings2;
 sleep 5;
 
 smmissionstring = format ["There's a %1 waiting at the airhead. The enemy reserves are attacking %1. Get your forces organised there and kill them all. Expect mostly mechanised infantry and perhaps an aircraft or two.", cpt_name];
