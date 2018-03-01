@@ -7,7 +7,8 @@ missionsuccess = false; publicVariable "missionsuccess";
 
 _myvip = selectrandom vips;
 
-_buildings1 = (nearestterrainobjects [player, ["house"], 10000, false,true]) select {(sizeof (typeof _x) > 28) and (count (_x buildingpos -1)> 17)};
+_buildings1 = (nearestterrainobjects [alpha_1, ["house", "church", "chapel", "tourism"], 10000, false,true]) select {(sizeof (typeof _x) > 28) and (count (_x buildingpos -1) > 13)};
+diag_log format ["***b1 counts %1", count _buildings1];
 _buildings2 = _buildings1 select {
 		(((str _x) find "bagasse") isequalto -1) and
 		(((str _x) find "pier") isequalto -1) and
@@ -17,20 +18,24 @@ _buildings2 = _buildings1 select {
 		(((str _x) find "storagetank") isequalto -1) and
 		(((str _x) find "hangar") isequalto -1)
 		 };
+diag_log format ["***bb2 counts %1", _buildings2];
 _buildings3 = [];
 {
 _buildings3 pushBack ([_x] call tky_fnc_stripidandcolonandspace);
 } foreach _buildings2;
-
-_buildings4 = [_buildings3] call BIS_fnc_consolidateArray;
+diag_log format ["***b3 is %1", _buildings3];
+_buildings4 = _buildings3 call BIS_fnc_consolidateArray;
+diag_log format ["***b4 is %1", _buildings4];
 _buildings5 = [];
 {
 	_buildings5 pushback [(_x select 1), (_x select 0)];
 } foreach _buildings4;
-_buildings4 sort true;
+diag_log format ["***b5 preseroted is %1", _buildings5];
+_buildings5 sort true;
+diag_log format ["*** b5 post sort is %1", _buildings5];
 {
 	diag_log format ["%1", _x];
-} foreach _buildings4;
+} foreach _buildings5;
 
 sleep 5;
 
