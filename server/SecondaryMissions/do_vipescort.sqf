@@ -44,7 +44,7 @@ diag_log format ["*** b5 post sort is %1", _buildings5];
 	diag_log format ["%1", _x];
 } foreach _buildings5;
 */
-_potdests = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
+_potdests = (cpt_position nearEntities ["Logic", 7000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 1000}};
 
 
 _dest = selectrandom _buildings2;
