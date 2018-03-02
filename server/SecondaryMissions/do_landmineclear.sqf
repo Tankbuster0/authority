@@ -49,7 +49,7 @@ for "_minecounter" from 1 to _numberofmines do
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-smmissionstring = format ["Local elders have told us there's a minefield %1m %2of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this. Take a mine detector and a toolkit. (When you see the mine, you must 'reveal' it. Defautl key is 't')", _mfdist, _mfreldir];
+smmissionstring = format ["Local elders have told us there's a minefield %1m %2 of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this. Take a mine detector and a toolkit. (When you see the mine, you must 'reveal' it. Default key is 't')", _mfdist, _mfreldir];
 publicVariable "smmissionstring";
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 //
