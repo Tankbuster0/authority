@@ -427,5 +427,12 @@ __tky_debug
 				};
 			};
 	};
+{
+	if ((cpt_position distance2d _x) > (cpt_radios + 100)) then
+		{
+			diag_log format ["%1 too far outside the target (%2m), so destroying it now", _x, (_x distance cpt_position)];
+			_x setdamage 1;
+		};
+} foreach [pt_radar, pt_hq];
 handle_spt_finished = true;
 __tky_ends
