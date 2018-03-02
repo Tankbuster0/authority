@@ -94,14 +94,14 @@ tky_fnc_fleet_heli_vtols =
 	{
 	private ["_wvecs","_whelivtols"];
 	_wvecs = vehicles select {(faction _x) in ["BLU_F", "BLU_T_F", "CIV_F"] and {(alive _x) and ((fuel _x) > 0.3) and ((damage _x) < 0.3)}};
-	_whelivtols = _wvecs select	{( ((typeof _x) isKindof  "Helicopter_Base_F") or ((typeof _x) isKindof  "VTOL_Base_F") )	};
+	_whelivtols = _wvecs select	{( (_x isKindof  "Helicopter_Base_F") or ( _x isKindof  "VTOL_Base_F") )	};
 	_whelivtols
 	};
 tky_fnc_fleet_boats =
 	{
 	private ["_wvecs","_wboats"];
 	_wvecs = vehicles select {(faction _x) in ["BLU_F", "BLU_T_F", "CIV_F"] and {(alive _x) and ((fuel _x) > 0.3) and ((damage _x) < 0.3)}};
-	_wboats = _wvecs select	{ (typeof _x) isKindof  "Ship_F" };
+	_wboats = _wvecs select	{ _x isKindof  "Ship_F" };
 	_wboats
 	};
 //  _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
