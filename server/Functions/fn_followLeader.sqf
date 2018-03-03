@@ -2,14 +2,15 @@
 #include "..\includes.sqf"
 _myscript = "fn_followleader";
 __tky_starts
-private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer"];
+private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer", "_mytext"];
 /* custom AI for hostages. possible modes are captured, waiting, following, getin, invec and rescued and getout*/
 _myhostage = _this select 0;
+_mytext = _this select 1;
 _mode = "captured";
 diag_log format ["*** fn_fl gets %1", _myhostage];
 [
 	_myhostage,
-	"Free Hostage",
+	_mytext,
 	"\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_unbind_ca.paa",
 	"\a3\ui_f\data\IGUI\Cfg\HoldActions\holdAction_unbind_ca.paa",
 	"(_this distance2D _target) < 3",
@@ -21,6 +22,7 @@ diag_log format ["*** fn_fl gets %1", _myhostage];
 		(_this select 0) enableAI "ALL";
 		[_this select 0, "safe"] remoteExec ["setBehaviour", 2, false];
 		(_this select 0) setUnitPos "UP";
+		(_this select 0) setCaptive false;
 	},
     {},
     [],
@@ -29,8 +31,8 @@ diag_log format ["*** fn_fl gets %1", _myhostage];
     true,
     false
 ] remoteExec ["BIS_fnc_holdActionAdd",[0,-2] select isDedicated,true];
-sleep 1;
-waitUntil {sleep 1; ((behaviour _myhostage) == "safe")};
+sleep 5;
+waitUntil {sleep 1; (((behaviour _myhostage) == "safe") or  (not (captive _myhostage)))};
 _rescuer = (_myhostage nearEntities ["SoldierWB", 4]) select 0;
 _myhostage enableAI "ALL";
 _myhostage doMove (getPosATL _rescuer);

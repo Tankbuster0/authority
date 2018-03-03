@@ -53,7 +53,7 @@ for "_i" from 0 to (_numHostages - 1) do
 	diag_log format ["***dhr makes %1, %2, %3", _i, _hostage, name _hostage, typeOf _hostage];
 
 
-	[_hostage] spawn tky_fnc_followLeader;
+	[_hostage, "Free hostage"] spawn tky_fnc_followLeader;
 };
 private _hostagePos = getPosATL hostage0;
 private _alarmSpeakers = createVehicle ["Land_Loudspeakers_F", _spawnPos, [], 0, "CAN_COLLIDE"];
