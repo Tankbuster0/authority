@@ -4,10 +4,18 @@ _myscript = "do_vipescort";
 __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
-private ["_myvip","_potdesttowns","_potdestowns","_thistown","_buildings1","_buildings2","_podests","_vipdest","_vipdestactual","_buildings3","_buildings4","_buildings5","_smcleanup"];
-_podests = [];
-_myvip = selectrandom vips;
+private ["_myvip","_vipclass","_potdesttowns","_potdestowns","_thistown","_buildings1","_buildings2","_podests","_vipdest","_vipdestactual","_buildings3","_buildings4","_buildings5","_smcleanup", "_vipgroup"];
+_podests = []; _smcleanup = [];
+_vipgroup = createGroup [west, true];
+_vipclass = selectrandom vips;
 
+_myvip = _vipgroup createUnit [_vipclass, blubasesink,[],0, "FORM"];
+[_myvip, (format ["vip%1", 1])] call fnc_setVehicleName;
+_myvip disableAI "ALL";
+_myvip setCaptive true;
+_myvip setBehaviour "Careless";
+[_myvip, "Collect VIP", false] spawn tky_fnc_followLeader;
+_smcleanup pushBack _myvip;
 _potdesttowns = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 1000}};
 if ((call tky_fnc_fleet_heli_vtols) isEqualTo []) then
 	{
@@ -46,45 +54,24 @@ smmissionstring = format ["There's a VIP %1 waiting at the airhead. We must get 
 
 
 
-
-/*
-_buildings3 = [];
-{
-_buildings3 pushBack ([_x] call tky_fnc_stripidandcolonandspace);
-} foreach _buildings2;
-diag_log format ["***b3 is %1", _buildings3];
-_buildings4 = _buildings3 call BIS_fnc_consolidateArray;
-diag_log format ["***b4 is %1", _buildings4];
-_buildings5 = [];
-{
-	_buildings5 pushback [(_x select 1), (_x select 0)];
-} foreach _buildings4;
-diag_log format ["***b5 preseroted is %1", _buildings5];
-_buildings5 sort true;
-diag_log format ["*** b5 post sort is %1", _buildings5];
-{
-	diag_log format ["%1", _x];
-} foreach _buildings5;
-*/
-
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
 
 
 while {missionactive} do
 	{
-
-		if (FALSE) then// failure. enemy get a vehicle or aircraft into the middle of the town
-			{// currently, there's no failure condition for this
+		sleep 2;
+		if (not(alive _myvip)) then
+			{
+			failtext = "The VIP died before getting to his destination. Mission failed.";
 			missionsuccess = false;
 			missionactive = false;
 			};
-		if (FALSE) then // success. all or most enemy forces are destroyed
+		if ([_myvip,_vipdest] call tky_fnc_pointisinbox) then // vip gets to building. win.
 			{
 			missionsuccess = true;
 			missionactive = false;
-			"Your team defeated the attack. Good work guys." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
-			{_x setDamage 1;} forEach caunits;
+			"The VIP got there safely! Good work, team." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 			};
 	};
 publicVariable "missionsuccess";
