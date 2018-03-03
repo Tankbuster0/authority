@@ -244,3 +244,14 @@ tky_fnc_isNumInRangeDegrees = {//thanks to Grumpy Old Man, pierreMGI and HallyG!
 	//systemchat format ["Result: %1", ["False","True"] select _result];
 	_result
 };
+
+tky_fnc_pointIsInBox = {// original by pedeathtrian. returns true if unit is in objs bounding box
+	params ["_unit","_obj"];
+	_uPos = _obj worldToModel (getPos _unit);
+	_oBox = boundingBoxReal _obj;
+	_inHelper = {
+		params ["_pt0", "_pt1"];
+		(_pt0 select 0 <= _pt1 select 0) && (_pt0 select 1 <= _pt1 select 1) && (_pt0 select 2 <= _pt1 select 2)
+	};
+	([_oBox select 0, _uPos] call _inHelper) && ([_uPos, _oBox select 1] call _inHelper)
+};
