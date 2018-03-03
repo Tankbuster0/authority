@@ -6,6 +6,7 @@ private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopos
 /* custom AI for hostages. possible modes are captured, waiting, following, getin, invec and rescued and getout*/
 _myhostage = _this select 0;
 _mytext = _this select 1;
+_destinationisbase = _this select 2;
 _mode = "captured";
 diag_log format ["*** fn_fl gets %1", _myhostage];
 [
@@ -20,8 +21,8 @@ diag_log format ["*** fn_fl gets %1", _myhostage];
    	{
 	    [(_this select 0), ""] remoteExec ["switchMove", 0, false];
 		(_this select 0) enableAI "ALL";
-		[_this select 0, "safe"] remoteExec ["setBehaviour", 2, false];
-		(_this select 0) setUnitPos "UP";
+		[_this select 0, "safe"] remoteExec ["setBehaviour", 0, false];
+		(_this select 0) setUnitPos "AUTO";
 		(_this select 0) setCaptive false;
 	},
     {},
@@ -43,7 +44,7 @@ _cargopositions = 0;
 _myhostage allowFleeing 0;
 while {missionactive} do
 {
-	sleep 2;
+	sleep 4;
 	//set waiting criteria. set after a failed getin, or after rescuer dies or quits
 	if ((not alive _rescuer) or ((_myhostage distance2D _rescuer) > 100) ) then
 		{// rescuer dies or runs away (or drives away)
@@ -64,7 +65,7 @@ while {missionactive} do
 		{// is actually in vec
 			_mode = "invec";
 		};
-	if ((_myhostage inArea "headmarker1") and {isNull objectParent _myhostage}) then
+	if (_destinationisbase and {(_myhostage inArea "headmarker1") and (isNull objectParent _myhostage)}) then
 		{// safely at base and out of vehicle
 			_mode = "rescued";
 		};
@@ -133,7 +134,7 @@ while {missionactive} do
 	};
 	if (testmode) then
 	{
-		diag_log format ["*** %1 is mode %2 and assigned to %5. Rescuer is %3 who is in the  %4 vehicle, %5 ", _myhostage, _mode,name _rescuer, _rescuevec, _rescuerinvec, assignedVehicle _myhostage];
+		diag_log format ["*** %1 is mode %2  Rescuer is %3 who is %5 in the  %4 vehicle, %5 ", _myhostage, _mode,name _rescuer, _rescuevec, _rescuerinvec, assignedVehicle _myhostage];
 	};
 };
 __tky_ends
