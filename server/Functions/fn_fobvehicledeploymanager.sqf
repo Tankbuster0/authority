@@ -114,14 +114,6 @@ else
 		"Removing FOB" remoteexec ["hint", fobveh];
 		sleep 1;
 		fobdeployed = false;
-		_nrobjs = fobflagpole nearObjects 32;
-		_nrtrgs = _nrobjs select {((getdir _x) < 334) or ((getDir _x) > 332) };
-		// gvs triggers are setdir 333 to distinguish them from other triggers. dont want to delete those by accident. this doesnt work stilll :(
-		if ((count _nrtrgs) > 0) then
-			{
-				deleteVehicle (_nrtrgs select 0);
-				diag_log format ["*** fvdm found a trigger and is deleting it!"];
-			};
 		[fobveh, false] remoteexec ["lockdriver"];
 		fobveh setHitPointDamage ["HitEngine", 0 ];
 		fobrespawnpositionid call BIS_fnc_removeRespawnPosition;
