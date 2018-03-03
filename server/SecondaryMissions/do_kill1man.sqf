@@ -57,7 +57,7 @@ _kill1types =
 		],
 		["bom",
 			["house"],
-			["Land_Warehouse_03_F", "Land_Warehouse_01_F", "Land_Warehouse_02_F", "Land_SCF_01_warehouse_F"],
+			["Land_Warehouse_03_F", "Land_Warehouse_01_F", "Land_Warehouse_02_F", "Land_SCF_01_warehouse_F","Land_i_Shed_Ind_F","Land_WIP_F","Land_u_Shed_Ind_F","Land_Factory_Main_F"],
 			8,false, true, false, false, false,
 			["I_G_Soldier_exp_F"], "",
 			["I_G_Soldier_GL_F", "I_G_Soldier_GL_F","I_G_Soldier_GL_F","I_G_Soldier_GL_F", "I_G_medic_F"],
