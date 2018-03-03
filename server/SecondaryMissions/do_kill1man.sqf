@@ -66,7 +66,7 @@ _kill1types =
 		],
 		["esab",
 			["power lines", "house"],
-			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F", "Land_PowerLine_01_pole_junction_F"],
+			["Land_PowerLine_01_pole_transformer_F", "Land_PowerLine_01_pole_tall_F", "Land_HighVoltageTower_F", "Land_HighVoltageTower_large_F", "Land_PowLines_Transformer_F", "Land_spp_Transformer_F", "Land_PowerLine_01_pole_junction_F","Land_DPP_01_transformer_F","Land_DPP_01_waterCooler_F"],
 			-1,false, false, true, false, false,
 			["I_C_Soldier_Para_8_F"], "_this doMove (getpos _mybld)",
 			[],
