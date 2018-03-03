@@ -149,6 +149,14 @@ __tky_debug
 0 = execVM "server\PT_ai\ai_reinforcementChoppermanager.sqf";
 0 = execVM "server\PT_ai\ai_airsupportmanager.sqf";
 0 = execVM "server\killlastfewai.sqf";
+
+{
+	if ((cpt_position distance2d _x) > (cpt_radius + 100)) then
+		{
+			diag_log format ["%1 too far outside the target (%2m), so destroying it now", _x, (_x distance cpt_position)];
+			_x setdamage 1;
+		};
+} foreach [pt_radar, pt_hq];
 //stuff that needs to be check constantly runs here
 
 __tky_ends
