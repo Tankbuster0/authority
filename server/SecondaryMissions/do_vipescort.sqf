@@ -5,7 +5,7 @@ __tky_starts;
 missionactive = true; publicVariable "missionactive";
 missionsuccess = false; publicVariable "missionsuccess";
 private ["_myvip","_potdesttowns","_potdestowns","_thistown","_buildings1","_buildings2","_podests","_vipdest","_vipdestactual","_buildings3","_buildings4","_buildings5","_smcleanup"];
-
+_podests = [];
 _myvip = selectrandom vips;
 
 _potdesttowns = (cpt_position nearEntities ["Logic", 5000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 1000}};
@@ -15,10 +15,11 @@ if ((call tky_fnc_fleet_heli_vtols) isEqualTo []) then
 		diag_log format ["***dvipe says team have no helis so only selecting dests on same island"];
 	};
 //^^ towns we could use.. now find a building near one of them
+diag_log format ["***possible towns count is %1", count _potdesttowns];
 {
 	_thistown = _x;
 	_buildings1 = (nearestterrainobjects [_thistown, ["house", "church", "chapel", "tourism"], 300, false,true]) select {(sizeof (typeof _x) > 28) and (count (_x buildingpos -1) > 13)};
-	diag_log format ["***b1 counts %1", count _buildings1];
+	diag_log format ["***b1 counts %1 houses, churches, chapels and tourisms in %2", count _buildings1, _thistown getVariable "targetname"];
 	_buildings2 = _buildings1 select {
 			(((str _x) find "bagasse") isequalto -1) and
 			(((str _x) find "pier") isequalto -1) and
@@ -34,10 +35,8 @@ if ((call tky_fnc_fleet_heli_vtols) isEqualTo []) then
 			_buildings2 = _buildings2 select {(((str _x) find "barracks") isEqualTo -1)};
 			diag_log format ["***lots of buildings so removed the warehouses and barracks"];
 		};
-	diag_log format ["***bb2 counts %1", count _buildings2];
-	_podests pushBack _buildings2;// all the applicable buildings within this town
+	_podests append _buildings2;// all the applicable buildings within this town
 }foreach _potdesttowns;
-
 //_podests should now be a big array of all the applicable buildings inside the towns nearenough and on the appropriate island
 
 _vipdest = selectRandom _podests;
