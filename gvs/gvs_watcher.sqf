@@ -30,18 +30,6 @@ publicVariable "Public_GVS_Delay";
 _current_banned_list = [];
 _countdown_list = [];
 
-_fnc_array_Pop =
-{
-	private["_element", "_size", "_array"];
-
-	_array = _this;
-	_size = count _array;
-	_element = _array select (_size - 1);
-	_array resize (_size - 1);
-
-	_element
-};
-
 while {true} do
 {
 	scopeName "mainloop";
@@ -53,13 +41,13 @@ while {true} do
 			_elements = [];
 			for "_i" from count _current_banned_list to ((count Public_Banned_Vehicle_Service_List) - 1) do
 			{
-				_elements = _elements + [(Public_Banned_Vehicle_Service_List call _fnc_array_Pop)];
+				_elements = _elements + [(Public_Banned_Vehicle_Service_List call BIS_fnc_arrayPop)];
 			};
 			for "_i" from 0 to ((count _elements) - 1) do
 			{
-				[Public_Banned_Vehicle_Service_List, (_elements select _i)] call BIS_fnc_arrayPush;
-				[_current_banned_list, (_elements select _i)] call BIS_fnc_arrayPush;
-				[_countdown_list, RESET_COUNT] call BIS_fnc_arrayPush;
+				Public_Banned_Vehicle_Service_List pushback (_elements select _i);
+				_current_banned_list pushBack (_elements select _i);
+				_countdown_list pushBack RESET_COUNT;
 			};
 			publicVariable "Public_Banned_Vehicle_Service_List";
 			sleep 0.1;
@@ -78,7 +66,7 @@ while {true} do
 			publicVariable "Public_Banned_Vehicle_Service_List";
 			sleep 0.1;
 			_current_banned_list = [_current_banned_list, _i] call BIS_fnc_removeIndex;
-			[_countdowns_to_remove, _i] call BIS_fnc_arrayPush;
+			_countdowns_to_remove pushBack _i;
 			breakTo "mainloop";
 		} else
 		{
