@@ -212,7 +212,14 @@ tky_fnc_isNumInRangeDegrees = {//thanks to Grumpy Old Man, pierreMGI and HallyG!
 
 tky_fnc_pointIsInBox = {// original by pedeathtrian. returns true if unit is in objs bounding box
 	params ["_unit","_obj"];
-	_uPos = _obj worldToModel (getPos _unit);
+	private ["_pos"];
+	switch (typename _unit) do
+		{
+			case "STRING": {_pos = getMarkerPos _unit};
+			case "OBJECT": {_pos = getpos _unit};
+			case "ARRAY": {_pos = _unit};
+		};
+	_uPos = _obj worldToModel _pos;
 	_oBox = boundingBoxReal _obj;
 	_inHelper = {
 		params ["_pt0", "_pt1"];
