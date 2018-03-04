@@ -8,7 +8,6 @@ _myhostage = _this select 0;
 _mytext = _this select 1;
 _destinationisbase = _this select 2;
 _mode = "captured";
-diag_log format ["*** fn_fl gets %1", _myhostage];
 [
 	_myhostage,
 	_mytext,

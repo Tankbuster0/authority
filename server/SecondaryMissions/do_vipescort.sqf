@@ -8,7 +8,6 @@ private ["_myvip","_vipclass","_potdesttowns","_potdestowns","_thistown","_build
 _podests = []; _smcleanup = [];
 _vipgroup = createGroup [west, true];
 _vipclass = selectrandom vips;
-
 _myvip = _vipgroup createUnit [_vipclass, blubasesink,[],0, "FORM"];
 [_myvip, (format ["vip%1", 1])] call fnc_setVehicleName;
 _myvip disableAI "ALL";
@@ -46,18 +45,10 @@ diag_log format ["***possible towns count is %1", count _potdesttowns];
 	_podests append _buildings2;// all the applicable buildings within this town
 }foreach _potdesttowns;
 //_podests should now be a big array of all the applicable buildings inside the towns nearenough and on the appropriate island
-
 _vipdest = selectRandom _podests;
-_vipdestactual = typeOf _vipdest;
-
 smmissionstring = format ["There's a VIP %1 waiting at the airhead. We must get him safely to the %2 %3. Air, road or sea - don't care how you do it, just make it happen!", ([_myvip]call tky_fnc_getscreenname), ([_vipdest] call tky_fnc_getscreenname), [_vipdest] call tky_fnc_distanddirfromtown];
-
-
-
 smmissionstring remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
 publicVariable "smmissionstring";
-
-
 while {missionactive} do
 	{
 		sleep 2;
