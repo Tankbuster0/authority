@@ -72,7 +72,7 @@ forward setObjectTextureGlobal [0,"a3\soft_f_exp\lsv_01\data\nato_lsv_01_dazzle_
 [forward, "forward"] call fnc_setVehicleName;
 
 forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fnc_addrespawnposition;
-
+/*
 {
 	_tmp = Forward call compile format [ "get%1Cargo _this", _x ];
 	_unique = [];
@@ -83,7 +83,7 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 	}forEach _tmp;
 	//CQBCleanupArr pushBack _unique;
 }forEach [ "backpack", "item", "magazine", "weapon" ];
-
+*/
 // Take out advanced ammo types;
 Arty removeMagazinesTurret ["2Rnd_155mm_Mo_Cluster",[0]];
 Arty removeMagazinesTurret ["6Rnd_155mm_Mo_AT_mine",[0]];
