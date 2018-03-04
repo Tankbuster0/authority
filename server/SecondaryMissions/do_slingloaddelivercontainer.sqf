@@ -46,7 +46,7 @@ _smgrp2 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla
 {if ((vehicle _x) isKindOf "LandVehicle") then {(vehicle _x) setfuel 0}} foreach (units _smgrp1);
 if ((count _hurons) > 0) then //players already have a huron, don't give them another one
 	{
-	"Use your Blackfish helicopter to airlift the container." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
+	"Use your Blackfish helicopter to slingload the container." remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 	}
 	else
 	{

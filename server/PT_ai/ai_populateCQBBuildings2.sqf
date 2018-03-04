@@ -17,7 +17,6 @@ if ((count _nreadblds1) < 8) then
 		_nreadblds1 = ((_cqbcentrepos) nearObjects ["house", _cqbradius + 15]) select {((count (_x buildingpos -1)) > 4)};
 		diag_log format ["***pcqb2 got few buildings to populate, so increased radius and allowed smaller buildings"];
 	};
-diag_log format ["*** found %1 blds have enough poses ", count _nreadblds1];
 _nreadblds2 = _nreadblds1 call BIS_fnc_arrayShuffle;
 if (count _nreadblds2 > 20) then
 	{
@@ -54,7 +53,6 @@ if (count _nreadblds2 > 20) then
 			} foreach _cqbbldposs1;
 		};
 } foreach _nreadblds2;
-diag_log format ["*** aicqb2 starts tripmine stuff"];
 _elligableTripMineBuildings = [
 ["Land_i_House_Big_01_V2_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]],
 ["Land_u_House_Big_01_V1_F",[[[-0.8,-5.5,-2.5], - 90],[[4.5,5,-2.5], + 90]]],

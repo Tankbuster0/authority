@@ -50,8 +50,6 @@ for "_i" from 0 to (_numHostages - 1) do
 	_hostages pushBack _hostage;
 	_smcleanup pushBack _hostage;
 	[_hostage, _hostageAnimation] remoteExec ["switchMove", 0, false];
-	diag_log format ["***dhr makes %1, %2, %3", _i, _hostage, name _hostage, typeOf _hostage];
-
 
 	[_hostage, "Free hostage", true] spawn tky_fnc_followLeader;
 };
@@ -81,8 +79,6 @@ _alarmSpeakers addEventHandler ["Hit",
 	_hostagePos set [0, ((_hostagePos select 0) + 2)];
 	_x setPosATL _hostagePos;
 } forEach _hostages;
-diag_log format ["*** dhr says hostages %1", _hostages];
-
 	private _rescuedHostages = 0;
 	while {missionactive} do
 	{
