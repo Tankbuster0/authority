@@ -421,7 +421,7 @@ if (_abort == 0) then
     _oVehicle setAmmoCargo 1;
     _oVehicle setRepairCargo 1;
     [_oVehicle] call tky_fnc_setvehicleloadout;
-    [Public_Banned_Vehicle_Service_List, _vName] call BIS_fnc_arrayPush;
+    Public_Banned_Vehicle_Service_List pushBack _vName;
     publicVariable "Public_Banned_Vehicle_Service_List";
     sleep 0.1;
     _msg = "<br />";
