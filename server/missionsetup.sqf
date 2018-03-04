@@ -81,7 +81,7 @@ forwardrespawnpositionid = [west,"forwardmarker", "Forward Vehicle"] call BIS_fn
 			_unique pushBack _x;
 		};
 	}forEach _tmp;
-	CQBCleanupArr pushBack _unique;
+	//CQBCleanupArr pushBack _unique;
 }forEach [ "backpack", "item", "magazine", "weapon" ];
 
 // Take out advanced ammo types;
