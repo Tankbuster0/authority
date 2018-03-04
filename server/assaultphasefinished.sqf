@@ -3,7 +3,7 @@
 _myscript = "assaultphasefinished.sqf";
 __tky_starts;
 private ["_ruinstartcount","_ruinendcount","_heartandmindscore","_sm_required","_sm_hint","_smmhandle", "_handle2", "_handle4"];
-
+{deletevehicle _x} foreach pt_mines;
 if (primarytargetcounter isEqualTo 1) then
 	{
 	taskbool = [taskname, "SUCCEEDED", true] call bis_fnc_taskSetState;
