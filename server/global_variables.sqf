@@ -686,5 +686,5 @@ blubasecomposition =
 	["Land_PortableLight_double_F",[10.0347,7.68262,3],45.925,1,0,[0,0],"","",true,false],
 	["Land_Cargo_House_V4_F",[11.6802,7.91064,0],0,1,0,[0,0],"","",true,false],
 	["Land_LampHalogen_F",[-14.8652,-2.90723,-8],180,1,0,[0,0],"","",true,false],
-	["Land_JumpTarget_F",[0.0429688,25.0684,0],0,1,0,[0,0],"blubasehelipad","",true,false],
+	["Land_JumpTarget_F",[0.0429688,25.0684,0],0,1,0,[0,0],"blubasehelipad","",true,false]
 ];

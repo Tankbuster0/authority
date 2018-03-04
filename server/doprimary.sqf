@@ -3,7 +3,7 @@
 _myscript = "doprimary.sqf";
 __tky_starts;
 private ["_npt","_handle","_handle1","_flagpos","_t","_mytruck","_radarpos","_radartype","_hqtype","_hqpos","_testradius"];
-vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;
+vehiclecleanup= []; mancleanup = []; roadblockreturndata = nil; roadblockscleared = false;pt_tripmines = [];
 sleep 10;
 __tky_debug
 if !(testmode) then {sleep 40;};

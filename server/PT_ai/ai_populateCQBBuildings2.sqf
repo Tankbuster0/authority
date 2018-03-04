@@ -88,6 +88,7 @@ AM_fnc_CreateMine = {
 	_m = createMine ["APERSTripMine", (_building modelToWorld _localPos) ,[], 0];
 	// Add mine to cleanup array;
 	CQBCleanupArr pushBack _m;
+	pt_tripmines pushback _m;
 	[_m, "mymine"] call fnc_setvehiclename;
 	_minedir = ((getdir _building)+ _dir);
 	[mymine, _minedir] remoteExec ["setdir"];
