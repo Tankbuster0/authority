@@ -6,21 +6,15 @@ private ["_smcleanup","_potentialstarts","_numberoftrucks","_mystart","_nr1","_n
 missionactive = true;missionsuccess = false;_smcleanup = [];
 publicVariable "missionactive"; publicVariable "missionsuccess";
 _potentialstarts = (cpt_position nearEntities ["Logic", 10000]) select {((_x getVariable ["targetstatus", -1]) > -1) and {(_x distance2d cpt_position) > 2500} and ((_x getvariable "targetlandmassid") isEqualTo cpt_island)};
-diag_log format ["*** dbcta gets _potentialstarts count %1", count _potentialstarts];
 _numberoftrucks = 2 + (floor ((playersNumber west) /3)) min 5;
 _mystart = selectRandom _potentialstarts;
-diag_log format ["*** dbcta gets chooses %1 which is %2", _mystart, _mystart getVariable "targetname"];
 _nr1 = _mystart nearroads 2000;// all thr roads nearby
-diag_log format ["*** dbcta gets nearby rps %1", _nr1];
 _nr2 = _nr1 select {(count (roadsConnectedTo _x )) isEqualTo 1 }; // all the roads that have only 1 connection, ie, are dead ends
-diag_log format ["*** dbcta gets deadends %1", _nr2];
 _nr3 = selectRandom _nr2;// take an random dead end piece
-diag_log format ["*** dbcta chooses rp %1", _nr3];
 _trucks = selectRandom blufortrucktypes;
-diag_log format ["***dbcta chooses %1 truck types", _trucks];
 _trucktype = selectRandom _trucks;
-diag_log format ["***dbcta going to spawn lead vehicle, a %1 at %2", _trucktype, getpos _nr3];
 _vec0 = createVehicle [_trucktype, getpos _nr3, [],0,"NONE"];
+[_vec0] call tky_fnc_initvehicle;
 _smcleanup pushback _vec0;
 _vec0 setdir ( _vec0 getdir ((roadsConnectedTo _nr3) select 0) ); // we know theres a roadconnectedto so orient the vehicle towards it
 _nextposa = _vec0 modeltoworld [0, 22, 0]; //look 22m infront
@@ -28,7 +22,6 @@ _prevpos = getpos _nr3;
 _prevroadpiece = _nr3;
 for "_i" from 2 to _numberoftrucks do
 	{
-	diag_log format ["*** dbcta inside loop %1 of %2", _i, _numberoftrucks];
 	_nearroadstopos = _nextposa nearRoads 15;// get rp near the position in front of the previous truck
 	_nearroadstopos = _nearroadstopos - [_prevroadpiece];// just in case, remove the previous rp from any found
 	if (_nearroadstopos isEqualTo []) then
@@ -39,8 +32,8 @@ for "_i" from 2 to _numberoftrucks do
 	_nearroadstopos = [_nearroadstopos,[],{_prevpos distance2d _x},"ASCEND"] call BIS_fnc_sortby;// sort them so select 0 is closet to prevpos
 	_nextposb = getpos (_nearroadstopos select 0);// get its position
 	_trucktype = selectRandom _trucks;
-	diag_log format ["***dbcta going to spawn a %1 at %2", _trucktype, _nextposb];
 	_vecx = createVehicle [_trucktype, _nextposb, [],0,"NONE"];
+	[_vecx] call tky_fnc_initvehicle;
 	_vecx setdir (_prevroadpiece getDir _vecx); // set its direction away from the previous truck position
 	_smcleanup pushback _vecx;
 	_nextposa = _vecx modelToWorld [0,22,0]; // get a pos in front of the truck for next iteration
@@ -55,7 +48,7 @@ while {missionactive} do
 	{
 	sleep 3;
 	{// if a vehicle gets out of an 100 circle around mid vehicle
-	if (not (_x inarea [_vecx, 100,100,0,false, -1] )) then
+	if (not (_x inarea [_vecx, 120,120,0,false, -1] )) then
 	 	{
 		missionsuccess = false; publicVariable "missionsuccess";
 		missionactive = false; publicVariable "missionactive";
@@ -63,7 +56,7 @@ while {missionactive} do
 	 	};
 	}forEach _smcleanup;
 	{// if a vehicle gets out of an 80 circle around mid vehicle
-	if ( (not (_x inarea [_vecx, 80,80,0,false, -1] )) and (not((driver _x) isEqualTo objNull )) and (alive (driver _x)) ) then
+	if ( (not (_x inarea [_vecx, 100,100,0,false, -1] )) and (not((driver _x) isEqualTo objNull )) and (alive (driver _x)) ) then
 	 	{
 	 		{
 		 	"You are dropping out of the convoy. Stay together!" remoteExec ["Hint", _x];
