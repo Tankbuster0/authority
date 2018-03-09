@@ -115,7 +115,8 @@ opforradartypes = ["Land_Radar_Small_F"];
 hintqueue = ["","","","","","", "", "","", ""];
 opforairsupporttypes = ["O_Heli_Light_02_F", "O_Heli_Light_02_F", "O_T_VTOL_02_infantry_F", "O_Heli_Attack_02_F", "O_Plane_CAS_02_F", "O_Plane_Fighter_02_F"];
 huroncontainertypes =  ["B_Slingload_01_Ammo_F", "B_Slingload_01_Cargo_F", "B_Slingload_01_Fuel_F", "B_Slingload_01_Medevac_F", "B_Slingload_01_Repair_F"];
-blufortrucktypes = [["B_Truck_01_box_F","B_Truck_01_covered_F", "B_Truck_01_transport_F"], ["I_C_Van_01_transport_brown_F", "I_C_Van_01_transport_olive_F"], ["C_Van_01_transport_white_F", "C_Van_01_box_red_F", "C_Van_01_transport_red_F", "C_Van_01_box_white_F"], ["C_IDAP_Truck_02_F", "C_IDAP_Van_02_transport_F", "C_IDAP_Van_02_vehicle_F", "C_IDAP_Truck_02_transport_F", "C_IDAP_Truck_02_water_F"]];
+blufortrucktypes = [["B_Truck_01_box_F","B_Truck_01_covered_F", "B_Truck_01_transport_F"], ["C_IDAP_Truck_02_F", "C_IDAP_Van_02_transport_F", "C_IDAP_Van_02_vehicle_F", "C_IDAP_Truck_02_transport_F", "C_IDAP_Truck_02_water_F"],["C_Truck_02_fuel_F","C_Truck_02_box_F","C_Truck_02_covered_F"] ];
+C_Truck_02_covered_F
 repvecs = ['B_APC_Tracked_01_CRV_F', 'B_Truck_01_Repair_F', 'Offroad_01_repair_base_F', 'O_Truck_03_repair_F'];
 publicVariable "repvecs";
 
