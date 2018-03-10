@@ -130,7 +130,7 @@ _this spawn {
 					(IND_DISPLAY displayctrl (IND_CONTROL + _i)) ctrlsetfade _fade;
 					(IND_DISPLAY displayctrl (IND_CONTROL + _i)) ctrlcommit _delayFade;
 				};
-				if ((_objPos distance2D _centerPos ) < 20) then
+				if ((_objPos distance2D _centerPos ) < 40) then
 					{
 						(IND_DISPLAY displayctrl (IND_CONTROL + _i)) ctrlsettextcolor [0.4,0.4,0.6,1];
 					} else

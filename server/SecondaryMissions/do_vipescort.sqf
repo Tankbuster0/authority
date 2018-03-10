@@ -8,7 +8,7 @@ private ["_myvip","_vipclass","_potdesttowns","_potdestowns","_thistown","_build
 _podests = []; _smcleanup = [];
 _vipgroup = createGroup [west, true];
 _vipclass = selectrandom vips;
-_myvip = _vipgroup createUnit [_vipclass, blubasewhiteboard,[],0, "FORM"];
+_myvip = _vipgroup createUnit [_vipclass, blubasedataterminal,[],0, "CAN_COLLIDE"];
 [_myvip, (format ["vip%1", 1])] call fnc_setVehicleName;
 _myvip disableAI "ALL";
 _myvip setCaptive true;
