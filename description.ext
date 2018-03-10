@@ -69,6 +69,7 @@ class cfgFunctions
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
 			class fixTextHeight {};
+			class dirIndicator {};
 			class inventory {};
 			class KilledEH {};
 			class keyDownHandler {};
