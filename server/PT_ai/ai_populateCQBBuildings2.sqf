@@ -104,7 +104,7 @@ _currentTripMinesBuild = 0;
 			//diag_log format ["*** cqb2 tripmine found a %1", _x];
 			{
 				//diag_log FORMAT ["***populateCQBBuildings: Placing tripwire in %1 at %2 and %3", (typeOf _bdng), (_x select 0), (_x select 1)] ;
-				if ((random 1) > 0.8) then
+				if ((random 1) > 0.9) then
 				{
 					_mymine = [_bdng, _x select 0, _x select 1] call AM_fnc_CreateMine;
 					//diag_log format ["*** cqb2 mine %1 is at %2, dir is %3", _m, getpos _m, getdir _m];

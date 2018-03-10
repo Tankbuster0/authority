@@ -2,12 +2,13 @@
 #include "..\includes.sqf"
 _myscript = "fn_followleader";
 __tky_starts
-private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer", "_mytext"];
+private ["_myhostage","_rescuer","_mode","_rescuerinvec","_rescuevec","_cargopositions","_nrplayer", "_mytext", "_dirindicatoron"];
 /* custom AI for hostages. possible modes are captured, waiting, following, getin, invec and rescued and getout*/
 _myhostage = _this select 0;
 _mytext = _this select 1;
 _destinationisbase = _this select 2;
 _mode = "captured";
+_dirindicatoron = false;
 [
 	_myhostage,
 	_mytext,
@@ -20,7 +21,7 @@ _mode = "captured";
    	{
 	    [(_this select 0), ""] remoteExec ["switchMove", 0, false];
 		(_this select 0) enableAI "ALL";
-		[_this select 0, "safe"] remoteExec ["setBehaviour", 0, false];
+		[_this select 0, "careless"] remoteExec ["setBehaviour", 0, false];
 		(_this select 0) setUnitPos "AUTO";
 		(_this select 0) setCaptive false;
 	},
@@ -32,7 +33,7 @@ _mode = "captured";
     false
 ] remoteExec ["BIS_fnc_holdActionAdd",[0,-2] select isDedicated,true];
 sleep 5;
-waitUntil {sleep 1; (((behaviour _myhostage) == "safe") or  (not (captive _myhostage)))};
+waitUntil {sleep 1; (((behaviour _myhostage) == "careless") or  (not (captive _myhostage)))};
 _rescuer = (_myhostage nearEntities ["SoldierWB", 4]) select 0;
 _myhostage enableAI "ALL";
 _myhostage doMove (getPosATL _rescuer);
@@ -43,7 +44,8 @@ _cargopositions = 0;
 _myhostage allowFleeing 0;
 while {missionactive} do
 {
-	sleep 4;
+	if (_mode isequalto "following") then
+		{sleep 4;} else {sleep 2;};
 	//set waiting criteria. set after a failed getin, or after rescuer dies or quits
 	if ((not alive _rescuer) or ((_myhostage distance2D _rescuer) > 100) ) then
 		{// rescuer dies or runs away (or drives away)
@@ -82,9 +84,10 @@ while {missionactive} do
 			};
 		case "waiting":
 			{
+				indicatorrun = false;
+				publicVariable "indicatorrun";
 				_rescuer = objNull;
 				doStop _myhostage;
-				//if (_myhostage)
 			};
 		case "getin":
 			{
@@ -110,6 +113,14 @@ while {missionactive} do
 				{
 					_mode = "getout";
 				};
+				if (not (_dirindicatoron)) then
+					{
+						indicatorrun = true;
+						publicVariable "indicatorrun";
+						sleep 0.1;
+						[_rescuevec, vipdest ]remoteExecCall ["tky_fnc_dirIndicator", _rescuer, true];
+						_dirindicatoron = true;
+					};
 			};
 		case "rescued":
 			{
@@ -129,6 +140,8 @@ while {missionactive} do
 				_rescuerinvec = false;
 				_rescuevec = objNull;
 				_mode = "waiting";
+				indicatorrun = false;
+				publicVariable "indicatorrun";
 			};
 	};
 	if (testmode) then
