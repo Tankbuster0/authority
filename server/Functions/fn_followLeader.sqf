@@ -113,7 +113,7 @@ while {missionactive} do
 				{
 					_mode = "getout";
 				};
-				if (not (_dirindicatoron)) then
+				if (typeselected isEqualTo "vipsecort") and { (not (_dirindicatoron)) and ((vipdest distance2D _rescuer) < 200)} then
 					{
 						indicatorrun = true;
 						publicVariable "indicatorrun";
@@ -140,8 +140,11 @@ while {missionactive} do
 				_rescuerinvec = false;
 				_rescuevec = objNull;
 				_mode = "waiting";
-				indicatorrun = false;
-				publicVariable "indicatorrun";
+				if (typeselected isEqualTo "vipescort") then
+					{
+						indicatorrun = false;
+						publicVariable "indicatorrun";
+					};
 			};
 	};
 	if (testmode) then
