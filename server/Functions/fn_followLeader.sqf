@@ -113,7 +113,7 @@ while {missionactive} do
 				{
 					_mode = "getout";
 				};
-				if (typeselected isEqualTo "vipsecort") and { (not (_dirindicatoron)) and ((vipdest distance2D _rescuer) < 200)} then
+				if ((typeselected isEqualTo "vipsecort") and { (not (_dirindicatoron)) and ((vipdest distance2D _rescuer) < 500)}) then
 					{
 						indicatorrun = true;
 						publicVariable "indicatorrun";
