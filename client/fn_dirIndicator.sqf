@@ -110,7 +110,8 @@ _this spawn {
 				-1
 			};
 
-			for "_i" from 1 to 4 do {
+			for "_i" from 1 to 4 do
+			{
 				_fadeCurrent = ctrlfade (IND_DISPLAY displayctrl (IND_CONTROL + _i));
 				_fade = if (_dirTo == _i && _dirTo >= 0) then {
 					if (typename _obj == typename objnull) then {
