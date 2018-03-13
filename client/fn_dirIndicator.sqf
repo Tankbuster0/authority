@@ -12,6 +12,10 @@
 	Returns:
 	True
 */
+ #include "..\includes.sqf"
+_myscript = "tky_fnc_dirIndicator";
+__tky_starts;
+__tky_debug;
 _this spawn {
 	disableserialization;
 	_center = _this select 0;
@@ -154,3 +158,4 @@ _this spawn {
 	IND_3 ctrlcommit 0.5;
 	IND_4 ctrlcommit 0.5;
 };
+__tky_ends
