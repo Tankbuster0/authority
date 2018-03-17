@@ -49,7 +49,7 @@ switch (_prizeclass) do
 		[_prizevec, "bf"] call fnc_setvehiclename;
 		nul = execVM "server\tky_bf_killed_eh.sqf";
 		};
-	case "B_Heli_Transport_03_unarmed_F": {[_prizevec, "huron"] call fnc_setvehiclename;	} ;
+	case bluforslingloadlifter: {[_prizevec, "huron"] call fnc_setvehiclename;	} ;
 	default {[_prizevec, (format ["prize%1", prizecounter])] call fnc_setvehiclename;}
 
 
