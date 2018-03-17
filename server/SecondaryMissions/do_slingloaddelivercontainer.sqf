@@ -16,7 +16,7 @@ switch (_conttype) do
 	case "B_Slingload_01_Repair_F": {_misstxt = "need to repair a number of their heavy vehicles in theatre"};
 	};
 _displayname = [_conttype] call tky_fnc_getscreenname;
-_contpos = [blubasehelipad, 20, 70, 10, 0, 0.3, 0,1,0] call tky_fnc_findSafePos;
+_contpos = [blubasehelipad, 20, 70, 10, 0, 0.3, 0,1,1] call tky_fnc_findSafePos;
 smcontainer = createVehicle [_conttype, _contpos,[],0,"NONE"];
 [smcontainer, "smcontainer"] call fnc_setvehiclename;
 _smcleanup pushback smcontainer;
@@ -50,12 +50,12 @@ if ((count _hurons) > 0) then //players already have a huron, don't give them an
 	}
 	else
 	{
-	_nul = [blubasehelipad, blufordropaircraft, blufordropaircraft, [0,0,0], "Use this to do the slingload container mission.", "huron" ] execVM "server\spawnairdrop.sqf";
+	_nul = [blubasehelipad, blufordropaircraft, bluforslingloadlifter, [0,0,0], "Use this to do the slingload container mission.", "huron" ] execVM "server\spawnairdrop.sqf";
 	};
 failtext = "Mission failure! You didn't get the supplies to the troops. They needed them badly.";
 _smoke1= false;
 _smoke2 = false;
-waitUntil {sleep 4; count ( vehicles select {(((typeof _x) isEqualTo blufordropaircraft) and (alive _x) and (canMove _x) and (fuel _x > 0))}) > 0 };// there's a huron actually in game...
+waitUntil {sleep 4; count ( vehicles select {(((typeof _x) isEqualTo bluforslingloadlifter) and (alive _x) and (canMove _x) and (fuel _x > 0))}) > 0 };// there's a huron actually in game...
 waitUntil {sleep 4; (
 	(
 	 	(((getpos smcontainer) select 2) > 10) and
@@ -64,7 +64,7 @@ waitUntil {sleep 4; (
 	or (damage smcontainer > 0.5) or
 	(count (vehicles select
 	 	{
-	 		(((typeof _x) isEqualTo blufordropaircraft)
+	 		(((typeof _x) isEqualTo bluforslingloadlifter)
 			 and (alive _x) and (canMove _x) and (fuel _x > 0))
 		}) < 1 )
 	)};// mission underway..
@@ -88,7 +88,7 @@ while {missionactive} do
 	if (
 	    (!alive smcontainer) or
 	    ( ((getpos smcontainer select 2) < 2 ) and {((smcontainer distance2d _deliverypos) > 50) and ( (speed _smheli) < 20) and (isNull (ropeAttachedTo smcontainer)) } ) or
-	    (count ( vehicles select {(((typeof _x) isEqualTo blufordropaircraft) and (alive _x) and (canMove _x) and (fuel _x > 0))}) < 1)
+	    (count ( vehicles select {(((typeof _x) isEqualTo bluforslingloadlifter) and (alive _x) and (canMove _x) and (fuel _x > 0))}) < 1)
 	    )
 	     then
 			{
