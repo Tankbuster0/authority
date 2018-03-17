@@ -16,7 +16,7 @@ switch (_conttype) do
 	case "B_Slingload_01_Repair_F": {_misstxt = "need to repair a number of their heavy vehicles in theatre"};
 	};
 _displayname = [_conttype] call tky_fnc_getscreenname;
-_contpos = [blubasehelipad, 20, 70, 10, 0, 0.3, 0,1,1] call tky_fnc_findSafePos;
+_contpos = [blubasehelipad, 20, 100, 10, 0, 0.5, 0,1,1] call tky_fnc_findSafePos;
 smcontainer = createVehicle [_conttype, _contpos,[],0,"NONE"];
 [smcontainer, "smcontainer"] call fnc_setvehiclename;
 _smcleanup pushback smcontainer;
