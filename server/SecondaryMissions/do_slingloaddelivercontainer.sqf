@@ -69,6 +69,7 @@ waitUntil {sleep 4; (
 		}) < 1 )
 	)};// mission underway..
 _smheli = ropeAttachedTo smcontainer;
+smcontainer setOwner (owner _smheli);
 sleep 20;
 while {missionactive} do
 	{
