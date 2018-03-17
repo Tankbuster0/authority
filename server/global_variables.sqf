@@ -69,6 +69,7 @@ cpt_name = "None";
 publicVariable "fobvehicleclassname";
 publicVariable "forwardpointvehicleclassname";
 blufordropaircraft = "B_T_VTOL_01_vehicle_F"; publicVariable "blufordropaircraft";
+bluforslingloadlifter = "B_Heli_Transport_03_F"; publicVariable "bluforslingloadlifter";
 cardinaldirs = ["north", "northeast", "east", "southeast", "south", "southwest", "west", "northwest", "north"]; publicVariable "cardinaldirs";
 fobvehrespawncounter = 0;
 // Variables for HeartandMind SideMission calc
