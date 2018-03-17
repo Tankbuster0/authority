@@ -35,7 +35,7 @@ while {(
 		)} do // findsafepos not found a good place yet. we use a small radius to start with because it's important to get the droppos close to requested pos
 			{
 				_mpos = getmarkerpos "headmarker2";
-				_droppos = [_requestedpos, 1,_testradius, _objdist, 0,0.3,0] call bis_fnc_findSafePos;
+				_droppos = [_requestedpos, 1,_testradius, _objdist, 0,0.3,0,1,1] call tky_fnc_findSafePos;
 				_testradius = _testradius * 2;
 			};
 //or		((count (nearestObjects [_droppos, ["AllVehicles", "Man", "House_f", "BagBunker_base_f"], _objdist], true)) > 0)
