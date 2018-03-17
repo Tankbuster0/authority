@@ -93,7 +93,7 @@ while {smcounter < _sm_required} do
 		_donotchoose pushBack "repairlocalbuilding";
 		_donotchoose pushback "navalmineclear";
 		_donotchoose pushBack "landmineclear";
-		diag_log format ["***sm mananger removes repairlocalbuilding because there's no engineer playing"];
+		diag_log format ["***sm mananger removes repairlocalbuilding and both mineclear missions because there's no engineer playing"];
 		};
 	//#6 dont do heal1man if no medic in squad
 	if  (count (allplayers select {_x getUnitTrait "medic"}) isEqualTo 0)  then
@@ -111,7 +111,7 @@ while {smcounter < _sm_required} do
 			typeselected = selectRandom _smtypearray;
 			diag_log format ["***smm says smarray is %1 and chooses %2, _previousmission is %3", _smtypearray, typeselected, _previousmission];
 			};
-		//typeselected = "counterattack";// debug only//////////////////////////////////////////////////////////////////////////////////////////
+		typeselected = "slingloaddelivercontainer";// debug only//////////////////////////////////////////////////////////////////////////////////////////
 		publicVariable "typeselected";
 		_fname = format ["server\SecondaryMissions\do_%1.sqf", typeselected];
 		diag_log format ["***current sm number is %1 of %2", smcounter, _sm_required];
