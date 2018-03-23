@@ -35,13 +35,14 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 	findDisplay 312 closeDisplay 2;
 	"Deploying Helipad." remoteExec ["hint", _cur];
 	FOBHelipad = _obj;
-	_con = "(!fobserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0)) and (FOBhelipad in (thistrigger nearobjects ['Helipad_base_F', 2]))";
+	_con = "(isServer) and {(!fobserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0)) and (FOBhelipad in (thistrigger nearobjects ['Helipad_base_F', 2]))}";
 	_act = "fobserviceinuse = true; publicVariable 'fobserviceinuse'; [['fobserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
-	_fgvst = createTrigger ["EmptyDetector", getpos FOBhelipad, false];
+	_fgvst = createTrigger ["EmptyDetector", getpos FOBhelipad, true];
 	_fgvst setdir 333;// fob gvs trigs are setdir 333 so they can be identified and manualy deleted later
 	_fgvst setTriggerArea [8,8,0,true];
 	_fgvst setTriggerActivation ["ANY", "PRESENT", true];
 	_fgvst setTriggerStatements [_con, _act, ""];
+	diag_log format ["***curobjplaced makes trigger %1 at %2, statements are %3", _fgvst, getpos _fgvst, triggerStatements _fgvst];
 	fobjects pushback _fgvst;
 publicVariable "fobjects";
 };
