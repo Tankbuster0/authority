@@ -14,7 +14,6 @@ switch (typeof _vec) do
 		_vec addMagazineCargoGlobal ["20Rnd_762x51_Mag", 20];
 		_vec addMagazineCargoGlobal ["10Rnd_338_Mag", 20];
 		_vec addMagazineCargoGlobal ["10Rnd_50BW_Mag_F", 20];
-		_vec addMagazineCargoGlobal ["Rnd_65x39_caseless_mag_Tracer",20];
 		_vec addMagazineCargoGlobal ["3Rnd_HE_Grenade_shell", 10];
 		_vec addMagazineCargoGlobal ["SmokeShellBlue", 5];
 		_vec addMagazineCargoGlobal ["Laserbatteries", 6];
