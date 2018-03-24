@@ -140,7 +140,7 @@ sleep 1;
 		{
 			sleep 1;
 			_nro = (blubasehelipad nearEntities [["Land", "Air"], 6]);
-			if (((count _nro) > 0 ) and {(!airheadserviceinuse) and ((typeof (_nro select 0)) in allbluvehicles) and (isPlayer driver (_nro select 0))}) then
+			if (((count _nro) > 0 ) and {(!airheadserviceinuse) and (((typeof (_nro select 0)) in allbluvehicles) or ((_nro select 0) in preservedvehicles)) and (isPlayer driver (_nro select 0))}) then
 				{
 				airheadserviceinuse = true;
 				publicVariable "airheadserviceinuse";

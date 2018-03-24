@@ -35,7 +35,7 @@ if ((typeOf _obj) == "Land_HelipadSquare_F") then{
 	findDisplay 312 closeDisplay 2;
 	"Deploying Helipad." remoteExec ["hint", _cur];
 	FOBHelipad = _obj;
-	_con = "(isServer) and {(!fobserviceinuse) and ((count thislist) isEqualTo 1) and (typeof (thislist select 0) in allbluvehicles ) and (isplayer driver (thislist select 0)) and (FOBhelipad in (thistrigger nearobjects ['Helipad_base_F', 2]))}";
+	_con = "(isServer) and {(!fobserviceinuse) and ((count thislist) isEqualTo 1) and ((typeof (thislist select 0) in allbluvehicles ) or ((_thislist select 0) in preservedvehicles)) and (isplayer driver (thislist select 0)) and (FOBhelipad in (thistrigger nearobjects ['Helipad_base_F', 2]))}";
 	_act = "fobserviceinuse = true; publicVariable 'fobserviceinuse'; [['fobserviceinuse', thisList, getpos thistrigger], 'gvs\generic_vehicle_service.sqf'] remoteExec ['execVM', (driver (thislist select 0))]";
 	_fgvst = createTrigger ["EmptyDetector", getpos FOBhelipad, true];
 	_fgvst setdir 333;// fob gvs trigs are setdir 333 so they can be identified and manualy deleted later
