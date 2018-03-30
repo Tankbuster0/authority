@@ -3,7 +3,7 @@
 _myscript = "makediary";
 __tky_starts;
 player createDiarySubject ["auththemission", "Authority: The Mission"];// subject mission stuff
-player createDiaryRecord ["auththemission", ["The Mission", "Your team has been put ashore with limited assets. You are to take targets from the enemy as directed. <br /> There are civilans here. This is their home, respect them and it. <br />You can expect to encounter enemies all over the island, not just in the area of operations. Engage and prosecute them."]];
+player createDiaryRecord ["auththemission", ["The Mission", "Your team has been put ashore with limited assets. You are to take targets from the enemy as directed. <br /> There are civilans here. This is their home, respect them and it. <br />You can expect to encounter enemies all over the island, not just in the area of operations. Engage and prosecute them. Press the left Windows key for the Mission Status dialog."]];
 //
 player createDiarySubject ["yourstuff", "Your vehicles & bases"];// subject your stuff
 
@@ -18,7 +18,7 @@ player createDiaryRecord ["yourstuff", ["The Beachhead","The beachhead has an am
 player createDiarySubject ["enemystuff", "The Enemy"];// subject enemy stuff
 player createDiaryRecord ["enemystuff", ["The dispersed enemy", "There are small enemy forces all over the island and they will attack you at every opportunity so be aware that you may be flanked or attacked from the rear at any time. They have access to air as well as land assets and actively patrol the entire island."]];
 player createDiaryRecord ["enemystuff", ["Towns and bases", "After the airbase falls to BLUFOR, your team will be ordered to clear nearby towns and bases. As with the airbase, there will be an HQ that controls the enemy air patrol assets and a radar that controls the enemy air reinforcements. At the edge of the target, there are some roadblocks. Destroying them will stop the enemy reinforcing by road.<br />There are civilians in the towns. Avoid killing them or damaging their vehicles and buildings at all cost."]];
-player createDiaryRecord ["enemystuff", ["Airfield", "The first enemy target you will attack is always the airfield. It's heavily defended and will be reinforced throughout. <br />There's an HQ building, usually hidden under a camo net, that controls the enemy air patrols and attack aircraft.<br /> On a hill nearby you should see a radar installation, destroying that will stop the enemy reinforcing by air."]];
+player createDiaryRecord ["enemystuff", ["Airfield", "The first enemy target you will attack is always the airfield. It's heavily defended and will be reinforced throughout. <br />There's an HQ building, usually hidden under a camo net, that controls the enemy air patrols and attack aircraft.<br /> On a hill nearby you should see a radar installation, destroying that will stop the enemy reinforcing by air.<br /> You have to destroy all enemy assets, aircraft and vehicles. The civilian stuff - you might want to keep!"]];
 //
 player createDiarySubject ["authcomm","Development"];//subject author, development and discussion stuff
 player createDiaryRecord ["authcomm", ["Code repository", "https://app.assembla.com/spaces/coop40-authority-altis/subversion/source"]];
