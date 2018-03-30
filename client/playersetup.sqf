@@ -53,15 +53,19 @@ if !("PARAM_AimSway" call BIS_fnc_getParamValue == 100) then
 		player setCustomAimCoef _coef;
 		player setUnitRecoilCoefficient 0.2 + _coef;
 	};
+waitUntil {(!isNull (findDisplay 46))};
+sleep 2;
 if ((score player < 1)) then
 {
 	private _key = if ((count (actionKeys "User1") isEqualTo 0)) then {"Left Windows"} else {((actionKeysNamesArray "User1") joinString " | ")};
-	[(format ["<t size='1.0' color='#FFFF00'>Welcome to Authority, %1! Briefing and notes are on the map screen in the top left corner. <br />Press %2 to open the mission status dialog.</t>", (name player), _key]), -1, -1, 20, 1, 0, 12345] remoteExec ["BIS_fnc_dynamicText", player, false];
+	//[(format ["<t size='1.0' color='#FFFF00'>Welcome to Authority, %1! Briefing and notes are on the map screen in the top left corner. <br />Press %2 to open the mission status dialog.</t>", (name player), _key]), -1, -1, 20, 1, 0, 12345] remoteExec ["BIS_fnc_dynamicText", player, false];
+	["pics\ctrglogo256.jpg", [0.1,0.1,0.75,0.75], 10,1, 2] spawn BIS_fnc_textTiles;
+	sleep 4;
+	[parseText (format ["<t size='2.2' color='#FFFF00'>Welcome to Authority, %1! Briefing and notes are on the map screen in the top left corner. <br />Press %2 to open the mission status dialog.</t>", (name player), _key]), [0.1,0.1,0.75,0.75], 10,8, 3] spawn BIS_fnc_textTiles;
 
 };
 if (([missionNamespace, "primarytargetcounter", 99] call BIS_fnc_getServerVariable) == 1) then
 	{
-		//0=[[["On a beach, not far from ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '2.0', '#FFFF00"]]] spawn BIS_fnc_typeText2;
 		0=[[["On the shore, not far from ","align = 'center' size = '0.7' font='PuristaBold'"],[myairfield,"align = 'center' size = '0.7'","#aaaaaa"],["","<br/>"],["Take the airfield","align = 'center' size = '2.0'"]]] spawn BIS_fnc_typeText2;
 	}
 	else
