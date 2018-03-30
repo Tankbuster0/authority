@@ -10,7 +10,7 @@ missionstringextra = "";
 _myplaces = selectbestplaces [cpt_position, 1000, "waterdepth", 100,50];
 _myplaces append (selectbestplaces [cpt_position, 1500, "waterdepth", 100,50]);
 _myplaces append (selectbestplaces [cpt_position, 2000, "waterdepth", 100,50]);
-_seapos1 = _myplaces select {(_x select 1) > 10 and (_x select 1 < 40)};
+_seapos1 = _myplaces select {(_x select 1) > 8 and (_x select 1 < 30)};
 _mfdata = selectRandom _seapos1;
 _mfpos = _mfdata select 0;
 _numberofmines = (ceil (random ( 2 * (playersNumber west) )) min 6);
@@ -49,6 +49,7 @@ if ((count (call tky_fnc_fleet_boats) < 1) and {(count _nrquayobs) > 0}) then
 	};
 // trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
 //for bottom mines, give it an atl zero  position,  for surface mines, give it an asl zero position for moored mines, need to choose a random depth between the two
+_buoy = "Land_BuoyBig_F" createVehicle _mfpos;
 for "_minecounter" from 1 to _numberofmines do
 	{
 	_chosenmine = selectRandom seamines;
@@ -57,7 +58,11 @@ for "_minecounter" from 1 to _numberofmines do
 		{
 		_realminepos = _mfpos getpos [(3 + random 20), (random 360)];
 		_seadepth = (getTerrainHeightASL _realminepos);// <--returns a negative number
-		if (_seadepth < -15) then {_deepenough = true};
+		if (_seadepth < -8) then
+			{
+				_deepenough = true;
+				_seadepth = _seadepth + 2; //lift it a little to stop them spawning on the sea bed
+			};
 		};
 	switch (_chosenmine) do
 		{
@@ -86,7 +91,7 @@ diag_log format ["*** do_m cleanup array is %1", _smcleanup];
 sleep 4;
 _mfreldir = [cpt_position getdir _mfpos] call TKY_fnc_cardinaldirection;
 _mfdist = [((cpt_position distance2D _mfpos) + 24 - cpt_radius), 50] call BIS_fnc_roundNum;
-smmissionstring = format ["Local fishermen have told us there are mines in the water %1m %2 of the edge of town. We need to defuse all of them. Only an engineer or explosives specialist can do this and you'll need a mine detector and toolkit. When you find the mine, you will need to 'reveal' it - default key is 't'. ", _mfdist, _mfreldir];
+smmissionstring = format ["Local fishermen have told us there are mines in the water %1m %2 of the edge of town and that they've dropped a buoy there. We need to defuse all of them. Only an engineer or explosives specialist can do this and you'll need a mine detector and toolkit. When you find the mine, you will need to 'reveal' it - default key is 't'. ", _mfdist, _mfreldir];
 smmissionstring = smmissionstring + missionstringextra;
 smmissionstring remoteExecCall  ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 publicVariable "smmissionstring";
