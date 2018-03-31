@@ -4,7 +4,15 @@ publicVariable "authenicatedAdmins";
 initserverfinished = false; publicVariable "initserverfinished";
 missionsetupprogress = 0; publicVariable "missionsetupprogress";
 sleep 0.5;
+
+
 // added advanced urban rapelling via serverside addon
+
+// Sethduda's Advanced Towing
+_nul = execVM "SA_AdvancedTowing\fn_advancedTowingInit.sqf
+// Genesis92x's VCOM AI
+[] execVM "VCOMAI\init.sqf";
+
 /*independentcenter = createCenter independent;
 civcenter = createCenter civilian;*/
 logiccenter = createCenter sideLogic;
