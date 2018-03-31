@@ -20,6 +20,7 @@ disableRandomization[] = {"AllVehicles"};
 //reviveDelay = 10;
 //reviveForceRespawnDelay = 60;
 //reviveBleedOutDelay = 450;
+//test text for commit
 loadScreen = "pics\authlogo512x256.paa";
 class Header {
 	gameType = COOP;
