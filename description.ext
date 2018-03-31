@@ -65,11 +65,12 @@ class cfgFunctions
 		{
 			file = "client";
 			class addSupportRequester {};
+			class client_texttiles {};
 			class curatorObjectPlaced {};
 			class curatorObjectRemoved {};
 			class curatorSelectionChanged {};
-			class fixTextHeight {};
 			class dirIndicator {};
+			class fixTextHeight {};
 			class inventory {};
 			class KilledEH {};
 			class keyDownHandler {};
