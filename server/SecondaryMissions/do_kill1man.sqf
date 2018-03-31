@@ -18,6 +18,7 @@ _kill1types =
 			["classnames of support units outdoors"],
 			["missiontextstrings"]
 			**note** if providing a civilian targetman, best to spawn an opfor and forceadduniform him to prevent rating and scoring issues
+			test text for push
 		]*/
 		["cgl",
 			["house"],
