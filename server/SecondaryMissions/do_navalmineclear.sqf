@@ -47,7 +47,7 @@ if ((count (call tky_fnc_fleet_boats) < 1) and {(count _nrquayobs) > 0}) then
 		diag_log format ["*** dnmc made a %1 at %2", _myboat, getpos _myboat];
 		};
 	};
-// trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them
+// trick with sea mines is to create them at the position where you want them as none of the setpos commands work on them//test again
 //for bottom mines, give it an atl zero  position,  for surface mines, give it an asl zero position for moored mines, need to choose a random depth between the two
 _buoy = "Land_BuoyBig_F" createVehicle _mfpos;
 for "_minecounter" from 1 to _numberofmines do
