@@ -98,6 +98,7 @@ if (_defect isEqualTo 1) then
 	[_fueltrk, true, true] call BIS_fnc_initVehicle;
 	_smcleanup pushback _fueltrk;
 	};
+failtext = "You didn't get the aircraft back. Mission failed!";
 while {missionactive} do
 	{
 	sleep 3;
