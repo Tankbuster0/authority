@@ -34,7 +34,7 @@ while {_deliverypos in [[0,0,0], islandcentre] } do
 // work out the direction of the objective from the logic
 _dir = [_mytarget getdir _deliverypos] call TKY_fnc_cardinaldirection;
 _dist = [_mytarget distance2d _deliverypos] call tky_fnc_estimateddistance;
-smmissionstring = format ["Freindly forces %1. There's a %2 at the Airhead, slingload that to them %3m %4of %5. Keep aircraft speed below 120 KMH for best results. If you don't already have a slingload capable to do the mission, one will be airdropped to you at the Airhead.", _misstxt, _displayname, _dist,_dir, _tname];
+smmissionstring = format ["Friendly forces %1. There's a %2 at the Airhead, slingload that to them %3m %4 of %5. Keep aircraft speed below 140 KMH for best results. If you don't already have a slingload capable to do the mission, one will be airdropped to you at the Airhead.", _misstxt, _displayname, _dist,_dir, _tname];
 smmissionstring remoteExecCall ["tky_fnc_usefirstemptyinhintqueue", 2, false];
 publicVariable "smmissionstring";
 _smgrp1 = [_deliverypos, west, (configfile >> "CfgGroups" >> "West" >> "Guerilla" >> "Motorized_MTP" >> "IRG_Technicals")] call BIS_fnc_spawngroup;
@@ -100,7 +100,7 @@ while {missionactive} do
 	if (
 	    (isNull (ropeAttachedTo smcontainer)) and
 			{
-				((smcontainer distance2d _deliverypos) < 20) and
+				((smcontainer distance2d _deliverypos) < 50) and
 				((getpos smcontainer select 2)< 2)
 			}
 		) then
