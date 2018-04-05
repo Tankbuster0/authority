@@ -19,11 +19,11 @@ _nvc = 0.75 * (["notveryclose",400] call BIS_fnc_getParamValue);
 		if not (_x in preservedvehicles)  then {deleteVehicle _x};
 		//diag_log format ["*** cleanupoldprimary deletes an old %1 vehicle ", typeof _x];
 	};
-} foreach  ((getpos previousmission) nearEntities [["LandVehicle", "Air", "Ship"], _nvc]);
+} foreach  ((getpos previousmission) nearEntities [["LandVehicle", "Air", "Ship","O_Truck_03_covered_F"], _nvc]);
 // ^^ finds and delete civ and russian cars/tanks/ aircraft . leaves anything non russian or anything preserved (players have entered)
 {
 	deleteVehicle _x;
-} foreach (previousmission nearEntities [["Civilian_F", "GroundWeaponHolderSimulated", "WeaponHolderSimulated", "GroundWeaponHolder"], _nvc]);
+} foreach (previousmission nearEntities [["Civilian_F", "GroundWeaponHolderSimulated", "WeaponHolderSimulated", "GroundWeaponHolder", "Land_Cargo_House_V4_ruins_F"], _nvc]);
 // ^^ finds and deletes civilian men and discardded weapons and ammo. any in cars/tanks etc will have been ejected when their veh was deleted earlier.
 
 // Delete all CQB stuff (Mines, statics, etc)
