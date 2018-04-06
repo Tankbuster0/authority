@@ -27,15 +27,15 @@
 				1 - On. Uses nearestObjects system (use big radii with caution)
 				2 - On. Uses lineintersects system.
 				3 - On. Uses 1 and 2.
-		8: (Optional) ARRAY - blacklist (Array of Arrays):
+		9: (Optional) ARRAY - blacklist (Array of Arrays):
 				(_this select 7) select 0: ARRAY - top-left coordinates of blacklisted area
 				(_this select 7) select 1: ARRAY - bottom-right coordinates of blacklisted area
-		9: (Optional) ARRAY - default positions (Array of Arrays):
+		10: (Optional) ARRAY - default positions (Array of Arrays):
 				(_this select 8) select 0: ARRAY - default position on land
 				(_this select 8) select 1: ARRAY - default position on water
 	Returns:
 		Coordinate array with a position solution.
-	_ret =  [[centrepos], mindistfromcentrepos, maxdistfromcentre, distfrom nearobj, water 0 1 2 (dry, either, wet), grad, shoremode 0 1 (not, must), outside 0 1(yes, no), strict (use 1 for now), blacklist, default] blahblah
+	_ret =  [[centrepos], mindistfromcentrepos, maxdistfromcentre, distfrom nearobj, water 0 1 2 (dry, either, wet), grad, shoremode 0 1 (not, must), outside 0 1(no, yes), strict (use 1 for now), blacklist, default] blahblah
 */
 scopeName "main";
 params [
