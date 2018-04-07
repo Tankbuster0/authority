@@ -171,23 +171,23 @@ for "_count" from _start to _lc do
 	switch ((floor (random 5))) do
 		{
 		case 0: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconPatrol")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "O_static_AT_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 1: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_AA")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconPatrol")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "O_static_AA_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 2: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_AT")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Infantry" >> "OI_reconPatrol")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "O_static_AT_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 3: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_MG")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "O_HMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		case 4: {
-				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;
+				_staticgrp = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_GMG")] call BIS_fnc_spawnGroup;
 				[_mypos, _mydir, "O_GMG_01_high_F", _staticgrp ] call bis_fnc_spawnVehicle;
 				};
 		};
@@ -209,12 +209,11 @@ for "_count" from _start to _lc do
 	// statics end
 	// patrolling infantry start
 	_mypos = [_pt_pos, 0, _pt_radius, 4,0,0.5,0,1,1] call tky_fnc_findSafePos;
-	switch ((floor (random 4))) do
+	switch ((floor (random 3))) do
 		{
-		case 0: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam")] call BIS_fnc_spawnGroup;};
-		case 1: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_AT")] call BIS_fnc_spawnGroup;};
-		case 2: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_ReconSquad")] call BIS_fnc_spawnGroup;};
-		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OFP_F" >> "Infantry" >> "OIA_InfTeam_MG")] call BIS_fnc_spawnGroup;};
+		case 0: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_recon_EOD")] call BIS_fnc_spawnGroup;};
+		case 1: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_GMG")] call BIS_fnc_spawnGroup;};
+		case 3: {_patrolinf = [_mypos, east, (configfile >> "CfgGroups" >> "East" >> "OPF_F" >> "Support" >> "OI_support_MG")] call BIS_fnc_spawnGroup;};
 		};
 	__tky_debug
 	if (diag_fpsmin < 10) then {diag_log format ["*** tky throttling %1 at %2 because fpsmin is %3",(__FILE__ select [(21 + (count worldName)), ((count __FILE__) - 4)]), __LINE__, diag_fpsmin ]; sleep 0.5;};
