@@ -43,7 +43,8 @@ _smtypearray = [
 "hostageRescue",
 "heal1man",
 "counterattack",
-"vipescort"
+"vipescort",
+"killvecdepot"
  ];
 //_sm_required = 1;//debug only
 smcounter = 1;
