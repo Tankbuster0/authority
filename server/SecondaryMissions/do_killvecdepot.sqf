@@ -67,7 +67,7 @@ for "_z" from 1 to _countX do {
 							_smcleanup = _smcleanup + (units _patrolveh);
 						};
 				case 3: {
-							_myarray = [[_vdpos select 0, _vdpos select 1, 300], 0, (selectRandom opforairsupporttypes), east] call BIS_fnc_spawnVehicle;
+							_myarray = [[_defpos select 0, _defpos select 1, 300], 0, (selectRandom opforairsupporttypes), east] call BIS_fnc_spawnVehicle;
 							_vec = _myarray select 0;
 							_vec setVelocity [150 * (sin (getdir _vec)), 150 * (cos (getdir _vec)), 10];
 							_wp = (group driver _vec) addWaypoint [_vdpos, 0];
