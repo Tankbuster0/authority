@@ -59,23 +59,7 @@ sepa = ["<t color='#ffff33'>Put on ear plugs</t>",{
 	}
 },[],-90,false,true,"","_target == vehicle player"];
 player addAction sepa;
-/*
-[] spawn // dont bother adding this during setup as it can't run until the player has died once (divide by zero error)
-	{
-		while {true} do
-		{
-			__tky_debug
-			waitUntil {sleep 0.5; (visibleScoretable)};
-			__tky_debug
-			private _kdr = ( (getPlayerScores player ) select 0) / ((getPlayerScores player) select 4);
-			hint format ["KDR = %1", ([_kdr, 1 ] call BIS_fnc_cutDecimals) ];
-			__tky_debug
-			waitUntil {sleep 0.5; (not visibleScoretable)};
-			__tky_debug
-			hint "";
-		};
-	};
-*/
+
 _nul = execvm "client\showkilldeathratio.sqf";
 
 __tky_ends;
