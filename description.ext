@@ -81,6 +81,8 @@ class cfgFunctions
 			class playerMarkersInit {};
 			class resetCuratorBuildlist {};
 			class respawnButton {};
+			class setdeployaddactionblackgrey {};
+			class setdeployaddactiongreyblack {};
 			class showmissiondialog {};
 		};
 		class auth_server

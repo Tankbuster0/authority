@@ -83,14 +83,14 @@ if not (fobdeployed) then
 			}
 			else
 			{
-			"Deploying FOB." remoteExec ["hint", fobveh];
+			remoteexec ["tky_fnc_setdeployaddactionblackgrey", -2];
+			"Deploying FOB." remoteExec ["hint", effectiveCommander fobveh];
 			[fobveh, true] remoteexec ["lockdriver"];
 			sleep 2;
 			handle_bf_finished = false;
 			_handle22 = [position fobveh, direction fobveh] execVM "server\buildfob.sqf";
 			waitUntil {handle_bf_finished};
-
-			sleep 0.5;
+			sleep 0.2;
 			// Make editing area for curator
 			(effectiveCommander fobveh) assignCurator cur;
 			[] remoteExec ["tky_fnc_resetCuratorBuildlist"];
@@ -111,6 +111,7 @@ else
 {
 	if (!(isNil "fobjects")) then
 		{
+		remoteexec ["tky_fnc_setdeployaddactiongreyblack", -2];
 		"Removing FOB" remoteexec ["hint", fobveh];
 		sleep 1;
 		fobdeployed = false;
@@ -134,6 +135,7 @@ else
 		publicVariable "fobjects";
 		sleep 1;
 		"The FOB has been packed into the Hunter FOB vehicle. You cannot spawn there until the FOB is deployed" remoteexecCall ["tky_fnc_usefirstemptyinhintqueue",2,false];
+		//remoteexec to all players a command that makes the addction word deploy in white and undeploy in grey
 		};
 };
 __tky_ends

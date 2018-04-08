@@ -28,16 +28,11 @@ Using orientation of objects: yes
 	["Land_TTowerSmall_2_F",[0.859131,-6.6907,0],0,1,0,[0,0],"","",true,false],
 	["Land_TentDome_F", [3,3,0],0,1,0,[0,0], "fobmash", "", true, false]
 ],0.0] call tky_fnc_t_objectsmapper;
-
-sleep 0.5;
+sleep 0.2;
 fobflagpole setFlagTexture "pics\hom_flag_white_stripe512.paa";
-
 fobdeployed = true;
 blueflags pushback fobflagpole;
-publicVariable "fobdeployed";
 publicVariable "fobjects";
-sleep 0.5;
-
 if (isDedicated) then
 {
 	fobdtopen = false;
@@ -70,10 +65,8 @@ if (isDedicated) then
 		};
 	[fobdataterminal, ["Recover prize vehicles from Airhead (buildfob version)", {_nul = execVM "client\islandhopprizerecover.sqf"}, "", 0, true, true, "", "islandhop and (not(recoveryinuse))", 2]] remoteExec ["addAction", -2, fobdataterminal];
 };
-
-
 //previousmission = [missionNamespace, "previousmission", nil] call BIS_fnc_getServerVariable;
 sleep 0.5;
+publicVariable "fobdeployed";
 handle_bf_finished = true;
 __tky_ends
-
